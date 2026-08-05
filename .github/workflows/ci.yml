@@ -1,0 +1,129 @@
+name: ci
+
+# Gate de qualidade: valida apenas os módulos que mudaram. NÃO publica imagens/artefatos de deploy.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  env-hygiene:
+    # Garante que nenhum .env real (com segredo) é rastreado no git e que os .example
+    # versionados não carregam segredo real. Roda sempre (repo inteiro, custo desprezível),
+    # sem depender do filtro de paths dos demais jobs.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Verificar higiene de .env
+        run: ./.github/scripts/check-env-hygiene.sh
+
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      care_web: ${{ steps.filter.outputs.care_web }}
+      stock_web: ${{ steps.filter.outputs.stock_web }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            backend:
+              - 'SeniorCareManager-Backend/**'
+            care_web:
+              - 'SeniorCareManager-Frontend/**'
+            stock_web:
+              - 'SeniorStockManager-Frontend/**'
+
+  backend:
+    needs: changes
+    if: needs.changes.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      # Sem projeto de teste ainda (SeniorCareManager.WebAPI.sln só tem o WebAPI) — quando
+      # existir, adicionar aqui um passo `dotnet test`.
+      - name: dotnet build
+        working-directory: SeniorCareManager-Backend/SeniorCareManager.WebAPI
+        run: dotnet build --configuration Release
+
+  care-web:
+    needs: changes
+    if: needs.changes.outputs.care_web == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: SeniorCareManager-Frontend/SeniorCareManagerFrontend
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: SeniorCareManager-Frontend/SeniorCareManagerFrontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - name: SCA — npm audit no package-lock.json real
+        # dependencies (vai para o bundle publicado): bloqueia em HIGH ou CRITICAL.
+        # devDependencies (só existe no build, nunca no runtime): bloqueia só em CRITICAL.
+        run: |
+          npm audit --omit=dev --audit-level=high
+          npm audit --audit-level=critical
+      - run: npm run build
+
+  stock-web:
+    needs: changes
+    if: needs.changes.outputs.stock_web == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: SeniorStockManager-Frontend/SeniorStockManagerFrontend
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: SeniorStockManager-Frontend/SeniorStockManagerFrontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - name: SCA — npm audit no package-lock.json real
+        run: |
+          npm audit --omit=dev --audit-level=high
+          npm audit --audit-level=critical
+      - run: npm run build
+
+  ci-required:
+    # `backend`/`care-web`/`stock-web` só rodam quando o path correspondente muda — um
+    # required status check da branch protection que nunca roda trava o PR pra sempre.
+    # Este job sempre roda (inclusive quando os três acima foram pulados) e é o único que
+    # a branch protection deve exigir deste workflow.
+    needs: [env-hygiene, backend, care-web, stock-web]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checar resultado dos jobs
+        run: |
+          for r in \
+            "${{ needs.env-hygiene.result }}" \
+            "${{ needs.backend.result }}" \
+            "${{ needs.care-web.result }}" \
+            "${{ needs.stock-web.result }}"; do
+            if [ "$r" != "success" ] && [ "$r" != "skipped" ]; then
+              echo "FALHOU: pelo menos um job obrigatório não teve sucesso (status: $r)."
+              exit 1
+            fi
+          done
+          echo "OK: todos os jobs obrigatórios tiveram sucesso ou foram pulados."

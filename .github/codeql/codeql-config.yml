@@ -1,0 +1,15 @@
+# Regras de SAST versionadas — mudanças de escopo passam por PR normal, com histórico
+# auditável (quem/quando/por quê).
+name: "SeniorCare CodeQL config"
+
+queries:
+  - uses: security-extended
+  - uses: security-and-quality
+
+paths-ignore:
+  # Build/artefatos gerados — nunca fonte real.
+  - '**/bin/**'
+  - '**/obj/**'
+  - '**/dist/**'
+  - '**/node_modules/**'
+  - '**/graphify-out/**'

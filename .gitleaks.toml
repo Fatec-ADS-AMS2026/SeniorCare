@@ -1,0 +1,24 @@
+# Regras de detecção de segredos — versionadas, mudanças passam por PR normal (histórico
+# de git = auditoria de quem/quando/por quê).
+#
+# Cada path abaixo tem um motivo verificável (nunca um allowlist silencioso). Achados
+# legítimos continuam bloqueando normalmente — isto só cobre falsos positivos e saída
+# gerada por ferramenta, não código-fonte.
+title = "SeniorCare gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Saída gerada pelo graphify (não é código-fonte, pode disparar falso positivo por coincidência de substring); commit com JwtSettings:Key já removida e nunca usada fora de ambiente local (ver comentário abaixo)."
+paths = [
+  '''graphify-out/.*''',
+]
+# dbf1cb40748fe60749f9ea735fe16cbeb3589db6: JwtSettings:Key exposta em appsettings.json e
+# appsettings.Development.json durante o desenvolvimento inicial (antes da reestruturação
+# para monorepo). Removida do HEAD atual; nunca usada fora de ambiente local. Mantida no
+# histórico (não reescrito) — allowlist evita que a varredura completa periódica
+# (gitleaks-full-scan) fique bloqueando permanentemente neste achado já conhecido.
+commits = [
+  "dbf1cb40748fe60749f9ea735fe16cbeb3589db6",
+]

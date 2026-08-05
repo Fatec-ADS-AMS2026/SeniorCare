@@ -1,0 +1,80 @@
+name: security-sca
+
+# SCA do backend: pacotes NuGet com vulnerabilidade conhecida (advisory database da
+# NuGet/GitHub via `dotnet list package --vulnerable`, sem depender de chave de API
+# externa). Gate contínuo, não avaliação pontual manual. Roda em PRs que tocam
+# dependências/código do backend e periodicamente (drift de CVE pode aparecer sem
+# nenhuma mudança de código).
+on:
+  pull_request:
+  schedule:
+    # Toda segunda-feira 06:00 UTC — drift de CVE independe de mudança de código.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-sca-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changes:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            backend:
+              - 'SeniorCareManager-Backend/**'
+              - '.github/workflows/security-sca.yml'
+              - '.github/scripts/nuget-audit-gate.py'
+
+  backend-sca:
+    needs: changes
+    # Roda sempre fora de PR (schedule/workflow_dispatch); em PR, só quando o path filtrado
+    # muda — evita rodar (e pedir pacotes NuGet do net) em PR que só toca frontend/docs.
+    if: github.event_name != 'pull_request' || needs.changes.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restaurar pacotes
+        working-directory: SeniorCareManager-Backend/SeniorCareManager.WebAPI
+        run: dotnet restore
+      - name: Listar pacotes vulneráveis (diretos + transitivos)
+        working-directory: SeniorCareManager-Backend/SeniorCareManager.WebAPI
+        run: >-
+          dotnet list package --vulnerable --include-transitive --format json
+          > vulnerable-packages.json
+      - name: Gate SCA — alto/crítico
+        working-directory: SeniorCareManager-Backend/SeniorCareManager.WebAPI
+        run: >-
+          python3 ../../.github/scripts/nuget-audit-gate.py
+          vulnerable-packages.json --min-severity high
+
+  security-sca-required:
+    # `backend-sca` só roda em PR quando o backend muda — um required status check da
+    # branch protection que nunca roda trava o PR pra sempre. Este job sempre roda em PR
+    # (inclusive quando `backend-sca` foi pulado) e é o único que a branch protection deve
+    # exigir deste workflow.
+    needs: [changes, backend-sca]
+    if: always() && github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checar resultado do job
+        run: |
+          r="${{ needs.backend-sca.result }}"
+          if [ "$r" != "success" ] && [ "$r" != "skipped" ]; then
+            echo "FALHOU: backend-sca não teve sucesso (status: $r)."
+            exit 1
+          fi
+          echo "OK."

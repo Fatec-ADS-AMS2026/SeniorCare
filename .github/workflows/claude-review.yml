@@ -1,0 +1,137 @@
+name: claude-review
+
+# Revisão automática de PR pelo Claude, com foco em autenticação/autorização e dados
+# pessoais (LGPD). Complementa o `ci.yml` (que valida build/lint/testes) — aqui a revisão
+# é semântica.
+# Credencial: token de assinatura gerado por `claude setup-token`, guardado no secret
+# CLAUDE_CODE_OAUTH_TOKEN. O GITHUB_TOKEN é injetado pelo Actions, não precisa criar.
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    # PR em rascunho não gasta cota da assinatura.
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # Histórico completo: a revisão precisa comparar com a base do PR.
+          fetch-depth: 0
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # Sem este input a Action troca token OIDC por token do Claude GitHub App
+          # e falha com 401 se o App não estiver instalado. Passando o GITHUB_TOKEN
+          # do próprio Actions, a revisão roda sem depender da instalação do App —
+          # os comentários saem como `github-actions[bot]`. Se um dia o App for
+          # instalado, basta remover esta linha e repor `id-token: write`.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Sem isto a revisão fica só no log do Actions: em modo agent a Action não
+          # publica nada por conta própria. `track_progress` cria e atualiza o
+          # comentário da revisão no PR.
+          track_progress: true
+          # As chamadas `gh` que leem contexto do PR são negadas por padrão, o que
+          # impede a checagem de entrega de consultar descrição e issue vinculada.
+          # Só leitura — nada que escreva no repositório.
+          claude_args: |
+            --allowedTools "Bash(gh pr view:*),Bash(gh pr diff:*),Bash(gh issue view:*)"
+          prompt: |
+            Revise as mudanças deste pull request do SeniorCare — um sistema de gestão
+            para instituições de cuidado ao idoso, com backend .NET 8 Web API
+            (`SeniorCareManager-Backend/SeniorCareManager.WebAPI/`, EF Core + PostgreSQL)
+            e dois frontends React/Vite/TypeScript que consomem essa mesma API
+            (`SeniorCareManager-Frontend/`, cadastro e cuidado do idoso; e
+            `SeniorStockManager-Frontend/`, estoque e suprimentos).
+
+            Responda em português do Brasil.
+
+            ## Primeiro: o PR entrega o que se propôs a entregar?
+
+            Antes de procurar defeito, verifique se a mudança resolve a necessidade que
+            a originou. Estabeleça qual é essa necessidade nesta ordem, parando na
+            primeira fonte disponível:
+
+            - a change OpenSpec correspondente, se o PR citar um id de change ou alterar
+              arquivos em `openspec/changes/<id>/` — leia `proposal.md`, `tasks.md` e as
+              delta specs em `specs/<capability>/spec.md`;
+            - a issue vinculada ao PR;
+            - a descrição e o título do PR.
+
+            Se nenhuma dessas fontes declarar o objetivo, registre isso como achado e
+            revise apenas os riscos técnicos — não invente a intenção a partir do diff.
+
+            Tendo a necessidade em mãos, verifique:
+
+            - **Cobertura.** Cada requisito `MUST` e cada cenário WHEN/THEN em escopo tem
+              código correspondente? Cenário coberto pela metade conta como não
+              entregue — diga qual parte do THEN não acontece.
+            - **Tarefa marcada sem lastro.** Item de `tasks.md` marcado `[x]` neste PR
+              sem código que o sustente é achado — aponte o item pelo número.
+            - **Divergência.** Se o código faz algo diferente do que a spec determina,
+              aponte os dois lados e diga qual parece errado: às vezes a spec é que está
+              desatualizada, e nesse caso o PR deveria atualizá-la.
+            - **Regressão de cenário vizinho.** Consulte a main spec da capability em
+              `openspec/specs/<capability>/spec.md` e verifique se a mudança quebra
+              cenário já entregue que ela não deveria tocar.
+            - **Escopo.** Alteração que o objetivo declarado não explica deve ser
+              apontada — ou falta justificativa, ou ela pertence a outro PR.
+
+            Abra a revisão com um veredito de uma linha: **entrega**, **entrega
+            parcial** (dizendo o que falta) ou **diverge do que foi especificado**.
+
+            ## Depois: riscos técnicos, em ordem de prioridade
+
+            1. **Autenticação e autorização.** O projeto está adicionando autenticação
+               aos poucos — nem todo endpoint tem `[Authorize]` hoje. Não exija
+               `[Authorize]` onde nenhum endpoint do mesmo controller/módulo já usa.
+               Mas se o módulo alterado já tem outros endpoints autenticados e o novo
+               (ou modificado) não segue o mesmo padrão, é achado — sinalize a
+               inconsistência. Verifique também IDOR: endpoint que recebe um id (rota
+               ou corpo) e devolve/altera registro sem checar se pertence ao usuário
+               autenticado, em módulo onde isso já é relevante.
+
+            2. **LGPD e dados pessoais.** O sistema trata dado pessoal de idosos
+               (potencialmente dado de saúde) e de terceiros (fornecedores,
+               fabricantes: CPF/CNPJ, endereço, telefone, e-mail). Aponte: dado pessoal
+               em log ou mensagem de erro sem mascaramento; DTO/resposta de API
+               devolvendo campo pessoal que a tela não usa; exclusão física onde o
+               módulo já usa exclusão lógica com rastro (ou o inverso, sem motivo).
+
+            3. **Vulnerabilidades gerais.** Injeção de SQL em SQL bruto/`FromSqlRaw`
+               sem parametrização, XSS via `dangerouslySetInnerHTML` ou HTML não
+               sanitizado no React, path traversal em upload/download de arquivo, SSRF
+               em chamada HTTP com URL vinda do usuário, credencial ou connection
+               string em código (fora de `appsettings.*.json`/variável de ambiente),
+               deserialização insegura.
+
+            4. **Correção e manutenção.** Bug real no fluxo alterado; `catch` que
+               descarta a exceção sem logar nem tratar (padrão já existente em parte do
+               código — não é achado repetir o que já existe, mas é achado introduzir
+               em código novo sem necessidade); tratamento de erro ausente onde o
+               resto do módulo trata; N+1 em código de listagem (EF Core sem
+               `Include`/projeção); transação faltando em operação de escrita composta.
+
+            ## Como reportar
+
+            - Comente apenas problemas reais e acionáveis. Nada de elogio, resumo do
+              diff ou preferência de estilo — o `ci.yml` já roda lint.
+            - Cada achado: arquivo e linha, o que quebra concretamente e a correção
+              sugerida. Se for exploração de segurança, descreva o cenário de ataque.
+            - Separe o que bloqueia o merge do que é sugestão.
+            - Nos riscos técnicos, restrinja-se ao que o PR mudou: problema
+              pré-existente só entra se o PR tiver piorado a situação. A checagem de
+              entrega é a exceção — ali o que interessa é justamente o código que
+              deveria existir e não está no diff.
+            - O veredito de entrega sai sempre. Se além dele não houver achado técnico,
+              diga isso em uma linha e pare.

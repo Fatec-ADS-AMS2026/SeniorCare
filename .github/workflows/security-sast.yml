@@ -1,0 +1,72 @@
+name: security-sast
+
+# SAST contínuo (CodeQL) sobre pull requests e periodicamente sobre a base inteira — gate,
+# não avaliação pontual manual. Regras versionadas em .github/codeql/codeql-config.yml.
+# Repositório público: o SARIF sobe para a aba Security nativa do GitHub (Code Scanning é
+# gratuito em repositório público) e, além disso, um gate local falha o job em achado de
+# severidade alta/crítica — a aba Security por si só não bloqueia merge.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    # Toda quarta-feira 06:00 UTC — cobre deriva de regras/CVE mesmo sem PR novo.
+    - cron: '0 6 * * 3'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+concurrency:
+  group: security-sast-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  codeql:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['csharp', 'javascript-typescript']
+    steps:
+      - uses: actions/checkout@v5
+
+      - if: matrix.language == 'csharp'
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          config-file: ./.github/codeql/codeql-config.yml
+
+      # C# precisa buildar para o CodeQL indexar corretamente (bytecode + AST). JS/TS usa
+      # análise estática sem build (autobuild não gera nada útil para Vite/React).
+      - if: matrix.language == 'csharp'
+        name: Build backend
+        working-directory: SeniorCareManager-Backend/SeniorCareManager.WebAPI
+        run: dotnet build --configuration Release
+
+      - name: Gerar SARIF CodeQL
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{ matrix.language }}"
+          output: codeql-results/${{ matrix.language }}
+          upload: always
+
+      - name: Preservar SARIF como evidência
+        uses: actions/upload-artifact@v4
+        with:
+          name: codeql-sarif-${{ matrix.language }}
+          path: codeql-results/${{ matrix.language }}/*.sarif
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Gate SAST — segurança alta/crítica
+        run: >-
+          python3 .github/scripts/codeql-sarif-gate.py
+          codeql-results/${{ matrix.language }}
+          --min-security-severity 7.0
