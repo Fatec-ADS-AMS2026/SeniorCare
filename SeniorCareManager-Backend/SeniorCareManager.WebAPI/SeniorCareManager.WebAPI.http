@@ -1,0 +1,6 @@
+@SeniorCareManager.WebAPI_HostAddress = http://localhost:5253
+
+GET {{SeniorCareManager.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
