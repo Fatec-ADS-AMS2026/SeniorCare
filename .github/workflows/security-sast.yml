@@ -8,7 +8,7 @@ name: security-sast
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, dev]
   schedule:
     # Toda quarta-feira 06:00 UTC — cobre deriva de regras/CVE mesmo sem PR novo.
     - cron: '0 6 * * 3'
