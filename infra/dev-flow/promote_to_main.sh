@@ -39,12 +39,11 @@ git fetch --quiet origin dev main
 # PR original mergeado em dev) para compor o título do PR de promoção.
 PR_TITLE="Promove dev -> main: ${TITLE#\[QA\] }"
 
-gh pr create \
-  --repo "$REPO" \
-  --base main \
-  --head dev \
-  --title "$PR_TITLE" \
-  --body "$(cat <<EOF
+# Corpo do PR vai por arquivo (não por heredoc dentro de $(...)) — bash 3.2
+# (padrão do macOS) tem um bug de parsing conhecido nessa combinação.
+BODY_FILE=$(mktemp)
+trap 'rm -f "$BODY_FILE"' EXIT
+cat > "$BODY_FILE" <<EOF
 Closes #${ISSUE}
 
 Promoção de \`dev\` para \`main\` após teste manual concluído (issue #${ISSUE}).
@@ -52,7 +51,13 @@ Promoção de \`dev\` para \`main\` após teste manual concluído (issue #${ISSU
 Os checks de CI já rodaram em cada PR individual que entrou em \`dev\`; este PR
 consolida o que foi testado. Revisar o diff \`main...dev\` antes de aprovar.
 EOF
-)"
+
+gh pr create \
+  --repo "$REPO" \
+  --base main \
+  --head dev \
+  --title "$PR_TITLE" \
+  --body-file "$BODY_FILE"
 
 echo
 echo "PR de promoção aberto (dev -> main)."
