@@ -1,10 +1,13 @@
 name: security-sca
 
-# SCA do backend: pacotes NuGet com vulnerabilidade conhecida (advisory database da
-# NuGet/GitHub via `dotnet list package --vulnerable`, sem depender de chave de API
-# externa). Gate contínuo, não avaliação pontual manual. Roda em PRs que tocam
-# dependências/código do backend e periodicamente (drift de CVE pode aparecer sem
-# nenhuma mudança de código).
+# SCA do backend em duas camadas complementares:
+#   - backend-sca: advisory database da NuGet/GitHub via `dotnet list package
+#     --vulnerable` — rápido, sem chave externa.
+#   - nvd-dependency-check: OWASP Dependency-Check contra a base do NVD (CVE mais
+#     ampla que a GHSA, cobre CVE sem advisory GitHub mapeado) — mais lento, precisa
+#     do secret NVD_API_KEY.
+# Gate contínuo, não avaliação pontual manual. Roda em PRs que tocam dependências/
+# código do backend e periodicamente (drift de CVE pode aparecer sem mudança de código).
 on:
   pull_request:
   schedule:
@@ -61,20 +64,80 @@ jobs:
           python3 ../../.github/scripts/nuget-audit-gate.py
           vulnerable-packages.json --min-severity high
 
+  nvd-dependency-check:
+    needs: changes
+    if: github.event_name != 'pull_request' || needs.changes.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      # A imagem owasp/dependency-check embute um runtime .NET próprio para o Assembly
+      # Analyzer indexar os DLLs resolvidos — publicar deixa todo pacote NuGet (direto e
+      # transitivo) como um .dll físico pra ele examinar.
+      - name: Publicar backend
+        working-directory: SeniorCareManager-Backend/SeniorCareManager.WebAPI
+        run: dotnet publish -c Release -o publish
+      - name: Semana corrente (chave de cache)
+        id: week
+        run: echo "week=$(date -u +%Y-W%V)" >> "$GITHUB_OUTPUT"
+      - name: Restaurar cache da base NVD (reproduzível entre execuções)
+        uses: actions/cache@v4
+        with:
+          path: ~/.dependency-check-data
+          # Chave semanal: a base NVD é atualizada continuamente — cache válido por até 7
+          # dias, depois disso reconcilia incrementalmente contra o cache restante.
+          key: dependency-check-nvd-${{ runner.os }}-${{ steps.week.outputs.week }}
+          restore-keys: |
+            dependency-check-nvd-${{ runner.os }}-
+      - name: OWASP Dependency-Check (NVD) — backend
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        run: |
+          mkdir -p "$HOME/.dependency-check-data" dependency-check-report
+          # Em PR, se já existe cache da base NVD (de um schedule ou PR anterior), pula o
+          # update — mais rápido, e evita bater na base do NVD em toda PR. A atualização
+          # de verdade só roda quando o cache está vazio (1ª execução da semana) ou fora
+          # de PR (schedule/workflow_dispatch). Isso deixa a 1ª execução após o cache
+          # expirar mais lenta (a base inteira é baixada) — esperado.
+          UPDATE_FLAG=""
+          if [ "${{ github.event_name }}" = "pull_request" ] \
+             && [ -n "$(ls -A "$HOME/.dependency-check-data" 2>/dev/null)" ]; then
+            UPDATE_FLAG="--noupdate"
+            echo "cache da base NVD presente — pulando update nesta PR"
+          fi
+          docker run --rm \
+            -v "$PWD/SeniorCareManager-Backend/SeniorCareManager.WebAPI/publish:/src:ro" \
+            -v "$PWD/dependency-check-report:/report" \
+            -v "$HOME/.dependency-check-data:/data" \
+            owasp/dependency-check:latest \
+            --scan /src --out /report --data /data --project "SeniorCareManager" \
+            --format HTML --format JSON --nvdApiKey "$NVD_API_KEY" --failOnCVSS 7 $UPDATE_FLAG
+      - name: Publicar relatório como artefato
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-check-report
+          path: dependency-check-report/*
+          if-no-files-found: warn
+          retention-days: 30
+
   security-sca-required:
-    # `backend-sca` só roda em PR quando o backend muda — um required status check da
-    # branch protection que nunca roda trava o PR pra sempre. Este job sempre roda em PR
-    # (inclusive quando `backend-sca` foi pulado) e é o único que a branch protection deve
-    # exigir deste workflow.
-    needs: [changes, backend-sca]
+    # `backend-sca`/`nvd-dependency-check` só rodam em PR quando o backend muda — um
+    # required status check da branch protection que nunca roda trava o PR pra sempre.
+    # Este job sempre roda em PR (inclusive quando os dois acima foram pulados) e é o
+    # único que a branch protection deve exigir deste workflow.
+    needs: [changes, backend-sca, nvd-dependency-check]
     if: always() && github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - name: Checar resultado do job
+      - name: Checar resultado dos jobs
         run: |
-          r="${{ needs.backend-sca.result }}"
-          if [ "$r" != "success" ] && [ "$r" != "skipped" ]; then
-            echo "FALHOU: backend-sca não teve sucesso (status: $r)."
-            exit 1
-          fi
+          for r in "${{ needs.backend-sca.result }}" "${{ needs.nvd-dependency-check.result }}"; do
+            if [ "$r" != "success" ] && [ "$r" != "skipped" ]; then
+              echo "FALHOU: pelo menos um job de SCA não teve sucesso (status: $r)."
+              exit 1
+            fi
+          done
           echo "OK."

@@ -1,0 +1,34 @@
+name: dev-merge-qa
+
+# Ao mergear um PR em `dev`, abre a issue de teste manual (label `qa`) com o
+# plano de teste que o autor preencheu no PR, e a coloca no Project em
+# "In review". Quando a equipe terminar de testar, promove pra `main` com
+# infra/dev-flow/promote_to_main.sh. Ver infra/dev-flow/README.md.
+on:
+  pull_request:
+    types: [closed]
+    branches: [dev]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  create-qa-issue:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Criar issue de QA e posicionar no Project
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Projects v2 não aceita o GITHUB_TOKEN padrão do Actions — precisa de
+          # um PAT com escopo `project`. Ver infra/dev-flow/README.md.
+          GH_PROJECT_TOKEN: ${{ secrets.GH_PROJECT_TOKEN }}
+        run: python3 infra/dev-flow/create_qa_issue.py --pr ${{ github.event.pull_request.number }}
