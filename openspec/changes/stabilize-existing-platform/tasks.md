@@ -1,11 +1,11 @@
 ## 1. Baseline e infraestrutura de testes
 
-- [ ] 1.1 Instalar/restaurar o SDK .NET 8 e registrar os comandos reproduzíveis de build dos três componentes.
-- [ ] 1.2 Corrigir a incompatibilidade de `ApiResponse` no front-end assistencial e comprovar lint e build limpos.
-- [ ] 1.3 Criar projetos de testes unitários e de integração do backend e adicioná-los à solution.
-- [ ] 1.4 Configurar PostgreSQL efêmero para testes de integração, com health check, migração desde banco vazio e descarte ao final.
-- [ ] 1.5 Configurar runner, biblioteca de componentes, DOM de teste, mock HTTP e coleta de cobertura em cada front-end.
-- [ ] 1.6 Adicionar testes de caracterização dos CRUDs atuais antes de alterar seus contratos.
+- [x] 1.1 Instalar/restaurar o SDK .NET 8 e registrar os comandos reproduzíveis de build dos três componentes.
+- [x] 1.2 Corrigir a incompatibilidade de `ApiResponse` no front-end assistencial e comprovar lint e build limpos.
+- [x] 1.3 Criar projetos de testes unitários e de integração do backend e adicioná-los à solution.
+- [x] 1.4 Configurar PostgreSQL efêmero para testes de integração, com health check, migração desde banco vazio e descarte ao final.
+- [x] 1.5 Configurar runner, biblioteca de componentes, DOM de teste, mock HTTP e coleta de cobertura em cada front-end.
+- [x] 1.6 Adicionar testes de caracterização dos CRUDs atuais antes de alterar seus contratos.
 
 ## 2. Configuração e diagnóstico de execução
 
