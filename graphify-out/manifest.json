@@ -1865,8 +1865,8 @@
     "semantic_hash": ""
   },
   ".github/pull_request_template.md": {
-    "mtime": 1785965371.8321834,
-    "ast_hash": "14ca98cde49dbe3dadda8ebcf04d3887",
+    "mtime": 1786023120.8282275,
+    "ast_hash": "b9cf057d454bc39f796b6acd91accbd0",
     "semantic_hash": ""
   },
   ".github/workflows/ci.yml": {
@@ -1875,8 +1875,8 @@
     "semantic_hash": ""
   },
   ".github/workflows/claude-review.yml": {
-    "mtime": 1785965797.7028983,
-    "ast_hash": "fbece6c691b421cdbcf916bbe6022c46",
+    "mtime": 1786023308.742927,
+    "ast_hash": "9de65411646788b1a1c0981a658611f7",
     "semantic_hash": ""
   },
   ".github/workflows/ghcr-retention.yml": {
@@ -1990,13 +1990,13 @@
     "semantic_hash": ""
   },
   "openspec/changes/stabilize-existing-platform/design.md": {
-    "mtime": 1786021297.2656431,
-    "ast_hash": "c146df419874050cc20ef4095862390d",
+    "mtime": 1786024023.0842597,
+    "ast_hash": "678ea6fc73393c53f679f36c10e53fde",
     "semantic_hash": ""
   },
   "openspec/changes/stabilize-existing-platform/proposal.md": {
-    "mtime": 1786021038.8958297,
-    "ast_hash": "4fbea29a4a0320f6b63400dc092512a7",
+    "mtime": 1786023829.7189639,
+    "ast_hash": "bee3e9c5852f3baacf35cbee27def40d",
     "semantic_hash": ""
   },
   "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md": {
@@ -2010,8 +2010,8 @@
     "semantic_hash": ""
   },
   "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md": {
-    "mtime": 1786021189.903452,
-    "ast_hash": "9177f4d701b938547aa5780ab536fa3e",
+    "mtime": 1786024114.4965985,
+    "ast_hash": "06ab504880e73d7087ccbc6c4da63a10",
     "semantic_hash": ""
   },
   "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md": {
@@ -2025,8 +2025,38 @@
     "semantic_hash": ""
   },
   "openspec/changes/stabilize-existing-platform/tasks.md": {
-    "mtime": 1786021364.919901,
-    "ast_hash": "4370f17dcf3a306c665b9a1646c568a1",
+    "mtime": 1786024097.6094193,
+    "ast_hash": "fce1123e0f70ef3433ca8ec2296e0e8d",
+    "semantic_hash": ""
+  },
+  "infra/openspec-github/setup_project.sh": {
+    "mtime": 1786022302.336025,
+    "ast_hash": "d2872f5623cd38a31f17f8a88ac6e149",
+    "semantic_hash": ""
+  },
+  "infra/openspec-github/start_epic.sh": {
+    "mtime": 1786022281.066753,
+    "ast_hash": "28181f7dd407b8d98c79362c894f8daa",
+    "semantic_hash": ""
+  },
+  "infra/openspec-github/sync_issues.py": {
+    "mtime": 1786022247.9168167,
+    "ast_hash": "128f95f148798dd5987d38bc7fbbed78",
+    "semantic_hash": ""
+  },
+  ".github/workflows/openspec-sync.yml": {
+    "mtime": 1786022329.4518042,
+    "ast_hash": "f73d36862649cd10128a4674b8f86648",
+    "semantic_hash": ""
+  },
+  "infra/openspec-github/README.md": {
+    "mtime": 1786022605.8671372,
+    "ast_hash": "5ec6bb4d70936a3522629775d92d14b0",
+    "semantic_hash": ""
+  },
+  "infra/openspec-github/synced-changes.txt": {
+    "mtime": 1786022267.3783088,
+    "ast_hash": "66196bb8248471431a491692f8861763",
     "semantic_hash": ""
   }
 }

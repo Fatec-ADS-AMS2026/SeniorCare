@@ -26,7 +26,9 @@ uma reestruturação ampla antes de estabilizar a base.
 **Non-Goals:**
 
 - dividir a API em microsserviços ou unificar os dois front-ends;
-- introduzir instituição multi-tenant, residente ou dados assistenciais;
+- implementar operação completa multi-instituição nos módulos de negócio,
+  residente ou dados assistenciais; o IAM, porém, já delimitará toda identidade e
+  decisão pela instituição para evitar uma migração insegura posterior;
 - criar controle de estoque por lote, validade ou movimento;
 - implementar autorização clínica contextual, prontuário ou assinatura;
 - certificar conformidade integral com LGPD, S-RES, NGS2/SBIS ou WCAG.
@@ -100,52 +102,110 @@ estoque rastreável.
 **Alternativa considerada:** remover a tela de produto. Rejeitada porque produto é
 pré-requisito legítimo e o esforço já existente pode ser consolidado.
 
-### 6. Usar identidade consolidada e sessão curta revogável
+### 6. Delimitar identidade e sessão pela instituição
 
-A API adotará o mecanismo de identidade suportado pelo ecossistema ASP.NET para
-usuários, derivação de senha e papéis. O login emitirá acesso de curta duração e
-uma sessão de renovação rotativa armazenada de forma protegida e revogável. O
-front-end manterá credencial de acesso somente pelo tempo necessário e não usará
-`localStorage` para tokens. Renovação e logout usarão cookie `HttpOnly`, `Secure` e
-política `SameSite`, com defesa contra requisições forjadas.
+A API usará os componentes consolidados do ecossistema ASP.NET para identidade e
+derivação de senha, estendidos com `InstitutionId`, estado da conta e
+`IdentityOrigin`. A primeira entrega implementará apenas origem `LOCAL`, mas o
+modelo admitirá `LDAP` e `OIDC` sem fingir que os provedores já existem. Mesmo que
+o piloto tenha uma única ILPI, toda identidade, sessão, configuração e decisão de
+acesso carregará o contexto institucional; a interface ocultará a escolha quando
+ela for inequívoca.
 
-Papéis iniciais: `Administrator`, com escrita nos catálogos, e `Operator`, com
-leitura. Políticas serão aplicadas na API; proteção de rota no front-end melhora a
-experiência, mas não será considerada barreira de segurança.
+**Racional:** uma fronteira institucional explícita evita acesso cruzado e prepara
+evolução futura sem antecipar multitenancy nos domínios assistencial e financeiro.
 
-**Racional:** evita autenticação artesanal e cria revogação sem conceder, por
-inferência, acesso clínico futuro.
+**Alternativa considerada:** adicionar instituição somente quando surgir a segunda
+ILPI. Rejeitada porque migrar identidades e auditoria sem fronteira depois seria
+mais arriscado e poderia produzir registros ambíguos.
 
-**Alternativas consideradas:** token duradouro em cookie acessível a JavaScript,
-rejeitado por exposição a XSS; sessão puramente em memória no servidor, rejeitada
-por dificultar evolução horizontal e operação em mais de uma instância.
+### 7. Separar profissão, responsabilidade organizacional e acesso técnico
 
-### 7. Provisionar administrador de forma explícita e idempotente
+O modelo de acesso, adaptado do Qualitas, terá `User`, `Role`, `Permission`,
+`PermissionGroup`, `OrganizationalRole`, `OrganizationalRoleAssignment`,
+`UserPermissionOverride` e `AccessPolicy`. A profissão continuará sendo dado da
+pessoa; não concederá acesso. Papéis técnicos agregarão grupos de permissões por
+módulo. Responsabilidades organizacionais terão escopo de instituição, unidade ou
+setor e validade. Exceções individuais `ALLOW`/`DENY` exigirão escopo, autoria,
+justificativa e validade.
 
-Um comando ou modo de bootstrap receberá email e senha por secret externo, criará
-a primeira conta apenas quando não houver administrador e registrará somente o
-resultado não sensível. O startup normal não redefinirá credenciais.
+Um `AccessDecisionService` central avaliará recurso, ação, funcionalidade e alvo.
+A precedência será: conta/contexto inválido; bypass restrito de `SYSTEM_ADMIN`;
+`DENY` individual; política condicional de negação; `ALLOW` individual; política
+condicional de concessão; RBAC; e negação padrão. `SYSTEM_ADMIN` será reservado a
+operações sistêmicas, não atribuível a usuários operacionais e sempre auditado.
 
-**Racional:** permite instalação de baixo custo sem credenciais padrão conhecidas.
+**Racional:** papéis fixos `Administrator`/`Operator` não representam a equipe
+multidisciplinar nem responsabilidades temporárias. A precedência determinística e
+a negação padrão tornam conflitos explicáveis e testáveis.
 
-**Alternativa considerada:** usuário seed fixo na migração. Rejeitada por vazar
-segredo e replicar a mesma credencial entre ILPIs.
+**Alternativas consideradas:** autorizar diretamente pelo cargo profissional,
+rejeitada por misturar credencial profissional com necessidade operacional; ou
+manter permissões somente no front-end, rejeitada porque o cliente não é fronteira
+de segurança.
 
-### 8. Introduzir auditoria administrativa append-only
+### 8. Adotar política moderna de credencial, MFA e sessão revogável
 
-Um registro de auditoria persistirá ator, ação, tipo/ID do recurso, instante UTC,
-correlação e resultado. Não armazenará senha, token nem payload integral. A
-aplicação não oferecerá update/delete dessa tabela. Eventos de login, logout,
-bloqueio e alterações de catálogo serão cobertos.
+Contas locais exigirão senha mínima de 15 caracteres quando usada sozinha ou 8
+quando MFA for obrigatório, aceitarão ao menos 64 caracteres, espaços e Unicode e
+bloquearão valores comuns ou comprometidos. Não haverá composição arbitrária nem
+troca periódica sem evidência de comprometimento. Parâmetros institucionais poderão
+fortalecer, nunca enfraquecer, esse piso. A derivação adaptativa e seus parâmetros
+ficarão sob o provedor de identidade e poderão ser atualizados no próximo login.
 
-**Racional:** fornece atribuição mínima para a base atual sem fingir que esta
-auditoria atende os requisitos futuros de prontuário.
+MFA por TOTP e códigos de recuperação será obrigatório para administradores e
+configurável para os demais. O login emitirá acesso curto mantido em memória e uma
+sessão de renovação rotativa em cookie `HttpOnly`, `Secure` e `SameSite`, com
+proteção contra requisições forjadas, detecção de reutilização e revogação. Os dois
+front-ends compartilharão a sessão; nenhum token será salvo em `localStorage` ou
+`sessionStorage`.
 
-**Alternativa considerada:** depender apenas de logs de aplicação. Rejeitada
-porque logs podem ter retenção e formato inadequados e não compõem histórico
-consultável por recurso.
+**Racional:** segue orientação atual de segurança, reduz segredos conhecidos pela
+instituição e combina boa experiência entre módulos com resposta a roubo de
+sessão.
 
-### 9. Testar com a mesma classe de banco usada em produção
+**Alternativas consideradas:** token duradouro acessível a JavaScript, rejeitado
+por exposição a XSS; rotação periódica obrigatória de senha, rejeitada por induzir
+padrões previsíveis sem evidência de benefício; MFA opcional para administradores,
+rejeitada pelo impacto dessas contas.
+
+### 9. Usar ativação, recuperação e bootstrap sem senha distribuída
+
+O bootstrap idempotente criará a instituição inicial e uma conta administrativa
+`PROVISIONED`. Em vez de receber uma senha permanente conhecida pela operação, a
+conta concluirá ativação por token aleatório, curto, de uso único e armazenado por
+hash. O mesmo mecanismo fundamentará recuperação, com resposta uniforme para
+identificadores existentes e inexistentes. Após redefinição, sessões anteriores e
+o security stamp serão invalidados. O startup normal jamais redefinirá credenciais.
+
+**Racional:** permite instalação de baixo custo sem credencial padrão nem senha
+transmitida por administrador.
+
+**Alternativa considerada:** usuário e senha seed em migração ou variável de
+ambiente permanente. Rejeitada por replicar e expor um segredo reutilizável.
+
+### 10. Tornar configuração e decisões de acesso administráveis e auditáveis
+
+APIs e telas específicas administrarão usuários, papéis, grupos, permissões,
+responsabilidades organizacionais, exceções, parâmetros de segurança e sessões.
+Um endpoint de contexto atual fornecerá somente as permissões efetivas necessárias
+para menus e ações; a API continuará validando cada operação. Mudanças serão
+versionadas ou historizadas e invalidarão o contexto efetivo quando necessário.
+
+Auditoria append-only registrará autenticação, MFA, ativação, recuperação, sessão,
+configuração e decisões protegidas com ator, instituição, recurso, ação,
+funcionalidade, escopo, resultado, camada determinante, instante UTC e correlação.
+Não armazenará senha, token, código MFA nem payload integral. O domínio não
+oferecerá update/delete desses registros.
+
+**Racional:** a equipe da ILPI precisa ajustar acesso sem mudança de código, e a
+universidade precisa explicar posteriormente por que uma ação foi permitida ou
+negada, sem sugerir que essa auditoria já satisfaz requisitos clínicos futuros.
+
+**Alternativa considerada:** configuração por seed e logs de aplicação. Rejeitada
+por não atender mudanças operacionais, histórico de autoria e consulta por decisão.
+
+### 11. Testar com a mesma classe de banco usada em produção
 
 O backend terá testes unitários e integração com PostgreSQL efêmero, aplicação de
 migrações e chamadas HTTP pela aplicação hospedada em teste. Os front-ends usarão
@@ -159,7 +219,7 @@ e SQL; testes de componentes são mais estáveis que snapshots extensos.
 como única evidência; testes end-to-end completos em navegador para tudo,
 reservados a poucos smoke tests por custo e fragilidade.
 
-### 10. Evoluir acessibilidade nos componentes compartilhados atuais
+### 12. Evoluir acessibilidade nos componentes compartilhados atuais
 
 As correções serão aplicadas primeiro a Button, FormControls, Table, Modal,
 SearchBar, cabeçalho e layouts em ambos os front-ends. Login e um CRUD por
@@ -176,9 +236,20 @@ Adiada para não combinar migração estrutural com estabilização funcional.
 
 - **[Quebra simultânea de API e clientes]** → publicar backend e front-ends no
   mesmo release manifest e manter testes de contrato antes do deploy.
-- **[Bloqueio de instalação sem administrador]** → validar secret e executar
-  bootstrap antes de ativar a obrigatoriedade de autenticação; fornecer diagnóstico
-  operacional claro.
+- **[Bloqueio de instalação sem administrador]** → validar parâmetros, executar o
+  bootstrap e testar o canal de ativação antes de exigir autenticação; fornecer
+  diagnóstico operacional sem expor o token.
+- **[Complexidade do IAM maior que a base atual]** → entregar por camadas: conta e
+  instituição, sessão/MFA, RBAC, escopo organizacional e exceções; manter negação
+  padrão entre etapas e cobrir a precedência com tabela de testes.
+- **[Administrador remove o próprio acesso ou o último acesso privilegiado]** →
+  validar invariantes, exigir reautenticação para mudanças críticas e impedir a
+  inativação do último administrador institucional ativo.
+- **[Mudança de permissão não alcança sessão aberta]** → versionar o contexto de
+  acesso e invalidá-lo nas alterações, mantendo tokens de acesso curtos.
+- **[Canal de ativação indisponível em ILPI de baixo orçamento]** → definir um modo
+  operacional de entrega do link de uso único sem imprimir ou registrar o token e
+  exigir confirmação da identidade pelo procedimento institucional.
 - **[Migração falha por dados atuais inválidos]** → executar pré-validação,
   produzir relatório e abortar antes de constraints destrutivas.
 - **[Saldo de produto interpretado como estoque rastreável]** → rotular a
@@ -199,16 +270,20 @@ Adiada para não combinar migração estrutural com estabilização funcional.
 1. Corrigir o build assistencial e introduzir testes sem alterar contratos.
 2. Adicionar configuração de mesma origem e proxies, mantendo temporariamente uma
    opção local explícita para desenvolvimento.
-3. Criar migrações aditivas para identidade, sessões, auditoria, produto, estado
-   ativo e concorrência; validar upgrade sobre cópia sintética da versão anterior.
-4. Implementar autenticação, bootstrap e políticas; provisionar administrador de
-   homologação por secret externo.
-5. Publicar o novo contrato HTTP e adaptar os dois front-ends no mesmo release.
-6. Executar testes, smoke test de login/CRUD/produto e verificação manual de
-   teclado em homologação.
-7. Fazer backup pré-deploy, aplicar a release coordenada e monitorar prontidão,
-   erros 401/403/409/422 e falhas de renovação.
-8. Remover qualquer compatibilidade temporária somente após confirmar que não há
+3. Criar migrações aditivas para instituição, identidade, credenciais, MFA,
+   sessões, autorização, auditoria, produto, estado ativo e concorrência; validar
+   upgrade sobre cópia sintética da versão anterior.
+4. Implementar identidade local, ativação, recuperação, bootstrap e sessão;
+   provisionar instituição e administrador `PROVISIONED` de homologação.
+5. Implementar o serviço de decisão, RBAC, configuração administrativa e auditoria
+   antes de proteger os endpoints com negação padrão.
+6. Publicar o novo contrato HTTP e adaptar os dois front-ends no mesmo release,
+   removendo qualquer token persistido no navegador.
+7. Executar testes de precedência, MFA, sessão, login, CRUD e produto, além da
+   verificação manual de teclado em homologação.
+8. Fazer backup pré-deploy, aplicar a release coordenada e monitorar prontidão,
+   ativações, erros 401/403/409/422, falhas de renovação e negações anormais.
+9. Remover qualquer compatibilidade temporária somente após confirmar que não há
    cliente antigo em uso.
 
 **Rollback:** interromper o tráfego, restaurar o release manifest anterior e o

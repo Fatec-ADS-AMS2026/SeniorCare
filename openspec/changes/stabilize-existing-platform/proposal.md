@@ -15,8 +15,14 @@ plataforma incapaz de proteger dados pessoais sensíveis.
   respostas de erro, semântica de atualização e tratamento de exclusão.
 - Completar o catálogo de produtos no backend e no banco, alinhando-o à interface
   de estoque já existente.
-- Transformar o login visual em autenticação individual com sessão baseada em
-  token, papéis mínimos e proteção das rotas administrativas e APIs.
+- Transformar o login visual em uma capacidade institucional de identidade e
+  acesso, adaptada do Qualitas: contas individuais com ciclo de vida, política de
+  senha, MFA, sessões compartilhadas entre os módulos, papéis técnicos, grupos de
+  permissões, responsabilidades organizacionais, exceções individuais e decisões
+  de acesso auditáveis.
+- Criar APIs e telas administrativas para configurar usuários, papéis, grupos,
+  permissões, vínculos organizacionais, políticas de segurança e sessões ativas,
+  mantendo a autorização efetiva no backend.
 - Consolidar uma baseline de acessibilidade para os componentes já existentes,
   com navegação por teclado, nomes acessíveis, foco visível, contraste e ajuste de
   fonte persistente.
@@ -25,8 +31,9 @@ plataforma incapaz de proteger dados pessoais sensíveis.
 - Documentar migração, compatibilidade e critérios de aceite da plataforma
   estabilizada.
 - **BREAKING**: endpoints administrativos deixarão de aceitar acesso anônimo e
-  passarão a retornar um envelope de erro uniforme; clientes deverão autenticar-se
-  e tratar os códigos HTTP definidos nas specs.
+  passarão a retornar um envelope de erro uniforme; clientes deverão autenticar-se,
+  respeitar as permissões efetivas configuradas e tratar os códigos HTTP definidos
+  nas specs.
 - Manter fora desta mudança residente, prontuário multidisciplinar, cuidado por
   turno, medicamentos, nutrição, financeiro, doações, dashboards e assinatura
   eletrônica.
@@ -39,8 +46,10 @@ plataforma incapaz de proteger dados pessoais sensíveis.
   validação de startup e diagnóstico operacional dos componentes atuais.
 - `support-catalogs`: contratos consistentes para os cadastros auxiliares e fluxo
   integrado do catálogo de produtos.
-- `platform-authentication`: autenticação individual, sessão por token, papéis
-  administrativos mínimos e proteção das APIs e rotas existentes.
+- `platform-authentication`: identidade vinculada à instituição, autenticação
+  individual, política de senha, MFA, sessões revogáveis, RBAC enriquecido com
+  escopo organizacional e exceções, configuração administrativa e auditoria de
+  decisões de acesso.
 - `accessibility-baseline`: comportamento acessível e preferências visuais nos
   componentes e fluxos já implementados.
 - `automated-quality-gates`: testes automatizados e gates obrigatórios de
@@ -56,14 +65,18 @@ capacidades desta mudança inauguram contratos verificáveis para a base existen
 - **Domínios afetados:** capacidades de apoio de profissionais (cargos), jornada
   do residente (planos de saúde e religião), estoque e operação (catálogos e
   produtos) e requisitos transversais de segurança e acessibilidade.
-- **Atores afetados:** administradores, trabalhadores autorizados,
+- **Atores afetados:** administradores institucionais e de segurança,
+  trabalhadores autorizados, profissionais da equipe multidisciplinar,
   desenvolvedores, equipe de operação e, indiretamente, futuros usuários
-  assistenciais. Residentes não terão fluxo funcional criado nesta mudança.
+  assistenciais. Cargo ou profissão não concederá acesso técnico implicitamente,
+  e residentes não terão fluxo funcional criado nesta mudança.
 - **Código:** API ASP.NET Core, Entity Framework/migrações, ambos os front-ends
   React, configuração Docker/nginx e workflows GitHub Actions.
-- **APIs e dados:** novos endpoints de autenticação e produto; revisão dos
-  contratos CRUD; nova migração; configuração de usuários iniciais sem credencial
-  fixa no código ou no repositório.
+- **APIs e dados:** novos endpoints e entidades para instituição, usuários,
+  credenciais, MFA, papéis, permissões, grupos, vínculos organizacionais, exceções,
+  políticas, sessões e auditoria, além do endpoint de produto e da revisão dos
+  contratos CRUD; novas migrações; configuração de usuários iniciais sem
+  credencial fixa no código ou no repositório.
 - **Risco assistencial:** a mudança não autoriza uso com prontuários ou dados reais
   de saúde. Até existir autorização contextual, auditoria e o núcleo longitudinal,
   os ambientes de desenvolvimento, teste e demonstração devem usar dados

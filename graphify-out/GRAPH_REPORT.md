@@ -1,16 +1,16 @@
 # Graph Report - SeniorCare  (2026-08-06)
 
 ## Corpus Check
-- 369 files · ~692,472 words
+- 373 files · ~698,997 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1437 nodes · 1921 edges · 163 communities (129 shown, 34 thin omitted)
+- 1514 nodes · 2024 edges · 185 communities (149 shown, 36 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d3b68cdb`
+- Built from commit: `fc29db92`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -136,20 +136,44 @@
 - [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
 - [[_COMMUNITY_tasks|tasks.md]]
 - [[_COMMUNITY_proposal|proposal.md]]
+- [[_COMMUNITY_sync_issues.py|sync_issues.py]]
+- [[_COMMUNITY_GenericRepository|GenericRepository]]
+- [[_COMMUNITY_OpenSpec no GitHub — issues, PRs e kanban|OpenSpec no GitHub — issues, PRs e kanban]]
+- [[_COMMUNITY_Requirement Sessão é compartilhada, curta, rotativa e revogável|Requirement: Sessão é compartilhada, curta, rotativa e revogável]]
+- [[_COMMUNITY_Requirement Ativação e recuperação não distribuem senha conhecida|Requirement: Ativação e recuperação não distribuem senha conhecida]]
+- [[_COMMUNITY_Requirement Decisão de acesso segue precedência determinística e negação padrão|Requirement: Decisão de acesso segue precedência determinística e negação padrão]]
+- [[_COMMUNITY_Requirement Política de senha segue práticas atuais e possui piso seguro|Requirement: Política de senha segue práticas atuais e possui piso seguro]]
+- [[_COMMUNITY_Requirement Administração de acesso possui configuração dedicada|Requirement: Administração de acesso possui configuração dedicada]]
+- [[_COMMUNITY_Requirement Autenticação multifator protege contas privilegiadas|Requirement: Autenticação multifator protege contas privilegiadas]]
+- [[_COMMUNITY_Requirement Conta possui ciclo de vida controlado|Requirement: Conta possui ciclo de vida controlado]]
+- [[_COMMUNITY_Requirement Eventos de identidade, configuração e acesso são auditáveis|Requirement: Eventos de identidade, configuração e acesso são auditáveis]]
+- [[_COMMUNITY_Requirement Exceções individuais são explícitas, limitadas e justificadas|Requirement: Exceções individuais são explícitas, limitadas e justificadas]]
+- [[_COMMUNITY_Requirement Identidade é individual e vinculada à instituição|Requirement: Identidade é individual e vinculada à instituição]]
+- [[_COMMUNITY_Requirement Profissão, papel técnico e responsabilidade organizacional são distintos|Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos]]
+- [[_COMMUNITY_Requirement Credencial administrativa inicial é provisionada com segurança|Requirement: Credencial administrativa inicial é provisionada com segurança]]
+- [[_COMMUNITY_Requirement Mudança autenticada de senha exige confirmação de identidade|Requirement: Mudança autenticada de senha exige confirmação de identidade]]
+- [[_COMMUNITY_Requirement Origem da identidade é extensível|Requirement: Origem da identidade é extensível]]
+- [[_COMMUNITY_Requirement Parâmetros de segurança são configuráveis dentro de limites seguros|Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros]]
+- [[_COMMUNITY_Requirement Permissões são compostas por recurso, ação e funcionalidade|Requirement: Permissões são compostas por recurso, ação e funcionalidade]]
+- [[_COMMUNITY_Requirement Tentativas de autenticação são protegidas contra abuso|Requirement: Tentativas de autenticação são protegidas contra abuso]]
+- [[_COMMUNITY_setup_project.sh|setup_project.sh]]
+- [[_COMMUNITY_start_epic.sh|start_epic.sh]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `SeniorCareManager.WebAPI.Objects.Models` - 66 edges
-2. `SeniorCareManager.WebAPI.Services.Interfaces` - 33 edges
-3. `SeniorCareManager.WebAPI.Data.Interfaces` - 31 edges
-4. `GenericRepository` - 19 edges
-5. `GenericService` - 19 edges
-6. `IGenericRepository` - 18 edges
-7. `compilerOptions` - 17 edges
-8. `compilerOptions` - 17 edges
-9. `Escopo do projeto SeniorCare` - 17 edges
-10. `SeniorCareManager.WebAPI.Objects.Enums` - 16 edges
+1. `Task` - 74 edges
+2. `SeniorCareManager.WebAPI.Objects.Models` - 66 edges
+3. `SeniorCareManager.WebAPI.Services.Interfaces` - 33 edges
+4. `SeniorCareManager.WebAPI.Data.Interfaces` - 31 edges
+5. `ADDED Requirements` - 21 edges
+6. `GenericRepository` - 19 edges
+7. `GenericService` - 19 edges
+8. `IGenericRepository` - 18 edges
+9. `compilerOptions` - 17 edges
+10. `compilerOptions` - 17 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `HealthInsurancePlan` --references--> `HealthPlanType`  [EXTRACTED]
+  SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/HealthInsurancePlan.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Enums/HealthPlanType.cs
 - `AppDbContext` --references--> `Carrier`  [EXTRACTED]
   SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/AppDbContext.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/Carrier.cs
 - `AppDbContext` --references--> `HealthInsurancePlan`  [EXTRACTED]
@@ -158,29 +182,27 @@
   SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/AppDbContext.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/Manufacturer.cs
 - `AppDbContext` --references--> `Position`  [EXTRACTED]
   SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/AppDbContext.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/Position.cs
-- `AppDbContext` --references--> `ProductGroup`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/AppDbContext.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/ProductGroup.cs
 
 ## Import Cycles
 - None detected.
 
-## Communities (163 total, 34 thin omitted)
+## Communities (185 total, 36 thin omitted)
 
 ### Community 0 - "SeniorCareManager.WebAPI.Objects.Models"
-Cohesion: 0.08
-Nodes (10): SeniorCareManager.WebAPI.Data, SeniorCareManager.WebAPI.Services.Entities, SeniorCareManager.WebAPI.Services.Interfaces, SeniorCareManager.WebAPI.Controllers, SeniorCareManager.WebAPI.Data.Repositories, SeniorCareManager.WebAPI.Objects.Models, SeniorCareManager.WebAPI, SeniorCareManager.WebAPI.Data.Interfaces (+2 more)
+Cohesion: 0.07
+Nodes (20): ControllerBase, SeniorCareManager.WebAPI.Services.Entities, SeniorCareManager.WebAPI.Services.Interfaces, SeniorCareManager.WebAPI.Controllers, SeniorCareManager.WebAPI.Data.Repositories, SeniorCareManager.WebAPI.Objects.Models, SeniorCareManager.WebAPI.Data.Interfaces, HttpDelete (+12 more)
 
 ### Community 1 - "SeniorCareManager.WebAPI.Objects.Enums"
-Cohesion: 0.06
-Nodes (29): SeniorCareManager.WebAPI.Objects.Enums, HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, Task (+21 more)
+Cohesion: 0.04
+Nodes (24): SeniorCareManager.WebAPI.Objects.Dtos.Mappings, SeniorCareManager.WebAPI.Objects.Dtos.Entities, SeniorCareManager.WebAPI.Objects.Enums, Profile, CarrierDTO, HealthInsurancePlanDTO, PositionDTO, ProductTypeDTO (+16 more)
 
 ### Community 2 - "AppDbContext"
 Cohesion: 0.06
 Nodes (20): SeniorCareManager.WebAPI.Data.Builders, ModelBuilder, ModelBuilder, CarrierBuilder, ModelBuilder, HealthInsurancePlanBuilder, ModelBuilder, ManufacturerBuilder (+12 more)
 
 ### Community 3 - "GenericService"
-Cohesion: 0.07
-Nodes (26): ICollection, HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, Task (+18 more)
+Cohesion: 0.14
+Nodes (8): Task, IEnumerable, IGenericRepository, IEnumerable, IMapper, GenericService, IEnumerable, IGenericService
 
 ### Community 4 - "devDependencies"
 Cohesion: 0.06
@@ -191,12 +213,12 @@ Cohesion: 0.06
 Nodes (33): dependencies, axios, js-cookie, @phosphor-icons/react, react, react-dom, react-router-dom, @types/js-cookie (+25 more)
 
 ### Community 6 - "GenericRepository"
-Cohesion: 0.17
-Nodes (14): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, SupplierController, ISupplierRepository (+6 more)
+Cohesion: 0.16
+Nodes (13): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, SupplierController, ISupplierRepository, AppDbContext (+5 more)
 
 ### Community 7 - "IGenericService"
-Cohesion: 0.17
-Nodes (14): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, CarrierController, ICarrierRepository (+6 more)
+Cohesion: 0.16
+Nodes (13): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, CarrierController, ICarrierRepository, AppDbContext (+5 more)
 
 ### Community 8 - "http"
 Cohesion: 0.07
@@ -215,24 +237,24 @@ Cohesion: 0.08
 Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
 
 ### Community 12 - "ProductType"
-Cohesion: 0.09
-Nodes (24): CancellationToken, DbContext, HealthCheckContext, HealthCheckResult, IHealthCheck, HttpDelete, HttpGet, HttpPatch (+16 more)
+Cohesion: 0.15
+Nodes (14): HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, ProductTypeController, IProductTypeRepository (+6 more)
 
 ### Community 13 - "Controller"
-Cohesion: 0.11
-Nodes (20): Controller, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, PositionController (+12 more)
+Cohesion: 0.15
+Nodes (14): Controller, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, PositionController, IPositionRepository (+6 more)
 
 ### Community 14 - "ManufacturerController"
-Cohesion: 0.16
-Nodes (15): ControllerBase, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, ManufacturerController (+7 more)
+Cohesion: 0.14
+Nodes (15): ICollection, HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, ProductGroupController (+7 more)
 
 ### Community 15 - "ReligionController"
-Cohesion: 0.17
-Nodes (14): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, ReligionController, IReligionRepository (+6 more)
+Cohesion: 0.16
+Nodes (13): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, ReligionController, IReligionRepository, AppDbContext (+5 more)
 
 ### Community 16 - "UnitOfMeasureController"
-Cohesion: 0.17
-Nodes (14): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, UnitOfMeasureController, IUnitOfMeasureRepository (+6 more)
+Cohesion: 0.16
+Nodes (13): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, UnitOfMeasureController, IUnitOfMeasureRepository, AppDbContext (+5 more)
 
 ### Community 17 - "compilerOptions"
 Cohesion: 0.10
@@ -275,8 +297,8 @@ Cohesion: 0.16
 Nodes (8): App(), ThemeContext, ThemeContextType, ThemeProvider(), ThemeProviderProps, router, appRoutes, routes
 
 ### Community 27 - "SeniorCareManager.WebAPI.Objects.Dtos.Entities"
-Cohesion: 0.12
-Nodes (10): SeniorCareManager.WebAPI.Objects.Dtos.Mappings, SeniorCareManager.WebAPI.Objects.Dtos.Entities, Profile, CarrierDTO, HealthInsurancePlanDTO, PositionDTO, ProductTypeDTO, ReligionDTO (+2 more)
+Cohesion: 0.16
+Nodes (14): HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, HealthInsurancePlanController, IHealthInsurancePlanRepository (+6 more)
 
 ### Community 28 - "AppLayout.tsx"
 Cohesion: 0.23
@@ -399,8 +421,8 @@ Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
 ### Community 122 - "InitialCreate"
-Cohesion: 0.13
-Nodes (9): SeniorCareManager.WebAPI.Data.Migrations, Migration, MigrationBuilder, ModelSnapshot, ModelBuilder, InitialCreate, InitialCreate, ModelBuilder (+1 more)
+Cohesion: 0.07
+Nodes (21): CancellationToken, SeniorCareManager.WebAPI.Data, SeniorCareManager.WebAPI, SeniorCareManager.WebAPI.Data.Migrations, DbContext, HealthCheckContext, HealthCheckResult, IHealthCheck (+13 more)
 
 ### Community 123 - "deploy.sh"
 Cohesion: 0.34
@@ -428,7 +450,7 @@ Nodes (7): 9.1 Estatuto da Pessoa Idosa, 9.2 RDC Anvisa nº 502/2021, 9.3 Assist
 
 ### Community 129 - "codeql-sarif-gate.py"
 Cohesion: 0.53
-Nodes (5): evaluate(), main(), sarif_files(), security_severity(), Path
+Nodes (5): evaluate(), main(), Path, sarif_files(), security_severity()
 
 ### Community 130 - "ops.sh"
 Cohesion: 0.67
@@ -483,8 +505,8 @@ Cohesion: 0.67
 Nodes (3): 12.1 Avaliação formal do estado atual, 12.2 Restrições de prontidão decorrentes da avaliação, 12. Relação com o software existente
 
 ### Community 155 - "ADDED Requirements"
-Cohesion: 0.09
-Nodes (21): ADDED Requirements, Purpose, Requirement: APIs e rotas são protegidas por papel, Requirement: Autenticação não implica autorização clínica, Requirement: Credencial administrativa inicial é provisionada com segurança, Requirement: Sessão e tokens possuem proteção e expiração, Requirement: Tentativas de autenticação são protegidas contra abuso, Requirement: Usuário autentica-se com identidade individual (+13 more)
+Cohesion: 0.18
+Nodes (10): ADDED Requirements, Purpose, Requirement: Autenticação não implica autorização clínica, Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização, Requirement: Senhas são derivadas e nunca recuperáveis, Scenario: Administrador consulta usuário, Scenario: Carregamento da aplicação, Scenario: Introdução futura de dado assistencial (+2 more)
 
 ### Community 156 - "ADDED Requirements"
 Cohesion: 0.10
@@ -495,8 +517,8 @@ Cohesion: 0.11
 Nodes (18): ADDED Requirements, Purpose, Requirement: Backend possui testes automatizados representativos, Requirement: CI bloqueia mudanças não verificadas, Requirement: Cobertura é publicada e caminhos críticos não ficam sem teste, Requirement: Dados de teste não contêm dados pessoais reais, Requirement: Front-ends possuem testes de comportamento, Requirement: Migrações são verificadas em instalação e atualização (+10 more)
 
 ### Community 158 - "Decisions"
-Cohesion: 0.12
-Nodes (15): 10. Evoluir acessibilidade nos componentes compartilhados atuais, 1. Manter o monólito modular e os dois front-ends, 2. Usar API de mesma origem em produção, 3. Padronizar erros com Problem Details e sucesso por recurso, 4. Separar modelos de persistência dos contratos da API, 5. Implementar produto como catálogo, não como saldo transacional, 6. Usar identidade consolidada e sessão curta revogável, 7. Provisionar administrador de forma explícita e idempotente (+7 more)
+Cohesion: 0.11
+Nodes (17): 10. Tornar configuração e decisões de acesso administráveis e auditáveis, 11. Testar com a mesma classe de banco usada em produção, 12. Evoluir acessibilidade nos componentes compartilhados atuais, 1. Manter o monólito modular e os dois front-ends, 2. Usar API de mesma origem em produção, 3. Padronizar erros com Problem Details e sucesso por recurso, 4. Separar modelos de persistência dos contratos da API, 5. Implementar produto como catálogo, não como saldo transacional (+9 more)
 
 ### Community 159 - "ADDED Requirements"
 Cohesion: 0.12
@@ -507,32 +529,112 @@ Cohesion: 0.13
 Nodes (14): ADDED Requirements, Purpose, Requirement: Controles possuem nome, estado e instrução acessíveis, Requirement: Estrutura e contraste possuem critérios verificáveis, Requirement: Fluxos existentes são operáveis por teclado, Requirement: Preferências visuais são persistentes e limitadas, Scenario: Botão somente com ícone, Scenario: Erro de formulário (+6 more)
 
 ### Community 161 - "tasks.md"
-Cohesion: 0.18
-Nodes (10): 10. Aceite da mudança, 1. Baseline e infraestrutura de testes, 2. Configuração e diagnóstico de execução, 3. Contratos HTTP e tratamento de erros, 4. Identidade, autenticação e autorização, 5. Auditoria administrativa, 6. Catálogos auxiliares e produto, 7. Sessão e contratos nos front-ends (+2 more)
+Cohesion: 0.14
+Nodes (13): 10. Identidade, acesso e contratos nos front-ends, 11. Baseline de acessibilidade, 12. CI, migração e entrega, 13. Aceite da mudança, 1. Baseline e infraestrutura de testes, 2. Configuração e diagnóstico de execução, 3. Contratos HTTP e tratamento de erros, 4. Instituição, identidade e política de senha (+5 more)
 
 ### Community 162 - "proposal.md"
 Cohesion: 0.29
 Nodes (6): Capabilities, Impact, Modified Capabilities, New Capabilities, What Changes, Why
 
+### Community 163 - "sync_issues.py"
+Cohesion: 0.22
+Nodes (11): ensure_labels(), existing_issues(), issue_body(), issue_title(), main(), parse_tasks(), Path, Título sem o prefixo do id do épico, que já vai entre colchetes. (+3 more)
+
+### Community 164 - "GenericRepository"
+Cohesion: 0.27
+Nodes (4): AppDbContext, DbSet, IEnumerable, GenericRepository
+
+### Community 165 - "OpenSpec no GitHub — issues, PRs e kanban"
+Cohesion: 0.25
+Nodes (7): Ciclo de trabalho, Direção da verdade, Escopo, Kanban, Limites conhecidos, OpenSpec no GitHub — issues, PRs e kanban, Sincronização manual
+
+### Community 166 - "Requirement: Sessão é compartilhada, curta, rotativa e revogável"
+Cohesion: 0.33
+Nodes (6): Requirement: Sessão é compartilhada, curta, rotativa e revogável, Scenario: Logout, Scenario: Navegação entre módulos, Scenario: Reutilização de token rotacionado, Scenario: Rotação de renovação, Scenario: Sessão expirada
+
+### Community 167 - "Requirement: Ativação e recuperação não distribuem senha conhecida"
+Cohesion: 0.40
+Nodes (5): Requirement: Ativação e recuperação não distribuem senha conhecida, Scenario: Ativação inicial, Scenario: Senha redefinida, Scenario: Solicitação de recuperação, Scenario: Token expirado ou reutilizado
+
+### Community 168 - "Requirement: Decisão de acesso segue precedência determinística e negação padrão"
+Cohesion: 0.40
+Nodes (5): Requirement: Decisão de acesso segue precedência determinística e negação padrão, Scenario: Interface exibe ação não autorizada, Scenario: Nenhuma regra concede acesso, Scenario: Operação sistêmica privilegiada, Scenario: Regras conflitantes
+
+### Community 169 - "Requirement: Política de senha segue práticas atuais e possui piso seguro"
+Cohesion: 0.40
+Nodes (5): Requirement: Política de senha segue práticas atuais e possui piso seguro, Scenario: Regra institucional enfraquece o piso, Scenario: Senha antiga sem indício de comprometimento, Scenario: Senha comum ou comprometida, Scenario: Senha longa e válida
+
+### Community 170 - "Requirement: Administração de acesso possui configuração dedicada"
+Cohesion: 0.50
+Nodes (4): Requirement: Administração de acesso possui configuração dedicada, Scenario: Administrador configura papel, Scenario: Administrador revoga sessão, Scenario: Operador consulta configuração protegida
+
+### Community 171 - "Requirement: Autenticação multifator protege contas privilegiadas"
+Cohesion: 0.50
+Nodes (4): Requirement: Autenticação multifator protege contas privilegiadas, Scenario: Administrador sem MFA cadastrado, Scenario: Código de recuperação, Scenario: Segundo fator inválido
+
+### Community 172 - "Requirement: Conta possui ciclo de vida controlado"
+Cohesion: 0.50
+Nodes (4): Requirement: Conta possui ciclo de vida controlado, Scenario: Administrador inativa conta com sessão aberta, Scenario: Conta inativa, bloqueada ou expirada, Scenario: Conta provisionada
+
+### Community 173 - "Requirement: Eventos de identidade, configuração e acesso são auditáveis"
+Cohesion: 0.50
+Nodes (4): Requirement: Eventos de identidade, configuração e acesso são auditáveis, Scenario: Acesso negado, Scenario: Configuração de acesso alterada, Scenario: Correlação de evento
+
+### Community 174 - "Requirement: Exceções individuais são explícitas, limitadas e justificadas"
+Cohesion: 0.50
+Nodes (4): Requirement: Exceções individuais são explícitas, limitadas e justificadas, Scenario: Exceção de negação, Scenario: Exceção expirada, Scenario: Exceção temporária de concessão
+
+### Community 175 - "Requirement: Identidade é individual e vinculada à instituição"
+Cohesion: 0.50
+Nodes (4): Requirement: Identidade é individual e vinculada à instituição, Scenario: Conta compartilhada, Scenario: Credenciais válidas na única instituição, Scenario: Identidade não pertence à instituição
+
+### Community 176 - "Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos"
+Cohesion: 0.50
+Nodes (4): Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos, Scenario: Profissional sem papel técnico, Scenario: Responsabilidade limitada ao setor, Scenario: Responsabilidade vencida
+
+### Community 177 - "Requirement: Credencial administrativa inicial é provisionada com segurança"
+Cohesion: 0.67
+Nodes (3): Requirement: Credencial administrativa inicial é provisionada com segurança, Scenario: Primeiro provisionamento, Scenario: Reinício posterior
+
+### Community 178 - "Requirement: Mudança autenticada de senha exige confirmação de identidade"
+Cohesion: 0.67
+Nodes (3): Requirement: Mudança autenticada de senha exige confirmação de identidade, Scenario: Mudança concluída, Scenario: Senha atual incorreta
+
+### Community 179 - "Requirement: Origem da identidade é extensível"
+Cohesion: 0.67
+Nodes (3): Requirement: Origem da identidade é extensível, Scenario: Identidade local, Scenario: Origem ainda não habilitada
+
+### Community 180 - "Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros"
+Cohesion: 0.67
+Nodes (3): Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros, Scenario: Configuração válida, Scenario: Sessão excessivamente longa
+
+### Community 181 - "Requirement: Permissões são compostas por recurso, ação e funcionalidade"
+Cohesion: 0.67
+Nodes (3): Requirement: Permissões são compostas por recurso, ação e funcionalidade, Scenario: Papel recebe grupo de módulo, Scenario: Permissão removida do grupo
+
+### Community 182 - "Requirement: Tentativas de autenticação são protegidas contra abuso"
+Cohesion: 0.67
+Nodes (3): Requirement: Tentativas de autenticação são protegidas contra abuso, Scenario: Autenticação posterior ao bloqueio temporário, Scenario: Repetição de falhas
+
 ## Knowledge Gaps
-- **503 isolated node(s):** `check-env-hygiene.sh script`, `CarrierDTO`, `HealthInsurancePlanDTO`, `ManufacturerDTO`, `PositionDTO` (+498 more)
+- **558 isolated node(s):** `check-env-hygiene.sh script`, `CarrierDTO`, `HealthInsurancePlanDTO`, `ManufacturerDTO`, `PositionDTO` (+553 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **36 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `SeniorCareManager.WebAPI.Objects.Models` connect `SeniorCareManager.WebAPI.Objects.Models` to `SeniorCareManager.WebAPI.Objects.Enums`, `AppDbContext`, `GenericService`, `GenericRepository`, `IGenericService`, `ProductType`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`?**
-  _High betweenness centrality (0.039) - this node is a cross-community bridge._
-- **Why does `AppDbContext` connect `ProductType` to `SeniorCareManager.WebAPI.Objects.Models`, `SeniorCareManager.WebAPI.Objects.Enums`, `AppDbContext`, `GenericService`, `GenericRepository`, `IGenericService`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
-- **Why does `SeniorCareManager.WebAPI.Data` connect `SeniorCareManager.WebAPI.Objects.Models` to `InitialCreate`, `ProductType`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Why does `Task` connect `GenericService` to `SeniorCareManager.WebAPI.Objects.Models`, `sync_issues.py`, `GenericRepository`, `GenericRepository`, `IGenericService`, `ProductType`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`, `InitialCreate`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`?**
+  _High betweenness centrality (0.029) - this node is a cross-community bridge._
+- **Why does `SeniorCareManager.WebAPI.Objects.Models` connect `SeniorCareManager.WebAPI.Objects.Models` to `SeniorCareManager.WebAPI.Objects.Enums`, `AppDbContext`, `GenericRepository`, `IGenericService`, `ProductType`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`, `InitialCreate`?**
+  _High betweenness centrality (0.029) - this node is a cross-community bridge._
+- **Why does `AppDbContext` connect `InitialCreate` to `SeniorCareManager.WebAPI.Objects.Models`, `AppDbContext`, `GenericRepository`, `IGenericService`, `ProductType`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`?**
+  _High betweenness centrality (0.012) - this node is a cross-community bridge._
 - **What connects `check-env-hygiene.sh script`, `CarrierDTO`, `HealthInsurancePlanDTO` to the rest of the system?**
-  _503 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _559 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `SeniorCareManager.WebAPI.Objects.Models` be split into smaller, more focused modules?**
-  _Cohesion score 0.08038075092543628 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06516105146242132 - nodes in this community are weakly interconnected._
 - **Should `SeniorCareManager.WebAPI.Objects.Enums` be split into smaller, more focused modules?**
-  _Cohesion score 0.05612244897959184 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected._
 - **Should `AppDbContext` be split into smaller, more focused modules?**
   _Cohesion score 0.0620782726045884 - nodes in this community are weakly interconnected._
