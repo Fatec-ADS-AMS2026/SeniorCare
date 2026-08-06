@@ -1,0 +1,3 @@
+# Integração com o Docker local (socket) — habilita o status/stats por container.
+my-docker:
+  socket: /var/run/docker.sock

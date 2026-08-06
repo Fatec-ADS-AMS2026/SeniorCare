@@ -1,0 +1,11 @@
+# Barra de topo: recursos do host + relógio.
+- resources:
+    label: Servidor
+    cpu: true
+    memory: true
+    disk: /
+- datetime:
+    text_size: xl
+    format:
+      dateStyle: short
+      timeStyle: short

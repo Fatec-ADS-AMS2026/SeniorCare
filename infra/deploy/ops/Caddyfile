@@ -1,0 +1,27 @@
+# Ingress do SeniorCare — Caddy (overlay de operação).
+#
+# Roteamento por SUBDOMÍNIO para os container_name da stack base, resolvidos via
+# DNS do Docker na rede seniorcare-net. TLS por CA interna do Caddy (local_certs),
+# adequado a LAN sem DNS público. Para os subdomínios resolverem nas estações,
+# aponte *.${OPS_DOMAIN} para o IP do servidor (DNS interno ou /etc/hosts) e
+# confie na raiz da CA do Caddy (em /data/caddy/pki/authorities/local/root.crt).
+
+{
+	# CA interna — emite certificados confiáveis apenas dentro da LAN.
+	local_certs
+	# email admin@{$OPS_DOMAIN}
+}
+
+# ── API ──────────────────────────────────────────────────────────────────
+api.{$OPS_DOMAIN} {
+	reverse_proxy seniorcare-api:8080
+}
+
+# ── Frontends ────────────────────────────────────────────────────────────
+care.{$OPS_DOMAIN} {
+	reverse_proxy seniorcare-care-web:80
+}
+
+stock.{$OPS_DOMAIN} {
+	reverse_proxy seniorcare-stock-web:80
+}

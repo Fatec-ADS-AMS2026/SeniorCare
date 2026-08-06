@@ -1,0 +1,60 @@
+name: ghcr-retention
+
+# Higiene do registry (docs/infra/ci-cd-arquitetura.md §6-C):
+#   - Release (tags vAAAA.MM.PATCH / semver) e :latest → NUNCA expiram (nunca casados aqui)
+#   - sha-*  (rastreio interno)  → apagados após 90 dias, mantendo os 20 mais recentes
+#   - órfãs  (sem tag, lixo de build) → apagados após 7 dias
+#
+# Conservador por design: só toca em `sha-*` e em versões sem tag. As tags de release
+# não entram em nenhum filtro, então são intocáveis.
+#
+# ATENÇÃO: valide SEMPRE com um run manual em dry-run=true antes de confiar no agendamento.
+on:
+  schedule:
+    - cron: '0 4 * * 1'   # segundas 04:00 UTC
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Só listar o que seria apagado (não apaga)'
+        type: boolean
+        default: true
+
+permissions:
+  packages: write
+
+jobs:
+  retention:
+    runs-on: ubuntu-latest
+    # Agendado: aplica de fato (dry-run=false). Manual: respeita o input (default true).
+    env:
+      DRY_RUN: ${{ github.event_name == 'schedule' && 'false' || inputs.dry_run }}
+    steps:
+      # 1) sha-* mais velhos que 90 dias, preservando os 20 mais recentes.
+      #    Releases (v*/semver) e latest NÃO entram (image-tags = apenas "sha-*").
+      - name: Podar sha-* antigos
+        uses: snok/container-retention-policy@v3.0.0
+        with:
+          account: ${{ github.repository_owner }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          image-names: 'seniorcare-*'
+          image-tags: 'sha-*'
+          tag-selection: tagged
+          cut-off: 90d
+          keep-n-most-recent: 20
+          dry-run: ${{ env.DRY_RUN }}
+
+      # 2) Versões sem tag (lixo de build) mais velhas que 7 dias.
+      - name: Podar órfãs sem tag
+        uses: snok/container-retention-policy@v3.0.0
+        with:
+          account: ${{ github.repository_owner }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          image-names: 'seniorcare-*'
+          tag-selection: untagged
+          cut-off: 7d
+          dry-run: ${{ env.DRY_RUN }}
+
+# Nota: para pacotes de conta pessoal/org sem permissão herdada, a exclusão via
+# GITHUB_TOKEN pode exigir um PAT com escopo `delete:packages`. Se o run falhar por
+# permissão, criar o secret GHCR_CLEANUP_TOKEN (PAT classic com delete:packages) e
+# usá-lo no lugar de GITHUB_TOKEN.

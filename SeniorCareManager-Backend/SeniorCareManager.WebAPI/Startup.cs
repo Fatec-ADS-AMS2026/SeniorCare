@@ -89,9 +89,15 @@ public class Startup
             options.JsonSerializerOptions.WriteIndented = true; // Opcional, apenas para melhor legibilidade
         });
 
+        // CORS_ALLOWED_ORIGINS (docker-compose de produção) sobrepõe os origins de dev —
+        // sem isso, a imagem de produção nunca aceitaria requisição dos frontends reais.
+        var corsOrigins = Configuration["CORS_ALLOWED_ORIGINS"]?
+            .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            ?? new[] { "http://localhost:3000", "http://localhost:5173", "http://localhost:3001" };
+
         services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
         {
-            builder.WithOrigins("http://localhost:3000", "http://localhost:5173")
+            builder.WithOrigins(corsOrigins)
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials();
@@ -132,6 +138,11 @@ public class Startup
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+
+        // Usado pelo HEALTHCHECK do container (Dockerfile/docker-compose) e pelo deploy.sh
+        // para aguardar o serviço ficar pronto antes de considerar o deploy bem-sucedido.
+        services.AddHealthChecks()
+            .AddCheck<DbHealthCheck>("database");
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -172,6 +183,7 @@ public class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
+            endpoints.MapHealthChecks("/health");
         });
     }
 }

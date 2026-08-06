@@ -1,0 +1,14 @@
+# Homepage — página de gestão do SeniorCare.
+title: SeniorCare
+theme: dark
+color: slate
+headerStyle: boxed
+target: _blank
+hideVersion: true
+layout:
+  Aplicações:
+    style: row
+    columns: 3
+  Operação:
+    style: row
+    columns: 3

@@ -65,7 +65,10 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-Migrations/
+# NOTA: o template padrão do Visual Studio ignora Migrations/ (herança de wizards de DB
+# antigos). Para EF Core isso está errado — migrations são histórico de schema e PRECISAM
+# ser versionadas (é o que o deploy.sh/Program.cs aplicam no boot). Linha removida
+# deliberadamente; não reintroduzir.
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt

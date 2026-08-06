@@ -1,0 +1,122 @@
+# SeniorCare — overlay de OPERAÇÃO/OBSERVABILIDADE.
+#
+# Ferramentas single-purpose que só *observam/assistem* — entregam o que um PaaS
+# (Dokploy/Coolify) daria (UI, logs, ingress/TLS, backup agendado) SEM regredir o
+# núcleo pull-based. NÃO orquestram o deploy; o deploy.sh continua sendo o cérebro
+# (manifest por digest, gate de pg_dump, rollback DB-aware).
+#
+# Roda como PROJETO SEPARADO para o `--remove-orphans` do deploy.sh nunca tratar
+# estes containers como órfãos. Suba pelo helper (recomendado):
+#
+#     ./ops.sh up            # = docker compose -p seniorcare-ops -f docker-compose.ops.yml --profile ops up -d
+#     ./ops.sh status | logs | down
+#
+# Config: copie .env.ops.example -> .env.ops e ajuste portas/domínio/credenciais.
+# Todos os serviços têm profile `ops` — nada sobe sem o filtro de perfil.
+
+services:
+  # ── Ingress + TLS por app ────────────────────────────────────────────────
+  # Caddy com CA interna (local_certs) — ideal para LAN sem DNS público.
+  # Roteia por subdomínio para os container_name da stack base (ver ops/Caddyfile).
+  caddy:
+    image: caddy:2-alpine
+    container_name: seniorcare-caddy
+    restart: unless-stopped
+    profiles: [ops]
+    ports:
+      - "${CADDY_HTTP_PORT:-8880}:80"
+      - "${CADDY_HTTPS_PORT:-8443}:443"
+    volumes:
+      - ./ops/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      OPS_DOMAIN: ${OPS_DOMAIN:-seniorcare.local}
+    networks: [seniorcare-net]
+
+  # ── Página de gestão / hub de links ───────────────────────────────────────
+  # Um lugar só (uma porta só) com atalho pra TODAS as UIs + status por container.
+  # Os links usam {{HOMEPAGE_VAR_HOST}} = OPS_HOST (IP do servidor na LAN).
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: seniorcare-homepage
+    restart: unless-stopped
+    profiles: [ops]
+    ports:
+      - "${HOMEPAGE_PORT:-8090}:3000"
+    environment:
+      # Host(s) permitidos no header (proteção do Homepage) — o IP:porta de acesso.
+      HOMEPAGE_ALLOWED_HOSTS: ${HOMEPAGE_ALLOWED_HOSTS:-127.0.0.1:8090}
+      # Host que os atalhos apontam (o IP do servidor).
+      HOMEPAGE_VAR_HOST:      ${OPS_HOST:-127.0.0.1}
+    volumes:
+      - ./ops/homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  # ── Painel de operação ────────────────────────────────────────────────────
+  # Portainer CE: UI para VISUALIZAR/atuar sobre o Docker existente.
+  # NÃO é fonte da verdade do deploy — apenas observabilidade/ação pontual.
+  portainer:
+    image: portainer/portainer-ce:2.21.4
+    container_name: seniorcare-portainer
+    restart: unless-stopped
+    profiles: [ops]
+    ports:
+      - "${PORTAINER_PORT:-9443}:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+  # ── Logs de container ao vivo ─────────────────────────────────────────────
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: seniorcare-dozzle
+    restart: unless-stopped
+    profiles: [ops]
+    environment:
+      DOZZLE_NO_ANALYTICS: "true"
+    ports:
+      - "${DOZZLE_PORT:-8888}:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  # ── Backup diário: dump do banco → um .zip/dia ────────────────────────────
+  # COMPLEMENTA o gate pré-deploy do deploy.sh (não substitui). Cron interno
+  # roda ops/backup.sh no horário BACKUP_SCHEDULE (default 02:00, TZ local).
+  backup:
+    image: postgres:16-alpine
+    container_name: seniorcare-backup
+    restart: unless-stopped
+    profiles: [ops]
+    environment:
+      POSTGRES_HOST:     ${POSTGRES_HOST:-seniorcare-postgres}
+      POSTGRES_DB:       ${POSTGRES_DB:-db_seniorcare}
+      POSTGRES_USER:     ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?defina POSTGRES_PASSWORD (mesmo do cliente) no .env.ops}
+      BACKUP_SCHEDULE:   ${BACKUP_SCHEDULE:-0 2 * * *}
+      BACKUP_KEEP_DAYS:  ${BACKUP_KEEP_DAYS:-14}
+      TZ:                ${TZ:-America/Sao_Paulo}
+    volumes:
+      - ${OPS_BACKUP_PATH:-./backups/scheduled}:/backups
+      - ./ops/backup.sh:/usr/local/bin/backup.sh:ro
+    networks: [seniorcare-net]
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        command -v zip >/dev/null 2>&1 || apk add --no-cache zip tzdata >/dev/null
+        printf 'export POSTGRES_HOST=%s\nexport POSTGRES_DB=%s\nexport POSTGRES_USER=%s\nexport POSTGRES_PASSWORD=%s\nexport BACKUP_KEEP_DAYS=%s\nexport TZ=%s\n' \
+          "$$POSTGRES_HOST" "$$POSTGRES_DB" "$$POSTGRES_USER" "$$POSTGRES_PASSWORD" "$$BACKUP_KEEP_DAYS" "$$TZ" > /etc/backup.env
+        echo "$$BACKUP_SCHEDULE . /etc/backup.env; /usr/local/bin/backup.sh >> /proc/1/fd/1 2>&1" > /etc/crontabs/root
+        echo "[backup] agendado: '$$BACKUP_SCHEDULE' (TZ=$$TZ) -> um .zip/dia em /backups"
+        exec crond -f -l 8
+
+volumes:
+  caddy_data:
+  caddy_config:
+  portainer_data:
+
+networks:
+  # Rede da stack base (docker-compose.yml). Externa: este overlay NÃO a cria/destrói.
+  seniorcare-net:
+    external: true
+    name: seniorcare-net

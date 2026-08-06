@@ -1,0 +1,9 @@
+# O Homepage regrava arquivos de config no boot (custom.css, kubernetes.yaml, etc.).
+# Versionar só os arquivos curados.
+*
+!.gitignore
+!settings.yaml
+!services.yaml
+!widgets.yaml
+!docker.yaml
+!bookmarks.yaml

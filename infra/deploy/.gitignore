@@ -1,0 +1,6 @@
+# Segredos e estado local do servidor de deploy — nunca versionados.
+clients/*/
+!clients/exemplo/
+clients/exemplo/.env
+backups/
+.state/

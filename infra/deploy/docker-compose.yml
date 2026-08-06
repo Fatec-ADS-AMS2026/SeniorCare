@@ -1,0 +1,101 @@
+# SeniorCare — compose de PRODUÇÃO (pull-based).
+# NÃO constrói imagens: cada serviço usa a imagem pinada pelo release manifest
+# (releases/<versão>.env), que o deploy.sh injeta via --env-file. As variáveis *_IMAGE
+# trazem o formato ghcr.io/owner/imagem:tag@sha256:<digest>.
+# Config por cliente (senhas/paths/CORS) vem de clients/<cliente>/.env.
+
+services:
+  # ── Banco de dados ─────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: seniorcare-postgres
+    restart: unless-stopped
+    # Publica no LOOPBACK do host por padrão → acessível só via SSH tunnel, NÃO na LAN
+    # (acesso administrativo: DBeaver etc.). Para expor na LAN, sobrescreva no .env do
+    # cliente: POSTGRES_PUBLISH=0.0.0.0:5432
+    ports:
+      - "${POSTGRES_PUBLISH:-127.0.0.1:5432}:5432"
+    environment:
+      POSTGRES_DB:       ${POSTGRES_DB:-db_seniorcare}
+      POSTGRES_USER:     ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?defina POSTGRES_PASSWORD no .env do cliente}
+    volumes:
+      - ${POSTGRES_DATA_PATH:-/opt/seniorcare/postgres}/data:/var/lib/postgresql/data
+    networks: [seniorcare-net]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-db_seniorcare}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # pgAdmin — ferramenta opcional; só sobe com `--profile tools`.
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: seniorcare-pgadmin
+    restart: unless-stopped
+    profiles: [tools]
+    environment:
+      PGADMIN_DEFAULT_EMAIL:    ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks: [seniorcare-net]
+
+  # ── Backend ────────────────────────────────────────────────────────────
+  seniorcare-api:
+    image: ${API_IMAGE:?defina API_IMAGE via release manifest}
+    container_name: seniorcare-api
+    restart: unless-stopped
+    mem_limit: ${API_MEM_LIMIT:-1g}
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__DefaultConnection: >-
+        Host=postgres;Port=5432;Database=${POSTGRES_DB:-db_seniorcare};
+        Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD};
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks: [seniorcare-net]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 90s
+
+  # ── Frontends ──────────────────────────────────────────────────────────
+  care-web:
+    image: ${CARE_WEB_IMAGE:?defina CARE_WEB_IMAGE via release manifest}
+    container_name: seniorcare-care-web
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      seniorcare-api:
+        condition: service_healthy
+    networks: [seniorcare-net]
+
+  stock-web:
+    image: ${STOCK_WEB_IMAGE:?defina STOCK_WEB_IMAGE via release manifest}
+    container_name: seniorcare-stock-web
+    restart: unless-stopped
+    ports:
+      - "3001:80"
+    depends_on:
+      seniorcare-api:
+        condition: service_healthy
+    networks: [seniorcare-net]
+
+networks:
+  seniorcare-net:
+    # Nome fixo (sem prefixo de projeto) para o overlay de operação
+    # (docker-compose.ops.yml) anexar como rede externa.
+    name: seniorcare-net
+    driver: bridge

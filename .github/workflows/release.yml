@@ -1,0 +1,118 @@
+name: release
+
+# Dispara ao criar uma tag de versão (ex.: v2026.08.0).
+# Builda TODAS as imagens com a mesma tag, empurra para o GHCR e gera o release manifest.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write   # criar o GitHub Release
+  packages: write   # push no GHCR
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { module: api,        context: ./SeniorCareManager-Backend/SeniorCareManager.WebAPI, image: seniorcare-api,       var: API_IMAGE }
+          - { module: care-web,   context: ./SeniorCareManager-Frontend/SeniorCareManagerFrontend, image: seniorcare-care-web,  var: CARE_WEB_IMAGE }
+          - { module: stock-web,  context: ./SeniorStockManager-Frontend/SeniorStockManagerFrontend, image: seniorcare-stock-web, var: STOCK_WEB_IMAGE }
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Buildx
+        # Cria um builder com driver docker-container — necessário para o cache
+        # gha (cache-to/from: type=gha). O driver docker padrão não suporta export.
+        uses: docker/setup-buildx-action@v3
+
+      - name: Derivar versão da tag
+        id: ver
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Login no GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build e push
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.context }}
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}:${{ steps.ver.outputs.version }}
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}:latest
+          build-args: |
+            VERSION=${{ steps.ver.outputs.version }}
+            GIT_SHA=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Registrar linha do manifest (tag@digest)
+        run: |
+          mkdir -p _manifest
+          IMG="${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}"
+          echo "${{ matrix.var }}=${IMG}:${{ steps.ver.outputs.version }}@${{ steps.build.outputs.digest }}" \
+            > "_manifest/${{ matrix.var }}.env"
+
+      - name: Upload fragmento do manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: manifest-${{ matrix.var }}
+          path: _manifest/${{ matrix.var }}.env
+
+  manifest:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Versão
+        id: ver
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Baixar fragmentos
+        uses: actions/download-artifact@v4
+        with:
+          path: _frag
+          pattern: manifest-*
+          merge-multiple: true
+
+      - name: Montar releases/<versão>.env
+        run: |
+          V="${{ steps.ver.outputs.version }}"
+          mkdir -p releases
+          OUT="releases/${V}.env"
+          {
+            echo "# Release manifest gerado por release.yml — NÃO editar à mão."
+            echo "RELEASE=${V}"
+            echo "GIT_TAG=${GITHUB_REF_NAME}"
+            echo "GIT_SHA=${GITHUB_SHA}"
+            echo "BUILT_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            cat _frag/*.env | sort
+          } > "$OUT"
+          echo "----- $OUT -----"; cat "$OUT"
+
+      - name: Commitar o manifest na main
+        run: |
+          V="${{ steps.ver.outputs.version }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "releases/${V}.env"
+          git commit -m "chore(release): manifest ${V}" || echo "sem mudanças"
+          git push origin HEAD:main || echo "push do manifest falhou (revisar proteção da branch)"
+
+      - name: Criar GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: releases/${{ steps.ver.outputs.version }}.env
+          generate_release_notes: true

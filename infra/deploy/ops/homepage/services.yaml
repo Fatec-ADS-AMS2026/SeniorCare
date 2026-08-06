@@ -1,0 +1,30 @@
+# Atalhos + status por container. {{HOMEPAGE_VAR_HOST}} vem da env OPS_HOST
+# (o IP do servidor na LAN), então este arquivo serve para qualquer ambiente.
+- Aplicações:
+    - Care:
+        href: http://{{HOMEPAGE_VAR_HOST}}:3000/
+        description: SeniorCareManager Frontend
+        server: my-docker
+        container: seniorcare-care-web
+    - Estoque:
+        href: http://{{HOMEPAGE_VAR_HOST}}:3001/
+        description: SeniorStockManager Frontend
+        server: my-docker
+        container: seniorcare-stock-web
+    - API:
+        href: http://{{HOMEPAGE_VAR_HOST}}:8080/health
+        description: SeniorCareManager.WebAPI
+        server: my-docker
+        container: seniorcare-api
+
+- Operação:
+    - Portainer:
+        href: https://{{HOMEPAGE_VAR_HOST}}:9443/
+        description: Gestão de containers
+        server: my-docker
+        container: seniorcare-portainer
+    - Dozzle:
+        href: http://{{HOMEPAGE_VAR_HOST}}:8888/
+        description: Logs ao vivo
+        server: my-docker
+        container: seniorcare-dozzle
