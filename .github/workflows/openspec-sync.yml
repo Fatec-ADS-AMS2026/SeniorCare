@@ -1,0 +1,49 @@
+name: openspec-sync
+
+# Espelha os épicos do OpenSpec como issues do GitHub. Direção única: o
+# `tasks.md` de cada change é a fonte da verdade e o corpo da issue é reescrito
+# a cada execução. Os changes espelhados são os listados em
+# infra/openspec-github/synced-changes.txt.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'openspec/changes/**/tasks.md'
+      - 'infra/openspec-github/**'
+  workflow_dispatch:
+    inputs:
+      change:
+        description: 'id do change (vazio = os configurados em synced-changes.txt)'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: openspec-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Sincronizar issues dos épicos
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Via env, nunca interpolado direto no shell: o valor vem de input do
+          # workflow_dispatch e interpolar `${{ }}` em `run` permitiria injeção.
+          CHANGE: ${{ inputs.change }}
+        run: |
+          if [ -n "$CHANGE" ]; then
+            python3 infra/openspec-github/sync_issues.py --change "$CHANGE"
+          else
+            python3 infra/openspec-github/sync_issues.py --configured
+          fi

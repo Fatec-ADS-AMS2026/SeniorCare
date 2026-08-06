@@ -1,0 +1,8 @@
+# Changes do OpenSpec cujos épicos são espelhados como issues do GitHub.
+# Um id por linha. O workflow openspec-sync.yml lê este arquivo.
+#
+# Para incluir um change novo, acrescente a linha e faça merge na main — a
+# sincronização do próximo push cria as issues dos épicos com trabalho aberto.
+# Remover a linha para de sincronizar, mas não apaga as issues já criadas.
+
+stabilize-existing-platform
