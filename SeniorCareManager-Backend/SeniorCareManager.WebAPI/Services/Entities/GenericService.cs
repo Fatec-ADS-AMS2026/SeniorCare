@@ -8,19 +8,11 @@ public class GenericService<T> : IGenericService<T> where T : class
 {
     private readonly IGenericRepository<T> _repository;
     private readonly IMapper _mapper;
-    private IProductGroupRepository repository;
-    private IMapper mapper;
 
     public GenericService(IGenericRepository<T> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
-    }
-
-    public GenericService(IProductGroupRepository repository, IMapper mapper)
-    {
-        this.repository = repository;
-        this.mapper = mapper;
     }
 
     public async Task<IEnumerable<T>> GetAll()
