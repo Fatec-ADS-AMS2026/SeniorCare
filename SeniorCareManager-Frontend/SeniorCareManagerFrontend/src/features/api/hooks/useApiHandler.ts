@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ApiResponse } from "../types";
+import ServiceResult from "@/types/app/ServiceResult";
 
-export default function useApiHandler<T>(serviceMethod: () => Promise<ApiResponse<{ id: number }>>) {
+export default function useApiHandler<T>(serviceMethod: () => Promise<ServiceResult<T>>) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<T | null>(null);
@@ -11,10 +11,10 @@ export default function useApiHandler<T>(serviceMethod: () => Promise<ApiRespons
     setError(null);
     const result = await serviceMethod();
     setLoading(false);
-    if (result.error) {
-      setError(result.error);
+    if (!result.success) {
+      setError(result.message);
     } else {
-      setData(result.data);
+      setData(result.data ?? null);
     }
   };
 
