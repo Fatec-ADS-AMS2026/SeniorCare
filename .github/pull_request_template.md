@@ -15,3 +15,5 @@ Closes #
 ## Test plan
 
 - [ ]
+
+<!-- teste de secret CLAUDE_CODE_OAUTH_TOKEN — PR descartável, ver claude-review.yml -->
