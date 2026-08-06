@@ -31,3 +31,5 @@ O escopo conceitual e funcional canônico do projeto está documentado em
 - [Publicação em servidor](infra/deploy/README.md)
 
 <!-- teste dev-flow #2: verificando create_qa_issue.py com workflow real -->
+
+<!-- teste dev-flow #3: re-teste apos escopo read:org no PAT -->
