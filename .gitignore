@@ -1,2 +1,5 @@
 .DS_Store
 **/.DS_Store
+
+# Backups datados gerados automaticamente pelo Graphify durante rebuilds.
+graphify-out/20??-??-??/

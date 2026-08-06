@@ -1,23 +1,61 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+context: |
+  O SeniorCare é uma plataforma brasileira de gestão integrada para casas de
+  cuidados e Instituições de Longa Permanência para Pessoas Idosas (ILPIs).
+  A pessoa idosa é o centro do domínio: avaliações biopsicossociais e de saúde
+  alimentam um plano individual, que orienta a execução cotidiana do cuidado,
+  as evoluções multidisciplinares e a avaliação de resultados.
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+  O produto abrange assistência cotidiana, saúde multidisciplinar, alimentação
+  e nutrição, assistência social e convivência, profissionais e escalas,
+  financeiro, doações, compras, estoque, patrimônio e conformidade. Cadastros
+  administrativos são capacidades de apoio, não o núcleo do produto. Uma
+  camada de dashboards estatísticos deve integrar indicadores assistenciais,
+  operacionais, financeiros, de doações, estoque e conformidade.
+
+  O público prioritário inicial são ILPIs beneficentes e sem fins lucrativos. O
+  projeto é uma iniciativa de extensão e atuação da universidade junto à
+  sociedade, com desenvolvimento participativo, baixo custo de adoção,
+  sustentabilidade além dos ciclos acadêmicos e governança rigorosa dos dados.
+
+  Princípios: dignidade, autonomia, cuidado centrado na pessoa, característica
+  de lar, preservação de vínculos, prevenção, rastreabilidade proporcional,
+  privacidade por padrão e transparência dos recursos.
+
+  Referências principais: Estatuto da Pessoa Idosa, RDC Anvisa 502/2021,
+  Tipificação Nacional de Serviços Socioassistenciais, LGPD, abordagem ICOPE da
+  OMS e normas contábeis aplicáveis a entidades sem fins lucrativos.
+
+  O prontuário multidisciplinar é uma capacidade crítica. Deve preservar visão
+  longitudinal, autoria por profissão, registros imutáveis, correções por
+  adendo, controle de acesso e auditoria. A redução de papel e a assinatura
+  eletrônica são evoluções futuras. O sistema deverá aceitar assinatura
+  avançada ou qualificada conforme o ato e a profissão, incluindo certificados
+  ICP-Brasil como o Certificado Digital do CFM, sem custodiar chaves privadas.
+  Não declarar operação sem papel sem especificação e validação próprias.
+
+  O escopo canônico e as decisões em aberto estão em
+  docs/escopo-do-projeto.md. Toda proposta deve ser coerente com esse documento,
+  declarar quais domínios e atores afeta e não presumir que todo o escopo será
+  implementado em uma única mudança.
+
+  Stack atual: backend ASP.NET Core/.NET 8 com Entity Framework e PostgreSQL;
+  dois frontends React/TypeScript/Vite para gestão assistencial e estoque;
+  implantação com Docker Compose e GitHub Actions.
+
+rules:
+  proposal:
+    - Referenciar o domínio e os atores afetados conforme docs/escopo-do-projeto.md.
+    - Explicitar objetivos, não objetivos, riscos assistenciais e impacto regulatório.
+    - Manter a pessoa idosa e o plano individual como centro dos fluxos assistenciais.
+  specs:
+    - Distinguir obrigação regulatória, regra institucional configurável e boa prática recomendada.
+    - Incluir cenários de autorização, auditoria, correção de registros e falha quando houver dados sensíveis ou ações críticas.
+    - Para prontuário ou assinatura, especificar autoria, imutabilidade, adendos, preservação, validação futura, contingência e normas de cada profissão.
+    - Para indicadores ou dashboards, especificar fórmula, população, período, fonte, atualização, permissões, limitações e proteção contra reidentificação.
+  tasks:
+    - Incluir verificação automatizada proporcional ao risco e atualização da documentação afetada.
 
 # Per-operation guidance (optional)
 # Add advisory guidance for how apply and archive work should be conducted.

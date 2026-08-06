@@ -4,6 +4,124 @@
   "graph": {},
   "nodes": [
     {
+      "label": "check-env-hygiene.sh",
+      "file_type": "code",
+      "source_file": ".github/scripts/check-env-hygiene.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "github_scripts_check_env_hygiene",
+      "community": 137,
+      "norm_label": "check-env-hygiene.sh"
+    },
+    {
+      "label": "check-env-hygiene.sh script",
+      "file_type": "code",
+      "source_file": ".github/scripts/check-env-hygiene.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "github_scripts_check_env_hygiene_sh__entry",
+      "community": 137,
+      "norm_label": "check-env-hygiene.sh script"
+    },
+    {
+      "label": "codeql-sarif-gate.py",
+      "file_type": "code",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "github_scripts_codeql_sarif_gate",
+      "community": 129,
+      "norm_label": "codeql-sarif-gate.py"
+    },
+    {
+      "label": "sarif_files()",
+      "file_type": "code",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "github_scripts_codeql_sarif_gate_sarif_files",
+      "community": 129,
+      "norm_label": "sarif_files()"
+    },
+    {
+      "label": "Path",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "path",
+      "community": 129,
+      "norm_label": "path"
+    },
+    {
+      "label": "security_severity()",
+      "file_type": "code",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "github_scripts_codeql_sarif_gate_security_severity",
+      "community": 129,
+      "norm_label": "security_severity()"
+    },
+    {
+      "label": "evaluate()",
+      "file_type": "code",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "github_scripts_codeql_sarif_gate_evaluate",
+      "community": 129,
+      "norm_label": "evaluate()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "github_scripts_codeql_sarif_gate_main",
+      "community": 129,
+      "norm_label": "main()"
+    },
+    {
+      "label": "nuget-audit-gate.py",
+      "file_type": "code",
+      "source_file": ".github/scripts/nuget-audit-gate.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "github_scripts_nuget_audit_gate",
+      "community": 135,
+      "norm_label": "nuget-audit-gate.py"
+    },
+    {
+      "label": "collect_findings()",
+      "file_type": "code",
+      "source_file": ".github/scripts/nuget-audit-gate.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "github_scripts_nuget_audit_gate_collect_findings",
+      "community": 135,
+      "norm_label": "collect_findings()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": ".github/scripts/nuget-audit-gate.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "github_scripts_nuget_audit_gate_main",
+      "community": 135,
+      "norm_label": "main()"
+    },
+    {
       "label": "CarrierController.cs",
       "file_type": "code",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/CarrierController.cs",
@@ -1617,7 +1735,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_appdbcontext",
-      "community": 2,
+      "community": 0,
       "norm_label": "appdbcontext.cs"
     },
     {
@@ -1632,7 +1750,7 @@
       },
       "_origin": "ast",
       "id": "csharp_namespace:36fe0e20f0eb2762",
-      "community": 2,
+      "community": 0,
       "norm_label": "seniorcaremanager.webapi.data"
     },
     {
@@ -1648,7 +1766,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_appdbcontext_seniorcaremanager_webapi_data_appdbcontext",
-      "community": 2,
+      "community": 12,
       "norm_label": "appdbcontext"
     },
     {
@@ -1658,7 +1776,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "dbcontext",
-      "community": 2,
+      "community": 12,
       "norm_label": "dbcontext"
     },
     {
@@ -1668,7 +1786,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_appdbcontext_cs_dbset",
-      "community": 2,
+      "community": 12,
       "norm_label": "dbset"
     },
     {
@@ -2181,6 +2299,98 @@
       "norm_label": "modelbuilder"
     },
     {
+      "label": "DbHealthCheck.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck",
+      "community": 12,
+      "norm_label": "dbhealthcheck.cs"
+    },
+    {
+      "label": "DbHealthCheck",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L7",
+      "metadata": {
+        "namespace": "SeniorCareManager.WebAPI.Data",
+        "scope_chain": [
+          "s54"
+        ]
+      },
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck",
+      "community": 12,
+      "norm_label": "dbhealthcheck"
+    },
+    {
+      "label": "IHealthCheck",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "ihealthcheck",
+      "community": 12,
+      "norm_label": "ihealthcheck"
+    },
+    {
+      "label": ".CheckHealthAsync()",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L16",
+      "metadata": {
+        "namespace": "SeniorCareManager.WebAPI.Data",
+        "scope_chain": [
+          "s54"
+        ]
+      },
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck_checkhealthasync",
+      "community": 12,
+      "norm_label": ".checkhealthasync()"
+    },
+    {
+      "label": "HealthCheckContext",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "healthcheckcontext",
+      "community": 12,
+      "norm_label": "healthcheckcontext"
+    },
+    {
+      "label": "CancellationToken",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "cancellationtoken",
+      "community": 12,
+      "norm_label": "cancellationtoken"
+    },
+    {
+      "label": "Task",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_cs_task",
+      "community": 12,
+      "norm_label": "task"
+    },
+    {
+      "label": "HealthCheckResult",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "healthcheckresult",
+      "community": 12,
+      "norm_label": "healthcheckresult"
+    },
+    {
       "label": "ICarrierRepository.cs",
       "file_type": "code",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Interfaces/ICarrierRepository.cs",
@@ -2572,6 +2782,213 @@
       "norm_label": "iunitofmeasurerepository"
     },
     {
+      "label": "20260805233320_InitialCreate.Designer.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.Designer.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer",
+      "community": 122,
+      "norm_label": "20260805233320_initialcreate.designer.cs"
+    },
+    {
+      "label": "SeniorCareManager.WebAPI.Data.Migrations",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.Designer.cs",
+      "source_location": "L11",
+      "type": "namespace",
+      "metadata": {
+        "kind": "csharp_namespace",
+        "namespace": "SeniorCareManager.WebAPI.Data.Migrations"
+      },
+      "_origin": "ast",
+      "id": "csharp_namespace:eec130468de5b549",
+      "community": 122,
+      "norm_label": "seniorcaremanager.webapi.data.migrations"
+    },
+    {
+      "label": "InitialCreate",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.Designer.cs",
+      "source_location": "L13",
+      "metadata": {
+        "namespace": "SeniorCareManager.WebAPI.Data.Migrations",
+        "scope_chain": [
+          "s334"
+        ]
+      },
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer_seniorcaremanager_webapi_data_migrations_initialcreate",
+      "community": 122,
+      "norm_label": "initialcreate"
+    },
+    {
+      "label": ".BuildTargetModel()",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.Designer.cs",
+      "source_location": "L18",
+      "metadata": {
+        "namespace": "SeniorCareManager.WebAPI.Data.Migrations",
+        "scope_chain": [
+          "s334"
+        ]
+      },
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer_seniorcaremanager_webapi_data_migrations_initialcreate_buildtargetmodel",
+      "community": 122,
+      "norm_label": ".buildtargetmodel()"
+    },
+    {
+      "label": "ModelBuilder",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer_cs_modelbuilder",
+      "community": 122,
+      "norm_label": "modelbuilder"
+    },
+    {
+      "label": "20260805233320_InitialCreate.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate",
+      "community": 122,
+      "norm_label": "20260805233320_initialcreate.cs"
+    },
+    {
+      "label": "InitialCreate",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.cs",
+      "source_location": "L11",
+      "metadata": {
+        "namespace": "SeniorCareManager.WebAPI.Data.Migrations",
+        "scope_chain": [
+          "s203"
+        ]
+      },
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_seniorcaremanager_webapi_data_migrations_initialcreate",
+      "community": 122,
+      "norm_label": "initialcreate"
+    },
+    {
+      "label": "Migration",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "migration",
+      "community": 122,
+      "norm_label": "migration"
+    },
+    {
+      "label": ".Up()",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.cs",
+      "source_location": "L14",
+      "metadata": {
+        "namespace": "SeniorCareManager.WebAPI.Data.Migrations",
+        "scope_chain": [
+          "s203"
+        ]
+      },
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_seniorcaremanager_webapi_data_migrations_initialcreate_up",
+      "community": 122,
+      "norm_label": ".up()"
+    },
+    {
+      "label": "MigrationBuilder",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "migrationbuilder",
+      "community": 122,
+      "norm_label": "migrationbuilder"
+    },
+    {
+      "label": ".Down()",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.cs",
+      "source_location": "L258",
+      "metadata": {
+        "namespace": "SeniorCareManager.WebAPI.Data.Migrations",
+        "scope_chain": [
+          "s203"
+        ]
+      },
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_seniorcaremanager_webapi_data_migrations_initialcreate_down",
+      "community": 122,
+      "norm_label": ".down()"
+    },
+    {
+      "label": "AppDbContextModelSnapshot.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/AppDbContextModelSnapshot.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot",
+      "community": 122,
+      "norm_label": "appdbcontextmodelsnapshot.cs"
+    },
+    {
+      "label": "AppDbContextModelSnapshot",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/AppDbContextModelSnapshot.cs",
+      "source_location": "L12",
+      "metadata": {
+        "namespace": "SeniorCareManager.WebAPI.Data.Migrations",
+        "scope_chain": [
+          "s286"
+        ]
+      },
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot",
+      "community": 122,
+      "norm_label": "appdbcontextmodelsnapshot"
+    },
+    {
+      "label": "ModelSnapshot",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "modelsnapshot",
+      "community": 122,
+      "norm_label": "modelsnapshot"
+    },
+    {
+      "label": ".BuildModel()",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/AppDbContextModelSnapshot.cs",
+      "source_location": "L15",
+      "metadata": {
+        "namespace": "SeniorCareManager.WebAPI.Data.Migrations",
+        "scope_chain": [
+          "s286"
+        ]
+      },
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_buildmodel",
+      "community": 122,
+      "norm_label": ".buildmodel()"
+    },
+    {
+      "label": "ModelBuilder",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_cs_modelbuilder",
+      "community": 122,
+      "norm_label": "modelbuilder"
+    },
+    {
       "label": "CarrierRepository.cs",
       "file_type": "code",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Repositories/CarrierRepository.cs",
@@ -2645,7 +3062,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository",
-      "community": 6,
+      "community": 7,
       "norm_label": "genericrepository"
     },
     {
@@ -2655,7 +3072,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_cs_appdbcontext",
-      "community": 6,
+      "community": 7,
       "norm_label": "appdbcontext"
     },
     {
@@ -2665,7 +3082,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_cs_dbset",
-      "community": 6,
+      "community": 7,
       "norm_label": "dbset"
     },
     {
@@ -2681,7 +3098,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_get",
-      "community": 6,
+      "community": 7,
       "norm_label": ".get()"
     },
     {
@@ -2691,7 +3108,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_cs_task",
-      "community": 6,
+      "community": 7,
       "norm_label": "task"
     },
     {
@@ -2701,7 +3118,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_cs_ienumerable",
-      "community": 6,
+      "community": 7,
       "norm_label": "ienumerable"
     },
     {
@@ -2717,7 +3134,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_getbyid",
-      "community": 6,
+      "community": 7,
       "norm_label": ".getbyid()"
     },
     {
@@ -2733,7 +3150,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_add",
-      "community": 6,
+      "community": 7,
       "norm_label": ".add()"
     },
     {
@@ -2749,7 +3166,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_update",
-      "community": 6,
+      "community": 7,
       "norm_label": ".update()"
     },
     {
@@ -2765,7 +3182,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_remove",
-      "community": 6,
+      "community": 7,
       "norm_label": ".remove()"
     },
     {
@@ -2781,7 +3198,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_savechanges",
-      "community": 6,
+      "community": 7,
       "norm_label": ".savechanges()"
     },
     {
@@ -3337,7 +3754,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_dtos_mappings_mappingprofile",
-      "community": 0,
+      "community": 27,
       "norm_label": "mappingprofile.cs"
     },
     {
@@ -3352,7 +3769,7 @@
       },
       "_origin": "ast",
       "id": "csharp_namespace:1a82e76e3a455b91",
-      "community": 0,
+      "community": 27,
       "norm_label": "seniorcaremanager.webapi.objects.dtos.mappings"
     },
     {
@@ -3368,7 +3785,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_dtos_mappings_mappingprofile_seniorcaremanager_webapi_objects_dtos_mappings_mappingprofile",
-      "community": 0,
+      "community": 27,
       "norm_label": "mappingprofile"
     },
     {
@@ -3378,7 +3795,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "profile",
-      "community": 0,
+      "community": 27,
       "norm_label": "profile"
     },
     {
@@ -4000,14 +4417,14 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_program",
-      "community": 53,
+      "community": 0,
       "norm_label": "program.cs"
     },
     {
       "label": "SeniorCareManager.WebAPI",
       "file_type": "code",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
-      "source_location": "L10",
+      "source_location": "L13",
       "type": "namespace",
       "metadata": {
         "kind": "csharp_namespace",
@@ -4015,55 +4432,55 @@
       },
       "_origin": "ast",
       "id": "csharp_namespace:9f89f23247ad6d4f",
-      "community": 53,
+      "community": 0,
       "norm_label": "seniorcaremanager.webapi"
     },
     {
       "label": "Program",
       "file_type": "code",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
-      "source_location": "L12",
+      "source_location": "L15",
       "metadata": {
         "namespace": "SeniorCareManager.WebAPI",
         "scope_chain": [
-          "s248"
+          "s370"
         ]
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program",
-      "community": 53,
+      "community": 0,
       "norm_label": "program"
     },
     {
       "label": ".Main()",
       "file_type": "code",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
-      "source_location": "L14",
+      "source_location": "L17",
       "metadata": {
         "namespace": "SeniorCareManager.WebAPI",
         "scope_chain": [
-          "s248"
+          "s370"
         ]
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program_main",
-      "community": 53,
+      "community": 0,
       "norm_label": ".main()"
     },
     {
       "label": ".CreateHostBuilder()",
       "file_type": "code",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
-      "source_location": "L19",
+      "source_location": "L33",
       "metadata": {
         "namespace": "SeniorCareManager.WebAPI",
         "scope_chain": [
-          "s248"
+          "s370"
         ]
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program_createhostbuilder",
-      "community": 53,
+      "community": 0,
       "norm_label": ".createhostbuilder()"
     },
     {
@@ -4073,7 +4490,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ihostbuilder",
-      "community": 53,
+      "community": 0,
       "norm_label": "ihostbuilder"
     },
     {
@@ -4989,7 +5406,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice",
-      "community": 7,
+      "community": 15,
       "norm_label": "igenericservice.cs"
     },
     {
@@ -5005,7 +5422,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice",
-      "community": 7,
+      "community": 15,
       "norm_label": "igenericservice"
     },
     {
@@ -5021,7 +5438,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_getall",
-      "community": 7,
+      "community": 15,
       "norm_label": ".getall()"
     },
     {
@@ -5031,7 +5448,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_cs_task",
-      "community": 7,
+      "community": 15,
       "norm_label": "task"
     },
     {
@@ -5041,7 +5458,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_cs_ienumerable",
-      "community": 7,
+      "community": 15,
       "norm_label": "ienumerable"
     },
     {
@@ -5057,7 +5474,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_getbyid",
-      "community": 7,
+      "community": 15,
       "norm_label": ".getbyid()"
     },
     {
@@ -5073,7 +5490,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_create",
-      "community": 7,
+      "community": 15,
       "norm_label": ".create()"
     },
     {
@@ -5089,7 +5506,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_update",
-      "community": 7,
+      "community": 15,
       "norm_label": ".update()"
     },
     {
@@ -5105,7 +5522,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_remove",
-      "community": 7,
+      "community": 15,
       "norm_label": ".remove()"
     },
     {
@@ -5382,7 +5799,7 @@
       "label": ".Configure()",
       "file_type": "code",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Startup.cs",
-      "source_location": "L138",
+      "source_location": "L149",
       "metadata": {
         "namespace": "SeniorCareManager.WebAPI",
         "scope_chain": [
@@ -5413,6 +5830,86 @@
       "id": "iwebhostenvironment",
       "community": 48,
       "norm_label": "iwebhostenvironment"
+    },
+    {
+      "label": ".NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_obj_debug_net8_0_netcoreapp_version_v8_0_assemblyattributes",
+      "community": 138,
+      "norm_label": ".netcoreapp,version=v8.0.assemblyattributes.cs"
+    },
+    {
+      "label": "SeniorCareManager.WebAPI.AssemblyInfo.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/SeniorCareManager.WebAPI.AssemblyInfo.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_obj_debug_net8_0_seniorcaremanager_webapi_assemblyinfo",
+      "community": 139,
+      "norm_label": "seniorcaremanager.webapi.assemblyinfo.cs"
+    },
+    {
+      "label": "SeniorCareManager.WebAPI.GlobalUsings.g.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/SeniorCareManager.WebAPI.GlobalUsings.g.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_obj_debug_net8_0_seniorcaremanager_webapi_globalusings_g",
+      "community": 140,
+      "norm_label": "seniorcaremanager.webapi.globalusings.g.cs"
+    },
+    {
+      "label": "SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_obj_debug_net8_0_seniorcaremanager_webapi_mvcapplicationpartsassemblyinfo",
+      "community": 141,
+      "norm_label": "seniorcaremanager.webapi.mvcapplicationpartsassemblyinfo.cs"
+    },
+    {
+      "label": ".NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Release/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_obj_release_net8_0_netcoreapp_version_v8_0_assemblyattributes",
+      "community": 142,
+      "norm_label": ".netcoreapp,version=v8.0.assemblyattributes.cs"
+    },
+    {
+      "label": "SeniorCareManager.WebAPI.AssemblyInfo.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Release/net8.0/SeniorCareManager.WebAPI.AssemblyInfo.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_obj_release_net8_0_seniorcaremanager_webapi_assemblyinfo",
+      "community": 143,
+      "norm_label": "seniorcaremanager.webapi.assemblyinfo.cs"
+    },
+    {
+      "label": "SeniorCareManager.WebAPI.GlobalUsings.g.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Release/net8.0/SeniorCareManager.WebAPI.GlobalUsings.g.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_obj_release_net8_0_seniorcaremanager_webapi_globalusings_g",
+      "community": 144,
+      "norm_label": "seniorcaremanager.webapi.globalusings.g.cs"
+    },
+    {
+      "label": "SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Release/net8.0/SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "seniorcaremanager_backend_seniorcaremanager_webapi_obj_release_net8_0_seniorcaremanager_webapi_mvcapplicationpartsassemblyinfo",
+      "community": 145,
+      "norm_label": "seniorcaremanager.webapi.mvcapplicationpartsassemblyinfo.cs"
     },
     {
       "label": ".prettierrc.json",
@@ -5655,10 +6152,20 @@
       "norm_label": "@eslint/js"
     },
     {
-      "label": "@types/react",
+      "label": "@types/node",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
       "source_location": "L23",
+      "_origin": "ast",
+      "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_types_node",
+      "community": 4,
+      "norm_label": "@types/node"
+    },
+    {
+      "label": "@types/react",
+      "file_type": "code",
+      "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_types_react",
       "community": 4,
@@ -5668,7 +6175,7 @@
       "label": "@types/react-dom",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L24",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_types_react_dom",
       "community": 4,
@@ -5678,7 +6185,7 @@
       "label": "@vitejs/plugin-react",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L25",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_vitejs_plugin_react",
       "community": 4,
@@ -5688,7 +6195,7 @@
       "label": "autoprefixer",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L26",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_autoprefixer",
       "community": 4,
@@ -5698,7 +6205,7 @@
       "label": "eslint",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L27",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_eslint",
       "community": 4,
@@ -5708,7 +6215,7 @@
       "label": "eslint-plugin-react-hooks",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L28",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_eslint_plugin_react_hooks",
       "community": 4,
@@ -5718,7 +6225,7 @@
       "label": "eslint-plugin-react-refresh",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L29",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_eslint_plugin_react_refresh",
       "community": 4,
@@ -5728,7 +6235,7 @@
       "label": "globals",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L30",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_globals",
       "community": 4,
@@ -5738,7 +6245,7 @@
       "label": "postcss",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L31",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_postcss",
       "community": 4,
@@ -5748,7 +6255,7 @@
       "label": "tailwindcss",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L32",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_tailwindcss",
       "community": 4,
@@ -5758,7 +6265,7 @@
       "label": "typescript",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L33",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_typescript",
       "community": 4,
@@ -5768,7 +6275,7 @@
       "label": "typescript-eslint",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L34",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_typescript_eslint",
       "community": 4,
@@ -5778,7 +6285,7 @@
       "label": "vite",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L35",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_vite",
       "community": 4,
@@ -8375,10 +8882,20 @@
       "norm_label": "@eslint/js"
     },
     {
-      "label": "@types/react",
+      "label": "@types/node",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
       "source_location": "L23",
+      "_origin": "ast",
+      "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_types_node",
+      "community": 5,
+      "norm_label": "@types/node"
+    },
+    {
+      "label": "@types/react",
+      "file_type": "code",
+      "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_types_react",
       "community": 5,
@@ -8388,7 +8905,7 @@
       "label": "@types/react-dom",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L24",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_types_react_dom",
       "community": 5,
@@ -8398,7 +8915,7 @@
       "label": "@vitejs/plugin-react",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L25",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_vitejs_plugin_react",
       "community": 5,
@@ -8408,7 +8925,7 @@
       "label": "autoprefixer",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L26",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_autoprefixer",
       "community": 5,
@@ -8418,7 +8935,7 @@
       "label": "eslint",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L27",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_eslint",
       "community": 5,
@@ -8428,7 +8945,7 @@
       "label": "eslint-plugin-react-hooks",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L28",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_eslint_plugin_react_hooks",
       "community": 5,
@@ -8438,7 +8955,7 @@
       "label": "eslint-plugin-react-refresh",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L29",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_eslint_plugin_react_refresh",
       "community": 5,
@@ -8448,7 +8965,7 @@
       "label": "globals",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L30",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_globals",
       "community": 5,
@@ -8458,7 +8975,7 @@
       "label": "postcss",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L31",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_postcss",
       "community": 5,
@@ -8468,7 +8985,7 @@
       "label": "tailwindcss",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L32",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_tailwindcss",
       "community": 5,
@@ -8478,7 +8995,7 @@
       "label": "typescript",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L33",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_typescript",
       "community": 5,
@@ -8488,7 +9005,7 @@
       "label": "typescript-eslint",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L34",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_typescript_eslint",
       "community": 5,
@@ -8498,7 +9015,7 @@
       "label": "vite",
       "file_type": "code",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L35",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_vite",
       "community": 5,
@@ -11325,6 +11842,370 @@
       "norm_label": "vite.config.ts"
     },
     {
+      "label": "deploy.sh",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy",
+      "community": 123,
+      "norm_label": "deploy.sh"
+    },
+    {
+      "label": "deploy.sh script",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_sh__entry",
+      "community": 123,
+      "norm_label": "deploy.sh script"
+    },
+    {
+      "label": "log()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L28",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_log",
+      "community": 123,
+      "norm_label": "log()"
+    },
+    {
+      "label": "err()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L29",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_err",
+      "community": 123,
+      "norm_label": "err()"
+    },
+    {
+      "label": "die()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L30",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_die",
+      "community": 123,
+      "norm_label": "die()"
+    },
+    {
+      "label": "resolve_client()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L33",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_resolve_client",
+      "community": 123,
+      "norm_label": "resolve_client()"
+    },
+    {
+      "label": "get_env()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L45",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_get_env",
+      "community": 123,
+      "norm_label": "get_env()"
+    },
+    {
+      "label": "compose()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L48",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_compose",
+      "community": 123,
+      "norm_label": "compose()"
+    },
+    {
+      "label": "ghcr_login()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L53",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_ghcr_login",
+      "community": 123,
+      "norm_label": "ghcr_login()"
+    },
+    {
+      "label": "pg_backup()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L63",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_pg_backup",
+      "community": 123,
+      "norm_label": "pg_backup()"
+    },
+    {
+      "label": "wait_healthy()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L83",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_wait_healthy",
+      "community": 123,
+      "norm_label": "wait_healthy()"
+    },
+    {
+      "label": "record_release()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L109",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_record_release",
+      "community": 123,
+      "norm_label": "record_release()"
+    },
+    {
+      "label": "do_deploy()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L121",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_do_deploy",
+      "community": 123,
+      "norm_label": "do_deploy()"
+    },
+    {
+      "label": "do_rollback()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L143",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_do_rollback",
+      "community": 123,
+      "norm_label": "do_rollback()"
+    },
+    {
+      "label": "do_status()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L151",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_do_status",
+      "community": 123,
+      "norm_label": "do_status()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L160",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_deploy_main",
+      "community": 123,
+      "norm_label": "main()"
+    },
+    {
+      "label": "ops.sh",
+      "file_type": "code",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_ops",
+      "community": 130,
+      "norm_label": "ops.sh"
+    },
+    {
+      "label": "ops.sh script",
+      "file_type": "code",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_ops_sh__entry",
+      "community": 130,
+      "norm_label": "ops.sh script"
+    },
+    {
+      "label": "log()",
+      "file_type": "code",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L22",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_ops_log",
+      "community": 130,
+      "norm_label": "log()"
+    },
+    {
+      "label": "die()",
+      "file_type": "code",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L23",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_ops_die",
+      "community": 130,
+      "norm_label": "die()"
+    },
+    {
+      "label": "compose()",
+      "file_type": "code",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L25",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_ops_compose",
+      "community": 130,
+      "norm_label": "compose()"
+    },
+    {
+      "label": "preflight()",
+      "file_type": "code",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L31",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_ops_preflight",
+      "community": 130,
+      "norm_label": "preflight()"
+    },
+    {
+      "label": "backup.sh",
+      "file_type": "code",
+      "source_file": "infra/deploy/ops/backup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_ops_backup",
+      "community": 134,
+      "norm_label": "backup.sh"
+    },
+    {
+      "label": "backup.sh script",
+      "file_type": "code",
+      "source_file": "infra/deploy/ops/backup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_ops_backup_sh__entry",
+      "community": 134,
+      "norm_label": "backup.sh script"
+    },
+    {
+      "label": "log()",
+      "file_type": "code",
+      "source_file": "infra/deploy/ops/backup.sh",
+      "source_location": "L25",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_ops_backup_log",
+      "community": 134,
+      "norm_label": "log()"
+    },
+    {
+      "label": "cleanup()",
+      "file_type": "code",
+      "source_file": "infra/deploy/ops/backup.sh",
+      "source_location": "L26",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "infra_deploy_ops_backup_cleanup",
+      "community": 134,
+      "norm_label": "cleanup()"
+    },
+    {
       "label": "SKILL.md",
       "file_type": "document",
       "source_file": ".codex/skills/graphify/SKILL.md",
@@ -12085,6 +12966,46 @@
       "norm_label": "skill.md"
     },
     {
+      "label": "pull_request_template.md",
+      "file_type": "document",
+      "source_file": ".github/pull_request_template.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "github_pull_request_template",
+      "community": 133,
+      "norm_label": "pull_request_template.md"
+    },
+    {
+      "label": "O que mudou",
+      "file_type": "document",
+      "source_file": ".github/pull_request_template.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "github_pull_request_template_o_que_mudou",
+      "community": 133,
+      "norm_label": "o que mudou"
+    },
+    {
+      "label": "Issue relacionada",
+      "file_type": "document",
+      "source_file": ".github/pull_request_template.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "github_pull_request_template_issue_relacionada",
+      "community": 133,
+      "norm_label": "issue relacionada"
+    },
+    {
+      "label": "Test plan",
+      "file_type": "document",
+      "source_file": ".github/pull_request_template.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "github_pull_request_template_test_plan",
+      "community": 133,
+      "norm_label": "test plan"
+    },
+    {
       "label": "AGENTS.md",
       "file_type": "document",
       "source_file": "AGENTS.md",
@@ -12103,6 +13024,66 @@
       "id": "agents_graphify",
       "community": 72,
       "norm_label": "graphify"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude",
+      "community": 136,
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "Git / Pull Requests",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude_git_pull_requests",
+      "community": 136,
+      "norm_label": "git / pull requests"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme",
+      "community": 53,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "SeniorCare",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme_seniorcare",
+      "community": 53,
+      "norm_label": "seniorcare"
+    },
+    {
+      "label": "Componentes atuais",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "readme_componentes_atuais",
+      "community": 53,
+      "norm_label": "componentes atuais"
+    },
+    {
+      "label": "Documenta\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "readme_documenta\u00e7\u00e3o",
+      "community": 53,
+      "norm_label": "documentacao"
     },
     {
       "label": "README.md",
@@ -12185,6 +13166,876 @@
       "norm_label": "expanding the eslint configuration"
     },
     {
+      "label": "escopo-do-projeto.md",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto",
+      "community": 53,
+      "norm_label": "escopo-do-projeto.md"
+    },
+    {
+      "label": "Escopo do projeto SeniorCare",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "community": 124,
+      "norm_label": "escopo do projeto seniorcare"
+    },
+    {
+      "label": "1. Resumo executivo",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_1_resumo_executivo",
+      "community": 124,
+      "norm_label": "1. resumo executivo"
+    },
+    {
+      "label": "1.1 Natureza social e universit\u00e1ria",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_1_1_natureza_social_e_universit\u00e1ria",
+      "community": 124,
+      "norm_label": "1.1 natureza social e universitaria"
+    },
+    {
+      "label": "2. Posicionamento do produto",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L70",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_2_posicionamento_do_produto",
+      "community": 132,
+      "norm_label": "2. posicionamento do produto"
+    },
+    {
+      "label": "2.1 Defini\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_2_1_defini\u00e7\u00e3o",
+      "community": 132,
+      "norm_label": "2.1 definicao"
+    },
+    {
+      "label": "2.2 Natureza do servi\u00e7o apoiado",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_2_2_natureza_do_servi\u00e7o_apoiado",
+      "community": 132,
+      "norm_label": "2.2 natureza do servico apoiado"
+    },
+    {
+      "label": "2.3 Proposta de valor",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L95",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_2_3_proposta_de_valor",
+      "community": 132,
+      "norm_label": "2.3 proposta de valor"
+    },
+    {
+      "label": "3. Princ\u00edpios orientadores",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L116",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_3_princ\u00edpios_orientadores",
+      "community": 124,
+      "norm_label": "3. principios orientadores"
+    },
+    {
+      "label": "4. Modelo conceitual do cuidado",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L139",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_4_modelo_conceitual_do_cuidado",
+      "community": 124,
+      "norm_label": "4. modelo conceitual do cuidado"
+    },
+    {
+      "label": "5. Atores do sistema",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L176",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_5_atores_do_sistema",
+      "community": 124,
+      "norm_label": "5. atores do sistema"
+    },
+    {
+      "label": "6. Dom\u00ednios funcionais",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L206",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "community": 125,
+      "norm_label": "6. dominios funcionais"
+    },
+    {
+      "label": "6.1 Jornada e cadastro longitudinal do residente",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L208",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_1_jornada_e_cadastro_longitudinal_do_residente",
+      "community": 125,
+      "norm_label": "6.1 jornada e cadastro longitudinal do residente"
+    },
+    {
+      "label": "6.2 Assist\u00eancia cotidiana e atividades de vida di\u00e1ria",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L229",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_2_assist\u00eancia_cotidiana_e_atividades_de_vida_di\u00e1ria",
+      "community": 125,
+      "norm_label": "6.2 assistencia cotidiana e atividades de vida diaria"
+    },
+    {
+      "label": "6.3 Sa\u00fade e cuidado multidisciplinar",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L255",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_3_sa\u00fade_e_cuidado_multidisciplinar",
+      "community": 125,
+      "norm_label": "6.3 saude e cuidado multidisciplinar"
+    },
+    {
+      "label": "6.3.1 Prontu\u00e1rio multidisciplinar como capacidade cr\u00edtica",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L281",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_3_1_prontu\u00e1rio_multidisciplinar_como_capacidade_cr\u00edtica",
+      "community": 125,
+      "norm_label": "6.3.1 prontuario multidisciplinar como capacidade critica"
+    },
+    {
+      "label": "6.4 Alimenta\u00e7\u00e3o e nutri\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L313",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_4_alimenta\u00e7\u00e3o_e_nutri\u00e7\u00e3o",
+      "community": 125,
+      "norm_label": "6.4 alimentacao e nutricao"
+    },
+    {
+      "label": "6.5 Assist\u00eancia social, fam\u00edlia, conviv\u00eancia e autonomia",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L332",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_5_assist\u00eancia_social_fam\u00edlia_conviv\u00eancia_e_autonomia",
+      "community": 125,
+      "norm_label": "6.5 assistencia social, familia, convivencia e autonomia"
+    },
+    {
+      "label": "6.6 Profissionais, escalas e educa\u00e7\u00e3o permanente",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L353",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_6_profissionais_escalas_e_educa\u00e7\u00e3o_permanente",
+      "community": 125,
+      "norm_label": "6.6 profissionais, escalas e educacao permanente"
+    },
+    {
+      "label": "6.7 Gest\u00e3o financeira",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L377",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_7_gest\u00e3o_financeira",
+      "community": 125,
+      "norm_label": "6.7 gestao financeira"
+    },
+    {
+      "label": "6.8 Doa\u00e7\u00f5es, capta\u00e7\u00e3o e voluntariado",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L400",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_8_doa\u00e7\u00f5es_capta\u00e7\u00e3o_e_voluntariado",
+      "community": 125,
+      "norm_label": "6.8 doacoes, captacao e voluntariado"
+    },
+    {
+      "label": "6.9 Compras, estoque, patrim\u00f4nio e opera\u00e7\u00e3o da casa",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L423",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_9_compras_estoque_patrim\u00f4nio_e_opera\u00e7\u00e3o_da_casa",
+      "community": 125,
+      "norm_label": "6.9 compras, estoque, patrimonio e operacao da casa"
+    },
+    {
+      "label": "6.10 Governan\u00e7a, qualidade, seguran\u00e7a e conformidade",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L442",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_10_governan\u00e7a_qualidade_seguran\u00e7a_e_conformidade",
+      "community": 125,
+      "norm_label": "6.10 governanca, qualidade, seguranca e conformidade"
+    },
+    {
+      "label": "6.11 Dashboards estat\u00edsticos e intelig\u00eancia institucional",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L471",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_6_11_dashboards_estat\u00edsticos_e_intelig\u00eancia_institucional",
+      "community": 146,
+      "norm_label": "6.11 dashboards estatisticos e inteligencia institucional"
+    },
+    {
+      "label": "Pain\u00e9is previstos",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L486",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_pain\u00e9is_previstos",
+      "community": 146,
+      "norm_label": "paineis previstos"
+    },
+    {
+      "label": "Requisitos de confian\u00e7a estat\u00edstica",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L567",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_requisitos_de_confian\u00e7a_estat\u00edstica",
+      "community": 146,
+      "norm_label": "requisitos de confianca estatistica"
+    },
+    {
+      "label": "Privacidade, \u00e9tica e preven\u00e7\u00e3o de uso indevido",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L594",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_privacidade_\u00e9tica_e_preven\u00e7\u00e3o_de_uso_indevido",
+      "community": 146,
+      "norm_label": "privacidade, etica e prevencao de uso indevido"
+    },
+    {
+      "label": "Dire\u00e7\u00e3o arquitetural",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L609",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_dire\u00e7\u00e3o_arquitetural",
+      "community": 146,
+      "norm_label": "direcao arquitetural"
+    },
+    {
+      "label": "7. Fluxos integrados priorit\u00e1rios",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L621",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_7_fluxos_integrados_priorit\u00e1rios",
+      "community": 127,
+      "norm_label": "7. fluxos integrados prioritarios"
+    },
+    {
+      "label": "7.1 Admiss\u00e3o e in\u00edcio do cuidado",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L623",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_7_1_admiss\u00e3o_e_in\u00edcio_do_cuidado",
+      "community": 127,
+      "norm_label": "7.1 admissao e inicio do cuidado"
+    },
+    {
+      "label": "7.2 Ciclo cont\u00ednuo do cuidado",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L636",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_7_2_ciclo_cont\u00ednuo_do_cuidado",
+      "community": 127,
+      "norm_label": "7.2 ciclo continuo do cuidado"
+    },
+    {
+      "label": "7.3 Intercorr\u00eancia de sa\u00fade",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L648",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_7_3_intercorr\u00eancia_de_sa\u00fade",
+      "community": 127,
+      "norm_label": "7.3 intercorrencia de saude"
+    },
+    {
+      "label": "7.4 Alimenta\u00e7\u00e3o integrada",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L660",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_7_4_alimenta\u00e7\u00e3o_integrada",
+      "community": 127,
+      "norm_label": "7.4 alimentacao integrada"
+    },
+    {
+      "label": "7.5 Doa\u00e7\u00e3o financeira",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L672",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_7_5_doa\u00e7\u00e3o_financeira",
+      "community": 127,
+      "norm_label": "7.5 doacao financeira"
+    },
+    {
+      "label": "7.6 Doa\u00e7\u00e3o de materiais",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L683",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_7_6_doa\u00e7\u00e3o_de_materiais",
+      "community": 127,
+      "norm_label": "7.6 doacao de materiais"
+    },
+    {
+      "label": "8. Requisitos transversais",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L695",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_8_requisitos_transversais",
+      "community": 126,
+      "norm_label": "8. requisitos transversais"
+    },
+    {
+      "label": "8.1 Seguran\u00e7a e privacidade",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L697",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_8_1_seguran\u00e7a_e_privacidade",
+      "community": 126,
+      "norm_label": "8.1 seguranca e privacidade"
+    },
+    {
+      "label": "8.2 Usabilidade e acessibilidade",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L718",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_8_2_usabilidade_e_acessibilidade",
+      "community": 126,
+      "norm_label": "8.2 usabilidade e acessibilidade"
+    },
+    {
+      "label": "8.3 Rastreabilidade e integridade",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L729",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_8_3_rastreabilidade_e_integridade",
+      "community": 126,
+      "norm_label": "8.3 rastreabilidade e integridade"
+    },
+    {
+      "label": "8.4 Interoperabilidade",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L739",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_8_4_interoperabilidade",
+      "community": 126,
+      "norm_label": "8.4 interoperabilidade"
+    },
+    {
+      "label": "8.5 Configura\u00e7\u00e3o institucional",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L753",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_8_5_configura\u00e7\u00e3o_institucional",
+      "community": 126,
+      "norm_label": "8.5 configuracao institucional"
+    },
+    {
+      "label": "8.6 Assinaturas eletr\u00f4nicas e redu\u00e7\u00e3o de papel",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L768",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_8_6_assinaturas_eletr\u00f4nicas_e_redu\u00e7\u00e3o_de_papel",
+      "community": 126,
+      "norm_label": "8.6 assinaturas eletronicas e reducao de papel"
+    },
+    {
+      "label": "Certificado Digital do CFM",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L786",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_certificado_digital_do_cfm",
+      "community": 126,
+      "norm_label": "certificado digital do cfm"
+    },
+    {
+      "label": "Demais signat\u00e1rios",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L815",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_demais_signat\u00e1rios",
+      "community": 126,
+      "norm_label": "demais signatarios"
+    },
+    {
+      "label": "Estrat\u00e9gia de implanta\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L826",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_estrat\u00e9gia_de_implanta\u00e7\u00e3o",
+      "community": 126,
+      "norm_label": "estrategia de implantacao"
+    },
+    {
+      "label": "8.7 Governan\u00e7a de dados na parceria universit\u00e1ria",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L861",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_8_7_governan\u00e7a_de_dados_na_parceria_universit\u00e1ria",
+      "community": 126,
+      "norm_label": "8.7 governanca de dados na parceria universitaria"
+    },
+    {
+      "label": "9. Requisitos regulat\u00f3rios de refer\u00eancia",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L883",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_9_requisitos_regulat\u00f3rios_de_refer\u00eancia",
+      "community": 128,
+      "norm_label": "9. requisitos regulatorios de referencia"
+    },
+    {
+      "label": "9.1 Estatuto da Pessoa Idosa",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L888",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_9_1_estatuto_da_pessoa_idosa",
+      "community": 128,
+      "norm_label": "9.1 estatuto da pessoa idosa"
+    },
+    {
+      "label": "9.2 RDC Anvisa n\u00ba 502/2021",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L906",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_9_2_rdc_anvisa_no_502_2021",
+      "community": 128,
+      "norm_label": "9.2 rdc anvisa no 502/2021"
+    },
+    {
+      "label": "9.3 Assist\u00eancia social e ICOPE",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L924",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_9_3_assist\u00eancia_social_e_icope",
+      "community": 128,
+      "norm_label": "9.3 assistencia social e icope"
+    },
+    {
+      "label": "9.4 Contabilidade de entidades sem fins lucrativos",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L932",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_9_4_contabilidade_de_entidades_sem_fins_lucrativos",
+      "community": 128,
+      "norm_label": "9.4 contabilidade de entidades sem fins lucrativos"
+    },
+    {
+      "label": "9.5 Regras complementares",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L939",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_9_5_regras_complementares",
+      "community": 128,
+      "norm_label": "9.5 regras complementares"
+    },
+    {
+      "label": "9.6 Prontu\u00e1rio e documentos eletr\u00f4nicos",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L946",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_9_6_prontu\u00e1rio_e_documentos_eletr\u00f4nicos",
+      "community": 128,
+      "norm_label": "9.6 prontuario e documentos eletronicos"
+    },
+    {
+      "label": "10. Limites do produto",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L962",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_10_limites_do_produto",
+      "community": 124,
+      "norm_label": "10. limites do produto"
+    },
+    {
+      "label": "11. Escopo sugerido por evolu\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L980",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_11_escopo_sugerido_por_evolu\u00e7\u00e3o",
+      "community": 131,
+      "norm_label": "11. escopo sugerido por evolucao"
+    },
+    {
+      "label": "Funda\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L984",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_funda\u00e7\u00e3o",
+      "community": 131,
+      "norm_label": "fundacao"
+    },
+    {
+      "label": "Cuidado integrado",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1001",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_cuidado_integrado",
+      "community": 131,
+      "norm_label": "cuidado integrado"
+    },
+    {
+      "label": "Gest\u00e3o sustent\u00e1vel",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1011",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_gest\u00e3o_sustent\u00e1vel",
+      "community": 131,
+      "norm_label": "gestao sustentavel"
+    },
+    {
+      "label": "Expans\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1020",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_expans\u00e3o",
+      "community": 131,
+      "norm_label": "expansao"
+    },
+    {
+      "label": "12. Rela\u00e7\u00e3o com o software existente",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1031",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_12_rela\u00e7\u00e3o_com_o_software_existente",
+      "community": 124,
+      "norm_label": "12. relacao com o software existente"
+    },
+    {
+      "label": "13. Decis\u00f5es em aberto",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1057",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_13_decis\u00f5es_em_aberto",
+      "community": 124,
+      "norm_label": "13. decisoes em aberto"
+    },
+    {
+      "label": "14. Crit\u00e9rios de sucesso do produto",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1095",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_14_crit\u00e9rios_de_sucesso_do_produto",
+      "community": 124,
+      "norm_label": "14. criterios de sucesso do produto"
+    },
+    {
+      "label": "15. Gloss\u00e1rio inicial",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1118",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_15_gloss\u00e1rio_inicial",
+      "community": 124,
+      "norm_label": "15. glossario inicial"
+    },
+    {
+      "label": "16. Refer\u00eancias",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1144",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_16_refer\u00eancias",
+      "community": 124,
+      "norm_label": "16. referencias"
+    },
+    {
+      "label": "ci-cd-arquitetura.md",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura",
+      "community": 53,
+      "norm_label": "ci-cd-arquitetura.md"
+    },
+    {
+      "label": "Arquitetura de CI/CD \u2014 SeniorCare",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
+      "community": 53,
+      "norm_label": "arquitetura de ci/cd \u2014 seniorcare"
+    },
+    {
+      "label": "1. Contexto e restri\u00e7\u00f5es",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura_1_contexto_e_restri\u00e7\u00f5es",
+      "community": 53,
+      "norm_label": "1. contexto e restricoes"
+    },
+    {
+      "label": "2. Decis\u00e3o central: `build once, deploy many`",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura_2_decis\u00e3o_central_build_once_deploy_many",
+      "community": 53,
+      "norm_label": "2. decisao central: `build once, deploy many`"
+    },
+    {
+      "label": "3. Unidades implant\u00e1veis",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura_3_unidades_implant\u00e1veis",
+      "community": 53,
+      "norm_label": "3. unidades implantaveis"
+    },
+    {
+      "label": "4. Versionamento \u2014 CalVer + release train",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura_4_versionamento_calver_release_train",
+      "community": 53,
+      "norm_label": "4. versionamento \u2014 calver + release train"
+    },
+    {
+      "label": "5. Pipeline de CI/CD (GitHub Actions)",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura_5_pipeline_de_ci_cd_github_actions",
+      "community": 53,
+      "norm_label": "5. pipeline de ci/cd (github actions)"
+    },
+    {
+      "label": "6. Release manifest \u2014 a unidade de deploy",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura_6_release_manifest_a_unidade_de_deploy",
+      "community": 53,
+      "norm_label": "6. release manifest \u2014 a unidade de deploy"
+    },
+    {
+      "label": "Regras de imutabilidade",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L83",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura_regras_de_imutabilidade",
+      "community": 53,
+      "norm_label": "regras de imutabilidade"
+    },
+    {
+      "label": "7. CD \u2014 entrega no servidor (pull-based)",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L88",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura_7_cd_entrega_no_servidor_pull_based",
+      "community": 53,
+      "norm_label": "7. cd \u2014 entrega no servidor (pull-based)"
+    },
+    {
+      "label": "8. Camada de opera\u00e7\u00e3o (opcional)",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L111",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura_8_camada_de_opera\u00e7\u00e3o_opcional",
+      "community": 53,
+      "norm_label": "8. camada de operacao (opcional)"
+    },
+    {
+      "label": "9. O que fica para depois (n\u00e3o implementado ainda)",
+      "file_type": "document",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L119",
+      "_origin": "ast",
+      "id": "docs_infra_ci_cd_arquitetura_9_o_que_fica_para_depois_n\u00e3o_implementado_ainda",
+      "community": 53,
+      "norm_label": "9. o que fica para depois (nao implementado ainda)"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "infra_deploy_readme",
+      "community": 53,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "infra/deploy \u2014 publica\u00e7\u00e3o pull-based no servidor",
+      "file_type": "document",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "infra_deploy_readme_infra_deploy_publica\u00e7\u00e3o_pull_based_no_servidor",
+      "community": 53,
+      "norm_label": "infra/deploy \u2014 publicacao pull-based no servidor"
+    },
+    {
+      "label": "Componentes",
+      "file_type": "document",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "infra_deploy_readme_componentes",
+      "community": 53,
+      "norm_label": "componentes"
+    },
+    {
+      "label": "Uso",
+      "file_type": "document",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "infra_deploy_readme_uso",
+      "community": 53,
+      "norm_label": "uso"
+    },
+    {
+      "label": "Portas (default)",
+      "file_type": "document",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "infra_deploy_readme_portas_default",
+      "community": 53,
+      "norm_label": "portas (default)"
+    },
+    {
+      "label": "Camada de opera\u00e7\u00e3o (`ops.sh` / `--profile ops`)",
+      "file_type": "document",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "infra_deploy_readme_camada_de_opera\u00e7\u00e3o_ops_sh_profile_ops",
+      "community": 53,
+      "norm_label": "camada de operacao (`ops.sh` / `--profile ops`)"
+    },
+    {
+      "label": "Backup di\u00e1rio (`backup` / `ops/backup.sh`)",
+      "file_type": "document",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "infra_deploy_readme_backup_di\u00e1rio_backup_ops_backup_sh",
+      "community": 53,
+      "norm_label": "backup diario (`backup` / `ops/backup.sh`)"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "infra/docker-test/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "infra_docker_test_readme",
+      "community": 53,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "infra/docker-test \u2014 stack local (build a partir do c\u00f3digo)",
+      "file_type": "document",
+      "source_file": "infra/docker-test/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "infra_docker_test_readme_infra_docker_test_stack_local_build_a_partir_do_c\u00f3digo",
+      "community": 53,
+      "norm_label": "infra/docker-test \u2014 stack local (build a partir do codigo)"
+    },
+    {
+      "label": "Uso",
+      "file_type": "document",
+      "source_file": "infra/docker-test/README.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "infra_docker_test_readme_uso",
+      "community": 53,
+      "norm_label": "uso"
+    },
+    {
+      "label": "Portas (default)",
+      "file_type": "document",
+      "source_file": "infra/docker-test/README.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "infra_docker_test_readme_portas_default",
+      "community": 53,
+      "norm_label": "portas (default)"
+    },
+    {
       "label": "Modal",
       "file_type": "code",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/components/Modal/index.ts",
@@ -12206,6 +14057,131 @@
     }
   ],
   "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/check-env-hygiene.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "github_scripts_check_env_hygiene",
+      "target": "github_scripts_check_env_hygiene_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "github_scripts_codeql_sarif_gate",
+      "target": "github_scripts_codeql_sarif_gate_evaluate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "github_scripts_codeql_sarif_gate",
+      "target": "github_scripts_codeql_sarif_gate_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "github_scripts_codeql_sarif_gate",
+      "target": "github_scripts_codeql_sarif_gate_sarif_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "github_scripts_codeql_sarif_gate",
+      "target": "github_scripts_codeql_sarif_gate_security_severity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "github_scripts_codeql_sarif_gate_main",
+      "target": "github_scripts_codeql_sarif_gate_sarif_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "github_scripts_codeql_sarif_gate_sarif_files",
+      "target": "path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "github_scripts_codeql_sarif_gate_evaluate",
+      "target": "github_scripts_codeql_sarif_gate_security_severity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/codeql-sarif-gate.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "github_scripts_codeql_sarif_gate_main",
+      "target": "github_scripts_codeql_sarif_gate_evaluate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/nuget-audit-gate.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "github_scripts_nuget_audit_gate",
+      "target": "github_scripts_nuget_audit_gate_collect_findings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/nuget-audit-gate.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "github_scripts_nuget_audit_gate",
+      "target": "github_scripts_nuget_audit_gate_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/scripts/nuget-audit-gate.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "github_scripts_nuget_audit_gate_main",
+      "target": "github_scripts_nuget_audit_gate_collect_findings",
+      "confidence_score": 1.0
+    },
     {
       "relation": "imports",
       "context": "import",
@@ -15792,6 +17768,64 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck",
+      "target": "csharp_namespace:36fe0e20f0eb2762",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.Designer.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "metadata": {
+        "using_kind": "namespace",
+        "target_fqn": "SeniorCareManager.WebAPI.Data",
+        "scope_kind": "file"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer",
+      "target": "csharp_namespace:36fe0e20f0eb2762",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/AppDbContextModelSnapshot.cs",
+      "source_location": "L6",
+      "weight": 1.0,
+      "metadata": {
+        "using_kind": "namespace",
+        "target_fqn": "SeniorCareManager.WebAPI.Data",
+        "scope_kind": "file"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot",
+      "target": "csharp_namespace:36fe0e20f0eb2762",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "metadata": {
+        "using_kind": "namespace",
+        "target_fqn": "SeniorCareManager.WebAPI.Data",
+        "scope_kind": "file"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_program",
+      "target": "csharp_namespace:36fe0e20f0eb2762",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -15968,6 +18002,20 @@
       },
       "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_appdbcontext_seniorcaremanager_webapi_data_appdbcontext",
       "target": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_models_unitofmeasure_seniorcaremanager_webapi_objects_models_unitofmeasure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L9",
+      "weight": 1.0,
+      "context": "field",
+      "metadata": {
+        "ref_token": "AppDbContext"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_appdbcontext_seniorcaremanager_webapi_data_appdbcontext",
       "confidence_score": 1.0
     },
     {
@@ -16637,6 +18685,95 @@
       },
       "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_builders_unitofmeasurebuilder_seniorcaremanager_webapi_data_builders_unitofmeasurebuilder_build",
       "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_builders_unitofmeasurebuilder_cs_modelbuilder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "metadata": {
+        "ref_token": "IHealthCheck"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck",
+      "target": "ihealthcheck",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck_checkhealthasync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L16",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "CancellationToken"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck_checkhealthasync",
+      "target": "cancellationtoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L16",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "HealthCheckContext"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck_checkhealthasync",
+      "target": "healthcheckcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L16",
+      "weight": 1.0,
+      "context": "generic_arg",
+      "metadata": {
+        "ref_token": "HealthCheckResult"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck_checkhealthasync",
+      "target": "healthcheckresult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/DbHealthCheck.cs",
+      "source_location": "L16",
+      "weight": 1.0,
+      "context": "return_type",
+      "metadata": {
+        "ref_token": "Task"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck_checkhealthasync",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_cs_task",
       "confidence_score": 1.0
     },
     {
@@ -18079,6 +20216,188 @@
       },
       "source": "seniorcaremanager_backend_seniorcaremanager_webapi_services_entities_unitofmeasureservice_seniorcaremanager_webapi_services_entities_unitofmeasureservice",
       "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_iunitofmeasurerepository_seniorcaremanager_webapi_data_interfaces_iunitofmeasurerepository",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.Designer.cs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer",
+      "target": "csharp_namespace:eec130468de5b549",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.Designer.cs",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer_seniorcaremanager_webapi_data_migrations_initialcreate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.cs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate",
+      "target": "csharp_namespace:eec130468de5b549",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/AppDbContextModelSnapshot.cs",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot",
+      "target": "csharp_namespace:eec130468de5b549",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.Designer.cs",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer_seniorcaremanager_webapi_data_migrations_initialcreate",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer_seniorcaremanager_webapi_data_migrations_initialcreate_buildtargetmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.Designer.cs",
+      "source_location": "L18",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "ModelBuilder"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer_seniorcaremanager_webapi_data_migrations_initialcreate_buildtargetmodel",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_designer_cs_modelbuilder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.cs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_seniorcaremanager_webapi_data_migrations_initialcreate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.cs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "metadata": {
+        "ref_token": "Migration"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_seniorcaremanager_webapi_data_migrations_initialcreate",
+      "target": "migration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.cs",
+      "source_location": "L258",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_seniorcaremanager_webapi_data_migrations_initialcreate",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_seniorcaremanager_webapi_data_migrations_initialcreate_down",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.cs",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_seniorcaremanager_webapi_data_migrations_initialcreate",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_seniorcaremanager_webapi_data_migrations_initialcreate_up",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.cs",
+      "source_location": "L14",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "MigrationBuilder"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_seniorcaremanager_webapi_data_migrations_initialcreate_up",
+      "target": "migrationbuilder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/20260805233320_InitialCreate.cs",
+      "source_location": "L258",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "MigrationBuilder"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_20260805233320_initialcreate_seniorcaremanager_webapi_data_migrations_initialcreate_down",
+      "target": "migrationbuilder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/AppDbContextModelSnapshot.cs",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/AppDbContextModelSnapshot.cs",
+      "source_location": "L12",
+      "weight": 1.0,
+      "metadata": {
+        "ref_token": "ModelSnapshot"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot",
+      "target": "modelsnapshot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/AppDbContextModelSnapshot.cs",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_buildmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Migrations/AppDbContextModelSnapshot.cs",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "metadata": {
+        "ref_token": "ModelBuilder"
+      },
+      "source": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_buildmodel",
+      "target": "seniorcaremanager_backend_seniorcaremanager_webapi_data_migrations_appdbcontextmodelsnapshot_cs_modelbuilder",
       "confidence_score": 1.0
     },
     {
@@ -20403,7 +22722,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
-      "source_location": "L10",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "seniorcaremanager_backend_seniorcaremanager_webapi_program",
       "target": "csharp_namespace:9f89f23247ad6d4f",
@@ -20413,7 +22732,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
-      "source_location": "L12",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "seniorcaremanager_backend_seniorcaremanager_webapi_program",
       "target": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program",
@@ -20433,7 +22752,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
-      "source_location": "L19",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program",
       "target": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program_createhostbuilder",
@@ -20443,7 +22762,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
-      "source_location": "L14",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program",
       "target": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program_main",
@@ -20454,7 +22773,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
-      "source_location": "L16",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program_main",
       "target": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program_createhostbuilder",
@@ -20464,7 +22783,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
-      "source_location": "L19",
+      "source_location": "L33",
       "weight": 1.0,
       "context": "return_type",
       "metadata": {
@@ -22247,7 +24566,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Startup.cs",
-      "source_location": "L138",
+      "source_location": "L149",
       "weight": 1.0,
       "source": "seniorcaremanager_backend_seniorcaremanager_webapi_startup_seniorcaremanager_webapi_startup",
       "target": "seniorcaremanager_backend_seniorcaremanager_webapi_startup_seniorcaremanager_webapi_startup_configure",
@@ -22281,7 +24600,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Startup.cs",
-      "source_location": "L138",
+      "source_location": "L149",
       "weight": 1.0,
       "context": "parameter_type",
       "metadata": {
@@ -22295,7 +24614,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Startup.cs",
-      "source_location": "L138",
+      "source_location": "L149",
       "weight": 1.0,
       "context": "parameter_type",
       "metadata": {
@@ -22509,7 +24828,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
       "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_autoprefixer",
@@ -22519,7 +24838,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
       "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_eslint",
@@ -22539,7 +24858,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
       "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_eslint_plugin_react_hooks",
@@ -22549,7 +24868,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
       "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_eslint_plugin_react_refresh",
@@ -22559,7 +24878,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
       "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_globals",
@@ -22569,7 +24888,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
       "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_postcss",
@@ -22579,7 +24898,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
       "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_tailwindcss",
@@ -22592,7 +24911,7 @@
       "source_location": "L23",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
-      "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_types_react",
+      "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_types_node",
       "confidence_score": 1.0
     },
     {
@@ -22602,17 +24921,17 @@
       "source_location": "L24",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
-      "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_types_react_dom",
+      "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_types_react",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L33",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
-      "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_typescript",
+      "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_types_react_dom",
       "confidence_score": 1.0
     },
     {
@@ -22622,7 +24941,7 @@
       "source_location": "L34",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
-      "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_typescript_eslint",
+      "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_typescript",
       "confidence_score": 1.0
     },
     {
@@ -22632,6 +24951,16 @@
       "source_location": "L35",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
+      "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_typescript_eslint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
       "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_vite",
       "confidence_score": 1.0
     },
@@ -22639,7 +24968,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies",
       "target": "seniorcaremanager_frontend_seniorcaremanagerfrontend_package_devdependencies_vitejs_plugin_react",
@@ -25790,7 +28119,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
       "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_autoprefixer",
@@ -25800,7 +28129,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
       "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_eslint",
@@ -25820,7 +28149,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
       "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_eslint_plugin_react_hooks",
@@ -25830,7 +28159,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
       "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_eslint_plugin_react_refresh",
@@ -25840,7 +28169,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
       "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_globals",
@@ -25850,7 +28179,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
       "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_postcss",
@@ -25860,7 +28189,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
       "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_tailwindcss",
@@ -25873,7 +28202,7 @@
       "source_location": "L23",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
-      "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_types_react",
+      "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_types_node",
       "confidence_score": 1.0
     },
     {
@@ -25883,17 +28212,17 @@
       "source_location": "L24",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
-      "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_types_react_dom",
+      "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_types_react",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L33",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
-      "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_typescript",
+      "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_types_react_dom",
       "confidence_score": 1.0
     },
     {
@@ -25903,7 +28232,7 @@
       "source_location": "L34",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
-      "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_typescript_eslint",
+      "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_typescript",
       "confidence_score": 1.0
     },
     {
@@ -25913,6 +28242,16 @@
       "source_location": "L35",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
+      "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_typescript_eslint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
       "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_vite",
       "confidence_score": 1.0
     },
@@ -25920,7 +28259,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies",
       "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_package_devdependencies_vitejs_plugin_react",
@@ -29669,6 +32008,588 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_compose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_die",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_do_deploy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L143",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_do_rollback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L151",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_do_status",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_err",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_get_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_ghcr_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L160",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_pg_backup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_record_release",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_resolve_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "infra_deploy_deploy",
+      "target": "infra_deploy_deploy_wait_healthy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L172",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_sh__entry",
+      "target": "infra_deploy_deploy_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L126",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_deploy",
+      "target": "infra_deploy_deploy_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L147",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_rollback",
+      "target": "infra_deploy_deploy_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L154",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_status",
+      "target": "infra_deploy_deploy_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L55",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_ghcr_login",
+      "target": "infra_deploy_deploy_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L67",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_pg_backup",
+      "target": "infra_deploy_deploy_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L85",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_wait_healthy",
+      "target": "infra_deploy_deploy_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L30",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_die",
+      "target": "infra_deploy_deploy_err",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L101",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_wait_healthy",
+      "target": "infra_deploy_deploy_err",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L124",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_deploy",
+      "target": "infra_deploy_deploy_die",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L146",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_rollback",
+      "target": "infra_deploy_deploy_die",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L161",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_main",
+      "target": "infra_deploy_deploy_die",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L77",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_pg_backup",
+      "target": "infra_deploy_deploy_die",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L38",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_resolve_client",
+      "target": "infra_deploy_deploy_die",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L162",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_main",
+      "target": "infra_deploy_deploy_resolve_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L130",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_deploy",
+      "target": "infra_deploy_deploy_compose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L156",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_status",
+      "target": "infra_deploy_deploy_compose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L102",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_wait_healthy",
+      "target": "infra_deploy_deploy_compose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L127",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_deploy",
+      "target": "infra_deploy_deploy_ghcr_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L128",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_deploy",
+      "target": "infra_deploy_deploy_pg_backup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L133",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_deploy",
+      "target": "infra_deploy_deploy_wait_healthy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L134",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_deploy",
+      "target": "infra_deploy_deploy_record_release",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L148",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_do_rollback",
+      "target": "infra_deploy_deploy_do_deploy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L168",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_main",
+      "target": "infra_deploy_deploy_do_deploy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L165",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_main",
+      "target": "infra_deploy_deploy_do_rollback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/deploy.sh",
+      "source_location": "L166",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_deploy_main",
+      "target": "infra_deploy_deploy_do_status",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "infra_deploy_ops",
+      "target": "infra_deploy_ops_compose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "infra_deploy_ops",
+      "target": "infra_deploy_ops_die",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "infra_deploy_ops",
+      "target": "infra_deploy_ops_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "infra_deploy_ops",
+      "target": "infra_deploy_ops_preflight",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "infra_deploy_ops",
+      "target": "infra_deploy_ops_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L43",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_ops_sh__entry",
+      "target": "infra_deploy_ops_compose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L53",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_ops_sh__entry",
+      "target": "infra_deploy_ops_die",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L42",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_ops_sh__entry",
+      "target": "infra_deploy_ops_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L41",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_ops_sh__entry",
+      "target": "infra_deploy_ops_preflight",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops.sh",
+      "source_location": "L32",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_ops_preflight",
+      "target": "infra_deploy_ops_die",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops/backup.sh",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "infra_deploy_ops_backup",
+      "target": "infra_deploy_ops_backup_cleanup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops/backup.sh",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "infra_deploy_ops_backup",
+      "target": "infra_deploy_ops_backup_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops/backup.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "infra_deploy_ops_backup",
+      "target": "infra_deploy_ops_backup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/ops/backup.sh",
+      "source_location": "L30",
+      "weight": 1.0,
+      "context": "call",
+      "source": "infra_deploy_ops_backup_sh__entry",
+      "target": "infra_deploy_ops_backup_log",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".codex/skills/graphify/SKILL.md",
@@ -30281,11 +33202,121 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": ".github/pull_request_template.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "github_pull_request_template",
+      "target": "github_pull_request_template_issue_relacionada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/pull_request_template.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "github_pull_request_template",
+      "target": "github_pull_request_template_o_que_mudou",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".github/pull_request_template.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "github_pull_request_template",
+      "target": "github_pull_request_template_test_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "AGENTS.md",
       "source_location": "L1",
       "weight": 1.0,
       "source": "agents",
       "target": "agents_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "claude",
+      "target": "claude_git_pull_requests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "docs_escopo_do_projeto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "docs_infra_ci_cd_arquitetura",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "infra_deploy_readme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "infra_docker_test_readme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "readme_seniorcare",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "readme_seniorcare",
+      "target": "readme_componentes_atuais",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "readme_seniorcare",
+      "target": "readme_documenta\u00e7\u00e3o",
       "confidence_score": 1.0
     },
     {
@@ -30337,8 +33368,848 @@
       "source": "seniorstockmanager_frontend_seniorstockmanagerfrontend_readme_react_typescript_vite",
       "target": "seniorstockmanager_frontend_seniorstockmanagerfrontend_readme_expanding_the_eslint_configuration",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto",
+      "target": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L962",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_10_limites_do_produto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L980",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_11_escopo_sugerido_por_evolu\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1031",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_12_rela\u00e7\u00e3o_com_o_software_existente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1057",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_13_decis\u00f5es_em_aberto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1095",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_14_crit\u00e9rios_de_sucesso_do_produto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1118",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_15_gloss\u00e1rio_inicial",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1144",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_16_refer\u00eancias",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_1_resumo_executivo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_2_posicionamento_do_produto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L116",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_3_princ\u00edpios_orientadores",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_4_modelo_conceitual_do_cuidado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L176",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_5_atores_do_sistema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L206",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L621",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_7_fluxos_integrados_priorit\u00e1rios",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L695",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_8_requisitos_transversais",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L883",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
+      "target": "docs_escopo_do_projeto_9_requisitos_regulat\u00f3rios_de_refer\u00eancia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_1_resumo_executivo",
+      "target": "docs_escopo_do_projeto_1_1_natureza_social_e_universit\u00e1ria",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_2_posicionamento_do_produto",
+      "target": "docs_escopo_do_projeto_2_1_defini\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_2_posicionamento_do_produto",
+      "target": "docs_escopo_do_projeto_2_2_natureza_do_servi\u00e7o_apoiado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_2_posicionamento_do_produto",
+      "target": "docs_escopo_do_projeto_2_3_proposta_de_valor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L442",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "target": "docs_escopo_do_projeto_6_10_governan\u00e7a_qualidade_seguran\u00e7a_e_conformidade",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L471",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "target": "docs_escopo_do_projeto_6_11_dashboards_estat\u00edsticos_e_intelig\u00eancia_institucional",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L208",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "target": "docs_escopo_do_projeto_6_1_jornada_e_cadastro_longitudinal_do_residente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L229",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "target": "docs_escopo_do_projeto_6_2_assist\u00eancia_cotidiana_e_atividades_de_vida_di\u00e1ria",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L255",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "target": "docs_escopo_do_projeto_6_3_sa\u00fade_e_cuidado_multidisciplinar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L313",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "target": "docs_escopo_do_projeto_6_4_alimenta\u00e7\u00e3o_e_nutri\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L332",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "target": "docs_escopo_do_projeto_6_5_assist\u00eancia_social_fam\u00edlia_conviv\u00eancia_e_autonomia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L353",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "target": "docs_escopo_do_projeto_6_6_profissionais_escalas_e_educa\u00e7\u00e3o_permanente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L377",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "target": "docs_escopo_do_projeto_6_7_gest\u00e3o_financeira",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L400",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "target": "docs_escopo_do_projeto_6_8_doa\u00e7\u00f5es_capta\u00e7\u00e3o_e_voluntariado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L423",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_dom\u00ednios_funcionais",
+      "target": "docs_escopo_do_projeto_6_9_compras_estoque_patrim\u00f4nio_e_opera\u00e7\u00e3o_da_casa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L281",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_3_sa\u00fade_e_cuidado_multidisciplinar",
+      "target": "docs_escopo_do_projeto_6_3_1_prontu\u00e1rio_multidisciplinar_como_capacidade_cr\u00edtica",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L609",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_11_dashboards_estat\u00edsticos_e_intelig\u00eancia_institucional",
+      "target": "docs_escopo_do_projeto_dire\u00e7\u00e3o_arquitetural",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L486",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_11_dashboards_estat\u00edsticos_e_intelig\u00eancia_institucional",
+      "target": "docs_escopo_do_projeto_pain\u00e9is_previstos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L594",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_11_dashboards_estat\u00edsticos_e_intelig\u00eancia_institucional",
+      "target": "docs_escopo_do_projeto_privacidade_\u00e9tica_e_preven\u00e7\u00e3o_de_uso_indevido",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L567",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_6_11_dashboards_estat\u00edsticos_e_intelig\u00eancia_institucional",
+      "target": "docs_escopo_do_projeto_requisitos_de_confian\u00e7a_estat\u00edstica",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L623",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_7_fluxos_integrados_priorit\u00e1rios",
+      "target": "docs_escopo_do_projeto_7_1_admiss\u00e3o_e_in\u00edcio_do_cuidado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L636",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_7_fluxos_integrados_priorit\u00e1rios",
+      "target": "docs_escopo_do_projeto_7_2_ciclo_cont\u00ednuo_do_cuidado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L648",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_7_fluxos_integrados_priorit\u00e1rios",
+      "target": "docs_escopo_do_projeto_7_3_intercorr\u00eancia_de_sa\u00fade",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L660",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_7_fluxos_integrados_priorit\u00e1rios",
+      "target": "docs_escopo_do_projeto_7_4_alimenta\u00e7\u00e3o_integrada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L672",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_7_fluxos_integrados_priorit\u00e1rios",
+      "target": "docs_escopo_do_projeto_7_5_doa\u00e7\u00e3o_financeira",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L683",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_7_fluxos_integrados_priorit\u00e1rios",
+      "target": "docs_escopo_do_projeto_7_6_doa\u00e7\u00e3o_de_materiais",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L697",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_8_requisitos_transversais",
+      "target": "docs_escopo_do_projeto_8_1_seguran\u00e7a_e_privacidade",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L718",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_8_requisitos_transversais",
+      "target": "docs_escopo_do_projeto_8_2_usabilidade_e_acessibilidade",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L729",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_8_requisitos_transversais",
+      "target": "docs_escopo_do_projeto_8_3_rastreabilidade_e_integridade",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L739",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_8_requisitos_transversais",
+      "target": "docs_escopo_do_projeto_8_4_interoperabilidade",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L753",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_8_requisitos_transversais",
+      "target": "docs_escopo_do_projeto_8_5_configura\u00e7\u00e3o_institucional",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L768",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_8_requisitos_transversais",
+      "target": "docs_escopo_do_projeto_8_6_assinaturas_eletr\u00f4nicas_e_redu\u00e7\u00e3o_de_papel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L861",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_8_requisitos_transversais",
+      "target": "docs_escopo_do_projeto_8_7_governan\u00e7a_de_dados_na_parceria_universit\u00e1ria",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L786",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_8_6_assinaturas_eletr\u00f4nicas_e_redu\u00e7\u00e3o_de_papel",
+      "target": "docs_escopo_do_projeto_certificado_digital_do_cfm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L815",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_8_6_assinaturas_eletr\u00f4nicas_e_redu\u00e7\u00e3o_de_papel",
+      "target": "docs_escopo_do_projeto_demais_signat\u00e1rios",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L826",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_8_6_assinaturas_eletr\u00f4nicas_e_redu\u00e7\u00e3o_de_papel",
+      "target": "docs_escopo_do_projeto_estrat\u00e9gia_de_implanta\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L888",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_9_requisitos_regulat\u00f3rios_de_refer\u00eancia",
+      "target": "docs_escopo_do_projeto_9_1_estatuto_da_pessoa_idosa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L906",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_9_requisitos_regulat\u00f3rios_de_refer\u00eancia",
+      "target": "docs_escopo_do_projeto_9_2_rdc_anvisa_no_502_2021",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L924",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_9_requisitos_regulat\u00f3rios_de_refer\u00eancia",
+      "target": "docs_escopo_do_projeto_9_3_assist\u00eancia_social_e_icope",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L932",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_9_requisitos_regulat\u00f3rios_de_refer\u00eancia",
+      "target": "docs_escopo_do_projeto_9_4_contabilidade_de_entidades_sem_fins_lucrativos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L939",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_9_requisitos_regulat\u00f3rios_de_refer\u00eancia",
+      "target": "docs_escopo_do_projeto_9_5_regras_complementares",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L946",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_9_requisitos_regulat\u00f3rios_de_refer\u00eancia",
+      "target": "docs_escopo_do_projeto_9_6_prontu\u00e1rio_e_documentos_eletr\u00f4nicos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1001",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_11_escopo_sugerido_por_evolu\u00e7\u00e3o",
+      "target": "docs_escopo_do_projeto_cuidado_integrado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1020",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_11_escopo_sugerido_por_evolu\u00e7\u00e3o",
+      "target": "docs_escopo_do_projeto_expans\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L984",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_11_escopo_sugerido_por_evolu\u00e7\u00e3o",
+      "target": "docs_escopo_do_projeto_funda\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1011",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_11_escopo_sugerido_por_evolu\u00e7\u00e3o",
+      "target": "docs_escopo_do_projeto_gest\u00e3o_sustent\u00e1vel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura",
+      "target": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura",
+      "target": "infra_deploy_readme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
+      "target": "docs_infra_ci_cd_arquitetura_1_contexto_e_restri\u00e7\u00f5es",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
+      "target": "docs_infra_ci_cd_arquitetura_2_decis\u00e3o_central_build_once_deploy_many",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
+      "target": "docs_infra_ci_cd_arquitetura_3_unidades_implant\u00e1veis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
+      "target": "docs_infra_ci_cd_arquitetura_4_versionamento_calver_release_train",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
+      "target": "docs_infra_ci_cd_arquitetura_5_pipeline_de_ci_cd_github_actions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
+      "target": "docs_infra_ci_cd_arquitetura_6_release_manifest_a_unidade_de_deploy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
+      "target": "docs_infra_ci_cd_arquitetura_7_cd_entrega_no_servidor_pull_based",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
+      "target": "docs_infra_ci_cd_arquitetura_8_camada_de_opera\u00e7\u00e3o_opcional",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
+      "target": "docs_infra_ci_cd_arquitetura_9_o_que_fica_para_depois_n\u00e3o_implementado_ainda",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/infra/ci-cd-arquitetura.md",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "docs_infra_ci_cd_arquitetura_6_release_manifest_a_unidade_de_deploy",
+      "target": "docs_infra_ci_cd_arquitetura_regras_de_imutabilidade",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "infra_deploy_readme",
+      "target": "infra_deploy_readme_infra_deploy_publica\u00e7\u00e3o_pull_based_no_servidor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "infra_deploy_readme_infra_deploy_publica\u00e7\u00e3o_pull_based_no_servidor",
+      "target": "infra_deploy_readme_camada_de_opera\u00e7\u00e3o_ops_sh_profile_ops",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "infra_deploy_readme_infra_deploy_publica\u00e7\u00e3o_pull_based_no_servidor",
+      "target": "infra_deploy_readme_componentes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "infra_deploy_readme_infra_deploy_publica\u00e7\u00e3o_pull_based_no_servidor",
+      "target": "infra_deploy_readme_portas_default",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "infra_deploy_readme_infra_deploy_publica\u00e7\u00e3o_pull_based_no_servidor",
+      "target": "infra_deploy_readme_uso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/deploy/README.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "infra_deploy_readme_camada_de_opera\u00e7\u00e3o_ops_sh_profile_ops",
+      "target": "infra_deploy_readme_backup_di\u00e1rio_backup_ops_backup_sh",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/docker-test/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "infra_docker_test_readme",
+      "target": "infra_docker_test_readme_infra_docker_test_stack_local_build_a_partir_do_c\u00f3digo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/docker-test/README.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "infra_docker_test_readme_infra_docker_test_stack_local_build_a_partir_do_c\u00f3digo",
+      "target": "infra_docker_test_readme_portas_default",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/docker-test/README.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "infra_docker_test_readme_infra_docker_test_stack_local_build_a_partir_do_c\u00f3digo",
+      "target": "infra_docker_test_readme_uso",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "d706afcab32194a057438b7afe75e0c6e85a4299"
+  "built_at_commit": "69b4fb4b1ea2508c818bb372eb998274a54c8b87"
 }

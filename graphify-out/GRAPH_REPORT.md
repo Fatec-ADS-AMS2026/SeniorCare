@@ -1,16 +1,16 @@
-# Graph Report - SeniorCare  (2026-08-05)
+# Graph Report - SeniorCare  (2026-08-06)
 
 ## Corpus Check
-- 322 files · ~655,463 words
+- 360 files · ~682,877 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1108 nodes · 1575 edges · 122 communities (92 shown, 30 thin omitted)
+- 1276 nodes · 1767 edges · 147 communities (113 shown, 34 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d706afca`
+- Built from commit: `69b4fb4b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -103,6 +103,23 @@
 - [[_COMMUNITY_ProductType.ts|ProductType.ts]]
 - [[_COMMUNITY_Supplier.ts|Supplier.ts]]
 - [[_COMMUNITY_UnitOfMeasure.ts|UnitOfMeasure.ts]]
+- [[_COMMUNITY_InitialCreate|InitialCreate]]
+- [[_COMMUNITY_deploy.sh|deploy.sh]]
+- [[_COMMUNITY_Escopo do projeto SeniorCare|Escopo do projeto SeniorCare]]
+- [[_COMMUNITY_6. Domínios funcionais|6. Domínios funcionais]]
+- [[_COMMUNITY_8. Requisitos transversais|8. Requisitos transversais]]
+- [[_COMMUNITY_7. Fluxos integrados prioritários|7. Fluxos integrados prioritários]]
+- [[_COMMUNITY_9. Requisitos regulatórios de referência|9. Requisitos regulatórios de referência]]
+- [[_COMMUNITY_codeql-sarif-gate.py|codeql-sarif-gate.py]]
+- [[_COMMUNITY_ops.sh|ops.sh]]
+- [[_COMMUNITY_11. Escopo sugerido por evolução|11. Escopo sugerido por evolução]]
+- [[_COMMUNITY_2. Posicionamento do produto|2. Posicionamento do produto]]
+- [[_COMMUNITY_pull_request_template|pull_request_template.md]]
+- [[_COMMUNITY_backup.sh|backup.sh]]
+- [[_COMMUNITY_nuget-audit-gate.py|nuget-audit-gate.py]]
+- [[_COMMUNITY_CLAUDE|CLAUDE.md]]
+- [[_COMMUNITY_check-env-hygiene.sh|check-env-hygiene.sh]]
+- [[_COMMUNITY_6.11 Dashboards estatísticos e inteligência institucional|6.11 Dashboards estatísticos e inteligência institucional]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `SeniorCareManager.WebAPI.Objects.Models` - 66 edges
@@ -113,8 +130,8 @@
 6. `IGenericRepository` - 18 edges
 7. `compilerOptions` - 17 edges
 8. `compilerOptions` - 17 edges
-9. `SeniorCareManager.WebAPI.Objects.Enums` - 16 edges
-10. `IGenericService` - 16 edges
+9. `Escopo do projeto SeniorCare` - 17 edges
+10. `SeniorCareManager.WebAPI.Objects.Enums` - 16 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `AppDbContext` --references--> `Carrier`  [EXTRACTED]
@@ -131,19 +148,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (122 total, 30 thin omitted)
+## Communities (147 total, 34 thin omitted)
 
 ### Community 0 - "SeniorCareManager.WebAPI.Objects.Models"
-Cohesion: 0.09
-Nodes (9): SeniorCareManager.WebAPI.Objects.Dtos.Mappings, SeniorCareManager.WebAPI.Services.Entities, SeniorCareManager.WebAPI.Services.Interfaces, SeniorCareManager.WebAPI.Controllers, SeniorCareManager.WebAPI.Data.Repositories, SeniorCareManager.WebAPI.Objects.Models, SeniorCareManager.WebAPI.Data.Interfaces, Profile (+1 more)
+Cohesion: 0.08
+Nodes (10): SeniorCareManager.WebAPI.Data, SeniorCareManager.WebAPI.Services.Entities, SeniorCareManager.WebAPI.Services.Interfaces, SeniorCareManager.WebAPI.Controllers, SeniorCareManager.WebAPI.Data.Repositories, SeniorCareManager.WebAPI.Objects.Models, SeniorCareManager.WebAPI, SeniorCareManager.WebAPI.Data.Interfaces (+2 more)
 
 ### Community 1 - "SeniorCareManager.WebAPI.Objects.Enums"
 Cohesion: 0.06
 Nodes (29): SeniorCareManager.WebAPI.Objects.Enums, HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, Task (+21 more)
 
 ### Community 2 - "AppDbContext"
-Cohesion: 0.05
-Nodes (24): SeniorCareManager.WebAPI.Data.Builders, SeniorCareManager.WebAPI.Data, DbContext, DbSet, ModelBuilder, AppDbContext, ModelBuilder, CarrierBuilder (+16 more)
+Cohesion: 0.06
+Nodes (20): SeniorCareManager.WebAPI.Data.Builders, ModelBuilder, ModelBuilder, CarrierBuilder, ModelBuilder, HealthInsurancePlanBuilder, ModelBuilder, ManufacturerBuilder (+12 more)
 
 ### Community 3 - "GenericService"
 Cohesion: 0.09
@@ -151,19 +168,19 @@ Nodes (23): ICollection, HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IAct
 
 ### Community 4 - "devDependencies"
 Cohesion: 0.06
-Nodes (32): dependencies, axios, js-cookie, @phosphor-icons/react, react, react-dom, react-router-dom, @types/js-cookie (+24 more)
+Nodes (33): dependencies, axios, js-cookie, @phosphor-icons/react, react, react-dom, react-router-dom, @types/js-cookie (+25 more)
 
 ### Community 5 - "devDependencies"
 Cohesion: 0.06
-Nodes (32): dependencies, axios, js-cookie, @phosphor-icons/react, react, react-dom, react-router-dom, @types/js-cookie (+24 more)
+Nodes (33): dependencies, axios, js-cookie, @phosphor-icons/react, react, react-dom, react-router-dom, @types/js-cookie (+25 more)
 
 ### Community 6 - "GenericRepository"
-Cohesion: 0.11
-Nodes (19): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, SupplierController, ISupplierRepository (+11 more)
+Cohesion: 0.17
+Nodes (14): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, SupplierController, ISupplierRepository (+6 more)
 
 ### Community 7 - "IGenericService"
 Cohesion: 0.11
-Nodes (17): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, CarrierController, ICarrierRepository (+9 more)
+Nodes (19): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, CarrierController, ICarrierRepository (+11 more)
 
 ### Community 8 - "http"
 Cohesion: 0.07
@@ -182,8 +199,8 @@ Cohesion: 0.08
 Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
 
 ### Community 12 - "ProductType"
-Cohesion: 0.16
-Nodes (15): HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, Task, ProductTypeController (+7 more)
+Cohesion: 0.09
+Nodes (24): CancellationToken, DbContext, HealthCheckContext, HealthCheckResult, IHealthCheck, HttpDelete, HttpGet, HttpPatch (+16 more)
 
 ### Community 13 - "Controller"
 Cohesion: 0.16
@@ -194,8 +211,8 @@ Cohesion: 0.16
 Nodes (15): ControllerBase, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, ManufacturerController (+7 more)
 
 ### Community 15 - "ReligionController"
-Cohesion: 0.17
-Nodes (14): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, ReligionController, IReligionRepository (+6 more)
+Cohesion: 0.11
+Nodes (17): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, ReligionController, IReligionRepository (+9 more)
 
 ### Community 16 - "UnitOfMeasureController"
 Cohesion: 0.17
@@ -242,8 +259,8 @@ Cohesion: 0.16
 Nodes (8): App(), ThemeContext, ThemeContextType, ThemeProvider(), ThemeProviderProps, router, appRoutes, routes
 
 ### Community 27 - "SeniorCareManager.WebAPI.Objects.Dtos.Entities"
-Cohesion: 0.15
-Nodes (7): SeniorCareManager.WebAPI.Objects.Dtos.Entities, CarrierDTO, HealthInsurancePlanDTO, PositionDTO, ProductTypeDTO, ReligionDTO, UnitOfMeasureDTO
+Cohesion: 0.12
+Nodes (10): SeniorCareManager.WebAPI.Objects.Dtos.Mappings, SeniorCareManager.WebAPI.Objects.Dtos.Entities, Profile, CarrierDTO, HealthInsurancePlanDTO, PositionDTO, ProductTypeDTO, ReligionDTO (+2 more)
 
 ### Community 28 - "AppLayout.tsx"
 Cohesion: 0.23
@@ -346,8 +363,8 @@ Cohesion: 0.33
 Nodes (5): For /graphify explain, For /graphify path, graphify reference: query, path, explain, Step 0 — Constrained query expansion (REQUIRED before traversal), Step 1 — Traversal
 
 ### Community 53 - "Program"
-Cohesion: 0.40
-Nodes (3): SeniorCareManager.WebAPI, IHostBuilder, Program
+Cohesion: 0.07
+Nodes (23): 1. Contexto e restrições, 2. Decisão central: `build once, deploy many`, 3. Unidades implantáveis, 4. Versionamento — CalVer + release train, 5. Pipeline de CI/CD (GitHub Actions), 6. Release manifest — a unidade de deploy, 7. CD — entrega no servidor (pull-based), 8. Camada de operação (opcional) (+15 more)
 
 ### Community 54 - "SeniorCareManager.WebAPI.Objects.Dtos"
 Cohesion: 0.40
@@ -365,25 +382,77 @@ Nodes (3): For git commit hook, For native CLAUDE.md integration, graphify refer
 Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
+### Community 122 - "InitialCreate"
+Cohesion: 0.13
+Nodes (9): SeniorCareManager.WebAPI.Data.Migrations, Migration, MigrationBuilder, ModelSnapshot, ModelBuilder, InitialCreate, InitialCreate, ModelBuilder (+1 more)
+
+### Community 123 - "deploy.sh"
+Cohesion: 0.34
+Nodes (14): compose(), die(), do_deploy(), do_rollback(), do_status(), err(), ghcr_login(), log() (+6 more)
+
+### Community 124 - "Escopo do projeto SeniorCare"
+Cohesion: 0.17
+Nodes (12): 10. Limites do produto, 12. Relação com o software existente, 13. Decisões em aberto, 14. Critérios de sucesso do produto, 15. Glossário inicial, 16. Referências, 1.1 Natureza social e universitária, 1. Resumo executivo (+4 more)
+
+### Community 125 - "6. Domínios funcionais"
+Cohesion: 0.17
+Nodes (12): 6.10 Governança, qualidade, segurança e conformidade, 6.1 Jornada e cadastro longitudinal do residente, 6.2 Assistência cotidiana e atividades de vida diária, 6.3.1 Prontuário multidisciplinar como capacidade crítica, 6.3 Saúde e cuidado multidisciplinar, 6.4 Alimentação e nutrição, 6.5 Assistência social, família, convivência e autonomia, 6.6 Profissionais, escalas e educação permanente (+4 more)
+
+### Community 126 - "8. Requisitos transversais"
+Cohesion: 0.18
+Nodes (11): 8.1 Segurança e privacidade, 8.2 Usabilidade e acessibilidade, 8.3 Rastreabilidade e integridade, 8.4 Interoperabilidade, 8.5 Configuração institucional, 8.6 Assinaturas eletrônicas e redução de papel, 8.7 Governança de dados na parceria universitária, 8. Requisitos transversais (+3 more)
+
+### Community 127 - "7. Fluxos integrados prioritários"
+Cohesion: 0.29
+Nodes (7): 7.1 Admissão e início do cuidado, 7.2 Ciclo contínuo do cuidado, 7.3 Intercorrência de saúde, 7.4 Alimentação integrada, 7.5 Doação financeira, 7.6 Doação de materiais, 7. Fluxos integrados prioritários
+
+### Community 128 - "9. Requisitos regulatórios de referência"
+Cohesion: 0.29
+Nodes (7): 9.1 Estatuto da Pessoa Idosa, 9.2 RDC Anvisa nº 502/2021, 9.3 Assistência social e ICOPE, 9.4 Contabilidade de entidades sem fins lucrativos, 9.5 Regras complementares, 9.6 Prontuário e documentos eletrônicos, 9. Requisitos regulatórios de referência
+
+### Community 129 - "codeql-sarif-gate.py"
+Cohesion: 0.53
+Nodes (5): evaluate(), main(), sarif_files(), security_severity(), Path
+
+### Community 130 - "ops.sh"
+Cohesion: 0.67
+Nodes (5): compose(), die(), log(), preflight(), ops.sh script
+
+### Community 131 - "11. Escopo sugerido por evolução"
+Cohesion: 0.40
+Nodes (5): 11. Escopo sugerido por evolução, Cuidado integrado, Expansão, Fundação, Gestão sustentável
+
+### Community 132 - "2. Posicionamento do produto"
+Cohesion: 0.50
+Nodes (4): 2.1 Definição, 2.2 Natureza do serviço apoiado, 2.3 Proposta de valor, 2. Posicionamento do produto
+
+### Community 133 - "pull_request_template.md"
+Cohesion: 0.50
+Nodes (3): Issue relacionada, O que mudou, Test plan
+
+### Community 146 - "6.11 Dashboards estatísticos e inteligência institucional"
+Cohesion: 0.40
+Nodes (5): 6.11 Dashboards estatísticos e inteligência institucional, Direção arquitetural, Painéis previstos, Privacidade, ética e prevenção de uso indevido, Requisitos de confiança estatística
+
 ## Knowledge Gaps
-- **314 isolated node(s):** `CarrierDTO`, `HealthInsurancePlanDTO`, `ManufacturerDTO`, `PositionDTO`, `ProductGroupDTO` (+309 more)
+- **390 isolated node(s):** `check-env-hygiene.sh script`, `CarrierDTO`, `HealthInsurancePlanDTO`, `ManufacturerDTO`, `PositionDTO` (+385 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **30 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `SeniorCareManager.WebAPI.Objects.Models` connect `SeniorCareManager.WebAPI.Objects.Models` to `SeniorCareManager.WebAPI.Objects.Enums`, `AppDbContext`, `GenericService`, `GenericRepository`, `IGenericService`, `ProductType`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`?**
-  _High betweenness centrality (0.047) - this node is a cross-community bridge._
-- **Why does `AppDbContext` connect `AppDbContext` to `SeniorCareManager.WebAPI.Objects.Enums`, `GenericService`, `GenericRepository`, `IGenericService`, `ProductType`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`?**
-  _High betweenness centrality (0.016) - this node is a cross-community bridge._
-- **Why does `SeniorCareManager.WebAPI.Objects.Enums` connect `SeniorCareManager.WebAPI.Objects.Enums` to `AppDbContext`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`?**
-  _High betweenness centrality (0.014) - this node is a cross-community bridge._
-- **What connects `CarrierDTO`, `HealthInsurancePlanDTO`, `ManufacturerDTO` to the rest of the system?**
-  _314 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `SeniorCareManager.WebAPI.Objects.Models` connect `SeniorCareManager.WebAPI.Objects.Models` to `SeniorCareManager.WebAPI.Objects.Enums`, `AppDbContext`, `GenericService`, `GenericRepository`, `IGenericService`, `ProductType`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`?**
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
+- **Why does `AppDbContext` connect `ProductType` to `SeniorCareManager.WebAPI.Objects.Models`, `SeniorCareManager.WebAPI.Objects.Enums`, `AppDbContext`, `GenericService`, `GenericRepository`, `IGenericService`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `SeniorCareManager.WebAPI.Data` connect `SeniorCareManager.WebAPI.Objects.Models` to `InitialCreate`, `ProductType`?**
+  _High betweenness centrality (0.011) - this node is a cross-community bridge._
+- **What connects `check-env-hygiene.sh script`, `CarrierDTO`, `HealthInsurancePlanDTO` to the rest of the system?**
+  _390 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `SeniorCareManager.WebAPI.Objects.Models` be split into smaller, more focused modules?**
-  _Cohesion score 0.08771929824561403 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08038075092543628 - nodes in this community are weakly interconnected._
 - **Should `SeniorCareManager.WebAPI.Objects.Enums` be split into smaller, more focused modules?**
   _Cohesion score 0.05612244897959184 - nodes in this community are weakly interconnected._
 - **Should `AppDbContext` be split into smaller, more focused modules?**
-  _Cohesion score 0.05496828752642706 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0620782726045884 - nodes in this community are weakly interconnected._
