@@ -29,3 +29,5 @@ O escopo conceitual e funcional canônico do projeto está documentado em
 - [Arquitetura de CI/CD](docs/infra/ci-cd-arquitetura.md)
 - [Stack local para desenvolvimento](infra/docker-test/README.md)
 - [Publicação em servidor](infra/deploy/README.md)
+
+<!-- teste dev-flow #2: verificando create_qa_issue.py com workflow real -->
