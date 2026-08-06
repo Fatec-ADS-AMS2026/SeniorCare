@@ -1,8 +1,8 @@
 # Escopo do projeto SeniorCare
 
 - **Status:** contexto conceitual canônico do produto
-- **Versão:** 1.0
-- **Data:** 5 de agosto de 2026
+- **Versão:** 1.1
+- **Data:** 6 de agosto de 2026
 - **Contexto regulatório de referência:** Brasil
 
 ## 1. Resumo executivo
@@ -1053,6 +1053,69 @@ Cada evolução relevante deverá ser formalizada em uma mudança OpenSpec próp
 com requisitos, cenários, desenho, migração e tarefas verificáveis. Este
 documento fornece o contexto; ele não autoriza implementar todos os módulos de
 uma só vez.
+
+### 12.1 Avaliação formal do estado atual
+
+A implementação foi avaliada em 6 de agosto de 2026 contra os domínios, fluxos e
+requisitos transversais deste escopo. O relatório completo, incluindo método,
+evidências, riscos e sequência recomendada de evolução, está em
+[`relatorio-avaliacao-requisitos-implementacao.md`](relatorio-avaliacao-requisitos-implementacao.md).
+
+Na granularidade dos 11 domínios funcionais da seção 6, a baseline avaliada
+apresenta:
+
+| Situação | Domínios | Resultado |
+|---|---|---:|
+| Implementado | nenhum | 0 de 11 |
+| Parcialmente implementado | profissionais; estoque e operação; governança e conformidade | 3 de 11 |
+| Não implementado | residente; assistência cotidiana; saúde multidisciplinar; alimentação; assistência social; financeiro; doações; dashboards | 8 de 11 |
+
+A classificação é feita por domínio, sem ponderação por tamanho, risco ou esforço.
+Um domínio somente é considerado implementado quando seu fluxo essencial existe
+de ponta a ponta, com persistência, API, interface quando aplicável e evidência
+mínima de validação. Catálogos auxiliares, enums, protótipos e documentação não
+equivalem à implementação do fluxo principal.
+
+As capacidades executáveis encontradas concentram-se em:
+
+- CRUDs de planos de saúde, cargos e religiões no front-end assistencial;
+- catálogos de fornecedores, fabricantes, transportadoras, grupos, tipos e
+  unidades de medida no estoque;
+- API ASP.NET Core com nove entidades persistidas em PostgreSQL;
+- componentes React reutilizáveis e recursos iniciais de contraste e tamanho de
+  fonte;
+- CI/CD, verificações de segurança, contêineres, health checks e backup.
+
+Não foram encontradas implementações do residente longitudinal, assistência por
+turno, prontuário multidisciplinar, medicamentos, nutrição, gestão financeira,
+doações, conformidade operacional, indicadores ou dashboards. O cadastro visual
+de produto do front-end de estoque não possui entidade ou endpoint correspondente
+no backend.
+
+### 12.2 Restrições de prontidão decorrentes da avaliação
+
+Enquanto as lacunas críticas permanecerem, o sistema:
+
+- não deve ser tratado como núcleo completo de gestão de ILPI;
+- não deve receber prontuários ou dados reais de saúde em operação assistencial;
+- não deve ser declarado apto à eliminação de papel ou assinatura eletrônica;
+- não deve publicar dashboards como indicadores institucionais confiáveis;
+- deve usar dados sintéticos para desenvolvimento, ensino e demonstração.
+
+A baseline técnica também registrou que:
+
+- o front-end de estoque passa em lint e build de produção;
+- o front-end assistencial passa no lint, mas falha na compilação TypeScript;
+- não existem testes automatizados nos três componentes;
+- o backend não pôde ser compilado no ambiente da avaliação por ausência do SDK
+  `dotnet`, permanecendo tecnicamente não verificado nessa rodada;
+- não há mudança OpenSpec ativa para a fundação do novo núcleo do produto.
+
+Antes do primeiro MVP, a prioridade é estabilizar os builds e estabelecer
+instituição, identidade, autenticação, papéis, profissionais, residente,
+autorização, auditoria, versionamento e testes. Prontuário, dashboards e
+assinatura eletrônica devem evoluir sobre essa fundação, nessa ordem de
+dependência.
 
 ## 13. Decisões em aberto
 

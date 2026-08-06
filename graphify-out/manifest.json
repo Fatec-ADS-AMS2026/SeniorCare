@@ -1905,8 +1905,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1786012040.651458,
-    "ast_hash": "a58162934687e0d3a4a0f432c3492fe9",
+    "mtime": 1786020144.041458,
+    "ast_hash": "22ad91eabd4eed0442f2ad33e6d4072d",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/SeniorCareManager.WebAPI.csproj.FileListAbsolute.txt": {
@@ -1920,8 +1920,8 @@
     "semantic_hash": ""
   },
   "docs/escopo-do-projeto.md": {
-    "mtime": 1786012055.9259155,
-    "ast_hash": "c74b6b986beea307beff1718386c1a69",
+    "mtime": 1786020293.1627073,
+    "ast_hash": "a792a7a60782493ee0a12ee74470dc6a",
     "semantic_hash": ""
   },
   "docs/infra/ci-cd-arquitetura.md": {
@@ -1977,6 +1977,56 @@
   "infra/docker-test/docker-compose.yml": {
     "mtime": 1785973365.3294451,
     "ast_hash": "2d41704e5ee8a996fa0b125d923e3651",
+    "semantic_hash": ""
+  },
+  "docs/relatorio-avaliacao-requisitos-implementacao.md": {
+    "mtime": 1786020143.914438,
+    "ast_hash": "3a82a5f8d160095264d1cb9e1063a030",
+    "semantic_hash": ""
+  },
+  "openspec/changes/stabilize-existing-platform/.openspec.yaml": {
+    "mtime": 1786020996.719721,
+    "ast_hash": "0a96bfc1c9218995064f38f9e9b19caa",
+    "semantic_hash": ""
+  },
+  "openspec/changes/stabilize-existing-platform/design.md": {
+    "mtime": 1786021297.2656431,
+    "ast_hash": "c146df419874050cc20ef4095862390d",
+    "semantic_hash": ""
+  },
+  "openspec/changes/stabilize-existing-platform/proposal.md": {
+    "mtime": 1786021038.8958297,
+    "ast_hash": "4fbea29a4a0320f6b63400dc092512a7",
+    "semantic_hash": ""
+  },
+  "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md": {
+    "mtime": 1786021190.0967903,
+    "ast_hash": "98b89d4984a52d71447f7ecd07479fb8",
+    "semantic_hash": ""
+  },
+  "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md": {
+    "mtime": 1786021190.2899346,
+    "ast_hash": "55ef4761ef9b0368a18f0d8201d0876f",
+    "semantic_hash": ""
+  },
+  "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md": {
+    "mtime": 1786021189.903452,
+    "ast_hash": "9177f4d701b938547aa5780ab536fa3e",
+    "semantic_hash": ""
+  },
+  "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md": {
+    "mtime": 1786021189.5253043,
+    "ast_hash": "391796fe7ac9c9c18d9cdb3db25100d1",
+    "semantic_hash": ""
+  },
+  "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md": {
+    "mtime": 1786021189.7090774,
+    "ast_hash": "1afa9527b3d21324d604beedad772a00",
+    "semantic_hash": ""
+  },
+  "openspec/changes/stabilize-existing-platform/tasks.md": {
+    "mtime": 1786021364.919901,
+    "ast_hash": "4370f17dcf3a306c665b9a1646c568a1",
     "semantic_hash": ""
   }
 }

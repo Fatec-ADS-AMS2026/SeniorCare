@@ -3062,7 +3062,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository",
-      "community": 7,
+      "community": 13,
       "norm_label": "genericrepository"
     },
     {
@@ -3072,7 +3072,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_cs_appdbcontext",
-      "community": 7,
+      "community": 13,
       "norm_label": "appdbcontext"
     },
     {
@@ -3082,7 +3082,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_cs_dbset",
-      "community": 7,
+      "community": 13,
       "norm_label": "dbset"
     },
     {
@@ -3098,7 +3098,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_get",
-      "community": 7,
+      "community": 13,
       "norm_label": ".get()"
     },
     {
@@ -3108,7 +3108,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_cs_task",
-      "community": 7,
+      "community": 13,
       "norm_label": "task"
     },
     {
@@ -3118,7 +3118,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_cs_ienumerable",
-      "community": 7,
+      "community": 13,
       "norm_label": "ienumerable"
     },
     {
@@ -3134,7 +3134,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_getbyid",
-      "community": 7,
+      "community": 13,
       "norm_label": ".getbyid()"
     },
     {
@@ -3150,7 +3150,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_add",
-      "community": 7,
+      "community": 13,
       "norm_label": ".add()"
     },
     {
@@ -3166,7 +3166,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_update",
-      "community": 7,
+      "community": 13,
       "norm_label": ".update()"
     },
     {
@@ -3182,7 +3182,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_remove",
-      "community": 7,
+      "community": 13,
       "norm_label": ".remove()"
     },
     {
@@ -3198,7 +3198,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_genericrepository_seniorcaremanager_webapi_data_repositories_genericrepository_savechanges",
-      "community": 7,
+      "community": 13,
       "norm_label": ".savechanges()"
     },
     {
@@ -5406,7 +5406,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice",
-      "community": 15,
+      "community": 3,
       "norm_label": "igenericservice.cs"
     },
     {
@@ -5422,7 +5422,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice",
-      "community": 15,
+      "community": 3,
       "norm_label": "igenericservice"
     },
     {
@@ -5438,7 +5438,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_getall",
-      "community": 15,
+      "community": 3,
       "norm_label": ".getall()"
     },
     {
@@ -5448,7 +5448,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_cs_task",
-      "community": 15,
+      "community": 3,
       "norm_label": "task"
     },
     {
@@ -5458,7 +5458,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_cs_ienumerable",
-      "community": 15,
+      "community": 3,
       "norm_label": "ienumerable"
     },
     {
@@ -5474,7 +5474,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_getbyid",
-      "community": 15,
+      "community": 3,
       "norm_label": ".getbyid()"
     },
     {
@@ -5490,7 +5490,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_create",
-      "community": 15,
+      "community": 3,
       "norm_label": ".create()"
     },
     {
@@ -5506,7 +5506,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_update",
-      "community": 15,
+      "community": 3,
       "norm_label": ".update()"
     },
     {
@@ -5522,7 +5522,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_remove",
-      "community": 15,
+      "community": 3,
       "norm_label": ".remove()"
     },
     {
@@ -13762,14 +13762,34 @@
       "source_location": "L1031",
       "_origin": "ast",
       "id": "docs_escopo_do_projeto_12_rela\u00e7\u00e3o_com_o_software_existente",
-      "community": 124,
+      "community": 154,
       "norm_label": "12. relacao com o software existente"
+    },
+    {
+      "label": "12.1 Avalia\u00e7\u00e3o formal do estado atual",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1057",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_12_1_avalia\u00e7\u00e3o_formal_do_estado_atual",
+      "community": 154,
+      "norm_label": "12.1 avaliacao formal do estado atual"
+    },
+    {
+      "label": "12.2 Restri\u00e7\u00f5es de prontid\u00e3o decorrentes da avalia\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1095",
+      "_origin": "ast",
+      "id": "docs_escopo_do_projeto_12_2_restri\u00e7\u00f5es_de_prontid\u00e3o_decorrentes_da_avalia\u00e7\u00e3o",
+      "community": 154,
+      "norm_label": "12.2 restricoes de prontidao decorrentes da avaliacao"
     },
     {
       "label": "13. Decis\u00f5es em aberto",
       "file_type": "document",
       "source_file": "docs/escopo-do-projeto.md",
-      "source_location": "L1057",
+      "source_location": "L1120",
       "_origin": "ast",
       "id": "docs_escopo_do_projeto_13_decis\u00f5es_em_aberto",
       "community": 124,
@@ -13779,7 +13799,7 @@
       "label": "14. Crit\u00e9rios de sucesso do produto",
       "file_type": "document",
       "source_file": "docs/escopo-do-projeto.md",
-      "source_location": "L1095",
+      "source_location": "L1158",
       "_origin": "ast",
       "id": "docs_escopo_do_projeto_14_crit\u00e9rios_de_sucesso_do_produto",
       "community": 124,
@@ -13789,7 +13809,7 @@
       "label": "15. Gloss\u00e1rio inicial",
       "file_type": "document",
       "source_file": "docs/escopo-do-projeto.md",
-      "source_location": "L1118",
+      "source_location": "L1181",
       "_origin": "ast",
       "id": "docs_escopo_do_projeto_15_gloss\u00e1rio_inicial",
       "community": 124,
@@ -13799,7 +13819,7 @@
       "label": "16. Refer\u00eancias",
       "file_type": "document",
       "source_file": "docs/escopo-do-projeto.md",
-      "source_location": "L1144",
+      "source_location": "L1207",
       "_origin": "ast",
       "id": "docs_escopo_do_projeto_16_refer\u00eancias",
       "community": 124,
@@ -13822,7 +13842,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
-      "community": 53,
+      "community": 147,
       "norm_label": "arquitetura de ci/cd \u2014 seniorcare"
     },
     {
@@ -13832,7 +13852,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "docs_infra_ci_cd_arquitetura_1_contexto_e_restri\u00e7\u00f5es",
-      "community": 53,
+      "community": 147,
       "norm_label": "1. contexto e restricoes"
     },
     {
@@ -13842,7 +13862,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "docs_infra_ci_cd_arquitetura_2_decis\u00e3o_central_build_once_deploy_many",
-      "community": 53,
+      "community": 147,
       "norm_label": "2. decisao central: `build once, deploy many`"
     },
     {
@@ -13852,7 +13872,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "docs_infra_ci_cd_arquitetura_3_unidades_implant\u00e1veis",
-      "community": 53,
+      "community": 147,
       "norm_label": "3. unidades implantaveis"
     },
     {
@@ -13862,7 +13882,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "docs_infra_ci_cd_arquitetura_4_versionamento_calver_release_train",
-      "community": 53,
+      "community": 147,
       "norm_label": "4. versionamento \u2014 calver + release train"
     },
     {
@@ -13872,7 +13892,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "docs_infra_ci_cd_arquitetura_5_pipeline_de_ci_cd_github_actions",
-      "community": 53,
+      "community": 147,
       "norm_label": "5. pipeline de ci/cd (github actions)"
     },
     {
@@ -13882,7 +13902,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "docs_infra_ci_cd_arquitetura_6_release_manifest_a_unidade_de_deploy",
-      "community": 53,
+      "community": 147,
       "norm_label": "6. release manifest \u2014 a unidade de deploy"
     },
     {
@@ -13892,7 +13912,7 @@
       "source_location": "L83",
       "_origin": "ast",
       "id": "docs_infra_ci_cd_arquitetura_regras_de_imutabilidade",
-      "community": 53,
+      "community": 147,
       "norm_label": "regras de imutabilidade"
     },
     {
@@ -13902,7 +13922,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "id": "docs_infra_ci_cd_arquitetura_7_cd_entrega_no_servidor_pull_based",
-      "community": 53,
+      "community": 147,
       "norm_label": "7. cd \u2014 entrega no servidor (pull-based)"
     },
     {
@@ -13912,7 +13932,7 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "docs_infra_ci_cd_arquitetura_8_camada_de_opera\u00e7\u00e3o_opcional",
-      "community": 53,
+      "community": 147,
       "norm_label": "8. camada de operacao (opcional)"
     },
     {
@@ -13922,8 +13942,328 @@
       "source_location": "L119",
       "_origin": "ast",
       "id": "docs_infra_ci_cd_arquitetura_9_o_que_fica_para_depois_n\u00e3o_implementado_ainda",
-      "community": 53,
+      "community": 147,
       "norm_label": "9. o que fica para depois (nao implementado ainda)"
+    },
+    {
+      "label": "relatorio-avaliacao-requisitos-implementacao.md",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao",
+      "community": 53,
+      "norm_label": "relatorio-avaliacao-requisitos-implementacao.md"
+    },
+    {
+      "label": "Relat\u00f3rio de avalia\u00e7\u00e3o: requisitos versus implementa\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "community": 148,
+      "norm_label": "relatorio de avaliacao: requisitos versus implementacao"
+    },
+    {
+      "label": "1. Resultado executivo",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_1_resultado_executivo",
+      "community": 148,
+      "norm_label": "1. resultado executivo"
+    },
+    {
+      "label": "Conclus\u00e3o de prontid\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_conclus\u00e3o_de_prontid\u00e3o",
+      "community": 148,
+      "norm_label": "conclusao de prontidao"
+    },
+    {
+      "label": "2. M\u00e9todo e crit\u00e9rios",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_2_m\u00e9todo_e_crit\u00e9rios",
+      "community": 148,
+      "norm_label": "2. metodo e criterios"
+    },
+    {
+      "label": "3. Invent\u00e1rio comprovado da implementa\u00e7\u00e3o atual",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_3_invent\u00e1rio_comprovado_da_implementa\u00e7\u00e3o_atual",
+      "community": 151,
+      "norm_label": "3. inventario comprovado da implementacao atual"
+    },
+    {
+      "label": "3.1 Backend",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_3_1_backend",
+      "community": 151,
+      "norm_label": "3.1 backend"
+    },
+    {
+      "label": "3.2 Front-end assistencial",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L110",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_3_2_front_end_assistencial",
+      "community": 151,
+      "norm_label": "3.2 front-end assistencial"
+    },
+    {
+      "label": "3.3 Front-end de estoque",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L122",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_3_3_front_end_de_estoque",
+      "community": 151,
+      "norm_label": "3.3 front-end de estoque"
+    },
+    {
+      "label": "3.4 Infraestrutura e entrega",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L135",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_3_4_infraestrutura_e_entrega",
+      "community": 151,
+      "norm_label": "3.4 infraestrutura e entrega"
+    },
+    {
+      "label": "4. Matriz dos dom\u00ednios funcionais",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L152",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_4_matriz_dos_dom\u00ednios_funcionais",
+      "community": 148,
+      "norm_label": "4. matriz dos dominios funcionais"
+    },
+    {
+      "label": "5. Matriz dos fluxos integrados priorit\u00e1rios",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L168",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_5_matriz_dos_fluxos_integrados_priorit\u00e1rios",
+      "community": 148,
+      "norm_label": "5. matriz dos fluxos integrados prioritarios"
+    },
+    {
+      "label": "6. Matriz dos requisitos transversais",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L181",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_6_matriz_dos_requisitos_transversais",
+      "community": 148,
+      "norm_label": "6. matriz dos requisitos transversais"
+    },
+    {
+      "label": "7. Avalia\u00e7\u00e3o espec\u00edfica das capacidades cr\u00edticas",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L193",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_7_avalia\u00e7\u00e3o_espec\u00edfica_das_capacidades_cr\u00edticas",
+      "community": 152,
+      "norm_label": "7. avaliacao especifica das capacidades criticas"
+    },
+    {
+      "label": "7.1 Prontu\u00e1rio multidisciplinar",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L195",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_7_1_prontu\u00e1rio_multidisciplinar",
+      "community": 152,
+      "norm_label": "7.1 prontuario multidisciplinar"
+    },
+    {
+      "label": "7.2 Assinatura eletr\u00f4nica",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L216",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_7_2_assinatura_eletr\u00f4nica",
+      "community": 152,
+      "norm_label": "7.2 assinatura eletronica"
+    },
+    {
+      "label": "7.3 Dashboards estat\u00edsticos",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L230",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_7_3_dashboards_estat\u00edsticos",
+      "community": 152,
+      "norm_label": "7.3 dashboards estatisticos"
+    },
+    {
+      "label": "8. Valida\u00e7\u00f5es t\u00e9cnicas executadas",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L244",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_8_valida\u00e7\u00f5es_t\u00e9cnicas_executadas",
+      "community": 148,
+      "norm_label": "8. validacoes tecnicas executadas"
+    },
+    {
+      "label": "9. Riscos e lacunas priorizados",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L257",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_9_riscos_e_lacunas_priorizados",
+      "community": 153,
+      "norm_label": "9. riscos e lacunas priorizados"
+    },
+    {
+      "label": "Cr\u00edticos \u2014 bloqueiam uso assistencial real",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L259",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_cr\u00edticos_bloqueiam_uso_assistencial_real",
+      "community": 153,
+      "norm_label": "criticos \u2014 bloqueiam uso assistencial real"
+    },
+    {
+      "label": "Altos \u2014 bloqueiam um MVP confi\u00e1vel",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L270",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_altos_bloqueiam_um_mvp_confi\u00e1vel",
+      "community": 153,
+      "norm_label": "altos \u2014 bloqueiam um mvp confiavel"
+    },
+    {
+      "label": "M\u00e9dios \u2014 d\u00edvida de qualidade e opera\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L286",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_m\u00e9dios_d\u00edvida_de_qualidade_e_opera\u00e7\u00e3o",
+      "community": 153,
+      "norm_label": "medios \u2014 divida de qualidade e operacao"
+    },
+    {
+      "label": "10. Sequ\u00eancia recomendada de evolu\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L298",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_10_sequ\u00eancia_recomendada_de_evolu\u00e7\u00e3o",
+      "community": 149,
+      "norm_label": "10. sequencia recomendada de evolucao"
+    },
+    {
+      "label": "Prioridade 0 \u2014 estabilizar a linha de base",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L300",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_0_estabilizar_a_linha_de_base",
+      "community": 149,
+      "norm_label": "prioridade 0 \u2014 estabilizar a linha de base"
+    },
+    {
+      "label": "Prioridade 1 \u2014 funda\u00e7\u00e3o segura",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L310",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_1_funda\u00e7\u00e3o_segura",
+      "community": 149,
+      "norm_label": "prioridade 1 \u2014 fundacao segura"
+    },
+    {
+      "label": "Prioridade 2 \u2014 opera\u00e7\u00e3o cotidiana",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L321",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_2_opera\u00e7\u00e3o_cotidiana",
+      "community": 149,
+      "norm_label": "prioridade 2 \u2014 operacao cotidiana"
+    },
+    {
+      "label": "Prioridade 3 \u2014 prontu\u00e1rio multidisciplinar",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L330",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_3_prontu\u00e1rio_multidisciplinar",
+      "community": 149,
+      "norm_label": "prioridade 3 \u2014 prontuario multidisciplinar"
+    },
+    {
+      "label": "Prioridade 4 \u2014 sustentabilidade institucional",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L339",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_4_sustentabilidade_institucional",
+      "community": 149,
+      "norm_label": "prioridade 4 \u2014 sustentabilidade institucional"
+    },
+    {
+      "label": "Prioridade 5 \u2014 assinatura e redu\u00e7\u00e3o de papel",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L347",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_5_assinatura_e_redu\u00e7\u00e3o_de_papel",
+      "community": 149,
+      "norm_label": "prioridade 5 \u2014 assinatura e reducao de papel"
+    },
+    {
+      "label": "11. Crit\u00e9rios m\u00ednimos para declarar o primeiro MVP",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L355",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_11_crit\u00e9rios_m\u00ednimos_para_declarar_o_primeiro_mvp",
+      "community": 148,
+      "norm_label": "11. criterios minimos para declarar o primeiro mvp"
+    },
+    {
+      "label": "12. Parecer final",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L373",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_12_parecer_final",
+      "community": 148,
+      "norm_label": "12. parecer final"
+    },
+    {
+      "label": "13. Limita\u00e7\u00f5es da avalia\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L386",
+      "_origin": "ast",
+      "id": "docs_relatorio_avaliacao_requisitos_implementacao_13_limita\u00e7\u00f5es_da_avalia\u00e7\u00e3o",
+      "community": 148,
+      "norm_label": "13. limitacoes da avaliacao"
     },
     {
       "label": "README.md",
@@ -13942,7 +14282,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "infra_deploy_readme_infra_deploy_publica\u00e7\u00e3o_pull_based_no_servidor",
-      "community": 53,
+      "community": 150,
       "norm_label": "infra/deploy \u2014 publicacao pull-based no servidor"
     },
     {
@@ -13952,7 +14292,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "infra_deploy_readme_componentes",
-      "community": 53,
+      "community": 150,
       "norm_label": "componentes"
     },
     {
@@ -13962,7 +14302,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "infra_deploy_readme_uso",
-      "community": 53,
+      "community": 150,
       "norm_label": "uso"
     },
     {
@@ -13972,7 +14312,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "infra_deploy_readme_portas_default",
-      "community": 53,
+      "community": 150,
       "norm_label": "portas (default)"
     },
     {
@@ -13982,7 +14322,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "infra_deploy_readme_camada_de_opera\u00e7\u00e3o_ops_sh_profile_ops",
-      "community": 53,
+      "community": 150,
       "norm_label": "camada de operacao (`ops.sh` / `--profile ops`)"
     },
     {
@@ -13992,7 +14332,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "infra_deploy_readme_backup_di\u00e1rio_backup_ops_backup_sh",
-      "community": 53,
+      "community": 150,
       "norm_label": "backup diario (`backup` / `ops/backup.sh`)"
     },
     {
@@ -14034,6 +14374,1276 @@
       "id": "infra_docker_test_readme_portas_default",
       "community": 53,
       "norm_label": "portas (default)"
+    },
+    {
+      "label": "design.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design",
+      "community": 158,
+      "norm_label": "design.md"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_context",
+      "community": 158,
+      "norm_label": "context"
+    },
+    {
+      "label": "Goals / Non-Goals",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_goals_non_goals",
+      "community": 158,
+      "norm_label": "goals / non-goals"
+    },
+    {
+      "label": "Decisions",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "community": 158,
+      "norm_label": "decisions"
+    },
+    {
+      "label": "1. Manter o mon\u00f3lito modular e os dois front-ends",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_1_manter_o_mon\u00f3lito_modular_e_os_dois_front_ends",
+      "community": 158,
+      "norm_label": "1. manter o monolito modular e os dois front-ends"
+    },
+    {
+      "label": "2. Usar API de mesma origem em produ\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_2_usar_api_de_mesma_origem_em_produ\u00e7\u00e3o",
+      "community": 158,
+      "norm_label": "2. usar api de mesma origem em producao"
+    },
+    {
+      "label": "3. Padronizar erros com Problem Details e sucesso por recurso",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_3_padronizar_erros_com_problem_details_e_sucesso_por_recurso",
+      "community": 158,
+      "norm_label": "3. padronizar erros com problem details e sucesso por recurso"
+    },
+    {
+      "label": "4. Separar modelos de persist\u00eancia dos contratos da API",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L76",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_4_separar_modelos_de_persist\u00eancia_dos_contratos_da_api",
+      "community": 158,
+      "norm_label": "4. separar modelos de persistencia dos contratos da api"
+    },
+    {
+      "label": "5. Implementar produto como cat\u00e1logo, n\u00e3o como saldo transacional",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L89",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_5_implementar_produto_como_cat\u00e1logo_n\u00e3o_como_saldo_transacional",
+      "community": 158,
+      "norm_label": "5. implementar produto como catalogo, nao como saldo transacional"
+    },
+    {
+      "label": "6. Usar identidade consolidada e sess\u00e3o curta revog\u00e1vel",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L103",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_6_usar_identidade_consolidada_e_sess\u00e3o_curta_revog\u00e1vel",
+      "community": 158,
+      "norm_label": "6. usar identidade consolidada e sessao curta revogavel"
+    },
+    {
+      "label": "7. Provisionar administrador de forma expl\u00edcita e idempotente",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L123",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_7_provisionar_administrador_de_forma_expl\u00edcita_e_idempotente",
+      "community": 158,
+      "norm_label": "7. provisionar administrador de forma explicita e idempotente"
+    },
+    {
+      "label": "8. Introduzir auditoria administrativa append-only",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L134",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_8_introduzir_auditoria_administrativa_append_only",
+      "community": 158,
+      "norm_label": "8. introduzir auditoria administrativa append-only"
+    },
+    {
+      "label": "9. Testar com a mesma classe de banco usada em produ\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L148",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_9_testar_com_a_mesma_classe_de_banco_usada_em_produ\u00e7\u00e3o",
+      "community": 158,
+      "norm_label": "9. testar com a mesma classe de banco usada em producao"
+    },
+    {
+      "label": "10. Evoluir acessibilidade nos componentes compartilhados atuais",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L162",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_10_evoluir_acessibilidade_nos_componentes_compartilhados_atuais",
+      "community": 158,
+      "norm_label": "10. evoluir acessibilidade nos componentes compartilhados atuais"
+    },
+    {
+      "label": "Risks / Trade-offs",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L175",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_risks_trade_offs",
+      "community": 158,
+      "norm_label": "risks / trade-offs"
+    },
+    {
+      "label": "Migration Plan",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L197",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_design_migration_plan",
+      "community": 158,
+      "norm_label": "migration plan"
+    },
+    {
+      "label": "proposal.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_proposal",
+      "community": 162,
+      "norm_label": "proposal.md"
+    },
+    {
+      "label": "Why",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_proposal_why",
+      "community": 162,
+      "norm_label": "why"
+    },
+    {
+      "label": "What Changes",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_proposal_what_changes",
+      "community": 162,
+      "norm_label": "what changes"
+    },
+    {
+      "label": "Capabilities",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_proposal_capabilities",
+      "community": 162,
+      "norm_label": "capabilities"
+    },
+    {
+      "label": "New Capabilities",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_proposal_new_capabilities",
+      "community": 162,
+      "norm_label": "new capabilities"
+    },
+    {
+      "label": "Modified Capabilities",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_proposal_modified_capabilities",
+      "community": 162,
+      "norm_label": "modified capabilities"
+    },
+    {
+      "label": "Impact",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_proposal_impact",
+      "community": 162,
+      "norm_label": "impact"
+    },
+    {
+      "label": "spec.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec",
+      "community": 160,
+      "norm_label": "spec.md"
+    },
+    {
+      "label": "Purpose",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_purpose",
+      "community": 160,
+      "norm_label": "purpose"
+    },
+    {
+      "label": "ADDED Requirements",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_added_requirements",
+      "community": 160,
+      "norm_label": "added requirements"
+    },
+    {
+      "label": "Requirement: Fluxos existentes s\u00e3o oper\u00e1veis por teclado",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_fluxos_existentes_s\u00e3o_oper\u00e1veis_por_teclado",
+      "community": 160,
+      "norm_label": "requirement: fluxos existentes sao operaveis por teclado"
+    },
+    {
+      "label": "Scenario: Navega\u00e7\u00e3o pelo login",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_navega\u00e7\u00e3o_pelo_login",
+      "community": 160,
+      "norm_label": "scenario: navegacao pelo login"
+    },
+    {
+      "label": "Scenario: Modal aberto",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_modal_aberto",
+      "community": 160,
+      "norm_label": "scenario: modal aberto"
+    },
+    {
+      "label": "Requirement: Controles possuem nome, estado e instru\u00e7\u00e3o acess\u00edveis",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_controles_possuem_nome_estado_e_instru\u00e7\u00e3o_acess\u00edveis",
+      "community": 160,
+      "norm_label": "requirement: controles possuem nome, estado e instrucao acessiveis"
+    },
+    {
+      "label": "Scenario: Bot\u00e3o somente com \u00edcone",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_bot\u00e3o_somente_com_\u00edcone",
+      "community": 160,
+      "norm_label": "scenario: botao somente com icone"
+    },
+    {
+      "label": "Scenario: Erro de formul\u00e1rio",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_erro_de_formul\u00e1rio",
+      "community": 160,
+      "norm_label": "scenario: erro de formulario"
+    },
+    {
+      "label": "Requirement: Prefer\u00eancias visuais s\u00e3o persistentes e limitadas",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_prefer\u00eancias_visuais_s\u00e3o_persistentes_e_limitadas",
+      "community": 160,
+      "norm_label": "requirement: preferencias visuais sao persistentes e limitadas"
+    },
+    {
+      "label": "Scenario: Prefer\u00eancia persistida",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_prefer\u00eancia_persistida",
+      "community": 160,
+      "norm_label": "scenario: preferencia persistida"
+    },
+    {
+      "label": "Scenario: Valor persistido inv\u00e1lido",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_valor_persistido_inv\u00e1lido",
+      "community": 160,
+      "norm_label": "scenario: valor persistido invalido"
+    },
+    {
+      "label": "Requirement: Estrutura e contraste possuem crit\u00e9rios verific\u00e1veis",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_estrutura_e_contraste_possuem_crit\u00e9rios_verific\u00e1veis",
+      "community": 160,
+      "norm_label": "requirement: estrutura e contraste possuem criterios verificaveis"
+    },
+    {
+      "label": "Scenario: Verifica\u00e7\u00e3o automatizada",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_verifica\u00e7\u00e3o_automatizada",
+      "community": 160,
+      "norm_label": "scenario: verificacao automatizada"
+    },
+    {
+      "label": "Scenario: Verifica\u00e7\u00e3o manual de teclado",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_verifica\u00e7\u00e3o_manual_de_teclado",
+      "community": 160,
+      "norm_label": "scenario: verificacao manual de teclado"
+    },
+    {
+      "label": "spec.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec",
+      "community": 157,
+      "norm_label": "spec.md"
+    },
+    {
+      "label": "Purpose",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_purpose",
+      "community": 157,
+      "norm_label": "purpose"
+    },
+    {
+      "label": "ADDED Requirements",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_added_requirements",
+      "community": 157,
+      "norm_label": "added requirements"
+    },
+    {
+      "label": "Requirement: Backend possui testes automatizados representativos",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_backend_possui_testes_automatizados_representativos",
+      "community": 157,
+      "norm_label": "requirement: backend possui testes automatizados representativos"
+    },
+    {
+      "label": "Scenario: Testes com PostgreSQL compat\u00edvel",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_testes_com_postgresql_compat\u00edvel",
+      "community": 157,
+      "norm_label": "scenario: testes com postgresql compativel"
+    },
+    {
+      "label": "Scenario: Regress\u00e3o de autoriza\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_regress\u00e3o_de_autoriza\u00e7\u00e3o",
+      "community": 157,
+      "norm_label": "scenario: regressao de autorizacao"
+    },
+    {
+      "label": "Requirement: Front-ends possuem testes de comportamento",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_front_ends_possuem_testes_de_comportamento",
+      "community": 157,
+      "norm_label": "requirement: front-ends possuem testes de comportamento"
+    },
+    {
+      "label": "Scenario: Falha de API no CRUD",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_falha_de_api_no_crud",
+      "community": 157,
+      "norm_label": "scenario: falha de api no crud"
+    },
+    {
+      "label": "Scenario: Sess\u00e3o expirada",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_sess\u00e3o_expirada",
+      "community": 157,
+      "norm_label": "scenario: sessao expirada"
+    },
+    {
+      "label": "Requirement: CI bloqueia mudan\u00e7as n\u00e3o verificadas",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_ci_bloqueia_mudan\u00e7as_n\u00e3o_verificadas",
+      "community": 157,
+      "norm_label": "requirement: ci bloqueia mudancas nao verificadas"
+    },
+    {
+      "label": "Scenario: M\u00f3dulo alterado",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_m\u00f3dulo_alterado",
+      "community": 157,
+      "norm_label": "scenario: modulo alterado"
+    },
+    {
+      "label": "Scenario: Apenas documenta\u00e7\u00e3o alterada",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_apenas_documenta\u00e7\u00e3o_alterada",
+      "community": 157,
+      "norm_label": "scenario: apenas documentacao alterada"
+    },
+    {
+      "label": "Requirement: Cobertura \u00e9 publicada e caminhos cr\u00edticos n\u00e3o ficam sem teste",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_cobertura_\u00e9_publicada_e_caminhos_cr\u00edticos_n\u00e3o_ficam_sem_teste",
+      "community": 157,
+      "norm_label": "requirement: cobertura e publicada e caminhos criticos nao ficam sem teste"
+    },
+    {
+      "label": "Scenario: Novo caminho cr\u00edtico sem teste",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_novo_caminho_cr\u00edtico_sem_teste",
+      "community": 157,
+      "norm_label": "scenario: novo caminho critico sem teste"
+    },
+    {
+      "label": "Requirement: Dados de teste n\u00e3o cont\u00eam dados pessoais reais",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_dados_de_teste_n\u00e3o_cont\u00eam_dados_pessoais_reais",
+      "community": 157,
+      "norm_label": "requirement: dados de teste nao contem dados pessoais reais"
+    },
+    {
+      "label": "Scenario: Verifica\u00e7\u00e3o de fixture",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_verifica\u00e7\u00e3o_de_fixture",
+      "community": 157,
+      "norm_label": "scenario: verificacao de fixture"
+    },
+    {
+      "label": "Requirement: Migra\u00e7\u00f5es s\u00e3o verificadas em instala\u00e7\u00e3o e atualiza\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_migra\u00e7\u00f5es_s\u00e3o_verificadas_em_instala\u00e7\u00e3o_e_atualiza\u00e7\u00e3o",
+      "community": 157,
+      "norm_label": "requirement: migracoes sao verificadas em instalacao e atualizacao"
+    },
+    {
+      "label": "Scenario: Instala\u00e7\u00e3o limpa",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_instala\u00e7\u00e3o_limpa",
+      "community": 157,
+      "norm_label": "scenario: instalacao limpa"
+    },
+    {
+      "label": "Scenario: Atualiza\u00e7\u00e3o de vers\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L71",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_atualiza\u00e7\u00e3o_de_vers\u00e3o",
+      "community": 157,
+      "norm_label": "scenario: atualizacao de versao"
+    },
+    {
+      "label": "spec.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec",
+      "community": 155,
+      "norm_label": "spec.md"
+    },
+    {
+      "label": "Purpose",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_purpose",
+      "community": 155,
+      "norm_label": "purpose"
+    },
+    {
+      "label": "ADDED Requirements",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_added_requirements",
+      "community": 155,
+      "norm_label": "added requirements"
+    },
+    {
+      "label": "Requirement: Usu\u00e1rio autentica-se com identidade individual",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_usu\u00e1rio_autentica_se_com_identidade_individual",
+      "community": 155,
+      "norm_label": "requirement: usuario autentica-se com identidade individual"
+    },
+    {
+      "label": "Scenario: Credenciais v\u00e1lidas",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_credenciais_v\u00e1lidas",
+      "community": 155,
+      "norm_label": "scenario: credenciais validas"
+    },
+    {
+      "label": "Scenario: Credenciais inv\u00e1lidas",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_credenciais_inv\u00e1lidas",
+      "community": 155,
+      "norm_label": "scenario: credenciais invalidas"
+    },
+    {
+      "label": "Scenario: Conta inativa",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_conta_inativa",
+      "community": 155,
+      "norm_label": "scenario: conta inativa"
+    },
+    {
+      "label": "Requirement: Sess\u00e3o e tokens possuem prote\u00e7\u00e3o e expira\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_sess\u00e3o_e_tokens_possuem_prote\u00e7\u00e3o_e_expira\u00e7\u00e3o",
+      "community": 155,
+      "norm_label": "requirement: sessao e tokens possuem protecao e expiracao"
+    },
+    {
+      "label": "Scenario: Sess\u00e3o expirada",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_sess\u00e3o_expirada",
+      "community": 155,
+      "norm_label": "scenario: sessao expirada"
+    },
+    {
+      "label": "Scenario: Logout",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_logout",
+      "community": 155,
+      "norm_label": "scenario: logout"
+    },
+    {
+      "label": "Scenario: Reutiliza\u00e7\u00e3o de sess\u00e3o revogada",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_reutiliza\u00e7\u00e3o_de_sess\u00e3o_revogada",
+      "community": 155,
+      "norm_label": "scenario: reutilizacao de sessao revogada"
+    },
+    {
+      "label": "Requirement: APIs e rotas s\u00e3o protegidas por papel",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_apis_e_rotas_s\u00e3o_protegidas_por_papel",
+      "community": 155,
+      "norm_label": "requirement: apis e rotas sao protegidas por papel"
+    },
+    {
+      "label": "Scenario: Requisi\u00e7\u00e3o an\u00f4nima",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_requisi\u00e7\u00e3o_an\u00f4nima",
+      "community": 155,
+      "norm_label": "scenario: requisicao anonima"
+    },
+    {
+      "label": "Scenario: Usu\u00e1rio sem papel necess\u00e1rio",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_usu\u00e1rio_sem_papel_necess\u00e1rio",
+      "community": 155,
+      "norm_label": "scenario: usuario sem papel necessario"
+    },
+    {
+      "label": "Scenario: Administrador autorizado",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_administrador_autorizado",
+      "community": 155,
+      "norm_label": "scenario: administrador autorizado"
+    },
+    {
+      "label": "Requirement: Tentativas de autentica\u00e7\u00e3o s\u00e3o protegidas contra abuso",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_tentativas_de_autentica\u00e7\u00e3o_s\u00e3o_protegidas_contra_abuso",
+      "community": 155,
+      "norm_label": "requirement: tentativas de autenticacao sao protegidas contra abuso"
+    },
+    {
+      "label": "Scenario: Repeti\u00e7\u00e3o de falhas",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_repeti\u00e7\u00e3o_de_falhas",
+      "community": 155,
+      "norm_label": "scenario: repeticao de falhas"
+    },
+    {
+      "label": "Requirement: Credencial administrativa inicial \u00e9 provisionada com seguran\u00e7a",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_credencial_administrativa_inicial_\u00e9_provisionada_com_seguran\u00e7a",
+      "community": 155,
+      "norm_label": "requirement: credencial administrativa inicial e provisionada com seguranca"
+    },
+    {
+      "label": "Scenario: Primeiro provisionamento",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_primeiro_provisionamento",
+      "community": 155,
+      "norm_label": "scenario: primeiro provisionamento"
+    },
+    {
+      "label": "Scenario: Rein\u00edcio posterior",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L76",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_rein\u00edcio_posterior",
+      "community": 155,
+      "norm_label": "scenario: reinicio posterior"
+    },
+    {
+      "label": "Requirement: Autentica\u00e7\u00e3o n\u00e3o implica autoriza\u00e7\u00e3o cl\u00ednica",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_autentica\u00e7\u00e3o_n\u00e3o_implica_autoriza\u00e7\u00e3o_cl\u00ednica",
+      "community": 155,
+      "norm_label": "requirement: autenticacao nao implica autorizacao clinica"
+    },
+    {
+      "label": "Scenario: Introdu\u00e7\u00e3o futura de dado assistencial",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_introdu\u00e7\u00e3o_futura_de_dado_assistencial",
+      "community": 155,
+      "norm_label": "scenario: introducao futura de dado assistencial"
+    },
+    {
+      "label": "spec.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec",
+      "community": 159,
+      "norm_label": "spec.md"
+    },
+    {
+      "label": "Purpose",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_purpose",
+      "community": 159,
+      "norm_label": "purpose"
+    },
+    {
+      "label": "ADDED Requirements",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_added_requirements",
+      "community": 159,
+      "norm_label": "added requirements"
+    },
+    {
+      "label": "Requirement: Todos os componentes produzem artefatos de entrega",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_todos_os_componentes_produzem_artefatos_de_entrega",
+      "community": 159,
+      "norm_label": "requirement: todos os componentes produzem artefatos de entrega"
+    },
+    {
+      "label": "Scenario: Build limpo da plataforma",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_build_limpo_da_plataforma",
+      "community": 159,
+      "norm_label": "scenario: build limpo da plataforma"
+    },
+    {
+      "label": "Scenario: Erro de tipagem bloqueia a entrega",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_erro_de_tipagem_bloqueia_a_entrega",
+      "community": 159,
+      "norm_label": "scenario: erro de tipagem bloqueia a entrega"
+    },
+    {
+      "label": "Requirement: Endere\u00e7o da API \u00e9 configur\u00e1vel por ambiente",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_endere\u00e7o_da_api_\u00e9_configur\u00e1vel_por_ambiente",
+      "community": 159,
+      "norm_label": "requirement: endereco da api e configuravel por ambiente"
+    },
+    {
+      "label": "Scenario: Execu\u00e7\u00e3o local",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_execu\u00e7\u00e3o_local",
+      "community": 159,
+      "norm_label": "scenario: execucao local"
+    },
+    {
+      "label": "Scenario: Execu\u00e7\u00e3o em produ\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_execu\u00e7\u00e3o_em_produ\u00e7\u00e3o",
+      "community": 159,
+      "norm_label": "scenario: execucao em producao"
+    },
+    {
+      "label": "Scenario: Configura\u00e7\u00e3o obrigat\u00f3ria ausente",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_configura\u00e7\u00e3o_obrigat\u00f3ria_ausente",
+      "community": 159,
+      "norm_label": "scenario: configuracao obrigatoria ausente"
+    },
+    {
+      "label": "Requirement: Configura\u00e7\u00f5es e segredos s\u00e3o separados",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_configura\u00e7\u00f5es_e_segredos_s\u00e3o_separados",
+      "community": 159,
+      "norm_label": "requirement: configuracoes e segredos sao separados"
+    },
+    {
+      "label": "Scenario: Credencial fornecida por ambiente",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_credencial_fornecida_por_ambiente",
+      "community": 159,
+      "norm_label": "scenario: credencial fornecida por ambiente"
+    },
+    {
+      "label": "Scenario: Exemplo de configura\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_exemplo_de_configura\u00e7\u00e3o",
+      "community": 159,
+      "norm_label": "scenario: exemplo de configuracao"
+    },
+    {
+      "label": "Requirement: Diagn\u00f3stico distingue vida e prontid\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_diagn\u00f3stico_distingue_vida_e_prontid\u00e3o",
+      "community": 159,
+      "norm_label": "requirement: diagnostico distingue vida e prontidao"
+    },
+    {
+      "label": "Scenario: Processo vivo com banco indispon\u00edvel",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_processo_vivo_com_banco_indispon\u00edvel",
+      "community": 159,
+      "norm_label": "scenario: processo vivo com banco indisponivel"
+    },
+    {
+      "label": "Scenario: Servi\u00e7o pronto",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_servi\u00e7o_pronto",
+      "community": 159,
+      "norm_label": "scenario: servico pronto"
+    },
+    {
+      "label": "spec.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec",
+      "community": 156,
+      "norm_label": "spec.md"
+    },
+    {
+      "label": "Purpose",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_purpose",
+      "community": 156,
+      "norm_label": "purpose"
+    },
+    {
+      "label": "ADDED Requirements",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_added_requirements",
+      "community": 156,
+      "norm_label": "added requirements"
+    },
+    {
+      "label": "Requirement: Contrato uniforme para cadastros auxiliares",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_contrato_uniforme_para_cadastros_auxiliares",
+      "community": 156,
+      "norm_label": "requirement: contrato uniforme para cadastros auxiliares"
+    },
+    {
+      "label": "Scenario: Consulta paginada",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_consulta_paginada",
+      "community": 156,
+      "norm_label": "scenario: consulta paginada"
+    },
+    {
+      "label": "Scenario: Recurso inexistente",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_recurso_inexistente",
+      "community": 156,
+      "norm_label": "scenario: recurso inexistente"
+    },
+    {
+      "label": "Scenario: Requisi\u00e7\u00e3o inv\u00e1lida",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_requisi\u00e7\u00e3o_inv\u00e1lida",
+      "community": 156,
+      "norm_label": "scenario: requisicao invalida"
+    },
+    {
+      "label": "Scenario: Falha interna",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_falha_interna",
+      "community": 156,
+      "norm_label": "scenario: falha interna"
+    },
+    {
+      "label": "Requirement: Altera\u00e7\u00f5es preservam identidade e concorr\u00eancia",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_altera\u00e7\u00f5es_preservam_identidade_e_concorr\u00eancia",
+      "community": 156,
+      "norm_label": "requirement: alteracoes preservam identidade e concorrencia"
+    },
+    {
+      "label": "Scenario: Identificador divergente",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_identificador_divergente",
+      "community": 156,
+      "norm_label": "scenario: identificador divergente"
+    },
+    {
+      "label": "Scenario: Vers\u00e3o desatualizada",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_vers\u00e3o_desatualizada",
+      "community": 156,
+      "norm_label": "scenario: versao desatualizada"
+    },
+    {
+      "label": "Requirement: Exclus\u00e3o respeita refer\u00eancias e hist\u00f3rico administrativo",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_exclus\u00e3o_respeita_refer\u00eancias_e_hist\u00f3rico_administrativo",
+      "community": 156,
+      "norm_label": "requirement: exclusao respeita referencias e historico administrativo"
+    },
+    {
+      "label": "Scenario: Inativa\u00e7\u00e3o de item em uso",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_inativa\u00e7\u00e3o_de_item_em_uso",
+      "community": 156,
+      "norm_label": "scenario: inativacao de item em uso"
+    },
+    {
+      "label": "Scenario: Exclus\u00e3o incompat\u00edvel",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_exclus\u00e3o_incompat\u00edvel",
+      "community": 156,
+      "norm_label": "scenario: exclusao incompativel"
+    },
+    {
+      "label": "Requirement: Cat\u00e1logo de produtos \u00e9 integrado de ponta a ponta",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_cat\u00e1logo_de_produtos_\u00e9_integrado_de_ponta_a_ponta",
+      "community": 156,
+      "norm_label": "requirement: catalogo de produtos e integrado de ponta a ponta"
+    },
+    {
+      "label": "Scenario: Cadastro v\u00e1lido de produto",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_cadastro_v\u00e1lido_de_produto",
+      "community": 156,
+      "norm_label": "scenario: cadastro valido de produto"
+    },
+    {
+      "label": "Scenario: Refer\u00eancia inv\u00e1lida",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_refer\u00eancia_inv\u00e1lida",
+      "community": 156,
+      "norm_label": "scenario: referencia invalida"
+    },
+    {
+      "label": "Scenario: Consulta e filtro de produtos",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L68",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_consulta_e_filtro_de_produtos",
+      "community": 156,
+      "norm_label": "scenario: consulta e filtro de produtos"
+    },
+    {
+      "label": "Scenario: Limite do cat\u00e1logo",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_limite_do_cat\u00e1logo",
+      "community": 156,
+      "norm_label": "scenario: limite do catalogo"
+    },
+    {
+      "label": "Requirement: Opera\u00e7\u00f5es administrativas s\u00e3o atribu\u00edveis",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L76",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_opera\u00e7\u00f5es_administrativas_s\u00e3o_atribu\u00edveis",
+      "community": 156,
+      "norm_label": "requirement: operacoes administrativas sao atribuiveis"
+    },
+    {
+      "label": "Scenario: Altera\u00e7\u00e3o autenticada",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_altera\u00e7\u00e3o_autenticada",
+      "community": 156,
+      "norm_label": "scenario: alteracao autenticada"
+    },
+    {
+      "label": "tasks.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_tasks",
+      "community": 161,
+      "norm_label": "tasks.md"
+    },
+    {
+      "label": "1. Baseline e infraestrutura de testes",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_tasks_1_baseline_e_infraestrutura_de_testes",
+      "community": 161,
+      "norm_label": "1. baseline e infraestrutura de testes"
+    },
+    {
+      "label": "2. Configura\u00e7\u00e3o e diagn\u00f3stico de execu\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_tasks_2_configura\u00e7\u00e3o_e_diagn\u00f3stico_de_execu\u00e7\u00e3o",
+      "community": 161,
+      "norm_label": "2. configuracao e diagnostico de execucao"
+    },
+    {
+      "label": "3. Contratos HTTP e tratamento de erros",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_tasks_3_contratos_http_e_tratamento_de_erros",
+      "community": 161,
+      "norm_label": "3. contratos http e tratamento de erros"
+    },
+    {
+      "label": "4. Identidade, autentica\u00e7\u00e3o e autoriza\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_tasks_4_identidade_autentica\u00e7\u00e3o_e_autoriza\u00e7\u00e3o",
+      "community": 161,
+      "norm_label": "4. identidade, autenticacao e autorizacao"
+    },
+    {
+      "label": "5. Auditoria administrativa",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_tasks_5_auditoria_administrativa",
+      "community": 161,
+      "norm_label": "5. auditoria administrativa"
+    },
+    {
+      "label": "6. Cat\u00e1logos auxiliares e produto",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_tasks_6_cat\u00e1logos_auxiliares_e_produto",
+      "community": 161,
+      "norm_label": "6. catalogos auxiliares e produto"
+    },
+    {
+      "label": "7. Sess\u00e3o e contratos nos front-ends",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_tasks_7_sess\u00e3o_e_contratos_nos_front_ends",
+      "community": 161,
+      "norm_label": "7. sessao e contratos nos front-ends"
+    },
+    {
+      "label": "8. Baseline de acessibilidade",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_tasks_8_baseline_de_acessibilidade",
+      "community": 161,
+      "norm_label": "8. baseline de acessibilidade"
+    },
+    {
+      "label": "9. CI, migra\u00e7\u00e3o e entrega",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L83",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_tasks_9_ci_migra\u00e7\u00e3o_e_entrega",
+      "community": 161,
+      "norm_label": "9. ci, migracao e entrega"
+    },
+    {
+      "label": "10. Aceite da mudan\u00e7a",
+      "file_type": "document",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L96",
+      "_origin": "ast",
+      "id": "openspec_changes_stabilize_existing_platform_tasks_10_aceite_da_mudan\u00e7a",
+      "community": 161,
+      "norm_label": "10. aceite da mudanca"
     },
     {
       "label": "Modal",
@@ -33263,7 +34873,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0,
       "source": "readme",
       "target": "docs_infra_ci_cd_arquitetura",
@@ -33273,7 +34883,17 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L30",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L31",
       "weight": 1.0,
       "source": "readme",
       "target": "infra_deploy_readme",
@@ -33283,7 +34903,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "source": "readme",
       "target": "infra_docker_test_readme",
@@ -33380,6 +35000,16 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1062",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/escopo-do-projeto.md",
@@ -33413,7 +35043,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/escopo-do-projeto.md",
-      "source_location": "L1057",
+      "source_location": "L1120",
       "weight": 1.0,
       "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
       "target": "docs_escopo_do_projeto_13_decis\u00f5es_em_aberto",
@@ -33423,7 +35053,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/escopo-do-projeto.md",
-      "source_location": "L1095",
+      "source_location": "L1158",
       "weight": 1.0,
       "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
       "target": "docs_escopo_do_projeto_14_crit\u00e9rios_de_sucesso_do_produto",
@@ -33433,7 +35063,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/escopo-do-projeto.md",
-      "source_location": "L1118",
+      "source_location": "L1181",
       "weight": 1.0,
       "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
       "target": "docs_escopo_do_projeto_15_gloss\u00e1rio_inicial",
@@ -33443,7 +35073,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/escopo-do-projeto.md",
-      "source_location": "L1144",
+      "source_location": "L1207",
       "weight": 1.0,
       "source": "docs_escopo_do_projeto_escopo_do_projeto_seniorcare",
       "target": "docs_escopo_do_projeto_16_refer\u00eancias",
@@ -34002,6 +35632,26 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1057",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_12_rela\u00e7\u00e3o_com_o_software_existente",
+      "target": "docs_escopo_do_projeto_12_1_avalia\u00e7\u00e3o_formal_do_estado_atual",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/escopo-do-projeto.md",
+      "source_location": "L1095",
+      "weight": 1.0,
+      "source": "docs_escopo_do_projeto_12_rela\u00e7\u00e3o_com_o_software_existente",
+      "target": "docs_escopo_do_projeto_12_2_restri\u00e7\u00f5es_de_prontid\u00e3o_decorrentes_da_avalia\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "docs/infra/ci-cd-arquitetura.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -34122,6 +35772,316 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L298",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_10_sequ\u00eancia_recomendada_de_evolu\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L355",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_11_crit\u00e9rios_m\u00ednimos_para_declarar_o_primeiro_mvp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L373",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_12_parecer_final",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L386",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_13_limita\u00e7\u00f5es_da_avalia\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_1_resultado_executivo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_2_m\u00e9todo_e_crit\u00e9rios",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_3_invent\u00e1rio_comprovado_da_implementa\u00e7\u00e3o_atual",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L152",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_4_matriz_dos_dom\u00ednios_funcionais",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L168",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_5_matriz_dos_fluxos_integrados_priorit\u00e1rios",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L181",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_6_matriz_dos_requisitos_transversais",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L193",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_7_avalia\u00e7\u00e3o_espec\u00edfica_das_capacidades_cr\u00edticas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L244",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_8_valida\u00e7\u00f5es_t\u00e9cnicas_executadas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L257",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_relat\u00f3rio_de_avalia\u00e7\u00e3o_requisitos_versus_implementa\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_9_riscos_e_lacunas_priorizados",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_1_resultado_executivo",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_conclus\u00e3o_de_prontid\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_3_invent\u00e1rio_comprovado_da_implementa\u00e7\u00e3o_atual",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_3_1_backend",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_3_invent\u00e1rio_comprovado_da_implementa\u00e7\u00e3o_atual",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_3_2_front_end_assistencial",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_3_invent\u00e1rio_comprovado_da_implementa\u00e7\u00e3o_atual",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_3_3_front_end_de_estoque",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L135",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_3_invent\u00e1rio_comprovado_da_implementa\u00e7\u00e3o_atual",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_3_4_infraestrutura_e_entrega",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L195",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_7_avalia\u00e7\u00e3o_espec\u00edfica_das_capacidades_cr\u00edticas",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_7_1_prontu\u00e1rio_multidisciplinar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L216",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_7_avalia\u00e7\u00e3o_espec\u00edfica_das_capacidades_cr\u00edticas",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_7_2_assinatura_eletr\u00f4nica",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L230",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_7_avalia\u00e7\u00e3o_espec\u00edfica_das_capacidades_cr\u00edticas",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_7_3_dashboards_estat\u00edsticos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L270",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_9_riscos_e_lacunas_priorizados",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_altos_bloqueiam_um_mvp_confi\u00e1vel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L259",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_9_riscos_e_lacunas_priorizados",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_cr\u00edticos_bloqueiam_uso_assistencial_real",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L286",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_9_riscos_e_lacunas_priorizados",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_m\u00e9dios_d\u00edvida_de_qualidade_e_opera\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L300",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_10_sequ\u00eancia_recomendada_de_evolu\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_0_estabilizar_a_linha_de_base",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L310",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_10_sequ\u00eancia_recomendada_de_evolu\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_1_funda\u00e7\u00e3o_segura",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L321",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_10_sequ\u00eancia_recomendada_de_evolu\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_2_opera\u00e7\u00e3o_cotidiana",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L330",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_10_sequ\u00eancia_recomendada_de_evolu\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_3_prontu\u00e1rio_multidisciplinar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L339",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_10_sequ\u00eancia_recomendada_de_evolu\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_4_sustentabilidade_institucional",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/relatorio-avaliacao-requisitos-implementacao.md",
+      "source_location": "L347",
+      "weight": 1.0,
+      "source": "docs_relatorio_avaliacao_requisitos_implementacao_10_sequ\u00eancia_recomendada_de_evolu\u00e7\u00e3o",
+      "target": "docs_relatorio_avaliacao_requisitos_implementacao_prioridade_5_assinatura_e_redu\u00e7\u00e3o_de_papel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "infra/deploy/README.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -34208,8 +36168,1198 @@
       "source": "infra_docker_test_readme_infra_docker_test_stack_local_build_a_partir_do_c\u00f3digo",
       "target": "infra_docker_test_readme_uso",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design",
+      "target": "openspec_changes_stabilize_existing_platform_design_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design",
+      "target": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design",
+      "target": "openspec_changes_stabilize_existing_platform_design_goals_non_goals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L197",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design",
+      "target": "openspec_changes_stabilize_existing_platform_design_migration_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L175",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design",
+      "target": "openspec_changes_stabilize_existing_platform_design_risks_trade_offs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L162",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "target": "openspec_changes_stabilize_existing_platform_design_10_evoluir_acessibilidade_nos_componentes_compartilhados_atuais",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "target": "openspec_changes_stabilize_existing_platform_design_1_manter_o_mon\u00f3lito_modular_e_os_dois_front_ends",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "target": "openspec_changes_stabilize_existing_platform_design_2_usar_api_de_mesma_origem_em_produ\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "target": "openspec_changes_stabilize_existing_platform_design_3_padronizar_erros_com_problem_details_e_sucesso_por_recurso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "target": "openspec_changes_stabilize_existing_platform_design_4_separar_modelos_de_persist\u00eancia_dos_contratos_da_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "target": "openspec_changes_stabilize_existing_platform_design_5_implementar_produto_como_cat\u00e1logo_n\u00e3o_como_saldo_transacional",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "target": "openspec_changes_stabilize_existing_platform_design_6_usar_identidade_consolidada_e_sess\u00e3o_curta_revog\u00e1vel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L123",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "target": "openspec_changes_stabilize_existing_platform_design_7_provisionar_administrador_de_forma_expl\u00edcita_e_idempotente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L134",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "target": "openspec_changes_stabilize_existing_platform_design_8_introduzir_auditoria_administrativa_append_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/design.md",
+      "source_location": "L148",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_design_decisions",
+      "target": "openspec_changes_stabilize_existing_platform_design_9_testar_com_a_mesma_classe_de_banco_usada_em_produ\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_proposal",
+      "target": "openspec_changes_stabilize_existing_platform_proposal_capabilities",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_proposal",
+      "target": "openspec_changes_stabilize_existing_platform_proposal_impact",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_proposal",
+      "target": "openspec_changes_stabilize_existing_platform_proposal_what_changes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_proposal",
+      "target": "openspec_changes_stabilize_existing_platform_proposal_why",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_proposal_capabilities",
+      "target": "openspec_changes_stabilize_existing_platform_proposal_modified_capabilities",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/proposal.md",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_proposal_capabilities",
+      "target": "openspec_changes_stabilize_existing_platform_proposal_new_capabilities",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_added_requirements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_purpose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_controles_possuem_nome_estado_e_instru\u00e7\u00e3o_acess\u00edveis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_estrutura_e_contraste_possuem_crit\u00e9rios_verific\u00e1veis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_fluxos_existentes_s\u00e3o_oper\u00e1veis_por_teclado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_prefer\u00eancias_visuais_s\u00e3o_persistentes_e_limitadas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_fluxos_existentes_s\u00e3o_oper\u00e1veis_por_teclado",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_modal_aberto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_fluxos_existentes_s\u00e3o_oper\u00e1veis_por_teclado",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_navega\u00e7\u00e3o_pelo_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_controles_possuem_nome_estado_e_instru\u00e7\u00e3o_acess\u00edveis",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_bot\u00e3o_somente_com_\u00edcone",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_controles_possuem_nome_estado_e_instru\u00e7\u00e3o_acess\u00edveis",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_erro_de_formul\u00e1rio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_prefer\u00eancias_visuais_s\u00e3o_persistentes_e_limitadas",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_prefer\u00eancia_persistida",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_prefer\u00eancias_visuais_s\u00e3o_persistentes_e_limitadas",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_valor_persistido_inv\u00e1lido",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_estrutura_e_contraste_possuem_crit\u00e9rios_verific\u00e1veis",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_verifica\u00e7\u00e3o_automatizada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/accessibility-baseline/spec.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_requirement_estrutura_e_contraste_possuem_crit\u00e9rios_verific\u00e1veis",
+      "target": "openspec_changes_stabilize_existing_platform_specs_accessibility_baseline_spec_scenario_verifica\u00e7\u00e3o_manual_de_teclado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_added_requirements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_purpose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_backend_possui_testes_automatizados_representativos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_ci_bloqueia_mudan\u00e7as_n\u00e3o_verificadas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_cobertura_\u00e9_publicada_e_caminhos_cr\u00edticos_n\u00e3o_ficam_sem_teste",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_dados_de_teste_n\u00e3o_cont\u00eam_dados_pessoais_reais",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_front_ends_possuem_testes_de_comportamento",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_migra\u00e7\u00f5es_s\u00e3o_verificadas_em_instala\u00e7\u00e3o_e_atualiza\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_backend_possui_testes_automatizados_representativos",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_regress\u00e3o_de_autoriza\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_backend_possui_testes_automatizados_representativos",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_testes_com_postgresql_compat\u00edvel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_front_ends_possuem_testes_de_comportamento",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_falha_de_api_no_crud",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_front_ends_possuem_testes_de_comportamento",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_sess\u00e3o_expirada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_ci_bloqueia_mudan\u00e7as_n\u00e3o_verificadas",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_apenas_documenta\u00e7\u00e3o_alterada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_ci_bloqueia_mudan\u00e7as_n\u00e3o_verificadas",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_m\u00f3dulo_alterado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_cobertura_\u00e9_publicada_e_caminhos_cr\u00edticos_n\u00e3o_ficam_sem_teste",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_novo_caminho_cr\u00edtico_sem_teste",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_dados_de_teste_n\u00e3o_cont\u00eam_dados_pessoais_reais",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_verifica\u00e7\u00e3o_de_fixture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_migra\u00e7\u00f5es_s\u00e3o_verificadas_em_instala\u00e7\u00e3o_e_atualiza\u00e7\u00e3o",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_atualiza\u00e7\u00e3o_de_vers\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/automated-quality-gates/spec.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_requirement_migra\u00e7\u00f5es_s\u00e3o_verificadas_em_instala\u00e7\u00e3o_e_atualiza\u00e7\u00e3o",
+      "target": "openspec_changes_stabilize_existing_platform_specs_automated_quality_gates_spec_scenario_instala\u00e7\u00e3o_limpa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_added_requirements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_purpose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_apis_e_rotas_s\u00e3o_protegidas_por_papel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_autentica\u00e7\u00e3o_n\u00e3o_implica_autoriza\u00e7\u00e3o_cl\u00ednica",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_credencial_administrativa_inicial_\u00e9_provisionada_com_seguran\u00e7a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_sess\u00e3o_e_tokens_possuem_prote\u00e7\u00e3o_e_expira\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_tentativas_de_autentica\u00e7\u00e3o_s\u00e3o_protegidas_contra_abuso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_usu\u00e1rio_autentica_se_com_identidade_individual",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_usu\u00e1rio_autentica_se_com_identidade_individual",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_conta_inativa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_usu\u00e1rio_autentica_se_com_identidade_individual",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_credenciais_inv\u00e1lidas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_usu\u00e1rio_autentica_se_com_identidade_individual",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_credenciais_v\u00e1lidas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_sess\u00e3o_e_tokens_possuem_prote\u00e7\u00e3o_e_expira\u00e7\u00e3o",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_logout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_sess\u00e3o_e_tokens_possuem_prote\u00e7\u00e3o_e_expira\u00e7\u00e3o",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_reutiliza\u00e7\u00e3o_de_sess\u00e3o_revogada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_sess\u00e3o_e_tokens_possuem_prote\u00e7\u00e3o_e_expira\u00e7\u00e3o",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_sess\u00e3o_expirada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_apis_e_rotas_s\u00e3o_protegidas_por_papel",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_administrador_autorizado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_apis_e_rotas_s\u00e3o_protegidas_por_papel",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_requisi\u00e7\u00e3o_an\u00f4nima",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_apis_e_rotas_s\u00e3o_protegidas_por_papel",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_usu\u00e1rio_sem_papel_necess\u00e1rio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_tentativas_de_autentica\u00e7\u00e3o_s\u00e3o_protegidas_contra_abuso",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_repeti\u00e7\u00e3o_de_falhas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_credencial_administrativa_inicial_\u00e9_provisionada_com_seguran\u00e7a",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_primeiro_provisionamento",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_credencial_administrativa_inicial_\u00e9_provisionada_com_seguran\u00e7a",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_rein\u00edcio_posterior",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/platform-authentication/spec.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_requirement_autentica\u00e7\u00e3o_n\u00e3o_implica_autoriza\u00e7\u00e3o_cl\u00ednica",
+      "target": "openspec_changes_stabilize_existing_platform_specs_platform_authentication_spec_scenario_introdu\u00e7\u00e3o_futura_de_dado_assistencial",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_added_requirements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_purpose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_configura\u00e7\u00f5es_e_segredos_s\u00e3o_separados",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_diagn\u00f3stico_distingue_vida_e_prontid\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_endere\u00e7o_da_api_\u00e9_configur\u00e1vel_por_ambiente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_todos_os_componentes_produzem_artefatos_de_entrega",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_todos_os_componentes_produzem_artefatos_de_entrega",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_build_limpo_da_plataforma",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_todos_os_componentes_produzem_artefatos_de_entrega",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_erro_de_tipagem_bloqueia_a_entrega",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_endere\u00e7o_da_api_\u00e9_configur\u00e1vel_por_ambiente",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_configura\u00e7\u00e3o_obrigat\u00f3ria_ausente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_endere\u00e7o_da_api_\u00e9_configur\u00e1vel_por_ambiente",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_execu\u00e7\u00e3o_em_produ\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_endere\u00e7o_da_api_\u00e9_configur\u00e1vel_por_ambiente",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_execu\u00e7\u00e3o_local",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_configura\u00e7\u00f5es_e_segredos_s\u00e3o_separados",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_credencial_fornecida_por_ambiente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_configura\u00e7\u00f5es_e_segredos_s\u00e3o_separados",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_exemplo_de_configura\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_diagn\u00f3stico_distingue_vida_e_prontid\u00e3o",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_processo_vivo_com_banco_indispon\u00edvel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/runtime-configuration/spec.md",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_requirement_diagn\u00f3stico_distingue_vida_e_prontid\u00e3o",
+      "target": "openspec_changes_stabilize_existing_platform_specs_runtime_configuration_spec_scenario_servi\u00e7o_pronto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_added_requirements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_purpose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_altera\u00e7\u00f5es_preservam_identidade_e_concorr\u00eancia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_cat\u00e1logo_de_produtos_\u00e9_integrado_de_ponta_a_ponta",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_contrato_uniforme_para_cadastros_auxiliares",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_exclus\u00e3o_respeita_refer\u00eancias_e_hist\u00f3rico_administrativo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_added_requirements",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_opera\u00e7\u00f5es_administrativas_s\u00e3o_atribu\u00edveis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_contrato_uniforme_para_cadastros_auxiliares",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_consulta_paginada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_contrato_uniforme_para_cadastros_auxiliares",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_falha_interna",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_contrato_uniforme_para_cadastros_auxiliares",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_recurso_inexistente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_contrato_uniforme_para_cadastros_auxiliares",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_requisi\u00e7\u00e3o_inv\u00e1lida",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_altera\u00e7\u00f5es_preservam_identidade_e_concorr\u00eancia",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_identificador_divergente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_altera\u00e7\u00f5es_preservam_identidade_e_concorr\u00eancia",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_vers\u00e3o_desatualizada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_exclus\u00e3o_respeita_refer\u00eancias_e_hist\u00f3rico_administrativo",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_exclus\u00e3o_incompat\u00edvel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_exclus\u00e3o_respeita_refer\u00eancias_e_hist\u00f3rico_administrativo",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_inativa\u00e7\u00e3o_de_item_em_uso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_cat\u00e1logo_de_produtos_\u00e9_integrado_de_ponta_a_ponta",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_cadastro_v\u00e1lido_de_produto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_cat\u00e1logo_de_produtos_\u00e9_integrado_de_ponta_a_ponta",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_consulta_e_filtro_de_produtos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_cat\u00e1logo_de_produtos_\u00e9_integrado_de_ponta_a_ponta",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_limite_do_cat\u00e1logo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_cat\u00e1logo_de_produtos_\u00e9_integrado_de_ponta_a_ponta",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_refer\u00eancia_inv\u00e1lida",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/specs/support-catalogs/spec.md",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_requirement_opera\u00e7\u00f5es_administrativas_s\u00e3o_atribu\u00edveis",
+      "target": "openspec_changes_stabilize_existing_platform_specs_support_catalogs_spec_scenario_altera\u00e7\u00e3o_autenticada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_tasks",
+      "target": "openspec_changes_stabilize_existing_platform_tasks_10_aceite_da_mudan\u00e7a",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_tasks",
+      "target": "openspec_changes_stabilize_existing_platform_tasks_1_baseline_e_infraestrutura_de_testes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_tasks",
+      "target": "openspec_changes_stabilize_existing_platform_tasks_2_configura\u00e7\u00e3o_e_diagn\u00f3stico_de_execu\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_tasks",
+      "target": "openspec_changes_stabilize_existing_platform_tasks_3_contratos_http_e_tratamento_de_erros",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_tasks",
+      "target": "openspec_changes_stabilize_existing_platform_tasks_4_identidade_autentica\u00e7\u00e3o_e_autoriza\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_tasks",
+      "target": "openspec_changes_stabilize_existing_platform_tasks_5_auditoria_administrativa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_tasks",
+      "target": "openspec_changes_stabilize_existing_platform_tasks_6_cat\u00e1logos_auxiliares_e_produto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_tasks",
+      "target": "openspec_changes_stabilize_existing_platform_tasks_7_sess\u00e3o_e_contratos_nos_front_ends",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_tasks",
+      "target": "openspec_changes_stabilize_existing_platform_tasks_8_baseline_de_acessibilidade",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/stabilize-existing-platform/tasks.md",
+      "source_location": "L83",
+      "weight": 1.0,
+      "source": "openspec_changes_stabilize_existing_platform_tasks",
+      "target": "openspec_changes_stabilize_existing_platform_tasks_9_ci_migra\u00e7\u00e3o_e_entrega",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "69b4fb4b1ea2508c818bb372eb998274a54c8b87"
+  "built_at_commit": "d3b68cdb20e6bdd431755ee088d4f8327364c6fc"
 }

@@ -1,16 +1,16 @@
 # Graph Report - SeniorCare  (2026-08-06)
 
 ## Corpus Check
-- 360 files · ~682,877 words
+- 369 files · ~692,472 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1276 nodes · 1767 edges · 147 communities (113 shown, 34 thin omitted)
+- 1437 nodes · 1921 edges · 163 communities (129 shown, 34 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `69b4fb4b`
+- Built from commit: `d3b68cdb`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -120,6 +120,22 @@
 - [[_COMMUNITY_CLAUDE|CLAUDE.md]]
 - [[_COMMUNITY_check-env-hygiene.sh|check-env-hygiene.sh]]
 - [[_COMMUNITY_6.11 Dashboards estatísticos e inteligência institucional|6.11 Dashboards estatísticos e inteligência institucional]]
+- [[_COMMUNITY_Arquitetura de CICD — SeniorCare|Arquitetura de CI/CD — SeniorCare]]
+- [[_COMMUNITY_Relatório de avaliação requisitos versus implementação|Relatório de avaliação: requisitos versus implementação]]
+- [[_COMMUNITY_10. Sequência recomendada de evolução|10. Sequência recomendada de evolução]]
+- [[_COMMUNITY_infradeploy — publicação pull-based no servidor|infra/deploy — publicação pull-based no servidor]]
+- [[_COMMUNITY_3. Inventário comprovado da implementação atual|3. Inventário comprovado da implementação atual]]
+- [[_COMMUNITY_7. Avaliação específica das capacidades críticas|7. Avaliação específica das capacidades críticas]]
+- [[_COMMUNITY_9. Riscos e lacunas priorizados|9. Riscos e lacunas priorizados]]
+- [[_COMMUNITY_12. Relação com o software existente|12. Relação com o software existente]]
+- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
+- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
+- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
+- [[_COMMUNITY_Decisions|Decisions]]
+- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
+- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
+- [[_COMMUNITY_tasks|tasks.md]]
+- [[_COMMUNITY_proposal|proposal.md]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `SeniorCareManager.WebAPI.Objects.Models` - 66 edges
@@ -148,7 +164,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (147 total, 34 thin omitted)
+## Communities (163 total, 34 thin omitted)
 
 ### Community 0 - "SeniorCareManager.WebAPI.Objects.Models"
 Cohesion: 0.08
@@ -163,8 +179,8 @@ Cohesion: 0.06
 Nodes (20): SeniorCareManager.WebAPI.Data.Builders, ModelBuilder, ModelBuilder, CarrierBuilder, ModelBuilder, HealthInsurancePlanBuilder, ModelBuilder, ManufacturerBuilder (+12 more)
 
 ### Community 3 - "GenericService"
-Cohesion: 0.09
-Nodes (23): ICollection, HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, Task (+15 more)
+Cohesion: 0.07
+Nodes (26): ICollection, HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, Task (+18 more)
 
 ### Community 4 - "devDependencies"
 Cohesion: 0.06
@@ -179,8 +195,8 @@ Cohesion: 0.17
 Nodes (14): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, SupplierController, ISupplierRepository (+6 more)
 
 ### Community 7 - "IGenericService"
-Cohesion: 0.11
-Nodes (19): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, CarrierController, ICarrierRepository (+11 more)
+Cohesion: 0.17
+Nodes (14): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, CarrierController, ICarrierRepository (+6 more)
 
 ### Community 8 - "http"
 Cohesion: 0.07
@@ -203,16 +219,16 @@ Cohesion: 0.09
 Nodes (24): CancellationToken, DbContext, HealthCheckContext, HealthCheckResult, IHealthCheck, HttpDelete, HttpGet, HttpPatch (+16 more)
 
 ### Community 13 - "Controller"
-Cohesion: 0.16
-Nodes (15): Controller, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, PositionController (+7 more)
+Cohesion: 0.11
+Nodes (20): Controller, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, PositionController (+12 more)
 
 ### Community 14 - "ManufacturerController"
 Cohesion: 0.16
 Nodes (15): ControllerBase, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, ManufacturerController (+7 more)
 
 ### Community 15 - "ReligionController"
-Cohesion: 0.11
-Nodes (17): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, ReligionController, IReligionRepository (+9 more)
+Cohesion: 0.17
+Nodes (14): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, Task, ReligionController, IReligionRepository (+6 more)
 
 ### Community 16 - "UnitOfMeasureController"
 Cohesion: 0.17
@@ -363,8 +379,8 @@ Cohesion: 0.33
 Nodes (5): For /graphify explain, For /graphify path, graphify reference: query, path, explain, Step 0 — Constrained query expansion (REQUIRED before traversal), Step 1 — Traversal
 
 ### Community 53 - "Program"
-Cohesion: 0.07
-Nodes (23): 1. Contexto e restrições, 2. Decisão central: `build once, deploy many`, 3. Unidades implantáveis, 4. Versionamento — CalVer + release train, 5. Pipeline de CI/CD (GitHub Actions), 6. Release manifest — a unidade de deploy, 7. CD — entrega no servidor (pull-based), 8. Camada de operação (opcional) (+15 more)
+Cohesion: 0.20
+Nodes (6): infra/docker-test — stack local (build a partir do código), Portas (default), Uso, Componentes atuais, Documentação, SeniorCare
 
 ### Community 54 - "SeniorCareManager.WebAPI.Objects.Dtos"
 Cohesion: 0.40
@@ -391,8 +407,8 @@ Cohesion: 0.34
 Nodes (14): compose(), die(), do_deploy(), do_rollback(), do_status(), err(), ghcr_login(), log() (+6 more)
 
 ### Community 124 - "Escopo do projeto SeniorCare"
-Cohesion: 0.17
-Nodes (12): 10. Limites do produto, 12. Relação com o software existente, 13. Decisões em aberto, 14. Critérios de sucesso do produto, 15. Glossário inicial, 16. Referências, 1.1 Natureza social e universitária, 1. Resumo executivo (+4 more)
+Cohesion: 0.18
+Nodes (11): 10. Limites do produto, 13. Decisões em aberto, 14. Critérios de sucesso do produto, 15. Glossário inicial, 16. Referências, 1.1 Natureza social e universitária, 1. Resumo executivo, 3. Princípios orientadores (+3 more)
 
 ### Community 125 - "6. Domínios funcionais"
 Cohesion: 0.17
@@ -434,8 +450,72 @@ Nodes (3): Issue relacionada, O que mudou, Test plan
 Cohesion: 0.40
 Nodes (5): 6.11 Dashboards estatísticos e inteligência institucional, Direção arquitetural, Painéis previstos, Privacidade, ética e prevenção de uso indevido, Requisitos de confiança estatística
 
+### Community 147 - "Arquitetura de CI/CD — SeniorCare"
+Cohesion: 0.18
+Nodes (11): 1. Contexto e restrições, 2. Decisão central: `build once, deploy many`, 3. Unidades implantáveis, 4. Versionamento — CalVer + release train, 5. Pipeline de CI/CD (GitHub Actions), 6. Release manifest — a unidade de deploy, 7. CD — entrega no servidor (pull-based), 8. Camada de operação (opcional) (+3 more)
+
+### Community 148 - "Relatório de avaliação: requisitos versus implementação"
+Cohesion: 0.18
+Nodes (11): 11. Critérios mínimos para declarar o primeiro MVP, 12. Parecer final, 13. Limitações da avaliação, 1. Resultado executivo, 2. Método e critérios, 4. Matriz dos domínios funcionais, 5. Matriz dos fluxos integrados prioritários, 6. Matriz dos requisitos transversais (+3 more)
+
+### Community 149 - "10. Sequência recomendada de evolução"
+Cohesion: 0.29
+Nodes (7): 10. Sequência recomendada de evolução, Prioridade 0 — estabilizar a linha de base, Prioridade 1 — fundação segura, Prioridade 2 — operação cotidiana, Prioridade 3 — prontuário multidisciplinar, Prioridade 4 — sustentabilidade institucional, Prioridade 5 — assinatura e redução de papel
+
+### Community 150 - "infra/deploy — publicação pull-based no servidor"
+Cohesion: 0.33
+Nodes (6): Backup diário (`backup` / `ops/backup.sh`), Camada de operação (`ops.sh` / `--profile ops`), Componentes, infra/deploy — publicação pull-based no servidor, Portas (default), Uso
+
+### Community 151 - "3. Inventário comprovado da implementação atual"
+Cohesion: 0.40
+Nodes (5): 3.1 Backend, 3.2 Front-end assistencial, 3.3 Front-end de estoque, 3.4 Infraestrutura e entrega, 3. Inventário comprovado da implementação atual
+
+### Community 152 - "7. Avaliação específica das capacidades críticas"
+Cohesion: 0.50
+Nodes (4): 7.1 Prontuário multidisciplinar, 7.2 Assinatura eletrônica, 7.3 Dashboards estatísticos, 7. Avaliação específica das capacidades críticas
+
+### Community 153 - "9. Riscos e lacunas priorizados"
+Cohesion: 0.50
+Nodes (4): 9. Riscos e lacunas priorizados, Altos — bloqueiam um MVP confiável, Críticos — bloqueiam uso assistencial real, Médios — dívida de qualidade e operação
+
+### Community 154 - "12. Relação com o software existente"
+Cohesion: 0.67
+Nodes (3): 12.1 Avaliação formal do estado atual, 12.2 Restrições de prontidão decorrentes da avaliação, 12. Relação com o software existente
+
+### Community 155 - "ADDED Requirements"
+Cohesion: 0.09
+Nodes (21): ADDED Requirements, Purpose, Requirement: APIs e rotas são protegidas por papel, Requirement: Autenticação não implica autorização clínica, Requirement: Credencial administrativa inicial é provisionada com segurança, Requirement: Sessão e tokens possuem proteção e expiração, Requirement: Tentativas de autenticação são protegidas contra abuso, Requirement: Usuário autentica-se com identidade individual (+13 more)
+
+### Community 156 - "ADDED Requirements"
+Cohesion: 0.10
+Nodes (20): ADDED Requirements, Purpose, Requirement: Alterações preservam identidade e concorrência, Requirement: Catálogo de produtos é integrado de ponta a ponta, Requirement: Contrato uniforme para cadastros auxiliares, Requirement: Exclusão respeita referências e histórico administrativo, Requirement: Operações administrativas são atribuíveis, Scenario: Alteração autenticada (+12 more)
+
+### Community 157 - "ADDED Requirements"
+Cohesion: 0.11
+Nodes (18): ADDED Requirements, Purpose, Requirement: Backend possui testes automatizados representativos, Requirement: CI bloqueia mudanças não verificadas, Requirement: Cobertura é publicada e caminhos críticos não ficam sem teste, Requirement: Dados de teste não contêm dados pessoais reais, Requirement: Front-ends possuem testes de comportamento, Requirement: Migrações são verificadas em instalação e atualização (+10 more)
+
+### Community 158 - "Decisions"
+Cohesion: 0.12
+Nodes (15): 10. Evoluir acessibilidade nos componentes compartilhados atuais, 1. Manter o monólito modular e os dois front-ends, 2. Usar API de mesma origem em produção, 3. Padronizar erros com Problem Details e sucesso por recurso, 4. Separar modelos de persistência dos contratos da API, 5. Implementar produto como catálogo, não como saldo transacional, 6. Usar identidade consolidada e sessão curta revogável, 7. Provisionar administrador de forma explícita e idempotente (+7 more)
+
+### Community 159 - "ADDED Requirements"
+Cohesion: 0.12
+Nodes (15): ADDED Requirements, Purpose, Requirement: Configurações e segredos são separados, Requirement: Diagnóstico distingue vida e prontidão, Requirement: Endereço da API é configurável por ambiente, Requirement: Todos os componentes produzem artefatos de entrega, Scenario: Build limpo da plataforma, Scenario: Configuração obrigatória ausente (+7 more)
+
+### Community 160 - "ADDED Requirements"
+Cohesion: 0.13
+Nodes (14): ADDED Requirements, Purpose, Requirement: Controles possuem nome, estado e instrução acessíveis, Requirement: Estrutura e contraste possuem critérios verificáveis, Requirement: Fluxos existentes são operáveis por teclado, Requirement: Preferências visuais são persistentes e limitadas, Scenario: Botão somente com ícone, Scenario: Erro de formulário (+6 more)
+
+### Community 161 - "tasks.md"
+Cohesion: 0.18
+Nodes (10): 10. Aceite da mudança, 1. Baseline e infraestrutura de testes, 2. Configuração e diagnóstico de execução, 3. Contratos HTTP e tratamento de erros, 4. Identidade, autenticação e autorização, 5. Auditoria administrativa, 6. Catálogos auxiliares e produto, 7. Sessão e contratos nos front-ends (+2 more)
+
+### Community 162 - "proposal.md"
+Cohesion: 0.29
+Nodes (6): Capabilities, Impact, Modified Capabilities, New Capabilities, What Changes, Why
+
 ## Knowledge Gaps
-- **390 isolated node(s):** `check-env-hygiene.sh script`, `CarrierDTO`, `HealthInsurancePlanDTO`, `ManufacturerDTO`, `PositionDTO` (+385 more)
+- **503 isolated node(s):** `check-env-hygiene.sh script`, `CarrierDTO`, `HealthInsurancePlanDTO`, `ManufacturerDTO`, `PositionDTO` (+498 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -443,13 +523,13 @@ Nodes (5): 6.11 Dashboards estatísticos e inteligência institucional, Direçã
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `SeniorCareManager.WebAPI.Objects.Models` connect `SeniorCareManager.WebAPI.Objects.Models` to `SeniorCareManager.WebAPI.Objects.Enums`, `AppDbContext`, `GenericService`, `GenericRepository`, `IGenericService`, `ProductType`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`?**
-  _High betweenness centrality (0.046) - this node is a cross-community bridge._
+  _High betweenness centrality (0.039) - this node is a cross-community bridge._
 - **Why does `AppDbContext` connect `ProductType` to `SeniorCareManager.WebAPI.Objects.Models`, `SeniorCareManager.WebAPI.Objects.Enums`, `AppDbContext`, `GenericService`, `GenericRepository`, `IGenericService`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+  _High betweenness centrality (0.017) - this node is a cross-community bridge._
 - **Why does `SeniorCareManager.WebAPI.Data` connect `SeniorCareManager.WebAPI.Objects.Models` to `InitialCreate`, `ProductType`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **What connects `check-env-hygiene.sh script`, `CarrierDTO`, `HealthInsurancePlanDTO` to the rest of the system?**
-  _390 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _503 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `SeniorCareManager.WebAPI.Objects.Models` be split into smaller, more focused modules?**
   _Cohesion score 0.08038075092543628 - nodes in this community are weakly interconnected._
 - **Should `SeniorCareManager.WebAPI.Objects.Enums` be split into smaller, more focused modules?**
