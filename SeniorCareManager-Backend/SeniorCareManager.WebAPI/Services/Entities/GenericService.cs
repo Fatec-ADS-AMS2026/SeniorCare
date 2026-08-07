@@ -1,4 +1,3 @@
-using AutoMapper;
 using SeniorCareManager.WebAPI.Data.Interfaces;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 
@@ -7,24 +6,20 @@ namespace SeniorCareManager.WebAPI.Services.Entities;
 public class GenericService<T> : IGenericService<T> where T : class
 {
     private readonly IGenericRepository<T> _repository;
-    private readonly IMapper _mapper;
 
-    public GenericService(IGenericRepository<T> repository, IMapper mapper)
+    public GenericService(IGenericRepository<T> repository)
     {
         _repository = repository;
-        _mapper = mapper;
     }
 
     public async Task<IEnumerable<T>> GetAll()
     {
-        var entities = await _repository.Get();
-        return _mapper.Map<IEnumerable<T>>(entities);
+        return await _repository.Get();
     }
 
     public async Task<T> GetById(int id)
     {
-        var entity = await _repository.GetById(id);
-        return _mapper.Map<T>(entity);
+        return await _repository.GetById(id);
     }
 
     public async Task Create(T entity)
