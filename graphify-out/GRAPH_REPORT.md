@@ -1,16 +1,16 @@
 # Graph Report - SeniorCare  (2026-08-06)
 
 ## Corpus Check
-- 373 files · ~698,997 words
+- 380 files · ~706,694 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1514 nodes · 2024 edges · 185 communities (149 shown, 36 thin omitted)
+- 1620 nodes · 2135 edges · 215 communities (177 shown, 38 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fc29db92`
+- Built from commit: `ef1ab91d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -158,6 +158,36 @@
 - [[_COMMUNITY_Requirement Tentativas de autenticação são protegidas contra abuso|Requirement: Tentativas de autenticação são protegidas contra abuso]]
 - [[_COMMUNITY_setup_project.sh|setup_project.sh]]
 - [[_COMMUNITY_start_epic.sh|start_epic.sh]]
+- [[_COMMUNITY_SeniorCareManager.WebAPI.Objects.Models|SeniorCareManager.WebAPI.Objects.Models]]
+- [[_COMMUNITY_Decisions|Decisions]]
+- [[_COMMUNITY_ManufacturerController|ManufacturerController]]
+- [[_COMMUNITY_AppDbContext|AppDbContext]]
+- [[_COMMUNITY_create_qa_issue.py|create_qa_issue.py]]
+- [[_COMMUNITY_Carrier|Carrier]]
+- [[_COMMUNITY_Manufacturer|Manufacturer]]
+- [[_COMMUNITY_Position|Position]]
+- [[_COMMUNITY_Religion|Religion]]
+- [[_COMMUNITY_UnitOfMeasure|UnitOfMeasure]]
+- [[_COMMUNITY_tasks|tasks.md]]
+- [[_COMMUNITY_proposal|proposal.md]]
+- [[_COMMUNITY_dev-flow — promoção dev → main com QA manual|dev-flow — promoção dev → main com QA manual]]
+- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
+- [[_COMMUNITY_.CheckHealthAsync|.CheckHealthAsync]]
+- [[_COMMUNITY_Program|Program]]
+- [[_COMMUNITY_Requirement Catálogo de módulos possui contrato estável e configurável|Requirement: Catálogo de módulos possui contrato estável e configurável]]
+- [[_COMMUNITY_Requirement Descoberta de módulos usa permissões efetivas|Requirement: Descoberta de módulos usa permissões efetivas]]
+- [[_COMMUNITY_Requirement Navegação entre aplicações preserva destino seguro|Requirement: Navegação entre aplicações preserva destino seguro]]
+- [[_COMMUNITY_Requirement Portal representa estados operacionais sem conceder acesso indevido|Requirement: Portal representa estados operacionais sem conceder acesso indevido]]
+- [[_COMMUNITY_Requirement Portal reutiliza a identidade e a sessão institucional|Requirement: Portal reutiliza a identidade e a sessão institucional]]
+- [[_COMMUNITY_Requirement Configuração e navegação crítica são auditáveis|Requirement: Configuração e navegação crítica são auditáveis]]
+- [[_COMMUNITY_Requirement Contexto institucional é explícito e consistente|Requirement: Contexto institucional é explícito e consistente]]
+- [[_COMMUNITY_Requirement Falha do portal admite contingência controlada|Requirement: Falha do portal admite contingência controlada]]
+- [[_COMMUNITY_Requirement Funções globais permanecem disponíveis em todos os módulos|Requirement: Funções globais permanecem disponíveis em todos os módulos]]
+- [[_COMMUNITY_Requirement Módulos futuros não são anunciados antes de estarem prontos|Requirement: Módulos futuros não são anunciados antes de estarem prontos]]
+- [[_COMMUNITY_Requirement Portal minimiza dados e não apresenta conteúdo clínico|Requirement: Portal minimiza dados e não apresenta conteúdo clínico]]
+- [[_COMMUNITY_Requirement Portal possui experiência acessível e responsiva|Requirement: Portal possui experiência acessível e responsiva]]
+- [[_COMMUNITY_Requirement URLs antigas migram de forma coordenada|Requirement: URLs antigas migram de forma coordenada]]
+- [[_COMMUNITY_promote_to_main.sh|promote_to_main.sh]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Task` - 74 edges
@@ -174,23 +204,23 @@
 ## Surprising Connections (you probably didn't know these)
 - `HealthInsurancePlan` --references--> `HealthPlanType`  [EXTRACTED]
   SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/HealthInsurancePlan.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Enums/HealthPlanType.cs
-- `AppDbContext` --references--> `Carrier`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/AppDbContext.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/Carrier.cs
-- `AppDbContext` --references--> `HealthInsurancePlan`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/AppDbContext.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/HealthInsurancePlan.cs
-- `AppDbContext` --references--> `Manufacturer`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/AppDbContext.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/Manufacturer.cs
-- `AppDbContext` --references--> `Position`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/AppDbContext.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/Position.cs
+- `CarrierController` --references--> `ICarrierService`  [EXTRACTED]
+  SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/CarrierController.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Interfaces/ICarrierService.cs
+- `ManufacturerController` --references--> `IManufacturerService`  [EXTRACTED]
+  SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/ManufacturerController.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Interfaces/IManufacturerService.cs
+- `PositionController` --references--> `IPositionService`  [EXTRACTED]
+  SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/PositionController.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Interfaces/IPositionService.cs
+- `ReligionController` --references--> `IReligionService`  [EXTRACTED]
+  SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/ReligionController.cs → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Interfaces/IReligionService.cs
 
 ## Import Cycles
 - None detected.
 
-## Communities (185 total, 36 thin omitted)
+## Communities (215 total, 38 thin omitted)
 
 ### Community 0 - "SeniorCareManager.WebAPI.Objects.Models"
-Cohesion: 0.07
-Nodes (20): ControllerBase, SeniorCareManager.WebAPI.Services.Entities, SeniorCareManager.WebAPI.Services.Interfaces, SeniorCareManager.WebAPI.Controllers, SeniorCareManager.WebAPI.Data.Repositories, SeniorCareManager.WebAPI.Objects.Models, SeniorCareManager.WebAPI.Data.Interfaces, HttpDelete (+12 more)
+Cohesion: 0.20
+Nodes (3): SeniorCareManager.WebAPI.Services.Entities, SeniorCareManager.WebAPI.Data.Repositories, SeniorCareManager.WebAPI.Data.Interfaces
 
 ### Community 1 - "SeniorCareManager.WebAPI.Objects.Enums"
 Cohesion: 0.04
@@ -201,8 +231,8 @@ Cohesion: 0.06
 Nodes (20): SeniorCareManager.WebAPI.Data.Builders, ModelBuilder, ModelBuilder, CarrierBuilder, ModelBuilder, HealthInsurancePlanBuilder, ModelBuilder, ManufacturerBuilder (+12 more)
 
 ### Community 3 - "GenericService"
-Cohesion: 0.14
-Nodes (8): Task, IEnumerable, IGenericRepository, IEnumerable, IMapper, GenericService, IEnumerable, IGenericService
+Cohesion: 0.17
+Nodes (5): IEnumerable, IGenericRepository, IEnumerable, IMapper, GenericService
 
 ### Community 4 - "devDependencies"
 Cohesion: 0.06
@@ -213,12 +243,12 @@ Cohesion: 0.06
 Nodes (33): dependencies, axios, js-cookie, @phosphor-icons/react, react, react-dom, react-router-dom, @types/js-cookie (+25 more)
 
 ### Community 6 - "GenericRepository"
-Cohesion: 0.16
+Cohesion: 0.15
 Nodes (13): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, SupplierController, ISupplierRepository, AppDbContext (+5 more)
 
 ### Community 7 - "IGenericService"
-Cohesion: 0.16
-Nodes (13): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, CarrierController, ICarrierRepository, AppDbContext (+5 more)
+Cohesion: 0.24
+Nodes (7): Controller, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, CarrierController
 
 ### Community 8 - "http"
 Cohesion: 0.07
@@ -237,24 +267,24 @@ Cohesion: 0.08
 Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
 
 ### Community 12 - "ProductType"
-Cohesion: 0.15
+Cohesion: 0.14
 Nodes (14): HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, ProductTypeController, IProductTypeRepository (+6 more)
 
 ### Community 13 - "Controller"
-Cohesion: 0.15
-Nodes (14): Controller, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, PositionController, IPositionRepository (+6 more)
+Cohesion: 0.27
+Nodes (6): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, PositionController
 
 ### Community 14 - "ManufacturerController"
 Cohesion: 0.14
 Nodes (15): ICollection, HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, ProductGroupController (+7 more)
 
 ### Community 15 - "ReligionController"
-Cohesion: 0.16
-Nodes (13): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, ReligionController, IReligionRepository, AppDbContext (+5 more)
+Cohesion: 0.27
+Nodes (6): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, ReligionController
 
 ### Community 16 - "UnitOfMeasureController"
-Cohesion: 0.16
-Nodes (13): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, UnitOfMeasureController, IUnitOfMeasureRepository, AppDbContext (+5 more)
+Cohesion: 0.27
+Nodes (6): HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, UnitOfMeasureController
 
 ### Community 17 - "compilerOptions"
 Cohesion: 0.10
@@ -297,7 +327,7 @@ Cohesion: 0.16
 Nodes (8): App(), ThemeContext, ThemeContextType, ThemeProvider(), ThemeProviderProps, router, appRoutes, routes
 
 ### Community 27 - "SeniorCareManager.WebAPI.Objects.Dtos.Entities"
-Cohesion: 0.16
+Cohesion: 0.15
 Nodes (14): HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut, IActionResult, HealthInsurancePlanController, IHealthInsurancePlanRepository (+6 more)
 
 ### Community 28 - "AppLayout.tsx"
@@ -421,8 +451,8 @@ Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
 ### Community 122 - "InitialCreate"
-Cohesion: 0.07
-Nodes (21): CancellationToken, SeniorCareManager.WebAPI.Data, SeniorCareManager.WebAPI, SeniorCareManager.WebAPI.Data.Migrations, DbContext, HealthCheckContext, HealthCheckResult, IHealthCheck (+13 more)
+Cohesion: 0.13
+Nodes (9): SeniorCareManager.WebAPI.Data.Migrations, Migration, MigrationBuilder, ModelSnapshot, ModelBuilder, InitialCreate, InitialCreate, ModelBuilder (+1 more)
 
 ### Community 123 - "deploy.sh"
 Cohesion: 0.34
@@ -541,8 +571,8 @@ Cohesion: 0.22
 Nodes (11): ensure_labels(), existing_issues(), issue_body(), issue_title(), main(), parse_tasks(), Path, Título sem o prefixo do id do épico, que já vai entre colchetes. (+3 more)
 
 ### Community 164 - "GenericRepository"
-Cohesion: 0.27
-Nodes (4): AppDbContext, DbSet, IEnumerable, GenericRepository
+Cohesion: 0.18
+Nodes (7): Task, AppDbContext, DbSet, IEnumerable, GenericRepository, IEnumerable, IGenericService
 
 ### Community 165 - "OpenSpec no GitHub — issues, PRs e kanban"
 Cohesion: 0.25
@@ -616,25 +646,137 @@ Nodes (3): Requirement: Permissões são compostas por recurso, ação e funcion
 Cohesion: 0.67
 Nodes (3): Requirement: Tentativas de autenticação são protegidas contra abuso, Scenario: Autenticação posterior ao bloqueio temporário, Scenario: Repetição de falhas
 
+### Community 185 - "SeniorCareManager.WebAPI.Objects.Models"
+Cohesion: 0.26
+Nodes (3): SeniorCareManager.WebAPI.Services.Interfaces, SeniorCareManager.WebAPI.Controllers, SeniorCareManager.WebAPI.Objects.Models
+
+### Community 186 - "Decisions"
+Cohesion: 0.12
+Nodes (16): 10. Implantar de forma aditiva e manter contingência controlada, 1. Criar uma terceira aplicação web leve e independente, 2. Publicar todas as aplicações sob uma única origem, 3. Compartilhar renovação de sessão, não token JavaScript, 4. Separar definição sistêmica de habilitação institucional, 5. Derivar o catálogo efetivo no backend, 6. Tratar estado operacional como configuração, não health check síncrono, 7. Preservar deep links com return path validado (+8 more)
+
+### Community 187 - "ManufacturerController"
+Cohesion: 0.24
+Nodes (7): ControllerBase, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, ManufacturerController
+
+### Community 188 - "AppDbContext"
+Cohesion: 0.22
+Nodes (7): SeniorCareManager.WebAPI.Data, SeniorCareManager.WebAPI, DbContext, IHealthCheck, DbSet, AppDbContext, DbHealthCheck
+
+### Community 189 - "create_qa_issue.py"
+Cohesion: 0.40
+Nodes (10): add_to_project(), create_issue(), ensure_label(), extract_test_plan(), main(), project_gh(), Retorna (project_id, status_field_id, option_id) para TARGET_STATUS_NAME., repo_gh() (+2 more)
+
+### Community 190 - "Carrier"
+Cohesion: 0.24
+Nodes (7): ICarrierRepository, AppDbContext, CarrierRepository, Carrier, IMapper, CarrierService, ICarrierService
+
+### Community 191 - "Manufacturer"
+Cohesion: 0.24
+Nodes (7): IManufacturerRepository, AppDbContext, ManufacturerRepository, Manufacturer, IMapper, ManufacturerService, IManufacturerService
+
+### Community 192 - "Position"
+Cohesion: 0.24
+Nodes (7): IPositionRepository, AppDbContext, PositionRepository, Position, IMapper, PositionService, IPositionService
+
+### Community 193 - "Religion"
+Cohesion: 0.24
+Nodes (7): IReligionRepository, AppDbContext, ReligionRepository, Religion, IMapper, ReligionService, IReligionService
+
+### Community 194 - "UnitOfMeasure"
+Cohesion: 0.24
+Nodes (7): IUnitOfMeasureRepository, AppDbContext, UnitOfMeasureRepository, UnitOfMeasure, IMapper, UnitOfMeasureService, IUnitOfMeasureService
+
+### Community 195 - "tasks.md"
+Cohesion: 0.20
+Nodes (9): 1. Pré-requisitos e contratos transversais, 2. Modelo e persistência do catálogo, 3. APIs e autorização do catálogo, 4. Base da aplicação Senior Portal, 5. Experiência do catálogo e funções globais, 6. Integração do módulo assistencial, 7. Integração do módulo de estoque, 8. Implantação, segurança e observabilidade (+1 more)
+
+### Community 196 - "proposal.md"
+Cohesion: 0.22
+Nodes (8): Capabilities, Impact, Modified Capabilities, New Capabilities, Não objetivos, Objetivos, What Changes, Why
+
+### Community 197 - "dev-flow — promoção dev → main com QA manual"
+Cohesion: 0.29
+Nodes (6): Componentes, dev-flow — promoção dev → main com QA manual, Limites conhecidos, Por que a issue de QA não é espelho (ao contrário das do openspec-sync), Por que precisa de um PAT além do GITHUB_TOKEN, Uso
+
+### Community 198 - "ADDED Requirements"
+Cohesion: 0.33
+Nodes (5): ADDED Requirements, Purpose, Requirement: Senior Portal é a entrada institucional unificada, Scenario: Familiar tenta usar o portal interno, Scenario: Usuário interno abre a plataforma
+
+### Community 199 - ".CheckHealthAsync"
+Cohesion: 0.50
+Nodes (3): CancellationToken, HealthCheckContext, HealthCheckResult
+
+### Community 201 - "Requirement: Catálogo de módulos possui contrato estável e configurável"
+Cohesion: 0.50
+Nodes (4): Requirement: Catálogo de módulos possui contrato estável e configurável, Scenario: Administrador cadastra módulo válido, Scenario: Destino externo não autorizado, Scenario: Identificador duplicado
+
+### Community 202 - "Requirement: Descoberta de módulos usa permissões efetivas"
+Cohesion: 0.50
+Nodes (4): Requirement: Descoberta de módulos usa permissões efetivas, Scenario: Módulo autorizado, Scenario: Módulo sem permissão, Scenario: Permissão revogada durante a sessão
+
+### Community 203 - "Requirement: Navegação entre aplicações preserva destino seguro"
+Cohesion: 0.50
+Nodes (4): Requirement: Navegação entre aplicações preserva destino seguro, Scenario: Deep link autorizado, Scenario: Redirecionamento malicioso, Scenario: Retorno ao portal
+
+### Community 204 - "Requirement: Portal representa estados operacionais sem conceder acesso indevido"
+Cohesion: 0.50
+Nodes (4): Requirement: Portal representa estados operacionais sem conceder acesso indevido, Scenario: Módulo disponível, Scenario: Módulo em manutenção, Scenario: Módulo indisponível inesperadamente
+
+### Community 205 - "Requirement: Portal reutiliza a identidade e a sessão institucional"
+Cohesion: 0.50
+Nodes (4): Requirement: Portal reutiliza a identidade e a sessão institucional, Scenario: MFA pendente, Scenario: Navegação autenticada para outro módulo, Scenario: Sessão não renovável
+
+### Community 206 - "Requirement: Configuração e navegação crítica são auditáveis"
+Cohesion: 0.67
+Nodes (3): Requirement: Configuração e navegação crítica são auditáveis, Scenario: Acesso direto negado, Scenario: Estado de módulo alterado
+
+### Community 207 - "Requirement: Contexto institucional é explícito e consistente"
+Cohesion: 0.67
+Nodes (3): Requirement: Contexto institucional é explícito e consistente, Scenario: Contexto institucional divergente, Scenario: Única instituição habilitada
+
+### Community 208 - "Requirement: Falha do portal admite contingência controlada"
+Cohesion: 0.67
+Nodes (3): Requirement: Falha do portal admite contingência controlada, Scenario: IAM indisponível, Scenario: Portal indisponível e módulo saudável
+
+### Community 209 - "Requirement: Funções globais permanecem disponíveis em todos os módulos"
+Cohesion: 0.67
+Nodes (3): Requirement: Funções globais permanecem disponíveis em todos os módulos, Scenario: Logout iniciado em um módulo, Scenario: Usuário altera preferência visual
+
+### Community 210 - "Requirement: Módulos futuros não são anunciados antes de estarem prontos"
+Cohesion: 0.67
+Nodes (3): Requirement: Módulos futuros não são anunciados antes de estarem prontos, Scenario: Módulo futuro apenas planejado, Scenario: Novo módulo entra em produção
+
+### Community 211 - "Requirement: Portal minimiza dados e não apresenta conteúdo clínico"
+Cohesion: 0.67
+Nodes (3): Requirement: Portal minimiza dados e não apresenta conteúdo clínico, Scenario: Carregamento da página inicial, Scenario: Configuração contém informação sensível
+
+### Community 212 - "Requirement: Portal possui experiência acessível e responsiva"
+Cohesion: 0.67
+Nodes (3): Requirement: Portal possui experiência acessível e responsiva, Scenario: Estado de manutenção, Scenario: Seleção somente por teclado
+
+### Community 213 - "Requirement: URLs antigas migram de forma coordenada"
+Cohesion: 0.67
+Nodes (3): Requirement: URLs antigas migram de forma coordenada, Scenario: Cliente antigo sem sessão compatível, Scenario: Login legado do estoque
+
 ## Knowledge Gaps
-- **558 isolated node(s):** `check-env-hygiene.sh script`, `CarrierDTO`, `HealthInsurancePlanDTO`, `ManufacturerDTO`, `PositionDTO` (+553 more)
+- **628 isolated node(s):** `check-env-hygiene.sh script`, `CarrierDTO`, `HealthInsurancePlanDTO`, `ManufacturerDTO`, `PositionDTO` (+623 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **36 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **38 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Task` connect `GenericService` to `SeniorCareManager.WebAPI.Objects.Models`, `sync_issues.py`, `GenericRepository`, `GenericRepository`, `IGenericService`, `ProductType`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`, `InitialCreate`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`?**
-  _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **Why does `SeniorCareManager.WebAPI.Objects.Models` connect `SeniorCareManager.WebAPI.Objects.Models` to `SeniorCareManager.WebAPI.Objects.Enums`, `AppDbContext`, `GenericRepository`, `IGenericService`, `ProductType`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`, `InitialCreate`?**
-  _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **Why does `AppDbContext` connect `InitialCreate` to `SeniorCareManager.WebAPI.Objects.Models`, `AppDbContext`, `GenericRepository`, `IGenericService`, `ProductType`, `Controller`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`?**
-  _High betweenness centrality (0.012) - this node is a cross-community bridge._
+- **Why does `SeniorCareManager.WebAPI.Objects.Models` connect `SeniorCareManager.WebAPI.Objects.Models` to `Position`, `Religion`, `AppDbContext`, `UnitOfMeasure`, `SeniorCareManager.WebAPI.Objects.Models`, `SeniorCareManager.WebAPI.Objects.Enums`, `GenericRepository`, `ProductType`, `ManufacturerController`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`, `AppDbContext`, `Carrier`, `Manufacturer`?**
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
+- **Why does `Task` connect `GenericRepository` to `sync_issues.py`, `GenericService`, `GenericRepository`, `IGenericService`, `.CheckHealthAsync`, `ProductType`, `Controller`, `ManufacturerController`, `ManufacturerController`, `ReligionController`, `UnitOfMeasureController`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`?**
+  _High betweenness centrality (0.023) - this node is a cross-community bridge._
+- **Why does `AppDbContext` connect `AppDbContext` to `Position`, `Religion`, `AppDbContext`, `UnitOfMeasure`, `GenericRepository`, `ProductType`, `ManufacturerController`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`, `Carrier`, `Manufacturer`?**
+  _High betweenness centrality (0.011) - this node is a cross-community bridge._
 - **What connects `check-env-hygiene.sh script`, `CarrierDTO`, `HealthInsurancePlanDTO` to the rest of the system?**
-  _559 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `SeniorCareManager.WebAPI.Objects.Models` be split into smaller, more focused modules?**
-  _Cohesion score 0.06516105146242132 - nodes in this community are weakly interconnected._
+  _630 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `SeniorCareManager.WebAPI.Objects.Enums` be split into smaller, more focused modules?**
   _Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected._
 - **Should `AppDbContext` be split into smaller, more focused modules?**
   _Cohesion score 0.0620782726045884 - nodes in this community are weakly interconnected._
+- **Should `devDependencies` be split into smaller, more focused modules?**
+  _Cohesion score 0.058823529411764705 - nodes in this community are weakly interconnected._
