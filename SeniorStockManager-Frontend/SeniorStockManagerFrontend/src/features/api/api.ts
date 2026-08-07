@@ -2,9 +2,11 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
 import { ApiResponse } from './types';
 
-// Centraliza a configuração do axios na aplicação
+// Caminho de mesma origem — em dev, o proxy do Vite (vite.config.ts) encaminha
+// /api para VITE_API_PROXY_TARGET; em produção, o nginx (nginx.conf) encaminha
+// /api para o backend na rede Docker. Nunca aponta pra um host fixo aqui.
 const axiosInstance = axios.create({
-  baseURL: 'https://localhost:7053/api/v1/',
+  baseURL: '/api/v1/',
 });
 
 // Interceptor para adicionar o token JWT a cada requisição

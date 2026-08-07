@@ -9,13 +9,13 @@
 
 ## 2. Configuração e diagnóstico de execução
 
-- [ ] 2.1 Substituir a URL absoluta da API por caminho de mesma origem nos dois clientes HTTP.
-- [ ] 2.2 Configurar proxy de desenvolvimento nos dois projetos Vite com destino externo e validação de formato.
-- [ ] 2.3 Configurar o nginx de cada front-end para encaminhar `/api` à API na rede Docker.
-- [ ] 2.4 Adicionar modelos de configuração sem segredos para desenvolvimento, teste e produção e documentar todas as variáveis obrigatórias.
-- [ ] 2.5 Adicionar validação de startup para conexão, chaves, instituição e bootstrap, garantindo mensagens sem valores secretos.
-- [ ] 2.6 Separar endpoints de vida e prontidão e testar o comportamento com banco disponível e indisponível.
-- [ ] 2.7 Verificar nos bundles de produção que não há destino operacional em `localhost` nem segredos incorporados.
+- [x] 2.1 Substituir a URL absoluta da API por caminho de mesma origem nos dois clientes HTTP.
+- [x] 2.2 Configurar proxy de desenvolvimento nos dois projetos Vite com destino externo e validação de formato.
+- [x] 2.3 Configurar o nginx de cada front-end para encaminhar `/api` à API na rede Docker.
+- [x] 2.4 Adicionar modelos de configuração sem segredos para desenvolvimento, teste e produção e documentar todas as variáveis obrigatórias.
+- [ ] 2.5 Adicionar validação de startup para conexão, chaves, instituição e bootstrap, garantindo mensagens sem valores secretos. **Parcial nesta mudança**: validação de `ConnectionStrings:DefaultConnection` implementada e testada (`Program.GetMissingConfiguration`); chaves/instituição/bootstrap dependem de entidades que ainda não existem (capability `platform-authentication`, §4 em diante) — reabrir esta tarefa quando esse trabalho chegar.
+- [x] 2.6 Separar endpoints de vida e prontidão e testar o comportamento com banco disponível e indisponível.
+- [x] 2.7 Verificar nos bundles de produção que não há destino operacional em `localhost` nem segredos incorporados.
 
 ## 3. Contratos HTTP e tratamento de erros
 

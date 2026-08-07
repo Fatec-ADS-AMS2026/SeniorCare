@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -139,10 +140,12 @@ public class Startup
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
-        // Usado pelo HEALTHCHECK do container (Dockerfile/docker-compose) e pelo deploy.sh
-        // para aguardar o serviço ficar pronto antes de considerar o deploy bem-sucedido.
+        // /health/live (vida) não checa dependências — só confirma que o processo está de
+        // pé, mesmo com o banco fora. /health/ready (prontidão) inclui o check do banco,
+        // marcado com a tag "ready" — é o que o HEALTHCHECK do container e o deploy.sh
+        // esperam antes de considerar o deploy bem-sucedido.
         services.AddHealthChecks()
-            .AddCheck<DbHealthCheck>("database");
+            .AddCheck<DbHealthCheck>("database", tags: new[] { "ready" });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -183,7 +186,16 @@ public class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
-            endpoints.MapHealthChecks("/health");
+            // Vida: processo em execução, não avalia nenhuma dependência.
+            endpoints.MapHealthChecks("/health/live", new HealthCheckOptions
+            {
+                Predicate = _ => false,
+            });
+            // Prontidão: inclui os checks marcados "ready" (hoje só o banco).
+            endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions
+            {
+                Predicate = check => check.Tags.Contains("ready"),
+            });
         });
     }
 }
