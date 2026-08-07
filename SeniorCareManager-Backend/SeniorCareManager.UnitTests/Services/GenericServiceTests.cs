@@ -1,4 +1,3 @@
-using AutoMapper;
 using FluentAssertions;
 using Moq;
 using SeniorCareManager.WebAPI.Data.Interfaces;
@@ -10,18 +9,12 @@ namespace SeniorCareManager.UnitTests.Services;
 public class GenericServiceTests
 {
     private readonly Mock<IReligionRepository> _repoMock;
-    private readonly IMapper _mapper;
     private readonly ReligionService _service;
 
     public GenericServiceTests()
     {
         _repoMock = new Mock<IReligionRepository>();
-
-        var config = new MapperConfiguration(cfg =>
-            cfg.CreateMap<Religion, Religion>());
-        _mapper = config.CreateMapper();
-
-        _service = new ReligionService(_repoMock.Object, _mapper);
+        _service = new ReligionService(_repoMock.Object);
     }
 
     [Fact]
