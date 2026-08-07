@@ -2,12 +2,12 @@ name: security-sca
 
 # SCA do backend em duas camadas complementares:
 #   - backend-sca: advisory database da NuGet/GitHub via `dotnet list package
-#     --vulnerable` — rápido, sem chave externa.
+#     --vulnerable` — rápido, sem chave externa. Roda em PR (gate) e periodicamente.
 #   - nvd-dependency-check: OWASP Dependency-Check contra a base do NVD (CVE mais
 #     ampla que a GHSA, cobre CVE sem advisory GitHub mapeado) — mais lento, precisa
-#     do secret NVD_API_KEY.
-# Gate contínuo, não avaliação pontual manual. Roda em PRs que tocam dependências/
-# código do backend e periodicamente (drift de CVE pode aparecer sem mudança de código).
+#     do secret NVD_API_KEY. Só roda no schedule semanal/workflow_dispatch, não em PR
+#     (ver comentário no job — custo de ~40min por execução enquanto o sync inicial
+#     da base do NVD estiver instável neste ambiente).
 on:
   pull_request:
   schedule:
@@ -67,14 +67,17 @@ jobs:
   nvd-dependency-check:
     # Informativo, não bloqueia merge (não entra em security-sca-required) — o sync
     # inicial da base do NVD pela ferramenta owasp/dependency-check se mostrou instável
-    # neste ambiente: falhou 2/2 vezes com "Unable to obtain an exclusive lock on the H2
-    # database" após ~40min tentando atualizar, um problema conhecido da própria
-    # ferramenta sob sync inicial longo, não do nosso workflow/config. O gate real de
-    # vulnerabilidade do backend continua sendo o `backend-sca` nativo (GHSA via
-    # `dotnet list package --vulnerable`), que já é rápido e confiável. Quando este job
-    # completa com sucesso, o relatório HTML/JSON fica disponível como artefato.
-    needs: changes
-    if: github.event_name != 'pull_request' || needs.changes.outputs.backend == 'true'
+    # neste ambiente: falhou repetidamente com "Unable to obtain an exclusive lock on
+    # the H2 database" após ~40min tentando atualizar, um problema conhecido da própria
+    # ferramenta sob sync inicial longo, não do nosso workflow/config. Como o job falha
+    # antes de completar, o cache da base NVD (actions/cache, save-always: false) nunca
+    # chega a ser salvo — isso faria toda PR pagar ~40min de download, não só a 1ª da
+    # semana. Por isso roda só no schedule semanal/workflow_dispatch, nunca em PR. O
+    # gate real de vulnerabilidade do backend continua sendo o `backend-sca` nativo
+    # (GHSA via `dotnet list package --vulnerable`), que roda em toda PR e já é rápido
+    # e confiável. Quando este job completa com sucesso, o relatório HTML/JSON fica
+    # disponível como artefato.
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -104,27 +107,16 @@ jobs:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: |
           mkdir -p "$HOME/.dependency-check-data" dependency-check-report
-          # Em PR, se já existe cache da base NVD (de um schedule ou PR anterior), pula o
-          # update — mais rápido, e evita bater na base do NVD em toda PR. A atualização
-          # de verdade só roda quando o cache está vazio (1ª execução da semana) ou fora
-          # de PR (schedule/workflow_dispatch). Isso deixa a 1ª execução após o cache
-          # expirar mais lenta (a base inteira é baixada) — esperado.
-          UPDATE_FLAG=""
-          if [ "${{ github.event_name }}" = "pull_request" ] \
-             && [ -n "$(ls -A "$HOME/.dependency-check-data" 2>/dev/null)" ]; then
-            UPDATE_FLAG="--noupdate"
-            echo "cache da base NVD presente — pulando update nesta PR"
-          fi
           # Sem --failOnCVSS: este job é informativo (ver comentário no job acima), não
           # gate. O relatório é o produto — achado real de CVE vira artefato pra revisão
-          # manual, não trava PR automaticamente.
+          # manual, não trava merge automaticamente.
           docker run --rm \
             -v "$PWD/SeniorCareManager-Backend/SeniorCareManager.WebAPI/publish:/src:ro" \
             -v "$PWD/dependency-check-report:/report" \
             -v "$HOME/.dependency-check-data:/data" \
             owasp/dependency-check:latest \
             --scan /src --out /report --data /data --project "SeniorCareManager" \
-            --format HTML --format JSON --nvdApiKey "$NVD_API_KEY" $UPDATE_FLAG
+            --format HTML --format JSON --nvdApiKey "$NVD_API_KEY"
       - name: Publicar relatório como artefato
         if: always()
         uses: actions/upload-artifact@v4
