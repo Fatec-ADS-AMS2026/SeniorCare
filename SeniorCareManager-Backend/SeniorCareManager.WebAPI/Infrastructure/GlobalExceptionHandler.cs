@@ -25,8 +25,8 @@ public class GlobalExceptionHandler : IExceptionHandler
             _logger.LogError(
                 exception,
                 "Erro não tratado ao processar {Method} {Path}",
-                httpContext.Request.Method,
-                httpContext.Request.Path);
+                Sanitize(httpContext.Request.Method),
+                Sanitize(httpContext.Request.Path.Value));
         }
 
         httpContext.Response.StatusCode = status;
@@ -44,6 +44,11 @@ public class GlobalExceptionHandler : IExceptionHandler
             },
         });
     }
+
+    // Method/Path vêm da requisição (logo, do cliente) — sem isso, um path com
+    // \r\n poderia forjar entradas de log falsas (CWE-117 log injection).
+    private static string Sanitize(string? value) =>
+        (value ?? string.Empty).Replace('\r', '_').Replace('\n', '_');
 
     // Detail só carrega a mensagem da exceção quando ela é um tipo de domínio que
     // nós mesmos lançamos com texto pensado para o cliente (KeyNotFoundException,
