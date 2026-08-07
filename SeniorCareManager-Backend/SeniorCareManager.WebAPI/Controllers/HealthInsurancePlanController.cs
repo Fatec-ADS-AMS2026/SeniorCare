@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
+using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Models;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 
@@ -6,86 +8,68 @@ namespace SeniorCareManager.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/v1/[controller]")]
-public class HealthInsurancePlanController : Controller
+public class HealthInsurancePlanController : ControllerBase
 {
     private readonly IHealthInsurancePlanService _healthInsurancePlanService;
 
     public HealthInsurancePlanController(IHealthInsurancePlanService healthInsurancePlanService)
     {
-        this._healthInsurancePlanService = healthInsurancePlanService;
+        _healthInsurancePlanService = healthInsurancePlanService;
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<ActionResult<IEnumerable<HealthInsurancePlanDTO>>> Get()
     {
         var healthInsurancePlans = await _healthInsurancePlanService.GetAll();
-        return Ok(healthInsurancePlans);
+        return Ok(healthInsurancePlans.Select(ToDto));
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<ActionResult<HealthInsurancePlanDTO>> GetById(int id)
     {
         var healthInsurancePlan = await _healthInsurancePlanService.GetById(id);
-        if (healthInsurancePlan == null) return NotFound("Plano de seguro saúde não encontrado!");
-        return Ok(healthInsurancePlan);
+        if (healthInsurancePlan == null) throw new KeyNotFoundException("Plano de seguro saúde não encontrado.");
+        return Ok(ToDto(healthInsurancePlan));
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(HealthInsurancePlan healthInsurancePlan)
+    public async Task<ActionResult<HealthInsurancePlanDTO>> Post(HealthInsurancePlanCreateRequest request)
     {
-        try
-        {
-            await _healthInsurancePlanService.Create(healthInsurancePlan);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar inserir um novo plano de seguro saúde.");
-        }
-        return Ok(healthInsurancePlan);
+        var healthInsurancePlan = new HealthInsurancePlan(0, request.Name, request.Type, request.Abbreviation);
+        await _healthInsurancePlanService.Create(healthInsurancePlan);
+        return CreatedAtAction(nameof(GetById), new { id = healthInsurancePlan.Id }, ToDto(healthInsurancePlan));
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, HealthInsurancePlan healthInsurancePlan)
+    public async Task<ActionResult<HealthInsurancePlanDTO>> Put(int id, HealthInsurancePlanUpdateRequest request)
     {
-        try
-        {
-            await _healthInsurancePlanService.Update(healthInsurancePlan, id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar atualizar o plano de seguro saúde: " + ex.Message);
-        }
-
-        return Ok(healthInsurancePlan);
+        var healthInsurancePlan = new HealthInsurancePlan(id, request.Name, request.Type, request.Abbreviation);
+        await _healthInsurancePlanService.Update(healthInsurancePlan, id);
+        return Ok(ToDto(healthInsurancePlan));
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        try
-        {
-            await _healthInsurancePlanService.Remove(id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar remover o plano de seguro saúde.");
-        }
-
-        return Ok("Plano de seguro saúde apagado com sucesso");
+        await _healthInsurancePlanService.Remove(id);
+        return NoContent();
     }
 
+    // TODO(3.6): PATCH hoje faz substituição total, idêntico a PUT — remover
+    // nesta forma quando a tarefa 3.6 for implementada.
     [HttpPatch("{id}")]
-    public async Task<IActionResult> Patch(int id, HealthInsurancePlan healthInsurancePlan)
+    public async Task<ActionResult<HealthInsurancePlanDTO>> Patch(int id, HealthInsurancePlanUpdateRequest request)
     {
-        try
-        {
-            await _healthInsurancePlanService.Update(healthInsurancePlan, id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar atualizar o plano de seguro saúde.");
-        }
-
-        return Ok(healthInsurancePlan);
+        var healthInsurancePlan = new HealthInsurancePlan(id, request.Name, request.Type, request.Abbreviation);
+        await _healthInsurancePlanService.Update(healthInsurancePlan, id);
+        return Ok(ToDto(healthInsurancePlan));
     }
+
+    private static HealthInsurancePlanDTO ToDto(HealthInsurancePlan healthInsurancePlan) => new()
+    {
+        Id = healthInsurancePlan.Id,
+        Name = healthInsurancePlan.Name,
+        Type = healthInsurancePlan.Type,
+        Abbreviation = healthInsurancePlan.Abbreviation,
+    };
 }

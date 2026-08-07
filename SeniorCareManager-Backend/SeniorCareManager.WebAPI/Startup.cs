@@ -3,6 +3,7 @@ using Microsoft.OpenApi.Models;
 using SeniorCareManager.WebAPI.Data;
 using SeniorCareManager.WebAPI.Data.Interfaces;
 using SeniorCareManager.WebAPI.Data.Repositories;
+using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Services.Entities;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 using Swashbuckle.AspNetCore.SwaggerUI;
@@ -90,6 +91,18 @@ public class Startup
             options.JsonSerializerOptions.WriteIndented = true; // Opcional, apenas para melhor legibilidade
         });
 
+        // Problem Details (RFC 7807) centralizado — cobre tanto os 400 automáticos do
+        // ModelState do [ApiController] quanto qualquer exceção não tratada (via
+        // GlobalExceptionHandler abaixo), sempre com identificador de correlação.
+        services.AddProblemDetails(options =>
+        {
+            options.CustomizeProblemDetails = context =>
+            {
+                context.ProblemDetails.Extensions["correlationId"] = context.HttpContext.TraceIdentifier;
+            };
+        });
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+
         // CORS_ALLOWED_ORIGINS (docker-compose de produção) sobrepõe os origins de dev —
         // sem isso, a imagem de produção nunca aceitaria requisição dos frontends reais.
         var corsOrigins = Configuration["CORS_ALLOWED_ORIGINS"]?
@@ -149,9 +162,13 @@ public class Startup
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        // Centralizado e igual em todo ambiente — em dev, UseDeveloperExceptionPage()
+        // vazaria stack trace no corpo da resposta (proibido pela 3.3); o
+        // GlobalExceptionHandler é o único a converter exceção em resposta HTTP.
+        app.UseExceptionHandler();
+
         if (env.IsDevelopment())
         {
-            app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -170,7 +187,6 @@ public class Startup
         }
         else
         {
-            app.UseExceptionHandler("/home/Error");
             app.UseHsts();
         }
 

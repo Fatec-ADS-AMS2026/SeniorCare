@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
+using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Models;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 
@@ -7,73 +8,56 @@ namespace SeniorCareManager.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/v1/[controller]")]
-public class PositionController: Controller
+public class PositionController : ControllerBase
 {
     private readonly IPositionService _positionService;
 
     public PositionController(IPositionService service)
     {
-        this._positionService = service;
+        _positionService = service;
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<ActionResult<IEnumerable<PositionDTO>>> Get()
     {
-        var position = await _positionService.GetAll();
-        return Ok(position);
+        var positions = await _positionService.GetAll();
+        return Ok(positions.Select(ToDto));
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<ActionResult<PositionDTO>> GetById(int id)
     {
         var position = await _positionService.GetById(id);
-        if (position == null) return NotFound("Cargo não encontrado!");
-        return Ok(position);
+        if (position == null) throw new KeyNotFoundException("Cargo não encontrado.");
+        return Ok(ToDto(position));
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Position position)
+    public async Task<ActionResult<PositionDTO>> Post(PositionCreateRequest request)
     {
-        try
-        {
-            await _positionService.Create(position);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar inserir um novo cargo.");
-        }
-        return Ok(position);
+        var position = new Position(0, request.Name);
+        await _positionService.Create(position);
+        return CreatedAtAction(nameof(GetById), new { id = position.Id }, ToDto(position));
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, Position position)
+    public async Task<ActionResult<PositionDTO>> Put(int id, PositionUpdateRequest request)
     {
-        try
-        {
-            await _positionService.Update(position, id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar atualizar o cargo: " + ex.Message);
-        }
-
-        return Ok(position);
+        var position = new Position(id, request.Name);
+        await _positionService.Update(position, id);
+        return Ok(ToDto(position));
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        try
-        {
-            await _positionService.Remove(id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar remover o cargo.");
-        }
-
-        return Ok("cargo apagado com sucesso");
+        await _positionService.Remove(id);
+        return NoContent();
     }
 
-
+    private static PositionDTO ToDto(Position position) => new()
+    {
+        Id = position.Id,
+        Name = position.Name,
+    };
 }

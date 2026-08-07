@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
+using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Models;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 
@@ -8,86 +9,81 @@ namespace SeniorCareManager.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/v1/[controller]")]
-public class ProductTypeController : Controller
+public class ProductTypeController : ControllerBase
 {
     private readonly IProductTypeService _productTypeService;
+    private readonly IProductGroupService _productGroupService;
 
-    public ProductTypeController(IProductTypeService service)
+    public ProductTypeController(IProductTypeService service, IProductGroupService productGroupService)
     {
-        this._productTypeService = service;
+        _productTypeService = service;
+        _productGroupService = productGroupService;
     }
-    
+
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<ActionResult<IEnumerable<ProductTypeDTO>>> Get()
     {
         var productTypes = await _productTypeService.GetAll();
-        return Ok(productTypes);
+        return Ok(productTypes.Select(ToDto));
     }
-    
+
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<ActionResult<ProductTypeDTO>> GetById(int id)
     {
         var productType = await _productTypeService.GetById(id);
-        if (productType == null) return NotFound("Tipo Produto não encontrado!");
-        return Ok(productType);
+        if (productType == null) throw new KeyNotFoundException("Tipo de produto não encontrado.");
+        return Ok(ToDto(productType));
     }
-    
+
     [HttpPost]
-    public async Task<IActionResult> Post(ProductType productType)
+    public async Task<ActionResult<ProductTypeDTO>> Post(ProductTypeCreateRequest request)
     {
-        try{
-            await _productTypeService.Create(productType);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar inserir um novo tipo de produto.");
-        }
-        return Ok(productType);
+        await EnsureProductGroupExists(request.ProductGroupId);
+        var productType = new ProductType(0, request.Name, request.ProductGroupId);
+        await _productTypeService.Create(productType);
+        return CreatedAtAction(nameof(GetById), new { id = productType.Id }, ToDto(productType));
     }
-    
+
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, ProductType productType)
+    public async Task<ActionResult<ProductTypeDTO>> Put(int id, ProductTypeUpdateRequest request)
     {
-        try
-        {
-            await _productTypeService.Update(productType, id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar atualizar o tipo de produto: "+ex.Message);
-        }
-        
-        return Ok(productType);
+        await EnsureProductGroupExists(request.ProductGroupId);
+        var productType = new ProductType(id, request.Name, request.ProductGroupId);
+        await _productTypeService.Update(productType, id);
+        return Ok(ToDto(productType));
     }
-    
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        try
-        {
-            await _productTypeService.Remove(id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar remover o tipo de produto.");
-        }
-
-        return Ok("Tipo de produto apagado com sucesso");
+        await _productTypeService.Remove(id);
+        return NoContent();
     }
 
+    // TODO(3.6): PATCH hoje faz substituição total, idêntico a PUT — remover
+    // nesta forma quando a tarefa 3.6 for implementada.
     [HttpPatch("{id}")]
-    public async Task<IActionResult> Patch(int id, ProductType productType)
+    public async Task<ActionResult<ProductTypeDTO>> Patch(int id, ProductTypeUpdateRequest request)
     {
-        try
-        {
-            await _productTypeService.Update(productType, id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar remover o tipo do produto.");
-        }
-        
-        return Ok(productType);
+        await EnsureProductGroupExists(request.ProductGroupId);
+        var productType = new ProductType(id, request.Name, request.ProductGroupId);
+        await _productTypeService.Update(productType, id);
+        return Ok(ToDto(productType));
     }
 
+    private async Task EnsureProductGroupExists(int productGroupId)
+    {
+        var productGroup = await _productGroupService.GetById(productGroupId);
+        if (productGroup == null)
+        {
+            throw new BusinessRuleException($"ProductGroupId {productGroupId} não referencia um grupo de produto existente.");
+        }
+    }
+
+    private static ProductTypeDTO ToDto(ProductType productType) => new()
+    {
+        Id = productType.Id,
+        Name = productType.Name,
+        ProductGroupId = productType.ProductGroupId,
+    };
 }
