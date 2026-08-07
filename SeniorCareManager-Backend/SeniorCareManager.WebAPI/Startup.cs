@@ -111,8 +111,6 @@ public class Startup
 
         */
 
-        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-      
         //Scoped Repositories and Interfaces repo
         services.AddScoped<IProductGroupService, ProductGroupService>();
         services.AddScoped<IProductTypeService, ProductTypeService>();
