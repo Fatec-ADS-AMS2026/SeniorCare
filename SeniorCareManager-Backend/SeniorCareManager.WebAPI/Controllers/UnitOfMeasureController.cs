@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Models;
@@ -18,10 +19,15 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UnitOfMeasureDTO>>> Get()
+        public async Task<ActionResult<PagedResult<UnitOfMeasureDTO>>> Get([FromQuery] CatalogQuery query)
         {
             var unitsOfMeasure = await _unitOfMeasureService.GetAll();
-            return Ok(unitsOfMeasure.Select(ToDto));
+            var filtered = string.IsNullOrWhiteSpace(query.Search)
+                ? unitsOfMeasure
+                : unitsOfMeasure.Where(u =>
+                    u.Description.Contains(query.Search, StringComparison.OrdinalIgnoreCase) ||
+                    u.Abbreviation.Contains(query.Search, StringComparison.OrdinalIgnoreCase));
+            return Ok(filtered.Select(ToDto).ToPagedResult(query.Page, query.PageSize));
         }
 
         [HttpGet("{id}")]

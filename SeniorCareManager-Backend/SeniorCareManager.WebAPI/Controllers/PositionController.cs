@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Models;
@@ -18,10 +19,13 @@ public class PositionController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<PositionDTO>>> Get()
+    public async Task<ActionResult<PagedResult<PositionDTO>>> Get([FromQuery] CatalogQuery query)
     {
         var positions = await _positionService.GetAll();
-        return Ok(positions.Select(ToDto));
+        var filtered = string.IsNullOrWhiteSpace(query.Search)
+            ? positions
+            : positions.Where(p => p.Name.Contains(query.Search, StringComparison.OrdinalIgnoreCase));
+        return Ok(filtered.Select(ToDto).ToPagedResult(query.Page, query.PageSize));
     }
 
     [HttpGet("{id}")]

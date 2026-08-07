@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SeniorCareManager.WebAPI.Objects.Dtos;
+using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Models;
 using SeniorCareManager.WebAPI.Services.Interfaces;
@@ -18,10 +19,13 @@ public class ProductGroupController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ProductGroupDTO>>> Get()
+    public async Task<ActionResult<PagedResult<ProductGroupDTO>>> Get([FromQuery] CatalogQuery query)
     {
         var productGroups = await _productGroupService.GetAll();
-        return Ok(productGroups.Select(ToDto));
+        var filtered = string.IsNullOrWhiteSpace(query.Search)
+            ? productGroups
+            : productGroups.Where(g => g.Name.Contains(query.Search, StringComparison.OrdinalIgnoreCase));
+        return Ok(filtered.Select(ToDto).ToPagedResult(query.Page, query.PageSize));
     }
 
     [HttpGet("{id}")]

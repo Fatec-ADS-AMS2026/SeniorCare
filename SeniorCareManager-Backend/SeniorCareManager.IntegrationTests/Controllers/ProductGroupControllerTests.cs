@@ -3,6 +3,7 @@ using System.Net.Http.Json;
 using FluentAssertions;
 using SeniorCareManager.IntegrationTests.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos;
+using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 
 namespace SeniorCareManager.IntegrationTests.Controllers;
@@ -20,12 +21,12 @@ public sealed class ProductGroupControllerTests : IClassFixture<PostgresWebAppli
     }
 
     [Fact]
-    public async Task Get_ReturnsOkWithList()
+    public async Task Get_ReturnsOkWithPagedResult()
     {
         var response = await _client.GetAsync("/api/v1/ProductGroup");
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        var body = await response.Content.ReadFromJsonAsync<List<ProductGroupDTO>>();
+        var body = await response.Content.ReadFromJsonAsync<PagedResult<ProductGroupDTO>>();
         body.Should().NotBeNull();
     }
 

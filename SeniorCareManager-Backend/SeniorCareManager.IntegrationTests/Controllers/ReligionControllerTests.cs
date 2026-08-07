@@ -3,6 +3,7 @@ using System.Net.Http.Json;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using SeniorCareManager.IntegrationTests.Infrastructure;
+using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 
@@ -23,13 +24,38 @@ public sealed class ReligionControllerTests : IClassFixture<PostgresWebApplicati
     }
 
     [Fact]
-    public async Task Get_ReturnsOkWithList()
+    public async Task Get_ReturnsOkWithPagedResult()
     {
         var response = await _client.GetAsync("/api/v1/Religion");
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        var body = await response.Content.ReadFromJsonAsync<List<ReligionDTO>>();
+        var body = await response.Content.ReadFromJsonAsync<PagedResult<ReligionDTO>>();
         body.Should().NotBeNull();
+        body!.Page.Should().Be(1);
+        body.PageSize.Should().Be(20);
+    }
+
+    [Fact]
+    public async Task Get_WithSearch_FiltersByName()
+    {
+        var unique = $"BuscaÚnica{Guid.NewGuid():N}";
+        await _client.PostAsJsonAsync("/api/v1/Religion", new ReligionCreateRequest { Name = unique });
+        await _client.PostAsJsonAsync("/api/v1/Religion", new ReligionCreateRequest { Name = "Outra Religião Qualquer" });
+
+        var response = await _client.GetAsync($"/api/v1/Religion?search={unique}");
+
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        var body = await response.Content.ReadFromJsonAsync<PagedResult<ReligionDTO>>();
+        body!.Items.Should().ContainSingle(r => r.Name == unique);
+        body.TotalCount.Should().Be(1);
+    }
+
+    [Fact]
+    public async Task Get_WithPageSizeOutOfRange_ReturnsBadRequest()
+    {
+        var response = await _client.GetAsync("/api/v1/Religion?pageSize=0");
+
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
     }
 
     [Fact]
