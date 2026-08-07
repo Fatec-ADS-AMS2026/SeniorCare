@@ -128,7 +128,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_carriercontroller",
-      "community": 0,
+      "community": 185,
       "norm_label": "carriercontroller.cs"
     },
     {
@@ -143,7 +143,7 @@
       },
       "_origin": "ast",
       "id": "csharp_namespace:7d564c44513bb0ac",
-      "community": 0,
+      "community": 185,
       "norm_label": "seniorcaremanager.webapi.controllers"
     },
     {
@@ -169,7 +169,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "controller",
-      "community": 13,
+      "community": 7,
       "norm_label": "controller"
     },
     {
@@ -309,7 +309,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_healthinsuranceplancontroller",
-      "community": 0,
+      "community": 185,
       "norm_label": "healthinsuranceplancontroller.cs"
     },
     {
@@ -491,7 +491,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller",
-      "community": 0,
+      "community": 185,
       "norm_label": "manufacturercontroller.cs"
     },
     {
@@ -507,7 +507,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller_seniorcaremanager_webapi_controllers_manufacturercontroller",
-      "community": 0,
+      "community": 187,
       "norm_label": "manufacturercontroller"
     },
     {
@@ -517,7 +517,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "controllerbase",
-      "community": 0,
+      "community": 187,
       "norm_label": "controllerbase"
     },
     {
@@ -533,7 +533,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller_seniorcaremanager_webapi_controllers_manufacturercontroller_get",
-      "community": 0,
+      "community": 187,
       "norm_label": ".get()"
     },
     {
@@ -543,7 +543,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller_cs_iactionresult",
-      "community": 0,
+      "community": 187,
       "norm_label": "iactionresult"
     },
     {
@@ -553,7 +553,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller_cs_httpget",
-      "community": 0,
+      "community": 187,
       "norm_label": "httpget"
     },
     {
@@ -569,7 +569,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller_seniorcaremanager_webapi_controllers_manufacturercontroller_getbyid",
-      "community": 0,
+      "community": 187,
       "norm_label": ".getbyid()"
     },
     {
@@ -585,7 +585,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller_seniorcaremanager_webapi_controllers_manufacturercontroller_post",
-      "community": 0,
+      "community": 187,
       "norm_label": ".post()"
     },
     {
@@ -595,7 +595,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller_cs_httppost",
-      "community": 0,
+      "community": 187,
       "norm_label": "httppost"
     },
     {
@@ -611,7 +611,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller_seniorcaremanager_webapi_controllers_manufacturercontroller_put",
-      "community": 0,
+      "community": 187,
       "norm_label": ".put()"
     },
     {
@@ -621,7 +621,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller_cs_httpput",
-      "community": 0,
+      "community": 187,
       "norm_label": "httpput"
     },
     {
@@ -637,7 +637,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller_seniorcaremanager_webapi_controllers_manufacturercontroller_delete",
-      "community": 0,
+      "community": 187,
       "norm_label": ".delete()"
     },
     {
@@ -647,7 +647,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_manufacturercontroller_cs_httpdelete",
-      "community": 0,
+      "community": 187,
       "norm_label": "httpdelete"
     },
     {
@@ -657,7 +657,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_positioncontroller",
-      "community": 0,
+      "community": 185,
       "norm_label": "positioncontroller.cs"
     },
     {
@@ -813,7 +813,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_productgroupcontroller",
-      "community": 0,
+      "community": 185,
       "norm_label": "productgroupcontroller.cs"
     },
     {
@@ -995,7 +995,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_producttypecontroller",
-      "community": 0,
+      "community": 185,
       "norm_label": "producttypecontroller.cs"
     },
     {
@@ -1177,7 +1177,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_religioncontroller",
-      "community": 0,
+      "community": 185,
       "norm_label": "religioncontroller.cs"
     },
     {
@@ -1333,7 +1333,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_suppliercontroller",
-      "community": 0,
+      "community": 185,
       "norm_label": "suppliercontroller.cs"
     },
     {
@@ -1489,7 +1489,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_unitofmeasurecontroller",
-      "community": 0,
+      "community": 185,
       "norm_label": "unitofmeasurecontroller.cs"
     },
     {
@@ -1645,7 +1645,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_appdbcontext",
-      "community": 122,
+      "community": 188,
       "norm_label": "appdbcontext.cs"
     },
     {
@@ -1660,7 +1660,7 @@
       },
       "_origin": "ast",
       "id": "csharp_namespace:36fe0e20f0eb2762",
-      "community": 122,
+      "community": 188,
       "norm_label": "seniorcaremanager.webapi.data"
     },
     {
@@ -1676,7 +1676,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_appdbcontext_seniorcaremanager_webapi_data_appdbcontext",
-      "community": 122,
+      "community": 188,
       "norm_label": "appdbcontext"
     },
     {
@@ -1686,7 +1686,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "dbcontext",
-      "community": 122,
+      "community": 188,
       "norm_label": "dbcontext"
     },
     {
@@ -1696,7 +1696,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_appdbcontext_cs_dbset",
-      "community": 122,
+      "community": 188,
       "norm_label": "dbset"
     },
     {
@@ -2215,7 +2215,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck",
-      "community": 122,
+      "community": 188,
       "norm_label": "dbhealthcheck.cs"
     },
     {
@@ -2231,7 +2231,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck",
-      "community": 122,
+      "community": 188,
       "norm_label": "dbhealthcheck"
     },
     {
@@ -2241,7 +2241,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ihealthcheck",
-      "community": 122,
+      "community": 188,
       "norm_label": "ihealthcheck"
     },
     {
@@ -2257,7 +2257,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_dbhealthcheck_seniorcaremanager_webapi_data_dbhealthcheck_checkhealthasync",
-      "community": 122,
+      "community": 199,
       "norm_label": ".checkhealthasync()"
     },
     {
@@ -2267,7 +2267,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "healthcheckcontext",
-      "community": 122,
+      "community": 199,
       "norm_label": "healthcheckcontext"
     },
     {
@@ -2277,7 +2277,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "cancellationtoken",
-      "community": 122,
+      "community": 199,
       "norm_label": "cancellationtoken"
     },
     {
@@ -2287,7 +2287,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "healthcheckresult",
-      "community": 122,
+      "community": 199,
       "norm_label": "healthcheckresult"
     },
     {
@@ -2297,7 +2297,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_icarrierrepository",
-      "community": 0,
+      "community": 190,
       "norm_label": "icarrierrepository.cs"
     },
     {
@@ -2328,7 +2328,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_icarrierrepository_seniorcaremanager_webapi_data_interfaces_icarrierrepository",
-      "community": 7,
+      "community": 190,
       "norm_label": "icarrierrepository"
     },
     {
@@ -2470,7 +2470,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_ihealthinsuranceplanrepository",
-      "community": 0,
+      "community": 27,
       "norm_label": "ihealthinsuranceplanrepository.cs"
     },
     {
@@ -2496,7 +2496,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_imanufacturerrepository",
-      "community": 0,
+      "community": 191,
       "norm_label": "imanufacturerrepository.cs"
     },
     {
@@ -2512,7 +2512,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_imanufacturerrepository_seniorcaremanager_webapi_data_interfaces_imanufacturerrepository",
-      "community": 0,
+      "community": 191,
       "norm_label": "imanufacturerrepository"
     },
     {
@@ -2522,7 +2522,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_ipositionrepository",
-      "community": 0,
+      "community": 192,
       "norm_label": "ipositionrepository.cs"
     },
     {
@@ -2538,7 +2538,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_ipositionrepository_seniorcaremanager_webapi_data_interfaces_ipositionrepository",
-      "community": 13,
+      "community": 192,
       "norm_label": "ipositionrepository"
     },
     {
@@ -2548,7 +2548,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_iproductgrouprepository",
-      "community": 0,
+      "community": 185,
       "norm_label": "iproductgrouprepository.cs"
     },
     {
@@ -2574,7 +2574,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_iproducttyperepository",
-      "community": 0,
+      "community": 12,
       "norm_label": "iproducttyperepository.cs"
     },
     {
@@ -2600,7 +2600,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_ireligionrepository",
-      "community": 0,
+      "community": 193,
       "norm_label": "ireligionrepository.cs"
     },
     {
@@ -2616,7 +2616,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_ireligionrepository_seniorcaremanager_webapi_data_interfaces_ireligionrepository",
-      "community": 15,
+      "community": 193,
       "norm_label": "ireligionrepository"
     },
     {
@@ -2626,7 +2626,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_isupplierrepository",
-      "community": 0,
+      "community": 6,
       "norm_label": "isupplierrepository.cs"
     },
     {
@@ -2652,7 +2652,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_iunitofmeasurerepository",
-      "community": 0,
+      "community": 194,
       "norm_label": "iunitofmeasurerepository.cs"
     },
     {
@@ -2668,7 +2668,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_interfaces_iunitofmeasurerepository_seniorcaremanager_webapi_data_interfaces_iunitofmeasurerepository",
-      "community": 16,
+      "community": 194,
       "norm_label": "iunitofmeasurerepository"
     },
     {
@@ -2885,7 +2885,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_carrierrepository",
-      "community": 0,
+      "community": 190,
       "norm_label": "carrierrepository.cs"
     },
     {
@@ -2916,7 +2916,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_carrierrepository_seniorcaremanager_webapi_data_repositories_carrierrepository",
-      "community": 7,
+      "community": 190,
       "norm_label": "carrierrepository"
     },
     {
@@ -2926,7 +2926,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_carrierrepository_cs_appdbcontext",
-      "community": 7,
+      "community": 190,
       "norm_label": "appdbcontext"
     },
     {
@@ -3124,7 +3124,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_manufacturerrepository",
-      "community": 0,
+      "community": 191,
       "norm_label": "manufacturerrepository.cs"
     },
     {
@@ -3140,7 +3140,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_manufacturerrepository_seniorcaremanager_webapi_data_repositories_manufacturerrepository",
-      "community": 0,
+      "community": 191,
       "norm_label": "manufacturerrepository"
     },
     {
@@ -3150,7 +3150,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_manufacturerrepository_cs_appdbcontext",
-      "community": 0,
+      "community": 191,
       "norm_label": "appdbcontext"
     },
     {
@@ -3160,7 +3160,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_positionrepository",
-      "community": 0,
+      "community": 192,
       "norm_label": "positionrepository.cs"
     },
     {
@@ -3176,7 +3176,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_positionrepository_seniorcaremanager_webapi_data_repositories_positionrepository",
-      "community": 13,
+      "community": 192,
       "norm_label": "positionrepository"
     },
     {
@@ -3186,7 +3186,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_positionrepository_cs_appdbcontext",
-      "community": 13,
+      "community": 192,
       "norm_label": "appdbcontext"
     },
     {
@@ -3268,7 +3268,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_religionrepository",
-      "community": 0,
+      "community": 193,
       "norm_label": "religionrepository.cs"
     },
     {
@@ -3284,7 +3284,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_religionrepository_seniorcaremanager_webapi_data_repositories_religionrepository",
-      "community": 15,
+      "community": 193,
       "norm_label": "religionrepository"
     },
     {
@@ -3294,7 +3294,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_religionrepository_cs_appdbcontext",
-      "community": 15,
+      "community": 193,
       "norm_label": "appdbcontext"
     },
     {
@@ -3340,7 +3340,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_unitofmeasurerepository",
-      "community": 0,
+      "community": 194,
       "norm_label": "unitofmeasurerepository.cs"
     },
     {
@@ -3356,7 +3356,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_unitofmeasurerepository_seniorcaremanager_webapi_data_repositories_unitofmeasurerepository",
-      "community": 16,
+      "community": 194,
       "norm_label": "unitofmeasurerepository"
     },
     {
@@ -3366,7 +3366,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_data_repositories_unitofmeasurerepository_cs_appdbcontext",
-      "community": 16,
+      "community": 194,
       "norm_label": "appdbcontext"
     },
     {
@@ -4038,7 +4038,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_models_carrier",
-      "community": 7,
+      "community": 190,
       "norm_label": "carrier.cs"
     },
     {
@@ -4053,7 +4053,7 @@
       },
       "_origin": "ast",
       "id": "csharp_namespace:8e9428a96c4c1aa9",
-      "community": 0,
+      "community": 185,
       "norm_label": "seniorcaremanager.webapi.objects.models"
     },
     {
@@ -4069,7 +4069,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_models_carrier_seniorcaremanager_webapi_objects_models_carrier",
-      "community": 7,
+      "community": 190,
       "norm_label": "carrier"
     },
     {
@@ -4105,7 +4105,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_models_manufacturer",
-      "community": 0,
+      "community": 191,
       "norm_label": "manufacturer.cs"
     },
     {
@@ -4121,7 +4121,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_models_manufacturer_seniorcaremanager_webapi_objects_models_manufacturer",
-      "community": 0,
+      "community": 191,
       "norm_label": "manufacturer"
     },
     {
@@ -4131,7 +4131,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_models_position",
-      "community": 13,
+      "community": 192,
       "norm_label": "position.cs"
     },
     {
@@ -4147,7 +4147,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_models_position_seniorcaremanager_webapi_objects_models_position",
-      "community": 13,
+      "community": 192,
       "norm_label": "position"
     },
     {
@@ -4219,7 +4219,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_models_religion",
-      "community": 15,
+      "community": 193,
       "norm_label": "religion.cs"
     },
     {
@@ -4235,7 +4235,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_models_religion_seniorcaremanager_webapi_objects_models_religion",
-      "community": 15,
+      "community": 193,
       "norm_label": "religion"
     },
     {
@@ -4271,7 +4271,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_models_unitofmeasure",
-      "community": 16,
+      "community": 194,
       "norm_label": "unitofmeasure.cs"
     },
     {
@@ -4287,7 +4287,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_objects_models_unitofmeasure_seniorcaremanager_webapi_objects_models_unitofmeasure",
-      "community": 16,
+      "community": 194,
       "norm_label": "unitofmeasure"
     },
     {
@@ -4297,7 +4297,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_program",
-      "community": 122,
+      "community": 188,
       "norm_label": "program.cs"
     },
     {
@@ -4312,7 +4312,7 @@
       },
       "_origin": "ast",
       "id": "csharp_namespace:9f89f23247ad6d4f",
-      "community": 122,
+      "community": 188,
       "norm_label": "seniorcaremanager.webapi"
     },
     {
@@ -4328,7 +4328,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program",
-      "community": 122,
+      "community": 200,
       "norm_label": "program"
     },
     {
@@ -4344,7 +4344,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program_main",
-      "community": 122,
+      "community": 200,
       "norm_label": ".main()"
     },
     {
@@ -4360,7 +4360,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program_createhostbuilder",
-      "community": 122,
+      "community": 200,
       "norm_label": ".createhostbuilder()"
     },
     {
@@ -4370,7 +4370,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ihostbuilder",
-      "community": 122,
+      "community": 200,
       "norm_label": "ihostbuilder"
     },
     {
@@ -4801,7 +4801,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_entities_carrierservice_seniorcaremanager_webapi_services_entities_carrierservice",
-      "community": 7,
+      "community": 190,
       "norm_label": "carrierservice"
     },
     {
@@ -4811,7 +4811,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_entities_carrierservice_cs_imapper",
-      "community": 7,
+      "community": 190,
       "norm_label": "imapper"
     },
     {
@@ -4999,7 +4999,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_entities_manufacturerservice_seniorcaremanager_webapi_services_entities_manufacturerservice",
-      "community": 0,
+      "community": 191,
       "norm_label": "manufacturerservice"
     },
     {
@@ -5009,7 +5009,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_entities_manufacturerservice_cs_imapper",
-      "community": 0,
+      "community": 191,
       "norm_label": "imapper"
     },
     {
@@ -5035,7 +5035,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_entities_positionservice_seniorcaremanager_webapi_services_entities_positionservice",
-      "community": 13,
+      "community": 192,
       "norm_label": "positionservice"
     },
     {
@@ -5045,7 +5045,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_entities_positionservice_cs_imapper",
-      "community": 13,
+      "community": 192,
       "norm_label": "imapper"
     },
     {
@@ -5143,7 +5143,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_entities_religionservice_seniorcaremanager_webapi_services_entities_religionservice",
-      "community": 15,
+      "community": 193,
       "norm_label": "religionservice"
     },
     {
@@ -5153,7 +5153,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_entities_religionservice_cs_imapper",
-      "community": 15,
+      "community": 193,
       "norm_label": "imapper"
     },
     {
@@ -5215,7 +5215,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_entities_unitofmeasureservice_seniorcaremanager_webapi_services_entities_unitofmeasureservice",
-      "community": 16,
+      "community": 194,
       "norm_label": "unitofmeasureservice"
     },
     {
@@ -5225,7 +5225,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_entities_unitofmeasureservice_cs_imapper",
-      "community": 16,
+      "community": 194,
       "norm_label": "imapper"
     },
     {
@@ -5235,7 +5235,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_icarrierservice",
-      "community": 0,
+      "community": 190,
       "norm_label": "icarrierservice.cs"
     },
     {
@@ -5250,7 +5250,7 @@
       },
       "_origin": "ast",
       "id": "csharp_namespace:5426c04aeefbaee3",
-      "community": 0,
+      "community": 185,
       "norm_label": "seniorcaremanager.webapi.services.interfaces"
     },
     {
@@ -5266,7 +5266,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_icarrierservice_seniorcaremanager_webapi_services_interfaces_icarrierservice",
-      "community": 7,
+      "community": 190,
       "norm_label": "icarrierservice"
     },
     {
@@ -5276,7 +5276,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice",
-      "community": 3,
+      "community": 164,
       "norm_label": "igenericservice.cs"
     },
     {
@@ -5292,7 +5292,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice",
-      "community": 3,
+      "community": 164,
       "norm_label": "igenericservice"
     },
     {
@@ -5308,7 +5308,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_getall",
-      "community": 3,
+      "community": 164,
       "norm_label": ".getall()"
     },
     {
@@ -5318,7 +5318,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_cs_ienumerable",
-      "community": 3,
+      "community": 164,
       "norm_label": "ienumerable"
     },
     {
@@ -5334,7 +5334,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_getbyid",
-      "community": 3,
+      "community": 164,
       "norm_label": ".getbyid()"
     },
     {
@@ -5350,7 +5350,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_create",
-      "community": 3,
+      "community": 164,
       "norm_label": ".create()"
     },
     {
@@ -5366,7 +5366,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_update",
-      "community": 3,
+      "community": 164,
       "norm_label": ".update()"
     },
     {
@@ -5382,7 +5382,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_igenericservice_seniorcaremanager_webapi_services_interfaces_igenericservice_remove",
-      "community": 3,
+      "community": 164,
       "norm_label": ".remove()"
     },
     {
@@ -5392,7 +5392,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_ihealthinsuranceplanservice",
-      "community": 0,
+      "community": 185,
       "norm_label": "ihealthinsuranceplanservice.cs"
     },
     {
@@ -5418,7 +5418,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_imanufacturerservice",
-      "community": 0,
+      "community": 191,
       "norm_label": "imanufacturerservice.cs"
     },
     {
@@ -5434,7 +5434,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_imanufacturerservice_seniorcaremanager_webapi_services_interfaces_imanufacturerservice",
-      "community": 0,
+      "community": 191,
       "norm_label": "imanufacturerservice"
     },
     {
@@ -5444,7 +5444,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_ipositionservice",
-      "community": 0,
+      "community": 192,
       "norm_label": "ipositionservice.cs"
     },
     {
@@ -5460,7 +5460,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_ipositionservice_seniorcaremanager_webapi_services_interfaces_ipositionservice",
-      "community": 13,
+      "community": 192,
       "norm_label": "ipositionservice"
     },
     {
@@ -5470,7 +5470,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_iproductgroupservice",
-      "community": 0,
+      "community": 185,
       "norm_label": "iproductgroupservice.cs"
     },
     {
@@ -5496,7 +5496,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_iproducttypeservice",
-      "community": 0,
+      "community": 185,
       "norm_label": "iproducttypeservice.cs"
     },
     {
@@ -5522,7 +5522,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_ireligionservice",
-      "community": 0,
+      "community": 193,
       "norm_label": "ireligionservice.cs"
     },
     {
@@ -5538,7 +5538,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_ireligionservice_seniorcaremanager_webapi_services_interfaces_ireligionservice",
-      "community": 15,
+      "community": 193,
       "norm_label": "ireligionservice"
     },
     {
@@ -5548,7 +5548,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_isupplierservice",
-      "community": 0,
+      "community": 185,
       "norm_label": "isupplierservice.cs"
     },
     {
@@ -5574,7 +5574,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_iunitofmeasureservice",
-      "community": 0,
+      "community": 194,
       "norm_label": "iunitofmeasureservice.cs"
     },
     {
@@ -5590,7 +5590,7 @@
       },
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_services_interfaces_iunitofmeasureservice_seniorcaremanager_webapi_services_interfaces_iunitofmeasureservice",
-      "community": 16,
+      "community": 194,
       "norm_label": "iunitofmeasureservice"
     },
     {
@@ -5600,7 +5600,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "seniorcaremanager_backend_seniorcaremanager_webapi_startup",
-      "community": 0,
+      "community": 188,
       "norm_label": "startup.cs"
     },
     {
@@ -12066,6 +12066,144 @@
       "norm_label": "cleanup()"
     },
     {
+      "label": "create_qa_issue.py",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "infra_dev_flow_create_qa_issue",
+      "community": 189,
+      "norm_label": "create_qa_issue.py"
+    },
+    {
+      "label": "run_gh()",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "infra_dev_flow_create_qa_issue_run_gh",
+      "community": 189,
+      "norm_label": "run_gh()"
+    },
+    {
+      "label": "repo_gh()",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L53",
+      "_origin": "ast",
+      "id": "infra_dev_flow_create_qa_issue_repo_gh",
+      "community": 189,
+      "norm_label": "repo_gh()"
+    },
+    {
+      "label": "project_gh()",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "infra_dev_flow_create_qa_issue_project_gh",
+      "community": 189,
+      "norm_label": "project_gh()"
+    },
+    {
+      "label": "extract_test_plan()",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "infra_dev_flow_create_qa_issue_extract_test_plan",
+      "community": 189,
+      "norm_label": "extract_test_plan()"
+    },
+    {
+      "label": "ensure_label()",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L71",
+      "_origin": "ast",
+      "id": "infra_dev_flow_create_qa_issue_ensure_label",
+      "community": 189,
+      "norm_label": "ensure_label()"
+    },
+    {
+      "label": "create_issue()",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "infra_dev_flow_create_qa_issue_create_issue",
+      "community": 189,
+      "norm_label": "create_issue()"
+    },
+    {
+      "label": "resolve_status_option()",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L107",
+      "_origin": "ast",
+      "id": "infra_dev_flow_create_qa_issue_resolve_status_option",
+      "community": 189,
+      "norm_label": "resolve_status_option()"
+    },
+    {
+      "label": "add_to_project()",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L124",
+      "_origin": "ast",
+      "id": "infra_dev_flow_create_qa_issue_add_to_project",
+      "community": 189,
+      "norm_label": "add_to_project()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L139",
+      "_origin": "ast",
+      "id": "infra_dev_flow_create_qa_issue_main",
+      "community": 189,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Retorna (project_id, status_field_id, option_id) para TARGET_STATUS_NAME.",
+      "file_type": "rationale",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L108",
+      "_origin": "ast",
+      "id": "infra_dev_flow_create_qa_issue_rationale_108",
+      "community": 189,
+      "norm_label": "retorna (project_id, status_field_id, option_id) para target_status_name."
+    },
+    {
+      "label": "promote_to_main.sh",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/promote_to_main.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "infra_dev_flow_promote_to_main",
+      "community": 214,
+      "norm_label": "promote_to_main.sh"
+    },
+    {
+      "label": "promote_to_main.sh script",
+      "file_type": "code",
+      "source_file": "infra/dev-flow/promote_to_main.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "infra_dev_flow_promote_to_main_sh__entry",
+      "community": 214,
+      "norm_label": "promote_to_main.sh script"
+    },
+    {
       "label": "setup_project.sh",
       "file_type": "code",
       "source_file": "infra/openspec-github/setup_project.sh",
@@ -12138,7 +12276,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "infra_openspec_github_sync_issues_task",
-      "community": 3,
+      "community": 164,
       "norm_label": "task"
     },
     {
@@ -14434,6 +14572,76 @@
     {
       "label": "README.md",
       "file_type": "document",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "infra_dev_flow_readme",
+      "community": 197,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "dev-flow \u2014 promo\u00e7\u00e3o dev \u2192 main com QA manual",
+      "file_type": "document",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "infra_dev_flow_readme_dev_flow_promo\u00e7\u00e3o_dev_main_com_qa_manual",
+      "community": 197,
+      "norm_label": "dev-flow \u2014 promocao dev \u2192 main com qa manual"
+    },
+    {
+      "label": "Por que a issue de QA n\u00e3o \u00e9 espelho (ao contr\u00e1rio das do openspec-sync)",
+      "file_type": "document",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "infra_dev_flow_readme_por_que_a_issue_de_qa_n\u00e3o_\u00e9_espelho_ao_contr\u00e1rio_das_do_openspec_sync",
+      "community": 197,
+      "norm_label": "por que a issue de qa nao e espelho (ao contrario das do openspec-sync)"
+    },
+    {
+      "label": "Componentes",
+      "file_type": "document",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "infra_dev_flow_readme_componentes",
+      "community": 197,
+      "norm_label": "componentes"
+    },
+    {
+      "label": "Por que precisa de um PAT al\u00e9m do GITHUB_TOKEN",
+      "file_type": "document",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "infra_dev_flow_readme_por_que_precisa_de_um_pat_al\u00e9m_do_github_token",
+      "community": 197,
+      "norm_label": "por que precisa de um pat alem do github_token"
+    },
+    {
+      "label": "Uso",
+      "file_type": "document",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "infra_dev_flow_readme_uso",
+      "community": 197,
+      "norm_label": "uso"
+    },
+    {
+      "label": "Limites conhecidos",
+      "file_type": "document",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "infra_dev_flow_readme_limites_conhecidos",
+      "community": 197,
+      "norm_label": "limites conhecidos"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
       "source_file": "infra/docker-test/README.md",
       "source_location": "L1",
       "_origin": "ast",
@@ -14550,6 +14758,866 @@
       "id": "infra_openspec_github_readme_limites_conhecidos",
       "community": 165,
       "norm_label": "limites conhecidos"
+    },
+    {
+      "label": "design.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design",
+      "community": 186,
+      "norm_label": "design.md"
+    },
+    {
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_context",
+      "community": 186,
+      "norm_label": "context"
+    },
+    {
+      "label": "Goals / Non-Goals",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_goals_non_goals",
+      "community": 186,
+      "norm_label": "goals / non-goals"
+    },
+    {
+      "label": "Decisions",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_decisions",
+      "community": 186,
+      "norm_label": "decisions"
+    },
+    {
+      "label": "1. Criar uma terceira aplica\u00e7\u00e3o web leve e independente",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_1_criar_uma_terceira_aplica\u00e7\u00e3o_web_leve_e_independente",
+      "community": 186,
+      "norm_label": "1. criar uma terceira aplicacao web leve e independente"
+    },
+    {
+      "label": "2. Publicar todas as aplica\u00e7\u00f5es sob uma \u00fanica origem",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_2_publicar_todas_as_aplica\u00e7\u00f5es_sob_uma_\u00fanica_origem",
+      "community": 186,
+      "norm_label": "2. publicar todas as aplicacoes sob uma unica origem"
+    },
+    {
+      "label": "3. Compartilhar renova\u00e7\u00e3o de sess\u00e3o, n\u00e3o token JavaScript",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_3_compartilhar_renova\u00e7\u00e3o_de_sess\u00e3o_n\u00e3o_token_javascript",
+      "community": 186,
+      "norm_label": "3. compartilhar renovacao de sessao, nao token javascript"
+    },
+    {
+      "label": "4. Separar defini\u00e7\u00e3o sist\u00eamica de habilita\u00e7\u00e3o institucional",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L97",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_4_separar_defini\u00e7\u00e3o_sist\u00eamica_de_habilita\u00e7\u00e3o_institucional",
+      "community": 186,
+      "norm_label": "4. separar definicao sistemica de habilitacao institucional"
+    },
+    {
+      "label": "5. Derivar o cat\u00e1logo efetivo no backend",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L117",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_5_derivar_o_cat\u00e1logo_efetivo_no_backend",
+      "community": 186,
+      "norm_label": "5. derivar o catalogo efetivo no backend"
+    },
+    {
+      "label": "6. Tratar estado operacional como configura\u00e7\u00e3o, n\u00e3o health check s\u00edncrono",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L137",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_6_tratar_estado_operacional_como_configura\u00e7\u00e3o_n\u00e3o_health_check_s\u00edncrono",
+      "community": 186,
+      "norm_label": "6. tratar estado operacional como configuracao, nao health check sincrono"
+    },
+    {
+      "label": "7. Preservar deep links com return path validado",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L152",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_7_preservar_deep_links_com_return_path_validado",
+      "community": 186,
+      "norm_label": "7. preservar deep links com return path validado"
+    },
+    {
+      "label": "8. Centralizar experi\u00eancia global por contrato antes de extrair pacote",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L165",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_8_centralizar_experi\u00eancia_global_por_contrato_antes_de_extrair_pacote",
+      "community": 186,
+      "norm_label": "8. centralizar experiencia global por contrato antes de extrair pacote"
+    },
+    {
+      "label": "9. Manter o portal livre de dados de neg\u00f3cio",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L180",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_9_manter_o_portal_livre_de_dados_de_neg\u00f3cio",
+      "community": 186,
+      "norm_label": "9. manter o portal livre de dados de negocio"
+    },
+    {
+      "label": "10. Implantar de forma aditiva e manter conting\u00eancia controlada",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L194",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_10_implantar_de_forma_aditiva_e_manter_conting\u00eancia_controlada",
+      "community": 186,
+      "norm_label": "10. implantar de forma aditiva e manter contingencia controlada"
+    },
+    {
+      "label": "Risks / Trade-offs",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L208",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_risks_trade_offs",
+      "community": 186,
+      "norm_label": "risks / trade-offs"
+    },
+    {
+      "label": "Migration Plan",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L231",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_migration_plan",
+      "community": 186,
+      "norm_label": "migration plan"
+    },
+    {
+      "label": "Open Questions",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L257",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_design_open_questions",
+      "community": 186,
+      "norm_label": "open questions"
+    },
+    {
+      "label": "proposal.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_proposal",
+      "community": 196,
+      "norm_label": "proposal.md"
+    },
+    {
+      "label": "Why",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_proposal_why",
+      "community": 196,
+      "norm_label": "why"
+    },
+    {
+      "label": "What Changes",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_proposal_what_changes",
+      "community": 196,
+      "norm_label": "what changes"
+    },
+    {
+      "label": "Objetivos",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_proposal_objetivos",
+      "community": 196,
+      "norm_label": "objetivos"
+    },
+    {
+      "label": "N\u00e3o objetivos",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_proposal_n\u00e3o_objetivos",
+      "community": 196,
+      "norm_label": "nao objetivos"
+    },
+    {
+      "label": "Capabilities",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_proposal_capabilities",
+      "community": 196,
+      "norm_label": "capabilities"
+    },
+    {
+      "label": "New Capabilities",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_proposal_new_capabilities",
+      "community": 196,
+      "norm_label": "new capabilities"
+    },
+    {
+      "label": "Modified Capabilities",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L70",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_proposal_modified_capabilities",
+      "community": 196,
+      "norm_label": "modified capabilities"
+    },
+    {
+      "label": "Impact",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_proposal_impact",
+      "community": 196,
+      "norm_label": "impact"
+    },
+    {
+      "label": "spec.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec",
+      "community": 198,
+      "norm_label": "spec.md"
+    },
+    {
+      "label": "Purpose",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_purpose",
+      "community": 198,
+      "norm_label": "purpose"
+    },
+    {
+      "label": "ADDED Requirements",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "community": 198,
+      "norm_label": "added requirements"
+    },
+    {
+      "label": "Requirement: Senior Portal \u00e9 a entrada institucional unificada",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_senior_portal_\u00e9_a_entrada_institucional_unificada",
+      "community": 198,
+      "norm_label": "requirement: senior portal e a entrada institucional unificada"
+    },
+    {
+      "label": "Scenario: Usu\u00e1rio interno abre a plataforma",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_usu\u00e1rio_interno_abre_a_plataforma",
+      "community": 198,
+      "norm_label": "scenario: usuario interno abre a plataforma"
+    },
+    {
+      "label": "Scenario: Familiar tenta usar o portal interno",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_familiar_tenta_usar_o_portal_interno",
+      "community": 198,
+      "norm_label": "scenario: familiar tenta usar o portal interno"
+    },
+    {
+      "label": "Requirement: Portal reutiliza a identidade e a sess\u00e3o institucional",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_reutiliza_a_identidade_e_a_sess\u00e3o_institucional",
+      "community": 205,
+      "norm_label": "requirement: portal reutiliza a identidade e a sessao institucional"
+    },
+    {
+      "label": "Scenario: Navega\u00e7\u00e3o autenticada para outro m\u00f3dulo",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_navega\u00e7\u00e3o_autenticada_para_outro_m\u00f3dulo",
+      "community": 205,
+      "norm_label": "scenario: navegacao autenticada para outro modulo"
+    },
+    {
+      "label": "Scenario: Sess\u00e3o n\u00e3o renov\u00e1vel",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_sess\u00e3o_n\u00e3o_renov\u00e1vel",
+      "community": 205,
+      "norm_label": "scenario: sessao nao renovavel"
+    },
+    {
+      "label": "Scenario: MFA pendente",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_mfa_pendente",
+      "community": 205,
+      "norm_label": "scenario: mfa pendente"
+    },
+    {
+      "label": "Requirement: Contexto institucional \u00e9 expl\u00edcito e consistente",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_contexto_institucional_\u00e9_expl\u00edcito_e_consistente",
+      "community": 207,
+      "norm_label": "requirement: contexto institucional e explicito e consistente"
+    },
+    {
+      "label": "Scenario: \u00danica institui\u00e7\u00e3o habilitada",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_\u00fanica_institui\u00e7\u00e3o_habilitada",
+      "community": 207,
+      "norm_label": "scenario: unica instituicao habilitada"
+    },
+    {
+      "label": "Scenario: Contexto institucional divergente",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L53",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_contexto_institucional_divergente",
+      "community": 207,
+      "norm_label": "scenario: contexto institucional divergente"
+    },
+    {
+      "label": "Requirement: Cat\u00e1logo de m\u00f3dulos possui contrato est\u00e1vel e configur\u00e1vel",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_cat\u00e1logo_de_m\u00f3dulos_possui_contrato_est\u00e1vel_e_configur\u00e1vel",
+      "community": 201,
+      "norm_label": "requirement: catalogo de modulos possui contrato estavel e configuravel"
+    },
+    {
+      "label": "Scenario: Administrador cadastra m\u00f3dulo v\u00e1lido",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_administrador_cadastra_m\u00f3dulo_v\u00e1lido",
+      "community": 201,
+      "norm_label": "scenario: administrador cadastra modulo valido"
+    },
+    {
+      "label": "Scenario: Destino externo n\u00e3o autorizado",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_destino_externo_n\u00e3o_autorizado",
+      "community": 201,
+      "norm_label": "scenario: destino externo nao autorizado"
+    },
+    {
+      "label": "Scenario: Identificador duplicado",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L71",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_identificador_duplicado",
+      "community": 201,
+      "norm_label": "scenario: identificador duplicado"
+    },
+    {
+      "label": "Requirement: Descoberta de m\u00f3dulos usa permiss\u00f5es efetivas",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_descoberta_de_m\u00f3dulos_usa_permiss\u00f5es_efetivas",
+      "community": 202,
+      "norm_label": "requirement: descoberta de modulos usa permissoes efetivas"
+    },
+    {
+      "label": "Scenario: M\u00f3dulo autorizado",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_autorizado",
+      "community": 202,
+      "norm_label": "scenario: modulo autorizado"
+    },
+    {
+      "label": "Scenario: M\u00f3dulo sem permiss\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_sem_permiss\u00e3o",
+      "community": 202,
+      "norm_label": "scenario: modulo sem permissao"
+    },
+    {
+      "label": "Scenario: Permiss\u00e3o revogada durante a sess\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L89",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_permiss\u00e3o_revogada_durante_a_sess\u00e3o",
+      "community": 202,
+      "norm_label": "scenario: permissao revogada durante a sessao"
+    },
+    {
+      "label": "Requirement: Portal representa estados operacionais sem conceder acesso indevido",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_representa_estados_operacionais_sem_conceder_acesso_indevido",
+      "community": 204,
+      "norm_label": "requirement: portal representa estados operacionais sem conceder acesso indevido"
+    },
+    {
+      "label": "Scenario: M\u00f3dulo dispon\u00edvel",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L99",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_dispon\u00edvel",
+      "community": 204,
+      "norm_label": "scenario: modulo disponivel"
+    },
+    {
+      "label": "Scenario: M\u00f3dulo em manuten\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L103",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_em_manuten\u00e7\u00e3o",
+      "community": 204,
+      "norm_label": "scenario: modulo em manutencao"
+    },
+    {
+      "label": "Scenario: M\u00f3dulo indispon\u00edvel inesperadamente",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L107",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_indispon\u00edvel_inesperadamente",
+      "community": 204,
+      "norm_label": "scenario: modulo indisponivel inesperadamente"
+    },
+    {
+      "label": "Requirement: Navega\u00e7\u00e3o entre aplica\u00e7\u00f5es preserva destino seguro",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L111",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_navega\u00e7\u00e3o_entre_aplica\u00e7\u00f5es_preserva_destino_seguro",
+      "community": 203,
+      "norm_label": "requirement: navegacao entre aplicacoes preserva destino seguro"
+    },
+    {
+      "label": "Scenario: Retorno ao portal",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L117",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_retorno_ao_portal",
+      "community": 203,
+      "norm_label": "scenario: retorno ao portal"
+    },
+    {
+      "label": "Scenario: Deep link autorizado",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L121",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_deep_link_autorizado",
+      "community": 203,
+      "norm_label": "scenario: deep link autorizado"
+    },
+    {
+      "label": "Scenario: Redirecionamento malicioso",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L125",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_redirecionamento_malicioso",
+      "community": 203,
+      "norm_label": "scenario: redirecionamento malicioso"
+    },
+    {
+      "label": "Requirement: URLs antigas migram de forma coordenada",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L129",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_urls_antigas_migram_de_forma_coordenada",
+      "community": 213,
+      "norm_label": "requirement: urls antigas migram de forma coordenada"
+    },
+    {
+      "label": "Scenario: Login legado do estoque",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L135",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_login_legado_do_estoque",
+      "community": 213,
+      "norm_label": "scenario: login legado do estoque"
+    },
+    {
+      "label": "Scenario: Cliente antigo sem sess\u00e3o compat\u00edvel",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L139",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_cliente_antigo_sem_sess\u00e3o_compat\u00edvel",
+      "community": 213,
+      "norm_label": "scenario: cliente antigo sem sessao compativel"
+    },
+    {
+      "label": "Requirement: Fun\u00e7\u00f5es globais permanecem dispon\u00edveis em todos os m\u00f3dulos",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L143",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_fun\u00e7\u00f5es_globais_permanecem_dispon\u00edveis_em_todos_os_m\u00f3dulos",
+      "community": 209,
+      "norm_label": "requirement: funcoes globais permanecem disponiveis em todos os modulos"
+    },
+    {
+      "label": "Scenario: Usu\u00e1rio altera prefer\u00eancia visual",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L148",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_usu\u00e1rio_altera_prefer\u00eancia_visual",
+      "community": 209,
+      "norm_label": "scenario: usuario altera preferencia visual"
+    },
+    {
+      "label": "Scenario: Logout iniciado em um m\u00f3dulo",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L152",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_logout_iniciado_em_um_m\u00f3dulo",
+      "community": 209,
+      "norm_label": "scenario: logout iniciado em um modulo"
+    },
+    {
+      "label": "Requirement: Portal minimiza dados e n\u00e3o apresenta conte\u00fado cl\u00ednico",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L156",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_minimiza_dados_e_n\u00e3o_apresenta_conte\u00fado_cl\u00ednico",
+      "community": 211,
+      "norm_label": "requirement: portal minimiza dados e nao apresenta conteudo clinico"
+    },
+    {
+      "label": "Scenario: Carregamento da p\u00e1gina inicial",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L162",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_carregamento_da_p\u00e1gina_inicial",
+      "community": 211,
+      "norm_label": "scenario: carregamento da pagina inicial"
+    },
+    {
+      "label": "Scenario: Configura\u00e7\u00e3o cont\u00e9m informa\u00e7\u00e3o sens\u00edvel",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L166",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_configura\u00e7\u00e3o_cont\u00e9m_informa\u00e7\u00e3o_sens\u00edvel",
+      "community": 211,
+      "norm_label": "scenario: configuracao contem informacao sensivel"
+    },
+    {
+      "label": "Requirement: Configura\u00e7\u00e3o e navega\u00e7\u00e3o cr\u00edtica s\u00e3o audit\u00e1veis",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L170",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_configura\u00e7\u00e3o_e_navega\u00e7\u00e3o_cr\u00edtica_s\u00e3o_audit\u00e1veis",
+      "community": 206,
+      "norm_label": "requirement: configuracao e navegacao critica sao auditaveis"
+    },
+    {
+      "label": "Scenario: Estado de m\u00f3dulo alterado",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L176",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_estado_de_m\u00f3dulo_alterado",
+      "community": 206,
+      "norm_label": "scenario: estado de modulo alterado"
+    },
+    {
+      "label": "Scenario: Acesso direto negado",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L180",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_acesso_direto_negado",
+      "community": 206,
+      "norm_label": "scenario: acesso direto negado"
+    },
+    {
+      "label": "Requirement: Portal possui experi\u00eancia acess\u00edvel e responsiva",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L184",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_possui_experi\u00eancia_acess\u00edvel_e_responsiva",
+      "community": 212,
+      "norm_label": "requirement: portal possui experiencia acessivel e responsiva"
+    },
+    {
+      "label": "Scenario: Sele\u00e7\u00e3o somente por teclado",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L190",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_sele\u00e7\u00e3o_somente_por_teclado",
+      "community": 212,
+      "norm_label": "scenario: selecao somente por teclado"
+    },
+    {
+      "label": "Scenario: Estado de manuten\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L194",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_estado_de_manuten\u00e7\u00e3o",
+      "community": 212,
+      "norm_label": "scenario: estado de manutencao"
+    },
+    {
+      "label": "Requirement: Falha do portal admite conting\u00eancia controlada",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L198",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_falha_do_portal_admite_conting\u00eancia_controlada",
+      "community": 208,
+      "norm_label": "requirement: falha do portal admite contingencia controlada"
+    },
+    {
+      "label": "Scenario: Portal indispon\u00edvel e m\u00f3dulo saud\u00e1vel",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L204",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_portal_indispon\u00edvel_e_m\u00f3dulo_saud\u00e1vel",
+      "community": 208,
+      "norm_label": "scenario: portal indisponivel e modulo saudavel"
+    },
+    {
+      "label": "Scenario: IAM indispon\u00edvel",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L208",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_iam_indispon\u00edvel",
+      "community": 208,
+      "norm_label": "scenario: iam indisponivel"
+    },
+    {
+      "label": "Requirement: M\u00f3dulos futuros n\u00e3o s\u00e3o anunciados antes de estarem prontos",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L212",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_m\u00f3dulos_futuros_n\u00e3o_s\u00e3o_anunciados_antes_de_estarem_prontos",
+      "community": 210,
+      "norm_label": "requirement: modulos futuros nao sao anunciados antes de estarem prontos"
+    },
+    {
+      "label": "Scenario: M\u00f3dulo futuro apenas planejado",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L218",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_futuro_apenas_planejado",
+      "community": 210,
+      "norm_label": "scenario: modulo futuro apenas planejado"
+    },
+    {
+      "label": "Scenario: Novo m\u00f3dulo entra em produ\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L222",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_novo_m\u00f3dulo_entra_em_produ\u00e7\u00e3o",
+      "community": 210,
+      "norm_label": "scenario: novo modulo entra em producao"
+    },
+    {
+      "label": "tasks.md",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_tasks",
+      "community": 195,
+      "norm_label": "tasks.md"
+    },
+    {
+      "label": "1. Pr\u00e9-requisitos e contratos transversais",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_tasks_1_pr\u00e9_requisitos_e_contratos_transversais",
+      "community": 195,
+      "norm_label": "1. pre-requisitos e contratos transversais"
+    },
+    {
+      "label": "2. Modelo e persist\u00eancia do cat\u00e1logo",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_tasks_2_modelo_e_persist\u00eancia_do_cat\u00e1logo",
+      "community": 195,
+      "norm_label": "2. modelo e persistencia do catalogo"
+    },
+    {
+      "label": "3. APIs e autoriza\u00e7\u00e3o do cat\u00e1logo",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_tasks_3_apis_e_autoriza\u00e7\u00e3o_do_cat\u00e1logo",
+      "community": 195,
+      "norm_label": "3. apis e autorizacao do catalogo"
+    },
+    {
+      "label": "4. Base da aplica\u00e7\u00e3o Senior Portal",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_tasks_4_base_da_aplica\u00e7\u00e3o_senior_portal",
+      "community": 195,
+      "norm_label": "4. base da aplicacao senior portal"
+    },
+    {
+      "label": "5. Experi\u00eancia do cat\u00e1logo e fun\u00e7\u00f5es globais",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_tasks_5_experi\u00eancia_do_cat\u00e1logo_e_fun\u00e7\u00f5es_globais",
+      "community": 195,
+      "norm_label": "5. experiencia do catalogo e funcoes globais"
+    },
+    {
+      "label": "6. Integra\u00e7\u00e3o do m\u00f3dulo assistencial",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_tasks_6_integra\u00e7\u00e3o_do_m\u00f3dulo_assistencial",
+      "community": 195,
+      "norm_label": "6. integracao do modulo assistencial"
+    },
+    {
+      "label": "7. Integra\u00e7\u00e3o do m\u00f3dulo de estoque",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_tasks_7_integra\u00e7\u00e3o_do_m\u00f3dulo_de_estoque",
+      "community": 195,
+      "norm_label": "7. integracao do modulo de estoque"
+    },
+    {
+      "label": "8. Implanta\u00e7\u00e3o, seguran\u00e7a e observabilidade",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_tasks_8_implanta\u00e7\u00e3o_seguran\u00e7a_e_observabilidade",
+      "community": 195,
+      "norm_label": "8. implantacao, seguranca e observabilidade"
+    },
+    {
+      "label": "9. Migra\u00e7\u00e3o, conting\u00eancia e aceite",
+      "file_type": "document",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "openspec_changes_introduce_senior_portal_tasks_9_migra\u00e7\u00e3o_conting\u00eancia_e_aceite",
+      "community": 195,
+      "norm_label": "9. migracao, contingencia e aceite"
     },
     {
       "label": "design.md",
@@ -34988,6 +36056,248 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L124",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue",
+      "target": "infra_dev_flow_create_qa_issue_add_to_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue",
+      "target": "infra_dev_flow_create_qa_issue_create_issue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue",
+      "target": "infra_dev_flow_create_qa_issue_ensure_label",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue",
+      "target": "infra_dev_flow_create_qa_issue_extract_test_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue",
+      "target": "infra_dev_flow_create_qa_issue_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue",
+      "target": "infra_dev_flow_create_qa_issue_project_gh",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue",
+      "target": "infra_dev_flow_create_qa_issue_repo_gh",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue",
+      "target": "infra_dev_flow_create_qa_issue_resolve_status_option",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue",
+      "target": "infra_dev_flow_create_qa_issue_run_gh",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_project_gh",
+      "target": "infra_dev_flow_create_qa_issue_run_gh",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_repo_gh",
+      "target": "infra_dev_flow_create_qa_issue_run_gh",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_create_issue",
+      "target": "infra_dev_flow_create_qa_issue_repo_gh",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_ensure_label",
+      "target": "infra_dev_flow_create_qa_issue_repo_gh",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_main",
+      "target": "infra_dev_flow_create_qa_issue_repo_gh",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L126",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_add_to_project",
+      "target": "infra_dev_flow_create_qa_issue_project_gh",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_resolve_status_option",
+      "target": "infra_dev_flow_create_qa_issue_project_gh",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_create_issue",
+      "target": "infra_dev_flow_create_qa_issue_extract_test_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_main",
+      "target": "infra_dev_flow_create_qa_issue_ensure_label",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L153",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_main",
+      "target": "infra_dev_flow_create_qa_issue_create_issue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L125",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_add_to_project",
+      "target": "infra_dev_flow_create_qa_issue_resolve_status_option",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L108",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_rationale_108",
+      "target": "infra_dev_flow_create_qa_issue_resolve_status_option",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/create_qa_issue.py",
+      "source_location": "L157",
+      "weight": 1.0,
+      "source": "infra_dev_flow_create_qa_issue_main",
+      "target": "infra_dev_flow_create_qa_issue_add_to_project",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/promote_to_main.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "infra_dev_flow_promote_to_main",
+      "target": "infra_dev_flow_promote_to_main_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "infra/openspec-github/setup_project.sh",
       "source_location": "L1",
       "weight": 1.0,
@@ -37295,6 +38605,66 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "infra_dev_flow_readme",
+      "target": "infra_dev_flow_readme_dev_flow_promo\u00e7\u00e3o_dev_main_com_qa_manual",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "infra_dev_flow_readme_dev_flow_promo\u00e7\u00e3o_dev_main_com_qa_manual",
+      "target": "infra_dev_flow_readme_componentes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "infra_dev_flow_readme_dev_flow_promo\u00e7\u00e3o_dev_main_com_qa_manual",
+      "target": "infra_dev_flow_readme_limites_conhecidos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "infra_dev_flow_readme_dev_flow_promo\u00e7\u00e3o_dev_main_com_qa_manual",
+      "target": "infra_dev_flow_readme_por_que_a_issue_de_qa_n\u00e3o_\u00e9_espelho_ao_contr\u00e1rio_das_do_openspec_sync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "infra_dev_flow_readme_dev_flow_promo\u00e7\u00e3o_dev_main_com_qa_manual",
+      "target": "infra_dev_flow_readme_por_que_precisa_de_um_pat_al\u00e9m_do_github_token",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "infra/dev-flow/README.md",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "infra_dev_flow_readme_dev_flow_promo\u00e7\u00e3o_dev_main_com_qa_manual",
+      "target": "infra_dev_flow_readme_uso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "infra/docker-test/README.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -37390,6 +38760,826 @@
       "weight": 1.0,
       "source": "infra_openspec_github_readme_openspec_no_github_issues_prs_e_kanban",
       "target": "infra_openspec_github_readme_sincroniza\u00e7\u00e3o_manual",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design",
+      "target": "openspec_changes_introduce_senior_portal_design_context",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design",
+      "target": "openspec_changes_introduce_senior_portal_design_decisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design",
+      "target": "openspec_changes_introduce_senior_portal_design_goals_non_goals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L231",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design",
+      "target": "openspec_changes_introduce_senior_portal_design_migration_plan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L257",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design",
+      "target": "openspec_changes_introduce_senior_portal_design_open_questions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L208",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design",
+      "target": "openspec_changes_introduce_senior_portal_design_risks_trade_offs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L194",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design_decisions",
+      "target": "openspec_changes_introduce_senior_portal_design_10_implantar_de_forma_aditiva_e_manter_conting\u00eancia_controlada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design_decisions",
+      "target": "openspec_changes_introduce_senior_portal_design_1_criar_uma_terceira_aplica\u00e7\u00e3o_web_leve_e_independente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design_decisions",
+      "target": "openspec_changes_introduce_senior_portal_design_2_publicar_todas_as_aplica\u00e7\u00f5es_sob_uma_\u00fanica_origem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design_decisions",
+      "target": "openspec_changes_introduce_senior_portal_design_3_compartilhar_renova\u00e7\u00e3o_de_sess\u00e3o_n\u00e3o_token_javascript",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design_decisions",
+      "target": "openspec_changes_introduce_senior_portal_design_4_separar_defini\u00e7\u00e3o_sist\u00eamica_de_habilita\u00e7\u00e3o_institucional",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L117",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design_decisions",
+      "target": "openspec_changes_introduce_senior_portal_design_5_derivar_o_cat\u00e1logo_efetivo_no_backend",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L137",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design_decisions",
+      "target": "openspec_changes_introduce_senior_portal_design_6_tratar_estado_operacional_como_configura\u00e7\u00e3o_n\u00e3o_health_check_s\u00edncrono",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L152",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design_decisions",
+      "target": "openspec_changes_introduce_senior_portal_design_7_preservar_deep_links_com_return_path_validado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L165",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design_decisions",
+      "target": "openspec_changes_introduce_senior_portal_design_8_centralizar_experi\u00eancia_global_por_contrato_antes_de_extrair_pacote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/design.md",
+      "source_location": "L180",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_design_decisions",
+      "target": "openspec_changes_introduce_senior_portal_design_9_manter_o_portal_livre_de_dados_de_neg\u00f3cio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_proposal",
+      "target": "openspec_changes_introduce_senior_portal_proposal_capabilities",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_proposal",
+      "target": "openspec_changes_introduce_senior_portal_proposal_impact",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_proposal",
+      "target": "openspec_changes_introduce_senior_portal_proposal_what_changes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_proposal",
+      "target": "openspec_changes_introduce_senior_portal_proposal_why",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_proposal_what_changes",
+      "target": "openspec_changes_introduce_senior_portal_proposal_n\u00e3o_objetivos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_proposal_what_changes",
+      "target": "openspec_changes_introduce_senior_portal_proposal_objetivos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_proposal_capabilities",
+      "target": "openspec_changes_introduce_senior_portal_proposal_modified_capabilities",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/proposal.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_proposal_capabilities",
+      "target": "openspec_changes_introduce_senior_portal_proposal_new_capabilities",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_purpose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_cat\u00e1logo_de_m\u00f3dulos_possui_contrato_est\u00e1vel_e_configur\u00e1vel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L170",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_configura\u00e7\u00e3o_e_navega\u00e7\u00e3o_cr\u00edtica_s\u00e3o_audit\u00e1veis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_contexto_institucional_\u00e9_expl\u00edcito_e_consistente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_descoberta_de_m\u00f3dulos_usa_permiss\u00f5es_efetivas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L198",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_falha_do_portal_admite_conting\u00eancia_controlada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L143",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_fun\u00e7\u00f5es_globais_permanecem_dispon\u00edveis_em_todos_os_m\u00f3dulos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L212",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_m\u00f3dulos_futuros_n\u00e3o_s\u00e3o_anunciados_antes_de_estarem_prontos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L111",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_navega\u00e7\u00e3o_entre_aplica\u00e7\u00f5es_preserva_destino_seguro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_minimiza_dados_e_n\u00e3o_apresenta_conte\u00fado_cl\u00ednico",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L184",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_possui_experi\u00eancia_acess\u00edvel_e_responsiva",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_representa_estados_operacionais_sem_conceder_acesso_indevido",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_reutiliza_a_identidade_e_a_sess\u00e3o_institucional",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_senior_portal_\u00e9_a_entrada_institucional_unificada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_added_requirements",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_urls_antigas_migram_de_forma_coordenada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_senior_portal_\u00e9_a_entrada_institucional_unificada",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_familiar_tenta_usar_o_portal_interno",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_senior_portal_\u00e9_a_entrada_institucional_unificada",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_usu\u00e1rio_interno_abre_a_plataforma",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_reutiliza_a_identidade_e_a_sess\u00e3o_institucional",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_mfa_pendente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_reutiliza_a_identidade_e_a_sess\u00e3o_institucional",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_navega\u00e7\u00e3o_autenticada_para_outro_m\u00f3dulo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_reutiliza_a_identidade_e_a_sess\u00e3o_institucional",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_sess\u00e3o_n\u00e3o_renov\u00e1vel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_contexto_institucional_\u00e9_expl\u00edcito_e_consistente",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_contexto_institucional_divergente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_contexto_institucional_\u00e9_expl\u00edcito_e_consistente",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_\u00fanica_institui\u00e7\u00e3o_habilitada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_cat\u00e1logo_de_m\u00f3dulos_possui_contrato_est\u00e1vel_e_configur\u00e1vel",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_administrador_cadastra_m\u00f3dulo_v\u00e1lido",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_cat\u00e1logo_de_m\u00f3dulos_possui_contrato_est\u00e1vel_e_configur\u00e1vel",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_destino_externo_n\u00e3o_autorizado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_cat\u00e1logo_de_m\u00f3dulos_possui_contrato_est\u00e1vel_e_configur\u00e1vel",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_identificador_duplicado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_descoberta_de_m\u00f3dulos_usa_permiss\u00f5es_efetivas",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_autorizado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_descoberta_de_m\u00f3dulos_usa_permiss\u00f5es_efetivas",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_sem_permiss\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_descoberta_de_m\u00f3dulos_usa_permiss\u00f5es_efetivas",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_permiss\u00e3o_revogada_durante_a_sess\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_representa_estados_operacionais_sem_conceder_acesso_indevido",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_dispon\u00edvel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_representa_estados_operacionais_sem_conceder_acesso_indevido",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_em_manuten\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_representa_estados_operacionais_sem_conceder_acesso_indevido",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_indispon\u00edvel_inesperadamente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_navega\u00e7\u00e3o_entre_aplica\u00e7\u00f5es_preserva_destino_seguro",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_deep_link_autorizado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L125",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_navega\u00e7\u00e3o_entre_aplica\u00e7\u00f5es_preserva_destino_seguro",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_redirecionamento_malicioso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L117",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_navega\u00e7\u00e3o_entre_aplica\u00e7\u00f5es_preserva_destino_seguro",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_retorno_ao_portal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_urls_antigas_migram_de_forma_coordenada",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_cliente_antigo_sem_sess\u00e3o_compat\u00edvel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L135",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_urls_antigas_migram_de_forma_coordenada",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_login_legado_do_estoque",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L152",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_fun\u00e7\u00f5es_globais_permanecem_dispon\u00edveis_em_todos_os_m\u00f3dulos",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_logout_iniciado_em_um_m\u00f3dulo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L148",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_fun\u00e7\u00f5es_globais_permanecem_dispon\u00edveis_em_todos_os_m\u00f3dulos",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_usu\u00e1rio_altera_prefer\u00eancia_visual",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L162",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_minimiza_dados_e_n\u00e3o_apresenta_conte\u00fado_cl\u00ednico",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_carregamento_da_p\u00e1gina_inicial",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L166",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_minimiza_dados_e_n\u00e3o_apresenta_conte\u00fado_cl\u00ednico",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_configura\u00e7\u00e3o_cont\u00e9m_informa\u00e7\u00e3o_sens\u00edvel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L180",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_configura\u00e7\u00e3o_e_navega\u00e7\u00e3o_cr\u00edtica_s\u00e3o_audit\u00e1veis",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_acesso_direto_negado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L176",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_configura\u00e7\u00e3o_e_navega\u00e7\u00e3o_cr\u00edtica_s\u00e3o_audit\u00e1veis",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_estado_de_m\u00f3dulo_alterado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L194",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_possui_experi\u00eancia_acess\u00edvel_e_responsiva",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_estado_de_manuten\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L190",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_portal_possui_experi\u00eancia_acess\u00edvel_e_responsiva",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_sele\u00e7\u00e3o_somente_por_teclado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L208",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_falha_do_portal_admite_conting\u00eancia_controlada",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_iam_indispon\u00edvel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L204",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_falha_do_portal_admite_conting\u00eancia_controlada",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_portal_indispon\u00edvel_e_m\u00f3dulo_saud\u00e1vel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L218",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_m\u00f3dulos_futuros_n\u00e3o_s\u00e3o_anunciados_antes_de_estarem_prontos",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_m\u00f3dulo_futuro_apenas_planejado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md",
+      "source_location": "L222",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_requirement_m\u00f3dulos_futuros_n\u00e3o_s\u00e3o_anunciados_antes_de_estarem_prontos",
+      "target": "openspec_changes_introduce_senior_portal_specs_senior_portal_spec_scenario_novo_m\u00f3dulo_entra_em_produ\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_tasks",
+      "target": "openspec_changes_introduce_senior_portal_tasks_1_pr\u00e9_requisitos_e_contratos_transversais",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_tasks",
+      "target": "openspec_changes_introduce_senior_portal_tasks_2_modelo_e_persist\u00eancia_do_cat\u00e1logo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_tasks",
+      "target": "openspec_changes_introduce_senior_portal_tasks_3_apis_e_autoriza\u00e7\u00e3o_do_cat\u00e1logo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_tasks",
+      "target": "openspec_changes_introduce_senior_portal_tasks_4_base_da_aplica\u00e7\u00e3o_senior_portal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_tasks",
+      "target": "openspec_changes_introduce_senior_portal_tasks_5_experi\u00eancia_do_cat\u00e1logo_e_fun\u00e7\u00f5es_globais",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_tasks",
+      "target": "openspec_changes_introduce_senior_portal_tasks_6_integra\u00e7\u00e3o_do_m\u00f3dulo_assistencial",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_tasks",
+      "target": "openspec_changes_introduce_senior_portal_tasks_7_integra\u00e7\u00e3o_do_m\u00f3dulo_de_estoque",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_tasks",
+      "target": "openspec_changes_introduce_senior_portal_tasks_8_implanta\u00e7\u00e3o_seguran\u00e7a_e_observabilidade",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "openspec/changes/introduce-senior-portal/tasks.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "openspec_changes_introduce_senior_portal_tasks",
+      "target": "openspec_changes_introduce_senior_portal_tasks_9_migra\u00e7\u00e3o_conting\u00eancia_e_aceite",
       "confidence_score": 1.0
     },
     {
@@ -39194,5 +41384,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "fc29db92c8c9877b968abc9718dfae5765ad47e5"
+  "built_at_commit": "ef1ab91d14f031d2d533b5c3fea51b7eed88c83d"
 }
