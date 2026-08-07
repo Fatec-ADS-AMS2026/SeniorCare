@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SeniorCareManager.WebAPI.Objects.Dtos;
+using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Models;
 using SeniorCareManager.WebAPI.Services.Interfaces;
@@ -18,10 +19,15 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SupplierDTO>>> Get()
+        public async Task<ActionResult<PagedResult<SupplierDTO>>> Get([FromQuery] CatalogQuery query)
         {
             var suppliers = await _supplierService.GetAll();
-            return Ok(suppliers.Select(ToDto));
+            var filtered = string.IsNullOrWhiteSpace(query.Search)
+                ? suppliers
+                : suppliers.Where(s =>
+                    s.CorporateName.Contains(query.Search, StringComparison.OrdinalIgnoreCase) ||
+                    s.TradeName.Contains(query.Search, StringComparison.OrdinalIgnoreCase));
+            return Ok(filtered.Select(ToDto).ToPagedResult(query.Page, query.PageSize));
         }
 
         [HttpGet("{id}")]
