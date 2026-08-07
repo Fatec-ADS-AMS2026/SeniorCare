@@ -19,10 +19,10 @@
 
 ## 3. Contratos HTTP e tratamento de erros
 
-- [ ] 3.1 Definir DTOs de criação, atualização, resposta e listagem paginada sem expor entidades de persistência.
-- [ ] 3.2 Implementar Problem Details centralizado com códigos estáveis, erros por campo e identificador de correlação.
-- [ ] 3.3 Remover mensagens de exceção das respostas e adicionar testes que impeçam vazamento de detalhes internos.
-- [ ] 3.4 Padronizar 400/401/403/404/409/422/500 em todos os controllers existentes.
+- [x] 3.1 Definir DTOs de criação, atualização, resposta e listagem paginada sem expor entidades de persistência. **Parcial**: Create/Update/Response DTOs implementados e usados nos 9 controllers de catálogo; `PagedResult<T>` definido (forma), mas ainda não aplicado a nenhum endpoint — wiring real de paginação é a tarefa 3.5.
+- [x] 3.2 Implementar Problem Details centralizado com códigos estáveis, erros por campo e identificador de correlação.
+- [x] 3.3 Remover mensagens de exceção das respostas e adicionar testes que impeçam vazamento de detalhes internos.
+- [x] 3.4 Padronizar 400/401/403/404/409/422/500 em todos os controllers existentes. **Parcial**: 400 (validação de forma via ModelState), 404 (recurso ausente) e 500 (erro genérico) uniformes via `GlobalExceptionHandler`; 422 introduzido para violação de regra de negócio (FK inválida em ProductType). 401/403 dependem de identidade/autorização (capability `platform-authentication`, §4 em diante); 409 fica reservado para concorrência otimista (tarefa 3.7) — reabrir quando esses trabalhos chegarem.
 - [ ] 3.5 Implementar paginação e filtro consistentes nos dez catálogos definidos pela spec.
 - [ ] 3.6 Tornar o ID da rota canônico, rejeitar divergência com o corpo e remover o `PATCH` que executa substituição total.
 - [ ] 3.7 Adicionar concorrência otimista aos catálogos e testes para edição com versão desatualizada.

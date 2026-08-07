@@ -2,7 +2,8 @@ using System.Net;
 using System.Net.Http.Json;
 using FluentAssertions;
 using SeniorCareManager.IntegrationTests.Infrastructure;
-using SeniorCareManager.WebAPI.Objects.Models;
+using SeniorCareManager.WebAPI.Objects.Dtos;
+using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 
 namespace SeniorCareManager.IntegrationTests.Controllers;
 
@@ -24,19 +25,19 @@ public sealed class ProductGroupControllerTests : IClassFixture<PostgresWebAppli
         var response = await _client.GetAsync("/api/v1/ProductGroup");
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-        var body = await response.Content.ReadFromJsonAsync<List<ProductGroup>>();
+        var body = await response.Content.ReadFromJsonAsync<List<ProductGroupDTO>>();
         body.Should().NotBeNull();
     }
 
     [Fact]
-    public async Task Post_ValidProductGroup_ReturnsOkWithCreatedEntity()
+    public async Task Post_ValidProductGroup_ReturnsCreatedWithEntity()
     {
-        var group = new ProductGroup { Name = "Medicamentos" };
+        var request = new ProductGroupCreateRequest { Name = "Medicamentos" };
 
-        var response = await _client.PostAsJsonAsync("/api/v1/ProductGroup", group);
+        var response = await _client.PostAsJsonAsync("/api/v1/ProductGroup", request);
 
-        response.StatusCode.Should().Be(HttpStatusCode.OK);
-        var body = await response.Content.ReadFromJsonAsync<ProductGroup>();
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        var body = await response.Content.ReadFromJsonAsync<ProductGroupDTO>();
         body.Should().NotBeNull();
         body!.Name.Should().Be("Medicamentos");
     }
@@ -45,8 +46,8 @@ public sealed class ProductGroupControllerTests : IClassFixture<PostgresWebAppli
     public async Task GetById_ExistingId_ReturnsOk()
     {
         var post = await _client.PostAsJsonAsync("/api/v1/ProductGroup",
-            new ProductGroup { Name = "Higiene" });
-        var created = await post.Content.ReadFromJsonAsync<ProductGroup>();
+            new ProductGroupCreateRequest { Name = "Higiene" });
+        var created = await post.Content.ReadFromJsonAsync<ProductGroupDTO>();
 
         var response = await _client.GetAsync($"/api/v1/ProductGroup/{created!.Id}");
 
@@ -65,24 +66,24 @@ public sealed class ProductGroupControllerTests : IClassFixture<PostgresWebAppli
     public async Task Put_ExistingId_ReturnsOk()
     {
         var post = await _client.PostAsJsonAsync("/api/v1/ProductGroup",
-            new ProductGroup { Name = "Alimentos" });
-        var created = await post.Content.ReadFromJsonAsync<ProductGroup>();
+            new ProductGroupCreateRequest { Name = "Alimentos" });
+        var created = await post.Content.ReadFromJsonAsync<ProductGroupDTO>();
 
-        var updated = new ProductGroup { Id = created!.Id, Name = "Alimentos Especiais" };
-        var response = await _client.PutAsJsonAsync($"/api/v1/ProductGroup/{created.Id}", updated);
+        var updated = new ProductGroupUpdateRequest { Name = "Alimentos Especiais" };
+        var response = await _client.PutAsJsonAsync($"/api/v1/ProductGroup/{created!.Id}", updated);
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
     [Fact]
-    public async Task Delete_ExistingId_ReturnsOk()
+    public async Task Delete_ExistingId_ReturnsNoContent()
     {
         var post = await _client.PostAsJsonAsync("/api/v1/ProductGroup",
-            new ProductGroup { Name = "Para Deletar" });
-        var created = await post.Content.ReadFromJsonAsync<ProductGroup>();
+            new ProductGroupCreateRequest { Name = "Para Deletar" });
+        var created = await post.Content.ReadFromJsonAsync<ProductGroupDTO>();
 
         var response = await _client.DeleteAsync($"/api/v1/ProductGroup/{created!.Id}");
 
-        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        response.StatusCode.Should().Be(HttpStatusCode.NoContent);
     }
 }

@@ -1,87 +1,63 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
+using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Models;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 
 namespace SeniorCareManager.WebAPI.Controllers;
+
 [ApiController]
 [Route("api/v1/[controller]")]
-public class ReligionController : Controller
+public class ReligionController : ControllerBase
 {
     private readonly IReligionService _religionService;
 
     public ReligionController(IReligionService service)
     {
-        this._religionService = service;
+        _religionService = service;
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<ActionResult<IEnumerable<ReligionDTO>>> Get()
     {
-        var religion = await _religionService.GetAll();
-
-        if (religion == null)
-        {
-            return StatusCode(500, $"Nenhuma religião encontrada!");
-        }
-
-        else
-            return Ok(religion);
+        var religions = await _religionService.GetAll();
+        return Ok(religions.Select(ToDto));
     }
+
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<ActionResult<ReligionDTO>> GetById(int id)
     {
-        var religionId = await _religionService.GetById(id);
-        if (religionId == null) return NotFound("Religião não encontrda!");
-        return Ok(religionId);
+        var religion = await _religionService.GetById(id);
+        if (religion == null) throw new KeyNotFoundException("Religião não encontrada.");
+        return Ok(ToDto(religion));
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Religion religion)
+    public async Task<ActionResult<ReligionDTO>> Post(ReligionCreateRequest request)
     {
-        if (religion.Name == string.Empty)
-            return StatusCode(500, $"O nome da religião não pode ser nulo!");
-
-        if (religion.Id < 0)
-            return StatusCode(500, "O id da religião não pode ser inferior a 0!");
-
-        try
-        {
-            await _religionService.Create(religion);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"Ocorreu um erro ao tentar inserir uma nova Religião! {ex}");
-        }
-        return Ok(religion);
+        var religion = new Religion { Name = request.Name };
+        await _religionService.Create(religion);
+        return CreatedAtAction(nameof(GetById), new { id = religion.Id }, ToDto(religion));
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, Religion religion)
+    public async Task<ActionResult<ReligionDTO>> Put(int id, ReligionUpdateRequest request)
     {
-        try
-        {
-            await _religionService.Update(religion, id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar atualizar a religião: " + ex.Message);
-        }
-
-        return Ok(religion);
+        var religion = new Religion { Id = id, Name = request.Name };
+        await _religionService.Update(religion, id);
+        return Ok(ToDto(religion));
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        try
-        {
-            await _religionService.Remove(id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar remover a religião.");
-        }
-
-        return Ok("Grupo de religião apagado com sucesso");
+        await _religionService.Remove(id);
+        return NoContent();
     }
+
+    private static ReligionDTO ToDto(Religion religion) => new()
+    {
+        Id = religion.Id,
+        Name = religion.Name,
+    };
 }

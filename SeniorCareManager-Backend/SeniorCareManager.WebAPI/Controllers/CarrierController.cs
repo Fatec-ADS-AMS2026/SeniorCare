@@ -1,79 +1,80 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
+using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Models;
 using SeniorCareManager.WebAPI.Services.Interfaces;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Text.RegularExpressions;
 
 namespace SeniorCareManager.WebAPI.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class CarrierController : Controller
+    public class CarrierController : ControllerBase
     {
-
         private readonly ICarrierService _carrierService;
 
         public CarrierController(ICarrierService carrierService)
         {
-            this._carrierService = carrierService;
+            _carrierService = carrierService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<IEnumerable<CarrierDTO>>> GetAll()
         {
             var carriers = await _carrierService.GetAll();
-            return Ok(carriers);
+            return Ok(carriers.Select(ToDto));
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<ActionResult<CarrierDTO>> GetById(int id)
         {
-            var carriers = await _carrierService.GetById(id);
-            if (carriers == null)
-                return NotFound("Transportadora não encontrada");
-            return Ok(carriers);
+            var carrier = await _carrierService.GetById(id);
+            if (carrier == null) throw new KeyNotFoundException("Transportadora não encontrada.");
+            return Ok(ToDto(carrier));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Carrier carrier)
+        public async Task<ActionResult<CarrierDTO>> Post(CarrierCreateRequest request)
         {
-            try
-            {
-                await _carrierService.Create(carrier);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Ocorreu um erro ao tentar inserir uma nova transportadora");
-            }
-            return Ok(carrier);
+            var carrier = ToModel(0, request.CorporateName, request.TradeName, request.CpfCnpj, request);
+            await _carrierService.Create(carrier);
+            return CreatedAtAction(nameof(GetById), new { id = carrier.Id }, ToDto(carrier));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Carrier carrier)
+        public async Task<ActionResult<CarrierDTO>> Put(int id, CarrierUpdateRequest request)
         {
-            try
-            {
-                await _carrierService.Update(carrier, id);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Ocorreu um erro ao tentar atualizar os dados da transportadora" + ex.Message);
-            }
-            return Ok(carrier);
+            var carrier = ToModel(id, request.CorporateName, request.TradeName, request.CpfCnpj, request);
+            await _carrierService.Update(carrier, id);
+            return Ok(ToDto(carrier));
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            try
-            {
-                await _carrierService.Remove(id);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Ocorreu um erro ao tentar remover uma transportadora.");
-            }
-            return Ok("Transportadora removida com suceso");
+            await _carrierService.Remove(id);
+            return NoContent();
         }
+
+        private static Carrier ToModel(int id, string corporateName, string tradeName, string cpfCnpj, CarrierCreateRequest request) => new(
+            id, corporateName, tradeName, cpfCnpj,
+            request.Street, request.Number, request.District, request.AddressComplement,
+            request.City, request.State, request.PostalCode, request.Phone, request.Email);
+
+        private static CarrierDTO ToDto(Carrier carrier) => new()
+        {
+            Id = carrier.Id,
+            CorporateName = carrier.CorporateName,
+            TradeName = carrier.TradeName,
+            CpfCnpj = carrier.CpfCnpj,
+            Street = carrier.Street,
+            Number = carrier.Number,
+            District = carrier.District,
+            AddressComplement = carrier.AddressComplement,
+            City = carrier.City,
+            State = carrier.State,
+            PostalCode = carrier.PostalCode,
+            Phone = carrier.Phone,
+            Email = carrier.Email,
+        };
     }
 }
