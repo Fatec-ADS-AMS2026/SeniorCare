@@ -87,6 +87,22 @@ public sealed class ReligionControllerTests : IClassFixture<PostgresWebApplicati
     }
 
     [Fact]
+    public async Task Post_WithUnexpectedFieldInBody_ReturnsBadRequest()
+    {
+        // ReligionCreateRequest não tem campo Id — o ID é canônico pela rota (tarefa
+        // 3.6). Um corpo que tenta enviar um "id" (ou qualquer campo desconhecido)
+        // deve ser rejeitado, não silenciosamente ignorado.
+        var content = new StringContent(
+            """{"name":"Budismo","id":999}""",
+            System.Text.Encoding.UTF8,
+            "application/json");
+
+        var response = await _client.PostAsync("/api/v1/Religion", content);
+
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+    }
+
+    [Fact]
     public async Task GetById_ExistingId_ReturnsOk()
     {
         var created = new ReligionCreateRequest { Name = "Evangélica" };
@@ -122,12 +138,32 @@ public sealed class ReligionControllerTests : IClassFixture<PostgresWebApplicati
         var post = await _client.PostAsJsonAsync("/api/v1/Religion", new ReligionCreateRequest { Name = "Espírita" });
         var created = await post.Content.ReadFromJsonAsync<ReligionDTO>();
 
-        var updated = new ReligionUpdateRequest { Name = "Espírita Kardecista" };
-        var response = await _client.PutAsJsonAsync($"/api/v1/Religion/{created!.Id}", updated);
+        var updated = new ReligionUpdateRequest { Name = "Espírita Kardecista", RowVersion = created!.RowVersion };
+        var response = await _client.PutAsJsonAsync($"/api/v1/Religion/{created.Id}", updated);
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var body = await response.Content.ReadFromJsonAsync<ReligionDTO>();
         body!.Name.Should().Be("Espírita Kardecista");
+        body.RowVersion.Should().NotBe(created.RowVersion, "toda escrita bem-sucedida avança o token de concorrência");
+    }
+
+    [Fact]
+    public async Task Put_WithStaleRowVersion_ReturnsConflict()
+    {
+        var post = await _client.PostAsJsonAsync("/api/v1/Religion", new ReligionCreateRequest { Name = "Candomblé" });
+        var created = await post.Content.ReadFromJsonAsync<ReligionDTO>();
+
+        // Primeira edição avança o RowVersion no banco.
+        await _client.PutAsJsonAsync($"/api/v1/Religion/{created!.Id}",
+            new ReligionUpdateRequest { Name = "Candomblé Atualizado", RowVersion = created.RowVersion });
+
+        // Segunda edição usa o RowVersion ORIGINAL (desatualizado) — deve ser rejeitada.
+        var response = await _client.PutAsJsonAsync($"/api/v1/Religion/{created.Id}",
+            new ReligionUpdateRequest { Name = "Outra Edição Concorrente", RowVersion = created.RowVersion });
+
+        response.StatusCode.Should().Be(HttpStatusCode.Conflict);
+        var problem = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+        problem!.Extensions.Should().ContainKey("correlationId");
     }
 
     [Fact]

@@ -30,7 +30,7 @@ public class GenericRepository<T>: IGenericRepository<T> where T : class
         await SaveChanges();
     }
 
-    public async Task Update(T entity)
+    public async Task Update(T entity, uint? expectedVersion = null)
     {
         // Recupera a chave primária (supondo que seja 'Id')
         var entityId = _context.Entry(entity).Property("Id").CurrentValue;
@@ -46,7 +46,20 @@ public class GenericRepository<T>: IGenericRepository<T> where T : class
         }
 
         // Anexa a nova entidade e marca como 'Modified'
-        _context.Entry(entity).State = EntityState.Modified;
+        var entry = _context.Entry(entity);
+        entry.State = EntityState.Modified;
+
+        // "Version" é uma shadow property (uint, IsRowVersion) que o Npgsql mapeia
+        // automaticamente para a coluna interna xmin do Postgres — não existe como
+        // propriedade em T. Como a entidade acabou de ser anexada (não veio de uma
+        // query), o EF assume original = current por padrão, o que tornaria o
+        // WHERE xmin = ... inútil. Definir o OriginalValue explicitamente com o que
+        // o cliente leu é o que faz o SaveChanges comparar contra o estado atual da
+        // linha no banco de fato.
+        if (expectedVersion.HasValue && entry.Metadata.FindProperty("Version") != null)
+        {
+            entry.Property("Version").OriginalValue = expectedVersion.Value;
+        }
 
         // Salva as alterações no banco de dados
         await SaveChanges();
@@ -61,5 +74,16 @@ public class GenericRepository<T>: IGenericRepository<T> where T : class
     public async Task<bool> SaveChanges()
     {
         return await _context.SaveChangesAsync() > 0;
+    }
+
+    public uint? GetVersion(T entity)
+    {
+        var entry = _context.Entry(entity);
+        if (entry.Metadata.FindProperty("Version") == null)
+        {
+            return null;
+        }
+
+        return (uint?)entry.Property("Version").CurrentValue;
     }
 }

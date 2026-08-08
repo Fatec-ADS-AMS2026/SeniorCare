@@ -53,7 +53,7 @@ public class ProductTypeController : ControllerBase
     {
         await EnsureProductGroupExists(request.ProductGroupId);
         var productType = new ProductType(id, request.Name, request.ProductGroupId);
-        await _productTypeService.Update(productType, id);
+        await _productTypeService.Update(productType, id, request.RowVersion);
         return Ok(ToDto(productType));
     }
 
@@ -62,17 +62,6 @@ public class ProductTypeController : ControllerBase
     {
         await _productTypeService.Remove(id);
         return NoContent();
-    }
-
-    // TODO(3.6): PATCH hoje faz substituição total, idêntico a PUT — remover
-    // nesta forma quando a tarefa 3.6 for implementada.
-    [HttpPatch("{id}")]
-    public async Task<ActionResult<ProductTypeDTO>> Patch(int id, ProductTypeUpdateRequest request)
-    {
-        await EnsureProductGroupExists(request.ProductGroupId);
-        var productType = new ProductType(id, request.Name, request.ProductGroupId);
-        await _productTypeService.Update(productType, id);
-        return Ok(ToDto(productType));
     }
 
     private async Task EnsureProductGroupExists(int productGroupId)
@@ -84,10 +73,11 @@ public class ProductTypeController : ControllerBase
         }
     }
 
-    private static ProductTypeDTO ToDto(ProductType productType) => new()
+    private ProductTypeDTO ToDto(ProductType productType) => new()
     {
         Id = productType.Id,
         Name = productType.Name,
         ProductGroupId = productType.ProductGroupId,
+        RowVersion = _productTypeService.GetVersion(productType) ?? 0,
     };
 }

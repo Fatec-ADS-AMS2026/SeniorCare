@@ -27,4 +27,6 @@ public class SupplierDTO
     public string City { get; set; }
 
     public string State { get; set; }
+
+    public uint RowVersion { get; set; }
 }

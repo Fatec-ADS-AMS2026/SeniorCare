@@ -50,7 +50,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         public async Task<ActionResult<ManufacturerDTO>> Put(int id, ManufacturerUpdateRequest request)
         {
             var manufacturer = new Manufacturer(id, request.CorporateName, request.TradeName, request.CpfCnpj, request.Phone, request.Email);
-            await _manufacturerService.Update(manufacturer, id);
+            await _manufacturerService.Update(manufacturer, id, request.RowVersion);
             return Ok(ToDto(manufacturer));
         }
 
@@ -61,7 +61,7 @@ namespace SeniorCareManager.WebAPI.Controllers
             return NoContent();
         }
 
-        private static ManufacturerDTO ToDto(Manufacturer manufacturer) => new()
+        private ManufacturerDTO ToDto(Manufacturer manufacturer) => new()
         {
             Id = manufacturer.Id,
             CorporateName = manufacturer.CorporateName,
@@ -69,6 +69,7 @@ namespace SeniorCareManager.WebAPI.Controllers
             CpfCnpj = manufacturer.CpfCnpj,
             Phone = manufacturer.Phone,
             Email = manufacturer.Email,
+            RowVersion = _manufacturerService.GetVersion(manufacturer) ?? 0,
         };
     }
 }

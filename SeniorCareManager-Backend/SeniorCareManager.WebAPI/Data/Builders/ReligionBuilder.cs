@@ -10,6 +10,7 @@ public class ReligionBuilder
     {
         // Configura a chave primária
         modelBuilder.Entity<Religion>().HasKey(pg => pg.Id);
+        modelBuilder.Entity<Religion>().Property<uint>("Version").IsRowVersion();
         modelBuilder.Entity<Religion>().Property(pg => pg.Name)
             .IsRequired()
             .HasMaxLength(50);

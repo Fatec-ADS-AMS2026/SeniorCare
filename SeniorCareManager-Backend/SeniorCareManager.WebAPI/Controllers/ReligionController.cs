@@ -48,7 +48,7 @@ public class ReligionController : ControllerBase
     public async Task<ActionResult<ReligionDTO>> Put(int id, ReligionUpdateRequest request)
     {
         var religion = new Religion { Id = id, Name = request.Name };
-        await _religionService.Update(religion, id);
+        await _religionService.Update(religion, id, request.RowVersion);
         return Ok(ToDto(religion));
     }
 
@@ -59,9 +59,10 @@ public class ReligionController : ControllerBase
         return NoContent();
     }
 
-    private static ReligionDTO ToDto(Religion religion) => new()
+    private ReligionDTO ToDto(Religion religion) => new()
     {
         Id = religion.Id,
         Name = religion.Name,
+        RowVersion = _religionService.GetVersion(religion) ?? 0,
     };
 }

@@ -48,7 +48,7 @@ public class ProductGroupController : ControllerBase
     public async Task<ActionResult<ProductGroupDTO>> Put(int id, ProductGroupUpdateRequest request)
     {
         var productGroup = new ProductGroup { Id = id, Name = request.Name };
-        await _productGroupService.Update(productGroup, id);
+        await _productGroupService.Update(productGroup, id, request.RowVersion);
         return Ok(ToDto(productGroup));
     }
 
@@ -59,20 +59,10 @@ public class ProductGroupController : ControllerBase
         return NoContent();
     }
 
-    // TODO(3.6): PATCH hoje faz substituição total, idêntico a PUT — remover
-    // nesta forma quando a tarefa 3.6 (ID de rota canônico / remoção do PATCH
-    // de substituição total) for implementada.
-    [HttpPatch("{id}")]
-    public async Task<ActionResult<ProductGroupDTO>> Patch(int id, ProductGroupUpdateRequest request)
-    {
-        var productGroup = new ProductGroup { Id = id, Name = request.Name };
-        await _productGroupService.Update(productGroup, id);
-        return Ok(ToDto(productGroup));
-    }
-
-    private static ProductGroupDTO ToDto(ProductGroup productGroup) => new()
+    private ProductGroupDTO ToDto(ProductGroup productGroup) => new()
     {
         Id = productGroup.Id,
         Name = productGroup.Name,
+        RowVersion = _productGroupService.GetVersion(productGroup) ?? 0,
     };
 }

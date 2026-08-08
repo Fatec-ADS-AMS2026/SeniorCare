@@ -62,11 +62,11 @@ public class GenericServiceTests
         var existing = new Religion(1, "Umbanda");
         var updated = new Religion(1, "Umbanda Atualizada");
         _repoMock.Setup(r => r.GetById(1)).ReturnsAsync(existing);
-        _repoMock.Setup(r => r.Update(updated)).Returns(Task.CompletedTask);
+        _repoMock.Setup(r => r.Update(updated, null)).Returns(Task.CompletedTask);
 
         await _service.Update(updated, 1);
 
-        _repoMock.Verify(r => r.Update(updated), Times.Once);
+        _repoMock.Verify(r => r.Update(updated, null), Times.Once);
     }
 
     [Fact]

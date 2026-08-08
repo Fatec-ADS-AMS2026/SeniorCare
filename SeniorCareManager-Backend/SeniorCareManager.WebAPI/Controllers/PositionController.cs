@@ -48,7 +48,7 @@ public class PositionController : ControllerBase
     public async Task<ActionResult<PositionDTO>> Put(int id, PositionUpdateRequest request)
     {
         var position = new Position(id, request.Name);
-        await _positionService.Update(position, id);
+        await _positionService.Update(position, id, request.RowVersion);
         return Ok(ToDto(position));
     }
 
@@ -59,9 +59,10 @@ public class PositionController : ControllerBase
         return NoContent();
     }
 
-    private static PositionDTO ToDto(Position position) => new()
+    private PositionDTO ToDto(Position position) => new()
     {
         Id = position.Id,
         Name = position.Name,
+        RowVersion = _positionService.GetVersion(position) ?? 0,
     };
 }

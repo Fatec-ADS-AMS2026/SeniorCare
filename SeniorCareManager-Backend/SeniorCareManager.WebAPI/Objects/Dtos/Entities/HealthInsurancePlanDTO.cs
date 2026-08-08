@@ -7,4 +7,5 @@ public class HealthInsurancePlanDTO
     public string Name { get; set; } = string.Empty;
     public HealthPlanType Type { get; set; }
     public string Abbreviation { get; set; } = string.Empty;
+    public uint RowVersion { get; set; }
 }

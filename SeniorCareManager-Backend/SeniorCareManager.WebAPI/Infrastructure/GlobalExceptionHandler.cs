@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace SeniorCareManager.WebAPI.Infrastructure;
 
@@ -65,6 +66,11 @@ public class GlobalExceptionHandler : IExceptionHandler
             "Regra de negócio violada.",
             "https://seniorcare.dev/erros/regra-de-negocio",
             exception.Message),
+        DbUpdateConcurrencyException => (
+            StatusCodes.Status409Conflict,
+            "O recurso foi modificado por outra requisição desde a última leitura.",
+            "https://seniorcare.dev/erros/conflito-concorrencia",
+            "Releia o recurso (GET) para obter a versão atual antes de tentar novamente."),
         _ => (
             StatusCodes.Status500InternalServerError,
             "Ocorreu um erro inesperado ao processar a requisição.",
