@@ -50,7 +50,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         public async Task<ActionResult<CarrierDTO>> Put(int id, CarrierUpdateRequest request)
         {
             var carrier = ToModel(id, request.CorporateName, request.TradeName, request.CpfCnpj, request);
-            await _carrierService.Update(carrier, id);
+            await _carrierService.Update(carrier, id, request.RowVersion);
             return Ok(ToDto(carrier));
         }
 
@@ -66,7 +66,7 @@ namespace SeniorCareManager.WebAPI.Controllers
             request.Street, request.Number, request.District, request.AddressComplement,
             request.City, request.State, request.PostalCode, request.Phone, request.Email);
 
-        private static CarrierDTO ToDto(Carrier carrier) => new()
+        private CarrierDTO ToDto(Carrier carrier) => new()
         {
             Id = carrier.Id,
             CorporateName = carrier.CorporateName,
@@ -81,6 +81,7 @@ namespace SeniorCareManager.WebAPI.Controllers
             PostalCode = carrier.PostalCode,
             Phone = carrier.Phone,
             Email = carrier.Email,
+            RowVersion = _carrierService.GetVersion(carrier) ?? 0,
         };
     }
 }

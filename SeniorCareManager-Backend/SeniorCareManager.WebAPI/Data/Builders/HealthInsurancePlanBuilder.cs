@@ -10,6 +10,7 @@ public class HealthInsurancePlanBuilder
     {
         // Configura a chave primária
         modelBuilder.Entity<HealthInsurancePlan>().HasKey(hip => hip.Id);
+        modelBuilder.Entity<HealthInsurancePlan>().Property<uint>("Version").IsRowVersion();
         modelBuilder.Entity<HealthInsurancePlan>().Property(hip => hip.Name).IsRequired().HasMaxLength(100);
         modelBuilder.Entity<HealthInsurancePlan>().Property(hip => hip.Type).IsRequired().HasMaxLength(1);
         modelBuilder.Entity<HealthInsurancePlan>().Property(hip => hip.Abbreviation).IsRequired().HasMaxLength(5);

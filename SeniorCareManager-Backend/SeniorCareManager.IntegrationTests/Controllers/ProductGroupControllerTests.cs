@@ -70,10 +70,42 @@ public sealed class ProductGroupControllerTests : IClassFixture<PostgresWebAppli
             new ProductGroupCreateRequest { Name = "Alimentos" });
         var created = await post.Content.ReadFromJsonAsync<ProductGroupDTO>();
 
-        var updated = new ProductGroupUpdateRequest { Name = "Alimentos Especiais" };
-        var response = await _client.PutAsJsonAsync($"/api/v1/ProductGroup/{created!.Id}", updated);
+        var updated = new ProductGroupUpdateRequest { Name = "Alimentos Especiais", RowVersion = created!.RowVersion };
+        var response = await _client.PutAsJsonAsync($"/api/v1/ProductGroup/{created.Id}", updated);
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
+    }
+
+    [Fact]
+    public async Task Put_WithStaleRowVersion_ReturnsConflict()
+    {
+        var post = await _client.PostAsJsonAsync("/api/v1/ProductGroup",
+            new ProductGroupCreateRequest { Name = "Suplementos" });
+        var created = await post.Content.ReadFromJsonAsync<ProductGroupDTO>();
+
+        await _client.PutAsJsonAsync($"/api/v1/ProductGroup/{created!.Id}",
+            new ProductGroupUpdateRequest { Name = "Suplementos Atualizado", RowVersion = created.RowVersion });
+
+        var response = await _client.PutAsJsonAsync($"/api/v1/ProductGroup/{created.Id}",
+            new ProductGroupUpdateRequest { Name = "Edição Concorrente", RowVersion = created.RowVersion });
+
+        response.StatusCode.Should().Be(HttpStatusCode.Conflict);
+    }
+
+    [Fact]
+    public async Task Patch_NoLongerExists_ReturnsMethodNotAllowed()
+    {
+        // Tarefa 3.6: PATCH de substituição total foi removido — a rota existe (GET/
+        // PUT/DELETE), mas não tem handler PATCH, logo 405 (não 404).
+        var post = await _client.PostAsJsonAsync("/api/v1/ProductGroup",
+            new ProductGroupCreateRequest { Name = "Higiene Bucal" });
+        var created = await post.Content.ReadFromJsonAsync<ProductGroupDTO>();
+
+        var response = await _client.PatchAsync(
+            $"/api/v1/ProductGroup/{created!.Id}",
+            new StringContent("{}", System.Text.Encoding.UTF8, "application/json"));
+
+        response.StatusCode.Should().Be(HttpStatusCode.MethodNotAllowed);
     }
 
     [Fact]

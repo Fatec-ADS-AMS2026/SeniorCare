@@ -89,6 +89,14 @@ public class Startup
         {
             options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
             options.JsonSerializerOptions.WriteIndented = true; // Opcional, apenas para melhor legibilidade
+
+            // Tarefa 3.6: o ID de um recurso é canônico pela rota — os *Request DTOs
+            // deliberadamente não têm campo Id, então qualquer "id" (ou outro campo
+            // desconhecido) no corpo é sinal de divergência do cliente. Por padrão o
+            // System.Text.Json ignora campos desconhecidos silenciosamente; Disallow
+            // rejeita com 400 em vez de aceitar e descartar sem avisar.
+            options.JsonSerializerOptions.UnmappedMemberHandling =
+                System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow;
         });
 
         // Problem Details (RFC 7807) centralizado — cobre tanto os 400 automáticos do

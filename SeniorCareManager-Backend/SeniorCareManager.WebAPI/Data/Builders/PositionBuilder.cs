@@ -11,6 +11,7 @@ namespace SeniorCareManager.WebAPI.Data.Builders
         {
             // Configura a chave primária
             modelBuilder.Entity<Position>().HasKey(pg => pg.Id);
+            modelBuilder.Entity<Position>().Property<uint>("Version").IsRowVersion();
             modelBuilder.Entity<Position>().Property(pg => pg.Name)
                 .IsRequired()
                 .HasMaxLength(50);

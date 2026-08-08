@@ -50,7 +50,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         public async Task<ActionResult<UnitOfMeasureDTO>> Put(int id, UnitOfMeasureUpdateRequest request)
         {
             var unitOfMeasure = new UnitOfMeasure { Id = id, Description = request.Description, Abbreviation = request.Abbreviation };
-            await _unitOfMeasureService.Update(unitOfMeasure, id);
+            await _unitOfMeasureService.Update(unitOfMeasure, id, request.RowVersion);
             return Ok(ToDto(unitOfMeasure));
         }
 
@@ -61,11 +61,12 @@ namespace SeniorCareManager.WebAPI.Controllers
             return NoContent();
         }
 
-        private static UnitOfMeasureDTO ToDto(UnitOfMeasure unitOfMeasure) => new()
+        private UnitOfMeasureDTO ToDto(UnitOfMeasure unitOfMeasure) => new()
         {
             Id = unitOfMeasure.Id,
             Description = unitOfMeasure.Description,
             Abbreviation = unitOfMeasure.Abbreviation,
+            RowVersion = _unitOfMeasureService.GetVersion(unitOfMeasure) ?? 0,
         };
     }
 }

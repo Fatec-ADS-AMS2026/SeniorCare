@@ -50,7 +50,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         public async Task<ActionResult<SupplierDTO>> Put(int id, SupplierUpdateRequest request)
         {
             var supplier = ToModel(id, request);
-            await _supplierService.Update(supplier, id);
+            await _supplierService.Update(supplier, id, request.RowVersion);
             return Ok(ToDto(supplier));
         }
 
@@ -66,7 +66,7 @@ namespace SeniorCareManager.WebAPI.Controllers
             request.PostalCode, request.Street, request.Number, request.District, request.AddressComplement,
             request.City, request.State);
 
-        private static SupplierDTO ToDto(Supplier supplier) => new()
+        private SupplierDTO ToDto(Supplier supplier) => new()
         {
             Id = supplier.Id,
             CorporateName = supplier.CorporateName,
@@ -81,6 +81,7 @@ namespace SeniorCareManager.WebAPI.Controllers
             AddressComplement = supplier.AddressComplement,
             City = supplier.City,
             State = supplier.State,
+            RowVersion = _supplierService.GetVersion(supplier) ?? 0,
         };
     }
 }

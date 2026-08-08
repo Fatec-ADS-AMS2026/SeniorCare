@@ -50,7 +50,7 @@ public class HealthInsurancePlanController : ControllerBase
     public async Task<ActionResult<HealthInsurancePlanDTO>> Put(int id, HealthInsurancePlanUpdateRequest request)
     {
         var healthInsurancePlan = new HealthInsurancePlan(id, request.Name, request.Type, request.Abbreviation);
-        await _healthInsurancePlanService.Update(healthInsurancePlan, id);
+        await _healthInsurancePlanService.Update(healthInsurancePlan, id, request.RowVersion);
         return Ok(ToDto(healthInsurancePlan));
     }
 
@@ -61,21 +61,12 @@ public class HealthInsurancePlanController : ControllerBase
         return NoContent();
     }
 
-    // TODO(3.6): PATCH hoje faz substituição total, idêntico a PUT — remover
-    // nesta forma quando a tarefa 3.6 for implementada.
-    [HttpPatch("{id}")]
-    public async Task<ActionResult<HealthInsurancePlanDTO>> Patch(int id, HealthInsurancePlanUpdateRequest request)
-    {
-        var healthInsurancePlan = new HealthInsurancePlan(id, request.Name, request.Type, request.Abbreviation);
-        await _healthInsurancePlanService.Update(healthInsurancePlan, id);
-        return Ok(ToDto(healthInsurancePlan));
-    }
-
-    private static HealthInsurancePlanDTO ToDto(HealthInsurancePlan healthInsurancePlan) => new()
+    private HealthInsurancePlanDTO ToDto(HealthInsurancePlan healthInsurancePlan) => new()
     {
         Id = healthInsurancePlan.Id,
         Name = healthInsurancePlan.Name,
         Type = healthInsurancePlan.Type,
         Abbreviation = healthInsurancePlan.Abbreviation,
+        RowVersion = _healthInsurancePlanService.GetVersion(healthInsurancePlan) ?? 0,
     };
 }

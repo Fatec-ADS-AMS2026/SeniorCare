@@ -1,7 +1,8 @@
 namespace SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 
-// Mesmo formato de ReligionCreateRequest hoje — tipo próprio porque tende a
-// divergir (ex.: token de concorrência otimista só em update, tarefa 3.7).
 public class ReligionUpdateRequest : ReligionCreateRequest
 {
+    // RowVersion lido no GET anterior — usado como token de concorrência otimista
+    // (tarefa 3.7). Se a linha mudou desde então, a atualização retorna 409.
+    public uint RowVersion { get; set; }
 }
