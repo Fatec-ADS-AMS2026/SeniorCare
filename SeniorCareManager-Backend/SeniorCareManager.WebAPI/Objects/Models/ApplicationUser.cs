@@ -17,5 +17,10 @@ namespace SeniorCareManager.WebAPI.Objects.Models
         // TOTP real chega na §7; o flag já existe agora porque o piso de senha (4.5) depende
         // de saber se a conta tem MFA obrigatório.
         public bool MfaEnabled { get; set; }
+
+        // Reservado a operações do sistema (spec §5) — deliberadamente fora do sistema de
+        // Role/PermissionGroup para nunca ser atribuível por nenhuma API administrativa,
+        // só por provisionamento direto.
+        public bool IsSystemAdmin { get; set; }
     }
 }

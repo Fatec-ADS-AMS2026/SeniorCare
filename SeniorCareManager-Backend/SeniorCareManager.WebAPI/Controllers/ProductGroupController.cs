@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
@@ -19,6 +20,7 @@ public class ProductGroupController : ControllerBase
     }
 
     [HttpGet]
+    [RequirePermission("ProductGroup", "read")]
     public async Task<ActionResult<PagedResult<ProductGroupDTO>>> Get([FromQuery] CatalogQuery query)
     {
         var productGroups = await _productGroupService.GetAll();
@@ -29,6 +31,7 @@ public class ProductGroupController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [RequirePermission("ProductGroup", "read")]
     public async Task<ActionResult<ProductGroupDTO>> GetById(int id)
     {
         var productGroup = await _productGroupService.GetById(id);
@@ -37,6 +40,7 @@ public class ProductGroupController : ControllerBase
     }
 
     [HttpPost]
+    [RequirePermission("ProductGroup", "write")]
     public async Task<ActionResult<ProductGroupDTO>> Post(ProductGroupCreateRequest request)
     {
         var productGroup = new ProductGroup { Name = request.Name };
@@ -45,6 +49,7 @@ public class ProductGroupController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [RequirePermission("ProductGroup", "write")]
     public async Task<ActionResult<ProductGroupDTO>> Put(int id, ProductGroupUpdateRequest request)
     {
         var productGroup = new ProductGroup { Id = id, Name = request.Name };
@@ -53,6 +58,7 @@ public class ProductGroupController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [RequirePermission("ProductGroup", "delete")]
     public async Task<IActionResult> Delete(int id)
     {
         await _productGroupService.Remove(id);

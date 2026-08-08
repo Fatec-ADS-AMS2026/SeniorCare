@@ -66,6 +66,11 @@ public class GlobalExceptionHandler : IExceptionHandler
             "Regra de negócio violada.",
             "https://seniorcare.dev/erros/regra-de-negocio",
             exception.Message),
+        AccessDeniedException => (
+            StatusCodes.Status403Forbidden,
+            "Acesso negado.",
+            "https://seniorcare.dev/erros/acesso-negado",
+            "A identidade autenticada não tem permissão efetiva para esta operação."),
         DbUpdateConcurrencyException => (
             StatusCodes.Status409Conflict,
             "O recurso foi modificado por outra requisição desde a última leitura.",

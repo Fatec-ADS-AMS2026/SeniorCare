@@ -45,19 +45,19 @@
 
 ## 5. Modelo e decisão de acesso
 
-- [ ] 5.1 Modelar `Role`, `Permission(resource, action, feature)`, `PermissionGroup` e as associações de composição, todos delimitados pela instituição quando aplicável.
-- [ ] 5.2 Modelar responsabilidade organizacional e atribuições por instituição, unidade ou setor, com início e término de validade.
-- [ ] 5.3 Modelar exceções individuais `ALLOW`/`DENY` com permissão, escopo, justificativa, autoria e validade.
-- [ ] 5.4 Modelar políticas condicionais de concessão e negação com versão, estado e condições estritamente validadas.
-- [ ] 5.5 Criar migração aditiva das entidades de autorização e seeds somente de permissões sistêmicas, sem usuários ou senhas padrão.
-- [ ] 5.6 Implementar `AccessDecisionService` central por instituição, recurso, ação, funcionalidade e escopo-alvo.
-- [ ] 5.7 Implementar precedência: contexto/estado inválido, `SYSTEM_ADMIN`, `DENY` individual, política `DENY`, `ALLOW` individual, política `ALLOW`, RBAC e `DENY` padrão.
-- [ ] 5.8 Restringir `SYSTEM_ADMIN` a operações sistêmicas, impedir sua atribuição a usuários operacionais e destacar todo uso na auditoria.
-- [ ] 5.9 Garantir que profissão/cargo não conceda acesso e que responsabilidade organizacional conceda somente capacidades configuradas e vigentes.
-- [ ] 5.10 Proteger todos os endpoints existentes pelo serviço de decisão, com HTTP 401 para anonimato e HTTP 403 para decisão negativa.
-- [ ] 5.11 Implementar invalidação/versionamento do contexto efetivo quando papel, grupo, vínculo, exceção ou política mudar.
-- [ ] 5.12 Criar testes matriciais de precedência, negação padrão, escopo, validade, conflito e manipulação do cliente.
-- [ ] 5.13 Documentar que acesso administrativo não concede autorização clínica futura.
+- [x] 5.1 Modelar `Role`, `Permission(resource, action, feature)`, `PermissionGroup` e as associações de composição, todos delimitados pela instituição quando aplicável. `Permission`/`PermissionGroup` são globais (vocabulário fixo do sistema); `Role` é por instituição, composto de `PermissionGroup` via `RolePermissionGroup`, atribuído via `UserRole`.
+- [x] 5.2 Modelar responsabilidade organizacional e atribuições por instituição, unidade ou setor, com início e término de validade. `OrganizationalRole` (por instituição, composto de `PermissionGroup`) + `OrganizationalRoleAssignment` (`ScopeType` INSTITUTION/UNIT/SECTOR + `ScopeKey` livre — sem catálogo de Unidade/Setor ainda —, `ValidFrom`/`ValidTo`).
+- [x] 5.3 Modelar exceções individuais `ALLOW`/`DENY` com permissão, escopo, justificativa, autoria e validade. `UserPermissionOverride`; `IAccessDecisionService.ValidateOverrideJustification` rejeita exceção permanente (`ValidTo == null`) sem justificativa não-trivial.
+- [x] 5.4 Modelar políticas condicionais de concessão e negação com versão, estado e condições estritamente validadas. `AccessPolicy` (colunas tipadas, não expressão livre) — editar cria nova linha com `Version+1` e aposenta a anterior (`State=RETIRED`), histórico real.
+- [x] 5.5 Criar migração aditiva das entidades de autorização e seeds somente de permissões sistêmicas, sem usuários ou senhas padrão. Migração `AddAccessControlFoundation`: 11 `CreateTable` + 1 `AddColumn` (`IsSystemAdmin`), seed de 27 `Permission` (9 catálogos × read/write/delete) — nenhum `Role`/`PermissionGroup`/atribuição/usuário/senha padrão.
+- [x] 5.6 Implementar `AccessDecisionService` central por instituição, recurso, ação, funcionalidade e escopo-alvo. `AccessDecisionService.EvaluateAsync` — carrega o usuário fresco do banco, nunca confia em claim de instituição do cliente.
+- [x] 5.7 Implementar precedência: contexto/estado inválido, `SYSTEM_ADMIN`, `DENY` individual, política `DENY`, `ALLOW` individual, política `ALLOW`, RBAC e `DENY` padrão. Implementado exatamente nessa ordem; coberto por `AccessDecisionServiceTests` (matriz de precedência).
+- [x] 5.8 Restringir `SYSTEM_ADMIN` a operações sistêmicas, impedir sua atribuição a usuários operacionais e destacar todo uso na auditoria. `ApplicationUser.IsSystemAdmin` — flag fora do sistema `Role`/`PermissionGroup`, nenhuma API concede; bypass só vale para `Permission.IsSystemOperation=true` (nenhuma das 27 seeds é marcada assim). Auditoria de uso é §8.
+- [x] 5.9 Garantir que profissão/cargo não conceda acesso e que responsabilidade organizacional conceda somente capacidades configuradas e vigentes. `Position` (catálogo existente) nunca é consultado pelo `AccessDecisionService`; `OrganizationalRoleAssignment` só concede as `PermissionGroup` explicitamente ligadas ao `OrganizationalRole`, dentro da validade e do escopo.
+- [x] 5.10 Proteger todos os endpoints existentes pelo serviço de decisão, com HTTP 401 para anonimato e HTTP 403 para decisão negativa. `[Authorize]` global (`AuthorizeFilter`) + `[RequirePermission(resource, action)]` nas 45 ações dos 9 catálogos; `AuthController` com `[AllowAnonymous]` de classe. **Consequência aceita**: sem API administrativa (§6) nem login real (§7) ainda, nenhuma requisição HTTP real consegue mais acessar os catálogos até essas seções chegarem — intencional (negação padrão antes de existir caminho de concessão).
+- [x] 5.11 Implementar invalidação/versionamento do contexto efetivo quando papel, grupo, vínculo, exceção ou política mudar. `AccessDecisionService` não faz cache — cada chamada lê o estado atual do banco, então qualquer mudança já vale na próxima avaliação. Não há "contexto efetivo do cliente" pra invalidar ainda (nasce com o endpoint de identidade atual, §6.8, e a sessão, §7).
+- [x] 5.12 Criar testes matriciais de precedência, negação padrão, escopo, validade, conflito e manipulação do cliente. `AccessDecisionServiceTests` (precedência, escopo SECTOR, atribuição expirada, SYSTEM_ADMIN restrito, conta inativa) + `EndpointAuthorizationTests` (401/403/200 HTTP reais via `TestAuthHandler`).
+- [x] 5.13 Documentar que acesso administrativo não concede autorização clínica futura. Nota em `design.md` (decisão 7).
 
 ## 6. Configuração administrativa de acesso
 

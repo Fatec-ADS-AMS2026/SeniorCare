@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SeniorCareManager.WebAPI.Infrastructure;
@@ -17,6 +18,7 @@ namespace SeniorCareManager.WebAPI.Controllers;
 // a senha atual), sem depender de cookie/bearer.
 [ApiController]
 [Route("api/v1/[controller]")]
+[AllowAnonymous]
 public class AuthController : ControllerBase
 {
     private readonly UserManager<ApplicationUser> _userManager;

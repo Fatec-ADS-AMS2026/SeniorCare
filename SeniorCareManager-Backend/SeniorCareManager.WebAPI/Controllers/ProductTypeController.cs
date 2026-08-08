@@ -22,6 +22,7 @@ public class ProductTypeController : ControllerBase
     }
 
     [HttpGet]
+    [RequirePermission("ProductType", "read")]
     public async Task<ActionResult<PagedResult<ProductTypeDTO>>> Get([FromQuery] CatalogQuery query)
     {
         var productTypes = await _productTypeService.GetAll();
@@ -32,6 +33,7 @@ public class ProductTypeController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [RequirePermission("ProductType", "read")]
     public async Task<ActionResult<ProductTypeDTO>> GetById(int id)
     {
         var productType = await _productTypeService.GetById(id);
@@ -40,6 +42,7 @@ public class ProductTypeController : ControllerBase
     }
 
     [HttpPost]
+    [RequirePermission("ProductType", "write")]
     public async Task<ActionResult<ProductTypeDTO>> Post(ProductTypeCreateRequest request)
     {
         await EnsureProductGroupExists(request.ProductGroupId);
@@ -49,6 +52,7 @@ public class ProductTypeController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [RequirePermission("ProductType", "write")]
     public async Task<ActionResult<ProductTypeDTO>> Put(int id, ProductTypeUpdateRequest request)
     {
         await EnsureProductGroupExists(request.ProductGroupId);
@@ -58,6 +62,7 @@ public class ProductTypeController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [RequirePermission("ProductType", "delete")]
     public async Task<IActionResult> Delete(int id)
     {
         await _productTypeService.Remove(id);

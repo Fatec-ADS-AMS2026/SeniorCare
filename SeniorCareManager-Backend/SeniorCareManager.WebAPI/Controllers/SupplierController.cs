@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
@@ -19,6 +20,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpGet]
+        [RequirePermission("Supplier", "read")]
         public async Task<ActionResult<PagedResult<SupplierDTO>>> Get([FromQuery] CatalogQuery query)
         {
             var suppliers = await _supplierService.GetAll();
@@ -31,6 +33,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [RequirePermission("Supplier", "read")]
         public async Task<ActionResult<SupplierDTO>> GetById(int id)
         {
             var supplier = await _supplierService.GetById(id);
@@ -39,6 +42,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpPost]
+        [RequirePermission("Supplier", "write")]
         public async Task<ActionResult<SupplierDTO>> Post(SupplierCreateRequest request)
         {
             var supplier = ToModel(0, request);
@@ -47,6 +51,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [RequirePermission("Supplier", "write")]
         public async Task<ActionResult<SupplierDTO>> Put(int id, SupplierUpdateRequest request)
         {
             var supplier = ToModel(id, request);
@@ -55,6 +60,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [RequirePermission("Supplier", "delete")]
         public async Task<IActionResult> Delete(int id)
         {
             await _supplierService.Remove(id);
