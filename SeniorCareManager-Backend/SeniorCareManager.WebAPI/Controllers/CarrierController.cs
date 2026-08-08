@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
@@ -19,6 +20,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpGet]
+        [RequirePermission("Carrier", "read")]
         public async Task<ActionResult<PagedResult<CarrierDTO>>> GetAll([FromQuery] CatalogQuery query)
         {
             var carriers = await _carrierService.GetAll();
@@ -31,6 +33,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [RequirePermission("Carrier", "read")]
         public async Task<ActionResult<CarrierDTO>> GetById(int id)
         {
             var carrier = await _carrierService.GetById(id);
@@ -39,6 +42,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpPost]
+        [RequirePermission("Carrier", "write")]
         public async Task<ActionResult<CarrierDTO>> Post(CarrierCreateRequest request)
         {
             var carrier = ToModel(0, request.CorporateName, request.TradeName, request.CpfCnpj, request);
@@ -47,6 +51,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [RequirePermission("Carrier", "write")]
         public async Task<ActionResult<CarrierDTO>> Put(int id, CarrierUpdateRequest request)
         {
             var carrier = ToModel(id, request.CorporateName, request.TradeName, request.CpfCnpj, request);
@@ -55,6 +60,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [RequirePermission("Carrier", "delete")]
         public async Task<IActionResult> Delete(int id)
         {
             await _carrierService.Remove(id);

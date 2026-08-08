@@ -24,6 +24,17 @@ namespace SeniorCareManager.WebAPI.Data
         public DbSet<Religion> Religions { get; set; }
         public DbSet<Institution> Institutions { get; set; }
         public DbSet<AccountToken> AccountTokens { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<PermissionGroup> PermissionGroups { get; set; }
+        public DbSet<PermissionGroupPermission> PermissionGroupPermissions { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<RolePermissionGroup> RolePermissionGroups { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<OrganizationalRole> OrganizationalRoles { get; set; }
+        public DbSet<OrganizationalRolePermissionGroup> OrganizationalRolePermissionGroups { get; set; }
+        public DbSet<OrganizationalRoleAssignment> OrganizationalRoleAssignments { get; set; }
+        public DbSet<UserPermissionOverride> UserPermissionOverrides { get; set; }
+        public DbSet<AccessPolicy> AccessPolicies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,6 +52,13 @@ namespace SeniorCareManager.WebAPI.Data
             InstitutionBuilder.Build(modelBuilder);
             ApplicationUserBuilder.Build(modelBuilder);
             AccountTokenBuilder.Build(modelBuilder);
+            PermissionBuilder.Build(modelBuilder);
+            PermissionGroupBuilder.Build(modelBuilder);
+            RoleBuilder.Build(modelBuilder);
+            OrganizationalRoleBuilder.Build(modelBuilder);
+            OrganizationalRoleAssignmentBuilder.Build(modelBuilder);
+            UserPermissionOverrideBuilder.Build(modelBuilder);
+            AccessPolicyBuilder.Build(modelBuilder);
         }
     }
 }

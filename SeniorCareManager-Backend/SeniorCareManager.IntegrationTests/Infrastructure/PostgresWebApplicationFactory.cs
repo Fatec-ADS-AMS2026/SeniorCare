@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +48,24 @@ public sealed class PostgresWebApplicationFactory : WebApplicationFactory<Progra
 
             services.AddDbContext<AppDbContext>(opts =>
                 opts.UseNpgsql(_postgres.GetConnectionString()));
+
+            // Esquema "Test" adicional (§5): requisição sem o header X-Test-UserId continua
+            // anônima via o esquema Cookie normal (produção não muda); com o header, um
+            // esquema de política encaminha para o TestAuthHandler — sem precisar de login
+            // real, que só existe a partir da §7.
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = "TestOrCookie";
+                    options.DefaultChallengeScheme = "TestOrCookie";
+                })
+                .AddPolicyScheme("TestOrCookie", "Test ou Cookie", policyOptions =>
+                {
+                    policyOptions.ForwardDefaultSelector = context =>
+                        context.Request.Headers.ContainsKey(TestAuthHandler.UserIdHeader)
+                            ? TestAuthHandler.SchemeName
+                            : CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>(TestAuthHandler.SchemeName, _ => { });
         });
     }
 

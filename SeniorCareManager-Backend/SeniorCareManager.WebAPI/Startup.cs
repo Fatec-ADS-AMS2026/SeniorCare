@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using SeniorCareManager.WebAPI.Data;
@@ -68,6 +70,30 @@ public class Startup
             .AddEntityFrameworkStores<AppDbContext>()
             .AddPasswordValidator<InstitutionalPasswordPolicyValidator>();
 
+        // Mesmo esquema que a §7 vai efetivamente emitir no login — registrado agora para
+        // que UseAuthentication()/[Authorize] funcionem já na §5, mesmo sem nenhum endpoint
+        // emitindo o cookie ainda (negação padrão até §6/§7 existirem de fato).
+        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.SameSite = SameSiteMode.Strict;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+
+                // API, não MVC com views — devolve status HTTP em vez do redirect padrão.
+                options.Events.OnRedirectToLogin = ctx =>
+                {
+                    ctx.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    return Task.CompletedTask;
+                };
+                options.Events.OnRedirectToAccessDenied = ctx =>
+                {
+                    ctx.Response.StatusCode = StatusCodes.Status403Forbidden;
+                    return Task.CompletedTask;
+                };
+            });
+        services.AddAuthorization();
+
         //configuração do swagger
         services.AddSwaggerGen(c =>
         {
@@ -102,7 +128,12 @@ public class Startup
         });
         
         //adiciona controllers e trata a serialização Json
-        services.AddControllers().AddJsonOptions(options =>
+        services.AddControllers(options =>
+        {
+            // Exige autenticação em todo controller por padrão (401 se anônimo) — os 4
+            // endpoints de credencial em AuthController usam [AllowAnonymous] explicitamente.
+            options.Filters.Add(new AuthorizeFilter());
+        }).AddJsonOptions(options =>
         {
             options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
             options.JsonSerializerOptions.WriteIndented = true; // Opcional, apenas para melhor legibilidade
@@ -168,6 +199,9 @@ public class Startup
         services.AddScoped<IBootstrapService, BootstrapService>();
         services.AddSingleton<ICommonPasswordBlocklist, CommonPasswordBlocklist>();
 
+        // Decisão de acesso (§5)
+        services.AddScoped<IAccessDecisionService, AccessDecisionService>();
+
         //Scoped Repositories and Interfaces repo
         services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
         services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
@@ -231,7 +265,8 @@ public class Startup
 
         app.UseCors("MyPolicy");
 
-        // app.UseAuthorization();
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
         {

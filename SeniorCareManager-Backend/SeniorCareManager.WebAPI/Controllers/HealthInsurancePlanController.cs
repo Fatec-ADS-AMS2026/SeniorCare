@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
@@ -19,6 +20,7 @@ public class HealthInsurancePlanController : ControllerBase
     }
 
     [HttpGet]
+    [RequirePermission("HealthInsurancePlan", "read")]
     public async Task<ActionResult<PagedResult<HealthInsurancePlanDTO>>> Get([FromQuery] CatalogQuery query)
     {
         var healthInsurancePlans = await _healthInsurancePlanService.GetAll();
@@ -31,6 +33,7 @@ public class HealthInsurancePlanController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [RequirePermission("HealthInsurancePlan", "read")]
     public async Task<ActionResult<HealthInsurancePlanDTO>> GetById(int id)
     {
         var healthInsurancePlan = await _healthInsurancePlanService.GetById(id);
@@ -39,6 +42,7 @@ public class HealthInsurancePlanController : ControllerBase
     }
 
     [HttpPost]
+    [RequirePermission("HealthInsurancePlan", "write")]
     public async Task<ActionResult<HealthInsurancePlanDTO>> Post(HealthInsurancePlanCreateRequest request)
     {
         var healthInsurancePlan = new HealthInsurancePlan(0, request.Name, request.Type, request.Abbreviation);
@@ -47,6 +51,7 @@ public class HealthInsurancePlanController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [RequirePermission("HealthInsurancePlan", "write")]
     public async Task<ActionResult<HealthInsurancePlanDTO>> Put(int id, HealthInsurancePlanUpdateRequest request)
     {
         var healthInsurancePlan = new HealthInsurancePlan(id, request.Name, request.Type, request.Abbreviation);
@@ -55,6 +60,7 @@ public class HealthInsurancePlanController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [RequirePermission("HealthInsurancePlan", "delete")]
     public async Task<IActionResult> Delete(int id)
     {
         await _healthInsurancePlanService.Remove(id);

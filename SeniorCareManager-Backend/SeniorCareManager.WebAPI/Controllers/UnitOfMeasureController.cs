@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
@@ -19,6 +20,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpGet]
+        [RequirePermission("UnitOfMeasure", "read")]
         public async Task<ActionResult<PagedResult<UnitOfMeasureDTO>>> Get([FromQuery] CatalogQuery query)
         {
             var unitsOfMeasure = await _unitOfMeasureService.GetAll();
@@ -31,6 +33,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [RequirePermission("UnitOfMeasure", "read")]
         public async Task<ActionResult<UnitOfMeasureDTO>> GetById(int id)
         {
             var unitOfMeasure = await _unitOfMeasureService.GetById(id);
@@ -39,6 +42,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpPost]
+        [RequirePermission("UnitOfMeasure", "write")]
         public async Task<ActionResult<UnitOfMeasureDTO>> Post(UnitOfMeasureCreateRequest request)
         {
             var unitOfMeasure = new UnitOfMeasure { Description = request.Description, Abbreviation = request.Abbreviation };
@@ -47,6 +51,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [RequirePermission("UnitOfMeasure", "write")]
         public async Task<ActionResult<UnitOfMeasureDTO>> Put(int id, UnitOfMeasureUpdateRequest request)
         {
             var unitOfMeasure = new UnitOfMeasure { Id = id, Description = request.Description, Abbreviation = request.Abbreviation };
@@ -55,6 +60,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [RequirePermission("UnitOfMeasure", "delete")]
         public async Task<IActionResult> Delete(int id)
         {
             await _unitOfMeasureService.Remove(id);
