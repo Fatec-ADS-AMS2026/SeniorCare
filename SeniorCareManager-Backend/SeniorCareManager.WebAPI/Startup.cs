@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using SeniorCareManager.WebAPI.Data;
@@ -50,7 +51,23 @@ public class Startup
             services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
         }
-        
+
+        // AddIdentityCore (não AddIdentity) porque não usamos o RBAC padrão do Identity —
+        // Role/Permission/PermissionGroup próprios chegam na §5. Todas as regras de
+        // composição do Identity ficam desligadas: tamanho mínimo e bloqueio de senha comum
+        // são responsabilidade exclusiva do InstitutionalPasswordPolicyValidator.
+        services.AddIdentityCore<ApplicationUser>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 1;
+                options.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddPasswordValidator<InstitutionalPasswordPolicyValidator>();
+
         //configuração do swagger
         services.AddSwaggerGen(c =>
         {
@@ -143,6 +160,13 @@ public class Startup
         services.AddScoped<ICarrierService, CarrierService>();
         services.AddScoped<IPositionService, PositionService>();
         services.AddScoped<IReligionService,  ReligionService>();
+
+        // Identidade e instituição (§4)
+        services.AddScoped<IPasswordPolicyService, PasswordPolicyService>();
+        services.AddScoped<IInstitutionIdentityOriginService, InstitutionIdentityOriginService>();
+        services.AddScoped<IAccountTokenService, AccountTokenService>();
+        services.AddScoped<IBootstrapService, BootstrapService>();
+        services.AddSingleton<ICommonPasswordBlocklist, CommonPasswordBlocklist>();
 
         //Scoped Repositories and Interfaces repo
         services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
