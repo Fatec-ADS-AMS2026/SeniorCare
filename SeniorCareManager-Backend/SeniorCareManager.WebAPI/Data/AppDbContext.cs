@@ -1,11 +1,15 @@
+using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SeniorCareManager.WebAPI.Data.Builders;
 using SeniorCareManager.WebAPI.Objects.Models;
 
 namespace SeniorCareManager.WebAPI.Data
 {
-
-    public class AppDbContext : DbContext
+    // IdentityUserContext (não IdentityDbContext completo) dá Users/UserClaims/UserLogins/
+    // UserTokens, mas não Roles/UserRoles — o RBAC próprio (Role/Permission/PermissionGroup,
+    // §5) não deve colidir com IdentityRole.
+    public class AppDbContext : IdentityUserContext<ApplicationUser, Guid>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -18,6 +22,8 @@ namespace SeniorCareManager.WebAPI.Data
         public DbSet<HealthInsurancePlan> HealthInsurancePlans { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Religion> Religions { get; set; }
+        public DbSet<Institution> Institutions { get; set; }
+        public DbSet<AccountToken> AccountTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,7 +38,9 @@ namespace SeniorCareManager.WebAPI.Data
             HealthInsurancePlanBuilder.Build(modelBuilder);
             PositionBuilder.Build(modelBuilder);
             ReligionBuilder.Build(modelBuilder);
-
+            InstitutionBuilder.Build(modelBuilder);
+            ApplicationUserBuilder.Build(modelBuilder);
+            AccountTokenBuilder.Build(modelBuilder);
         }
     }
 }

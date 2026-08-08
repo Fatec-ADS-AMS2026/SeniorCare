@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using SeniorCareManager.WebAPI.Data;
 using SeniorCareManager.WebAPI.Data.Interfaces;
 using SeniorCareManager.WebAPI.Data.Repositories;
+using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Services.Entities;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 using Swashbuckle.AspNetCore.SwaggerUI;
@@ -14,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +51,23 @@ public class Startup
             services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
         }
-        
+
+        // AddIdentityCore (não AddIdentity) porque não usamos o RBAC padrão do Identity —
+        // Role/Permission/PermissionGroup próprios chegam na §5. Todas as regras de
+        // composição do Identity ficam desligadas: tamanho mínimo e bloqueio de senha comum
+        // são responsabilidade exclusiva do InstitutionalPasswordPolicyValidator.
+        services.AddIdentityCore<ApplicationUser>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 1;
+                options.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddPasswordValidator<InstitutionalPasswordPolicyValidator>();
+
         //configuração do swagger
         services.AddSwaggerGen(c =>
         {
@@ -87,7 +106,27 @@ public class Startup
         {
             options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
             options.JsonSerializerOptions.WriteIndented = true; // Opcional, apenas para melhor legibilidade
+
+            // Tarefa 3.6: o ID de um recurso é canônico pela rota — os *Request DTOs
+            // deliberadamente não têm campo Id, então qualquer "id" (ou outro campo
+            // desconhecido) no corpo é sinal de divergência do cliente. Por padrão o
+            // System.Text.Json ignora campos desconhecidos silenciosamente; Disallow
+            // rejeita com 400 em vez de aceitar e descartar sem avisar.
+            options.JsonSerializerOptions.UnmappedMemberHandling =
+                System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow;
         });
+
+        // Problem Details (RFC 7807) centralizado — cobre tanto os 400 automáticos do
+        // ModelState do [ApiController] quanto qualquer exceção não tratada (via
+        // GlobalExceptionHandler abaixo), sempre com identificador de correlação.
+        services.AddProblemDetails(options =>
+        {
+            options.CustomizeProblemDetails = context =>
+            {
+                context.ProblemDetails.Extensions["correlationId"] = context.HttpContext.TraceIdentifier;
+            };
+        });
+        services.AddExceptionHandler<GlobalExceptionHandler>();
 
         // CORS_ALLOWED_ORIGINS (docker-compose de produção) sobrepõe os origins de dev —
         // sem isso, a imagem de produção nunca aceitaria requisição dos frontends reais.
@@ -122,6 +161,13 @@ public class Startup
         services.AddScoped<IPositionService, PositionService>();
         services.AddScoped<IReligionService,  ReligionService>();
 
+        // Identidade e instituição (§4)
+        services.AddScoped<IPasswordPolicyService, PasswordPolicyService>();
+        services.AddScoped<IInstitutionIdentityOriginService, InstitutionIdentityOriginService>();
+        services.AddScoped<IAccountTokenService, AccountTokenService>();
+        services.AddScoped<IBootstrapService, BootstrapService>();
+        services.AddSingleton<ICommonPasswordBlocklist, CommonPasswordBlocklist>();
+
         //Scoped Repositories and Interfaces repo
         services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
         services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
@@ -137,19 +183,29 @@ public class Startup
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
-        // Usado pelo HEALTHCHECK do container (Dockerfile/docker-compose) e pelo deploy.sh
-        // para aguardar o serviço ficar pronto antes de considerar o deploy bem-sucedido.
+        // /health/live (vida) não checa dependências — só confirma que o processo está de
+        // pé, mesmo com o banco fora. /health/ready (prontidão) inclui o check do banco,
+        // marcado com a tag "ready" — é o que o HEALTHCHECK do container e o deploy.sh
+        // esperam antes de considerar o deploy bem-sucedido.
         services.AddHealthChecks()
-            .AddCheck<DbHealthCheck>("database");
+            .AddCheck<DbHealthCheck>("database", tags: new[] { "ready" });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        // Centralizado e igual em todo ambiente — em dev, UseDeveloperExceptionPage()
+        // vazaria stack trace no corpo da resposta (proibido pela 3.3); o
+        // GlobalExceptionHandler é o único a converter exceção em resposta HTTP.
+        app.UseExceptionHandler();
+
+        // O documento OpenAPI (JSON) fica disponível em todo ambiente — é o contrato
+        // que a tarefa 3.8 valida contra os dois front-ends via teste automatizado, não
+        // só uma conveniência de desenvolvimento. Só a SwaggerUI (interativa) é dev-only.
+        app.UseSwagger();
+
         if (env.IsDevelopment())
         {
-            app.UseDeveloperExceptionPage();
-            app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SeniorCareManager Web API V1");
@@ -167,7 +223,6 @@ public class Startup
         }
         else
         {
-            app.UseExceptionHandler("/home/Error");
             app.UseHsts();
         }
 
@@ -181,7 +236,16 @@ public class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
-            endpoints.MapHealthChecks("/health");
+            // Vida: processo em execução, não avalia nenhuma dependência.
+            endpoints.MapHealthChecks("/health/live", new HealthCheckOptions
+            {
+                Predicate = _ => false,
+            });
+            // Prontidão: inclui os checks marcados "ready" (hoje só o banco).
+            endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions
+            {
+                Predicate = check => check.Tags.Contains("ready"),
+            });
         });
     }
 }

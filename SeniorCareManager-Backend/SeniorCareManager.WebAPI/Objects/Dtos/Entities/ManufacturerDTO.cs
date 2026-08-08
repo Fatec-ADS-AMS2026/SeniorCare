@@ -6,4 +6,5 @@
     public string CpfCnpj { get; set; }
     public string Phone { get; set; }
     public string Email { get; set; }
+    public uint RowVersion { get; set; }
 }

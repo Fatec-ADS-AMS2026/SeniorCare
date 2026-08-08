@@ -21,6 +21,6 @@ docker compose --profile tools up -d pgadmin
 |---|---|
 | care-web | 3000 |
 | stock-web | 3001 |
-| API | 8080 (`/health`) |
+| API | 8080 (`/health/live`, `/health/ready`) |
 | Postgres | 5432 |
 | pgAdmin (`--profile tools`) | 5050 |

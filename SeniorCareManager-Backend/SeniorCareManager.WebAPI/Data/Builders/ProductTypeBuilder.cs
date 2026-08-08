@@ -9,6 +9,7 @@ public class ProductTypeBuilder
     {
         // Configura a chave primária
         modelBuilder.Entity<ProductType>().HasKey(pg => pg.Id);
+        modelBuilder.Entity<ProductType>().Property<uint>("Version").IsRowVersion();
         modelBuilder.Entity<ProductType>().Property(pg => pg.Name).IsRequired().HasMaxLength(50);
         modelBuilder.Entity<ProductType>().HasOne(pg => pg.ProductGroup)
         .WithMany(pg => pg.ProductType)

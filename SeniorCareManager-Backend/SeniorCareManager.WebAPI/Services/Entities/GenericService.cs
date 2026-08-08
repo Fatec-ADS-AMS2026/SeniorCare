@@ -27,7 +27,7 @@ public class GenericService<T> : IGenericService<T> where T : class
         await _repository.Add(entity);
     }
 
-    public async Task Update(T entity, int id)
+    public async Task Update(T entity, int id, uint? expectedVersion = null)
     {
         var existingEntity = await _repository.GetById(id); // Supondo que sua entidade tenha um campo Id
 
@@ -36,7 +36,7 @@ public class GenericService<T> : IGenericService<T> where T : class
             throw new KeyNotFoundException($"Entity with id {id} not found.");
         }
 
-        await _repository.Update(entity);
+        await _repository.Update(entity, expectedVersion);
     }
 
     public async Task Remove(int id)
@@ -49,4 +49,6 @@ public class GenericService<T> : IGenericService<T> where T : class
 
         await _repository.Remove(entity);
     }
+
+    public uint? GetVersion(T entity) => _repository.GetVersion(entity);
 }

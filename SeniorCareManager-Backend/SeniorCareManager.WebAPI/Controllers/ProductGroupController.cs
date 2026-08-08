@@ -1,5 +1,7 @@
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Objects.Dtos;
+using SeniorCareManager.WebAPI.Objects.Dtos.Common;
+using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Models;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 
@@ -7,86 +9,60 @@ namespace SeniorCareManager.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/v1/[controller]")]
-public class ProductGroupController : Controller
+public class ProductGroupController : ControllerBase
 {
     private readonly IProductGroupService _productGroupService;
 
     public ProductGroupController(IProductGroupService service)
     {
-        this._productGroupService = service;
+        _productGroupService = service;
     }
-    
+
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<ActionResult<PagedResult<ProductGroupDTO>>> Get([FromQuery] CatalogQuery query)
     {
         var productGroups = await _productGroupService.GetAll();
-        return Ok(productGroups);
+        var filtered = string.IsNullOrWhiteSpace(query.Search)
+            ? productGroups
+            : productGroups.Where(g => g.Name.Contains(query.Search, StringComparison.OrdinalIgnoreCase));
+        return Ok(filtered.Select(ToDto).ToPagedResult(query.Page, query.PageSize));
     }
-    
+
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<ActionResult<ProductGroupDTO>> GetById(int id)
     {
         var productGroup = await _productGroupService.GetById(id);
-        if (productGroup == null) return NotFound("Grupo Produto não encontrado!");
-        return Ok(productGroup);
+        if (productGroup == null) throw new KeyNotFoundException("Grupo de produto não encontrado.");
+        return Ok(ToDto(productGroup));
     }
-    
+
     [HttpPost]
-    public async Task<IActionResult> Post(ProductGroup productGroup)
+    public async Task<ActionResult<ProductGroupDTO>> Post(ProductGroupCreateRequest request)
     {
-        try{
-            await _productGroupService.Create(productGroup);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar inserir um novo grupo de produto.");
-        }
-        return Ok(productGroup);
+        var productGroup = new ProductGroup { Name = request.Name };
+        await _productGroupService.Create(productGroup);
+        return CreatedAtAction(nameof(GetById), new { id = productGroup.Id }, ToDto(productGroup));
     }
-    
+
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, ProductGroup productGroup)
+    public async Task<ActionResult<ProductGroupDTO>> Put(int id, ProductGroupUpdateRequest request)
     {
-        try
-        {
-            await _productGroupService.Update(productGroup, id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar atualizar o grupo de produto: "+ex.Message);
-        }
-        
-        return Ok(productGroup);
+        var productGroup = new ProductGroup { Id = id, Name = request.Name };
+        await _productGroupService.Update(productGroup, id, request.RowVersion);
+        return Ok(ToDto(productGroup));
     }
-    
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        try
-        {
-            await _productGroupService.Remove(id);
-        }
-        catch (Exception ex)
-        {  
-            return StatusCode(500, "Ocorreu um erro ao tentar remover o grupo de produto.");
-        }
-
-        return Ok("Grupo de produto apagado com sucesso");
+        await _productGroupService.Remove(id);
+        return NoContent();
     }
 
-    [HttpPatch("{id}")]
-    public async Task<IActionResult> Patch(int id, ProductGroup productGroup)
+    private ProductGroupDTO ToDto(ProductGroup productGroup) => new()
     {
-        try
-        {
-            await _productGroupService.Update(productGroup, id);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "Ocorreu um erro ao tentar remover o grupo do produto.");
-        }
-        
-        return Ok(productGroup);
-    }
-
+        Id = productGroup.Id,
+        Name = productGroup.Name,
+        RowVersion = _productGroupService.GetVersion(productGroup) ?? 0,
+    };
 }

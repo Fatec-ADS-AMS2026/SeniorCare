@@ -1,47 +1,47 @@
 ## 1. Baseline e infraestrutura de testes
 
-- [ ] 1.1 Instalar/restaurar o SDK .NET 8 e registrar os comandos reproduzíveis de build dos três componentes.
-- [ ] 1.2 Corrigir a incompatibilidade de `ApiResponse` no front-end assistencial e comprovar lint e build limpos.
-- [ ] 1.3 Criar projetos de testes unitários e de integração do backend e adicioná-los à solution.
-- [ ] 1.4 Configurar PostgreSQL efêmero para testes de integração, com health check, migração desde banco vazio e descarte ao final.
-- [ ] 1.5 Configurar runner, biblioteca de componentes, DOM de teste, mock HTTP e coleta de cobertura em cada front-end.
-- [ ] 1.6 Adicionar testes de caracterização dos CRUDs atuais antes de alterar seus contratos.
+- [x] 1.1 Instalar/restaurar o SDK .NET 8 e registrar os comandos reproduzíveis de build dos três componentes.
+- [x] 1.2 Corrigir a incompatibilidade de `ApiResponse` no front-end assistencial e comprovar lint e build limpos.
+- [x] 1.3 Criar projetos de testes unitários e de integração do backend e adicioná-los à solution.
+- [x] 1.4 Configurar PostgreSQL efêmero para testes de integração, com health check, migração desde banco vazio e descarte ao final.
+- [x] 1.5 Configurar runner, biblioteca de componentes, DOM de teste, mock HTTP e coleta de cobertura em cada front-end.
+- [x] 1.6 Adicionar testes de caracterização dos CRUDs atuais antes de alterar seus contratos.
 
 ## 2. Configuração e diagnóstico de execução
 
-- [ ] 2.1 Substituir a URL absoluta da API por caminho de mesma origem nos dois clientes HTTP.
-- [ ] 2.2 Configurar proxy de desenvolvimento nos dois projetos Vite com destino externo e validação de formato.
-- [ ] 2.3 Configurar o nginx de cada front-end para encaminhar `/api` à API na rede Docker.
-- [ ] 2.4 Adicionar modelos de configuração sem segredos para desenvolvimento, teste e produção e documentar todas as variáveis obrigatórias.
-- [ ] 2.5 Adicionar validação de startup para conexão, chaves, instituição e bootstrap, garantindo mensagens sem valores secretos.
-- [ ] 2.6 Separar endpoints de vida e prontidão e testar o comportamento com banco disponível e indisponível.
-- [ ] 2.7 Verificar nos bundles de produção que não há destino operacional em `localhost` nem segredos incorporados.
+- [x] 2.1 Substituir a URL absoluta da API por caminho de mesma origem nos dois clientes HTTP.
+- [x] 2.2 Configurar proxy de desenvolvimento nos dois projetos Vite com destino externo e validação de formato.
+- [x] 2.3 Configurar o nginx de cada front-end para encaminhar `/api` à API na rede Docker.
+- [x] 2.4 Adicionar modelos de configuração sem segredos para desenvolvimento, teste e produção e documentar todas as variáveis obrigatórias.
+- [x] 2.5 Adicionar validação de startup para conexão, chaves, instituição e bootstrap, garantindo mensagens sem valores secretos. Validação de `ConnectionStrings:DefaultConnection` e das três variáveis de bootstrap (`Bootstrap__InstitutionName`/`Bootstrap__AdminEmail`/`Bootstrap__AdminDisplayName`, exigidas todas juntas ou nenhuma) implementada e testada em `Program.GetMissingConfiguration`. Chaves de sessão/JWT ainda não se aplicam — dependem da capability de sessão (§7).
+- [x] 2.6 Separar endpoints de vida e prontidão e testar o comportamento com banco disponível e indisponível.
+- [x] 2.7 Verificar nos bundles de produção que não há destino operacional em `localhost` nem segredos incorporados.
 
 ## 3. Contratos HTTP e tratamento de erros
 
-- [ ] 3.1 Definir DTOs de criação, atualização, resposta e listagem paginada sem expor entidades de persistência.
-- [ ] 3.2 Implementar Problem Details centralizado com códigos estáveis, erros por campo e identificador de correlação.
-- [ ] 3.3 Remover mensagens de exceção das respostas e adicionar testes que impeçam vazamento de detalhes internos.
-- [ ] 3.4 Padronizar 400/401/403/404/409/422/500 em todos os controllers existentes.
-- [ ] 3.5 Implementar paginação e filtro consistentes nos dez catálogos definidos pela spec.
-- [ ] 3.6 Tornar o ID da rota canônico, rejeitar divergência com o corpo e remover o `PATCH` que executa substituição total.
-- [ ] 3.7 Adicionar concorrência otimista aos catálogos e testes para edição com versão desatualizada.
-- [ ] 3.8 Publicar e validar o contrato OpenAPI resultante contra os clientes dos dois front-ends.
+- [x] 3.1 Definir DTOs de criação, atualização, resposta e listagem paginada sem expor entidades de persistência.
+- [x] 3.2 Implementar Problem Details centralizado com códigos estáveis, erros por campo e identificador de correlação.
+- [x] 3.3 Remover mensagens de exceção das respostas e adicionar testes que impeçam vazamento de detalhes internos.
+- [x] 3.4 Padronizar 400/401/403/404/409/422/500 em todos os controllers existentes. **Parcial**: 400 (validação de forma via ModelState), 404 (recurso ausente), 409 (conflito de concorrência, tarefa 3.7) e 500 (erro genérico) uniformes via `GlobalExceptionHandler`; 422 introduzido para violação de regra de negócio (FK inválida em ProductType). 401/403 dependem de identidade/autorização (capability `platform-authentication`, §4 em diante) — reabrir quando esse trabalho chegar.
+- [x] 3.5 Implementar paginação e filtro consistentes nos dez catálogos definidos pela spec. **Parcial**: paginação (`page`/`pageSize`) e filtro (`search`) aplicados aos 9 catálogos existentes via `PagedResult<T>`/`CatalogQuery`. O 10º catálogo (Produto) ainda não existe — é criado na tarefa 9.4 e deve seguir o mesmo padrão quando implementado.
+- [x] 3.6 Tornar o ID da rota canônico, rejeitar divergência com o corpo e remover o `PATCH` que executa substituição total. `*UpdateRequest` nunca teve campo `Id` (só a rota define o alvo); `JsonUnmappedMemberHandling.Disallow` rejeita com 400 qualquer campo desconhecido no corpo (inclusive um "id" divergente). PATCH de substituição total removido de ProductGroup/ProductType/HealthInsurancePlan (as únicas 3 que tinham).
+- [x] 3.7 Adicionar concorrência otimista aos catálogos e testes para edição com versão desatualizada. Token de concorrência via `xmin` do Postgres (shadow property `Version`, `IsRowVersion()`), exposto como `RowVersion` nos DTOs de resposta e exigido nos `*UpdateRequest`. `DbUpdateConcurrencyException` mapeada para 409 pelo `GlobalExceptionHandler`. Verificado com teste de integração real (Postgres via Testcontainers): segunda edição com `RowVersion` desatualizado retorna 409.
+- [x] 3.8 Publicar e validar o contrato OpenAPI resultante contra os clientes dos dois front-ends. `/swagger/v1/swagger.json` disponível em todo ambiente (antes só em Development). Teste de integração automatizado lê os `*Service.ts` reais dos dois front-ends e confirma que cada rota efetivamente chamada existe no contrato com os verbos certos. **Achado**: `stock-web` já chama `api/v1/Product` (código pronto), mas a entidade só existe na tarefa 9.4 — lacuna conhecida, documentada explicitamente no teste (`StockWeb_Product_IsAKnownGapNotYetInContract`), não corrigida aqui (fora de escopo de §3).
 
 ## 4. Instituição, identidade e política de senha
 
-- [ ] 4.1 Modelar instituição e estender a identidade ASP.NET com `InstitutionId`, `IdentityOrigin` e estados `PROVISIONED`, `ACTIVE`, `INACTIVE`, `BLOCKED` e `EXPIRED`.
-- [ ] 4.2 Criar migração aditiva para instituição, usuários e credenciais locais, com índices e restrições de isolamento institucional.
-- [ ] 4.3 Implementar origem `LOCAL` e pontos de extensão desabilitados para `LDAP` e `OIDC`, rejeitando ativação sem provedor real.
-- [ ] 4.4 Configurar derivação adaptativa de senha com salt individual, atualização transparente de parâmetros e ausência de segredos em respostas e logs.
-- [ ] 4.5 Implementar piso de senha: 15 caracteres sem MFA ou 8 com MFA obrigatório, aceitação de pelo menos 64 caracteres, espaços e Unicode.
-- [ ] 4.6 Integrar bloqueio de senhas comuns ou comprometidas sem regra arbitrária de composição nem expiração periódica automática.
-- [ ] 4.7 Implementar configuração institucional que somente fortaleça os pisos de senha e adicionar validações de limites.
-- [ ] 4.8 Implementar bootstrap idempotente da instituição e do administrador `PROVISIONED`, sem senha fixa ou redefinição silenciosa.
-- [ ] 4.9 Implementar ativação por token aleatório, curto, de uso único e armazenado por hash, com definição da senha pela própria pessoa.
-- [ ] 4.10 Implementar recuperação com resposta antienumeração, token protegido e revogação das sessões após redefinição.
-- [ ] 4.11 Implementar mudança autenticada de senha com senha atual ou reautenticação recente e revogação das demais sessões.
-- [ ] 4.12 Adicionar testes de isolamento institucional, ciclo de vida, política de senha, bootstrap, ativação, recuperação e ausência de segredos.
+- [x] 4.1 Modelar instituição e estender a identidade ASP.NET com `InstitutionId`, `IdentityOrigin` e estados `PROVISIONED`, `ACTIVE`, `INACTIVE`, `BLOCKED` e `EXPIRED`. `Institution` (chave própria) + `ApplicationUser : IdentityUser<Guid>` com `InstitutionId`/`IdentityOrigin`/`AccountState`/`MfaEnabled`. `AppDbContext` passou a herdar `IdentityUserContext<ApplicationUser, Guid>` (não `IdentityDbContext` completo) — sem `Roles`/`UserRoles`, para não colidir com o RBAC próprio da §5.
+- [x] 4.2 Criar migração aditiva para instituição, usuários e credenciais locais, com índices e restrições de isolamento institucional. Migração `AddInstitutionAndIdentity`: `institution`, `AspNetUsers`/`AspNetUserClaims`/`AspNetUserLogins`/`AspNetUserTokens`, `accounttoken` — só `CreateTable`/`CreateIndex`, nenhuma tabela existente alterada. Índice único `(InstitutionId, NormalizedEmail)` e `(InstitutionId, NormalizedUserName)`; o índice global de `NormalizedUserName` do Identity padrão foi explicitamente tornado não-único para não vazar unicidade entre instituições.
+- [x] 4.3 Implementar origem `LOCAL` e pontos de extensão desabilitados para `LDAP` e `OIDC`, rejeitando ativação sem provedor real. `InstitutionIdentityOriginService.EnsureOriginAvailable` lança `BusinessRuleException` (422) para `LDAP`/`OIDC`; pronto para ser exposto por API administrativa na §6.
+- [x] 4.4 Configurar derivação adaptativa de senha com salt individual, atualização transparente de parâmetros e ausência de segredos em respostas e logs. Usa o `PasswordHasher<ApplicationUser>` padrão do ASP.NET Identity (PBKDF2-HMACSHA256 versionado, rehash automático via `UserManager`); nenhum DTO de resposta expõe hash/segredo.
+- [x] 4.5 Implementar piso de senha: 15 caracteres sem MFA ou 8 com MFA obrigatório, aceitação de pelo menos 64 caracteres, espaços e Unicode. `PasswordPolicyService`/`InstitutionalPasswordPolicyValidator` (substitui as regras de composição padrão do Identity, desligadas em `Startup.cs`); limite técnico máximo de 256 caracteres (proteção contra abuso de hashing, não conflita com o piso de 64).
+- [x] 4.6 Integrar bloqueio de senhas comuns ou comprometidas sem regra arbitrária de composição nem expiração periódica automática. `CommonPasswordBlocklist`: lista local embutida (`Data/CommonPasswords.txt`, *embedded resource*), sem dependência de serviço externo — mantém CI/testes offline. Nenhuma regra de composição por classe de caractere nem expiração por tempo foi adicionada.
+- [x] 4.7 Implementar configuração institucional que somente fortaleça os pisos de senha e adicionar validações de limites. `Institution.MinPasswordLengthWithoutMfaOverride`/`MinPasswordLengthWithMfaOverride` + `PasswordPolicyService.ValidateInstitutionOverride`, que rejeita qualquer valor abaixo do piso global.
+- [x] 4.8 Implementar bootstrap idempotente da instituição e do administrador `PROVISIONED`, sem senha fixa ou redefinição silenciosa. `BootstrapService`, chamado em `Program.cs` após a migração: no-op se já existir instituição; caso contrário, lê `Bootstrap__InstitutionName`/`Bootstrap__AdminEmail`/`Bootstrap__AdminDisplayName` e cria instituição + admin `PROVISIONED` sem senha. Link de ativação impresso uma única vez no console do primeiro boot.
+- [x] 4.9 Implementar ativação por token aleatório, curto, de uso único e armazenado por hash, com definição da senha pela própria pessoa. `AccountTokenService` (não usa os token providers padrão do Identity, que não são "armazenados por hash") + `POST /api/v1/Auth/activate`.
+- [x] 4.10 Implementar recuperação com resposta antienumeração, token protegido e revogação das sessões após redefinição. `POST /api/v1/Auth/recover` sempre 200 com corpo idêntico; `POST /api/v1/Auth/reset-password` consome o token e troca a senha (o `SecurityStamp` é rotacionado automaticamente pelo `UserManager`, invalidando qualquer coisa emitida antes — sessão real só existe a partir da §7).
+- [x] 4.11 Implementar mudança autenticada de senha com senha atual ou reautenticação recente e revogação das demais sessões. `POST /api/v1/Auth/change-password` — endpoint autocontido (recebe e-mail + senha atual + nova senha no corpo) porque sessão/login só existem a partir da §7; usa `UserManager.ChangePasswordAsync`, que já rotaciona o `SecurityStamp`.
+- [x] 4.12 Adicionar testes de isolamento institucional, ciclo de vida, política de senha, bootstrap, ativação, recuperação e ausência de segredos. Unit: `PasswordPolicyServiceTests`, `CommonPasswordBlocklistTests`, `InstitutionIdentityOriginServiceTests`. Integração (Postgres real via Testcontainers): `BootstrapServiceTests` (idempotência), `AuthControllerTests` (ativação com token válido/reutilizado/expirado, senha abaixo do piso, recuperação antienumeração, troca de senha com credencial errada/correta).
 
 ## 5. Modelo e decisão de acesso
 

@@ -82,6 +82,8 @@ jobs:
           npm audit --omit=dev --audit-level=high
           npm audit --audit-level=critical
       - run: npm run build
+      - name: Verificar bundle de produção (sem localhost/segredo embutido)
+        run: ../../.github/scripts/check-frontend-bundle.sh dist
 
   stock-web:
     needs: changes
@@ -104,6 +106,8 @@ jobs:
           npm audit --omit=dev --audit-level=high
           npm audit --audit-level=critical
       - run: npm run build
+      - name: Verificar bundle de produção (sem localhost/segredo embutido)
+        run: ../../.github/scripts/check-frontend-bundle.sh dist
 
   ci-required:
     # `backend`/`care-web`/`stock-web` só rodam quando o path correspondente muda — um

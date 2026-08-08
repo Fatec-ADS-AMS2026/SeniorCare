@@ -12,7 +12,7 @@
         server: my-docker
         container: seniorcare-stock-web
     - API:
-        href: http://{{HOMEPAGE_VAR_HOST}}:8080/health
+        href: http://{{HOMEPAGE_VAR_HOST}}:8080/health/ready
         description: SeniorCareManager.WebAPI
         server: my-docker
         container: seniorcare-api

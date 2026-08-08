@@ -9,6 +9,7 @@ namespace SeniorCareManager.WebAPI.Data.Builders
         {
             // Configura a chave primária
             modelBuilder.Entity<Supplier>().HasKey(s => s.Id);
+            modelBuilder.Entity<Supplier>().Property<uint>("Version").IsRowVersion();
 
             modelBuilder.Entity<Supplier>().Property(s => s.CorporateName)
                 .IsRequired()

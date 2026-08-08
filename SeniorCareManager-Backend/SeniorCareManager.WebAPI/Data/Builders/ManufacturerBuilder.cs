@@ -9,6 +9,7 @@ namespace SeniorCareManager.WebAPI.Data.Builders
         {
 
             modelBuilder.Entity<Manufacturer>().HasKey(m => m.Id);
+            modelBuilder.Entity<Manufacturer>().Property<uint>("Version").IsRowVersion();
 
             modelBuilder.Entity<Manufacturer>()
                 .Property(m => m.CorporateName)

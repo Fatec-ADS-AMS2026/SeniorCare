@@ -9,6 +9,7 @@ namespace SeniorCareManager.WebAPI.Data.Builders
         public static void Build(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Carrier>().HasKey(pg => pg.Id);
+            modelBuilder.Entity<Carrier>().Property<uint>("Version").IsRowVersion();
             modelBuilder.Entity<Carrier>().Property(pg => pg.CorporateName)
                 .IsRequired().HasMaxLength(100);
             modelBuilder.Entity<Carrier>().Property(pg => pg.TradeName)
