@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SeniorCareManager.WebAPI.Data;
+using SeniorCareManager.WebAPI.Services.Interfaces;
 
 namespace SeniorCareManager.WebAPI
 {
@@ -27,6 +28,18 @@ namespace SeniorCareManager.WebAPI
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 db.Database.Migrate();
+
+                // Idempotente: só cria instituição + admin PROVISIONED na primeira vez (nenhuma
+                // instituição ainda existe). O link de ativação só existe neste momento — não é
+                // persistido em lugar nenhum, então só pode ser capturado aqui.
+                var bootstrap = scope.ServiceProvider.GetRequiredService<IBootstrapService>();
+                var result = bootstrap.RunAsync().GetAwaiter().GetResult();
+                if (result.Created)
+                {
+                    Console.WriteLine("Bootstrap: instituição e administrador PROVISIONED criados.");
+                    Console.WriteLine($"  Administrador: {result.AdminEmail}");
+                    Console.WriteLine($"  Token de ativação (uso único, capture agora — não será reimpresso): {result.ActivationToken}");
+                }
             }
 
             host.Run();
@@ -40,6 +53,17 @@ namespace SeniorCareManager.WebAPI
 
             if (string.IsNullOrWhiteSpace(configuration.GetConnectionString("DefaultConnection")))
                 missing.Add("ConnectionStrings:DefaultConnection (variável de ambiente: ConnectionStrings__DefaultConnection)");
+
+            // As três variáveis de bootstrap só fazem sentido juntas: config parcial indica
+            // que o operador esqueceu uma delas, então falha cedo em vez de deixar a
+            // instalação sem instituição silenciosamente (tarefa 2.5).
+            var bootstrapKeys = new[] { "Bootstrap:InstitutionName", "Bootstrap:AdminEmail", "Bootstrap:AdminDisplayName" };
+            var bootstrapValues = bootstrapKeys.Select(k => configuration[k]).ToList();
+            var bootstrapProvided = bootstrapValues.Count(v => !string.IsNullOrWhiteSpace(v));
+            if (bootstrapProvided > 0 && bootstrapProvided < bootstrapKeys.Length)
+                missing.Add(
+                    "Bootstrap__InstitutionName, Bootstrap__AdminEmail e Bootstrap__AdminDisplayName devem ser " +
+                    "todas informadas juntas ou nenhuma (bootstrap parcialmente configurado)");
 
             return missing;
         }
