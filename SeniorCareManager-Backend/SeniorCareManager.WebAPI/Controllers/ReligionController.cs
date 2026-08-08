@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
@@ -19,6 +20,7 @@ public class ReligionController : ControllerBase
     }
 
     [HttpGet]
+    [RequirePermission("Religion", "read")]
     public async Task<ActionResult<PagedResult<ReligionDTO>>> Get([FromQuery] CatalogQuery query)
     {
         var religions = await _religionService.GetAll();
@@ -29,6 +31,7 @@ public class ReligionController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [RequirePermission("Religion", "read")]
     public async Task<ActionResult<ReligionDTO>> GetById(int id)
     {
         var religion = await _religionService.GetById(id);
@@ -37,6 +40,7 @@ public class ReligionController : ControllerBase
     }
 
     [HttpPost]
+    [RequirePermission("Religion", "write")]
     public async Task<ActionResult<ReligionDTO>> Post(ReligionCreateRequest request)
     {
         var religion = new Religion { Name = request.Name };
@@ -45,6 +49,7 @@ public class ReligionController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [RequirePermission("Religion", "write")]
     public async Task<ActionResult<ReligionDTO>> Put(int id, ReligionUpdateRequest request)
     {
         var religion = new Religion { Id = id, Name = request.Name };
@@ -53,6 +58,7 @@ public class ReligionController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [RequirePermission("Religion", "delete")]
     public async Task<IActionResult> Delete(int id)
     {
         await _religionService.Remove(id);

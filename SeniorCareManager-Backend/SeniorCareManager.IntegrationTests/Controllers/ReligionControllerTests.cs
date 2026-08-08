@@ -2,7 +2,9 @@ using System.Net;
 using System.Net.Http.Json;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using SeniorCareManager.IntegrationTests.Infrastructure;
+using SeniorCareManager.WebAPI.Data;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
@@ -12,16 +14,29 @@ namespace SeniorCareManager.IntegrationTests.Controllers;
 /// <summary>
 /// Testes de caracterização do CRUD de Religion.
 /// Capturam o contrato atual dos endpoints antes de qualquer alteração,
-/// impedindo regressões silenciosas.
+/// impedindo regressões silenciosas. Autentica com um usuário de acesso total (§5) — o
+/// alvo destes testes é o comportamento do CRUD, não autorização.
 /// </summary>
-public sealed class ReligionControllerTests : IClassFixture<PostgresWebApplicationFactory>
+public sealed class ReligionControllerTests : IClassFixture<PostgresWebApplicationFactory>, IAsyncLifetime
 {
-    private readonly HttpClient _client;
+    private readonly PostgresWebApplicationFactory _factory;
+    private HttpClient _client = null!;
 
     public ReligionControllerTests(PostgresWebApplicationFactory factory)
     {
-        _client = factory.CreateClient();
+        _factory = factory;
     }
+
+    public async Task InitializeAsync()
+    {
+        _client = _factory.CreateClient();
+        using var scope = _factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var (_, userId) = await TestIdentitySeeder.SeedFullAccessUserAsync(db);
+        _client.AsUser(userId);
+    }
+
+    public Task DisposeAsync() => Task.CompletedTask;
 
     [Fact]
     public async Task Get_ReturnsOkWithPagedResult()

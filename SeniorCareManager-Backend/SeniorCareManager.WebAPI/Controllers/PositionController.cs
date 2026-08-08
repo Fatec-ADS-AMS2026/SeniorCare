@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
@@ -19,6 +20,7 @@ public class PositionController : ControllerBase
     }
 
     [HttpGet]
+    [RequirePermission("Position", "read")]
     public async Task<ActionResult<PagedResult<PositionDTO>>> Get([FromQuery] CatalogQuery query)
     {
         var positions = await _positionService.GetAll();
@@ -29,6 +31,7 @@ public class PositionController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [RequirePermission("Position", "read")]
     public async Task<ActionResult<PositionDTO>> GetById(int id)
     {
         var position = await _positionService.GetById(id);
@@ -37,6 +40,7 @@ public class PositionController : ControllerBase
     }
 
     [HttpPost]
+    [RequirePermission("Position", "write")]
     public async Task<ActionResult<PositionDTO>> Post(PositionCreateRequest request)
     {
         var position = new Position(0, request.Name);
@@ -45,6 +49,7 @@ public class PositionController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [RequirePermission("Position", "write")]
     public async Task<ActionResult<PositionDTO>> Put(int id, PositionUpdateRequest request)
     {
         var position = new Position(id, request.Name);
@@ -53,6 +58,7 @@ public class PositionController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [RequirePermission("Position", "delete")]
     public async Task<IActionResult> Delete(int id)
     {
         await _positionService.Remove(id);

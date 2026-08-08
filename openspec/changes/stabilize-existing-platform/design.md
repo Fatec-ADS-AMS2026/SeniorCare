@@ -144,6 +144,14 @@ rejeitada por misturar credencial profissional com necessidade operacional; ou
 manter permissões somente no front-end, rejeitada porque o cliente não é fronteira
 de segurança.
 
+**Implementado na §5** com uma ressalva explícita (tarefa 5.13): as permissões desta
+capability cobrem apenas as funções administrativas e os catálogos existentes.
+Nenhuma delas concede, por inferência ou composição futura, acesso a prontuário,
+prescrição, evolução multidisciplinar ou qualquer outro dado clínico — uma
+capability assistencial futura precisará da sua própria especificação de
+autorização contextual, consentimento (quando aplicável) e auditoria, mesmo que
+reaproveite identidades, papéis ou instituição já modelados aqui.
+
 ### 8. Adotar política moderna de credencial, MFA e sessão revogável
 
 Contas locais exigirão senha mínima de 15 caracteres quando usada sozinha ou 8

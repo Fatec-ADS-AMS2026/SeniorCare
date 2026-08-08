@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
@@ -19,6 +20,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpGet]
+        [RequirePermission("Manufacturer", "read")]
         public async Task<ActionResult<PagedResult<ManufacturerDTO>>> Get([FromQuery] CatalogQuery query)
         {
             var manufacturers = await _manufacturerService.GetAll();
@@ -31,6 +33,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [RequirePermission("Manufacturer", "read")]
         public async Task<ActionResult<ManufacturerDTO>> GetById(int id)
         {
             var manufacturer = await _manufacturerService.GetById(id);
@@ -39,6 +42,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpPost]
+        [RequirePermission("Manufacturer", "write")]
         public async Task<ActionResult<ManufacturerDTO>> Post(ManufacturerCreateRequest request)
         {
             var manufacturer = new Manufacturer(0, request.CorporateName, request.TradeName, request.CpfCnpj, request.Phone, request.Email);
@@ -47,6 +51,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [RequirePermission("Manufacturer", "write")]
         public async Task<ActionResult<ManufacturerDTO>> Put(int id, ManufacturerUpdateRequest request)
         {
             var manufacturer = new Manufacturer(id, request.CorporateName, request.TradeName, request.CpfCnpj, request.Phone, request.Email);
@@ -55,6 +60,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [RequirePermission("Manufacturer", "delete")]
         public async Task<IActionResult> Delete(int id)
         {
             await _manufacturerService.Remove(id);
