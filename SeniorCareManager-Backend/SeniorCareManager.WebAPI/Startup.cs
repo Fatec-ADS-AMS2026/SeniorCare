@@ -175,9 +175,13 @@ public class Startup
         // GlobalExceptionHandler é o único a converter exceção em resposta HTTP.
         app.UseExceptionHandler();
 
+        // O documento OpenAPI (JSON) fica disponível em todo ambiente — é o contrato
+        // que a tarefa 3.8 valida contra os dois front-ends via teste automatizado, não
+        // só uma conveniência de desenvolvimento. Só a SwaggerUI (interativa) é dev-only.
+        app.UseSwagger();
+
         if (env.IsDevelopment())
         {
-            app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SeniorCareManager Web API V1");
