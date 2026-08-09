@@ -27,6 +27,7 @@ public class AdminUserController : ControllerBase
     private readonly IAdminInvariantService _adminInvariantService;
     private readonly ICurrentUserContext _currentUserContext;
     private readonly ISessionService _sessionService;
+    private readonly IAuditService _auditService;
 
     public AdminUserController(
         AppDbContext dbContext,
@@ -34,7 +35,8 @@ public class AdminUserController : ControllerBase
         IAdminUserService adminUserService,
         IAdminInvariantService adminInvariantService,
         ICurrentUserContext currentUserContext,
-        ISessionService sessionService)
+        ISessionService sessionService,
+        IAuditService auditService)
     {
         _dbContext = dbContext;
         _userManager = userManager;
@@ -42,6 +44,7 @@ public class AdminUserController : ControllerBase
         _adminInvariantService = adminInvariantService;
         _currentUserContext = currentUserContext;
         _sessionService = sessionService;
+        _auditService = auditService;
     }
 
     [HttpGet]
@@ -87,6 +90,7 @@ public class AdminUserController : ControllerBase
             throw new BusinessRuleException("Senha atual inválida.");
 
         var target = await GetInInstitutionAsync(id);
+        var previousState = target.AccountState;
 
         if (request.AccountState != AccountState.ACTIVE)
         {
@@ -96,11 +100,19 @@ public class AdminUserController : ControllerBase
 
         target.AccountState = request.AccountState;
         await _userManager.UpdateAsync(target);
+        await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "AdminUser", "ChangeState", AuditOutcome.SUCCESS,
+            actorUserId: _currentUserContext.UserId, institutionId: target.InstitutionId, targetUserId: target.Id,
+            beforeValue: new { AccountState = previousState }, afterValue: new { AccountState = target.AccountState });
 
         // Sessões abertas deixam de autorizar novas requisições assim que a conta sai de
         // ACTIVE (§4/§7.3) — inclui reativação futura: quem reativa precisa logar de novo.
         if (request.AccountState != AccountState.ACTIVE)
+        {
             await _sessionService.RevokeAllForUserAsync(target.Id);
+            await _auditService.RecordAsync(AuditEventCategory.SESSION, "UserSession", "RevokeAll", AuditOutcome.SUCCESS,
+                actorUserId: _currentUserContext.UserId, institutionId: target.InstitutionId, targetUserId: target.Id,
+                description: "Efeito colateral de mudança de estado de conta.");
+        }
 
         return Ok(ToDto(target));
     }

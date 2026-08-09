@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SeniorCareManager.WebAPI;
 using SeniorCareManager.WebAPI.Data;
+using SeniorCareManager.WebAPI.Data.Interceptors;
 using Testcontainers.PostgreSql;
 
 namespace SeniorCareManager.IntegrationTests.Infrastructure;
@@ -47,7 +48,8 @@ public sealed class PostgresWebApplicationFactory : WebApplicationFactory<Progra
                 services.Remove(descriptor);
 
             services.AddDbContext<AppDbContext>(opts =>
-                opts.UseNpgsql(_postgres.GetConnectionString()));
+                opts.UseNpgsql(_postgres.GetConnectionString())
+                    .AddInterceptors(new AuditImmutabilityInterceptor()));
 
             // Esquema "Test" adicional (§5): requisição sem o header X-Test-UserId continua
             // anônima via o esquema Cookie normal (produção não muda); com o header, um

@@ -9,6 +9,7 @@ using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
+using SeniorCareManager.WebAPI.Objects.Enums;
 using SeniorCareManager.WebAPI.Objects.Models;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 
@@ -23,14 +24,17 @@ public class AdminUserSessionController : ControllerBase
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly ICurrentUserContext _currentUserContext;
     private readonly ISessionService _sessionService;
+    private readonly IAuditService _auditService;
 
     public AdminUserSessionController(
-        AppDbContext dbContext, UserManager<ApplicationUser> userManager, ICurrentUserContext currentUserContext, ISessionService sessionService)
+        AppDbContext dbContext, UserManager<ApplicationUser> userManager, ICurrentUserContext currentUserContext,
+        ISessionService sessionService, IAuditService auditService)
     {
         _dbContext = dbContext;
         _userManager = userManager;
         _currentUserContext = currentUserContext;
         _sessionService = sessionService;
+        _auditService = auditService;
     }
 
     [HttpGet]
@@ -54,6 +58,8 @@ public class AdminUserSessionController : ControllerBase
 
         await _sessionService.RevokeAsync(id);
         await _dbContext.Entry(session).ReloadAsync();
+        await _auditService.RecordAsync(AuditEventCategory.SESSION, "UserSession", "Revoke", AuditOutcome.SUCCESS,
+            actorUserId: _currentUserContext.UserId, institutionId: await _currentUserContext.GetInstitutionIdAsync(), targetUserId: session.UserId);
         return Ok(ToDto(session));
     }
 
@@ -65,6 +71,8 @@ public class AdminUserSessionController : ControllerBase
         await EnsureUserInInstitutionAsync(userId);
 
         await _sessionService.RevokeAllForUserAsync(userId);
+        await _auditService.RecordAsync(AuditEventCategory.SESSION, "UserSession", "RevokeAll", AuditOutcome.SUCCESS,
+            actorUserId: _currentUserContext.UserId, institutionId: await _currentUserContext.GetInstitutionIdAsync(), targetUserId: userId);
 
         return NoContent();
     }

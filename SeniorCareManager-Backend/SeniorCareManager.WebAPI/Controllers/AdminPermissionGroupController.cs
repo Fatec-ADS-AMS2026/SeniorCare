@@ -8,7 +8,9 @@ using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
+using SeniorCareManager.WebAPI.Objects.Enums;
 using SeniorCareManager.WebAPI.Objects.Models;
+using SeniorCareManager.WebAPI.Services.Interfaces;
 
 namespace SeniorCareManager.WebAPI.Controllers;
 
@@ -19,11 +21,23 @@ namespace SeniorCareManager.WebAPI.Controllers;
 public class AdminPermissionGroupController : ControllerBase
 {
     private readonly AppDbContext _dbContext;
+    private readonly ICurrentUserContext _currentUserContext;
+    private readonly IAuditService _auditService;
 
-    public AdminPermissionGroupController(AppDbContext dbContext)
+    public AdminPermissionGroupController(AppDbContext dbContext, ICurrentUserContext currentUserContext, IAuditService auditService)
     {
         _dbContext = dbContext;
+        _currentUserContext = currentUserContext;
+        _auditService = auditService;
     }
+
+    // PermissionGroup não tem InstitutionId (é global) — a auditoria ainda registra a
+    // instituição de quem agiu, útil pra correlacionar "quem mexeu nisso" mesmo num recurso
+    // sem escopo institucional.
+    private async Task RecordAsync(string action, object? beforeValue, object? afterValue) =>
+        await _auditService.RecordAsync(AuditEventCategory.CONFIGURATION, "PermissionGroup", action, AuditOutcome.SUCCESS,
+            actorUserId: _currentUserContext.UserId, institutionId: await _currentUserContext.GetInstitutionIdAsync(),
+            beforeValue: beforeValue, afterValue: afterValue);
 
     [HttpGet]
     [RequirePermission("PermissionGroup", "read")]
@@ -51,6 +65,7 @@ public class AdminPermissionGroupController : ControllerBase
         var group = new PermissionGroup { Id = Guid.NewGuid(), Name = request.Name };
         _dbContext.PermissionGroups.Add(group);
         await _dbContext.SaveChangesAsync();
+        await RecordAsync("Create", beforeValue: null, afterValue: new { group.Id, group.Name });
         return CreatedAtAction(nameof(GetById), new { id = group.Id }, ToDto(group));
     }
 
@@ -59,9 +74,11 @@ public class AdminPermissionGroupController : ControllerBase
     public async Task<ActionResult<PermissionGroupDTO>> Put(Guid id, PermissionGroupUpdateRequest request)
     {
         var group = await GetOrThrowAsync(id);
+        var previousName = group.Name;
         group.Name = request.Name;
         _dbContext.Entry(group).Property("Version").OriginalValue = request.RowVersion;
         await _dbContext.SaveChangesAsync();
+        await RecordAsync("Update", beforeValue: new { Name = previousName }, afterValue: new { group.Name });
         return Ok(ToDto(group));
     }
 
@@ -72,6 +89,7 @@ public class AdminPermissionGroupController : ControllerBase
         var group = await GetOrThrowAsync(id);
         _dbContext.PermissionGroups.Remove(group);
         await _dbContext.SaveChangesAsync();
+        await RecordAsync("Delete", beforeValue: new { group.Id, group.Name }, afterValue: null);
         return NoContent();
     }
 
@@ -89,6 +107,7 @@ public class AdminPermissionGroupController : ControllerBase
         {
             _dbContext.PermissionGroupPermissions.Add(new PermissionGroupPermission { PermissionGroupId = id, PermissionId = request.PermissionId });
             await _dbContext.SaveChangesAsync();
+            await RecordAsync("AttachPermission", beforeValue: null, afterValue: new { PermissionGroupId = id, request.PermissionId });
         }
 
         return NoContent();
@@ -105,6 +124,7 @@ public class AdminPermissionGroupController : ControllerBase
         {
             _dbContext.PermissionGroupPermissions.Remove(link);
             await _dbContext.SaveChangesAsync();
+            await RecordAsync("DetachPermission", beforeValue: new { PermissionGroupId = id, PermissionId = permissionId }, afterValue: null);
         }
 
         return NoContent();

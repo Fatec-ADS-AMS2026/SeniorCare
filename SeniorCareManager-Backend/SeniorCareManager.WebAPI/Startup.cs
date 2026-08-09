@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using SeniorCareManager.WebAPI.Data;
+using SeniorCareManager.WebAPI.Data.Interceptors;
 using SeniorCareManager.WebAPI.Data.Interfaces;
 using SeniorCareManager.WebAPI.Data.Repositories;
 using SeniorCareManager.WebAPI.Infrastructure;
@@ -48,12 +49,14 @@ public class Startup
         if (env == "Production")
         {
             services.AddDbContext<AppDbContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+                    .AddInterceptors(new AuditImmutabilityInterceptor()));
         }
         else
         {
             services.AddDbContext<AppDbContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+                    .AddInterceptors(new AuditImmutabilityInterceptor()));
         }
 
         // AddIdentityCore (não AddIdentity) porque não usamos o RBAC padrão do Identity —
@@ -233,6 +236,9 @@ public class Startup
         services.AddScoped<ISessionService, SessionService>();
         services.AddScoped<IMfaPolicyService, MfaPolicyService>();
         services.AddSingleton<IOriginRateLimiter, OriginRateLimiter>();
+
+        // Auditoria de identidade e acesso (§8)
+        services.AddScoped<IAuditService, AuditService>();
 
         //Scoped Repositories and Interfaces repo
         services.AddScoped<IProductGroupRepository, ProductGroupRepository>();

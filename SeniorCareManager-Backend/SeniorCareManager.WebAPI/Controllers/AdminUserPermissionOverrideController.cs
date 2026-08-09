@@ -8,6 +8,7 @@ using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
+using SeniorCareManager.WebAPI.Objects.Enums;
 using SeniorCareManager.WebAPI.Objects.Models;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 
@@ -22,13 +23,16 @@ public class AdminUserPermissionOverrideController : ControllerBase
     private readonly AppDbContext _dbContext;
     private readonly ICurrentUserContext _currentUserContext;
     private readonly IAccessDecisionService _accessDecisionService;
+    private readonly IAuditService _auditService;
 
     public AdminUserPermissionOverrideController(
-        AppDbContext dbContext, ICurrentUserContext currentUserContext, IAccessDecisionService accessDecisionService)
+        AppDbContext dbContext, ICurrentUserContext currentUserContext, IAccessDecisionService accessDecisionService,
+        IAuditService auditService)
     {
         _dbContext = dbContext;
         _currentUserContext = currentUserContext;
         _accessDecisionService = accessDecisionService;
+        _auditService = auditService;
     }
 
     [HttpGet]
@@ -85,6 +89,11 @@ public class AdminUserPermissionOverrideController : ControllerBase
         };
         _dbContext.UserPermissionOverrides.Add(over);
         await _dbContext.SaveChangesAsync();
+        await _auditService.RecordAsync(AuditEventCategory.CONFIGURATION, "UserPermissionOverride", "Create", AuditOutcome.SUCCESS,
+            actorUserId: _currentUserContext.UserId, institutionId: institutionId, targetUserId: over.UserId,
+            targetScopeType: over.ScopeType, targetScopeKey: over.ScopeKey,
+            beforeValue: null,
+            afterValue: new { over.Id, over.Resource, over.Action, over.Feature, over.Effect, over.ValidFrom, over.ValidTo });
 
         return CreatedAtAction(nameof(GetById), new { id = over.Id }, ToDto(over));
     }
@@ -94,10 +103,14 @@ public class AdminUserPermissionOverrideController : ControllerBase
     public async Task<ActionResult<UserPermissionOverrideDTO>> Revoke(Guid id)
     {
         var over = await GetInInstitutionAsync(id);
+        var previousValidTo = over.ValidTo;
         var now = DateTime.UtcNow;
         if (over.ValidTo == null || over.ValidTo > now)
             over.ValidTo = now;
         await _dbContext.SaveChangesAsync();
+        await _auditService.RecordAsync(AuditEventCategory.CONFIGURATION, "UserPermissionOverride", "Revoke", AuditOutcome.SUCCESS,
+            actorUserId: _currentUserContext.UserId, institutionId: await _currentUserContext.GetInstitutionIdAsync(), targetUserId: over.UserId,
+            beforeValue: new { ValidTo = previousValidTo }, afterValue: new { over.ValidTo });
         return Ok(ToDto(over));
     }
 
