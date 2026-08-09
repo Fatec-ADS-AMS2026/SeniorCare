@@ -198,6 +198,46 @@ public sealed class AuditEventTests : IClassFixture<PostgresWebApplicationFactor
         }
     }
 
+    [Fact]
+    public async Task CreateCarrier_RedactsPiiFieldsInAuditEvent()
+    {
+        using var scope = _factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var (_, adminId) = await TestIdentitySeeder.SeedFullAccessUserAsync(db);
+
+        const string cpfCnpj = "12345678000199"; // gitleaks:allow — CNPJ fictício de teste, não é segredo
+        const string email = "transportadora@example.com";
+        var client = _factory.CreateClient().AsUser(adminId);
+        var response = await client.PostAsJsonAsync("/api/v1/Carrier", new CarrierCreateRequest
+        {
+            CorporateName = $"Transportadora {Guid.NewGuid():N}",
+            TradeName = "Nome Fantasia",
+            CpfCnpj = cpfCnpj,
+            Email = email,
+            Phone = "11999990000",
+            Street = "Rua de Teste",
+            Number = "123",
+            District = "Centro",
+            AddressComplement = "Sem complemento",
+            City = "São Paulo",
+            State = "SP",
+            PostalCode = "01000000",
+        });
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+
+        using var freshScope = _factory.Services.CreateScope();
+        var freshDb = freshScope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var auditEvent = await freshDb.AuditEvents
+            .Where(e => e.Category == AuditEventCategory.CATALOG && e.Resource == "Carrier" && e.Action == "Create")
+            .OrderByDescending(e => e.OccurredAtUtc)
+            .FirstAsync();
+
+        // CPF/CNPJ, e-mail, telefone e endereço são dado pessoal de terceiro — não podem ficar
+        // gravados por inteiro numa tabela agora imutável (§8.6, achado da revisão do PR).
+        auditEvent.AfterValue.Should().NotContain(cpfCnpj).And.NotContain(email);
+        auditEvent.AfterValue.Should().Contain("Transportadora");
+    }
+
     // IsSystemAdmin=true e SEM nenhum grant — só assim uma permissão concedida prova que
     // veio do bypass SYSTEM_ADMIN (AccessDecisionService), não de RBAC comum.
     private static async Task<Guid> SeedSystemAdminWithoutGrantsAsync(AppDbContext db)

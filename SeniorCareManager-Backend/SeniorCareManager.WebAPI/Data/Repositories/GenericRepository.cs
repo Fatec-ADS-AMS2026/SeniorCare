@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SeniorCareManager.WebAPI.Data.Interfaces;
 using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Enums;
+using SeniorCareManager.WebAPI.Objects.Models;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 
 namespace SeniorCareManager.WebAPI.Data.Repositories;
@@ -106,9 +107,11 @@ public class GenericRepository<T>: IGenericRepository<T> where T : class
         return (uint?)entry.Property("Version").CurrentValue;
     }
 
-    // Serializa a entidade inteira como Before/After — seguro aqui porque os 9 catálogos são
-    // dado de referência puro (sem credencial, token ou segredo). Revisitar se algum catálogo
-    // um dia ganhar um campo sensível.
+    // A maioria dos 9 catálogos é dado de referência puro (sem credencial/segredo) — serializa
+    // a entidade inteira. Carrier/Manufacturer/Supplier são exceção: têm CPF/CNPJ, e-mail,
+    // telefone e endereço de um terceiro (fornecedor/transportadora), então usam um snapshot
+    // reduzido — auditar o dado pessoal inteiro numa tabela agora imutável (§8.6) seria
+    // retenção indevida, sem forma de corrigir/expurgar depois (achado da revisão do PR).
     private async Task RecordCatalogAuditAsync(string action, object? beforeValue, object? afterValue)
     {
         await _auditService.RecordAsync(
@@ -118,7 +121,15 @@ public class GenericRepository<T>: IGenericRepository<T> where T : class
             AuditOutcome.SUCCESS,
             actorUserId: _currentUserContext.UserId,
             institutionId: await _currentUserContext.GetInstitutionIdAsync(),
-            beforeValue: beforeValue,
-            afterValue: afterValue);
+            beforeValue: RedactForAudit(beforeValue),
+            afterValue: RedactForAudit(afterValue));
     }
+
+    private static object? RedactForAudit(object? entity) => entity switch
+    {
+        Carrier c => new { c.Id, c.CorporateName, c.TradeName },
+        Manufacturer m => new { m.Id, m.CorporateName, m.TradeName },
+        Supplier s => new { s.Id, s.CorporateName, s.TradeName },
+        _ => entity,
+    };
 }
