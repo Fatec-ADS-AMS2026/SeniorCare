@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SeniorCareManager.WebAPI.Data;
 using SeniorCareManager.WebAPI.Objects.Enums;
@@ -26,7 +27,10 @@ public static class TestIdentitySeeder
             InstitutionId = institution.Id,
             DisplayName = "Usuário de Teste (acesso total)",
             IdentityOrigin = IdentityOrigin.LOCAL,
-            AccountState = AccountState.ACTIVE
+            AccountState = AccountState.ACTIVE,
+            // UserManager.UpdateAsync exige SecurityStamp não-nulo — CreateAsync o gera
+            // automaticamente, mas aqui o usuário é inserido direto via DbContext.
+            SecurityStamp = Guid.NewGuid().ToString(),
         };
         db.Users.Add(user);
 
@@ -46,5 +50,49 @@ public static class TestIdentitySeeder
         await db.SaveChangesAsync();
 
         return (institution.Id, user.Id);
+    }
+
+    // Igual acima, mas com senha conhecida — necessário para os testes de reautenticação
+    // (§6.7): CheckPasswordAsync exige que o usuário que executa a ação tenha credencial.
+    public const string DefaultTestPassword = "Correto-Cavalo-Grampo-Teste-2026"; // gitleaks:allow — senha fixa de teste, não é segredo
+
+    public static async Task<(Guid InstitutionId, Guid UserId)> SeedFullAccessUserWithPasswordAsync(
+        AppDbContext db, UserManager<ApplicationUser> userManager)
+    {
+        var (institutionId, userId) = await SeedFullAccessUserAsync(db);
+        var user = await db.Users.SingleAsync(u => u.Id == userId);
+        await userManager.AddPasswordAsync(user, DefaultTestPassword);
+        return (institutionId, userId);
+    }
+
+    // Conta ACTIVE sem nenhum Role/vínculo — todo RequirePermission deve negar (403) para
+    // ela, salvo quando `institutionId` é passado (reaproveita instituição de outro seed,
+    // para testar isolamento institucional).
+    public static async Task<Guid> SeedNoGrantsUserAsync(AppDbContext db, Guid? institutionId = null)
+    {
+        var resolvedInstitutionId = institutionId;
+        if (resolvedInstitutionId == null)
+        {
+            var institution = new Institution(Guid.NewGuid(), $"ILPI Teste {Guid.NewGuid():N}");
+            db.Institutions.Add(institution);
+            resolvedInstitutionId = institution.Id;
+        }
+
+        var user = new ApplicationUser
+        {
+            Id = Guid.NewGuid(),
+            UserName = $"sem-grant-{Guid.NewGuid():N}@example.com",
+            Email = $"sem-grant-{Guid.NewGuid():N}@example.com",
+            EmailConfirmed = true,
+            InstitutionId = resolvedInstitutionId.Value,
+            DisplayName = "Usuário de Teste (sem acesso)",
+            IdentityOrigin = IdentityOrigin.LOCAL,
+            AccountState = AccountState.ACTIVE,
+            SecurityStamp = Guid.NewGuid().ToString(),
+        };
+        db.Users.Add(user);
+        await db.SaveChangesAsync();
+
+        return user.Id;
     }
 }

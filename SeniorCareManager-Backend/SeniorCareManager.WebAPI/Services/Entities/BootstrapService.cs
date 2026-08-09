@@ -77,6 +77,22 @@ public class BootstrapService : IBootstrapService
             throw new InvalidOperationException($"Falha ao criar a conta administrativa de bootstrap: {errors}");
         }
 
+        // Sem isto, o admin PROVISIONED ativa a conta (§4) mas não consegue chamar nenhuma
+        // API administrativa da §6 — ninguém teria nenhum Role. O grupo lê as Permission
+        // dinamicamente do banco (não hard-coded), então continua "acesso total" conforme
+        // novos recursos administrativos forem seedados no futuro.
+        var allPermissionIds = await _dbContext.Permissions.Select(p => p.Id).ToListAsync(cancellationToken);
+        var fullAccessGroup = new PermissionGroup { Id = Guid.NewGuid(), Name = "Acesso Total" };
+        _dbContext.PermissionGroups.Add(fullAccessGroup);
+        foreach (var permissionId in allPermissionIds)
+            _dbContext.PermissionGroupPermissions.Add(new PermissionGroupPermission { PermissionGroupId = fullAccessGroup.Id, PermissionId = permissionId });
+
+        var adminRole = new Role { Id = Guid.NewGuid(), InstitutionId = institution.Id, Name = "Administrador" };
+        _dbContext.Roles.Add(adminRole);
+        _dbContext.RolePermissionGroups.Add(new RolePermissionGroup { RoleId = adminRole.Id, PermissionGroupId = fullAccessGroup.Id });
+        _dbContext.UserRoles.Add(new UserRole { Id = Guid.NewGuid(), UserId = admin.Id, RoleId = adminRole.Id, CreatedAtUtc = DateTime.UtcNow });
+        await _dbContext.SaveChangesAsync(cancellationToken);
+
         var activationToken = await _accountTokenService.IssueAsync(
             admin.Id, AccountTokenPurpose.ACTIVATION, AccountTokenService.ActivationTokenValidity, cancellationToken);
 

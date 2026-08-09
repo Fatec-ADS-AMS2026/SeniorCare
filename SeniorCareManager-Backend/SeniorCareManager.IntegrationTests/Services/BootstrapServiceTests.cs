@@ -37,5 +37,19 @@ public sealed class BootstrapServiceTests : IClassFixture<BootstrapPostgresWebAp
         var db = assertScope.ServiceProvider.GetRequiredService<AppDbContext>();
         (await db.Institutions.CountAsync()).Should().Be(1);
         (await db.Users.CountAsync()).Should().Be(1);
+
+        // §6: sem isto, o admin ativado não conseguiria chamar nenhuma API administrativa —
+        // mesma classe de teste porque ambas as asserções dependem do único bootstrap deste
+        // container compartilhado (um segundo teste chamando RunAsync de novo entraria em
+        // corrida com a checagem de idempotência acima).
+        var admin = await db.Users.SingleAsync();
+        var role = await db.Roles.SingleAsync(r => r.InstitutionId == admin.InstitutionId);
+        role.Name.Should().Be("Administrador");
+        (await db.UserRoles.AnyAsync(ur => ur.UserId == admin.Id && ur.RoleId == role.Id)).Should().BeTrue();
+
+        var groupId = await db.RolePermissionGroups.Where(x => x.RoleId == role.Id).Select(x => x.PermissionGroupId).SingleAsync();
+        var grantedPermissionCount = await db.PermissionGroupPermissions.CountAsync(x => x.PermissionGroupId == groupId);
+        var totalPermissionCount = await db.Permissions.CountAsync();
+        grantedPermissionCount.Should().Be(totalPermissionCount);
     }
 }
