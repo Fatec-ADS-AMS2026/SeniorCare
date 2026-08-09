@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -66,19 +67,36 @@ public class Startup
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequiredLength = 1;
                 options.User.RequireUniqueEmail = true;
+
+                // O bloqueio por tentativas é orquestrado manualmente no login (§7.8), com
+                // limite configurável por instituição — desliga o gatilho automático padrão
+                // do Identity (5 tentativas/5 min fixos) para não haver dois mecanismos
+                // decidindo a mesma coisa.
+                options.Lockout.MaxFailedAccessAttempts = int.MaxValue;
             })
             .AddEntityFrameworkStores<AppDbContext>()
-            .AddPasswordValidator<InstitutionalPasswordPolicyValidator>();
+            .AddPasswordValidator<InstitutionalPasswordPolicyValidator>()
+            // Habilita AuthenticatorTokenProvider/RecoveryCodeTokenProvider — MFA (§7) usa os
+            // componentes prontos do Identity em vez de reimplementar TOTP/RFC 6238.
+            .AddDefaultTokenProviders();
 
-        // Mesmo esquema que a §7 vai efetivamente emitir no login — registrado agora para
-        // que UseAuthentication()/[Authorize] funcionem já na §5, mesmo sem nenhum endpoint
-        // emitindo o cookie ainda (negação padrão até §6/§7 existirem de fato).
+        // Cookie único de sessão (§7, decisão confirmada: sem bearer separado). Rotação e
+        // detecção de reuso são manuais (SlidingExpiration=false) via OnValidatePrincipal —
+        // não a renovação automática do ASP.NET Core, para controle preciso sobre reuso.
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
             {
                 options.Cookie.HttpOnly = true;
                 options.Cookie.SameSite = SameSiteMode.Strict;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.SlidingExpiration = false;
+
+                // Sem valor = cookie host-only (correto em dev/produção de origem única).
+                // Setado = domínio pai (ex. ".exemplo.com.br"), compartilhado entre os
+                // subdomínios dos dois front-ends (§7.4).
+                var sessionCookieDomain = Configuration["SessionCookieDomain"];
+                if (!string.IsNullOrWhiteSpace(sessionCookieDomain))
+                    options.Cookie.Domain = sessionCookieDomain;
 
                 // API, não MVC com views — devolve status HTTP em vez do redirect padrão.
                 options.Events.OnRedirectToLogin = ctx =>
@@ -91,6 +109,7 @@ public class Startup
                     ctx.Response.StatusCode = StatusCodes.Status403Forbidden;
                     return Task.CompletedTask;
                 };
+                options.Events.OnValidatePrincipal = ValidateSessionPrincipalAsync;
             });
         services.AddAuthorization();
 
@@ -209,6 +228,11 @@ public class Startup
         services.AddScoped<IAdminInvariantService, AdminInvariantService>();
         services.AddScoped<IInstitutionSecurityPolicyService, InstitutionSecurityPolicyService>();
 
+        // Sessão, MFA e proteção contra abuso (§7)
+        services.AddScoped<ISessionService, SessionService>();
+        services.AddScoped<IMfaPolicyService, MfaPolicyService>();
+        services.AddSingleton<IOriginRateLimiter, OriginRateLimiter>();
+
         //Scoped Repositories and Interfaces repo
         services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
         services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
@@ -289,5 +313,48 @@ public class Startup
                 Predicate = check => check.Tags.Contains("ready"),
             });
         });
+    }
+
+    // Roda em toda requisição autenticada (§7.3): rotaciona a chave de sessão dentro da
+    // janela de acesso curto, detecta reuso de uma chave já rotacionada (sinal de roubo —
+    // revoga a sessão inteira) e rejeita sessões expiradas/revogadas. Não decide autorização
+    // — só se o cookie apresentado ainda representa uma sessão válida.
+    private static async Task ValidateSessionPrincipalAsync(CookieValidatePrincipalContext context)
+    {
+        var sessionIdClaim = context.Principal?.FindFirst(SeniorCareClaimTypes.SessionId)?.Value;
+        var sessionKeyClaim = context.Principal?.FindFirst(SeniorCareClaimTypes.SessionKey)?.Value;
+        if (!Guid.TryParse(sessionIdClaim, out var sessionId) || string.IsNullOrEmpty(sessionKeyClaim))
+        {
+            context.RejectPrincipal();
+            return;
+        }
+
+        var sessionService = context.HttpContext.RequestServices.GetRequiredService<ISessionService>();
+        var result = await sessionService.ValidateAndRotateAsync(sessionId, sessionKeyClaim);
+
+        switch (result.Outcome)
+        {
+            case SessionValidationOutcome.Valid:
+                return;
+
+            case SessionValidationOutcome.Rotated:
+                var identity = new ClaimsIdentity(context.Principal!.Claims, context.Scheme.Name);
+                var oldClaim = identity.FindFirst(SeniorCareClaimTypes.SessionKey);
+                if (oldClaim != null) identity.RemoveClaim(oldClaim);
+                identity.AddClaim(new Claim(SeniorCareClaimTypes.SessionKey, result.NewRawKey!));
+                context.ReplacePrincipal(new ClaimsPrincipal(identity));
+                context.ShouldRenew = true;
+                return;
+
+            case SessionValidationOutcome.Reused:
+            case SessionValidationOutcome.Rejected:
+            default:
+                // Não chama SignOutAsync aqui (reentrância no próprio pipeline de
+                // autenticação) — RejectPrincipal já é suficiente: a sessão já está
+                // revogada no banco, então o cookie (mesmo que o cliente o mantenha) nunca
+                // mais volta a validar. O logout explícito (§7.1) é quem limpa o cookie.
+                context.RejectPrincipal();
+                return;
+        }
     }
 }

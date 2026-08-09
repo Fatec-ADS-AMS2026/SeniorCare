@@ -3,9 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SeniorCareManager.WebAPI.Objects.Models
 {
-    // Mínima de propósito — ninguém cria linha aqui até a §7 implementar login de verdade.
-    // A §7 deve estender esta tabela (colunas aditivas: hash do token de renovação, cadeia
-    // de rotação) em vez de recriá-la.
+    // §7: sessão real, com rotação e detecção de reuso sobre o mesmo cookie único
+    // registrado na §5 (Events.OnValidatePrincipal) — nunca a chave em claro, só o hash.
     [Table("usersession")]
     public class UserSession
     {
@@ -29,5 +28,19 @@ namespace SeniorCareManager.WebAPI.Objects.Models
 
         [Column("ip_address")]
         public string? IpAddress { get; set; }
+
+        [Column("current_key_hash")]
+        public string CurrentKeyHash { get; set; } = string.Empty;
+
+        [Column("previous_key_hash")]
+        public string? PreviousKeyHash { get; set; }
+
+        // Teto absoluto da sessão (login + Institution.RefreshTokenDurationDays) — além
+        // dele, rotação não vale mais; exige novo login.
+        [Column("expires_at_utc")]
+        public DateTime ExpiresAtUtc { get; set; }
+
+        [Column("last_rotated_at_utc")]
+        public DateTime LastRotatedAtUtc { get; set; }
     }
 }

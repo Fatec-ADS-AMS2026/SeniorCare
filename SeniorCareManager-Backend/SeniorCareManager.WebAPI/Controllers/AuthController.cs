@@ -1,6 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,32 +21,42 @@ using SeniorCareManager.WebAPI.Services.Interfaces;
 
 namespace SeniorCareManager.WebAPI.Controllers;
 
-// Os 4 endpoints de credencial ficam [AllowAnonymous] individualmente (sessão/login só
-// chega na §7) — GetMe (§6.8) é o primeiro endpoint autenticado deste controller, então a
-// classe não pode ter [AllowAnonymous] (esse atributo, em qualquer nível, sempre vence sobre
-// [Authorize], então precisaria estar só nas 4 ações que devem continuar públicas).
+// A maioria das ações fica [AllowAnonymous] individualmente (a classe não pode ter esse
+// atributo — GetMe e as ações de MFA/logout exigem autenticação, e [AllowAnonymous] em
+// qualquer nível sempre vence sobre [Authorize]).
 [ApiController]
 [Route("api/v1/[controller]")]
 public class AuthController : ControllerBase
 {
+    private static readonly TimeSpan MfaChallengeValidity = TimeSpan.FromMinutes(10);
+
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IAccountTokenService _accountTokenService;
     private readonly AppDbContext _dbContext;
     private readonly IAccessDecisionService _accessDecisionService;
     private readonly ICurrentUserContext _currentUserContext;
+    private readonly ISessionService _sessionService;
+    private readonly IMfaPolicyService _mfaPolicyService;
+    private readonly IOriginRateLimiter _originRateLimiter;
 
     public AuthController(
         UserManager<ApplicationUser> userManager,
         IAccountTokenService accountTokenService,
         AppDbContext dbContext,
         IAccessDecisionService accessDecisionService,
-        ICurrentUserContext currentUserContext)
+        ICurrentUserContext currentUserContext,
+        ISessionService sessionService,
+        IMfaPolicyService mfaPolicyService,
+        IOriginRateLimiter originRateLimiter)
     {
         _userManager = userManager;
         _accountTokenService = accountTokenService;
         _dbContext = dbContext;
         _accessDecisionService = accessDecisionService;
         _currentUserContext = currentUserContext;
+        _sessionService = sessionService;
+        _mfaPolicyService = mfaPolicyService;
+        _originRateLimiter = originRateLimiter;
     }
 
     // Sem [RequirePermission]: ver o próprio contexto não é gated por uma permissão
@@ -51,42 +65,167 @@ public class AuthController : ControllerBase
     [HttpGet("me")]
     public async Task<ActionResult<CurrentIdentityDTO>> GetMe()
     {
-        var userId = _currentUserContext.UserId;
-        var user = await _dbContext.Users.SingleAsync(u => u.Id == userId);
-        var institution = await _dbContext.Institutions.SingleAsync(i => i.Id == user.InstitutionId);
+        return Ok(await BuildCurrentIdentityAsync(_currentUserContext.UserId));
+    }
 
-        var roleNames = await _dbContext.UserRoles
-            .Where(ur => ur.UserId == userId)
-            .Join(_dbContext.Roles, ur => ur.RoleId, r => r.Id, (ur, r) => r.Name)
-            .ToListAsync();
+    [HttpPost("login")]
+    [AllowAnonymous]
+    public async Task<ActionResult<LoginResponse>> Login(LoginRequest request)
+    {
+        var origin = GetClientOrigin();
+        if (_originRateLimiter.IsBlocked(origin))
+            return TooManyRequests();
 
-        var now = System.DateTime.UtcNow;
-        var responsibilities = await _dbContext.OrganizationalRoleAssignments
-            .Where(a => a.UserId == userId && a.ValidFrom <= now && (a.ValidTo == null || a.ValidTo >= now))
-            .Join(_dbContext.OrganizationalRoles, a => a.OrganizationalRoleId, r => r.Id,
-                (a, r) => new OrganizationalResponsibilityDTO { Name = r.Name, ScopeType = a.ScopeType.ToString(), ScopeKey = a.ScopeKey })
-            .ToListAsync();
-
-        var allPermissions = await _dbContext.Permissions.ToListAsync();
-        var effectivePermissions = new List<EffectivePermissionDTO>();
-        foreach (var permission in allPermissions)
+        var user = await _userManager.FindByEmailAsync(request.Email);
+        if (user == null)
         {
-            var decision = await _accessDecisionService.EvaluateAsync(userId, permission.Resource, permission.Action, permission.Feature);
-            if (decision.Allowed)
-                effectivePermissions.Add(new EffectivePermissionDTO { Resource = permission.Resource, Action = permission.Action, Feature = permission.Feature });
+            _originRateLimiter.RecordFailure(origin);
+            return InvalidCredentials();
         }
 
-        return Ok(new CurrentIdentityDTO
+        if (await _userManager.IsLockedOutAsync(user))
         {
-            UserId = user.Id,
-            InstitutionId = institution.Id,
-            InstitutionName = institution.Name,
-            DisplayName = user.DisplayName,
-            Email = user.Email ?? string.Empty,
-            Roles = roleNames,
-            OrganizationalResponsibilities = responsibilities,
-            EffectivePermissions = effectivePermissions,
-        });
+            _originRateLimiter.RecordFailure(origin);
+            return TooManyRequests();
+        }
+
+        // Estado diferente de ACTIVE nunca é revelado ao cliente anônimo (§4) — mesma
+        // resposta genérica de credencial inválida.
+        if (user.AccountState != AccountState.ACTIVE)
+        {
+            _originRateLimiter.RecordFailure(origin);
+            return InvalidCredentials();
+        }
+
+        if (!await _userManager.CheckPasswordAsync(user, request.Password))
+        {
+            await RegisterFailedAttemptAsync(user);
+            _originRateLimiter.RecordFailure(origin);
+            return InvalidCredentials();
+        }
+
+        await _userManager.ResetAccessFailedCountAsync(user);
+
+        var mfaRequired = await _mfaPolicyService.IsMfaRequiredAsync(user.Id);
+        if (mfaRequired && !user.TwoFactorEnabled)
+        {
+            // Restringe estritamente ao fluxo de cadastro (§7.7) — nenhuma sessão chega a
+            // existir até o cadastro do segundo fator terminar.
+            var enrollToken = await _accountTokenService.IssueAsync(user.Id, AccountTokenPurpose.MFA_ENROLLMENT, MfaChallengeValidity);
+            return Ok(new LoginResponse { Status = "mfa_enrollment_required", ChallengeToken = enrollToken });
+        }
+
+        if (user.TwoFactorEnabled)
+        {
+            var verifyToken = await _accountTokenService.IssueAsync(user.Id, AccountTokenPurpose.MFA_VERIFY, MfaChallengeValidity);
+            return Ok(new LoginResponse { Status = "mfa_required", ChallengeToken = verifyToken });
+        }
+
+        var identity = await CompleteLoginAsync(user);
+        return Ok(new LoginResponse { Status = "ok", Identity = identity });
+    }
+
+    [HttpPost("login/mfa")]
+    [AllowAnonymous]
+    public async Task<ActionResult<LoginResponse>> LoginMfa(LoginMfaRequest request)
+    {
+        var origin = GetClientOrigin();
+        if (_originRateLimiter.IsBlocked(origin))
+            return TooManyRequests();
+
+        var userId = await _accountTokenService.ValidateAsync(AccountTokenPurpose.MFA_VERIFY, request.ChallengeToken);
+        if (userId == null)
+        {
+            _originRateLimiter.RecordFailure(origin);
+            return InvalidCredentials();
+        }
+
+        var user = await _userManager.FindByIdAsync(userId.Value.ToString());
+        if (user == null || user.AccountState != AccountState.ACTIVE)
+        {
+            _originRateLimiter.RecordFailure(origin);
+            return InvalidCredentials();
+        }
+
+        if (!await VerifyMfaCodeAsync(user, request.Code))
+        {
+            _originRateLimiter.RecordFailure(origin);
+            // Não consome o desafio numa tentativa errada — só na que efetivamente completa
+            // o login, senão um código digitado errado obrigaria a refazer o login inteiro.
+            return InvalidCredentials();
+        }
+
+        await _accountTokenService.ConsumeAsync(user.Id, AccountTokenPurpose.MFA_VERIFY, request.ChallengeToken);
+        var identity = await CompleteLoginAsync(user);
+        return Ok(new LoginResponse { Status = "ok", Identity = identity });
+    }
+
+    [HttpPost("mfa/enroll")]
+    [AllowAnonymous]
+    public async Task<ActionResult<MfaEnrollResponse>> MfaEnroll(MfaEnrollRequest request)
+    {
+        var user = await ResolveMfaTargetUserAsync(request.ChallengeToken, AccountTokenPurpose.MFA_ENROLLMENT);
+
+        var key = await _userManager.GetAuthenticatorKeyAsync(user);
+        if (string.IsNullOrEmpty(key))
+        {
+            await _userManager.ResetAuthenticatorKeyAsync(user);
+            key = await _userManager.GetAuthenticatorKeyAsync(user);
+        }
+
+        var otpAuthUri = $"otpauth://totp/SeniorCare:{Uri.EscapeDataString(user.Email ?? user.Id.ToString())}" +
+            $"?secret={key}&issuer=SeniorCare&digits=6";
+
+        return Ok(new MfaEnrollResponse { AuthenticatorKey = key!, OtpAuthUri = otpAuthUri });
+    }
+
+    [HttpPost("mfa/confirm")]
+    [AllowAnonymous]
+    public async Task<ActionResult<MfaConfirmResponse>> MfaConfirm(MfaConfirmRequest request)
+    {
+        var user = await ResolveMfaTargetUserAsync(request.ChallengeToken, AccountTokenPurpose.MFA_ENROLLMENT);
+
+        var codeValid = await _userManager.VerifyTwoFactorTokenAsync(user, TokenOptions.DefaultAuthenticatorProvider, request.Code);
+        if (!codeValid)
+            throw new BusinessRuleException("Código inválido.");
+
+        await _userManager.SetTwoFactorEnabledAsync(user, true);
+        var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
+
+        CurrentIdentityDTO? identity = null;
+        if (!string.IsNullOrEmpty(request.ChallengeToken))
+        {
+            // Veio de um login pendente (cadastro obrigatório, §7.7) — completa a sessão.
+            await _accountTokenService.ConsumeAsync(user.Id, AccountTokenPurpose.MFA_ENROLLMENT, request.ChallengeToken);
+            identity = await CompleteLoginAsync(user);
+        }
+
+        return Ok(new MfaConfirmResponse { RecoveryCodes = recoveryCodes?.ToList() ?? new List<string>(), Identity = identity });
+    }
+
+    [HttpPost("mfa/recovery-codes/regenerate")]
+    public async Task<ActionResult<MfaConfirmResponse>> RegenerateRecoveryCodes(RegenerateRecoveryCodesRequest request)
+    {
+        var user = await _userManager.FindByIdAsync(_currentUserContext.UserId.ToString())
+            ?? throw new BusinessRuleException("Identidade autenticada inválida.");
+        if (!await _userManager.CheckPasswordAsync(user, request.CurrentPassword))
+            throw new BusinessRuleException("Senha atual inválida.");
+        if (!user.TwoFactorEnabled)
+            throw new BusinessRuleException("MFA não está ativo para esta conta.");
+
+        var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
+        return Ok(new MfaConfirmResponse { RecoveryCodes = recoveryCodes?.ToList() ?? new List<string>() });
+    }
+
+    [HttpPost("logout")]
+    public async Task<ActionResult<MessageResponse>> Logout()
+    {
+        var sessionIdClaim = User.FindFirst(SeniorCareClaimTypes.SessionId)?.Value;
+        if (Guid.TryParse(sessionIdClaim, out var sessionId))
+            await _sessionService.RevokeAsync(sessionId);
+
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return Ok(new MessageResponse { Message = "Sessão encerrada." });
     }
 
     [HttpPost("activate")]
@@ -141,6 +280,8 @@ public class AuthController : ControllerBase
         if (!addPasswordResult.Succeeded)
             throw new BusinessRuleException(DescribeErrors(addPasswordResult));
 
+        await _sessionService.RevokeAllForUserAsync(user.Id);
+
         return Ok(new MessageResponse { Message = "Senha redefinida com sucesso." });
     }
 
@@ -156,8 +297,118 @@ public class AuthController : ControllerBase
         if (!changeResult.Succeeded)
             throw new BusinessRuleException("Senha atual inválida.");
 
+        await _sessionService.RevokeAllForUserAsync(user.Id);
+
         return Ok(new MessageResponse { Message = "Senha alterada com sucesso." });
     }
+
+    private async Task<bool> VerifyMfaCodeAsync(ApplicationUser user, string code)
+    {
+        if (await _userManager.VerifyTwoFactorTokenAsync(user, TokenOptions.DefaultAuthenticatorProvider, code))
+            return true;
+
+        var recoveryResult = await _userManager.RedeemTwoFactorRecoveryCodeAsync(user, code);
+        return recoveryResult.Succeeded;
+    }
+
+    private async Task<ApplicationUser> ResolveMfaTargetUserAsync(string? challengeToken, AccountTokenPurpose purpose)
+    {
+        if (User.Identity?.IsAuthenticated == true)
+        {
+            return await _userManager.FindByIdAsync(_currentUserContext.UserId.ToString())
+                ?? throw new BusinessRuleException("Identidade autenticada inválida.");
+        }
+
+        if (string.IsNullOrEmpty(challengeToken))
+            throw new BusinessRuleException("Autenticação ou token de desafio exigido.");
+
+        var userId = await _accountTokenService.ValidateAsync(purpose, challengeToken);
+        if (userId == null)
+            throw new BusinessRuleException("Token de desafio inválido ou expirado.");
+
+        return await _userManager.FindByIdAsync(userId.Value.ToString())
+            ?? throw new BusinessRuleException("Token de desafio inválido ou expirado.");
+    }
+
+    private async Task RegisterFailedAttemptAsync(ApplicationUser user)
+    {
+        await _userManager.AccessFailedAsync(user);
+
+        var institution = await _dbContext.Institutions.FindAsync(user.InstitutionId);
+        var maxAttempts = institution?.MaxFailedAttempts ?? InstitutionSecurityPolicyService.DefaultMaxFailedAttempts;
+        var lockoutMinutes = institution?.LockoutDurationMinutes ?? InstitutionSecurityPolicyService.DefaultLockoutDurationMinutes;
+
+        var refreshed = await _userManager.FindByIdAsync(user.Id.ToString());
+        if (refreshed != null && refreshed.AccessFailedCount >= maxAttempts)
+            await _userManager.SetLockoutEndDateAsync(refreshed, DateTimeOffset.UtcNow.AddMinutes(lockoutMinutes));
+    }
+
+    private async Task<CurrentIdentityDTO> CompleteLoginAsync(ApplicationUser user)
+    {
+        var (sessionId, rawKey) = await _sessionService.CreateAsync(
+            user.Id, Request.Headers.UserAgent.ToString(), GetClientOrigin());
+
+        var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+        identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+        identity.AddClaim(new Claim(SeniorCareClaimTypes.InstitutionId, user.InstitutionId.ToString()));
+        identity.AddClaim(new Claim(SeniorCareClaimTypes.SessionId, sessionId.ToString()));
+        identity.AddClaim(new Claim(SeniorCareClaimTypes.SessionKey, rawKey));
+
+        var session = await _dbContext.UserSessions.SingleAsync(s => s.Id == sessionId);
+        await HttpContext.SignInAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme,
+            new ClaimsPrincipal(identity),
+            new AuthenticationProperties { IsPersistent = true, ExpiresUtc = session.ExpiresAtUtc });
+
+        return await BuildCurrentIdentityAsync(user.Id);
+    }
+
+    private async Task<CurrentIdentityDTO> BuildCurrentIdentityAsync(Guid userId)
+    {
+        var user = await _dbContext.Users.SingleAsync(u => u.Id == userId);
+        var institution = await _dbContext.Institutions.SingleAsync(i => i.Id == user.InstitutionId);
+
+        var roleNames = await _dbContext.UserRoles
+            .Where(ur => ur.UserId == userId)
+            .Join(_dbContext.Roles, ur => ur.RoleId, r => r.Id, (ur, r) => r.Name)
+            .ToListAsync();
+
+        var now = DateTime.UtcNow;
+        var responsibilities = await _dbContext.OrganizationalRoleAssignments
+            .Where(a => a.UserId == userId && a.ValidFrom <= now && (a.ValidTo == null || a.ValidTo >= now))
+            .Join(_dbContext.OrganizationalRoles, a => a.OrganizationalRoleId, r => r.Id,
+                (a, r) => new OrganizationalResponsibilityDTO { Name = r.Name, ScopeType = a.ScopeType.ToString(), ScopeKey = a.ScopeKey })
+            .ToListAsync();
+
+        var allPermissions = await _dbContext.Permissions.ToListAsync();
+        var effectivePermissions = new List<EffectivePermissionDTO>();
+        foreach (var permission in allPermissions)
+        {
+            var decision = await _accessDecisionService.EvaluateAsync(userId, permission.Resource, permission.Action, permission.Feature);
+            if (decision.Allowed)
+                effectivePermissions.Add(new EffectivePermissionDTO { Resource = permission.Resource, Action = permission.Action, Feature = permission.Feature });
+        }
+
+        return new CurrentIdentityDTO
+        {
+            UserId = user.Id,
+            InstitutionId = institution.Id,
+            InstitutionName = institution.Name,
+            DisplayName = user.DisplayName,
+            Email = user.Email ?? string.Empty,
+            Roles = roleNames,
+            OrganizationalResponsibilities = responsibilities,
+            EffectivePermissions = effectivePermissions,
+        };
+    }
+
+    private string GetClientOrigin() => HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+    private ObjectResult TooManyRequests() =>
+        StatusCode(StatusCodes.Status429TooManyRequests, new MessageResponse { Message = "Muitas tentativas. Tente novamente mais tarde." });
+
+    private UnauthorizedObjectResult InvalidCredentials() =>
+        Unauthorized(new MessageResponse { Message = "Credenciais inválidas." });
 
     private static string DescribeErrors(IdentityResult result) =>
         string.Join(" ", result.Errors.Select(e => e.Description));
