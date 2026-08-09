@@ -38,6 +38,7 @@ public class AuthController : ControllerBase
     private readonly ISessionService _sessionService;
     private readonly IMfaPolicyService _mfaPolicyService;
     private readonly IOriginRateLimiter _originRateLimiter;
+    private readonly IAuditService _auditService;
 
     public AuthController(
         UserManager<ApplicationUser> userManager,
@@ -47,7 +48,8 @@ public class AuthController : ControllerBase
         ICurrentUserContext currentUserContext,
         ISessionService sessionService,
         IMfaPolicyService mfaPolicyService,
-        IOriginRateLimiter originRateLimiter)
+        IOriginRateLimiter originRateLimiter,
+        IAuditService auditService)
     {
         _userManager = userManager;
         _accountTokenService = accountTokenService;
@@ -57,6 +59,7 @@ public class AuthController : ControllerBase
         _sessionService = sessionService;
         _mfaPolicyService = mfaPolicyService;
         _originRateLimiter = originRateLimiter;
+        _auditService = auditService;
     }
 
     // Sem [RequirePermission]: ver o próprio contexto não é gated por uma permissão
@@ -80,6 +83,8 @@ public class AuthController : ControllerBase
         if (user == null)
         {
             _originRateLimiter.RecordFailure(origin);
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Login", AuditOutcome.FAILURE,
+                description: $"E-mail desconhecido: {request.Email}");
             return InvalidCredentials();
         }
 
@@ -90,6 +95,8 @@ public class AuthController : ControllerBase
             // pra descobrir quais e-mails existem e estão bloqueados. O bloqueio real
             // continua valendo no servidor, só não é sinalizado ao cliente.
             _originRateLimiter.RecordFailure(origin);
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Login", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Conta bloqueada.");
             return InvalidCredentials();
         }
 
@@ -98,6 +105,8 @@ public class AuthController : ControllerBase
         if (user.AccountState != AccountState.ACTIVE)
         {
             _originRateLimiter.RecordFailure(origin);
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Login", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: $"Estado: {user.AccountState}.");
             return InvalidCredentials();
         }
 
@@ -105,6 +114,8 @@ public class AuthController : ControllerBase
         {
             await RegisterFailedAttemptAsync(user);
             _originRateLimiter.RecordFailure(origin);
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Login", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Senha incorreta.");
             return InvalidCredentials();
         }
 
@@ -116,16 +127,22 @@ public class AuthController : ControllerBase
             // Restringe estritamente ao fluxo de cadastro (§7.7) — nenhuma sessão chega a
             // existir até o cadastro do segundo fator terminar.
             var enrollToken = await _accountTokenService.IssueAsync(user.Id, AccountTokenPurpose.MFA_ENROLLMENT, MfaChallengeValidity);
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Login", AuditOutcome.SUCCESS,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Cadastro de MFA obrigatório antes da sessão.");
             return Ok(new LoginResponse { Status = "mfa_enrollment_required", ChallengeToken = enrollToken });
         }
 
         if (user.TwoFactorEnabled)
         {
             var verifyToken = await _accountTokenService.IssueAsync(user.Id, AccountTokenPurpose.MFA_VERIFY, MfaChallengeValidity);
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Login", AuditOutcome.SUCCESS,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Segundo fator exigido antes da sessão.");
             return Ok(new LoginResponse { Status = "mfa_required", ChallengeToken = verifyToken });
         }
 
         var identity = await CompleteLoginAsync(user);
+        await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Login", AuditOutcome.SUCCESS,
+            actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId);
         return Ok(new LoginResponse { Status = "ok", Identity = identity });
     }
 
@@ -141,6 +158,8 @@ public class AuthController : ControllerBase
         if (userId == null)
         {
             _originRateLimiter.RecordFailure(origin);
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "MfaVerification", AuditOutcome.FAILURE,
+                description: "Token de desafio inválido ou expirado.");
             return InvalidCredentials();
         }
 
@@ -148,6 +167,8 @@ public class AuthController : ControllerBase
         if (user == null || user.AccountState != AccountState.ACTIVE)
         {
             _originRateLimiter.RecordFailure(origin);
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "MfaVerification", AuditOutcome.FAILURE,
+                actorUserId: userId, targetUserId: userId, description: "Conta inválida para o desafio apresentado.");
             return InvalidCredentials();
         }
 
@@ -155,6 +176,8 @@ public class AuthController : ControllerBase
         if (!verified)
         {
             _originRateLimiter.RecordFailure(origin);
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "MfaVerification", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Código inválido.");
             // Não consome o desafio numa tentativa errada — só na que efetivamente completa
             // o login, senão um código digitado errado obrigaria a refazer o login inteiro.
             return InvalidCredentials();
@@ -163,6 +186,9 @@ public class AuthController : ControllerBase
         await _accountTokenService.ConsumeAsync(user.Id, AccountTokenPurpose.MFA_VERIFY, request.ChallengeToken);
         var identity = await CompleteLoginAsync(user);
         int? remainingRecoveryCodes = usedRecoveryCode ? await _userManager.CountRecoveryCodesAsync(user) : null;
+        await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "MfaVerification", AuditOutcome.SUCCESS,
+            actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId,
+            description: usedRecoveryCode ? "Via código de recuperação." : "Via TOTP.");
         return Ok(new LoginResponse { Status = "ok", Identity = identity, RemainingRecoveryCodes = remainingRecoveryCodes });
     }
 
@@ -193,10 +219,16 @@ public class AuthController : ControllerBase
 
         var codeValid = await _userManager.VerifyTwoFactorTokenAsync(user, TokenOptions.DefaultAuthenticatorProvider, request.Code);
         if (!codeValid)
+        {
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "MfaEnrollmentConfirm", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Código inválido.");
             throw new BusinessRuleException("Código inválido.");
+        }
 
         await _userManager.SetTwoFactorEnabledAsync(user, true);
         var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
+        await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "MfaEnrollmentConfirm", AuditOutcome.SUCCESS,
+            actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId);
 
         CurrentIdentityDTO? identity = null;
         if (!string.IsNullOrEmpty(request.ChallengeToken))
@@ -220,6 +252,8 @@ public class AuthController : ControllerBase
             throw new BusinessRuleException("MFA não está ativo para esta conta.");
 
         var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
+        await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "RecoveryCodesRegenerated", AuditOutcome.SUCCESS,
+            actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId);
         return Ok(new MfaConfirmResponse { RecoveryCodes = recoveryCodes?.ToList() ?? new List<string>() });
     }
 
@@ -231,6 +265,8 @@ public class AuthController : ControllerBase
             await _sessionService.RevokeAsync(sessionId);
 
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Logout", AuditOutcome.SUCCESS,
+            actorUserId: _currentUserContext.UserId, institutionId: await _currentUserContext.GetInstitutionIdAsync());
         return Ok(new MessageResponse { Message = "Sessão encerrada." });
     }
 
@@ -240,18 +276,33 @@ public class AuthController : ControllerBase
     {
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user == null || user.AccountState != AccountState.PROVISIONED)
+        {
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Activate", AuditOutcome.FAILURE,
+                actorUserId: user?.Id, targetUserId: user?.Id, institutionId: user?.InstitutionId, description: $"E-mail: {request.Email}.");
             throw new BusinessRuleException("Token ou dados de ativação inválidos.");
+        }
 
         var tokenValid = await _accountTokenService.ConsumeAsync(user.Id, AccountTokenPurpose.ACTIVATION, request.Token);
         if (!tokenValid)
+        {
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Activate", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Token inválido ou expirado.");
             throw new BusinessRuleException("Token ou dados de ativação inválidos.");
+        }
 
         var addPasswordResult = await _userManager.AddPasswordAsync(user, request.NewPassword);
         if (!addPasswordResult.Succeeded)
+        {
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Activate", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Senha não atende à política.");
             throw new BusinessRuleException(DescribeErrors(addPasswordResult));
+        }
 
         user.AccountState = AccountState.ACTIVE;
         await _userManager.UpdateAsync(user);
+        await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Activate", AuditOutcome.SUCCESS,
+            actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId,
+            beforeValue: new { AccountState = AccountState.PROVISIONED }, afterValue: new { AccountState = AccountState.ACTIVE });
 
         return Ok(new MessageResponse { Message = "Conta ativada com sucesso." });
     }
@@ -264,7 +315,13 @@ public class AuthController : ControllerBase
         // e-mail exista ou não, e quer a conta seja elegível ou não.
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user != null && user.AccountState == AccountState.ACTIVE)
+        {
             await _accountTokenService.IssueAsync(user.Id, AccountTokenPurpose.RECOVERY, AccountTokenService.RecoveryTokenValidity);
+            // Só quando um token de fato é emitido — e-mail inexistente/inelegível não gera
+            // evento (nada realmente aconteceu no servidor, e evitaria ruído de sondagem).
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "RecoveryRequested", AuditOutcome.SUCCESS,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId);
+        }
 
         return Ok(new MessageResponse { Message = "Se o e-mail informado tiver uma conta elegível, instruções de recuperação foram enviadas." });
     }
@@ -275,18 +332,35 @@ public class AuthController : ControllerBase
     {
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user == null || user.AccountState != AccountState.ACTIVE)
+        {
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "PasswordReset", AuditOutcome.FAILURE,
+                actorUserId: user?.Id, targetUserId: user?.Id, institutionId: user?.InstitutionId, description: $"E-mail: {request.Email}.");
             throw new BusinessRuleException("Token ou dados de recuperação inválidos.");
+        }
 
         var tokenValid = await _accountTokenService.ConsumeAsync(user.Id, AccountTokenPurpose.RECOVERY, request.Token);
         if (!tokenValid)
+        {
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "PasswordReset", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Token inválido ou expirado.");
             throw new BusinessRuleException("Token ou dados de recuperação inválidos.");
+        }
 
         await _userManager.RemovePasswordAsync(user);
         var addPasswordResult = await _userManager.AddPasswordAsync(user, request.NewPassword);
         if (!addPasswordResult.Succeeded)
+        {
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "PasswordReset", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Senha não atende à política.");
             throw new BusinessRuleException(DescribeErrors(addPasswordResult));
+        }
+
+        await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "PasswordReset", AuditOutcome.SUCCESS,
+            actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId);
 
         await _sessionService.RevokeAllForUserAsync(user.Id);
+        await _auditService.RecordAsync(AuditEventCategory.SESSION, "UserSession", "RevokeAll", AuditOutcome.SUCCESS,
+            actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Efeito colateral de redefinição de senha.");
 
         return Ok(new MessageResponse { Message = "Senha redefinida com sucesso." });
     }
@@ -297,13 +371,26 @@ public class AuthController : ControllerBase
     {
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user == null || user.AccountState != AccountState.ACTIVE)
+        {
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "PasswordChanged", AuditOutcome.FAILURE,
+                actorUserId: user?.Id, targetUserId: user?.Id, institutionId: user?.InstitutionId, description: $"E-mail: {request.Email}.");
             throw new BusinessRuleException("Senha atual inválida.");
+        }
 
         var changeResult = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
         if (!changeResult.Succeeded)
+        {
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "PasswordChanged", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Senha atual não confere ou nova senha não atende à política.");
             throw new BusinessRuleException("Senha atual inválida.");
+        }
+
+        await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "PasswordChanged", AuditOutcome.SUCCESS,
+            actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId);
 
         await _sessionService.RevokeAllForUserAsync(user.Id);
+        await _auditService.RecordAsync(AuditEventCategory.SESSION, "UserSession", "RevokeAll", AuditOutcome.SUCCESS,
+            actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Efeito colateral de troca de senha.");
 
         return Ok(new MessageResponse { Message = "Senha alterada com sucesso." });
     }
@@ -346,7 +433,12 @@ public class AuthController : ControllerBase
 
         var refreshed = await _userManager.FindByIdAsync(user.Id.ToString());
         if (refreshed != null && refreshed.AccessFailedCount >= maxAttempts)
+        {
             await _userManager.SetLockoutEndDateAsync(refreshed, DateTimeOffset.UtcNow.AddMinutes(lockoutMinutes));
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "AccountLockout", AuditOutcome.SUCCESS,
+                targetUserId: refreshed.Id, institutionId: refreshed.InstitutionId,
+                description: $"{refreshed.AccessFailedCount} tentativas malsucedidas, bloqueio de {lockoutMinutes} min.");
+        }
     }
 
     private async Task<CurrentIdentityDTO> CompleteLoginAsync(ApplicationUser user)
