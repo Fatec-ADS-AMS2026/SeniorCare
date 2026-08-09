@@ -36,6 +36,7 @@ namespace SeniorCareManager.WebAPI.Data
         public DbSet<UserPermissionOverride> UserPermissionOverrides { get; set; }
         public DbSet<AccessPolicy> AccessPolicies { get; set; }
         public DbSet<UserSession> UserSessions { get; set; }
+        public DbSet<AuditEvent> AuditEvents { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,6 +62,7 @@ namespace SeniorCareManager.WebAPI.Data
             UserPermissionOverrideBuilder.Build(modelBuilder);
             AccessPolicyBuilder.Build(modelBuilder);
             UserSessionBuilder.Build(modelBuilder);
+            AuditEventBuilder.Build(modelBuilder);
         }
     }
 }

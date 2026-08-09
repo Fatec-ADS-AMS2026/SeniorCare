@@ -8,7 +8,9 @@ using SeniorCareManager.WebAPI.Infrastructure;
 using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
+using SeniorCareManager.WebAPI.Objects.Enums;
 using SeniorCareManager.WebAPI.Objects.Models;
+using SeniorCareManager.WebAPI.Services.Interfaces;
 
 namespace SeniorCareManager.WebAPI.Controllers;
 
@@ -20,11 +22,13 @@ public class AdminOrganizationalRoleAssignmentController : ControllerBase
 {
     private readonly AppDbContext _dbContext;
     private readonly ICurrentUserContext _currentUserContext;
+    private readonly IAuditService _auditService;
 
-    public AdminOrganizationalRoleAssignmentController(AppDbContext dbContext, ICurrentUserContext currentUserContext)
+    public AdminOrganizationalRoleAssignmentController(AppDbContext dbContext, ICurrentUserContext currentUserContext, IAuditService auditService)
     {
         _dbContext = dbContext;
         _currentUserContext = currentUserContext;
+        _auditService = auditService;
     }
 
     [HttpGet]
@@ -79,6 +83,10 @@ public class AdminOrganizationalRoleAssignmentController : ControllerBase
         };
         _dbContext.OrganizationalRoleAssignments.Add(assignment);
         await _dbContext.SaveChangesAsync();
+        await _auditService.RecordAsync(AuditEventCategory.CONFIGURATION, "OrganizationalRoleAssignment", "Create", AuditOutcome.SUCCESS,
+            actorUserId: _currentUserContext.UserId, institutionId: institutionId, targetUserId: assignment.UserId,
+            targetScopeType: assignment.ScopeType, targetScopeKey: assignment.ScopeKey,
+            beforeValue: null, afterValue: new { assignment.Id, assignment.OrganizationalRoleId, assignment.ValidFrom, assignment.ValidTo });
 
         return CreatedAtAction(nameof(GetById), new { id = assignment.Id }, ToDto(assignment));
     }
@@ -88,10 +96,14 @@ public class AdminOrganizationalRoleAssignmentController : ControllerBase
     public async Task<ActionResult<OrganizationalRoleAssignmentDTO>> End(Guid id)
     {
         var assignment = await GetInInstitutionAsync(id);
+        var previousValidTo = assignment.ValidTo;
         var now = DateTime.UtcNow;
         if (assignment.ValidTo == null || assignment.ValidTo > now)
             assignment.ValidTo = now;
         await _dbContext.SaveChangesAsync();
+        await _auditService.RecordAsync(AuditEventCategory.CONFIGURATION, "OrganizationalRoleAssignment", "End", AuditOutcome.SUCCESS,
+            actorUserId: _currentUserContext.UserId, institutionId: await _currentUserContext.GetInstitutionIdAsync(), targetUserId: assignment.UserId,
+            beforeValue: new { ValidTo = previousValidTo }, afterValue: new { assignment.ValidTo });
         return Ok(ToDto(assignment));
     }
 
