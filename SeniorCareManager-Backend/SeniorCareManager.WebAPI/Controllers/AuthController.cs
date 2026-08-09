@@ -82,9 +82,11 @@ public class AuthController : ControllerBase
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user == null)
         {
+            // Sem registro de auditoria aqui de propósito (mesma cautela de Recover, abaixo):
+            // é um e-mail bruto informado por um requisitante anônimo, possivelmente de
+            // terceiro sem conta nenhuma — gravar persistiria esse dado permanentemente
+            // numa tabela que a própria §8.6 torna imutável, sem nenhuma conta real por trás.
             _originRateLimiter.RecordFailure(origin);
-            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Login", AuditOutcome.FAILURE,
-                description: $"E-mail desconhecido: {request.Email}");
             return InvalidCredentials();
         }
 
@@ -275,10 +277,17 @@ public class AuthController : ControllerBase
     public async Task<ActionResult<MessageResponse>> Activate(ActivateAccountRequest request)
     {
         var user = await _userManager.FindByEmailAsync(request.Email);
-        if (user == null || user.AccountState != AccountState.PROVISIONED)
+        if (user == null)
+            // Sem auditoria aqui — e-mail de terceiro possivelmente sem conta nenhuma,
+            // gravaria um dado permanente numa tabela que a §8.6 torna imutável (mesma
+            // cautela do Login/Recover).
+            throw new BusinessRuleException("Token ou dados de ativação inválidos.");
+
+        if (user.AccountState != AccountState.PROVISIONED)
         {
+            // Já é uma conta real — auditar aqui tem valor (ex.: reativação indevida).
             await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Activate", AuditOutcome.FAILURE,
-                actorUserId: user?.Id, targetUserId: user?.Id, institutionId: user?.InstitutionId, description: $"E-mail: {request.Email}.");
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: $"Estado: {user.AccountState}.");
             throw new BusinessRuleException("Token ou dados de ativação inválidos.");
         }
 
@@ -331,10 +340,14 @@ public class AuthController : ControllerBase
     public async Task<ActionResult<MessageResponse>> ResetPassword(ResetPasswordRequest request)
     {
         var user = await _userManager.FindByEmailAsync(request.Email);
-        if (user == null || user.AccountState != AccountState.ACTIVE)
+        if (user == null)
+            // Sem auditoria aqui — mesma cautela do Login/Activate/Recover.
+            throw new BusinessRuleException("Token ou dados de recuperação inválidos.");
+
+        if (user.AccountState != AccountState.ACTIVE)
         {
             await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "PasswordReset", AuditOutcome.FAILURE,
-                actorUserId: user?.Id, targetUserId: user?.Id, institutionId: user?.InstitutionId, description: $"E-mail: {request.Email}.");
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: $"Estado: {user.AccountState}.");
             throw new BusinessRuleException("Token ou dados de recuperação inválidos.");
         }
 
@@ -370,10 +383,14 @@ public class AuthController : ControllerBase
     public async Task<ActionResult<MessageResponse>> ChangePassword(ChangePasswordRequest request)
     {
         var user = await _userManager.FindByEmailAsync(request.Email);
-        if (user == null || user.AccountState != AccountState.ACTIVE)
+        if (user == null)
+            // Sem auditoria aqui — mesma cautela do Login/Activate/Recover.
+            throw new BusinessRuleException("Senha atual inválida.");
+
+        if (user.AccountState != AccountState.ACTIVE)
         {
             await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "PasswordChanged", AuditOutcome.FAILURE,
-                actorUserId: user?.Id, targetUserId: user?.Id, institutionId: user?.InstitutionId, description: $"E-mail: {request.Email}.");
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: $"Estado: {user.AccountState}.");
             throw new BusinessRuleException("Senha atual inválida.");
         }
 
