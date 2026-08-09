@@ -31,7 +31,7 @@ public class InstitutionalPasswordPolicyValidator : IPasswordValidator<Applicati
             return IdentityResult.Failed(new IdentityError { Code = "PasswordRequired", Description = "A senha é obrigatória." });
 
         var institution = await _dbContext.Institutions.FindAsync(user.InstitutionId);
-        var minLength = _passwordPolicyService.GetEffectiveMinLength(institution, user.MfaEnabled);
+        var minLength = _passwordPolicyService.GetEffectiveMinLength(institution, user.TwoFactorEnabled);
 
         if (password.Length < minLength)
             return IdentityResult.Failed(new IdentityError

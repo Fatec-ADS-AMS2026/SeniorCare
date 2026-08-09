@@ -10,6 +10,8 @@ public class UserSessionBuilder
         modelBuilder.Entity<UserSession>().HasKey(s => s.Id);
         modelBuilder.Entity<UserSession>().Property(s => s.UserAgent).HasMaxLength(500);
         modelBuilder.Entity<UserSession>().Property(s => s.IpAddress).HasMaxLength(64);
+        modelBuilder.Entity<UserSession>().Property(s => s.CurrentKeyHash).IsRequired().HasMaxLength(88);
+        modelBuilder.Entity<UserSession>().Property(s => s.PreviousKeyHash).HasMaxLength(88);
         modelBuilder.Entity<UserSession>().HasIndex(s => new { s.UserId, s.RevokedAtUtc });
         modelBuilder.Entity<UserSession>()
             .HasOne<ApplicationUser>()

@@ -17,6 +17,11 @@ public class InstitutionSecurityPolicyService : IInstitutionSecurityPolicyServic
     public const int MinRefreshTokenDurationDays = 1;
     public const int MaxRefreshTokenDurationDays = 90;
 
+    // Valores seguros quando a instituição não configurou nada (§7.8) — dentro das faixas
+    // acima por construção.
+    public const int DefaultMaxFailedAttempts = 5;
+    public const int DefaultLockoutDurationMinutes = 15;
+
     public void ValidateSecuritySettings(
         int? lockoutDurationMinutes,
         int? maxFailedAttempts,

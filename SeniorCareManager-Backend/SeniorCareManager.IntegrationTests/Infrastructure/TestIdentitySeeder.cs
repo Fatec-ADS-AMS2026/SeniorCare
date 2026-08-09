@@ -31,6 +31,10 @@ public static class TestIdentitySeeder
             // UserManager.UpdateAsync exige SecurityStamp não-nulo — CreateAsync o gera
             // automaticamente, mas aqui o usuário é inserido direto via DbContext.
             SecurityStamp = Guid.NewGuid().ToString(),
+            // Idem: CreateAsync normalmente liga isso (Options.Lockout.AllowedForNewUsers) —
+            // sem isso, UserManager.IsLockedOutAsync sempre retorna false, mesmo com
+            // AccessFailedCount/LockoutEnd definidos (§7.8).
+            LockoutEnabled = true,
         };
         db.Users.Add(user);
 
@@ -89,10 +93,23 @@ public static class TestIdentitySeeder
             IdentityOrigin = IdentityOrigin.LOCAL,
             AccountState = AccountState.ACTIVE,
             SecurityStamp = Guid.NewGuid().ToString(),
+            LockoutEnabled = true,
         };
         db.Users.Add(user);
         await db.SaveChangesAsync();
 
         return user.Id;
+    }
+
+    // Igual a SeedNoGrantsUserAsync, mas com senha conhecida e sem a permissão marcadora
+    // AccessAdministration/manage — necessário para testes de login/sessão (§7) que não devem
+    // disparar MFA obrigatório (diferente de "acesso total", que a inclui de propósito).
+    public static async Task<(Guid InstitutionId, Guid UserId)> SeedNoGrantsUserWithPasswordAsync(
+        AppDbContext db, UserManager<ApplicationUser> userManager, Guid? institutionId = null)
+    {
+        var userId = await SeedNoGrantsUserAsync(db, institutionId);
+        var user = await db.Users.SingleAsync(u => u.Id == userId);
+        await userManager.AddPasswordAsync(user, DefaultTestPassword);
+        return (user.InstitutionId, userId);
     }
 }

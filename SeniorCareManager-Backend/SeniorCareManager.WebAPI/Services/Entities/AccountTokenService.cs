@@ -59,6 +59,22 @@ public class AccountTokenService : IAccountTokenService
         return true;
     }
 
+    public async Task<Guid?> ValidateAsync(AccountTokenPurpose purpose, string rawToken, CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrEmpty(rawToken))
+            return null;
+
+        var tokenHash = Hash(rawToken);
+        var token = await _dbContext.AccountTokens.FirstOrDefaultAsync(
+            t => t.TokenHash == tokenHash && t.Purpose == purpose,
+            cancellationToken);
+
+        if (token == null || token.UsedAtUtc != null || token.ExpiresAtUtc < DateTime.UtcNow)
+            return null;
+
+        return token.UserId;
+    }
+
     private static string GenerateRawToken()
     {
         var bytes = RandomNumberGenerator.GetBytes(32);
