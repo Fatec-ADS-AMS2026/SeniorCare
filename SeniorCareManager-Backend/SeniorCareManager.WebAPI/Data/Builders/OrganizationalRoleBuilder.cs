@@ -10,6 +10,7 @@ public class OrganizationalRoleBuilder
         modelBuilder.Entity<OrganizationalRole>().HasKey(r => r.Id);
         modelBuilder.Entity<OrganizationalRole>().Property(r => r.Name).IsRequired().HasMaxLength(200);
         modelBuilder.Entity<OrganizationalRole>().HasIndex(r => new { r.InstitutionId, r.Name }).IsUnique();
+        modelBuilder.Entity<OrganizationalRole>().Property<uint>("Version").IsRowVersion();
 
         modelBuilder.Entity<OrganizationalRolePermissionGroup>().HasKey(x => new { x.OrganizationalRoleId, x.PermissionGroupId });
         modelBuilder.Entity<OrganizationalRolePermissionGroup>()
