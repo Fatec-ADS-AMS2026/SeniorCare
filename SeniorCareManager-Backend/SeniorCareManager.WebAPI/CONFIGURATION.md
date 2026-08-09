@@ -41,6 +41,21 @@ capturado nesse momento. Reinícios seguintes (instituição já existente) são
 no-op: nada é recriado nem redefinido silenciosamente, mesmo que as
 variáveis continuem definidas.
 
+## Sessão (cookie) entre os dois front-ends
+
+| Variável | Formato | Obrigatório quando |
+|---|---|---|
+| `SessionCookieDomain` | domínio pai com ponto à frente, ex.: `.exemplo.com.br` | os dois front-ends ficarem em subdomínios distintos (`care.exemplo.com.br`/`estoque.exemplo.com.br`) e precisarem compartilhar sessão sem novo login |
+
+Sem essa variável, o cookie de sessão é *host-only* (só volta pro host exato
+que o emitiu) — correto em desenvolvimento, onde `localhost:3000`/`:3001`
+já compartilham cookie por serem o mesmo host (cookies não são delimitados
+por porta). Parâmetros de duração de acesso/renovação e limite de tentativas
+são configuráveis por instituição via API administrativa
+(`AdminInstitutionSecurityController`, §6), não por variável de ambiente —
+têm default seguro quando a instituição não configurou nada (ver
+`InstitutionSecurityPolicyService`).
+
 ## Validação de startup
 
 O processo verifica, antes de subir, que `ConnectionStrings:DefaultConnection`
@@ -48,11 +63,3 @@ está presente e não vazia, e que as três variáveis de bootstrap acima foram
 informadas todas juntas ou nenhuma — se algo faltar, encerra com uma mensagem
 de erro que identifica a(s) chave(s) ausente(s)/incompleta(s), sem nunca
 ecoar nenhum valor configurado. Ver `Program.cs`.
-
-## O que ainda falta documentar aqui
-
-Validação de chaves de sessão/autenticação (JWT/cookie) e dos parâmetros de
-MFA, bloqueio e duração de sessão ainda não se aplica — essas configurações
-entram junto com as capabilities de sessão e RBAC (specs/tasks §5 em diante),
-que ainda não existem no código. Esta seção será expandida quando esse
-trabalho for feito.

@@ -10,11 +10,11 @@ using SeniorCareManager.WebAPI.Objects.Dtos.Common;
 using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Models;
+using SeniorCareManager.WebAPI.Services.Interfaces;
 
 namespace SeniorCareManager.WebAPI.Controllers;
 
-// Sessões ativas (§6.6). Ninguém cria linha aqui até a §7 implementar login de verdade —
-// esta API já fica pronta para quando isso acontecer. Revogar exige reautenticação (§6.7).
+// Sessões ativas (§6.6/§7.3). Revogar exige reautenticação (§6.7).
 [ApiController]
 [Route("api/v1/[controller]")]
 public class AdminUserSessionController : ControllerBase
@@ -22,12 +22,15 @@ public class AdminUserSessionController : ControllerBase
     private readonly AppDbContext _dbContext;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly ICurrentUserContext _currentUserContext;
+    private readonly ISessionService _sessionService;
 
-    public AdminUserSessionController(AppDbContext dbContext, UserManager<ApplicationUser> userManager, ICurrentUserContext currentUserContext)
+    public AdminUserSessionController(
+        AppDbContext dbContext, UserManager<ApplicationUser> userManager, ICurrentUserContext currentUserContext, ISessionService sessionService)
     {
         _dbContext = dbContext;
         _userManager = userManager;
         _currentUserContext = currentUserContext;
+        _sessionService = sessionService;
     }
 
     [HttpGet]
@@ -49,8 +52,8 @@ public class AdminUserSessionController : ControllerBase
         if (session == null) throw new KeyNotFoundException("Sessão não encontrada.");
         await EnsureUserInInstitutionAsync(session.UserId);
 
-        session.RevokedAtUtc ??= DateTime.UtcNow;
-        await _dbContext.SaveChangesAsync();
+        await _sessionService.RevokeAsync(id);
+        await _dbContext.Entry(session).ReloadAsync();
         return Ok(ToDto(session));
     }
 
@@ -61,13 +64,7 @@ public class AdminUserSessionController : ControllerBase
         await CheckCurrentPasswordAsync(request.CurrentPassword);
         await EnsureUserInInstitutionAsync(userId);
 
-        var now = DateTime.UtcNow;
-        var activeSessions = await _dbContext.UserSessions
-            .Where(s => s.UserId == userId && s.RevokedAtUtc == null)
-            .ToListAsync();
-        foreach (var session in activeSessions)
-            session.RevokedAtUtc = now;
-        await _dbContext.SaveChangesAsync();
+        await _sessionService.RevokeAllForUserAsync(userId);
 
         return NoContent();
     }

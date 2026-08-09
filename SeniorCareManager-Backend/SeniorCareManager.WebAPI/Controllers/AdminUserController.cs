@@ -26,19 +26,22 @@ public class AdminUserController : ControllerBase
     private readonly IAdminUserService _adminUserService;
     private readonly IAdminInvariantService _adminInvariantService;
     private readonly ICurrentUserContext _currentUserContext;
+    private readonly ISessionService _sessionService;
 
     public AdminUserController(
         AppDbContext dbContext,
         UserManager<ApplicationUser> userManager,
         IAdminUserService adminUserService,
         IAdminInvariantService adminInvariantService,
-        ICurrentUserContext currentUserContext)
+        ICurrentUserContext currentUserContext,
+        ISessionService sessionService)
     {
         _dbContext = dbContext;
         _userManager = userManager;
         _adminUserService = adminUserService;
         _adminInvariantService = adminInvariantService;
         _currentUserContext = currentUserContext;
+        _sessionService = sessionService;
     }
 
     [HttpGet]
@@ -93,6 +96,11 @@ public class AdminUserController : ControllerBase
 
         target.AccountState = request.AccountState;
         await _userManager.UpdateAsync(target);
+
+        // Sessões abertas deixam de autorizar novas requisições assim que a conta sai de
+        // ACTIVE (§4/§7.3) — inclui reativação futura: quem reativa precisa logar de novo.
+        if (request.AccountState != AccountState.ACTIVE)
+            await _sessionService.RevokeAllForUserAsync(target.Id);
 
         return Ok(ToDto(target));
     }

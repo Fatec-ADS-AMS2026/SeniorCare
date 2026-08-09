@@ -73,4 +73,12 @@ public sealed class PostgresWebApplicationFactory : WebApplicationFactory<Progra
     {
         await _postgres.DisposeAsync();
     }
+
+    // O cookie de sessão usa Secure=Always (§7, correto em produção). Sobre a base address
+    // http:// padrão de CreateClient(), o CookieContainer interno do HttpClient recebe o
+    // Set-Cookie mas nunca reenvia um cookie Secure numa requisição http — o teste "loga" mas
+    // toda chamada autenticada seguinte cai pra 401. https://localhost engana só o
+    // CookieContainer; o TestServer em si não faz TLS de verdade, então não muda o teste.
+    public HttpClient CreateAuthenticatedFlowClient() =>
+        CreateClient(new WebApplicationFactoryClientOptions { BaseAddress = new Uri("https://localhost") });
 }
