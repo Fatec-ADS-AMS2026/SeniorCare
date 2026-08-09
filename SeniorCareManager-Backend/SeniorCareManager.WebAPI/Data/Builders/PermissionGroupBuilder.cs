@@ -9,6 +9,7 @@ public class PermissionGroupBuilder
     {
         modelBuilder.Entity<PermissionGroup>().HasKey(g => g.Id);
         modelBuilder.Entity<PermissionGroup>().Property(g => g.Name).IsRequired().HasMaxLength(200);
+        modelBuilder.Entity<PermissionGroup>().Property<uint>("Version").IsRowVersion();
 
         modelBuilder.Entity<PermissionGroupPermission>().HasKey(x => new { x.PermissionGroupId, x.PermissionId });
         modelBuilder.Entity<PermissionGroupPermission>()

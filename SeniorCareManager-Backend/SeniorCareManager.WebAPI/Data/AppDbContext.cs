@@ -35,6 +35,7 @@ namespace SeniorCareManager.WebAPI.Data
         public DbSet<OrganizationalRoleAssignment> OrganizationalRoleAssignments { get; set; }
         public DbSet<UserPermissionOverride> UserPermissionOverrides { get; set; }
         public DbSet<AccessPolicy> AccessPolicies { get; set; }
+        public DbSet<UserSession> UserSessions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -59,6 +60,7 @@ namespace SeniorCareManager.WebAPI.Data
             OrganizationalRoleAssignmentBuilder.Build(modelBuilder);
             UserPermissionOverrideBuilder.Build(modelBuilder);
             AccessPolicyBuilder.Build(modelBuilder);
+            UserSessionBuilder.Build(modelBuilder);
         }
     }
 }

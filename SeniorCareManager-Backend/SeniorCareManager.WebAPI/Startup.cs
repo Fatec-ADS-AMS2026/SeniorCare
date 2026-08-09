@@ -202,6 +202,13 @@ public class Startup
         // Decisão de acesso (§5)
         services.AddScoped<IAccessDecisionService, AccessDecisionService>();
 
+        // Configuração administrativa de acesso (§6)
+        services.AddHttpContextAccessor();
+        services.AddScoped<ICurrentUserContext, CurrentUserContext>();
+        services.AddScoped<IAdminUserService, AdminUserService>();
+        services.AddScoped<IAdminInvariantService, AdminInvariantService>();
+        services.AddScoped<IInstitutionSecurityPolicyService, InstitutionSecurityPolicyService>();
+
         //Scoped Repositories and Interfaces repo
         services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
         services.AddScoped<IProductTypeRepository, ProductTypeRepository>();

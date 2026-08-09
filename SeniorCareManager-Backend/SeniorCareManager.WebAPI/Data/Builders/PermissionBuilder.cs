@@ -22,6 +22,37 @@ public class PermissionBuilder
         ("Religion", Guid.Parse("2BE2A833-9F65-4CDC-A721-C54AA6C1A606"), Guid.Parse("FC15CA1C-1A6C-4451-926D-D4E746862B93"), Guid.Parse("F7A4145C-E73E-4297-BA84-ACB35D392478")),
     };
 
+    // §6 — vocabulário administrativo. GUIDs fixos, mesma convenção acima.
+    private static readonly (Guid Id, string Resource, string Action, string Description, bool IsSystemOperation)[] AdminPermissions =
+    {
+        (Guid.Parse("188D0A43-405D-4C12-B520-8C4C8F770552"), "AdminUser", "read", "Consultar contas administradas", false),
+        (Guid.Parse("F6E45A8B-B685-4115-AB83-50D7BD72C787"), "AdminUser", "write", "Criar contas e alterar seu estado", false),
+        (Guid.Parse("5190A83C-A319-4B8D-BB49-D9A758F03C39"), "Role", "read", "Consultar papéis técnicos", false),
+        (Guid.Parse("BDCB5194-B695-4ED9-B575-C5F5F3B1304E"), "Role", "write", "Criar ou editar papéis técnicos", false),
+        (Guid.Parse("AEC7D56C-388A-40CC-8302-31E03B336773"), "Role", "delete", "Excluir papéis técnicos", false),
+        (Guid.Parse("74CD4700-C774-4F08-B525-824397055D0E"), "PermissionGroup", "read", "Consultar grupos de permissão", false),
+        (Guid.Parse("C95B0CA8-63E9-4363-B440-A7B8525BF6E4"), "PermissionGroup", "write", "Criar ou editar grupos de permissão", false),
+        (Guid.Parse("A5D9432F-B6E2-44A1-8A4A-0736FEE1B740"), "PermissionGroup", "delete", "Excluir grupos de permissão", false),
+        (Guid.Parse("16E1A13E-4FCE-4B23-ADFC-D3CBE098D3D2"), "Permission", "read", "Consultar o catálogo de permissões", false),
+        (Guid.Parse("7CE48309-C3F1-4826-8FAC-890D425BA9F0"), "OrganizationalRole", "read", "Consultar responsabilidades organizacionais", false),
+        (Guid.Parse("467DCC23-D406-4AF0-8110-E35054D2B0A7"), "OrganizationalRole", "write", "Criar ou editar responsabilidades organizacionais", false),
+        (Guid.Parse("27B676E3-C59F-496A-ACCC-E2E6A85A5B37"), "OrganizationalRole", "delete", "Excluir responsabilidades organizacionais", false),
+        (Guid.Parse("20EFF295-7744-4A5E-86E1-383185BD7DD8"), "OrganizationalRoleAssignment", "read", "Consultar atribuições de responsabilidade", false),
+        (Guid.Parse("339FA802-D1B2-4B92-9737-78695F2DC0B9"), "OrganizationalRoleAssignment", "write", "Criar ou encerrar atribuições de responsabilidade", false),
+        (Guid.Parse("E1BACFEB-75A4-48E1-BEED-66A6FA0A68A5"), "UserPermissionOverride", "read", "Consultar exceções individuais", false),
+        (Guid.Parse("1A5BEB30-0976-46AE-8B8A-43B74C869675"), "UserPermissionOverride", "write", "Criar ou revogar exceções individuais", false),
+        (Guid.Parse("16402BE8-D47D-4394-A6D5-1F0F48C6A1B5"), "AccessPolicy", "read", "Consultar políticas condicionais", false),
+        (Guid.Parse("F4C0A499-DCB4-47FB-9928-7BE9E2DFE385"), "AccessPolicy", "write", "Criar novas versões de política condicional", false),
+        (Guid.Parse("4ACD0F81-38B7-44A3-B082-1EABFC938272"), "InstitutionSecurityPolicy", "read", "Consultar parâmetros de segurança institucionais", false),
+        (Guid.Parse("1F5C759B-2C24-41C5-AAAA-D011A45D6E26"), "InstitutionSecurityPolicy", "write", "Alterar parâmetros de segurança institucionais", false),
+        (Guid.Parse("BA85FAD3-3CA2-4C97-9C6E-47473E6DD9F4"), "UserSession", "read", "Consultar sessões ativas", false),
+        (Guid.Parse("93C69A5F-C382-40F8-8E94-C56C7C890721"), "UserSession", "write", "Revogar sessões ativas", false),
+        (Guid.Parse("02CEFFD4-F764-4916-94A3-5A45DB960BF2"), "AccessDecisionExplanation", "read", "Explicar uma decisão de acesso para suporte/auditoria", false),
+        // Marcador — não protege nenhum endpoint sozinho; só usado por AdminInvariantService
+        // para identificar quem conta como "administrador institucional" (§6.7).
+        (Guid.Parse("21344FA6-54A6-4DC9-9696-EEE38BC42680"), "AccessAdministration", "manage", "Marca a identidade como administradora de acesso institucional", false),
+    };
+
     public static void Build(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Permission>().HasKey(p => p.Id);
@@ -43,5 +74,8 @@ public class PermissionBuilder
             yield return new Permission(writeId, resource, "write", $"Criar ou editar {resource}");
             yield return new Permission(deleteId, resource, "delete", $"Excluir/inativar {resource}");
         }
+
+        foreach (var (id, resource, action, description, isSystemOperation) in AdminPermissions)
+            yield return new Permission(id, resource, action, description, isSystemOperation);
     }
 }
