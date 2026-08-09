@@ -8,4 +8,8 @@ public class LoginResponse
     public string? ChallengeToken { get; set; }
 
     public CurrentIdentityDTO? Identity { get; set; }
+
+    // Só preenchido quando o login foi concluído com um código de recuperação — alerta a
+    // quantidade restante (spec: "Código de recuperação").
+    public int? RemainingRecoveryCodes { get; set; }
 }

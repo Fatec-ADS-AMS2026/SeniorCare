@@ -41,9 +41,20 @@ public sealed class AuthControllerAccountLockoutTests : IClassFixture<PostgresWe
         }
 
         // A conta já está bloqueada — nem a senha correta funciona até o bloqueio expirar.
+        // A resposta é o mesmo 401 genérico das demais falhas (não um 429 distinto): um
+        // status diferenciado aqui seria um oráculo de enumeração de contas bloqueadas.
         var response = await client.PostAsJsonAsync("/api/v1/Auth/login",
             new LoginRequest { Email = email, Password = TestIdentitySeeder.DefaultTestPassword });
 
-        response.StatusCode.Should().Be(HttpStatusCode.TooManyRequests);
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+
+        // Escopo/DbContext novo: `db` já rastreia esse usuário desde a linha 33 — o mapa de
+        // identidade do EF devolveria a instância em cache, ignorando o LockoutEnd real
+        // gravado pela requisição HTTP.
+        using var freshScope = _factory.Services.CreateScope();
+        var freshDb = freshScope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var lockedUser = await freshDb.Users.SingleAsync(u => u.Id == userId);
+        lockedUser.LockoutEnd.Should().NotBeNull();
+        lockedUser.LockoutEnd!.Value.Should().BeAfter(DateTimeOffset.UtcNow);
     }
 }

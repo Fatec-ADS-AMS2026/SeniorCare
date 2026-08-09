@@ -16,7 +16,7 @@ public class OriginRateLimiter : IOriginRateLimiter
         if (!_failures.TryGetValue(origin, out var queue))
             return false;
 
-        Trim(queue);
+        TrimAndCleanup(origin, queue);
         return queue.Count >= MaxFailuresPerWindow;
     }
 
@@ -24,13 +24,21 @@ public class OriginRateLimiter : IOriginRateLimiter
     {
         var queue = _failures.GetOrAdd(origin, _ => new ConcurrentQueue<DateTime>());
         queue.Enqueue(DateTime.UtcNow);
-        Trim(queue);
+        TrimAndCleanup(origin, queue);
     }
 
-    private static void Trim(ConcurrentQueue<DateTime> queue)
+    // Sem isso, o dicionário cresce sem limite por origem única vista ao longo da vida do
+    // processo — antes só importava em teoria (todo tráfego batia com o mesmo IP do proxy,
+    // §7.8), mas agora que os cabeçalhos X-Forwarded-For são respeitados (Startup.cs), IPs
+    // reais de clientes distintos chegam de fato. Remoção é best-effort: uma corrida
+    // concorrente que recria a entrada logo após é inofensiva pra um limitador de taxa.
+    private void TrimAndCleanup(string origin, ConcurrentQueue<DateTime> queue)
     {
         var cutoff = DateTime.UtcNow - Window;
         while (queue.TryPeek(out var oldest) && oldest < cutoff)
             queue.TryDequeue(out _);
+
+        if (queue.IsEmpty)
+            _failures.TryRemove(new KeyValuePair<string, ConcurrentQueue<DateTime>>(origin, queue));
     }
 }

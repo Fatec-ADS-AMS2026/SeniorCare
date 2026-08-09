@@ -90,6 +90,8 @@ public sealed class AuthControllerMfaTests : IClassFixture<PostgresWebApplicatio
         verifyResponse.StatusCode.Should().Be(HttpStatusCode.OK);
         var verifyBody = await verifyResponse.Content.ReadFromJsonAsync<LoginResponse>();
         verifyBody!.Status.Should().Be("ok");
+        // Login via TOTP (não código de recuperação) — não há alerta de quantidade restante.
+        verifyBody.RemainingRecoveryCodes.Should().BeNull();
         (await client.GetAsync("/api/v1/Auth/me")).StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
@@ -141,6 +143,9 @@ public sealed class AuthControllerMfaTests : IClassFixture<PostgresWebApplicatio
             new LoginMfaRequest { ChallengeToken = secondLoginBody.ChallengeToken!, Code = recoveryCode });
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
+        var responseBody = await response.Content.ReadFromJsonAsync<LoginResponse>();
+        // GenerateNewTwoFactorRecoveryCodesAsync(user, 10) gerou 10 — um foi consumido acima.
+        responseBody!.RemainingRecoveryCodes.Should().Be(9);
     }
 
     private async Task<(string Email, Guid UserId)> CreateActiveSystemAdminAsync(bool mfaAlreadyEnabled)

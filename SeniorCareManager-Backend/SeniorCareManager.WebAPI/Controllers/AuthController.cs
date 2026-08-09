@@ -85,8 +85,12 @@ public class AuthController : ControllerBase
 
         if (await _userManager.IsLockedOutAsync(user))
         {
+            // Mesma resposta genérica das demais falhas (§4/§7.8) — um 429 distinto aqui
+            // seria um oráculo de enumeração: bastaria tentar senhas erradas o suficiente
+            // pra descobrir quais e-mails existem e estão bloqueados. O bloqueio real
+            // continua valendo no servidor, só não é sinalizado ao cliente.
             _originRateLimiter.RecordFailure(origin);
-            return TooManyRequests();
+            return InvalidCredentials();
         }
 
         // Estado diferente de ACTIVE nunca é revelado ao cliente anônimo (§4) — mesma
@@ -147,7 +151,8 @@ public class AuthController : ControllerBase
             return InvalidCredentials();
         }
 
-        if (!await VerifyMfaCodeAsync(user, request.Code))
+        var (verified, usedRecoveryCode) = await VerifyMfaCodeAsync(user, request.Code);
+        if (!verified)
         {
             _originRateLimiter.RecordFailure(origin);
             // Não consome o desafio numa tentativa errada — só na que efetivamente completa
@@ -157,7 +162,8 @@ public class AuthController : ControllerBase
 
         await _accountTokenService.ConsumeAsync(user.Id, AccountTokenPurpose.MFA_VERIFY, request.ChallengeToken);
         var identity = await CompleteLoginAsync(user);
-        return Ok(new LoginResponse { Status = "ok", Identity = identity });
+        int? remainingRecoveryCodes = usedRecoveryCode ? await _userManager.CountRecoveryCodesAsync(user) : null;
+        return Ok(new LoginResponse { Status = "ok", Identity = identity, RemainingRecoveryCodes = remainingRecoveryCodes });
     }
 
     [HttpPost("mfa/enroll")]
@@ -302,13 +308,13 @@ public class AuthController : ControllerBase
         return Ok(new MessageResponse { Message = "Senha alterada com sucesso." });
     }
 
-    private async Task<bool> VerifyMfaCodeAsync(ApplicationUser user, string code)
+    private async Task<(bool Verified, bool UsedRecoveryCode)> VerifyMfaCodeAsync(ApplicationUser user, string code)
     {
         if (await _userManager.VerifyTwoFactorTokenAsync(user, TokenOptions.DefaultAuthenticatorProvider, code))
-            return true;
+            return (true, false);
 
         var recoveryResult = await _userManager.RedeemTwoFactorRecoveryCodeAsync(user, code);
-        return recoveryResult.Succeeded;
+        return (recoveryResult.Succeeded, recoveryResult.Succeeded);
     }
 
     private async Task<ApplicationUser> ResolveMfaTargetUserAsync(string? challengeToken, AccountTokenPurpose purpose)
