@@ -1,19 +1,21 @@
 #!/bin/bash
 # check-frontend-bundle.sh
 #
-# Verifica, no bundle de produção de cada front-end (dist/), que:
+# Verifica, num diretório de artefato publicado (bundle de front-end ou
+# resultado de teste do backend), que:
 #   1. não há URL absoluta apontando para localhost:<porta> como destino
 #      operacional (regressão do bug original: baseURL fixo em
 #      https://localhost:7053 — ver spec runtime-configuration, cenário
 #      "Execução em produção");
 #   2. não há segredo óbvio embutido (mesmas heurísticas do
-#      check-env-hygiene.sh, aplicadas ao JS/CSS gerado).
+#      check-env-hygiene.sh, aplicadas ao conteúdo gerado — JS/CSS de bundle
+#      ou TRX/XML de resultado de teste e cobertura).
 #
 # Não usa "grep localhost" solto: bibliotecas como o axios têm fallback
 # interno "http://localhost" (sem porta) usado só pra detecção de ambiente,
 # não como destino de rede — isso é ruído esperado, não regressão.
 #
-# Uso: ./check-frontend-bundle.sh <caminho-do-dist> [<caminho-do-dist> ...]
+# Uso: ./check-frontend-bundle.sh <caminho-do-artefato> [<caminho-do-artefato> ...]
 
 set -euo pipefail
 
@@ -45,18 +47,20 @@ for dist in "$@"; do
   fi
 
   echo "  [2/2] segredo óbvio embutido..."
+  # grep varre o arquivo inteiro de uma vez (rápido mesmo em XML de cobertura
+  # de dezenas de milhares de linhas) — ler linha a linha em bash aqui seria
+  # centenas de milhares de fork/exec de grep, lento o bastante pra estourar
+  # timeout em arquivo de teste/cobertura grande.
   SECRET_HITS=""
   while IFS= read -r -d '' f; do
-    while IFS= read -r line; do
-      if printf '%s' "$line" | grep -qE -- '-----BEGIN [A-Z ]*PRIVATE KEY|AKIA[0-9A-Z]{16}'; then
-        SECRET_HITS="${SECRET_HITS}${f}: chave privada/AWS suspeita"$'\n'
-        continue
-      fi
-      if printf '%s' "$line" | grep -qEi '[A-Z0-9_]*(PASSWORD|SECRET|API_?KEY|TOKEN)[A-Z0-9_]*["'"'"']?\s*[:=]\s*["'"'"'][^"'"'"']{12,}'; then
-        SECRET_HITS="${SECRET_HITS}${f}: possível segredo embutido"$'\n'
-      fi
-    done < "$f"
-  done < <(find "$dist" -type f \( -name '*.js' -o -name '*.css' \) -print0)
+    if grep -qE -- '-----BEGIN [A-Z ]*PRIVATE KEY|AKIA[0-9A-Z]{16}' "$f"; then
+      SECRET_HITS="${SECRET_HITS}${f}: chave privada/AWS suspeita"$'\n'
+      continue
+    fi
+    if grep -qEi '[A-Z0-9_]*(PASSWORD|SECRET|API_?KEY|TOKEN)[A-Z0-9_]*["'"'"']?\s*[:=]\s*["'"'"'][^"'"'"']{12,}' "$f"; then
+      SECRET_HITS="${SECRET_HITS}${f}: possível segredo embutido"$'\n'
+    fi
+  done < <(find "$dist" -type f \( -name '*.js' -o -name '*.css' -o -name '*.trx' -o -name '*.xml' \) -print0)
 
   if [ -n "$SECRET_HITS" ]; then
     echo "FALHA: possível segredo embutido no bundle:"
