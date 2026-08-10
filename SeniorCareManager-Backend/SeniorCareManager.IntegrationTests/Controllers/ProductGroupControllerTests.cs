@@ -48,14 +48,17 @@ public sealed class ProductGroupControllerTests : IClassFixture<PostgresWebAppli
     [Fact]
     public async Task Post_ValidProductGroup_ReturnsCreatedWithEntity()
     {
-        var request = new ProductGroupCreateRequest { Name = "Medicamentos" };
+        // Nome único (não um dos 3 já seedados, §9.1 passou a exigir Name único) —
+        // qualquer valor fixo colidiria com o seed.
+        var name = $"Grupo {Guid.NewGuid():N}";
+        var request = new ProductGroupCreateRequest { Name = name };
 
         var response = await _client.PostAsJsonAsync("/api/v1/ProductGroup", request);
 
         response.StatusCode.Should().Be(HttpStatusCode.Created);
         var body = await response.Content.ReadFromJsonAsync<ProductGroupDTO>();
         body.Should().NotBeNull();
-        body!.Name.Should().Be("Medicamentos");
+        body!.Name.Should().Be(name);
     }
 
     [Fact]
@@ -95,7 +98,7 @@ public sealed class ProductGroupControllerTests : IClassFixture<PostgresWebAppli
     public async Task Put_WithStaleRowVersion_ReturnsConflict()
     {
         var post = await _client.PostAsJsonAsync("/api/v1/ProductGroup",
-            new ProductGroupCreateRequest { Name = "Suplementos" });
+            new ProductGroupCreateRequest { Name = $"Suplementos {Guid.NewGuid():N}" });
         var created = await post.Content.ReadFromJsonAsync<ProductGroupDTO>();
 
         await _client.PutAsJsonAsync($"/api/v1/ProductGroup/{created!.Id}",
@@ -103,6 +106,20 @@ public sealed class ProductGroupControllerTests : IClassFixture<PostgresWebAppli
 
         var response = await _client.PutAsJsonAsync($"/api/v1/ProductGroup/{created.Id}",
             new ProductGroupUpdateRequest { Name = "Edição Concorrente", RowVersion = created.RowVersion });
+
+        response.StatusCode.Should().Be(HttpStatusCode.Conflict);
+    }
+
+    [Fact]
+    public async Task Post_WithDuplicateName_ReturnsConflict()
+    {
+        // §9.1 deu a Name um índice único — antes disso, colisão de nome nunca acontecia
+        // via API, então DbUpdateException nunca tinha mapeamento (caía no 500 genérico
+        // até esse teste flagrar; ver GlobalExceptionHandler).
+        var name = $"Grupo Duplicado {Guid.NewGuid():N}";
+        await _client.PostAsJsonAsync("/api/v1/ProductGroup", new ProductGroupCreateRequest { Name = name });
+
+        var response = await _client.PostAsJsonAsync("/api/v1/ProductGroup", new ProductGroupCreateRequest { Name = name });
 
         response.StatusCode.Should().Be(HttpStatusCode.Conflict);
     }

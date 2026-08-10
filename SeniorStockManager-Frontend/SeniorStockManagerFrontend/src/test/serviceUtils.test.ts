@@ -1,5 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import generateGenericMethods, { handleServiceError } from '@/utils/serviceUtils';
+import generateGenericMethods, {
+  handleServiceError,
+} from '@/utils/serviceUtils';
 
 // Mock the api module so no real HTTP requests are made
 vi.mock('@/features/api', () => ({
@@ -34,13 +36,16 @@ describe('generateGenericMethods', () => {
   });
 
   describe('getAll', () => {
-    it('returns success result with data array on 200', async () => {
-      const payload = {
-        success: true,
-        message: 'OK',
-        data: [{ id: 1, name: 'Medicamento' }],
+    it('returns success result with items from PagedResult on 200', async () => {
+      // O backend nunca devolve um array cru — sempre {items,page,pageSize,totalCount}
+      // (§3b/§9, PagedResult<T>).
+      const pagedResult = {
+        items: [{ id: 1, name: 'Medicamento' }],
+        page: 1,
+        pageSize: 20,
+        totalCount: 1,
       };
-      mockApi.get.mockResolvedValueOnce({ data: payload });
+      mockApi.get.mockResolvedValueOnce({ data: pagedResult });
 
       const result = await methods.getAll();
 
@@ -60,9 +65,10 @@ describe('generateGenericMethods', () => {
   });
 
   describe('getById', () => {
-    it('returns success with entity when found', async () => {
-      const payload = { success: true, message: 'OK', data: { id: 3, name: 'Higiene' } };
-      mockApi.get.mockResolvedValueOnce({ data: payload });
+    it('returns success with the raw entity when found', async () => {
+      // Recurso individual vem sem envelope — o próprio DTO (design.md decisão 3).
+      const entity = { id: 3, name: 'Higiene' };
+      mockApi.get.mockResolvedValueOnce({ data: entity });
 
       const result = await methods.getById(3);
 
@@ -72,10 +78,10 @@ describe('generateGenericMethods', () => {
   });
 
   describe('create', () => {
-    it('returns success after POST', async () => {
+    it('returns success after POST with the created entity', async () => {
       const entity = { id: 0, name: 'Novo Tipo' };
-      const payload = { success: true, message: 'Criado', data: { id: 5, name: 'Novo Tipo' } };
-      mockApi.post.mockResolvedValueOnce({ data: payload });
+      const created = { id: 5, name: 'Novo Tipo' };
+      mockApi.post.mockResolvedValueOnce({ data: created });
 
       const result = await methods.create(entity);
 
@@ -85,20 +91,20 @@ describe('generateGenericMethods', () => {
   });
 
   describe('update', () => {
-    it('returns success after PUT', async () => {
+    it('returns success after PUT with the updated entity', async () => {
       const entity = { id: 1, name: 'Atualizado' };
-      const payload = { success: true, message: 'Atualizado', data: entity };
-      mockApi.put.mockResolvedValueOnce({ data: payload });
+      mockApi.put.mockResolvedValueOnce({ data: entity });
 
       const result = await methods.update(1, entity);
 
       expect(result.success).toBe(true);
+      expect(result.data?.name).toBe('Atualizado');
     });
   });
 
   describe('deleteById', () => {
-    it('returns success: true on 200', async () => {
-      mockApi.delete.mockResolvedValueOnce({ data: {} });
+    it('returns success: true on 204 (sem corpo)', async () => {
+      mockApi.delete.mockResolvedValueOnce({ data: undefined });
 
       const result = await methods.deleteById(1);
 
@@ -119,7 +125,6 @@ describe('handleServiceError', () => {
     const axiosError = {
       isAxiosError: true,
       response: { data: {}, status: 401 },
-      status: 401,
     };
 
     const result = handleServiceError(axiosError);
@@ -128,23 +133,72 @@ describe('handleServiceError', () => {
     expect(result.message).toBe('Não autorizado');
   });
 
-  it('returns validation errors when errors array is present', () => {
+  it('returns a friendly message for 409 (conflito de concorrência)', () => {
+    // Formato real que o GlobalExceptionHandler manda pra DbUpdateConcurrencyException.
     const axiosError = {
       isAxiosError: true,
       response: {
+        status: 409,
         data: {
-          message: 'Dado inválido',
-          errors: [{ field: 'name', message: 'obrigatório' }],
+          type: 'https://seniorcare.dev/erros/conflito-concorrencia',
+          title: 'O recurso foi modificado por outra requisição desde a última leitura.',
+          status: 409,
+          detail: 'Releia o recurso (GET) para obter a versão atual antes de tentar novamente.',
         },
-        status: 422,
       },
-      status: 422,
     };
 
     const result = handleServiceError(axiosError);
 
     expect(result.success).toBe(false);
-    expect(result.message).toBe('Dado inválido');
-    expect(result.errors).toHaveLength(1);
+    expect(result.message).toBe(
+      'Releia o recurso (GET) para obter a versão atual antes de tentar novamente.'
+    );
+  });
+
+  it('maps ValidationProblemDetails.errors (dict) to FieldError[] on 400', () => {
+    // Formato real que a validação automática de model do [ApiController] gera.
+    const axiosError = {
+      isAxiosError: true,
+      response: {
+        status: 400,
+        data: {
+          type: 'https://tools.ietf.org/html/rfc9110#section-15.5.1',
+          title: 'One or more validation errors occurred.',
+          status: 400,
+          errors: { Description: ['The Description field is required.'] },
+        },
+      },
+    };
+
+    const result = handleServiceError(axiosError);
+
+    expect(result.success).toBe(false);
+    expect(result.message).toBe('One or more validation errors occurred.');
+    expect(result.errors).toEqual([
+      { field: 'Description', message: 'The Description field is required.' },
+    ]);
+  });
+
+  it('returns Detail as message for other Problem Details statuses (ex.: 422)', () => {
+    const axiosError = {
+      isAxiosError: true,
+      response: {
+        status: 422,
+        data: {
+          type: 'https://seniorcare.dev/erros/regra-de-negocio',
+          title: 'Regra de negócio violada.',
+          status: 422,
+          detail: 'ProductTypeId 99999 não referencia um tipo de produto ativo.',
+        },
+      },
+    };
+
+    const result = handleServiceError(axiosError);
+
+    expect(result.success).toBe(false);
+    expect(result.message).toBe(
+      'ProductTypeId 99999 não referencia um tipo de produto ativo.'
+    );
   });
 });

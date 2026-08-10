@@ -13,14 +13,16 @@ public class ProductGroupBuilder
         modelBuilder.Entity<ProductGroup>().Property(pg => pg.Name)
             .IsRequired()
             .HasMaxLength(50);
-        
+        modelBuilder.Entity<ProductGroup>().Property(pg => pg.IsActive).HasDefaultValue(true);
+        modelBuilder.Entity<ProductGroup>().HasIndex(pg => pg.Name).IsUnique();
+
         // Inserção de dados iniciais (opcional)
         modelBuilder.Entity<ProductGroup>()
             .HasData(new List<ProductGroup>
             {
-                new ProductGroup(1, "Medicamentos"),
-                new ProductGroup(2, "Equipamentos Médicos"),
-                new ProductGroup(3, "Suplementos"),
+                new ProductGroup(1, "Medicamentos") { IsActive = true },
+                new ProductGroup(2, "Equipamentos Médicos") { IsActive = true },
+                new ProductGroup(3, "Suplementos") { IsActive = true },
             });
     }
 }

@@ -10,6 +10,9 @@ namespace SeniorCareManager.WebAPI.Objects.Models;
         [Column("name")]
         public string Name { get; set; }
 
+        [Column("is_active")]
+        public bool IsActive { get; set; } = true;
+
     public Position(int id, string name)
     {
         Id = id;

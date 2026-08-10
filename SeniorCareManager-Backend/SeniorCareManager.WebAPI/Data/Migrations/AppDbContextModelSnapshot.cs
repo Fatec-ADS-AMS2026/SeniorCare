@@ -421,6 +421,12 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("email");
 
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasMaxLength(5)
@@ -465,6 +471,9 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CpfCnpj")
+                        .IsUnique();
+
                     b.ToTable("carrier");
 
                     b.HasData(
@@ -477,6 +486,7 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                             CpfCnpj = "12345678000190",
                             District = "Centro",
                             Email = "contato@abctransportes.com",
+                            IsActive = true,
                             Number = "123",
                             Phone = "11987654321",
                             PostalCode = "01001000",
@@ -493,6 +503,7 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                             CpfCnpj = "98765432000180",
                             District = "Bela Vista",
                             Email = "expresso@xyz.com.br",
+                            IsActive = true,
                             Number = "456",
                             Phone = "11976543210",
                             PostalCode = "01311000",
@@ -509,6 +520,7 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                             CpfCnpj = "22334455000122",
                             District = "Centro",
                             Email = "contato@efgtrans.com.br",
+                            IsActive = true,
                             Number = "789",
                             Phone = "21987654321",
                             PostalCode = "20040001",
@@ -533,6 +545,12 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         .HasColumnType("character varying(5)")
                         .HasColumnName("abbreviation");
 
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -552,6 +570,9 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Abbreviation")
+                        .IsUnique();
+
                     b.ToTable("healthinsuranceplan");
 
                     b.HasData(
@@ -559,6 +580,7 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         {
                             Id = 1,
                             Abbreviation = "UNI",
+                            IsActive = true,
                             Name = "Unimed",
                             Type = 2
                         },
@@ -566,6 +588,7 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         {
                             Id = 2,
                             Abbreviation = "HAP",
+                            IsActive = true,
                             Name = "Hapvida",
                             Type = 2
                         },
@@ -573,6 +596,7 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         {
                             Id = 3,
                             Abbreviation = "SUS",
+                            IsActive = true,
                             Name = "Sistema Único de Saúde",
                             Type = 1
                         });
@@ -651,6 +675,12 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("email");
 
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasMaxLength(11)
@@ -671,6 +701,9 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CpfCnpj")
+                        .IsUnique();
+
                     b.ToTable("manufacturer");
 
                     b.HasData(
@@ -680,6 +713,7 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                             CorporateName = "Empresa A",
                             CpfCnpj = "12345678000195",
                             Email = "contato@empresaa.com",
+                            IsActive = true,
                             Phone = "12345678901",
                             TradeName = "Trade A"
                         },
@@ -689,6 +723,7 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                             CorporateName = "Empresa B",
                             CpfCnpj = "12345678000196",
                             Email = "contato@empresab.com",
+                            IsActive = true,
                             Phone = "23456789012",
                             TradeName = "Trade B"
                         },
@@ -698,6 +733,7 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                             CorporateName = "Empresa C",
                             CpfCnpj = "12345678000197",
                             Email = "contato@empresac.com",
+                            IsActive = true,
                             Phone = "34567890123",
                             TradeName = "Trade C"
                         });
@@ -1050,6 +1086,30 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         },
                         new
                         {
+                            Id = new Guid("b3f21231-386c-49d6-92e6-96cd73147b73"),
+                            Action = "read",
+                            Description = "Consultar Product",
+                            IsSystemOperation = false,
+                            Resource = "Product"
+                        },
+                        new
+                        {
+                            Id = new Guid("52373aae-f601-456f-a726-debc551feb9f"),
+                            Action = "write",
+                            Description = "Criar ou editar Product",
+                            IsSystemOperation = false,
+                            Resource = "Product"
+                        },
+                        new
+                        {
+                            Id = new Guid("4d774a1f-f44f-4abd-a8a2-54d1255df916"),
+                            Action = "delete",
+                            Description = "Excluir/inativar Product",
+                            IsSystemOperation = false,
+                            Resource = "Product"
+                        },
+                        new
+                        {
                             Id = new Guid("188d0a43-405d-4c12-b520-8c4c8f770552"),
                             Action = "read",
                             Description = "Consultar contas administradas",
@@ -1292,6 +1352,12 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -1306,34 +1372,126 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("position");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            IsActive = true,
                             Name = "Enfermeiros"
                         },
                         new
                         {
                             Id = 2,
+                            IsActive = true,
                             Name = "Cuidadores"
                         },
                         new
                         {
                             Id = 3,
+                            IsActive = true,
                             Name = "Cozinheiro"
                         },
                         new
                         {
                             Id = 4,
+                            IsActive = true,
                             Name = "Administrador"
                         },
                         new
                         {
                             Id = 5,
+                            IsActive = true,
                             Name = "Nutricionista"
                         });
+                });
+
+            modelBuilder.Entity("SeniorCareManager.WebAPI.Objects.Models.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal?>("AverageCost")
+                        .HasColumnType("numeric(14,2)")
+                        .HasColumnName("average_cost");
+
+                    b.Property<decimal>("CurrentStock")
+                        .HasColumnType("numeric(14,3)")
+                        .HasColumnName("current_stock");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("description");
+
+                    b.Property<bool>("ExpirationControlled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("expiration_controlled");
+
+                    b.Property<string>("GenericName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("generic_name");
+
+                    b.Property<bool>("HighCost")
+                        .HasColumnType("boolean")
+                        .HasColumnName("high_cost");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<decimal?>("LastPurchasePrice")
+                        .HasColumnType("numeric(14,2)")
+                        .HasColumnName("last_purchase_price");
+
+                    b.Property<decimal>("MinimumStock")
+                        .HasColumnType("numeric(14,3)")
+                        .HasColumnName("minimum_stock");
+
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("integer")
+                        .HasColumnName("product_type_id");
+
+                    b.Property<decimal?>("StockValue")
+                        .HasColumnType("numeric(14,2)")
+                        .HasColumnName("stock_value");
+
+                    b.Property<int>("UnitOfMeasureId")
+                        .HasColumnType("integer")
+                        .HasColumnName("unit_of_measure_id");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("numeric(14,2)")
+                        .HasColumnName("unit_price");
+
+                    b.Property<uint>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("xid")
+                        .HasColumnName("xmin");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Description");
+
+                    b.HasIndex("ProductTypeId");
+
+                    b.HasIndex("UnitOfMeasureId");
+
+                    b.ToTable("product");
                 });
 
             modelBuilder.Entity("SeniorCareManager.WebAPI.Objects.Models.ProductGroup", b =>
@@ -1345,6 +1503,12 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -1359,22 +1523,28 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("productgroup");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            IsActive = true,
                             Name = "Medicamentos"
                         },
                         new
                         {
                             Id = 2,
+                            IsActive = true,
                             Name = "Equipamentos Médicos"
                         },
                         new
                         {
                             Id = 3,
+                            IsActive = true,
                             Name = "Suplementos"
                         });
                 });
@@ -1387,6 +1557,12 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1406,7 +1582,8 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductGroupId");
+                    b.HasIndex("ProductGroupId", "Name")
+                        .IsUnique();
 
                     b.ToTable("producttype");
 
@@ -1414,18 +1591,21 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         new
                         {
                             Id = 1,
+                            IsActive = true,
                             Name = "Legumes",
                             ProductGroupId = 3
                         },
                         new
                         {
                             Id = 2,
+                            IsActive = true,
                             Name = "Carnes",
                             ProductGroupId = 3
                         },
                         new
                         {
                             Id = 3,
+                            IsActive = true,
                             Name = "Frutas",
                             ProductGroupId = 3
                         });
@@ -1439,6 +1619,12 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1454,22 +1640,28 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("religion");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            IsActive = true,
                             Name = "Católico"
                         },
                         new
                         {
                             Id = 2,
+                            IsActive = true,
                             Name = "Evangelico"
                         },
                         new
                         {
                             Id = 3,
+                            IsActive = true,
                             Name = "Ateu"
                         });
                 });
@@ -1567,6 +1759,12 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("email");
 
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasMaxLength(5)
@@ -1611,6 +1809,9 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CpfCnpj")
+                        .IsUnique();
+
                     b.ToTable("supplier");
                 });
 
@@ -1635,6 +1836,12 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         .HasColumnType("character varying(30)")
                         .HasColumnName("description");
 
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
                     b.Property<uint>("Version")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
@@ -1643,6 +1850,9 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Abbreviation")
+                        .IsUnique();
+
                     b.ToTable("unitofmeasure");
 
                     b.HasData(
@@ -1650,19 +1860,22 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         {
                             Id = 1,
                             Abbreviation = "kg",
-                            Description = "Kilogram"
+                            Description = "Kilogram",
+                            IsActive = true
                         },
                         new
                         {
                             Id = 2,
                             Abbreviation = "m",
-                            Description = "Meter"
+                            Description = "Meter",
+                            IsActive = true
                         },
                         new
                         {
                             Id = 3,
                             Abbreviation = "l",
-                            Description = "Liter"
+                            Description = "Liter",
+                            IsActive = true
                         });
                 });
 
@@ -1896,12 +2109,31 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SeniorCareManager.WebAPI.Objects.Models.Product", b =>
+                {
+                    b.HasOne("SeniorCareManager.WebAPI.Objects.Models.ProductType", "ProductType")
+                        .WithMany()
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SeniorCareManager.WebAPI.Objects.Models.UnitOfMeasure", "UnitOfMeasure")
+                        .WithMany()
+                        .HasForeignKey("UnitOfMeasureId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ProductType");
+
+                    b.Navigation("UnitOfMeasure");
+                });
+
             modelBuilder.Entity("SeniorCareManager.WebAPI.Objects.Models.ProductType", b =>
                 {
                     b.HasOne("SeniorCareManager.WebAPI.Objects.Models.ProductGroup", "ProductGroup")
                         .WithMany("ProductType")
                         .HasForeignKey("ProductGroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("ProductGroup");

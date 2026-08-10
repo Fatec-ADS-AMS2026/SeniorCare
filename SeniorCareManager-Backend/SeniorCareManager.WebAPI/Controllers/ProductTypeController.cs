@@ -25,7 +25,7 @@ public class ProductTypeController : ControllerBase
     [RequirePermission("ProductType", "read")]
     public async Task<ActionResult<PagedResult<ProductTypeDTO>>> Get([FromQuery] CatalogQuery query)
     {
-        var productTypes = await _productTypeService.GetAll();
+        var productTypes = await _productTypeService.GetAll(query.IncludeInactive);
         var filtered = string.IsNullOrWhiteSpace(query.Search)
             ? productTypes
             : productTypes.Where(t => t.Name.Contains(query.Search, StringComparison.OrdinalIgnoreCase));
@@ -69,12 +69,22 @@ public class ProductTypeController : ControllerBase
         return NoContent();
     }
 
+    [HttpPut("{id}/activate")]
+    [RequirePermission("ProductType", "write")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        await _productTypeService.Activate(id);
+        return NoContent();
+    }
+
+    // §9.3: não basta existir — o grupo referenciado precisa estar ativo (não dá pra
+    // criar/editar um tipo apontando pra um grupo já inativado).
     private async Task EnsureProductGroupExists(int productGroupId)
     {
         var productGroup = await _productGroupService.GetById(productGroupId);
-        if (productGroup == null)
+        if (productGroup == null || !productGroup.IsActive)
         {
-            throw new BusinessRuleException($"ProductGroupId {productGroupId} não referencia um grupo de produto existente.");
+            throw new BusinessRuleException($"ProductGroupId {productGroupId} não referencia um grupo de produto ativo.");
         }
     }
 
@@ -84,5 +94,6 @@ public class ProductTypeController : ControllerBase
         Name = productType.Name,
         ProductGroupId = productType.ProductGroupId,
         RowVersion = _productTypeService.GetVersion(productType) ?? 0,
+        IsActive = productType.IsActive,
     };
 }

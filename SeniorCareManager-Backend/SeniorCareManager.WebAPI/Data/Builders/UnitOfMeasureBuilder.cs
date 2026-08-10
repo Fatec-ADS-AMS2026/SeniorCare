@@ -13,15 +13,16 @@ namespace SeniorCareManager.WebAPI.Data.Builders
                 modelBuilder.Entity<UnitOfMeasure>().Property<uint>("Version").IsRowVersion();
                 modelBuilder.Entity<UnitOfMeasure>().Property(pg => pg.Abbreviation).IsRequired().HasMaxLength(3);
                 modelBuilder.Entity<UnitOfMeasure>().Property(pg => pg.Description).IsRequired().HasMaxLength(30);
-
+                modelBuilder.Entity<UnitOfMeasure>().Property(pg => pg.IsActive).HasDefaultValue(true);
+                modelBuilder.Entity<UnitOfMeasure>().HasIndex(pg => pg.Abbreviation).IsUnique();
 
                 // Inserção de dados iniciais (opcional)
                 modelBuilder.Entity<UnitOfMeasure>()
                     .HasData(new List<UnitOfMeasure>
                     {
-                        new UnitOfMeasure(1, "kg", "Kilogram"),
-                        new UnitOfMeasure(2, "m", "Meter"),
-                        new UnitOfMeasure(3, "l", "Liter"),
+                        new UnitOfMeasure(1, "kg", "Kilogram") { IsActive = true },
+                        new UnitOfMeasure(2, "m", "Meter") { IsActive = true },
+                        new UnitOfMeasure(3, "l", "Liter") { IsActive = true },
                     });
             }
         }

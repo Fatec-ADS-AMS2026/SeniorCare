@@ -126,7 +126,7 @@ export default function ProductOverview() {
             onClose={() => setIsDeleteModalOpen(false)}
             onConfirm={deleteProduct}
             title='Deseja realmente excluir este produto?'
-            message='Ao excluir este produto, ele será removido permanentemente do sistema.'
+            message='O produto será inativado e deixará de aparecer nas listagens e buscas — nenhum dado é apagado.'
           />
           <AlertModal
             isOpen={isAlertModalOpen}

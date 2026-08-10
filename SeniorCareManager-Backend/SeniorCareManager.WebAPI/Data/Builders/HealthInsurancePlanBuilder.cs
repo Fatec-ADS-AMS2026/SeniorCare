@@ -14,15 +14,17 @@ public class HealthInsurancePlanBuilder
         modelBuilder.Entity<HealthInsurancePlan>().Property(hip => hip.Name).IsRequired().HasMaxLength(100);
         modelBuilder.Entity<HealthInsurancePlan>().Property(hip => hip.Type).IsRequired().HasMaxLength(1);
         modelBuilder.Entity<HealthInsurancePlan>().Property(hip => hip.Abbreviation).IsRequired().HasMaxLength(5);
+        modelBuilder.Entity<HealthInsurancePlan>().Property(hip => hip.IsActive).HasDefaultValue(true);
+        modelBuilder.Entity<HealthInsurancePlan>().HasIndex(hip => hip.Abbreviation).IsUnique();
 
         // Inserção de dados iniciais
         modelBuilder.Entity<HealthInsurancePlan>()
             .HasData(new List<HealthInsurancePlan>
             {
                 // Inserir dados iniciais
-                new HealthInsurancePlan(1, "Unimed", HealthPlanType.PRIVATE, "UNI"),
-                new HealthInsurancePlan(2, "Hapvida", HealthPlanType.PRIVATE, "HAP"),
-                new HealthInsurancePlan(3, "Sistema Único de Saúde", HealthPlanType.PUBLIC, "SUS"),
+                new HealthInsurancePlan(1, "Unimed", HealthPlanType.PRIVATE, "UNI") { IsActive = true },
+                new HealthInsurancePlan(2, "Hapvida", HealthPlanType.PRIVATE, "HAP") { IsActive = true },
+                new HealthInsurancePlan(3, "Sistema Único de Saúde", HealthPlanType.PUBLIC, "SUS") { IsActive = true },
             });
     }
 }

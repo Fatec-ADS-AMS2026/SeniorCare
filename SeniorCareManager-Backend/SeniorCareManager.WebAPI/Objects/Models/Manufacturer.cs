@@ -18,6 +18,9 @@ public class Manufacturer
     [Column("email")]
     public string Email { get; set; }
 
+    [Column("is_active")]
+    public bool IsActive { get; set; } = true;
+
     public Manufacturer(int id, string corporateName, string tradeName, string cpfCnpj, string phone, string email)
     {
         Id = id;

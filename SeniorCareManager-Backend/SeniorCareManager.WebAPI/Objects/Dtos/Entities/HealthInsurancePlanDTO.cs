@@ -8,4 +8,5 @@ public class HealthInsurancePlanDTO
     public HealthPlanType Type { get; set; }
     public string Abbreviation { get; set; } = string.Empty;
     public uint RowVersion { get; set; }
+        public bool IsActive { get; set; }
 }

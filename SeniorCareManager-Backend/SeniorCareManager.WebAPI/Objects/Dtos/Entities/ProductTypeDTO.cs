@@ -6,4 +6,5 @@ public class ProductTypeDTO
     public string Name { get; set; }
     public int ProductGroupId { get; set; }
     public uint RowVersion { get; set; }
+        public bool IsActive { get; set; }
 }

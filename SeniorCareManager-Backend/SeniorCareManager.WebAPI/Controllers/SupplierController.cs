@@ -23,7 +23,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         [RequirePermission("Supplier", "read")]
         public async Task<ActionResult<PagedResult<SupplierDTO>>> Get([FromQuery] CatalogQuery query)
         {
-            var suppliers = await _supplierService.GetAll();
+            var suppliers = await _supplierService.GetAll(query.IncludeInactive);
             var filtered = string.IsNullOrWhiteSpace(query.Search)
                 ? suppliers
                 : suppliers.Where(s =>
@@ -67,6 +67,14 @@ namespace SeniorCareManager.WebAPI.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/activate")]
+        [RequirePermission("Supplier", "write")]
+        public async Task<IActionResult> Activate(int id)
+        {
+            await _supplierService.Activate(id);
+            return NoContent();
+        }
+
         private static Supplier ToModel(int id, SupplierCreateRequest request) => new(
             id, request.CorporateName, request.TradeName, request.CpfCnpj, request.Email, request.Phone,
             request.PostalCode, request.Street, request.Number, request.District, request.AddressComplement,
@@ -88,6 +96,7 @@ namespace SeniorCareManager.WebAPI.Controllers
             City = supplier.City,
             State = supplier.State,
             RowVersion = _supplierService.GetVersion(supplier) ?? 0,
+            IsActive = supplier.IsActive,
         };
     }
 }

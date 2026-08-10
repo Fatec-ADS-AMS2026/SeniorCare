@@ -23,7 +23,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         [RequirePermission("UnitOfMeasure", "read")]
         public async Task<ActionResult<PagedResult<UnitOfMeasureDTO>>> Get([FromQuery] CatalogQuery query)
         {
-            var unitsOfMeasure = await _unitOfMeasureService.GetAll();
+            var unitsOfMeasure = await _unitOfMeasureService.GetAll(query.IncludeInactive);
             var filtered = string.IsNullOrWhiteSpace(query.Search)
                 ? unitsOfMeasure
                 : unitsOfMeasure.Where(u =>
@@ -67,12 +67,21 @@ namespace SeniorCareManager.WebAPI.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/activate")]
+        [RequirePermission("UnitOfMeasure", "write")]
+        public async Task<IActionResult> Activate(int id)
+        {
+            await _unitOfMeasureService.Activate(id);
+            return NoContent();
+        }
+
         private UnitOfMeasureDTO ToDto(UnitOfMeasure unitOfMeasure) => new()
         {
             Id = unitOfMeasure.Id,
             Description = unitOfMeasure.Description,
             Abbreviation = unitOfMeasure.Abbreviation,
             RowVersion = _unitOfMeasureService.GetVersion(unitOfMeasure) ?? 0,
+            IsActive = unitOfMeasure.IsActive,
         };
     }
 }

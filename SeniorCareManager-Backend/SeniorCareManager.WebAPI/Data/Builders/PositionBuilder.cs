@@ -15,16 +15,18 @@ namespace SeniorCareManager.WebAPI.Data.Builders
             modelBuilder.Entity<Position>().Property(pg => pg.Name)
                 .IsRequired()
                 .HasMaxLength(50);
+            modelBuilder.Entity<Position>().Property(pg => pg.IsActive).HasDefaultValue(true);
+            modelBuilder.Entity<Position>().HasIndex(pg => pg.Name).IsUnique();
 
             // Inserção de dados iniciais (opcional)
             modelBuilder.Entity<Position>()
                 .HasData(new List<Position>
                 {
-                new Position(1, "Enfermeiros"),
-                new Position(2, "Cuidadores"),
-                new Position(3, "Cozinheiro"),
-                new Position(4, "Administrador"),
-                new Position(5, "Nutricionista"),
+                new Position(1, "Enfermeiros") { IsActive = true },
+                new Position(2, "Cuidadores") { IsActive = true },
+                new Position(3, "Cozinheiro") { IsActive = true },
+                new Position(4, "Administrador") { IsActive = true },
+                new Position(5, "Nutricionista") { IsActive = true },
 
 
                 });
