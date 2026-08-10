@@ -82,9 +82,9 @@ export default function CarrierForm() {
           className='w-[95%] h-full bg-white shadow-md p-8 flex flex-col justify-center items-center rounded-lg'
           onSubmit={handleSubmit}
         >
-          <h1 className='text-textPrimary font-bold text-2xl w-full mb-6'>
+          <h2 className='text-textPrimary font-bold text-2xl w-full mb-6'>
             Dados da Transportadora
-          </h1>
+          </h2>
 
           <div className='w-full grid grid-cols-1 md:grid-cols-3 gap-4 mb-4'>
             <TextInput<Carrier>

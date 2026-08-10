@@ -95,12 +95,14 @@ export default function SupplierOverview() {
           navigate(routes.SUPPLIER_EDIT.path.replace(':id', `${id}`))
         }
         className='text-edit hover:text-hoverEdit'
+        title='Editar'
       >
         <Pencil className='size-6' weight='fill' />
       </button>
       <button
         onClick={() => openDeleteModal(id)}
         className='text-danger hover:text-hoverDanger'
+        title='Excluir'
       >
         <Trash className='size-6' weight='fill' />
       </button>

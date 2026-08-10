@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, useId } from 'react';
 import { FormField } from '../FormField';
 import { BaseFieldProps } from '../types';
 
@@ -22,14 +22,20 @@ export default function Checkbox<T>({
   onChange,
   ...props
 }: CheckboxProps<T>) {
+  const id = useId();
+  const errorId = error ? `${id}-error` : undefined;
+
   return (
-    <FormField error={error} required={required}>
+    <FormField id={id} error={error} required={required}>
       <label className='flex items-center cursor-pointer'>
         <input
+          id={id}
           type='checkbox'
           checked={checked}
           name={String(name)}
           onChange={(e) => onChange(e.target.name as keyof T, e.target.checked)}
+          aria-invalid={!!error}
+          aria-describedby={errorId}
           className={`w-4 h-4 text-textPrimary rounded border focus:ring-2 focus:ring-neutralDarker ${
             error ? 'border-danger' : 'border-neutralDark'
           }`}
