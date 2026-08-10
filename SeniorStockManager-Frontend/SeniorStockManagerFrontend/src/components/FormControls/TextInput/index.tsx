@@ -5,7 +5,7 @@ import { BaseFieldProps } from '../types';
 interface TextInputProps<T>
   extends BaseFieldProps,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'name'> {
-  type?: 'text' | 'email' | 'number';
+  type?: 'text' | 'email' | 'number' | 'password';
   name: keyof T;
   onChange: (attribute: keyof T, value: string) => void;
 }

@@ -121,7 +121,7 @@ describe('handleServiceError', () => {
     expect(result.message).toBe('Erro desconhecido');
   });
 
-  it('returns "Não autorizado" for 401 status', () => {
+  it('returns "Não autorizado" for a bodyless 401 (cookie de sessão ausente/expirado)', () => {
     const axiosError = {
       isAxiosError: true,
       response: { data: {}, status: 401 },
@@ -131,6 +131,32 @@ describe('handleServiceError', () => {
 
     expect(result.success).toBe(false);
     expect(result.message).toBe('Não autorizado');
+  });
+
+  it('returns the real message for a 401 with body (AuthController.Login "Credenciais inválidas.")', () => {
+    // AuthController devolve Unauthorized(new MessageResponse{...}) direto — não passa
+    // pelo GlobalExceptionHandler, então não é Problem Details, mas tem corpo real.
+    const axiosError = {
+      isAxiosError: true,
+      response: { status: 401, data: { message: 'Credenciais inválidas.' } },
+    };
+
+    const result = handleServiceError(axiosError);
+
+    expect(result.success).toBe(false);
+    expect(result.message).toBe('Credenciais inválidas.');
+  });
+
+  it('returns the real message for a 429 (limitador de origem)', () => {
+    const axiosError = {
+      isAxiosError: true,
+      response: { status: 429, data: { message: 'Muitas tentativas. Tente novamente mais tarde.' } },
+    };
+
+    const result = handleServiceError(axiosError);
+
+    expect(result.success).toBe(false);
+    expect(result.message).toBe('Muitas tentativas. Tente novamente mais tarde.');
   });
 
   it('returns a friendly message for 409 (conflito de concorrência)', () => {

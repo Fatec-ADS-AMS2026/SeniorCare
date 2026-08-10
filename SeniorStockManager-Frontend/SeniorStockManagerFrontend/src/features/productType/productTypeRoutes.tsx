@@ -6,5 +6,6 @@ export const productTypeRoutes = createRoutes({
     path: '/product_type',
     displayName: 'Tipos de Produtos',
     element: <ProductTypeOverview />,
+    requiredPermission: { resource: 'ProductType', action: 'read' },
   },
 });

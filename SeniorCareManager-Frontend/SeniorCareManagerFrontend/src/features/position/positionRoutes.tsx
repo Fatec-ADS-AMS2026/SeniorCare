@@ -6,5 +6,6 @@ export const positionRoutes = createRoutes({
     path: '/position',
     displayName: 'Cargos',
     element: <PositionOverview />,
+    requiredPermission: { resource: 'Position', action: 'read' },
   },
 });

@@ -74,6 +74,15 @@ public class AdminUserController : ControllerBase
     public async Task<ActionResult<AdminUserDTO>> Post(AdminUserCreateRequest request)
     {
         var institutionId = await _currentUserContext.GetInstitutionIdAsync();
+        // O token de ativação (segundo item da tupla) nunca sai daqui — a spec
+        // platform-authentication proíbe token em resposta administrativa
+        // ("Senhas, códigos MFA, tokens de ativação... SHALL NOT aparecer em logs,
+        // respostas administrativas ou exportações") e o design.md (risco "Canal de
+        // ativação indisponível em ILPI de baixo orçamento") já previa esse cenário
+        // exato — a entrega do link de uso único é um procedimento operacional
+        // separado, fora da API, mesmo padrão do bootstrap do primeiro admin
+        // (Program.cs só imprime o token no console do processo na instalação,
+        // nunca numa resposta HTTP).
         var (userId, _) = await _adminUserService.CreateAsync(institutionId, request.Email, request.DisplayName);
         var created = await _dbContext.Users.SingleAsync(u => u.Id == userId);
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, ToDto(created));

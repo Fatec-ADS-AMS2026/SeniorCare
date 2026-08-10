@@ -73,7 +73,10 @@ export default function generateGenericMethods<T extends { id: number }>(
 
 // Formato real devolvido pelo backend (RFC 7807) desde a §3a — tanto pelo
 // GlobalExceptionHandler (Detail) quanto pela validação automática de model do
-// [ApiController] (Errors, um dicionário campo→mensagens).
+// [ApiController] (Errors, um dicionário campo→mensagens). §10: nem todo erro do
+// backend é Problem Details — AuthController devolve alguns 401/429 explícitos como
+// MessageResponse{Message} (ex.: "Credenciais inválidas.", limitador de origem), sem
+// passar pelo GlobalExceptionHandler. `message` cobre esse formato.
 interface ProblemDetails {
   type?: string;
   title?: string;
@@ -81,6 +84,7 @@ interface ProblemDetails {
   detail?: string;
   errors?: Record<string, string[]>;
   correlationId?: string;
+  message?: string;
 }
 
 export function handleServiceError<T>(error: unknown): ServiceResult<T> {
@@ -92,15 +96,17 @@ export function handleServiceError<T>(error: unknown): ServiceResult<T> {
   }
 
   const status = error.response.status;
+  const problem = (error.response.data ?? {}) as ProblemDetails;
 
-  if (status === 401) {
+  // 401 do middleware de cookie (sessão ausente/expirada) não tem corpo — só nesse
+  // caso usa a mensagem genérica. 401 explícito de AuthController.Login/LoginMfa
+  // ("Credenciais inválidas.") tem corpo e cai no retorno final, abaixo.
+  if (status === 401 && !problem.message) {
     return {
       success: false,
       message: 'Não autorizado',
     };
   }
-
-  const problem = (error.response.data ?? {}) as ProblemDetails;
 
   // Conflito de concorrência otimista (RowVersion desatualizado) — o
   // GlobalExceptionHandler já manda uma mensagem pronta em Detail.
@@ -126,6 +132,6 @@ export function handleServiceError<T>(error: unknown): ServiceResult<T> {
 
   return {
     success: false,
-    message: problem.detail || problem.title || 'Erro desconhecido',
+    message: problem.detail || problem.title || problem.message || 'Erro desconhecido',
   };
 }

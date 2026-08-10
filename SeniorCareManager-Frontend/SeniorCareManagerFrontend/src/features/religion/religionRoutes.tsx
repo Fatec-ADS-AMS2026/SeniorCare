@@ -6,5 +6,6 @@ export const religionRoutes = createRoutes({
     path: '/religion',
     displayName: 'Religiões',
     element: <ReligionOverview />,
+    requiredPermission: { resource: 'Religion', action: 'read' },
   },
 });

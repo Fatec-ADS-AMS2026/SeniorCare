@@ -6,5 +6,6 @@ export const manufacturerRoutes = createRoutes({
     path: '/manufacturer',
     displayName: 'Fabricantes',
     element: <ManufacturerOverview />,
+    requiredPermission: { resource: 'Manufacturer', action: 'read' },
   },
 });

@@ -6,5 +6,6 @@ export const healthInsurancePlanRoutes = createRoutes({
     path: '/health_insurance_plan',
     displayName: 'Planos de Saúde',
     element: <HealthInsurancePlanOverview />,
+    requiredPermission: { resource: 'HealthInsurancePlan', action: 'read' },
   },
 });
