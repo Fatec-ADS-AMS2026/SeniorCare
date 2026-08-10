@@ -6,5 +6,6 @@
         public string Description { get; set; }
         public string Abbreviation { get; set; }
         public uint RowVersion { get; set; }
+        public bool IsActive { get; set; }
     }
 }

@@ -57,6 +57,8 @@ namespace SeniorCareManager.WebAPI.Data.Builders
             modelBuilder.Entity<Supplier>().Property(s => s.State)
                 .IsRequired()
                 .HasMaxLength(2);
+            modelBuilder.Entity<Supplier>().Property(s => s.IsActive).HasDefaultValue(true);
+            modelBuilder.Entity<Supplier>().HasIndex(s => s.CpfCnpj).IsUnique();
         }
     }
 }

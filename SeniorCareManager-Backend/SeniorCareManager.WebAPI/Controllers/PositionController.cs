@@ -23,7 +23,7 @@ public class PositionController : ControllerBase
     [RequirePermission("Position", "read")]
     public async Task<ActionResult<PagedResult<PositionDTO>>> Get([FromQuery] CatalogQuery query)
     {
-        var positions = await _positionService.GetAll();
+        var positions = await _positionService.GetAll(query.IncludeInactive);
         var filtered = string.IsNullOrWhiteSpace(query.Search)
             ? positions
             : positions.Where(p => p.Name.Contains(query.Search, StringComparison.OrdinalIgnoreCase));
@@ -65,10 +65,19 @@ public class PositionController : ControllerBase
         return NoContent();
     }
 
+    [HttpPut("{id}/activate")]
+    [RequirePermission("Position", "write")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        await _positionService.Activate(id);
+        return NoContent();
+    }
+
     private PositionDTO ToDto(Position position) => new()
     {
         Id = position.Id,
         Name = position.Name,
         RowVersion = _positionService.GetVersion(position) ?? 0,
+        IsActive = position.IsActive,
     };
 }

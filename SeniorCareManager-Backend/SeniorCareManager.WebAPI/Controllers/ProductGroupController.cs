@@ -23,7 +23,7 @@ public class ProductGroupController : ControllerBase
     [RequirePermission("ProductGroup", "read")]
     public async Task<ActionResult<PagedResult<ProductGroupDTO>>> Get([FromQuery] CatalogQuery query)
     {
-        var productGroups = await _productGroupService.GetAll();
+        var productGroups = await _productGroupService.GetAll(query.IncludeInactive);
         var filtered = string.IsNullOrWhiteSpace(query.Search)
             ? productGroups
             : productGroups.Where(g => g.Name.Contains(query.Search, StringComparison.OrdinalIgnoreCase));
@@ -65,10 +65,19 @@ public class ProductGroupController : ControllerBase
         return NoContent();
     }
 
+    [HttpPut("{id}/activate")]
+    [RequirePermission("ProductGroup", "write")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        await _productGroupService.Activate(id);
+        return NoContent();
+    }
+
     private ProductGroupDTO ToDto(ProductGroup productGroup) => new()
     {
         Id = productGroup.Id,
         Name = productGroup.Name,
         RowVersion = _productGroupService.GetVersion(productGroup) ?? 0,
+        IsActive = productGroup.IsActive,
     };
 }

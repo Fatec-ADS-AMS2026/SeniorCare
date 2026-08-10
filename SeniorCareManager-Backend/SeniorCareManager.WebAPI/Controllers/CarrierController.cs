@@ -23,7 +23,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         [RequirePermission("Carrier", "read")]
         public async Task<ActionResult<PagedResult<CarrierDTO>>> GetAll([FromQuery] CatalogQuery query)
         {
-            var carriers = await _carrierService.GetAll();
+            var carriers = await _carrierService.GetAll(query.IncludeInactive);
             var filtered = string.IsNullOrWhiteSpace(query.Search)
                 ? carriers
                 : carriers.Where(c =>
@@ -67,6 +67,14 @@ namespace SeniorCareManager.WebAPI.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/activate")]
+        [RequirePermission("Carrier", "write")]
+        public async Task<IActionResult> Activate(int id)
+        {
+            await _carrierService.Activate(id);
+            return NoContent();
+        }
+
         private static Carrier ToModel(int id, string corporateName, string tradeName, string cpfCnpj, CarrierCreateRequest request) => new(
             id, corporateName, tradeName, cpfCnpj,
             request.Street, request.Number, request.District, request.AddressComplement,
@@ -88,6 +96,7 @@ namespace SeniorCareManager.WebAPI.Controllers
             Phone = carrier.Phone,
             Email = carrier.Email,
             RowVersion = _carrierService.GetVersion(carrier) ?? 0,
+            IsActive = carrier.IsActive,
         };
     }
 }

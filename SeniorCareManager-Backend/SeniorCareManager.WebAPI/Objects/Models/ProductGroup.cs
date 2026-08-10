@@ -11,6 +11,9 @@ public class ProductGroup
     [Column("name")]
     public string Name { get; set; }
 
+    [Column("is_active")]
+    public bool IsActive { get; set; } = true;
+
     [JsonIgnore]
     public ICollection<ProductType>? ProductType { get; set; }
 

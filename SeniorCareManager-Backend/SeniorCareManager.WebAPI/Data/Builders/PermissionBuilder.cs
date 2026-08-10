@@ -20,6 +20,8 @@ public class PermissionBuilder
         ("HealthInsurancePlan", Guid.Parse("B9EFB981-E8E0-4D44-A45F-89EF7218FA34"), Guid.Parse("91EDE0CB-5492-4E1F-A5AA-67EDD6EEB231"), Guid.Parse("12512F07-E33C-4E91-BB92-5B2B22E389E6")),
         ("Position", Guid.Parse("8E6D9B0D-2ADB-48DA-A8BF-63C6FC775DDC"), Guid.Parse("AB0A7B57-9D6D-4110-85E7-C001F16072FC"), Guid.Parse("91CD749C-2D6E-453F-8D94-991F7F422300")),
         ("Religion", Guid.Parse("2BE2A833-9F65-4CDC-A721-C54AA6C1A606"), Guid.Parse("FC15CA1C-1A6C-4451-926D-D4E746862B93"), Guid.Parse("F7A4145C-E73E-4297-BA84-ACB35D392478")),
+        // §9.4 — Produto como catálogo, mesmo padrão read/write/delete dos demais.
+        ("Product", Guid.Parse("B3F21231-386C-49D6-92E6-96CD73147B73"), Guid.Parse("52373AAE-F601-456F-A726-DEBC551FEB9F"), Guid.Parse("4D774A1F-F44F-4ABD-A8A2-54D1255DF916")),
     };
 
     // §6 — vocabulário administrativo. GUIDs fixos, mesma convenção acima.

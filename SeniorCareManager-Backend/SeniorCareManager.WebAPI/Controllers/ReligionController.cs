@@ -23,7 +23,7 @@ public class ReligionController : ControllerBase
     [RequirePermission("Religion", "read")]
     public async Task<ActionResult<PagedResult<ReligionDTO>>> Get([FromQuery] CatalogQuery query)
     {
-        var religions = await _religionService.GetAll();
+        var religions = await _religionService.GetAll(query.IncludeInactive);
         var filtered = string.IsNullOrWhiteSpace(query.Search)
             ? religions
             : religions.Where(r => r.Name.Contains(query.Search, StringComparison.OrdinalIgnoreCase));
@@ -65,10 +65,19 @@ public class ReligionController : ControllerBase
         return NoContent();
     }
 
+    [HttpPut("{id}/activate")]
+    [RequirePermission("Religion", "write")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        await _religionService.Activate(id);
+        return NoContent();
+    }
+
     private ReligionDTO ToDto(Religion religion) => new()
     {
         Id = religion.Id,
         Name = religion.Name,
         RowVersion = _religionService.GetVersion(religion) ?? 0,
+        IsActive = religion.IsActive,
     };
 }

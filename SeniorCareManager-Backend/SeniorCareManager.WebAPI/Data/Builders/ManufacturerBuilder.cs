@@ -33,14 +33,16 @@ namespace SeniorCareManager.WebAPI.Data.Builders
             modelBuilder.Entity<Manufacturer>()
                 .Property(m => m.Email)
                 .HasMaxLength(50);
+            modelBuilder.Entity<Manufacturer>().Property(m => m.IsActive).HasDefaultValue(true);
+            modelBuilder.Entity<Manufacturer>().HasIndex(m => m.CpfCnpj).IsUnique();
 
             // Inserção de dados iniciais
             modelBuilder.Entity<Manufacturer>()
                 .HasData(new List<Manufacturer>
                 {
-                    new Manufacturer(1, "Empresa A", "Trade A", "12345678000195", "12345678901", "contato@empresaa.com"),
-                    new Manufacturer(2, "Empresa B", "Trade B", "12345678000196", "23456789012", "contato@empresab.com"),
-                    new Manufacturer(3, "Empresa C", "Trade C", "12345678000197", "34567890123", "contato@empresac.com")
+                    new Manufacturer(1, "Empresa A", "Trade A", "12345678000195", "12345678901", "contato@empresaa.com") { IsActive = true },
+                    new Manufacturer(2, "Empresa B", "Trade B", "12345678000196", "23456789012", "contato@empresab.com") { IsActive = true },
+                    new Manufacturer(3, "Empresa C", "Trade C", "12345678000197", "34567890123", "contato@empresac.com") { IsActive = true }
                 });
         }
     }

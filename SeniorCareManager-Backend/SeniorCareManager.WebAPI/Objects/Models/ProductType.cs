@@ -14,6 +14,9 @@ public class ProductType
     [Column("productgroupid")][ForeignKey("productgroup")]
     public int ProductGroupId { get; set; }
 
+    [Column("is_active")]
+    public bool IsActive { get; set; } = true;
+
     [JsonIgnore]
     public ProductGroup? ProductGroup { get; set; }
     public ProductType(){ }

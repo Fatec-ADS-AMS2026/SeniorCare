@@ -12,9 +12,9 @@ public class GenericService<T> : IGenericService<T> where T : class
         _repository = repository;
     }
 
-    public async Task<IEnumerable<T>> GetAll()
+    public async Task<IEnumerable<T>> GetAll(bool includeInactive = false)
     {
-        return await _repository.Get();
+        return await _repository.Get(includeInactive);
     }
 
     public async Task<T> GetById(int id)
@@ -39,7 +39,9 @@ public class GenericService<T> : IGenericService<T> where T : class
         await _repository.Update(entity, expectedVersion);
     }
 
-    public async Task Remove(int id)
+    // virtual: catálogos referenciados por outra entidade (ProductGroup, ProductType,
+    // UnitOfMeasure — §9.2/9.3) sobrescrevem pra checar dependente ativo antes de inativar.
+    public virtual async Task Remove(int id)
     {
         var entity = await _repository.GetById(id);
         if (entity == null)
@@ -48,6 +50,17 @@ public class GenericService<T> : IGenericService<T> where T : class
         }
 
         await _repository.Remove(entity);
+    }
+
+    public async Task Activate(int id)
+    {
+        var entity = await _repository.GetById(id);
+        if (entity == null)
+        {
+            throw new KeyNotFoundException($"Entidade com id: {id} não encontrado");
+        }
+
+        await _repository.Activate(entity);
     }
 
     public uint? GetVersion(T entity) => _repository.GetVersion(entity);

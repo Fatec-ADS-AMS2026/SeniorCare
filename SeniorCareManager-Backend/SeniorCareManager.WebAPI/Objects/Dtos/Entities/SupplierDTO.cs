@@ -29,4 +29,5 @@ public class SupplierDTO
     public string State { get; set; }
 
     public uint RowVersion { get; set; }
+    public bool IsActive { get; set; }
 }
