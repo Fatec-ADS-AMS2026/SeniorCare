@@ -106,7 +106,14 @@ pre_validate_migration() {
   log "pré-validando migração $ver (dry-run contra o banco real, sempre revertido)..."
   # dotnet ef gera um script idempotente terminado em COMMIT — troca pela última
   # linha por ROLLBACK, já que o dry-run nunca deve persistir nada de verdade,
-  # mesmo que o próprio script diga COMMIT.
+  # mesmo que o próprio script diga COMMIT. Se o formato do script mudar (versão
+  # futura do EF/Npgsql) e essa linha não existir mais no formato esperado, o sed
+  # não erra — simplesmente não substitui nada, e o COMMIT real seguiria pro psql
+  # sem aviso, persistindo a migração antes da hora. Falha alto aqui em vez de
+  # deixar isso passar em silêncio.
+  local commit_lines
+  commit_lines=$(grep -c '^COMMIT;$' "$sql_file" || true)
+  [ "${commit_lines:-0}" -ge 1 ] || die "pré-validação abortada: $sql_file não tem uma linha 'COMMIT;' no formato esperado — não dá pra garantir que o dry-run seria revertido (formato do script mudou?)."
   if sed 's/^COMMIT;$/ROLLBACK;/' "$sql_file" \
       | docker exec -i "$pg_cid" psql -U "$user" -d "$db" -v ON_ERROR_STOP=1 -q; then
     log "pré-validação OK — dado atual é compatível com a migração de $ver"

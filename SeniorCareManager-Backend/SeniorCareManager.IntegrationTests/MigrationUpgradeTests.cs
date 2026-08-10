@@ -17,10 +17,15 @@ namespace SeniorCareManager.IntegrationTests;
 /// permanecer íntegros e as novas restrições precisam ser satisfeitas, ou a atualização
 /// falha antes de publicar a aplicação.
 ///
-/// Alvo: AddCatalogActiveState (adiciona `is_active boolean NOT NULL DEFAULT true` a 6
+/// Alvo: AddCatalogActiveState (adiciona `is_active boolean NOT NULL DEFAULT true` a 9
 /// tabelas de catálogo existentes, além de mexer em FK/índice do producttype) sobre o
 /// estado imediatamente anterior (AddAuditEvent) — a migração mais recente com impacto
-/// real em tabela já populada, não um caso trivial de "só cria tabela nova".
+/// real em tabela já populada, não um caso trivial de "só cria tabela nova". Das 9,
+/// carrier/healthinsuranceplan/manufacturer já têm linha semeada via `HasData` desde o
+/// InitialCreate e a própria migração faz `UpdateData` nelas (ids 1-3 de cada) — testadas
+/// lendo o dado já semeado; as outras 6 (religion/position/unitofmeasure/supplier/
+/// productgroup/producttype) não tinham linha nenhuma antes desta migração, então o teste
+/// insere dado sintético pra elas.
 ///
 /// As linhas sintéticas são inseridas via SQL cru, não via `AppDbContext`/`DbSet`: o
 /// DbContext em tempo de execução sempre reflete o modelo ATUAL (já com `is_active`) —
@@ -126,15 +131,39 @@ public sealed class MigrationUpgradeTests : IAsyncLifetime
             productType.Name.Should().Be("Tipo Sintético de Teste");
             productType.IsActive.Should().BeTrue();
 
-            await using var fkCmd = connection.CreateCommand();
-            fkCmd.CommandText = """
-                SELECT pt.name, pg.name FROM producttype pt
-                JOIN productgroup pg ON pg.id = pt.productgroupid
-                WHERE pt.name = 'Tipo Sintético de Teste'
-                """;
-            await using var fkReader = await fkCmd.ExecuteReaderAsync();
-            (await fkReader.ReadAsync()).Should().BeTrue("o vínculo FK entre producttype e productgroup deve sobreviver à recriação do índice/FK pela migração");
-            fkReader.GetString(1).Should().Be("Grupo Sintético de Teste");
+            // Bloco próprio — o reader precisa estar fechado antes das próximas consultas
+            // na mesma conexão (Npgsql só permite um DataReader aberto por vez).
+            {
+                await using var fkCmd = connection.CreateCommand();
+                fkCmd.CommandText = """
+                    SELECT pt.name, pg.name FROM producttype pt
+                    JOIN productgroup pg ON pg.id = pt.productgroupid
+                    WHERE pt.name = 'Tipo Sintético de Teste'
+                    """;
+                await using var fkReader = await fkCmd.ExecuteReaderAsync();
+                (await fkReader.ReadAsync()).Should().BeTrue("o vínculo FK entre producttype e productgroup deve sobreviver à recriação do índice/FK pela migração");
+                fkReader.GetString(1).Should().Be("Grupo Sintético de Teste");
+            }
+
+            // carrier/healthinsuranceplan/manufacturer: não precisam de insert sintético —
+            // já têm linha semeada via HasData desde o InitialCreate, e a própria migração
+            // faz UpdateData(is_active=true) nos ids 1-3 de cada uma. Confirma que esse
+            // UpdateData da migração realmente atinge o dado semeado (o achado que a
+            // revisão automatizada do PR apontou como faltante).
+            foreach (var table in new[] { "carrier", "healthinsuranceplan", "manufacturer" })
+            {
+                await using var cmd = connection.CreateCommand();
+                cmd.CommandText = $"SELECT id, is_active FROM {table} WHERE id IN (1, 2, 3) ORDER BY id";
+                await using var reader = await cmd.ExecuteReaderAsync();
+                var rowCount = 0;
+                while (await reader.ReadAsync())
+                {
+                    rowCount++;
+                    reader.GetBoolean(1).Should().BeTrue(
+                        $"a linha semeada id={reader.GetInt32(0)} de {table} deve ter sido atualizada pelo UpdateData da própria migração");
+                }
+                rowCount.Should().Be(3, $"{table} deveria ter as 3 linhas semeadas via HasData desde o InitialCreate");
+            }
         }
     }
 }
