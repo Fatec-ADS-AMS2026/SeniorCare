@@ -112,16 +112,18 @@ export default function LoginForm() {
             type='button'
             onClick={togglePasswordVisibility}
             className='text-textSecondary mx-2 shrink-0'
+            aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
           >
             {showPassword ? <EyeSlash size={24} /> : <Eye size={24} />}
           </button>
         </div>
-        <p
+        <button
+          type='button'
           onClick={() => navigate(routes.RECOVER_ACCOUNT.path)}
-          className='mt-2 cursor-pointer hover:text-secondary transition-colors text-right text-textSecondary'
+          className='mt-2 cursor-pointer hover:text-secondary transition-colors text-right text-textSecondary self-end'
         >
           Esqueceu sua senha?
-        </p>
+        </button>
       </div>
       <button
         type='submit'
