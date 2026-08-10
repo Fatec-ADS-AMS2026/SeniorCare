@@ -4,20 +4,20 @@ import TableRow from './TableRow';
 import { JSX, useState } from 'react';
 import { TableColumn } from './types';
 
-interface TableProps<T extends { id: number }> {
+interface TableProps<T extends { id: number | string }> {
   columns: TableColumn<T>[];
   data: T[];
   rowsPerPage?: number;
-  actions?: (id: number) => JSX.Element;
+  actions?: (id: T['id']) => JSX.Element;
 }
 
-export default function Table<T extends { id: number }>({
+export default function Table<T extends { id: number | string }>({
   columns,
   data,
   rowsPerPage = 10,
   actions,
 }: TableProps<T>) {
-  const [selectedRows, setSelectedRows] = useState<number[]>([]);
+  const [selectedRows, setSelectedRows] = useState<T['id'][]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   const startIndex = (currentPage - 1) * rowsPerPage;
@@ -28,7 +28,7 @@ export default function Table<T extends { id: number }>({
     setCurrentPage(newPage);
   };
 
-  const handleRowSelection = (rowId: number) => {
+  const handleRowSelection = (rowId: T['id']) => {
     setSelectedRows((prevSelectedRows) => {
       if (!prevSelectedRows) return [rowId];
 

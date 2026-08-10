@@ -1,15 +1,15 @@
 import { TableColumn } from './types';
 
-interface TableRowProps<T extends { id: number }> {
+interface TableRowProps<T extends { id: number | string }> {
   data: T;
   columns: TableColumn<T>[];
   index: number;
   actions?: JSX.Element;
-  onSelect: (rowId: number) => void;
+  onSelect: (rowId: T['id']) => void;
   isSelected: boolean;
 }
 
-export default function TableRow<T extends { id: number }>({
+export default function TableRow<T extends { id: number | string }>({
   data,
   columns,
   index,

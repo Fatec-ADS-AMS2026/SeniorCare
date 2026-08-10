@@ -48,13 +48,38 @@ public sealed class AdminUserControllerTests : IClassFixture<PostgresWebApplicat
             new AdminUserCreateRequest { Email = email, DisplayName = "Pessoa Nova" });
 
         response.StatusCode.Should().Be(HttpStatusCode.Created);
-        var created = await response.Content.ReadFromJsonAsync<AdminUserDTO>();
+        var created = await response.Content.ReadFromJsonAsync<AdminUserCreatedDTO>();
         created!.AccountState.Should().Be(AccountState.PROVISIONED);
+        // §10.6: não existe serviço de e-mail no projeto — sem devolver o token aqui, a
+        // tela administrativa de "disparo de ativação" não teria nada pra mostrar/copiar.
+        created.ActivationToken.Should().NotBeNullOrWhiteSpace();
 
         using var assertScope = _factory.Services.CreateScope();
         var assertDb = assertScope.ServiceProvider.GetRequiredService<AppDbContext>();
         var stored = await assertDb.Users.SingleAsync(u => u.Id == created.Id);
         stored.InstitutionId.Should().Be(institutionId);
+    }
+
+    [Fact]
+    public async Task GetById_DoesNotIncludeActivationToken()
+    {
+        using var scope = _factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var (_, adminId) = await TestIdentitySeeder.SeedFullAccessUserAsync(db);
+
+        var client = _factory.CreateClient().AsUser(adminId);
+        var email = $"nova-{Guid.NewGuid():N}@example.com";
+        var createResponse = await client.PostAsJsonAsync("/api/v1/AdminUser",
+            new AdminUserCreateRequest { Email = email, DisplayName = "Pessoa Nova" });
+        var created = await createResponse.Content.ReadFromJsonAsync<AdminUserCreatedDTO>();
+
+        // O token de ativação só existe na resposta de criação (defesa em profundidade
+        // contra exposição indefinida a qualquer leitura futura) — GetById expõe só o
+        // AdminUserDTO puro, sem esse campo no contrato de resposta.
+        var getResponse = await client.GetAsync($"/api/v1/AdminUser/{created!.Id}");
+        var raw = await getResponse.Content.ReadAsStringAsync();
+
+        raw.Should().NotContain("activationToken", "GetById deve devolver AdminUserDTO puro, sem o token");
     }
 
     [Fact]

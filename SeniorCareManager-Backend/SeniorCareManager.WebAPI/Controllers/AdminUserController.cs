@@ -71,12 +71,21 @@ public class AdminUserController : ControllerBase
 
     [HttpPost]
     [RequirePermission("AdminUser", "write")]
-    public async Task<ActionResult<AdminUserDTO>> Post(AdminUserCreateRequest request)
+    public async Task<ActionResult<AdminUserCreatedDTO>> Post(AdminUserCreateRequest request)
     {
         var institutionId = await _currentUserContext.GetInstitutionIdAsync();
-        var (userId, _) = await _adminUserService.CreateAsync(institutionId, request.Email, request.DisplayName);
+        var (userId, activationToken) = await _adminUserService.CreateAsync(institutionId, request.Email, request.DisplayName);
         var created = await _dbContext.Users.SingleAsync(u => u.Id == userId);
-        return CreatedAtAction(nameof(GetById), new { id = created.Id }, ToDto(created));
+        var dto = new AdminUserCreatedDTO
+        {
+            Id = created.Id,
+            Email = created.Email ?? string.Empty,
+            DisplayName = created.DisplayName,
+            AccountState = created.AccountState,
+            IdentityOrigin = created.IdentityOrigin,
+            ActivationToken = activationToken,
+        };
+        return CreatedAtAction(nameof(GetById), new { id = created.Id }, dto);
     }
 
     [HttpPut("{id}/state")]
