@@ -51,6 +51,11 @@ services:
       ConnectionStrings__DefaultConnection: >-
         Host=postgres;Port=5432;Database=${POSTGRES_DB:-db_seniorcare};
         Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD};
+      # Bootstrap da instituição/admin inicial — as três juntas ou nenhuma (Program.cs
+      # valida). Ausentes aqui = deploy sobe normalmente mas nunca bootstrapa (achado §12).
+      Bootstrap__InstitutionName: ${Bootstrap__InstitutionName:-}
+      Bootstrap__AdminEmail: ${Bootstrap__AdminEmail:-}
+      Bootstrap__AdminDisplayName: ${Bootstrap__AdminDisplayName:-}
     ports:
       - "8080:8080"
     depends_on:

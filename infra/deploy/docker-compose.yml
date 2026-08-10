@@ -57,6 +57,13 @@ services:
         Host=postgres;Port=5432;Database=${POSTGRES_DB:-db_seniorcare};
         Username=${POSTGRES_USER:-postgres};Password=${POSTGRES_PASSWORD};
       CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
+      # Bootstrap da instituição/admin inicial — as três juntas ou nenhuma (Program.cs
+      # valida). Sem elas definidas no .env do cliente, o deploy sobe normalmente mas
+      # NUNCA bootstrapa (achado §12: estavam documentadas em CONFIGURATION.md porém
+      # ausentes aqui, então nunca chegavam ao container mesmo definidas no .env).
+      Bootstrap__InstitutionName: ${Bootstrap__InstitutionName:-}
+      Bootstrap__AdminEmail: ${Bootstrap__AdminEmail:-}
+      Bootstrap__AdminDisplayName: ${Bootstrap__AdminDisplayName:-}
     ports:
       - "8080:8080"
     depends_on:

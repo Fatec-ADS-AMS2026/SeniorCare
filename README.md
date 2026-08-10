@@ -29,3 +29,4 @@ O escopo conceitual e funcional canônico do projeto está documentado em
 - [Arquitetura de CI/CD](docs/infra/ci-cd-arquitetura.md)
 - [Stack local para desenvolvimento](infra/docker-test/README.md)
 - [Publicação em servidor](infra/deploy/README.md)
+- [Bootstrap da instituição e do administrador inicial](infra/deploy/BOOTSTRAP.md)

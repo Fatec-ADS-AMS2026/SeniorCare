@@ -79,6 +79,42 @@ pg_backup() {
   ls -1t "$BACKUPS_DIR"/*.sql 2>/dev/null | tail -n +$((BACKUP_KEEP + 1)) | xargs -r rm -f
 }
 
+# ── Pré-validação da migração (dry-run revertido contra o banco real) ────
+# O servidor nunca compila (build-once/deploy-many) — o SQL idempotente das
+# migrações pendentes já vem pronto do release (releases/<ver>-migration.sql,
+# gerado por release.yml). Roda esse SQL contra o Postgres de PRODUÇÃO real
+# dentro de uma transação que é sempre revertida — detecta qualquer violação
+# de constraint (dado atual incompatível com a nova versão) ANTES do deploy
+# real acontecer (a migração de verdade só roda quando o novo container da
+# API sobe, via Program.cs). Zero risco de alterar dado real: o ROLLBACK é
+# incondicional, independente do script ter tido sucesso ou falhado no meio.
+pre_validate_migration() {
+  local ver="$1" pg_cid sql_file
+  sql_file="$RELEASES_DIR/${ver}-migration.sql"
+  if [ ! -f "$sql_file" ]; then
+    log "sem script de migração ($sql_file) — pulando pré-validação"
+    return 0
+  fi
+  pg_cid=$(compose ps -q postgres 2>/dev/null || true)
+  if [ -z "$pg_cid" ]; then
+    log "postgres não está rodando — pulando pré-validação (provável 1º deploy)"
+    return 0
+  fi
+  local user db
+  user=$(get_env POSTGRES_USER); user=${user:-postgres}
+  db=$(get_env POSTGRES_DB);     db=${db:-db_seniorcare}
+  log "pré-validando migração $ver (dry-run contra o banco real, sempre revertido)..."
+  # dotnet ef gera um script idempotente terminado em COMMIT — troca pela última
+  # linha por ROLLBACK, já que o dry-run nunca deve persistir nada de verdade,
+  # mesmo que o próprio script diga COMMIT.
+  if sed 's/^COMMIT;$/ROLLBACK;/' "$sql_file" \
+      | docker exec -i "$pg_cid" psql -U "$user" -d "$db" -v ON_ERROR_STOP=1 -q; then
+    log "pré-validação OK — dado atual é compatível com a migração de $ver"
+  else
+    die "pré-validação da migração $ver falhou — dado atual incompatível com a nova versão (abortando antes de tocar produção; nenhuma alteração foi persistida)"
+  fi
+}
+
 # ── Espera todos os healthchecks ficarem saudáveis ───────────────────────
 wait_healthy() {
   local elapsed=0 ids id st pending unhealthy
@@ -126,6 +162,7 @@ do_deploy() {
   log "deploy do SeniorCare $ver — cliente $CLIENT"
   ghcr_login
   pg_backup "$ver"
+  pre_validate_migration "$ver"
   log "puxando imagens (por digest)..."
   compose pull
   log "subindo containers..."
