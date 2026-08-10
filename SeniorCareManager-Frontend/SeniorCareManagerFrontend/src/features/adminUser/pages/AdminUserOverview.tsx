@@ -87,8 +87,12 @@ export default function AdminUserOverview() {
     const res = await adminUserService.create(formData);
     if (res.success && res.data) {
       await fetchData();
+      // O token de ativação nunca chega até aqui — a API não o devolve (achado da
+      // revisão do PR: platform-authentication proíbe token em resposta
+      // administrativa). A entrega do link de ativação é um procedimento
+      // operacional separado, fora do escopo desta tela.
       showAlert(
-        `Usuário "${res.data.displayName}" criado. Token de ativação (repasse com segurança — não será mostrado novamente): ${res.data.activationToken}`,
+        `Usuário "${res.data.displayName}" criado com estado PROVISIONED. Siga o procedimento institucional para entregar a ativação com segurança.`,
         'success'
       );
     } else {

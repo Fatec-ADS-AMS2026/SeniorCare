@@ -14,17 +14,13 @@ export enum IdentityOrigin {
   OIDC = 3,
 }
 
-// Espelha AdminUserDTO (§6.1) — nunca carrega senha/credencial.
+// Espelha AdminUserDTO (§6.1) — nunca carrega senha/credencial nem token de
+// ativação (platform-authentication: tokens SHALL NOT aparecer em resposta
+// administrativa nenhuma, nem a de criação — achado da revisão do PR).
 export default interface AdminUser {
   id: string;
   email: string;
   displayName: string;
   accountState: AccountState;
   identityOrigin: IdentityOrigin;
-}
-
-// Só a resposta de POST /AdminUser (§10.6) — não existe serviço de e-mail no
-// projeto, então o token de ativação precisa ser mostrado pro admin repassar.
-export interface AdminUserCreated extends AdminUser {
-  activationToken: string;
 }

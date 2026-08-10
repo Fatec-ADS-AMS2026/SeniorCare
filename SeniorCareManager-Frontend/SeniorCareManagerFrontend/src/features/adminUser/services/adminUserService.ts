@@ -1,7 +1,7 @@
 import { api } from '@/features/api';
 import { handleServiceError } from '@/utils/serviceUtils';
 import ServiceResult from '@/types/app/ServiceResult';
-import AdminUser, { AccountState, AdminUserCreated } from '@/types/models/AdminUser';
+import AdminUser, { AccountState } from '@/types/models/AdminUser';
 
 interface PagedResult<T> {
   items: T[];
@@ -41,9 +41,9 @@ const adminUserService = {
     }
   },
 
-  create: async (request: AdminUserCreateRequest): Promise<ServiceResult<AdminUserCreated>> => {
+  create: async (request: AdminUserCreateRequest): Promise<ServiceResult<AdminUser>> => {
     try {
-      const res = await api.post<AdminUserCreated>('AdminUser/', request);
+      const res = await api.post<AdminUser>('AdminUser/', request);
       return { success: true, message: '', data: res.data };
     } catch (error) {
       return handleServiceError(error);
