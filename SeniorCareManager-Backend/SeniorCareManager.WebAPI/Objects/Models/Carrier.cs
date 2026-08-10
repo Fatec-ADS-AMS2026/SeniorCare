@@ -44,6 +44,9 @@ namespace SeniorCareManager.WebAPI.Objects.Models
         [Column("email")]
         public string Email { get; set; }
 
+        [Column("is_active")]
+        public bool IsActive { get; set; } = true;
+
         public Carrier() { }
 
         public Carrier(int id, string corporateName, string tradeName, string cpfCnpj, string street, string number, string district, string adressComplement, string city, string state, string postalCode, string phone, string email)

@@ -214,6 +214,7 @@ public class Startup
         services.AddScoped<ICarrierService, CarrierService>();
         services.AddScoped<IPositionService, PositionService>();
         services.AddScoped<IReligionService,  ReligionService>();
+        services.AddScoped<IProductService, ProductService>();
 
         // Identidade e instituição (§4)
         services.AddScoped<IPasswordPolicyService, PasswordPolicyService>();
@@ -250,6 +251,7 @@ public class Startup
         services.AddScoped<ICarrierRepository, CarrierRepository>();
         services.AddScoped<IPositionRepository, PositionRepository>();
         services.AddScoped<IReligionRepository, ReligionRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();

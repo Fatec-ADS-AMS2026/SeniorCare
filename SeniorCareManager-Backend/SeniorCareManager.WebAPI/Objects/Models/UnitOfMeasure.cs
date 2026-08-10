@@ -17,6 +17,8 @@ public class UnitOfMeasure
     [Column("abbreviation")]
     public string Abbreviation { get; set; }
 
+    [Column("is_active")]
+    public bool IsActive { get; set; } = true;
 
     public UnitOfMeasure()
     {

@@ -25,7 +25,9 @@ public class GenericServiceTests
             new(1, "Católica"),
             new(2, "Evangélica"),
         };
-        _repoMock.Setup(r => r.Get()).ReturnsAsync(religions);
+        // Moq com árvore de expressão não aceita argumento default implícito (CS0854) —
+        // precisa passar o valor explícito, mesmo sendo o mesmo que o default (false).
+        _repoMock.Setup(r => r.Get(false)).ReturnsAsync(religions);
 
         var result = await _service.GetAll();
 
@@ -97,6 +99,28 @@ public class GenericServiceTests
         _repoMock.Setup(r => r.GetById(99)).ReturnsAsync((Religion)null!);
 
         var act = async () => await _service.Remove(99);
+
+        await act.Should().ThrowAsync<KeyNotFoundException>();
+    }
+
+    [Fact]
+    public async Task Activate_ExistingId_CallsRepositoryActivate()
+    {
+        var religion = new Religion(1, "Xintoísmo");
+        _repoMock.Setup(r => r.GetById(1)).ReturnsAsync(religion);
+        _repoMock.Setup(r => r.Activate(religion)).Returns(Task.CompletedTask);
+
+        await _service.Activate(1);
+
+        _repoMock.Verify(r => r.Activate(religion), Times.Once);
+    }
+
+    [Fact]
+    public async Task Activate_NonExistingId_ThrowsKeyNotFoundException()
+    {
+        _repoMock.Setup(r => r.GetById(99)).ReturnsAsync((Religion)null!);
+
+        var act = async () => await _service.Activate(99);
 
         await act.Should().ThrowAsync<KeyNotFoundException>();
     }

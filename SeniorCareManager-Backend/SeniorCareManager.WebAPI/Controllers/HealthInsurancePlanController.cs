@@ -23,7 +23,7 @@ public class HealthInsurancePlanController : ControllerBase
     [RequirePermission("HealthInsurancePlan", "read")]
     public async Task<ActionResult<PagedResult<HealthInsurancePlanDTO>>> Get([FromQuery] CatalogQuery query)
     {
-        var healthInsurancePlans = await _healthInsurancePlanService.GetAll();
+        var healthInsurancePlans = await _healthInsurancePlanService.GetAll(query.IncludeInactive);
         var filtered = string.IsNullOrWhiteSpace(query.Search)
             ? healthInsurancePlans
             : healthInsurancePlans.Where(h =>
@@ -67,6 +67,14 @@ public class HealthInsurancePlanController : ControllerBase
         return NoContent();
     }
 
+    [HttpPut("{id}/activate")]
+    [RequirePermission("HealthInsurancePlan", "write")]
+    public async Task<IActionResult> Activate(int id)
+    {
+        await _healthInsurancePlanService.Activate(id);
+        return NoContent();
+    }
+
     private HealthInsurancePlanDTO ToDto(HealthInsurancePlan healthInsurancePlan) => new()
     {
         Id = healthInsurancePlan.Id,
@@ -74,5 +82,6 @@ public class HealthInsurancePlanController : ControllerBase
         Type = healthInsurancePlan.Type,
         Abbreviation = healthInsurancePlan.Abbreviation,
         RowVersion = _healthInsurancePlanService.GetVersion(healthInsurancePlan) ?? 0,
+        IsActive = healthInsurancePlan.IsActive,
     };
 }

@@ -41,7 +41,10 @@ public class Supplier
     public string City { get; set; } 
 
     [Column("state")]
-    public string State { get; set; }  
+    public string State { get; set; }
+
+    [Column("is_active")]
+    public bool IsActive { get; set; } = true;
 
     public Supplier() { }
 

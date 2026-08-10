@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace SeniorCareManager.WebAPI.Infrastructure;
 
@@ -76,6 +77,14 @@ public class GlobalExceptionHandler : IExceptionHandler
             "O recurso foi modificado por outra requisição desde a última leitura.",
             "https://seniorcare.dev/erros/conflito-concorrencia",
             "Releia o recurso (GET) para obter a versão atual antes de tentar novamente."),
+        // §9.1 introduziu índices únicos nos catálogos (ex.: CpfCnpj, Name) — antes disso
+        // nenhuma escrita de usuário podia colidir com unique constraint, então esse
+        // mapeamento nunca tinha sido necessário.
+        DbUpdateException { InnerException: PostgresException { SqlState: PostgresErrorCodes.UniqueViolation } } => (
+            StatusCodes.Status409Conflict,
+            "Já existe um registro com esse valor.",
+            "https://seniorcare.dev/erros/valor-duplicado",
+            "Um dos campos informados precisa ser único e já está em uso por outro registro."),
         _ => (
             StatusCodes.Status500InternalServerError,
             "Ocorreu um erro inesperado ao processar a requisição.",

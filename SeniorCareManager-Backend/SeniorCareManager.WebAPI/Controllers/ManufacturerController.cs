@@ -23,7 +23,7 @@ namespace SeniorCareManager.WebAPI.Controllers
         [RequirePermission("Manufacturer", "read")]
         public async Task<ActionResult<PagedResult<ManufacturerDTO>>> Get([FromQuery] CatalogQuery query)
         {
-            var manufacturers = await _manufacturerService.GetAll();
+            var manufacturers = await _manufacturerService.GetAll(query.IncludeInactive);
             var filtered = string.IsNullOrWhiteSpace(query.Search)
                 ? manufacturers
                 : manufacturers.Where(m =>
@@ -67,6 +67,14 @@ namespace SeniorCareManager.WebAPI.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}/activate")]
+        [RequirePermission("Manufacturer", "write")]
+        public async Task<IActionResult> Activate(int id)
+        {
+            await _manufacturerService.Activate(id);
+            return NoContent();
+        }
+
         private ManufacturerDTO ToDto(Manufacturer manufacturer) => new()
         {
             Id = manufacturer.Id,
@@ -76,6 +84,7 @@ namespace SeniorCareManager.WebAPI.Controllers
             Phone = manufacturer.Phone,
             Email = manufacturer.Email,
             RowVersion = _manufacturerService.GetVersion(manufacturer) ?? 0,
+            IsActive = manufacturer.IsActive,
         };
     }
 }

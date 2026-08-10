@@ -16,10 +16,9 @@ namespace SeniorCareManager.IntegrationTests;
 ///   stock-web (SeniorStockManagerFrontend): Manufacturer, Product, ProductGroup,
 ///             ProductType, Supplier, Carrier, UnitOfMeasure
 ///
-/// "Product" é uma lacuna CONHECIDA e já rastreada — o stock-web já tem código
-/// pronto para chamar api/v1/Product, mas a entidade só é criada na tarefa 9.4.
-/// Este teste documenta a lacuna explicitamente (falha se ela for corrigida sem
-/// atualizar o teste, e falha se qualquer OUTRA rota regredir).
+/// "Product" era uma lacuna conhecida (o stock-web já tinha código pronto pra chamar
+/// api/v1/Product antes da entidade existir no backend) — fechada na §9.4; a partir daqui
+/// é só mais uma entidade normal na lista abaixo.
 /// </summary>
 public sealed class OpenApiContractTests : IClassFixture<PostgresWebApplicationFactory>
 {
@@ -33,9 +32,7 @@ public sealed class OpenApiContractTests : IClassFixture<PostgresWebApplicationF
     private static readonly string[] CareWebEntities = ["HealthInsurancePlan", "Position", "Religion"];
 
     private static readonly string[] StockWebEntities =
-        ["Manufacturer", "ProductGroup", "ProductType", "Supplier", "Carrier", "UnitOfMeasure"];
-
-    private const string KnownMissingEntity = "Product"; // tarefa 9.4
+        ["Manufacturer", "Product", "ProductGroup", "ProductType", "Supplier", "Carrier", "UnitOfMeasure"];
 
     [Fact]
     public async Task SwaggerJson_IsAvailableAndWellFormed()
@@ -55,17 +52,6 @@ public sealed class OpenApiContractTests : IClassFixture<PostgresWebApplicationF
     [Theory]
     [MemberData(nameof(EntitiesCalledByStockWeb))]
     public async Task StockWeb_CalledEntity_ExistsInContract(string entity) => await AssertEntityInContract(entity);
-
-    [Fact]
-    public async Task StockWeb_Product_IsAKnownGapNotYetInContract()
-    {
-        // Falha (nos avisando pra atualizar este teste) se alguém implementar Product
-        // (tarefa 9.4) sem remover esta marcação de lacuna conhecida.
-        var paths = await GetContractPaths();
-        paths.Should().NotContainKey($"/api/v1/{KnownMissingEntity}",
-            $"{KnownMissingEntity} ainda não existe no backend (tarefa 9.4) — se este teste falhar, ótimo: " +
-            "significa que a lacuna foi fechada, então troque este teste por um CareWeb_CalledEntity_ExistsInContract normal");
-    }
 
     public static IEnumerable<object[]> EntitiesCalledByCareWeb() => CareWebEntities.Select(e => new object[] { e });
 

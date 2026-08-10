@@ -1,7 +1,16 @@
 import { api } from '@/features/api';
-import { ApiResponse } from '@/features/api';
+import { FieldError } from '@/features/api/types';
 import ServiceResult from '@/types/app/ServiceResult';
 import { isAxiosError } from 'axios';
+
+// Envelope de listagem paginada que os 10 catálogos (§3b/§9) realmente devolvem —
+// {items,page,pageSize,totalCount} — nunca um array cru.
+interface PagedResult<T> {
+  items: T[];
+  page: number;
+  pageSize: number;
+  totalCount: number;
+}
 
 export default function generateGenericMethods<T extends { id: number }>(
   modelName: string
@@ -10,12 +19,8 @@ export default function generateGenericMethods<T extends { id: number }>(
 
   const getAll = async (): Promise<ServiceResult<T[]>> => {
     try {
-      const res = await api.get<T[]>(modelEndpoint);
-      return {
-        success: res.data.success,
-        message: res.data.message,
-        data: res.data.data,
-      };
+      const res = await api.get<PagedResult<T>>(modelEndpoint);
+      return { success: true, message: '', data: res.data.items };
     } catch (error) {
       return handleServiceError(error);
     }
@@ -24,11 +29,7 @@ export default function generateGenericMethods<T extends { id: number }>(
   const getById = async (id: number): Promise<ServiceResult<T>> => {
     try {
       const res = await api.get<T>(modelEndpoint + id);
-      return {
-        success: res.data.success,
-        message: res.data.message,
-        data: res.data.data,
-      };
+      return { success: true, message: '', data: res.data };
     } catch (error) {
       return handleServiceError(error);
     }
@@ -37,11 +38,7 @@ export default function generateGenericMethods<T extends { id: number }>(
   const create = async (model: T): Promise<ServiceResult<T>> => {
     try {
       const res = await api.post<T>(modelEndpoint, model);
-      return {
-        success: res.data.success,
-        message: res.data.message,
-        data: res.data.data,
-      };
+      return { success: true, message: '', data: res.data };
     } catch (error) {
       return handleServiceError(error);
     }
@@ -50,11 +47,7 @@ export default function generateGenericMethods<T extends { id: number }>(
   const update = async (id: number, model: T): Promise<ServiceResult<T>> => {
     try {
       const res = await api.put<T>(modelEndpoint + id, model);
-      return {
-        success: res.data.success,
-        message: res.data.message,
-        data: res.data.data,
-      };
+      return { success: true, message: '', data: res.data };
     } catch (error) {
       return handleServiceError(error);
     }
@@ -78,6 +71,18 @@ export default function generateGenericMethods<T extends { id: number }>(
   };
 }
 
+// Formato real devolvido pelo backend (RFC 7807) desde a §3a — tanto pelo
+// GlobalExceptionHandler (Detail) quanto pela validação automática de model do
+// [ApiController] (Errors, um dicionário campo→mensagens).
+interface ProblemDetails {
+  type?: string;
+  title?: string;
+  status?: number;
+  detail?: string;
+  errors?: Record<string, string[]>;
+  correlationId?: string;
+}
+
 export function handleServiceError<T>(error: unknown): ServiceResult<T> {
   if (!isAxiosError(error) || !error.response) {
     return {
@@ -86,27 +91,41 @@ export function handleServiceError<T>(error: unknown): ServiceResult<T> {
     };
   }
 
-  if (error.status === 401) {
+  const status = error.response.status;
+
+  if (status === 401) {
     return {
       success: false,
       message: 'Não autorizado',
     };
   }
 
-  const responseData = error.response.data as ApiResponse<T>;
+  const problem = (error.response.data ?? {}) as ProblemDetails;
 
-  if (responseData.errors && responseData.errors.length > 0) {
+  // Conflito de concorrência otimista (RowVersion desatualizado) — o
+  // GlobalExceptionHandler já manda uma mensagem pronta em Detail.
+  if (status === 409) {
     return {
       success: false,
-      message: responseData.message || 'Erro de validação',
-      errors: responseData.errors,
-      data: responseData.data,
+      message:
+        problem.detail ||
+        'O recurso foi modificado por outra requisição. Recarregue e tente novamente.',
+    };
+  }
+
+  if (problem.errors) {
+    const errors: FieldError[] = Object.entries(problem.errors).flatMap(
+      ([field, messages]) => messages.map((message) => ({ field, message }))
+    );
+    return {
+      success: false,
+      message: problem.title || 'Erro de validação',
+      errors,
     };
   }
 
   return {
     success: false,
-    message: responseData.message,
-    data: responseData.data,
+    message: problem.detail || problem.title || 'Erro desconhecido',
   };
 }

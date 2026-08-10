@@ -34,20 +34,22 @@ namespace SeniorCareManager.WebAPI.Data.Builders
                 .IsRequired().HasMaxLength(11);
             modelBuilder.Entity<Carrier>().Property(pg => pg.Email)
                 .IsRequired().HasMaxLength(50);
+            modelBuilder.Entity<Carrier>().Property(pg => pg.IsActive).HasDefaultValue(true);
+            modelBuilder.Entity<Carrier>().HasIndex(pg => pg.CpfCnpj).IsUnique();
 
             modelBuilder.Entity<Carrier>().HasData(new List<Carrier>
             {
                 new Carrier(1, "Transportes ABC LTDA", "ABC Transportes", "12345678000190",
                 "Rua das Flores", "123", "Centro", "Próximo ao banco",
-                "São Paulo", "SP", "01001000", "11987654321", "contato@abctransportes.com"),
+                "São Paulo", "SP", "01001000", "11987654321", "contato@abctransportes.com") { IsActive = true },
 
                 new Carrier(2, "Expresso XYZ S/A", "Expresso XYZ", "98765432000180",
                 "Avenida Paulista", "456", "Bela Vista", "Esquina com a Rua Augusta",
-                "São Paulo", "SP", "01311000", "11976543210", "expresso@xyz.com.br"),
+                "São Paulo", "SP", "01311000", "11976543210", "expresso@xyz.com.br") { IsActive = true },
 
                 new Carrier(3, "Translogística EFG ME", "EFG Transportes", "22334455000122",
                 "Avenida Rio Branco", "789", "Centro", "Próximo ao metrô",
-                "Rio de Janeiro", "RJ", "20040001", "21987654321", "contato@efgtrans.com.br"),
+                "Rio de Janeiro", "RJ", "20040001", "21987654321", "contato@efgtrans.com.br") { IsActive = true },
             });
         }
     }

@@ -7,4 +7,5 @@
     public string Phone { get; set; }
     public string Email { get; set; }
     public uint RowVersion { get; set; }
+    public bool IsActive { get; set; }
 }

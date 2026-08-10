@@ -15,4 +15,7 @@ public class CatalogQuery
     public int PageSize { get; set; } = 20;
 
     public string? Search { get; set; }
+
+    // §9.1/9.2: listagens só trazem ativos por padrão — true pra incluir inativados.
+    public bool IncludeInactive { get; set; } = false;
 }

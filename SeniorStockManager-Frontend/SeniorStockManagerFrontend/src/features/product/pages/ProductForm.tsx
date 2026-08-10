@@ -4,7 +4,6 @@ import BreadcrumbPageTitle from '@/components/BreadcrumbPageTitle';
 import Product from '@/types/models/Product';
 import Button from '@/components/Button';
 import { Checkbox, SelectInput, TextInput } from '@/components/FormControls';
-import { YesNo } from '@/types/enums/YesNo';
 import ProductType from '@/types/models/ProductType';
 import {
   ProductTypeFormModal,
@@ -40,9 +39,9 @@ export default function ProductForm() {
     id: 0,
     currentStock: 0,
     description: '',
-    expirationControlled: YesNo.NO,
+    expirationControlled: false,
     genericName: '',
-    highCost: YesNo.NO,
+    highCost: false,
     minimumStock: 0,
     unitPrice: 0,
     averageCost: undefined,
@@ -50,6 +49,8 @@ export default function ProductForm() {
     stockValue: undefined,
     productTypeId: 0,
     unitOfMeasureId: 0,
+    rowVersion: 0,
+    isActive: true,
   });
 
   const [expirationChecked, setExpirationChecked] = useState(false);
@@ -85,8 +86,8 @@ export default function ProductForm() {
       if (res.success && res.data) {
         const product = res.data!;
 
-        setExpirationChecked(product.expirationControlled === YesNo.YES);
-        setHighCostChecked(product.highCost === YesNo.YES);
+        setExpirationChecked(product.expirationControlled);
+        setHighCostChecked(product.highCost);
         setHasMinimumStock((product.minimumStock ?? 0) > 0);
 
         setData(product);
@@ -386,11 +387,10 @@ export default function ProductForm() {
                       label='Possui controle de validade'
                       checked={expirationChecked}
                       onChange={(_, value) => {
-                        const isControlled = value ? YesNo.YES : YesNo.NO;
                         setExpirationChecked(value);
                         setData({
                           ...data,
-                          expirationControlled: isControlled,
+                          expirationControlled: value,
                         });
                       }}
                     />
@@ -401,11 +401,10 @@ export default function ProductForm() {
                       label='Alto Custo'
                       checked={highCostChecked}
                       onChange={(_, value) => {
-                        const isHighCost = value ? YesNo.YES : YesNo.NO;
                         setHighCostChecked(value);
                         setData({
                           ...data,
-                          highCost: isHighCost,
+                          highCost: value,
                         });
                       }}
                     />
