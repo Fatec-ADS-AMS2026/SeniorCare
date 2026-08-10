@@ -5,6 +5,9 @@ Fundamentação: [`docs/infra/ci-cd-arquitetura.md`](../../docs/infra/ci-cd-arqu
 
 ## Componentes
 
+- [`BOOTSTRAP.md`](BOOTSTRAP.md) — procedimento completo de bootstrap da instituição/admin
+  inicial, canal de ativação para contas seguintes, backup/rollback e incompatibilidade
+  entre versões. **Leia antes do primeiro deploy de um cliente novo.**
 - `docker-compose.yml` — serviços com `image: ${*_IMAGE}` (pinadas pelo release manifest).
 - `deploy.sh` — orquestra: login → `pg_dump` → pull por digest → up → healthcheck → registro.
 - `clients/<nome>/.env` — segredos/paths/CORS por ambiente (fora do git; ver `clients/exemplo/.env.example`).

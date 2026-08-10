@@ -70,8 +70,39 @@ jobs:
           name: manifest-${{ matrix.var }}
           path: _manifest/${{ matrix.var }}.env
 
+  migration-script:
+    # Gera o SQL idempotente das migrações — o servidor de produção nunca tem SDK .NET
+    # (modelo build-once/deploy-many, docs/infra/ci-cd-arquitetura.md), então esse SQL
+    # precisa ser gerado aqui e distribuído como artefato do release. deploy.sh roda esse
+    # SQL contra o Postgres de produção real dentro de uma transação que sempre reverte
+    # (pré-validação — ver design.md, risco "Migração falha por dados atuais inválidos"),
+    # detectando violação de constraint ANTES do deploy real acontecer.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Versão
+        id: ver
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Gerar migration.sql idempotente
+        working-directory: SeniorCareManager-Backend/SeniorCareManager.WebAPI
+        run: |
+          dotnet tool restore
+          dotnet ef migrations script --idempotent --output migration.sql
+
+      - name: Upload do script de migração
+        uses: actions/upload-artifact@v4
+        with:
+          name: migration-script
+          path: SeniorCareManager-Backend/SeniorCareManager.WebAPI/migration.sql
+
   manifest:
-    needs: build
+    needs: [build, migration-script]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -87,6 +118,12 @@ jobs:
           pattern: manifest-*
           merge-multiple: true
 
+      - name: Baixar script de migração
+        uses: actions/download-artifact@v4
+        with:
+          name: migration-script
+          path: _migration
+
       - name: Montar releases/<versão>.env
         run: |
           V="${{ steps.ver.outputs.version }}"
@@ -101,18 +138,21 @@ jobs:
             cat _frag/*.env | sort
           } > "$OUT"
           echo "----- $OUT -----"; cat "$OUT"
+          cp _migration/migration.sql "releases/${V}-migration.sql"
 
       - name: Commitar o manifest na main
         run: |
           V="${{ steps.ver.outputs.version }}"
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "releases/${V}.env"
+          git add "releases/${V}.env" "releases/${V}-migration.sql"
           git commit -m "chore(release): manifest ${V}" || echo "sem mudanças"
           git push origin HEAD:main || echo "push do manifest falhou (revisar proteção da branch)"
 
       - name: Criar GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: releases/${{ steps.ver.outputs.version }}.env
+          files: |
+            releases/${{ steps.ver.outputs.version }}.env
+            releases/${{ steps.ver.outputs.version }}-migration.sql
           generate_release_notes: true

@@ -393,3 +393,60 @@ dependência, por mudanças OpenSpec verificáveis.
   acadêmico, não como prova de software executável.
 - A classificação considera o commit informado e deverá ser atualizada após cada
   incremento relevante do produto.
+
+## 14. Atualização pós stabilize-existing-platform (§1-§12)
+
+- **Data desta atualização:** 10 de agosto de 2026.
+- **Baseline do código:** conclusão da mudança OpenSpec `stabilize-existing-platform`
+  (seções §1 a §12), que corrigiu a linha de base técnica e de infraestrutura
+  identificada na avaliação original (seções 12-13 acima) sem tocar no escopo
+  assistencial ainda não implementado (residente, prontuário, dashboards,
+  assinatura — continuam ausentes, ver seção 3-10 acima).
+
+O parecer da seção 12 apontava a infraestrutura como "mais madura do que o
+domínio funcional" e listava, como critério de MVP ainda não atendido:
+autenticação real, autorização por papel, auditoria, testes automatizados dos
+fluxos críticos e uso só de dado sintético até homologação de segurança. Esta
+mudança fecha diretamente essas lacunas transversais:
+
+1. **Backend agora compila e roda testes de verdade** — a limitação da seção
+   13 ("não compilado localmente por ausência do SDK dotnet") não se aplica
+   mais: 28 testes unitários + 118 de integração (Testcontainers PostgreSQL
+   real, incluindo migração desde banco vazio e sobre dado pré-existente da
+   versão anterior) rodam em CI a cada PR, com cobertura publicada.
+2. **Autenticação e autorização real** — login por sessão (cookie
+   `HttpOnly`+`Secure`), MFA obrigatório para conta administrativa,
+   recuperação de conta, e controle de acesso completo (papéis, grupos de
+   permissão, exceções, políticas, escopo institucional/organizacional) nos
+   dois front-ends, com API como autoridade final de decisão.
+3. **Auditoria** — autenticações, MFA, ativações, mudanças de estado de
+   conta, sessões e decisões de acesso protegido são registradas de forma
+   imutável.
+4. **9 catálogos administrativos + Produto** com paginação, filtro,
+   concorrência otimista e contrato OpenAPI publicado e validado contra os
+   dois front-ends.
+5. **Baseline de acessibilidade WCAG 2.2 AA** — a limitação da seção 13
+   ("não foi realizada... auditoria WCAG formal") tem agora verificação
+   automatizada real (jest-axe cobrindo login/modal/tabela/formulário nos
+   dois apps) somada a contraste recalculado à mão e navegação por teclado
+   verificada mecanicamente (login + CRUD de referência por app) — não é uma
+   auditoria WCAG completa de todo o produto (esse continua sendo um item
+   maior, fora do escopo desta mudança), mas os componentes compartilhados e
+   as jornadas críticas hoje atendem o nível AA nos critérios aplicáveis.
+6. **CI/CD fechado** — build+teste+cobertura dos três componentes, migração
+   testada em banco vazio e sobre versão anterior, pré-validação de dado
+   antes de aplicar migração em produção, verificação de fixture sintética
+   (nenhum dado pessoal real em teste/seed), e bootstrap de instituição/admin
+   agora efetivamente conectado ao deploy (as variáveis `Bootstrap__*`
+   existiam desde antes mas nunca chegavam ao container — corrigido e
+   verificado com um smoke test real da stack completa nesta seção).
+
+O parecer da seção 12 continua válido: o SeniorCare segue não pronto para
+receber dado real de saúde nem ser apresentado como software completo de
+gestão de ILPI — o núcleo assistencial (residente, cuidado, prontuário,
+financeiro, doações, dashboards) não foi tocado por esta mudança. O que mudou
+é que a FUNDAÇÃO que a seção 12 pedia como pré-requisito ("identidade,
+residente, profissionais, autorização, auditoria e integridade") agora existe
+de fato para identidade/autorização/auditoria — o próximo incremento pode
+construir sobre uma base testada, auditável e com CI real, em vez de sobre um
+código que não compilava em CI.

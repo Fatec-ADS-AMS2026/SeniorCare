@@ -17,13 +17,16 @@ concurrency:
 jobs:
   env-hygiene:
     # Garante que nenhum .env real (com segredo) é rastreado no git e que os .example
-    # versionados não carregam segredo real. Roda sempre (repo inteiro, custo desprezível),
-    # sem depender do filtro de paths dos demais jobs.
+    # versionados não carregam segredo real, e que fixtures/seeds de teste só usam dados
+    # sintéticos. Roda sempre (repo inteiro, custo desprezível), sem depender do filtro de
+    # paths dos demais jobs.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - name: Verificar higiene de .env
         run: ./.github/scripts/check-env-hygiene.sh
+      - name: Verificar fixtures/seeds sintéticos
+        run: ./.github/scripts/check-synthetic-fixtures.sh
 
   changes:
     runs-on: ubuntu-latest
@@ -53,11 +56,27 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
-      # Sem projeto de teste ainda (SeniorCareManager.WebAPI.sln só tem o WebAPI) — quando
-      # existir, adicionar aqui um passo `dotnet test`.
-      - name: dotnet build
-        working-directory: SeniorCareManager-Backend/SeniorCareManager.WebAPI
-        run: dotnet build --configuration Release
+      - name: dotnet test (build + unitários + integração, com cobertura)
+        # Builda a solution inteira (WebAPI + os dois projetos de teste) e roda os 145
+        # testes existentes — os projetos de teste existem desde a §1, mas nunca tinham
+        # sido ligados ao CI (job antigo só rodava `dotnet build` do WebAPI isolado).
+        # coverlet.collector já é dependência dos dois .csproj de teste, sem pacote novo.
+        working-directory: SeniorCareManager-Backend
+        run: |
+          dotnet test SeniorCareManager.WebAPI/SeniorCareManager.WebAPI.sln \
+            --configuration Release \
+            --logger "trx" \
+            --collect:"XPlat Code Coverage" \
+            --results-directory ./TestResults
+      - name: Verificar artefato de teste (sem credencial embutida)
+        run: ./.github/scripts/check-frontend-bundle.sh SeniorCareManager-Backend/TestResults
+      - name: Publicar resultados e cobertura
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-test-results
+          path: SeniorCareManager-Backend/TestResults
+          retention-days: 14
 
   care-web:
     needs: changes
@@ -81,6 +100,14 @@ jobs:
         run: |
           npm audit --omit=dev --audit-level=high
           npm audit --audit-level=critical
+      - run: npm run test:coverage
+      - name: Publicar cobertura
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: care-web-coverage
+          path: SeniorCareManager-Frontend/SeniorCareManagerFrontend/coverage
+          retention-days: 14
       - run: npm run build
       - name: Verificar bundle de produção (sem localhost/segredo embutido)
         run: ../../.github/scripts/check-frontend-bundle.sh dist
@@ -105,6 +132,14 @@ jobs:
         run: |
           npm audit --omit=dev --audit-level=high
           npm audit --audit-level=critical
+      - run: npm run test:coverage
+      - name: Publicar cobertura
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stock-web-coverage
+          path: SeniorStockManager-Frontend/SeniorStockManagerFrontend/coverage
+          retention-days: 14
       - run: npm run build
       - name: Verificar bundle de produção (sem localhost/segredo embutido)
         run: ../../.github/scripts/check-frontend-bundle.sh dist
