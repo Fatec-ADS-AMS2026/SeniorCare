@@ -22,7 +22,17 @@ export default function FormModal({
 
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await handleSubmit(onSubmit, onClose);
+    try {
+      await handleSubmit(onSubmit, onClose);
+    } catch {
+      // useModalForm.handleSubmit relança de propósito pra manter a modal
+      // aberta em caso de erro (onClose não é chamado) — o próprio onSubmit já
+      // trata a mensagem de erro (alerta/estado local); sem este catch, todo
+      // FormModal com um onSubmit que falha gera uma promise rejeitada sem
+      // handler (achado: reproduzível em qualquer tela existente que usa
+      // FormModal — Religion/Position/HealthInsurancePlan também têm esse
+      // padrão de "throw" no onSubmit).
+    }
   };
 
   return (

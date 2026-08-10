@@ -7,13 +7,18 @@ import {
 } from 'react-router-dom';
 import { routes } from './routes';
 import { AppLayout, HeaderFooterLayout } from '@/features/layout';
+import RequireAuth from '@/features/auth/components/RequireAuth';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route
         path=''
-        element={<AppLayout />}
+        element={
+          <RequireAuth>
+            <AppLayout />
+          </RequireAuth>
+        }
         errorElement={<GlobalErrorBoundary />}
       >
         <Route {...routes.ADMIN_OVERVIEW} />

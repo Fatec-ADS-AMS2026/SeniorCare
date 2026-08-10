@@ -11,14 +11,23 @@ import {
 } from '@phosphor-icons/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useAppRoutes from '@/hooks/useAppRoutes';
+import useAuth from '@/hooks/useAuth';
+import { RequiredPermission } from '@/types/app/RouteDefinition';
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const routes = useAppRoutes();
   const navigate = useNavigate();
   const location = useLocation(); // Obtém a rota atual
+  const { hasPermission } = useAuth();
 
-  const buttons = [
+  const buttons: {
+    id: string;
+    label: string;
+    icon: JSX.Element;
+    route: string;
+    requiredPermission?: RequiredPermission;
+  }[] = [
     {
       id: 'home',
       label: routes.ADMIN_OVERVIEW.displayName,
@@ -57,6 +66,14 @@ export default function Sidebar() {
     },
   ];
 
+  // §10.5: item sem requiredPermission (ex. Home) fica sempre visível — só filtra o
+  // que declara uma permissão exigida na definição da rota.
+  const visibleButtons = buttons.filter(
+    ({ requiredPermission }) =>
+      !requiredPermission ||
+      hasPermission(requiredPermission.resource, requiredPermission.action, requiredPermission.feature)
+  );
+
   return (
     <div
       className={`flex flex-col z-10 ${
@@ -77,7 +94,7 @@ export default function Sidebar() {
 
       {/* Botões do Sidebar */}
       <div className='flex flex-col'>
-        {buttons.map((button) => (
+        {visibleButtons.map((button) => (
           <button
             key={button.id}
             onClick={() => navigate(button.route)}

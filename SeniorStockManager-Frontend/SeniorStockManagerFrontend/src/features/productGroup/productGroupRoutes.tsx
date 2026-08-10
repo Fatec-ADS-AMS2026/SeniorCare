@@ -6,5 +6,6 @@ export const productGroupRoutes = createRoutes({
     path: '/product_group',
     displayName: 'Grupos de Produto',
     element: <ProductGroupOverview />,
+    requiredPermission: { resource: 'ProductGroup', action: 'read' },
   },
 });

@@ -14,6 +14,37 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
+// §10.4: callback registrado pelo AuthProvider — 401 fora do login/restauração
+// limpa a sessão em memória e redireciona pro /login. Vive aqui (fora do React) só
+// como um ponto de registro; a lógica de fato (guarda contra loop, etc.) mora no
+// AuthProvider, evitando importar o router aqui e criar dependência circular com
+// as rotas de cada feature (mesmo motivo do useAppRoutes.ts existir).
+let unauthorizedHandler: (() => void) | null = null;
+
+export function registerUnauthorizedHandler(handler: (() => void) | null): void {
+  unauthorizedHandler = handler;
+}
+
+// Chamadas do próprio fluxo de login/restauração tratam 401 como um resultado
+// normal (credencial inválida / sessão inexistente) — não devem disparar o
+// redirecionamento global, ou o formulário de login nunca conseguiria mostrar
+// "credenciais inválidas".
+const AUTH_BOOTSTRAP_PATHS = ['auth/me', 'auth/login'];
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (axios.isAxiosError(error) && error.response?.status === 401) {
+      const requestUrl = (error.config?.url ?? '').toLowerCase();
+      const isBootstrapCall = AUTH_BOOTSTRAP_PATHS.some((path) => requestUrl.includes(path));
+      if (!isBootstrapCall) {
+        unauthorizedHandler?.();
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 // Exporta um encapsulamento para uso na aplicação. Devolve o corpo cru da
 // resposta (T) — a API não envelopa sucesso em {success,message,data} desde
 // a §3a (Problem Details centralizado); envelopar aqui seria mentir pro

@@ -6,5 +6,6 @@ export const unitOfMeasureRoutes = createRoutes({
     path: '/unit_of_measure',
     displayName: 'Unidades de Medida',
     element: <UnitOfMeasureOverview />,
+    requiredPermission: { resource: 'UnitOfMeasure', action: 'read' },
   },
 });

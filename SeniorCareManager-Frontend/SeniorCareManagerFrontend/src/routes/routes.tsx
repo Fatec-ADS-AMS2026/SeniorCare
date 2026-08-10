@@ -1,4 +1,13 @@
 import { authRoutes } from '@/features/auth';
+import { adminUserRoutes } from '@/features/adminUser';
+import { userSessionRoutes } from '@/features/userSession';
+import { roleRoutes } from '@/features/role';
+import { permissionGroupRoutes } from '@/features/permissionGroup';
+import { organizationalRoleRoutes } from '@/features/organizationalRole';
+import { organizationalRoleAssignmentRoutes } from '@/features/organizationalRoleAssignment';
+import { userPermissionOverrideRoutes } from '@/features/userPermissionOverride';
+import { accessPolicyRoutes } from '@/features/accessPolicy';
+import { institutionSecurityRoutes } from '@/features/institutionSecurity';
 import { healthInsurancePlanRoutes } from '@/features/healthInsurancePlan';
 import { positionRoutes } from '@/features/position';
 import { religionRoutes } from '@/features/religion';
@@ -36,6 +45,15 @@ const appRoutes = createRoutes({
 export const routes = {
   ...appRoutes,
   ...authRoutes,
+  ...adminUserRoutes,
+  ...userSessionRoutes,
+  ...roleRoutes,
+  ...permissionGroupRoutes,
+  ...organizationalRoleRoutes,
+  ...organizationalRoleAssignmentRoutes,
+  ...userPermissionOverrideRoutes,
+  ...accessPolicyRoutes,
+  ...institutionSecurityRoutes,
   ...healthInsurancePlanRoutes,
   ...positionRoutes,
   ...religionRoutes,
