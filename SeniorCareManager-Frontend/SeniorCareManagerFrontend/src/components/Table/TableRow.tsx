@@ -35,6 +35,7 @@ export default function TableRow<T extends { id: number | string }>({
             className='cursor-pointer'
             checked={isSelected}
             onChange={handleClick}
+            aria-label={`Selecionar linha ${index + 1}`}
           />
         </div>
       </td>

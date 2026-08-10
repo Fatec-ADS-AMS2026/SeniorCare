@@ -13,7 +13,9 @@ export default function TableHeader<T>({
     <thead className='text-textPrimary bg-neutral'>
       <tr className='h-12'>
         {/* Coluna reservada para as checkbox */}
-        <th className='w-10'></th>
+        <th className='w-10'>
+          <span className='sr-only'>Selecionar</span>
+        </th>
         {columns.map((column, index) => (
           <th key={index} className='text-left'>
             {column.label}

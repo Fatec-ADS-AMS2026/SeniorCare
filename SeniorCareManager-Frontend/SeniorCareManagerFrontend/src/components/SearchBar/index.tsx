@@ -27,13 +27,14 @@ export default function SearchBar({ placeholder, action }: SearchBarProps) {
         <input
           type='text'
           placeholder={placeholder ? placeholder : 'Digite aqui...'}
-          className='w-full py-2 pl-4 text-sm text-textPrimary rounded-l border-2 border-neutralWhite bg-neutralWhite focus:outline-none focus:border-neutralDarker'
+          className='w-full py-2 pl-4 text-sm text-textPrimary rounded-l border-2 border-neutralWhite bg-neutralWhite focus:outline-none focus:ring-2 focus:ring-primary'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         {/* Botão pra envio do formulário com a ação de pesquisa */}
         <Button
           label=''
+          aria-label='Buscar'
           icon={<MagnifyingGlass size={20} />}
           color='neutralLight'
           type='submit'

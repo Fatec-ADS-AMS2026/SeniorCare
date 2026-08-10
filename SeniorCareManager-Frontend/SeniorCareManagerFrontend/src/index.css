@@ -26,10 +26,14 @@
     --color-neutral-dark: #d9d9d9; /* Ideal para contraste suave */
     --color-neutral-white: #ffffff;
     --color-text-primary: #495453;
-    --color-text-secondary: #6d8385;
+    /* §11: #6d8385 original dava ~4.01:1 contra branco (abaixo do mínimo AA de
+       4.5:1 pra texto normal) — escurecido pro mínimo necessário. */
+    --color-text-secondary: #647879;
 
     /* Cores Específicas do Módulo */
-    --color-primary: #009f96;
+    /* §11: #009f96 original dava ~3.28:1 contra branco (abaixo do mínimo AA de
+       4.5:1) — escurecido pro mínimo necessário, mantendo o matiz verde-água. */
+    --color-primary: #008078;
     --color-secondary: #10c5bb;
     --color-surface-user: #d2edeb;
     --color-hoverButton: #10c5bb;

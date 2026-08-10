@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import { FormField } from '../FormField';
 import { BaseFieldProps } from '../types';
 import Checkbox from '../Checkbox';
@@ -26,6 +27,7 @@ export default function CheckboxGroup<T>({
   values,
   onChange,
 }: CheckboxGroupProps<T>) {
+  const id = useId();
   const handleChange = (
     attribute: keyof T,
     optionValue: unknown,
@@ -42,7 +44,7 @@ export default function CheckboxGroup<T>({
   };
 
   return (
-    <FormField label={label} error={error} required={required}>
+    <FormField id={id} label={label} error={error} required={required} groupLabel>
       <div className={`space-y-2 ${label && 'px-2'}`}>
         {options.map((option) => (
           <Checkbox

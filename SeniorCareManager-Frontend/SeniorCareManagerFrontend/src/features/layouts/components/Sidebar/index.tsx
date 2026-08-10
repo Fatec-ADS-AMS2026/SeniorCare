@@ -84,6 +84,8 @@ export default function Sidebar() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className='flex w-full items-center justify-center h-16 text-primary hover:bg-neutralLighter border-x-4 border-x-transparent hover:border-r-primary relative '
+        aria-label={isOpen ? 'Recolher menu' : 'Expandir menu'}
+        aria-expanded={isOpen}
       >
         {isOpen ? (
           <X className='size-6 absolute right-4' />
@@ -105,6 +107,7 @@ export default function Sidebar() {
                 ? 'bg-secondary text-neutralWhite border-r-primary' // Estilo para a página ativa
                 : 'text-primary hover:bg-neutralLighter hover:border-r-primary'
             }`}
+            aria-label={isOpen ? undefined : button.label}
           >
             {button.icon}
             {isOpen && <span className='text-sm'>{button.label}</span>}

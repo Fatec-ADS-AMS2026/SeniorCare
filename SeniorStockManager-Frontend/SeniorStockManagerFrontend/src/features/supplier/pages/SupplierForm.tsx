@@ -90,9 +90,9 @@ export default function SupplierForm() {
           className='w-[95%] h-full bg-white shadow-md p-8 flex flex-col justify-center items-center rounded-lg'
           onSubmit={handleSubmit}
         >
-          <h1 className='text-textPrimary font-bold text-2xl w-full mb-6'>
+          <h2 className='text-textPrimary font-bold text-2xl w-full mb-6'>
             Fornecedor
-          </h1>
+          </h2>
 
           <div className='w-full'>
             <div className='flex flex-row gap-4'>
