@@ -15,6 +15,17 @@ docker compose up -d --build
 docker compose --profile tools up -d pgadmin
 ```
 
+O `.env.example` já vem com as três variáveis `Bootstrap__*` preenchidas — no
+primeiro boot (banco vazio) a API cria a instituição e o administrador
+inicial. Capture o token de ativação impresso uma única vez no log e ative a
+conta: procedimento completo (captura do token, ativação, MFA) em
+[`../deploy/BOOTSTRAP.md`](../deploy/BOOTSTRAP.md) — os passos 2 e 3 de lá
+valem igual aqui, só troca `./deploy.sh <versão>` por `docker compose up -d --build`.
+
+```bash
+docker logs seniorcare-api 2>&1 | grep -A1 "Token de ativação"
+```
+
 ## Portas (default)
 
 | Serviço | Porta host |
