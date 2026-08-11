@@ -53,7 +53,8 @@ deste runbook; consulte o time de backend).
 ## 3. Ativar a conta
 
 Com o token em mãos, ative a conta (define a senha real e libera o login) —
-via UI (`RecoverAccountPage`/fluxo de ativação do front-end) ou diretamente:
+via UI (`ActivateAccountPage`, rota `/ativar-conta` — aceita `?email=`/`?token=`
+como query string, útil pra pré-preencher um link) ou diretamente:
 
 ```bash
 curl -X POST https://<host>/api/v1/Auth/activate \
@@ -61,10 +62,40 @@ curl -X POST https://<host>/api/v1/Auth/activate \
   -d '{"email":"admin@exemplo.com.br","token":"<token>","newPassword":"<senha-forte>"}'
 ```
 
-O primeiro login em seguida vai pedir cadastro de MFA (`mfa_enrollment_required`)
-— obrigatório para toda conta administrativa, sem exceção pro bootstrap.
+## 4. Cadastrar o MFA (obrigatório, sem exceção pro bootstrap)
 
-## 4. Canal de ativação para contas administrativas seguintes (gap operacional reconhecido)
+O primeiro login (`POST /api/v1/Auth/login`) devolve `status:
+"mfa_enrollment_required"` — nenhuma conta administrativa completa um login
+sem MFA cadastrado. Pela UI, o front-end já redireciona automaticamente pra
+`/mfa/enroll` nesse caso. A tela (e o endpoint `POST /Auth/mfa/enroll`) devolve
+uma chave (`authenticatorKey`) e o `otpauth://` correspondente — não há
+renderização de QR code no projeto (nenhuma lib de QR no front-end; ver
+`design.md`), então a chave é sempre digitada manualmente:
+
+1. Adicione uma conta manual num app autenticador (Google Authenticator,
+   Authy, 1Password etc.) usando o `authenticatorKey`.
+2. Confirme com o código de 6 dígitos gerado (`POST /Auth/mfa/confirm`) — a UI
+   já tem o campo pronto; via API, envie `{"challengeToken": "...", "code":
+   "123456"}`.
+3. A resposta traz 10 códigos de recuperação (uso único cada) e, se veio de um
+   login pendente, já completa a sessão.
+
+Sem celular à mão (ex.: automatizando um ambiente de teste), o código pode ser
+calculado a partir do `authenticatorKey` (TOTP padrão — HMAC-SHA1, 6 dígitos,
+janela de 30s) sem depender de nenhuma lib nova — exemplo verificado em Python:
+
+```python
+import base64, hmac, hashlib, struct, time
+def totp(secret_b32):
+    key = base64.b32decode(secret_b32.upper() + '=' * (-len(secret_b32) % 8))
+    msg = struct.pack('>Q', int(time.time() // 30))
+    h = hmac.new(key, msg, hashlib.sha1).digest()
+    o = h[-1] & 0x0f
+    return str((struct.unpack('>I', h[o:o+4])[0] & 0x7fffffff) % 10**6).zfill(6)
+print(totp("<authenticatorKey>"))
+```
+
+## 5. Canal de ativação para contas administrativas seguintes (gap operacional reconhecido)
 
 O procedimento acima cobre só a **primeira** conta (bootstrap via variável de
 ambiente, lida do log do processo). Contas administrativas criadas depois
@@ -92,7 +123,7 @@ Até existir um canal técnico de envio, o procedimento operacional recomendado
 Isso não é uma solução técnica — é a orientação operacional mínima enquanto o
 gap não é fechado por um canal de envio de verdade (trabalho futuro).
 
-## 5. Backup pré-deploy e rollback
+## 6. Backup pré-deploy e rollback
 
 Já implementados em `deploy.sh` — este runbook só aponta pra eles, não duplica
 a lógica:
@@ -115,7 +146,7 @@ a lógica:
   rodado. Se a migração alterou dado de forma incompatível com o binário
   anterior, restaure também o backup pré-deploy salvo no passo acima.
 
-## 6. Incompatibilidade entre versões — não faça deploy parcial
+## 7. Incompatibilidade entre versões — não faça deploy parcial
 
 O release manifest (`releases/<versão>.env`) fixa a API e os dois front-ends
 na MESMA versão, publicados juntos pelo `release.yml`. **Não troque a imagem
