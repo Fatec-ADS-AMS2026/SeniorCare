@@ -255,6 +255,10 @@ def main() -> int:
 
     for change in changes:
         print(f"\n{change}")
+        if args.configured and not (CHANGES_DIR / change / "tasks.md").is_file():
+            print(f"  ! change '{change}' não encontrado em {CHANGES_DIR} (arquivado?) "
+                  f"— pulando. Remova a linha de synced-changes.txt para não ver este aviso.")
+            continue
         sync_change(change, args.include_completed, args.dry_run)
 
     return 0
