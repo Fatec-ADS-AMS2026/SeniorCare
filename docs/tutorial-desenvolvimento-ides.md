@@ -97,6 +97,11 @@ Para cada um:
 Com Postgres + API + pelo menos um front-end rodando, falta criar a conta que
 você vai usar pra logar — a API não vem com nenhum usuário/senha padrão.
 
+> **Pendência conhecida**: não existe serviço de e-mail nem geração de QR code
+> nesta plataforma ainda — o token de ativação só existe no log/console, e o
+> MFA só oferece a chave em texto pra digitar manualmente. Detalhe completo em
+> [`../infra/deploy/BOOTSTRAP.md`](../infra/deploy/BOOTSTRAP.md#pendências-conhecidas-leia-antes-de-operar-em-produção).
+
 **a. Definir as variáveis de bootstrap antes de subir a API.** No Rider, edite
 a Run Configuration da API (ícone de lápis) → aba **Environment variables** →
 adicione as três juntas (ou edite `appsettings.Development.json` — nunca
@@ -110,7 +115,7 @@ Bootstrap__AdminDisplayName=Admin Dev
 
 Elas só têm efeito enquanto **nenhuma instituição existir no banco** — se seu
 Postgres local já tem dado de uma sessão anterior, ou apague o volume
-(`docker compose down -v` no `infra/docker-test`) ou pule pra "d" com a conta
+(`docker compose down -v` no `infra/docker-test`) ou pule pra "e" com a conta
 que você já tem.
 
 **b. Rodar a API (Debug) e capturar o token.** No primeiro boot com banco
@@ -124,12 +129,29 @@ Bootstrap: instituição e administrador PROVISIONED criados.
 Copie o `<token>` — se perder, não tem como recuperar pela API (só
 reprovisionando a conta direto no banco).
 
-**c. Ativar a conta pelo front-end.** Com o care (ou stock) rodando, abra
+**c. Ativar + logar + cadastrar MFA — caminho rápido (script).** Com o
+token do passo b em mãos, um único comando faz o resto (ativação, login,
+cadastro de MFA com TOTP calculado sozinho, sem celular):
+
+```bash
+cd infra/docker-test
+DEV_ADMIN_EMAIL=admin@example.com ./bootstrap-dev-admin.sh --token <token>
+```
+
+(`--token` porque o backend aqui não está em container — sem ele, o script
+tentaria ler o log de um container `seniorcare-api` que não existe nesse
+fluxo.) Idempotente — pode rodar de novo sem `--token` nas próximas vezes,
+ele usa a chave de MFA salva em `infra/docker-test/.dev-admin-mfa-key`.
+
+Prefere fazer manualmente (ou entender o que o script faz por baixo)? Os
+passos "d" e "e" abaixo são o equivalente manual, pela UI.
+
+**d. Ativar a conta pelo front-end (manual).** Com o care (ou stock) rodando, abra
 `http://localhost:5173/ativar-conta` (ajuste a porta se o Vite escolheu
 outra) e preencha e-mail (`admin@example.com`), o token do passo b, e a senha
 que você quer usar. Confirme "Conta ativada com sucesso."
 
-**d. Logar e cadastrar o MFA (obrigatório pra toda conta administrativa).**
+**e. Logar e cadastrar o MFA (obrigatório pra toda conta administrativa).**
 Vá em `/login`, entre com o e-mail/senha que você acabou de definir — o
 sistema redireciona automaticamente pra `/mfa/enroll` (nenhum login
 administrativo completa sem MFA cadastrado, nem no primeiro acesso). A tela
