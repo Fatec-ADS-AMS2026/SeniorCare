@@ -53,18 +53,49 @@ boot).
 | API | http://localhost:8080 (`/swagger`, `/health/live`, `/health/ready`) |
 | Postgres | `localhost:5432` (acessível de fora, ex.: DBeaver/pgAdmin) |
 
-## 3. Primeiro acesso (bootstrap do admin)
+## 3. Primeiro login (criar e ativar o usuário admin)
 
-No primeiro boot (banco vazio), a API cria a instituição e o administrador
-inicial a partir das variáveis `Bootstrap__*` do `.env` — o token de ativação
-só aparece **uma vez** no log:
+A API não vem com nenhum usuário/senha padrão — no primeiro boot (banco
+vazio), ela cria a instituição e o administrador a partir das três variáveis
+`Bootstrap__*` do `.env` (já preenchidas no `.env.example`, ver seção 1).
+Passo a passo pra sair de "containers no ar" até "logado no sistema":
+
+**a. Capturar o token de ativação.** Aparece **uma única vez** no log, no
+boot com banco vazio:
 
 ```bash
 docker logs seniorcare-api 2>&1 | grep -A1 "Token de ativação"
 ```
 
-Procedimento completo (capturar token, ativar conta, MFA obrigatório) em
-[`../infra/deploy/BOOTSTRAP.md`](../infra/deploy/BOOTSTRAP.md).
+Se perder o token antes de ativar, não tem como recuperar pela API — só
+reprovisionando a conta direto no banco, ou derrubando tudo com
+`docker compose down -v` e subindo de novo do zero.
+
+**b. Ativar a conta.** Pelo front-end: abra `http://localhost:3000/ativar-conta`
+(care) e preencha e-mail (`admin@example.com`, ou o que você definiu no
+`.env`), o token do passo a, e a senha que você quer usar. Ou direto pela API:
+
+```bash
+curl -X POST http://localhost:8080/api/v1/Auth/activate \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@example.com","token":"<token>","newPassword":"<senha-forte>"}'
+```
+
+**c. Logar e cadastrar o MFA (obrigatório, sem exceção pro bootstrap).** Pelo
+front-end: vá em `http://localhost:3000/login`, entre com o e-mail/senha do
+passo b — o sistema redireciona automaticamente pra `/mfa/enroll` (todo login
+administrativo, inclusive o primeiro, exige MFA cadastrado). A tela mostra
+uma chave (`authenticatorKey`); adicione uma conta manual num app
+autenticador (Google Authenticator, Authy, 1Password etc.) com essa chave e
+digite o código de 6 dígitos gerado. Depois de confirmar, guarde os 10
+códigos de recuperação mostrados (opcional, cada um só serve uma vez) — login
+completo, você cai direto no painel.
+
+Pra fazer o mesmo fluxo só por API/curl (sem abrir o navegador — útil em
+script/CI), veja o passo "d" do
+[tutorial de desenvolvimento](tutorial-desenvolvimento-ides.md#4-primeiro-login-criar-e-ativar-o-usuário-admin),
+que mostra como calcular o código TOTP a partir da chave sem precisar de
+celular.
 
 ## 4. Comandos do dia a dia
 
