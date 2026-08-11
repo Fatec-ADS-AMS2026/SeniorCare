@@ -1,13 +1,24 @@
 # Bootstrap da instituição e do administrador inicial
 
-Procedimento operacional fim-a-fim para o primeiro deploy de um cliente novo —
-complementa `CONFIGURATION.md` (que documenta as variáveis) com o passo a
-passo real. Verificado de ponta a ponta via `infra/docker-test` nesta seção
-(§12.8 do change `stabilize-existing-platform`).
+Procedimento operacional fim-a-fim para o primeiro deploy de um cliente novo
+em **produção** — complementa `CONFIGURATION.md` (que documenta as variáveis)
+com o passo a passo real. Verificado de ponta a ponta via `infra/docker-test`
+nesta seção (§12.8 do change `stabilize-existing-platform`).
 
 A mesma mecânica (variáveis → subir → capturar token do log → ativar → MFA)
-vale local, via [`infra/docker-test`](../docker-test/README.md) — só o comando
-de subir a stack muda (`docker compose up -d --build` em vez de `./deploy.sh`).
+vale pra qualquer um dos outros dois jeitos de rodar o projeto localmente —
+só muda COMO você sobe a API, o resto (capturar token, ativar, MFA) é
+idêntico:
+
+| Ambiente | Como sobe a API | Guia completo |
+|---|---|---|
+| Produção | `./deploy.sh <versão>` | Este arquivo |
+| Local via Docker | `docker compose up -d --build` (`infra/docker-test`) | [`docs/tutorial-docker.md`](../../docs/tutorial-docker.md) |
+| Local via IDE (Rider/WebStorm, sem container pra API/front-ends) | Run/Debug pela IDE | [`docs/tutorial-desenvolvimento-ides.md`](../../docs/tutorial-desenvolvimento-ides.md) |
+
+Os dois tutoriais acima já trazem o passo a passo completo (incluindo o
+cadastro de MFA) adaptado pro respectivo ambiente — este arquivo é a versão
+de referência/produção.
 
 ## 1. Antes do primeiro deploy
 
