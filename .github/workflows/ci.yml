@@ -17,9 +17,10 @@ concurrency:
 jobs:
   env-hygiene:
     # Garante que nenhum .env real (com segredo) é rastreado no git e que os .example
-    # versionados não carregam segredo real, e que fixtures/seeds de teste só usam dados
-    # sintéticos. Roda sempre (repo inteiro, custo desprezível), sem depender do filtro de
-    # paths dos demais jobs.
+    # versionados não carregam segredo real, que fixtures/seeds de teste só usam dados
+    # sintéticos, e que nenhum escopo clínico/assistencial fora do escopo desta mudança
+    # foi introduzido (§13.5). Roda sempre (repo inteiro, custo desprezível), sem depender
+    # do filtro de paths dos demais jobs.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -27,6 +28,8 @@ jobs:
         run: ./.github/scripts/check-env-hygiene.sh
       - name: Verificar fixtures/seeds sintéticos
         run: ./.github/scripts/check-synthetic-fixtures.sh
+      - name: Verificar escopo clínico/assistencial não introduzido
+        run: ./.github/scripts/check-clinical-scope.sh
 
   changes:
     runs-on: ubuntu-latest
