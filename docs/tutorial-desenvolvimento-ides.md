@@ -51,10 +51,9 @@ rodar os três pela IDE). Confirme que subiu: `docker ps` deve listar
      cada um.
 3. Rode em modo **Debug** (▷ com o ícone de inseto, ou `Shift+F9`) — a
    variável `ASPNETCORE_ENVIRONMENT=Development` já vem definida no perfil.
-   No primeiro boot com banco vazio, a API bootstrapa a instituição/admin
-   inicial — capture o token de ativação impresso no console do Rider (ver
-   [`../infra/deploy/BOOTSTRAP.md`](../infra/deploy/BOOTSTRAP.md) pro
-   procedimento completo).
+   Antes desse primeiro run, veja a seção 4 abaixo — ela cobre a variável de
+   bootstrap que precisa estar definida ANTES de rodar, pra API criar a
+   instituição/admin inicial no boot.
 4. Swagger abre automaticamente (`launchUrl: swagger` no perfil) — confirma
    que a API está de pé em `http://localhost:8080/swagger` (ou a porta que
    você configurou).
@@ -93,7 +92,75 @@ Para cada um:
    terminal integrado. Os testes usam mock de `@/features/api` (nunca chamam
    a API real), então não precisam do backend rodando.
 
-## 4. Fluxo do dia a dia
+## 4. Primeiro login (criar e ativar o usuário admin)
+
+Com Postgres + API + pelo menos um front-end rodando, falta criar a conta que
+você vai usar pra logar — a API não vem com nenhum usuário/senha padrão.
+
+**a. Definir as variáveis de bootstrap antes de subir a API.** No Rider, edite
+a Run Configuration da API (ícone de lápis) → aba **Environment variables** →
+adicione as três juntas (ou edite `appsettings.Development.json` — nunca
+commite valor real lá, é só pro seu ambiente local):
+
+```
+Bootstrap__InstitutionName=ILPI Dev
+Bootstrap__AdminEmail=admin@example.com
+Bootstrap__AdminDisplayName=Admin Dev
+```
+
+Elas só têm efeito enquanto **nenhuma instituição existir no banco** — se seu
+Postgres local já tem dado de uma sessão anterior, ou apague o volume
+(`docker compose down -v` no `infra/docker-test`) ou pule pra "d" com a conta
+que você já tem.
+
+**b. Rodar a API (Debug) e capturar o token.** No primeiro boot com banco
+vazio, o console do Rider imprime uma linha assim **uma única vez**:
+
+```
+Bootstrap: instituição e administrador PROVISIONED criados.
+  Token de ativação (uso único, capture agora — não será reimpresso): <token>
+```
+
+Copie o `<token>` — se perder, não tem como recuperar pela API (só
+reprovisionando a conta direto no banco).
+
+**c. Ativar a conta pelo front-end.** Com o care (ou stock) rodando, abra
+`http://localhost:5173/ativar-conta` (ajuste a porta se o Vite escolheu
+outra) e preencha e-mail (`admin@example.com`), o token do passo b, e a senha
+que você quer usar. Confirme "Conta ativada com sucesso."
+
+**d. Logar e cadastrar o MFA (obrigatório pra toda conta administrativa).**
+Vá em `/login`, entre com o e-mail/senha que você acabou de definir — o
+sistema redireciona automaticamente pra `/mfa/enroll` (nenhum login
+administrativo completa sem MFA cadastrado, nem no primeiro acesso). A tela
+mostra uma chave (`authenticatorKey`) e o `otpauth://` correspondente:
+
+- **Com celular à mão**: adicione uma conta manual num app autenticador
+  (Google Authenticator, Authy, 1Password etc.) usando essa chave, e digite o
+  código de 6 dígitos que ele gerar no campo "Código de confirmação".
+- **Sem celular / fluxo scriptável**: gere o código você mesmo a partir da
+  chave (TOTP padrão, SHA1/6 dígitos/30s) — por exemplo com Python (biblioteca
+  padrão, sem instalar nada):
+
+  ```python
+  import base64, hmac, hashlib, struct, time
+  def totp(secret_b32):
+      key = base64.b32decode(secret_b32.upper() + '=' * (-len(secret_b32) % 8))
+      msg = struct.pack('>Q', int(time.time() // 30))
+      h = hmac.new(key, msg, hashlib.sha1).digest()
+      o = h[-1] & 0x0f
+      return str((struct.unpack('>I', h[o:o+4])[0] & 0x7fffffff) % 10**6).zfill(6)
+  print(totp("<authenticatorKey>"))
+  ```
+
+Depois de confirmar, a tela mostra 10 códigos de recuperação (guarde se
+quiser — cada um só serve uma vez) e te leva direto pro painel — login
+completo.
+
+Nas próximas vezes (conta já ativa, MFA já cadastrado), é só `/login` com
+e-mail/senha + o código do autenticador (`/login/mfa`).
+
+## 5. Fluxo do dia a dia
 
 Com Postgres (Docker) + API (Rider, Debug) + os dois front-ends (WebStorm,
 `npm run dev`) rodando, você tem o ambiente completo com debug real no
