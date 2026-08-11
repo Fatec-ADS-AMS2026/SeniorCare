@@ -5,6 +5,10 @@ complementa `CONFIGURATION.md` (que documenta as variáveis) com o passo a
 passo real. Verificado de ponta a ponta via `infra/docker-test` nesta seção
 (§12.8 do change `stabilize-existing-platform`).
 
+A mesma mecânica (variáveis → subir → capturar token do log → ativar → MFA)
+vale local, via [`infra/docker-test`](../docker-test/README.md) — só o comando
+de subir a stack muda (`docker compose up -d --build` em vez de `./deploy.sh`).
+
 ## 1. Antes do primeiro deploy
 
 No `.env` do cliente (`clients/<nome>/.env`, a partir de `clients/exemplo/.env.example`),
