@@ -40,6 +40,15 @@ namespace SeniorCareManager.WebAPI
                     Console.WriteLine($"  Administrador: {result.AdminEmail}");
                     Console.WriteLine($"  Token de ativação (uso único, capture agora — não será reimpresso): {result.ActivationToken}");
                 }
+
+                // introduce-senior-portal §2.3 — idempotente: cria só os InstitutionModule
+                // que faltarem (DISABLED) para instituições/módulos já existentes. Roda
+                // depois do bootstrap acima para já cobrir a instituição recém-criada, se
+                // houver.
+                var moduleProvisioning = scope.ServiceProvider.GetRequiredService<IInstitutionModuleProvisioningService>();
+                var provisionedCount = moduleProvisioning.RunAsync().GetAwaiter().GetResult();
+                if (provisionedCount > 0)
+                    Console.WriteLine($"Senior Portal: {provisionedCount} InstitutionModule provisionado(s) (DISABLED).");
             }
 
             host.Run();

@@ -55,6 +55,14 @@ public class PermissionBuilder
         (Guid.Parse("21344FA6-54A6-4DC9-9696-EEE38BC42680"), "AccessAdministration", "manage", "Marca a identidade como administradora de acesso institucional", false),
     };
 
+    // introduce-senior-portal §2 — gate de visibilidade no catálogo do Senior Portal
+    // (ModuleDefinition.RequiredPermissionId). GUIDs fixos, mesma convenção acima.
+    private static readonly (Guid Id, string Resource, string Action, string Description, bool IsSystemOperation)[] ModulePermissions =
+    {
+        (Guid.Parse("E08D83BF-9FF8-4575-BBF1-3E62F7054048"), "Module", "care", "Acessar o módulo de assistência", false),
+        (Guid.Parse("F628285F-A074-4053-A1C3-22526C55AA93"), "Module", "stock", "Acessar o módulo de estoque", false),
+    };
+
     public static void Build(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Permission>().HasKey(p => p.Id);
@@ -78,6 +86,9 @@ public class PermissionBuilder
         }
 
         foreach (var (id, resource, action, description, isSystemOperation) in AdminPermissions)
+            yield return new Permission(id, resource, action, description, isSystemOperation);
+
+        foreach (var (id, resource, action, description, isSystemOperation) in ModulePermissions)
             yield return new Permission(id, resource, action, description, isSystemOperation);
     }
 }
