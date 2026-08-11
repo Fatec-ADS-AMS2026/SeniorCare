@@ -20,6 +20,23 @@ Os dois tutoriais acima já trazem o passo a passo completo (incluindo o
 cadastro de MFA) adaptado pro respectivo ambiente — este arquivo é a versão
 de referência/produção.
 
+## Pendências conhecidas (leia antes de operar em produção)
+
+Nenhum dos itens abaixo é um bug — são lacunas operacionais reais, já
+reconhecidas no `design.md`/`tasks.md` do change que entregou este fluxo, sem
+solução técnica ainda. Resumo rápido; detalhe de cada um na seção indicada:
+
+| Pendência | Impacto | Onde | Contorno atual |
+|---|---|---|---|
+| **Sem serviço de e-mail** — nenhum token/link de ativação é enviado automaticamente pra ninguém | Toda ativação (a primeira conta e as seguintes) depende de alguém copiar o token manualmente | Seções 2 e 5 | Log do processo (1ª conta) / consulta pontual ao banco (contas seguintes) + entrega por canal institucional já confiável |
+| **Sem QR code pro MFA** — só a chave em texto (`authenticatorKey`), nenhuma lib de QR no front-end | Cadastro de MFA sempre exige digitar a chave manualmente num app autenticador (ou calcular o TOTP por script) | Seção 4 | Digitação manual da chave, ou o script Python de exemplo |
+| **Token de ativação perdido = sem recuperação pela API** | Se o token não for capturado antes da ativação, a única saída é reprovisionar a conta direto no banco | Seção 2 | Recapturar com calma (o token só existe naquele momento — não corra) |
+
+Nenhum desses três itens é resolvido por este runbook — são orientações
+operacionais pra conviver com a lacuna, não uma correção técnica. Ver
+`design.md`, risco "Canal de ativação indisponível em ILPI de baixo
+orçamento", pro mitigante formalmente registrado.
+
 ## 1. Antes do primeiro deploy
 
 No `.env` do cliente (`clients/<nome>/.env`, a partir de `clients/exemplo/.env.example`),
@@ -54,7 +71,7 @@ Bootstrap: instituição e administrador PROVISIONED criados.
 Capture esse log imediatamente:
 
 ```bash
-docker logs seniorcare-api 2>&1 | grep -A1 "Token de ativação"
+docker logs seniorcare-api 2>&1 | grep "Token de ativação"
 ```
 
 Se o token for perdido antes da ativação, não há como recuperá-lo pela API —

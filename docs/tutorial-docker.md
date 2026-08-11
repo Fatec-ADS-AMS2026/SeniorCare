@@ -58,13 +58,40 @@ boot).
 A API não vem com nenhum usuário/senha padrão — no primeiro boot (banco
 vazio), ela cria a instituição e o administrador a partir das três variáveis
 `Bootstrap__*` do `.env` (já preenchidas no `.env.example`, ver seção 1).
-Passo a passo pra sair de "containers no ar" até "logado no sistema":
+
+> **Pendência conhecida**: não existe serviço de e-mail nem geração de QR code
+> nesta plataforma ainda — o token de ativação só existe no log do container,
+> e o MFA só oferece a chave em texto pra digitar manualmente. É exatamente
+> essa lacuna que o script da seção 3.1 abaixo automatiza pro ambiente de dev
+> (não é uma correção da lacuna em si — produção continua precisando do
+> procedimento manual). Detalhe completo em
+> [`../infra/deploy/BOOTSTRAP.md`](../infra/deploy/BOOTSTRAP.md#pendências-conhecidas-leia-antes-de-operar-em-produção).
+
+### 3.1. Caminho rápido — script
+
+```bash
+./bootstrap-dev-admin.sh
+```
+
+Faz tudo de uma vez: espera a API ficar pronta, captura o token do log,
+ativa a conta (`admin@example.com` / `DevSenhaForte!2026` por padrão —
+ajustável via `DEV_ADMIN_EMAIL`/`DEV_ADMIN_PASSWORD`), loga, e cadastra o MFA
+calculando o código TOTP sozinho (sem celular, sem QR code). Idempotente —
+rode de novo quantas vezes quiser, ele reconhece o que já foi feito. Ao
+final, imprime e-mail/senha e a chave do autenticador (salva localmente em
+`.dev-admin-mfa-key`, não versionada, só pra esse script recalcular o código
+em execuções futuras).
+
+Não contorna nem enfraquece o MFA — automatiza exatamente os mesmos passos
+que um humano faria via curl (seção 3.2), só sem precisar copiar/colar nada.
+
+### 3.2. Passo a passo manual (o que o script acima faz por baixo)
 
 **a. Capturar o token de ativação.** Aparece **uma única vez** no log, no
 boot com banco vazio:
 
 ```bash
-docker logs seniorcare-api 2>&1 | grep -A1 "Token de ativação"
+docker logs seniorcare-api 2>&1 | grep "Token de ativação"
 ```
 
 Se perder o token antes de ativar, não tem como recuperar pela API — só
@@ -91,11 +118,9 @@ digite o código de 6 dígitos gerado. Depois de confirmar, guarde os 10
 códigos de recuperação mostrados (opcional, cada um só serve uma vez) — login
 completo, você cai direto no painel.
 
-Pra fazer o mesmo fluxo só por API/curl (sem abrir o navegador — útil em
-script/CI), veja o passo "d" do
-[tutorial de desenvolvimento](tutorial-desenvolvimento-ides.md#4-primeiro-login-criar-e-ativar-o-usuário-admin),
-que mostra como calcular o código TOTP a partir da chave sem precisar de
-celular.
+Pra fazer o mesmo fluxo só por API/curl calculando o código TOTP você mesmo
+(sem celular, sem abrir o navegador), é exatamente o que `bootstrap-dev-admin.sh`
+(seção 3.1) já faz — abra o script se quiser ver os comandos `curl` exatos.
 
 ## 4. Comandos do dia a dia
 
