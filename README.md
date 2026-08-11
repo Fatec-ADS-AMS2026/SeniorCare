@@ -65,6 +65,8 @@ detalhada requisito-a-requisito em
 - [Escopo do projeto](docs/escopo-do-projeto.md)
 - [Avaliação dos requisitos frente à implementação](docs/relatorio-avaliacao-requisitos-implementacao.md)
 - [Arquitetura de CI/CD](docs/infra/ci-cd-arquitetura.md)
+- [Tutorial: rodando em desenvolvimento (Rider + WebStorm)](docs/tutorial-desenvolvimento-ides.md)
+- [Tutorial: rodando e gerando os containers Docker](docs/tutorial-docker.md)
 - [Stack local para desenvolvimento](infra/docker-test/README.md)
 - [Publicação em servidor](infra/deploy/README.md)
 - [Bootstrap da instituição e do administrador inicial](infra/deploy/BOOTSTRAP.md)
