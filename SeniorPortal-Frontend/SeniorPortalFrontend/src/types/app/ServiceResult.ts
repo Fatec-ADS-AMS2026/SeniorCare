@@ -5,4 +5,7 @@ export default interface ServiceResult<T> {
   message: string;
   data?: T;
   errors?: FieldError[];
+  // §5.3 — identificador de correlação do ProblemDetails (RFC 7807), quando o
+  // backend o fornece, pra exibir junto de uma falha recuperável.
+  correlationId?: string;
 }

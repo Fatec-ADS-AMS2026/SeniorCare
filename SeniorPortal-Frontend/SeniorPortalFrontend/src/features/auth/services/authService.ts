@@ -11,12 +11,15 @@ import {
   MfaConfirmResponse,
   MfaEnrollRequest,
   MfaEnrollResponse,
+  RegenerateRecoveryCodesRequest,
 } from '../types';
 
 // Endpoints de api/v1/Auth não são CRUD de catálogo — cada um ganha um método
-// tipado aqui. Escopo do portal (§4): só o que o login/restauração precisam
-// (me, login, MFA, logout) — recuperação/ativação/troca de senha continuam
-// vivendo em care-web/stock-web até uma tarefa própria migrar esses fluxos.
+// tipado aqui. Escopo do portal (§4/§5): login/restauração/MFA/logout (§4) +
+// regeneração de códigos de recuperação, a única ação de "segurança da
+// conta" com contrato já pronto no backend (§5.4) — recuperação/ativação/
+// troca de senha continuam vivendo em care-web/stock-web até uma tarefa
+// própria migrar esses fluxos.
 const authService = {
   me: async (): Promise<ServiceResult<CurrentIdentity>> => {
     try {
@@ -57,6 +60,17 @@ const authService = {
   mfaConfirm: async (request: MfaConfirmRequest): Promise<ServiceResult<MfaConfirmResponse>> => {
     try {
       const res = await api.post<MfaConfirmResponse>('Auth/mfa/confirm', request);
+      return { success: true, message: '', data: res.data };
+    } catch (error) {
+      return handleServiceError(error);
+    }
+  },
+
+  regenerateRecoveryCodes: async (
+    request: RegenerateRecoveryCodesRequest
+  ): Promise<ServiceResult<MfaConfirmResponse>> => {
+    try {
+      const res = await api.post<MfaConfirmResponse>('Auth/mfa/recovery-codes/regenerate', request);
       return { success: true, message: '', data: res.data };
     } catch (error) {
       return handleServiceError(error);
