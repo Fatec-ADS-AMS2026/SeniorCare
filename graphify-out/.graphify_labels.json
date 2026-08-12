@@ -421,5 +421,6 @@
   "419": "AdminOrganizationalRoleControllerTests",
   "420": "AccessPolicyBuilder.cs",
   "421": "Requirement: Tentativas de autenticação são protegidas contra abuso",
-  "422": "Requirement: Portal possui experiência acessível e responsiva"
+  "422": "Requirement: Portal possui experiência acessível e responsiva",
+  "423": "PermissionGroupPermission"
 }
