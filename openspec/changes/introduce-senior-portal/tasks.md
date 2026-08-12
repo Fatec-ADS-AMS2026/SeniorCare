@@ -40,12 +40,56 @@
 
 ## 2. Modelo e persistência do catálogo
 
-- [ ] 2.1 Criar entidades e configurações EF Core para `ModuleDefinition` e `InstitutionModule`, incluindo chaves, instituição, estados, ordenação, habilitação, versão de concorrência e campos de auditoria.
-- [ ] 2.2 Criar migração de banco com restrições de unicidade, integridade referencial, limites de texto e enumeração dos estados operacionais.
-- [ ] 2.3 Implementar provisionamento idempotente das definições aprovadas de assistência e estoque, inicialmente desabilitadas para cada instituição.
-- [ ] 2.4 Implementar validação de chave, ícone, permissão e caminho relativo por allowlist, rejeitando origens externas, HTML e destinos desconhecidos.
-- [ ] 2.5 Implementar validação e sanitização das mensagens operacionais para impedir conteúdo pessoal, clínico ou técnico sensível.
-- [ ] 2.6 Cobrir entidades, migração, seeds e validações com testes unitários e de integração em PostgreSQL.
+- [x] 2.1 Criar entidades e configurações EF Core para `ModuleDefinition` e `InstitutionModule`, incluindo chaves, instituição, estados, ordenação, habilitação, versão de concorrência e campos de auditoria.
+      **Evidência**: `Objects/Models/ModuleDefinition.cs` e `InstitutionModule.cs` +
+      `Data/Builders/ModuleDefinitionBuilder.cs`/`InstitutionModuleBuilder.cs`.
+      `ModuleDefinition` é catálogo sistêmico (chave única, ícone, caminho, permissão
+      exigida); `InstitutionModule` é a configuração por instituição (par
+      `{InstitutionId, ModuleDefinitionId}` único, `OperationalState`, `Order`,
+      `IsEnabled`, `OperationalMessage`, `Version`/`xmin` como rowversion de
+      concorrência otimista, `CreatedAtUtc`/`UpdatedAtUtc`). `InstitutionId` é `Guid`
+      puro sem FK de banco, mesma convenção de `Role`/`ApplicationUser` (escopo
+      institucional reforçado pela aplicação, não pelo schema).
+- [x] 2.2 Criar migração de banco com restrições de unicidade, integridade referencial, limites de texto e enumeração dos estados operacionais.
+      **Evidência**: `Data/Migrations/20260811144526_AddSeniorPortalCatalog.cs`.
+      Índice único em `ModuleDefinition.Key` e no par `InstitutionModule`
+      `{institution_id, module_definition_id}`; FK `InstitutionModule.ModuleDefinitionId
+      → ModuleDefinition.Id` com `DeleteBehavior.Restrict`; FK
+      `ModuleDefinition.RequiredPermissionId → Permission.Id`; `maxLength` em todos os
+      campos de texto (`key` 50, `name` 100, `description` 300, `icon` 50, `path` 100,
+      `operational_message` 280); `CHECK ck_institutionmodule_operational_state
+      (operational_state BETWEEN 0 AND 3)` — primeiro CHECK constraint do repositório.
+- [x] 2.3 Implementar provisionamento idempotente das definições aprovadas de assistência e estoque, inicialmente desabilitadas para cada instituição.
+      **Evidência**: `Services/Entities/InstitutionModuleProvisioningService.cs`
+      (`RunAsync`) cria só os pares `{instituição, ModuleDefinition ativa}` que
+      faltarem, sempre como `OperationalState.DISABLED`/`IsEnabled=false`; registrado
+      em `Startup.cs` (`IInstitutionModuleProvisioningService`) e disparado em
+      `Program.cs` logo após o bootstrap do admin. Seed das 2 definições aprovadas
+      (`care`, `stock`) via `HasData` em `ModuleDefinitionBuilder`. Idempotência
+      coberta por `InstitutionModuleProvisioningServiceTests.RunAsync_CalledTwice_DoesNotDuplicateRows`.
+- [x] 2.4 Implementar validação de chave, ícone, permissão e caminho relativo por allowlist, rejeitando origens externas, HTML e destinos desconhecidos.
+      **Evidência**: `Infrastructure/Validation/ModuleDefinitionValidator.cs`. Allowlist
+      (não denylist) — chave via regex `^[a-z][a-z0-9-]{1,49}$`, ícone contra o conjunto
+      fixo já usado pelos front-ends (`HeartStraight`, `Package`), caminho contra
+      prefixos fixos (`/care`, `/stock`) rejeitando esquema (`://`), origem
+      protocol-relative (`//`) e qualquer coisa fora de `/`, e permissão contra o
+      conjunto de `Permission.Id` existentes.
+- [x] 2.5 Implementar validação e sanitização das mensagens operacionais para impedir conteúdo pessoal, clínico ou técnico sensível.
+      **Evidência**: `Infrastructure/Validation/OperationalMessageSanitizer.cs` rejeita
+      HTML (`<`/`>`), URL (`https?://`) e reusa o mesmo vocabulário denylist de
+      `.github/scripts/check-clinical-scope.sh` para termos clínicos/pessoais
+      (prontuário, assinatura, conselho profissional, etc.), além do limite de 280
+      caracteres já reforçado pelo schema.
+- [x] 2.6 Cobrir entidades, migração, seeds e validações com testes unitários e de integração em PostgreSQL.
+      **Evidência**: unitários — `ModuleDefinitionValidatorTests.cs`,
+      `OperationalMessageSanitizerTests.cs`. Integração (Testcontainers/PostgreSQL) —
+      `IntegrationTests/Data/SeniorPortalCatalogPersistenceTests.cs` (unicidade de
+      `Key`, unicidade do par instituição/módulo, FK inválida, CHECK de
+      `operational_state` fora do range, concorrência otimista) e
+      `IntegrationTests/Services/InstitutionModuleProvisioningServiceTests.cs`
+      (provisionamento em instituição nova, idempotência). Rodado `dotnet test` na
+      solução inteira — 52/52 testes unitários e 125/125 de integração aprovados, 0
+      falhas.
 
 ## 3. APIs e autorização do catálogo
 

@@ -38,6 +38,8 @@ namespace SeniorCareManager.WebAPI.Data
         public DbSet<UserSession> UserSessions { get; set; }
         public DbSet<AuditEvent> AuditEvents { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ModuleDefinition> ModuleDefinitions { get; set; }
+        public DbSet<InstitutionModule> InstitutionModules { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -65,6 +67,8 @@ namespace SeniorCareManager.WebAPI.Data
             UserSessionBuilder.Build(modelBuilder);
             AuditEventBuilder.Build(modelBuilder);
             ProductBuilder.Build(modelBuilder);
+            ModuleDefinitionBuilder.Build(modelBuilder);
+            InstitutionModuleBuilder.Build(modelBuilder);
         }
     }
 }

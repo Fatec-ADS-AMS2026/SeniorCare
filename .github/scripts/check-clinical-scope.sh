@@ -38,6 +38,10 @@ for path in "${SCAN_PATHS[@]}"; do
   [ -d "$path" ] || continue
   while IFS=: read -r file line match; do
     [ -z "$match" ] && continue
+    # clinical-scope:allow — mesma convenção do gitleaks:allow já usada no repo. Só
+    # suprime a linha marcada explicitamente (nunca o arquivo inteiro), então continua
+    # exigindo revisão humana pra cada novo uso — não abre uma exceção geral.
+    grep -qF 'clinical-scope:allow' <<<"$(sed -n "${line}p" "$file")" && continue
     FAILURES+=("$file:$line: $match")
   done < <(grep -rnoiE "$FORBIDDEN_RE" "$path" \
              --include='*.cs' --include='*.ts' --include='*.tsx' 2>/dev/null || true)

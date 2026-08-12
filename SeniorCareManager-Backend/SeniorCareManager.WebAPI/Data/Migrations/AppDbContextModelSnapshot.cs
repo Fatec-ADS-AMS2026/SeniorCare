@@ -648,6 +648,69 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                     b.ToTable("institution");
                 });
 
+            modelBuilder.Entity("SeniorCareManager.WebAPI.Objects.Models.InstitutionModule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at_utc");
+
+                    b.Property<Guid>("InstitutionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("institution_id");
+
+                    b.Property<bool>("IsEnabled")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("is_enabled");
+
+                    b.Property<int>("ModuleDefinitionId")
+                        .HasColumnType("integer")
+                        .HasColumnName("module_definition_id");
+
+                    b.Property<string>("OperationalMessage")
+                        .HasMaxLength(280)
+                        .HasColumnType("character varying(280)")
+                        .HasColumnName("operational_message");
+
+                    b.Property<int>("OperationalState")
+                        .HasColumnType("integer")
+                        .HasColumnName("operational_state");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("integer")
+                        .HasColumnName("order");
+
+                    b.Property<DateTime>("UpdatedAtUtc")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at_utc");
+
+                    b.Property<uint>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("xid")
+                        .HasColumnName("xmin");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ModuleDefinitionId");
+
+                    b.HasIndex("InstitutionId", "ModuleDefinitionId")
+                        .IsUnique();
+
+                    b.ToTable("institutionmodule", t =>
+                        {
+                            t.HasCheckConstraint("ck_institutionmodule_operational_state", "operational_state BETWEEN 0 AND 3");
+                        });
+                });
+
             modelBuilder.Entity("SeniorCareManager.WebAPI.Objects.Models.Manufacturer", b =>
                 {
                     b.Property<int>("Id")
@@ -736,6 +799,89 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                             IsActive = true,
                             Phone = "34567890123",
                             TradeName = "Trade C"
+                        });
+                });
+
+            modelBuilder.Entity("SeniorCareManager.WebAPI.Objects.Models.ModuleDefinition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("icon");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("key");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("path");
+
+                    b.Property<Guid>("RequiredPermissionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("required_permission_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Key")
+                        .IsUnique();
+
+                    b.HasIndex("RequiredPermissionId");
+
+                    b.ToTable("moduledefinition");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Cuidado e acompanhamento dos residentes",
+                            Icon = "HeartStraight",
+                            IsActive = true,
+                            Key = "care",
+                            Name = "Assistência",
+                            Path = "/care",
+                            RequiredPermissionId = new Guid("e08d83bf-9ff8-4575-bbf1-3e62f7054048")
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Controle de insumos e produtos",
+                            Icon = "Package",
+                            IsActive = true,
+                            Key = "stock",
+                            Name = "Estoque",
+                            Path = "/stock",
+                            RequiredPermissionId = new Guid("f628285f-a074-4053-a1c3-22526c55aa93")
                         });
                 });
 
@@ -1299,6 +1445,22 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                             Description = "Marca a identidade como administradora de acesso institucional",
                             IsSystemOperation = false,
                             Resource = "AccessAdministration"
+                        },
+                        new
+                        {
+                            Id = new Guid("e08d83bf-9ff8-4575-bbf1-3e62f7054048"),
+                            Action = "care",
+                            Description = "Acessar o módulo de assistência",
+                            IsSystemOperation = false,
+                            Resource = "Module"
+                        },
+                        new
+                        {
+                            Id = new Guid("f628285f-a074-4053-a1c3-22526c55aa93"),
+                            Action = "stock",
+                            Description = "Acessar o módulo de estoque",
+                            IsSystemOperation = false,
+                            Resource = "Module"
                         });
                 });
 
@@ -2062,6 +2224,28 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SeniorCareManager.WebAPI.Objects.Models.InstitutionModule", b =>
+                {
+                    b.HasOne("SeniorCareManager.WebAPI.Objects.Models.ModuleDefinition", "ModuleDefinition")
+                        .WithMany()
+                        .HasForeignKey("ModuleDefinitionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ModuleDefinition");
+                });
+
+            modelBuilder.Entity("SeniorCareManager.WebAPI.Objects.Models.ModuleDefinition", b =>
+                {
+                    b.HasOne("SeniorCareManager.WebAPI.Objects.Models.Permission", "RequiredPermission")
+                        .WithMany()
+                        .HasForeignKey("RequiredPermissionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("RequiredPermission");
                 });
 
             modelBuilder.Entity("SeniorCareManager.WebAPI.Objects.Models.OrganizationalRoleAssignment", b =>

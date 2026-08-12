@@ -223,6 +223,9 @@ public class Startup
         services.AddScoped<IBootstrapService, BootstrapService>();
         services.AddSingleton<ICommonPasswordBlocklist, CommonPasswordBlocklist>();
 
+        // Senior Portal — catálogo de módulos (introduce-senior-portal §2)
+        services.AddScoped<IInstitutionModuleProvisioningService, InstitutionModuleProvisioningService>();
+
         // Decisão de acesso (§5)
         services.AddScoped<IAccessDecisionService, AccessDecisionService>();
 
