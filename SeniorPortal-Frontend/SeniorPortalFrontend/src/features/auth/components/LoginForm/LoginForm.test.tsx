@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import LoginForm from './index';
+import MfaChallengePage from '../../pages/MfaChallengePage';
 import { AuthProvider } from '@/contexts/AuthContext';
 
 const getMock = vi.fn();
@@ -150,6 +151,54 @@ describe('LoginForm', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Credenciais inválidas.')).toBeInTheDocument();
+    });
+  });
+
+  // Regressão: o returnTo pendente precisa sobreviver à etapa de MFA — usa a
+  // MfaChallengePage real (não um placeholder) pra provar que a query string
+  // chega até lá e o destino final é o returnTo, não o fallback `/`.
+  it('preserves a pending returnTo through the MFA challenge step', async () => {
+    const user = userEvent.setup();
+    postMock.mockResolvedValueOnce({
+      data: { status: 'mfa_required', challengeToken: 'challenge-abc' },
+    });
+    postMock.mockResolvedValueOnce({
+      data: {
+        status: 'ok',
+        identity: {
+          userId: '1',
+          institutionId: '1',
+          institutionName: 'ILPI Teste',
+          displayName: 'Fulana de Tal',
+          email: 'fulana@example.com',
+          roles: [],
+          organizationalResponsibilities: [],
+          effectivePermissions: [],
+        },
+      },
+    });
+
+    render(
+      <MemoryRouter initialEntries={['/login?returnTo=%2Fcare%2Fresidents']}>
+        <AuthProvider>
+          <Routes>
+            <Route path='/login' element={<LoginForm />} />
+            <Route path='/login/mfa' element={<MfaChallengePage />} />
+            <Route path='/care/residents' element={<div>Residentes</div>} />
+          </Routes>
+        </AuthProvider>
+      </MemoryRouter>
+    );
+
+    await user.type(screen.getByPlaceholderText('Digite seu email'), 'fulana@example.com');
+    await user.type(screen.getByPlaceholderText('Digite sua senha'), 'senha-correta');
+    await user.click(screen.getByRole('button', { name: 'Entrar' }));
+
+    await user.type(await screen.findByRole('textbox'), '123456');
+    await user.click(screen.getByRole('button', { name: 'Confirmar' }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Residentes')).toBeInTheDocument();
     });
   });
 

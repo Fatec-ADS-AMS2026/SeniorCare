@@ -1,12 +1,14 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import authService from '../services/authService';
 import { MfaEnrollResponse } from '../types';
 import useAuth from '@/hooks/useAuth';
+import { resolveReturnPath } from '@/utils/returnPath';
 
 export default function MfaEnrollPage() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { login, status: authStatus } = useAuth();
 
   // Sem challengeToken = cadastro voluntário por quem já tem sessão; com
@@ -60,7 +62,9 @@ export default function MfaEnrollPage() {
     }
   };
 
-  const handleDone = () => navigate('/', { replace: true });
+  // §4.5 — mesmo returnTo validado usado por LoginForm/MfaChallengePage,
+  // preservado na query string pelo LoginForm ao redirecionar pra cá.
+  const handleDone = () => navigate(resolveReturnPath(searchParams.get('returnTo')), { replace: true });
 
   if (recoveryCodes) {
     return (

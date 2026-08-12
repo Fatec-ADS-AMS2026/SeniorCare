@@ -44,13 +44,18 @@ export default function LoginForm() {
       return;
     }
 
+    // §4.5 — o returnTo pendente precisa sobreviver à etapa de MFA: sem
+    // repassar a query string aqui, MfaChallengePage/MfaEnrollPage nunca veem
+    // o parâmetro e sempre caem no fallback `/` mesmo com um destino válido.
+    const pendingQuery = searchParams.toString();
+
     if (status === 'mfa_required' && challengeToken) {
-      navigate('/login/mfa', { state: { challengeToken } });
+      navigate(`/login/mfa${pendingQuery ? `?${pendingQuery}` : ''}`, { state: { challengeToken } });
       return;
     }
 
     if (status === 'mfa_enrollment_required' && challengeToken) {
-      navigate('/mfa/enroll', { state: { challengeToken } });
+      navigate(`/mfa/enroll${pendingQuery ? `?${pendingQuery}` : ''}`, { state: { challengeToken } });
       return;
     }
 

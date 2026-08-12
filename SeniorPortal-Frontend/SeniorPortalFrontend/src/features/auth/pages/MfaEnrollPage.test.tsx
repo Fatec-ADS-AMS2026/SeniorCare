@@ -17,13 +17,15 @@ vi.mock('@/features/api', () => ({
   registerUnauthorizedHandler: vi.fn(),
 }));
 
-function renderMfaEnroll(state: unknown) {
+function renderMfaEnroll(state: unknown, search?: string) {
   return render(
-    <MemoryRouter initialEntries={[{ pathname: '/mfa/enroll', state }]}>
+    <MemoryRouter initialEntries={[{ pathname: '/mfa/enroll', search, state }]}>
       <AuthProvider>
         <Routes>
           <Route path='/login' element={<div>Tela de login</div>} />
           <Route path='/mfa/enroll' element={<MfaEnrollPage />} />
+          <Route path='/' element={<div>Início</div>} />
+          <Route path='/care/residents' element={<div>Residentes</div>} />
         </Routes>
       </AuthProvider>
     </MemoryRouter>
@@ -81,5 +83,48 @@ describe('MfaEnrollPage', () => {
       expect(screen.getByText('aaaa-1111')).toBeInTheDocument();
     });
     expect(screen.getByText('bbbb-2222')).toBeInTheDocument();
+  });
+
+  // §4.5 — regressão: "Concluir" deve honrar o returnTo pendente, não sempre
+  // cair no fallback `/`.
+  it('honors a validated returnTo when finishing enrollment', async () => {
+    const user = userEvent.setup();
+    postMock.mockResolvedValueOnce({
+      data: { authenticatorKey: 'ABC123', otpAuthUri: 'otpauth://totp/SeniorCare' },
+    });
+    postMock.mockResolvedValueOnce({
+      data: {
+        recoveryCodes: ['aaaa-1111'],
+        identity: {
+          userId: '1',
+          institutionId: '1',
+          institutionName: 'ILPI Teste',
+          displayName: 'Fulana',
+          email: 'fulana@example.com',
+          roles: [],
+          organizationalResponsibilities: [],
+          effectivePermissions: [],
+        },
+      },
+    });
+
+    renderMfaEnroll({ challengeToken: 'challenge-abc' }, '?returnTo=%2Fcare%2Fresidents');
+
+    await waitFor(() => {
+      expect(screen.getByText('otpauth://totp/SeniorCare')).toBeInTheDocument();
+    });
+
+    await user.type(screen.getByLabelText('Código de confirmação'), '123456');
+    await user.click(screen.getByRole('button', { name: 'Confirmar' }));
+
+    await waitFor(() => {
+      expect(screen.getByText('aaaa-1111')).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByRole('button', { name: 'Concluir' }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Residentes')).toBeInTheDocument();
+    });
   });
 });
