@@ -23,6 +23,11 @@
          mais alta entre as referências explícitas e as transitivas. -->
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+    <!-- GHSA-q939-rpr3-3284 (high, corrigido só na 2026.0.0) — SSH.NET vem transitivo de
+         Testcontainers.PostgreSql via Docker.DotNet.Enhanced (conexão SSH a daemon Docker
+         remoto, caminho que este projeto nunca usa — só Docker local), mesmo racional
+         acima. -->
+    <PackageReference Include="SSH.NET" Version="2026.0.0" />
   </ItemGroup>
 
   <ItemGroup>

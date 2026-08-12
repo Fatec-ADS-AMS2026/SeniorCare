@@ -57,6 +57,30 @@ public sealed class OpenApiContractTests : IClassFixture<PostgresWebApplicationF
 
     public static IEnumerable<object[]> EntitiesCalledByStockWeb() => StockWebEntities.Select(e => new object[] { e });
 
+    // introduce-senior-portal §3.8 — os endpoints do catálogo não têm o formato CRUD
+    // genérico de AssertEntityInContract (POST/DELETE não existem: InstitutionModule é
+    // provisionado, nunca criado/excluído por API, §2.3/§3.3), então são verificados à
+    // parte. Nenhum front-end consome estas rotas ainda (o Senior Portal é §4) — a
+    // publicação automática via Swashbuckle é o próprio contrato aqui.
+    [Fact]
+    public async Task SeniorPortalCatalog_ContractExposesExpectedRoutesAndVerbs()
+    {
+        var paths = await GetContractPaths();
+
+        paths.Should().ContainKey("/api/v1/me/modules");
+        paths["/api/v1/me/modules"].TryGetProperty("get", out _).Should().BeTrue("GET /api/v1/me/modules é o catálogo mínimo do usuário");
+        paths["/api/v1/me/modules"].TryGetProperty("post", out _).Should().BeFalse("o catálogo do usuário é só leitura");
+
+        paths.Should().ContainKey("/api/v1/AdminInstitutionModule");
+        paths["/api/v1/AdminInstitutionModule"].TryGetProperty("get", out _).Should().BeTrue();
+        paths["/api/v1/AdminInstitutionModule"].TryGetProperty("post", out _).Should().BeFalse("InstitutionModule é provisionado, nunca criado por API");
+
+        paths.Should().ContainKey("/api/v1/AdminInstitutionModule/{id}");
+        paths["/api/v1/AdminInstitutionModule/{id}"].TryGetProperty("get", out _).Should().BeTrue();
+        paths["/api/v1/AdminInstitutionModule/{id}"].TryGetProperty("put", out _).Should().BeTrue();
+        paths["/api/v1/AdminInstitutionModule/{id}"].TryGetProperty("delete", out _).Should().BeFalse("InstitutionModule nunca é excluído — só desabilitado (IsEnabled=false)");
+    }
+
     private async Task AssertEntityInContract(string entity)
     {
         var paths = await GetContractPaths();

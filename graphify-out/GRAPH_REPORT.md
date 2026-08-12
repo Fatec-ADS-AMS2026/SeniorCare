@@ -1,16 +1,16 @@
-# Graph Report - SeniorCare  (2026-08-11)
+# Graph Report - SeniorCare  (2026-08-12)
 
 ## Corpus Check
-- 821 files · ~892,822 words
+- 833 files · ~899,632 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 3672 nodes · 6340 edges · 397 communities (307 shown, 90 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 120 edges (avg confidence: 0.79)
+- 3747 nodes · 6583 edges · 384 communities (295 shown, 89 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 127 edges (avg confidence: 0.79)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4c30797f`
+- Built from commit: `9e7d0f82`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -236,12 +236,10 @@
 - [[_COMMUNITY_OriginRateLimiter|OriginRateLimiter]]
 - [[_COMMUNITY_SeniorCareManager.WebAPI.Data.Builders|SeniorCareManager.WebAPI.Data.Builders]]
 - [[_COMMUNITY_CurrentIdentityDTO|CurrentIdentityDTO]]
-- [[_COMMUNITY_AdminInvariantService|AdminInvariantService]]
 - [[_COMMUNITY_MfaPolicyService|MfaPolicyService]]
 - [[_COMMUNITY_AccessPolicy.ts|AccessPolicy.ts]]
 - [[_COMMUNITY_accessibility.test.tsx|accessibility.test.tsx]]
 - [[_COMMUNITY_EndpointAuthorizationTests|EndpointAuthorizationTests]]
-- [[_COMMUNITY_Product|Product]]
 - [[_COMMUNITY_TestAuthHandler|TestAuthHandler]]
 - [[_COMMUNITY_Bootstrap da instituição e do administrador inicial|Bootstrap da instituição e do administrador inicial]]
 - [[_COMMUNITY_PagedResult|PagedResult]]
@@ -269,16 +267,13 @@
 - [[_COMMUNITY_keyboardNavigation.test.tsx|keyboardNavigation.test.tsx]]
 - [[_COMMUNITY_CurrentIdentity.ts|CurrentIdentity.ts]]
 - [[_COMMUNITY_AccountTokenBuilder.cs|AccountTokenBuilder.cs]]
-- [[_COMMUNITY_ApplicationUserBuilder.cs|ApplicationUserBuilder.cs]]
 - [[_COMMUNITY_AuditEventBuilder.cs|AuditEventBuilder.cs]]
 - [[_COMMUNITY_ManufacturerBuilder.cs|ManufacturerBuilder.cs]]
 - [[_COMMUNITY_OrganizationalRoleAssignmentBuilder.cs|OrganizationalRoleAssignmentBuilder.cs]]
 - [[_COMMUNITY_OrganizationalRoleBuilder.cs|OrganizationalRoleBuilder.cs]]
-- [[_COMMUNITY_PermissionGroupBuilder.cs|PermissionGroupBuilder.cs]]
 - [[_COMMUNITY_PositionBuilder.cs|PositionBuilder.cs]]
 - [[_COMMUNITY_ProductBuilder.cs|ProductBuilder.cs]]
 - [[_COMMUNITY_ProductGroupBuilder.cs|ProductGroupBuilder.cs]]
-- [[_COMMUNITY_ProductTypeBuilder.cs|ProductTypeBuilder.cs]]
 - [[_COMMUNITY_ReligionBuilder.cs|ReligionBuilder.cs]]
 - [[_COMMUNITY_RoleBuilder.cs|RoleBuilder.cs]]
 - [[_COMMUNITY_SupplierBuilder.cs|SupplierBuilder.cs]]
@@ -287,15 +282,11 @@
 - [[_COMMUNITY_UserSessionBuilder.cs|UserSessionBuilder.cs]]
 - [[_COMMUNITY_20260805233320_InitialCreate.Designer.cs|20260805233320_InitialCreate.Designer.cs]]
 - [[_COMMUNITY_20260807210706_AddRowVersionConcurrencyToken.Designer.cs|20260807210706_AddRowVersionConcurrencyToken.Designer.cs]]
-- [[_COMMUNITY_20260808200151_AddInstitutionAndIdentity.Designer.cs|20260808200151_AddInstitutionAndIdentity.Designer.cs]]
 - [[_COMMUNITY_20260808205640_AddAccessControlFoundation.Designer.cs|20260808205640_AddAccessControlFoundation.Designer.cs]]
-- [[_COMMUNITY_20260809003848_AddAccessAdministrationApi.Designer.cs|20260809003848_AddAccessAdministrationApi.Designer.cs]]
 - [[_COMMUNITY_20260809013824_AddSessionAndMfa.Designer.cs|20260809013824_AddSessionAndMfa.Designer.cs]]
-- [[_COMMUNITY_20260809142400_AddAuditEvent.Designer.cs|20260809142400_AddAuditEvent.Designer.cs]]
 - [[_COMMUNITY_20260809230401_AddProduct.Designer.cs|20260809230401_AddProduct.Designer.cs]]
 - [[_COMMUNITY_20260809231010_AddProductPermissions.Designer.cs|20260809231010_AddProductPermissions.Designer.cs]]
 - [[_COMMUNITY_AdminUser.ts|AdminUser.ts]]
-- [[_COMMUNITY_Requirement Senior Portal é a entrada institucional unificada|Requirement: Senior Portal é a entrada institucional unificada]]
 - [[_COMMUNITY_Requirement Cliente obtém contexto e permissões efetivas sem decidir autorização|Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização]]
 - [[_COMMUNITY_SeniorCare|SeniorCare]]
 - [[_COMMUNITY_SeniorCareClaimTypes.cs|SeniorCareClaimTypes.cs]]
@@ -320,8 +311,6 @@
 - [[_COMMUNITY_Requirement Decisão de acesso segue precedência determinística e negação padrão|Requirement: Decisão de acesso segue precedência determinística e negação padrão]]
 - [[_COMMUNITY_Requirement Política de senha segue práticas atuais e possui piso seguro|Requirement: Política de senha segue práticas atuais e possui piso seguro]]
 - [[_COMMUNITY_AddSeniorPortalCatalog|AddSeniorPortalCatalog]]
-- [[_COMMUNITY_ModuleDefinitionValidator|ModuleDefinitionValidator]]
-- [[_COMMUNITY_InstitutionIdentityOriginServiceTests.cs|InstitutionIdentityOriginServiceTests.cs]]
 - [[_COMMUNITY_Requirement Administração de acesso possui configuração dedicada|Requirement: Administração de acesso possui configuração dedicada]]
 - [[_COMMUNITY_Requirement Autenticação multifator protege contas privilegiadas|Requirement: Autenticação multifator protege contas privilegiadas]]
 - [[_COMMUNITY_Requirement Conta possui ciclo de vida controlado|Requirement: Conta possui ciclo de vida controlado]]
@@ -337,7 +326,6 @@
 - [[_COMMUNITY_Requirement Identidade é individual e vinculada à instituição|Requirement: Identidade é individual e vinculada à instituição]]
 - [[_COMMUNITY_Requirement Profissão, papel técnico e responsabilidade organizacional são distintos|Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos]]
 - [[_COMMUNITY_CarrierBuilder.cs|CarrierBuilder.cs]]
-- [[_COMMUNITY_InstitutionBuilder.cs|InstitutionBuilder.cs]]
 - [[_COMMUNITY_InstitutionModuleBuilder.cs|InstitutionModuleBuilder.cs]]
 - [[_COMMUNITY_20260809230019_AddCatalogActiveState.Designer.cs|20260809230019_AddCatalogActiveState.Designer.cs]]
 - [[_COMMUNITY_20260811144526_AddSeniorPortalCatalog.Designer.cs|20260811144526_AddSeniorPortalCatalog.Designer.cs]]
@@ -347,7 +335,6 @@
 - [[_COMMUNITY_Requirement Mudança autenticada de senha exige confirmação de identidade|Requirement: Mudança autenticada de senha exige confirmação de identidade]]
 - [[_COMMUNITY_Requirement Origem da identidade é extensível|Requirement: Origem da identidade é extensível]]
 - [[_COMMUNITY_Requirement Parâmetros de segurança são configuráveis dentro de limites seguros|Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros]]
-- [[_COMMUNITY_Requirement Permissões são compostas por recurso, ação e funcionalidade|Requirement: Permissões são compostas por recurso, ação e funcionalidade]]
 - [[_COMMUNITY_Requirement Portal minimiza dados e não apresenta conteúdo clínico|Requirement: Portal minimiza dados e não apresenta conteúdo clínico]]
 - [[_COMMUNITY_Requirement Cliente obtém contexto e permissões efetivas sem decidir autorização|Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização]]
 - [[_COMMUNITY_Requirement Credencial administrativa inicial é provisionada com segurança|Requirement: Credencial administrativa inicial é provisionada com segurança]]
@@ -358,49 +345,49 @@
 - [[_COMMUNITY_Requirement Tentativas de autenticação são protegidas contra abuso|Requirement: Tentativas de autenticação são protegidas contra abuso]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Task` - 366 edges
-2. `SeniorCareManager.WebAPI.Objects.Models` - 152 edges
-3. `SeniorCareManager.WebAPI.Objects.Dtos.Requests` - 90 edges
-4. `SeniorCareManager.WebAPI.Services.Interfaces` - 90 edges
-5. `SeniorCareManager.WebAPI.Objects.Enums` - 81 edges
-6. `SeniorCareManager.WebAPI.Data` - 71 edges
-7. `AppDbContext` - 69 edges
-8. `SeniorCareManager.WebAPI.Objects.Dtos.Entities` - 55 edges
-9. `SeniorCareManager.WebAPI.Infrastructure` - 53 edges
-10. `PostgresWebApplicationFactory` - 36 edges
+1. `Task` - 392 edges
+2. `SeniorCareManager.WebAPI.Objects.Models` - 154 edges
+3. `SeniorCareManager.WebAPI.Services.Interfaces` - 97 edges
+4. `SeniorCareManager.WebAPI.Objects.Dtos.Requests` - 94 edges
+5. `SeniorCareManager.WebAPI.Objects.Enums` - 89 edges
+6. `SeniorCareManager.WebAPI.Data` - 77 edges
+7. `AppDbContext` - 71 edges
+8. `SeniorCareManager.WebAPI.Objects.Dtos.Entities` - 64 edges
+9. `SeniorCareManager.WebAPI.Infrastructure` - 55 edges
+10. `PostgresWebApplicationFactory` - 39 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `AdminOrganizationalRoleAssignmentControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminOrganizationalRoleAssignmentControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
-- `AdminOrganizationalRoleControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminOrganizationalRoleControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
-- `AdminRoleControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminRoleControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
+- `AdminAccessDecisionControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
+  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminAccessDecisionControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
+- `AdminAccessPolicyControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
+  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminAccessPolicyControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
+- `AdminInstitutionModuleControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
+  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminInstitutionModuleControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
+- `AdminInstitutionSecurityControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
+  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminInstitutionSecurityControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
 - `AdminUserControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
   SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminUserControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
-- `AdminUserPermissionOverrideControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminUserPermissionOverrideControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
 
 ## Import Cycles
 - None detected.
 
-## Communities (397 total, 90 thin omitted)
+## Communities (384 total, 89 thin omitted)
 
 ### Community 0 - "SeniorCareManager.WebAPI.Objects.Models"
-Cohesion: 0.07
-Nodes (5): SeniorCareManager.WebAPI.Services.Entities, SeniorCareManager.WebAPI.Services.Interfaces, SeniorCareManager.WebAPI.Data.Repositories, SeniorCareManager.WebAPI.Objects.Models, SeniorCareManager.WebAPI.Data.Interfaces
+Cohesion: 0.08
+Nodes (8): SeniorCareManager.WebAPI.Data.Interceptors, SeniorCareManager.WebAPI.Services.Entities, SeniorCareManager.WebAPI.Services.Interfaces, SeniorCareManager.UnitTests.Services, SeniorCareManager.WebAPI.Infrastructure, SeniorCareManager.WebAPI.Data.Repositories, SeniorCareManager.WebAPI.Objects.Models, SeniorCareManager.WebAPI.Data.Interfaces
 
 ### Community 1 - "SeniorCareManager.WebAPI.Objects.Enums"
 Cohesion: 0.04
 Nodes (13): SeniorCareManager.WebAPI.Objects.Enums, AllergyType, EducationLevel, Ethnicity, MaritalStatus, PurchaseStatus, Relationship, Sex (+5 more)
 
 ### Community 2 - "AppDbContext"
-Cohesion: 0.22
-Nodes (5): ModelBuilder, ModelBuilder, ApplicationUserBuilder, ModelBuilder, HealthInsurancePlanBuilder
+Cohesion: 0.15
+Nodes (7): ModelBuilder, ModelBuilder, HealthInsurancePlanBuilder, ModelBuilder, InstitutionBuilder, ModelBuilder, PermissionGroupBuilder
 
 ### Community 3 - "GenericService"
-Cohesion: 0.15
-Nodes (10): IEnumerable, IGenericRepository, IPositionRepository, AppDbContext, PositionRepository, Position, IEnumerable, GenericService (+2 more)
+Cohesion: 0.14
+Nodes (12): Fact, AdminAccessDecisionControllerTests, Fact, AdminAccessPolicyControllerTests, Fact, Guid, AdminInstitutionModuleControllerTests, Fact (+4 more)
 
 ### Community 4 - "devDependencies"
 Cohesion: 0.05
@@ -411,8 +398,8 @@ Cohesion: 0.05
 Nodes (43): dependencies, axios, @phosphor-icons/react, react, react-dom, react-router-dom, devDependencies, autoprefixer (+35 more)
 
 ### Community 6 - "GenericRepository"
-Cohesion: 0.19
-Nodes (11): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, SupplierController (+3 more)
+Cohesion: 0.14
+Nodes (17): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, SupplierController (+9 more)
 
 ### Community 7 - "IGenericService"
 Cohesion: 0.14
@@ -439,16 +426,16 @@ Cohesion: 0.18
 Nodes (11): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, ProductTypeController (+3 more)
 
 ### Community 13 - "Controller"
-Cohesion: 0.19
-Nodes (11): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, PositionController (+3 more)
+Cohesion: 0.13
+Nodes (17): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, PositionController (+9 more)
 
 ### Community 14 - "ManufacturerController"
-Cohesion: 0.19
-Nodes (11): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, ProductGroupController (+3 more)
+Cohesion: 0.12
+Nodes (18): ICollection, ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission (+10 more)
 
 ### Community 15 - "ReligionController"
-Cohesion: 0.19
-Nodes (11): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, ReligionController (+3 more)
+Cohesion: 0.13
+Nodes (17): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, ReligionController (+9 more)
 
 ### Community 16 - "UnitOfMeasureController"
 Cohesion: 0.19
@@ -463,8 +450,8 @@ Cohesion: 0.10
 Nodes (19): compilerOptions, allowImportingTsExtensions, isolatedModules, jsx, lib, module, moduleDetection, moduleResolution (+11 more)
 
 ### Community 19 - "index.tsx"
-Cohesion: 0.09
-Nodes (17): Fact, PasswordPolicyServiceTests, ActionResult, HttpGet, HttpPut, RequirePermission, UserManager, AdminInstitutionSecurityController (+9 more)
+Cohesion: 0.05
+Nodes (30): IPasswordValidator, Fact, InlineData, Theory, CommonPasswordBlocklistTests, Fact, PasswordPolicyServiceTests, ActionResult (+22 more)
 
 ### Community 20 - "index.tsx"
 Cohesion: 0.22
@@ -495,8 +482,8 @@ Cohesion: 0.09
 Nodes (19): App(), AuthContext, AuthContextType, AuthProvider(), AuthProviderProps, AuthStatus, getMock, identity (+11 more)
 
 ### Community 27 - "SeniorCareManager.WebAPI.Objects.Dtos.Entities"
-Cohesion: 0.19
-Nodes (12): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, HealthInsurancePlanController (+4 more)
+Cohesion: 0.15
+Nodes (18): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, HealthInsurancePlanController (+10 more)
 
 ### Community 28 - "AppLayout.tsx"
 Cohesion: 0.15
@@ -599,8 +586,8 @@ Cohesion: 0.33
 Nodes (5): For /graphify explain, For /graphify path, graphify reference: query, path, explain, Step 0 — Constrained query expansion (REQUIRED before traversal), Step 1 — Traversal
 
 ### Community 54 - "SeniorCareManager.WebAPI.Objects.Dtos"
-Cohesion: 0.08
-Nodes (21): Fact, AdminOrganizationalRoleAssignmentControllerTests, Fact, AdminOrganizationalRoleControllerTests, Fact, AdminRoleControllerTests, Fact, AdminUserControllerTests (+13 more)
+Cohesion: 0.10
+Nodes (17): Fact, AdminInstitutionSecurityControllerTests, Fact, AdminUserControllerTests, Fact, AdminUserPermissionOverrideControllerTests, Fact, AdminUserSessionControllerTests (+9 more)
 
 ### Community 55 - "graphify reference: add a URL and watch a folder"
 Cohesion: 0.50
@@ -635,16 +622,16 @@ Cohesion: 0.33
 Nodes (6): Documentação relacionada, Estrutura, Migrações, Rodando localmente, SeniorCareManager-Backend, Testes
 
 ### Community 75 - "ManufacturerDTO.cs"
-Cohesion: 0.05
-Nodes (26): SeniorCareManager.IntegrationTests, IClassFixture, Fact, AdminAccessDecisionControllerTests, Fact, AdminAccessPolicyControllerTests, Fact, AdminInstitutionSecurityControllerTests (+18 more)
+Cohesion: 0.06
+Nodes (24): IClassFixture, Fact, AdminOrganizationalRoleAssignmentControllerTests, Fact, AdminOrganizationalRoleControllerTests, Fact, AdminPermissionGroupControllerTests, Fact (+16 more)
 
 ### Community 111 - "SeniorCareManager.WebAPI.sln"
 Cohesion: 0.09
 Nodes (23): Microsoft.AspNetCore.Mvc.Testing (8.0.13), Moq (4.20.72), Testcontainers.PostgreSql (4.4.0), SeniorCareManager.IntegrationTests, net8.0, coverlet.collector (6.0.0), FluentAssertions (6.12.1), Microsoft.NET.Test.Sdk (17.8.0) (+15 more)
 
 ### Community 122 - "InitialCreate"
-Cohesion: 0.20
-Nodes (6): SeniorCareManager.WebAPI.Data.Migrations, ModelSnapshot, ModelBuilder, AddAuditEvent, ModelBuilder, AppDbContextModelSnapshot
+Cohesion: 0.14
+Nodes (8): SeniorCareManager.WebAPI.Data.Migrations, ModelSnapshot, ModelBuilder, AddInstitutionAndIdentity, ModelBuilder, AddAccessAdministrationApi, ModelBuilder, AppDbContextModelSnapshot
 
 ### Community 123 - "deploy.sh"
 Cohesion: 0.33
@@ -691,16 +678,16 @@ Cohesion: 0.50
 Nodes (3): Issue relacionada, O que mudou, Test plan
 
 ### Community 138 - ".NETCoreApp,Version=v8.0.AssemblyAttributes.cs"
-Cohesion: 0.11
-Nodes (7): Task, Fact, HttpClient, ProductGroupControllerTests, Fact, HttpClient, ReligionControllerTests
+Cohesion: 0.07
+Nodes (13): Task, Fact, HttpClient, ProductGroupControllerTests, Fact, HttpClient, ReligionControllerTests, IEnumerable (+5 more)
 
 ### Community 139 - "SeniorCareManager.WebAPI.AssemblyInfo.cs"
-Cohesion: 0.06
-Nodes (26): IdentityUserContext, Fact, Guid, EndpointAuthorizationTests, DbSet, Guid, AppDbContext, CancellationToken (+18 more)
+Cohesion: 0.10
+Nodes (16): IdentityUserContext, DbSet, Guid, AppDbContext, DateTime, Guid, AccountToken, Guid (+8 more)
 
 ### Community 140 - "SeniorCareManager.WebAPI.GlobalUsings.g.cs"
-Cohesion: 0.09
-Nodes (16): AllowAnonymous, ActionResult, HttpGet, HttpPost, IdentityResult, MessageResponse, MfaEnrollResponse, ActivateAccountRequest (+8 more)
+Cohesion: 0.05
+Nodes (43): AllowAnonymous, IdentityUser, ObjectResult, ActionResult, Guid, HttpGet, HttpPost, IdentityResult (+35 more)
 
 ### Community 141 - "SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs"
 Cohesion: 0.14
@@ -715,8 +702,8 @@ Cohesion: 0.18
 Nodes (11): 1. Contexto e restrições, 2. Decisão central: `build once, deploy many`, 3. Unidades implantáveis, 4. Versionamento — CalVer + release train, 5. Pipeline de CI/CD (GitHub Actions), 6. Release manifest — a unidade de deploy, 7. CD — entrega no servidor (pull-based), 8. Camada de operação (opcional) (+3 more)
 
 ### Community 148 - "Relatório de avaliação: requisitos versus implementação"
-Cohesion: 0.06
-Nodes (32): 10. Sequência recomendada de evolução, 11. Critérios mínimos para declarar o primeiro MVP, 12. Parecer final, 13. Limitações da avaliação, 14. Atualização pós stabilize-existing-platform (§1-§12), 1. Resultado executivo, 2. Método e critérios, 3.1 Backend (+24 more)
+Cohesion: 0.10
+Nodes (21): 11. Critérios mínimos para declarar o primeiro MVP, 12. Parecer final, 13. Limitações da avaliação, 14. Atualização pós stabilize-existing-platform (§1-§12), 1. Resultado executivo, 2. Método e critérios, 3.1 Backend, 3.2 Front-end assistencial (+13 more)
 
 ### Community 149 - "10. Sequência recomendada de evolução"
 Cohesion: 0.10
@@ -755,8 +742,8 @@ Cohesion: 0.12
 Nodes (15): accessibility-baseline Specification, Purpose, Requirement: Controles possuem nome, estado e instrução acessíveis, Requirement: Estrutura e contraste possuem critérios verificáveis, Requirement: Fluxos existentes são operáveis por teclado, Requirement: Preferências visuais são persistentes e limitadas, Requirements, Scenario: Botão somente com ícone (+7 more)
 
 ### Community 158 - "Decisions"
-Cohesion: 0.23
-Nodes (9): Fact, Guid, InlineData, IReadOnlySet, Theory, ModuleDefinitionValidatorTests, Guid, IReadOnlyList (+1 more)
+Cohesion: 0.07
+Nodes (25): SeniorCareManager.WebAPI.Infrastructure.Validation, SeniorCareManager.UnitTests, Fact, Guid, InlineData, IReadOnlySet, Theory, ModuleDefinitionValidatorTests (+17 more)
 
 ### Community 159 - "ADDED Requirements"
 Cohesion: 0.13
@@ -768,7 +755,7 @@ Nodes (14): MODIFIED Requirements, Requirement: Ativação e recuperação não 
 
 ### Community 161 - "tasks.md"
 Cohesion: 0.18
-Nodes (9): IdentityUser, IPasswordValidator, Guid, ApplicationUser, IdentityResult, UserManager, InstitutionalPasswordPolicyValidator, ICommonPasswordBlocklist (+1 more)
+Nodes (11): ActionResult, HttpGet, IReadOnlyList, ModuleCatalogController, ModuleCatalogItemDTO, CancellationToken, IReadOnlyList, ModuleCatalogService (+3 more)
 
 ### Community 162 - "proposal.md"
 Cohesion: 0.14
@@ -779,8 +766,8 @@ Cohesion: 0.22
 Nodes (11): ensure_labels(), existing_issues(), issue_body(), issue_title(), main(), parse_tasks(), Path, Título sem o prefixo do id do épico, que já vai entre colchetes. (+3 more)
 
 ### Community 164 - "GenericRepository"
-Cohesion: 0.21
-Nodes (4): AppDbContext, DbSet, IEnumerable, GenericRepository
+Cohesion: 0.23
+Nodes (5): SeniorCareManager.IntegrationTests, Fact, HttpClient, HealthEndpointReadyTests, HealthEndpointUnavailableTests
 
 ### Community 165 - "OpenSpec no GitHub — issues, PRs e kanban"
 Cohesion: 0.25
@@ -804,23 +791,19 @@ Nodes (5): ModuleDefinitionId, Fact, Guid, InstitutionId, SeniorPortalCatalogPer
 
 ### Community 170 - "Requirement: Administração de acesso possui configuração dedicada"
 Cohesion: 0.18
-Nodes (10): ADDED Requirements, Purpose, Requirement: Autenticação não implica autorização clínica, Requirement: Senhas são derivadas e nunca recuperáveis, Requirement: Tentativas de autenticação são protegidas contra abuso, Scenario: Administrador consulta usuário, Scenario: Autenticação posterior ao bloqueio temporário, Scenario: Introdução futura de dado assistencial (+2 more)
+Nodes (10): ADDED Requirements, Purpose, Requirement: Autenticação não implica autorização clínica, Requirement: Permissões são compostas por recurso, ação e funcionalidade, Requirement: Senhas são derivadas e nunca recuperáveis, Scenario: Administrador consulta usuário, Scenario: Introdução futura de dado assistencial, Scenario: Papel recebe grupo de módulo (+2 more)
 
 ### Community 171 - "Requirement: Autenticação multifator protege contas privilegiadas"
 Cohesion: 0.18
 Nodes (10): ADDED Requirements, Requirement: Conteúdo sensível nunca é registrado em log ou auditoria, Requirement: Envio de e-mail transacional é opcional e configurável por instituição, Requirement: Falha de envio não compromete a operação de origem, Scenario: Envio bem-sucedido, Scenario: Envio malsucedido, Scenario: Log de falha de envio, Scenario: SMTP ausente (+2 more)
 
 ### Community 172 - "Requirement: Conta possui ciclo de vida controlado"
-Cohesion: 0.36
-Nodes (5): Fact, InlineData, Theory, OperationalMessageSanitizerTests, IReadOnlyList
+Cohesion: 0.29
+Nodes (7): 10. Sequência recomendada de evolução, Prioridade 0 — estabilizar a linha de base, Prioridade 1 — fundação segura, Prioridade 2 — operação cotidiana, Prioridade 3 — prontuário multidisciplinar, Prioridade 4 — sustentabilidade institucional, Prioridade 5 — assinatura e redução de papel
 
 ### Community 173 - "Requirement: Eventos de identidade, configuração e acesso são auditáveis"
-Cohesion: 0.24
-Nodes (7): Fact, InlineData, Theory, CommonPasswordBlocklistTests, HashSet, string, CommonPasswordBlocklist
-
-### Community 174 - "Requirement: Exceções individuais são explícitas, limitadas e justificadas"
-Cohesion: 0.22
-Nodes (5): SeniorCareManager.WebAPI.Infrastructure.Validation, SeniorCareManager.UnitTests, int, Regex, OperationalMessageSanitizer
+Cohesion: 0.29
+Nodes (6): ActivationToken, CancellationToken, Guid, UserId, UserManager, AdminUserService
 
 ### Community 175 - "Requirement: Identidade é individual e vinculada à instituição"
 Cohesion: 0.20
@@ -835,36 +818,36 @@ Cohesion: 0.25
 Nodes (8): 1. Banco de dados, 2. Backend — Rider, 3. Front-ends — WebStorm, 4. Primeiro login (criar e ativar o usuário admin), 5. Fluxo do dia a dia, Documentação relacionada, Pré-requisitos, Tutorial: rodando o SeniorCare em desenvolvimento (Rider + WebStorm)
 
 ### Community 179 - "Requirement: Origem da identidade é extensível"
-Cohesion: 0.25
-Nodes (6): OperationalState, DateTime, Guid, InstitutionModule, Guid, ModuleDefinition
+Cohesion: 0.19
+Nodes (13): ActionResult, HttpGet, HttpPut, IReadOnlyList, RequirePermission, AdminInstitutionModuleController, DateTime, InstitutionModuleAdminDTO (+5 more)
 
 ### Community 180 - "Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros"
 Cohesion: 0.25
 Nodes (5): CancellationToken, ILogger, InstitutionModuleProvisioningService, CancellationToken, IInstitutionModuleProvisioningService
 
 ### Community 181 - "Requirement: Permissões são compostas por recurso, ação e funcionalidade"
-Cohesion: 0.11
-Nodes (11): IAsyncLifetime, IWebHostBuilder, PostgreSqlContainer, string, BootstrapPostgresWebApplicationFactory, Fact, PostgreSqlContainer, string (+3 more)
+Cohesion: 0.20
+Nodes (6): IWebHostBuilder, PostgreSqlContainer, string, BootstrapPostgresWebApplicationFactory, Fact, BootstrapServiceTests
 
 ### Community 182 - "Requirement: Tentativas de autenticação são protegidas contra abuso"
 Cohesion: 0.43
 Nodes (4): die(), err(), log(), bootstrap-dev-admin.sh script
 
 ### Community 185 - "SeniorCareManager.WebAPI.Objects.Models"
-Cohesion: 0.22
-Nodes (5): SeniorCareManager.WebAPI.Objects.Dtos.Common, SeniorCareManager.WebAPI.Infrastructure, SeniorCareManager.WebAPI.Controllers, SeniorCareManager.WebAPI.Objects.Dtos, SeniorCareManager.WebAPI.Objects.Dtos.Entities
+Cohesion: 0.11
+Nodes (4): SeniorCareManager.WebAPI.Objects.Dtos.Common, SeniorCareManager.WebAPI.Controllers, SeniorCareManager.WebAPI.Objects.Dtos, SeniorCareManager.WebAPI.Objects.Dtos.Entities
 
 ### Community 186 - "Decisions"
 Cohesion: 0.12
 Nodes (16): 10. Implantar de forma aditiva e manter contingência controlada, 1. Criar uma terceira aplicação web leve e independente, 2. Publicar todas as aplicações sob uma única origem, 3. Compartilhar renovação de sessão, não token JavaScript, 4. Separar definição sistêmica de habilitação institucional, 5. Derivar o catálogo efetivo no backend, 6. Tratar estado operacional como configuração, não health check síncrono, 7. Preservar deep links com return path validado (+8 more)
 
 ### Community 187 - "ManufacturerController"
-Cohesion: 0.19
-Nodes (11): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, ManufacturerController (+3 more)
+Cohesion: 0.13
+Nodes (17): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, ManufacturerController (+9 more)
 
 ### Community 188 - "AppDbContext"
-Cohesion: 0.17
-Nodes (6): SeniorCareManager.WebAPI.Data, SeniorCareManager.IntegrationTests.Services, SeniorCareManager.IntegrationTests.Infrastructure, SeniorCareManager.WebAPI.Objects.Dtos.Requests, SeniorCareManager.IntegrationTests.Data, SeniorCareManager.IntegrationTests.Controllers
+Cohesion: 0.14
+Nodes (7): SeniorCareManager.WebAPI.Data, SeniorCareManager.IntegrationTests.Services, SeniorCareManager.WebAPI, SeniorCareManager.IntegrationTests.Infrastructure, SeniorCareManager.WebAPI.Objects.Dtos.Requests, SeniorCareManager.IntegrationTests.Data, SeniorCareManager.IntegrationTests.Controllers
 
 ### Community 189 - "create_qa_issue.py"
 Cohesion: 0.40
@@ -875,20 +858,20 @@ Cohesion: 0.14
 Nodes (17): ActionResult, Guid, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission (+9 more)
 
 ### Community 191 - "Manufacturer"
-Cohesion: 0.43
-Nodes (6): IManufacturerRepository, AppDbContext, ManufacturerRepository, Manufacturer, ManufacturerService, IManufacturerService
+Cohesion: 0.50
+Nodes (4): CancellationToken, Guid, IHttpContextAccessor, CurrentUserContext
 
 ### Community 192 - "Position"
 Cohesion: 0.29
 Nodes (6): Capabilities, Impact, Modified Capabilities, New Capabilities, What Changes, Why
 
 ### Community 193 - "Religion"
-Cohesion: 0.43
-Nodes (6): IReligionRepository, AppDbContext, ReligionRepository, Religion, ReligionService, IReligionService
+Cohesion: 0.50
+Nodes (4): 7.1 Prontuário multidisciplinar, 7.2 Assinatura eletrônica, 7.3 Dashboards estatísticos, 7. Avaliação específica das capacidades críticas
 
 ### Community 194 - "UnitOfMeasure"
-Cohesion: 0.36
-Nodes (6): IUnitOfMeasureRepository, AppDbContext, UnitOfMeasureRepository, UnitOfMeasure, UnitOfMeasureService, IUnitOfMeasureService
+Cohesion: 0.50
+Nodes (3): IWebHostBuilder, UnavailableDatabaseWebApplicationFactory, WebApplicationFactory
 
 ### Community 195 - "tasks.md"
 Cohesion: 0.20
@@ -904,7 +887,7 @@ Nodes (6): Componentes, dev-flow — promoção dev → main com QA manual, Limi
 
 ### Community 198 - "ADDED Requirements"
 Cohesion: 0.33
-Nodes (5): ADDED Requirements, Purpose, Requirement: Contexto institucional é explícito e consistente, Scenario: Contexto institucional divergente, Scenario: Única instituição habilitada
+Nodes (5): ADDED Requirements, Purpose, Requirement: Senior Portal é a entrada institucional unificada, Scenario: Familiar tenta usar o portal interno, Scenario: Usuário interno abre a plataforma
 
 ### Community 199 - ".CheckHealthAsync"
 Cohesion: 0.29
@@ -966,37 +949,33 @@ Nodes (3): Requirement: Portal possui experiência acessível e responsiva, Scen
 Cohesion: 0.67
 Nodes (3): Requirement: URLs antigas migram de forma coordenada, Scenario: Cliente antigo sem sessão compatível, Scenario: Login legado do estoque
 
-### Community 215 - "AuthController"
-Cohesion: 0.12
-Nodes (12): ObjectResult, Guid, TimeSpan, UserManager, AuthController, LoginResponse, LoginMfaRequest, LoginRequest (+4 more)
-
 ### Community 216 - "ControllerBase"
-Cohesion: 0.15
-Nodes (10): AccessDecision, CancellationToken, DateTime, Guid, int, AccessDecisionService, CancellationToken, DateTime (+2 more)
+Cohesion: 0.09
+Nodes (17): AccessDecision, CancellationToken, DateTime, Guid, int, AccessDecisionService, CancellationToken, Guid (+9 more)
 
 ### Community 217 - "UserPermissionOverrideOverview.tsx"
 Cohesion: 0.12
 Nodes (18): EFFECT_OPTIONS, emptyData, OverrideFormData, SCOPE_OPTIONS, UserPermissionOverrideFormModal(), UserPermissionOverrideFormModalProps, EFFECT_LABELS, formatDate() (+10 more)
 
 ### Community 218 - ".Revoke"
-Cohesion: 0.18
-Nodes (12): ActionResult, Guid, HttpGet, HttpPut, IActionResult, RequirePermission, UserManager, AdminUserSessionController (+4 more)
+Cohesion: 0.13
+Nodes (17): ActionResult, Guid, HttpGet, HttpPut, IActionResult, RequirePermission, UserManager, AdminUserSessionController (+9 more)
 
 ### Community 219 - "ProductController"
-Cohesion: 0.18
-Nodes (11): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, ProductController (+3 more)
+Cohesion: 0.06
+Nodes (32): ActionResult, HttpDelete, HttpGet, HttpPost, HttpPut, IActionResult, RequirePermission, ProductController (+24 more)
 
 ### Community 220 - "AdminUserController"
 Cohesion: 0.07
-Nodes (29): Fact, InstitutionIdentityOriginServiceTests, ActionResult, Guid, HttpGet, HttpPost, HttpPut, RequirePermission (+21 more)
+Nodes (26): Fact, InstitutionIdentityOriginServiceTests, ActionResult, Guid, HttpGet, HttpPost, HttpPut, RequirePermission (+18 more)
 
 ### Community 221 - ".GetInstitutionIdAsync"
 Cohesion: 0.22
 Nodes (13): ActionResult, Guid, HttpGet, HttpPost, HttpPut, RequirePermission, AdminUserPermissionOverrideController, DateTime (+5 more)
 
 ### Community 222 - ".IssueAsync"
-Cohesion: 0.14
-Nodes (15): AccountTokenPurpose, CancellationToken, Guid, TimeSpan, AccountTokenService, ActivationToken, CancellationToken, Guid (+7 more)
+Cohesion: 0.38
+Nodes (5): AccountTokenPurpose, CancellationToken, Guid, TimeSpan, AccountTokenService
 
 ### Community 223 - "AdminUserOverview.tsx"
 Cohesion: 0.13
@@ -1007,8 +986,8 @@ Cohesion: 0.21
 Nodes (15): ActionResult, Guid, HttpGet, HttpPost, HttpPut, RequirePermission, AdminAccessPolicyController, Guid (+7 more)
 
 ### Community 225 - "AdminOrganizationalRoleAssignmentController"
-Cohesion: 0.22
-Nodes (13): ActionResult, Guid, HttpGet, HttpPost, HttpPut, RequirePermission, AdminOrganizationalRoleAssignmentController, DateTime (+5 more)
+Cohesion: 0.19
+Nodes (14): ActionResult, Guid, HttpGet, HttpPost, HttpPut, RequirePermission, AdminOrganizationalRoleAssignmentController, DateTime (+6 more)
 
 ### Community 226 - "AccessPolicyOverview.tsx"
 Cohesion: 0.15
@@ -1035,7 +1014,7 @@ Cohesion: 0.15
 Nodes (12): Detail, HttpContext, IExceptionHandler, IProblemDetailsService, CancellationToken, Exception, ILogger, Type (+4 more)
 
 ### Community 232 - "OpenApiContractTests"
-Cohesion: 0.17
+Cohesion: 0.18
 Nodes (9): Dictionary, JsonElement, MemberData, Fact, HttpClient, IEnumerable, string, Theory (+1 more)
 
 ### Community 233 - "SessionService"
@@ -1047,28 +1026,24 @@ Cohesion: 0.17
 Nodes (9): PermissionGroupFormModal(), PermissionGroupFormModalProps, PermissionGroupOverview(), getMock, postMock, permissionGroupRoutes, PagedResult, permissionGroupService (+1 more)
 
 ### Community 235 - "SessionRotationTests"
-Cohesion: 0.18
-Nodes (9): HttpResponseMessage, Fact, AuthControllerLoginTests, Email, Fact, Guid, UserId, SessionRotationTests (+1 more)
+Cohesion: 0.15
+Nodes (12): HttpResponseMessage, Email, Fact, Guid, UserId, AuthControllerMfaTests, Email, Fact (+4 more)
 
 ### Community 236 - "IAuditService"
-Cohesion: 0.15
-Nodes (11): JsonSerializerOptions, AuditEventCategory, AuditOutcome, DateTime, Guid, AuditEvent, CancellationToken, Guid (+3 more)
-
-### Community 237 - "AuthControllerMfaTests"
-Cohesion: 0.32
-Nodes (5): Email, Fact, Guid, UserId, AuthControllerMfaTests
+Cohesion: 0.17
+Nodes (10): JsonSerializerOptions, AuditEventCategory, AuditOutcome, DateTime, Guid, AuditEvent, CancellationToken, Guid (+2 more)
 
 ### Community 238 - "ProductControllerTests"
-Cohesion: 0.28
-Nodes (4): Fact, HttpClient, int, ProductControllerTests
+Cohesion: 0.14
+Nodes (9): IAsyncLifetime, Fact, HttpClient, int, ProductControllerTests, Fact, PostgreSqlContainer, string (+1 more)
 
 ### Community 239 - ".CreateAsync"
 Cohesion: 0.52
 Nodes (3): Fact, IConfiguration, ProgramConfigurationTests
 
 ### Community 240 - "CatalogQuery"
-Cohesion: 0.23
-Nodes (8): ActionResult, Guid, HttpGet, RequirePermission, AdminPermissionController, Guid, PermissionDTO, CatalogQuery
+Cohesion: 0.29
+Nodes (7): ActionResult, Guid, HttpGet, RequirePermission, AdminPermissionController, Guid, PermissionDTO
 
 ### Community 241 - ".SavingChangesAsync"
 Cohesion: 0.29
@@ -1078,10 +1053,6 @@ Nodes (7): DbContext, DbContextEventData, InterceptionResult, SaveChangesInterce
 Cohesion: 0.29
 Nodes (3): Mock, Fact, GenericServiceTests
 
-### Community 243 - "InstitutionIdentityOriginServiceTests"
-Cohesion: 0.43
-Nodes (6): ISupplierRepository, AppDbContext, SupplierRepository, Supplier, SupplierService, ISupplierService
-
 ### Community 244 - "BootstrapService"
 Cohesion: 0.20
 Nodes (8): BootstrapResult, CancellationToken, IConfiguration, ILogger, UserManager, BootstrapService, CancellationToken, IBootstrapService
@@ -1089,10 +1060,6 @@ Nodes (8): BootstrapResult, CancellationToken, IConfiguration, ILogger, UserMana
 ### Community 245 - "OrganizationalRoleOverview.tsx"
 Cohesion: 0.24
 Nodes (7): OrganizationalRoleFormModal(), OrganizationalRoleFormModalProps, organizationalRoleRoutes, OrganizationalRoleOverview(), organizationalRoleService, OrganizationalRoleUpsertRequest, PagedResult
-
-### Community 246 - "ProductGroup"
-Cohesion: 0.31
-Nodes (7): ICollection, IProductGroupRepository, AppDbContext, ProductGroupRepository, ProductGroup, ProductGroupService, IProductGroupService
 
 ### Community 247 - "Permission"
 Cohesion: 0.20
@@ -1107,12 +1074,12 @@ Cohesion: 0.27
 Nodes (7): Action, Controller, MethodInfo, Fact, IEnumerable, Type, EndpointAuthorizationInvariantsTests
 
 ### Community 250 - "ProductType"
-Cohesion: 0.36
-Nodes (6): IProductTypeRepository, AppDbContext, ProductTypeRepository, ProductType, ProductTypeService, IProductTypeService
+Cohesion: 0.50
+Nodes (3): DateTime, Guid, UserRole
 
 ### Community 251 - "ISessionService"
-Cohesion: 0.39
-Nodes (5): CancellationToken, Guid, RawKey, SessionId, ISessionService
+Cohesion: 0.67
+Nodes (3): Requirement: Tentativas de autenticação são protegidas contra abuso, Scenario: Autenticação posterior ao bloqueio temporário, Scenario: Repetição de falhas
 
 ### Community 252 - "UserSessionOverview.tsx"
 Cohesion: 0.31
@@ -1123,12 +1090,8 @@ Cohesion: 0.28
 Nodes (6): ConcurrentDictionary, ConcurrentQueue, DateTime, int, TimeSpan, OriginRateLimiter
 
 ### Community 255 - "CurrentIdentityDTO"
-Cohesion: 0.28
-Nodes (7): Guid, List, CurrentIdentityDTO, EffectivePermissionDTO, OrganizationalResponsibilityDTO, List, MfaConfirmResponse
-
-### Community 257 - "MfaPolicyService"
-Cohesion: 0.22
-Nodes (6): CancellationToken, Guid, MfaPolicyService, CancellationToken, Guid, IMfaPolicyService
+Cohesion: 0.67
+Nodes (3): Requirement: Contexto institucional é explícito e consistente, Scenario: Contexto institucional divergente, Scenario: Única instituição habilitada
 
 ### Community 258 - "AccessPolicy.ts"
 Cohesion: 0.42
@@ -1141,10 +1104,6 @@ Nodes (7): createMock, deleteByIdMock, getAllMock, getMock, postMock, updateMock
 ### Community 260 - "EndpointAuthorizationTests"
 Cohesion: 0.33
 Nodes (6): Requirement: Sessão é compartilhada, curta, rotativa e revogável, Scenario: Logout, Scenario: Navegação entre módulos, Scenario: Reutilização de token rotacionado, Scenario: Rotação de renovação, Scenario: Sessão expirada
-
-### Community 261 - "Product"
-Cohesion: 0.47
-Nodes (5): IProductRepository, ProductRepository, Product, ProductService, IProductService
 
 ### Community 262 - "TestAuthHandler"
 Cohesion: 0.29
@@ -1194,10 +1153,6 @@ Nodes (3): Exception, AccessDeniedException, BusinessRuleException
 Cohesion: 0.40
 Nodes (3): Guid, HttpClient, HttpClientAuthExtensions
 
-### Community 277 - "AddAccessControlFoundation"
-Cohesion: 0.40
-Nodes (3): Migration, MigrationBuilder, AddAccessControlFoundation
-
 ### Community 284 - "keyboardNavigation.test.tsx"
 Cohesion: 0.40
 Nodes (3): createMock, getAllMock, getMock
@@ -1216,23 +1171,11 @@ Nodes (3): CurrentIdentity, OrganizationalResponsibility, EffectivePermission
 
 ### Community 288 - "AccountTokenBuilder.cs"
 Cohesion: 0.20
-Nodes (6): SeniorCareManager.WebAPI.Data.Builders, ModelBuilder, AccountTokenBuilder, Guid, ModelBuilder, ModuleDefinitionBuilder
-
-### Community 289 - "ApplicationUserBuilder.cs"
-Cohesion: 0.53
-Nodes (3): Fact, Guid, InstitutionModuleProvisioningServiceTests
-
-### Community 311 - "20260809142400_AddAuditEvent.Designer.cs"
-Cohesion: 0.53
-Nodes (6): IHealthInsurancePlanRepository, AppDbContext, HealthInsurancePlanRepository, HealthInsurancePlan, HealthInsurancePlanService, IHealthInsurancePlanService
+Nodes (6): SeniorCareManager.WebAPI.Data.Builders, Guid, ModelBuilder, ModuleDefinitionBuilder, ModelBuilder, ProductTypeBuilder
 
 ### Community 314 - "AdminUser.ts"
 Cohesion: 0.50
 Nodes (3): AccountState, AdminUser, IdentityOrigin
-
-### Community 315 - "Requirement: Senior Portal é a entrada institucional unificada"
-Cohesion: 0.67
-Nodes (3): Requirement: Senior Portal é a entrada institucional unificada, Scenario: Familiar tenta usar o portal interno, Scenario: Usuário interno abre a plataforma
 
 ### Community 316 - "Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização"
 Cohesion: 0.33
@@ -1270,9 +1213,9 @@ Nodes (5): Requirement: Decisão de acesso segue precedência determinística e 
 Cohesion: 0.40
 Nodes (5): Requirement: Política de senha segue práticas atuais e possui piso seguro, Scenario: Regra institucional enfraquece o piso, Scenario: Senha antiga sem indício de comprometimento, Scenario: Senha comum ou comprometida, Scenario: Senha longa e válida
 
-### Community 351 - "ModuleDefinitionValidator"
+### Community 350 - "AddSeniorPortalCatalog"
 Cohesion: 0.40
-Nodes (4): HashSet, Regex, string, ModuleDefinitionValidator
+Nodes (3): Migration, MigrationBuilder, AddSeniorPortalCatalog
 
 ### Community 353 - "Requirement: Administração de acesso possui configuração dedicada"
 Cohesion: 0.50
@@ -1354,10 +1297,6 @@ Nodes (3): Requirement: Origem da identidade é extensível, Scenario: Identidad
 Cohesion: 0.67
 Nodes (3): Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros, Scenario: Configuração válida, Scenario: Sessão excessivamente longa
 
-### Community 378 - "Requirement: Permissões são compostas por recurso, ação e funcionalidade"
-Cohesion: 0.67
-Nodes (3): Requirement: Permissões são compostas por recurso, ação e funcionalidade, Scenario: Papel recebe grupo de módulo, Scenario: Permissão removida do grupo
-
 ### Community 379 - "Requirement: Portal minimiza dados e não apresenta conteúdo clínico"
 Cohesion: 0.67
 Nodes (3): Requirement: Portal minimiza dados e não apresenta conteúdo clínico, Scenario: Carregamento da página inicial, Scenario: Configuração contém informação sensível
@@ -1393,22 +1332,22 @@ Nodes (3): Requirement: Tentativas de autenticação são protegidas contra abus
 ## Knowledge Gaps
 - **1015 isolated node(s):** `check-clinical-scope.sh script`, `check-env-hygiene.sh script`, `check-frontend-bundle.sh script`, `check-synthetic-fixtures.sh script`, `SeniorCareManager.IntegrationTests.Data` (+1010 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **90 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **89 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Task` connect `.NETCoreApp,Version=v8.0.AssemblyAttributes.cs` to `MfaPolicyService`, `GenericService`, `TestAuthHandler`, `IGenericService`, `GenericRepository`, `SeniorCareManager.WebAPI.AssemblyInfo.cs`, `SeniorCareManager.WebAPI.GlobalUsings.g.cs`, `SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs`, `Controller`, `ManufacturerController`, `ProductType`, `ReligionController`, `UnitOfMeasureController`, `index.tsx`, `RequirePermissionAttribute`, `9. Riscos e lacunas priorizados`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`, `ApplicationUserBuilder.cs`, `tasks.md`, `sync_issues.py`, `GenericRepository`, `Requirement: Ativação e recuperação não distribuem senha conhecida`, `Requirement: Política de senha segue práticas atuais e possui piso seguro`, `Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos`, `Startup`, `Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros`, `Requirement: Permissões são compostas por recurso, ação e funcionalidade`, `SeniorCareManager.WebAPI.Objects.Dtos`, `ManufacturerController`, `Carrier`, `UnitOfMeasure`, `.CheckHealthAsync`, `ManufacturerDTO.cs`, `Requirement: Portal minimiza dados e não apresenta conteúdo clínico`, `AuthController`, `ControllerBase`, `.Revoke`, `ProductController`, `AdminUserController`, `.GetInstitutionIdAsync`, `.IssueAsync`, `AdminAccessPolicyController`, `AdminOrganizationalRoleAssignmentController`, `AuthControllerTests`, `OpenApiContractTests`, `SessionService`, `SessionRotationTests`, `IAuditService`, `AuthControllerMfaTests`, `ProductControllerTests`, `CatalogQuery`, `GenericServiceTests`, `BootstrapService`, `ProductGroup`, `ProductType`, `ISessionService`?**
-  _High betweenness centrality (0.084) - this node is a cross-community bridge._
-- **Why does `SeniorCareManager.WebAPI.Objects.Models` connect `SeniorCareManager.WebAPI.Objects.Models` to `AdminInvariantService`, `SeniorCareManager.WebAPI.Objects.Enums`, `AppDbContext`, `GenericService`, `Product`, `IGenericService`, `SeniorCareManager.WebAPI.AssemblyInfo.cs`, `SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs`, `index.tsx`, `AccountTokenBuilder.cs`, `AuditEventBuilder.cs`, `ManufacturerBuilder.cs`, `OrganizationalRoleAssignmentBuilder.cs`, `OrganizationalRoleBuilder.cs`, `PermissionGroupBuilder.cs`, `PositionBuilder.cs`, `ProductBuilder.cs`, `ProductGroupBuilder.cs`, `ProductTypeBuilder.cs`, `ReligionBuilder.cs`, `RoleBuilder.cs`, `SupplierBuilder.cs`, `Requirement: Exceções individuais são explícitas, limitadas e justificadas`, `UnitOfMeasureBuilder.cs`, `UserPermissionOverrideBuilder.cs`, `UserSessionBuilder.cs`, `Requirement: Origem da identidade é extensível`, `SeniorCareManager.WebAPI.Objects.Models`, `AppDbContext`, `Carrier`, `Manufacturer`, `Religion`, `UnitOfMeasure`, `Requirement: Portal minimiza dados e não apresenta conteúdo clínico`, `ControllerBase`, `InstitutionIdentityOriginServiceTests.cs`, `SessionService`, `CarrierBuilder.cs`, `InstitutionBuilder.cs`, `InstitutionModuleBuilder.cs`, `InstitutionIdentityOriginServiceTests`, `BootstrapService`, `ProductGroup`, `Permission`, `ProductType`, `SeniorCareManager.WebAPI.Data.Builders`?**
-  _High betweenness centrality (0.053) - this node is a cross-community bridge._
-- **Why does `AppDbContext` connect `SeniorCareManager.WebAPI.AssemblyInfo.cs` to `SeniorCareManager.WebAPI.Objects.Models`, `MfaPolicyService`, `AppDbContext`, `GenericService`, `Product`, `IGenericService`, `SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs`, `index.tsx`, `9. Riscos e lacunas priorizados`, `tasks.md`, `Requirement: Ativação e recuperação não distribuem senha conhecida`, `Requirement: Origem da identidade é extensível`, `Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros`, `Requirement: Permissões são compostas por recurso, ação e funcionalidade`, `SeniorCareManager.WebAPI.Objects.Dtos`, `20260809142400_AddAuditEvent.Designer.cs`, `Carrier`, `Manufacturer`, `Religion`, `UnitOfMeasure`, `.CheckHealthAsync`, `Requirement: Portal minimiza dados e não apresenta conteúdo clínico`, `AuthController`, `ControllerBase`, `.Revoke`, `AdminUserController`, `.GetInstitutionIdAsync`, `.IssueAsync`, `AdminAccessPolicyController`, `AdminOrganizationalRoleAssignmentController`, `SessionService`, `IAuditService`, `CatalogQuery`, `InstitutionIdentityOriginServiceTests`, `BootstrapService`, `ProductGroup`, `Permission`, `ProductType`?**
-  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+- **Why does `Task` connect `.NETCoreApp,Version=v8.0.AssemblyAttributes.cs` to `MfaPolicyService`, `GenericService`, `TestAuthHandler`, `IGenericService`, `GenericRepository`, `RequirePermissionAttribute`, `SeniorCareManager.WebAPI.GlobalUsings.g.cs`, `SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs`, `Controller`, `ManufacturerController`, `ProductType`, `ReligionController`, `UnitOfMeasureController`, `index.tsx`, `9. Riscos e lacunas priorizados`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`, `tasks.md`, `sync_issues.py`, `GenericRepository`, `Requirement: Ativação e recuperação não distribuem senha conhecida`, `Requirement: Política de senha segue práticas atuais e possui piso seguro`, `Requirement: Eventos de identidade, configuração e acesso são auditáveis`, `Requirement: Exceções individuais são explícitas, limitadas e justificadas`, `Startup`, `Requirement: Origem da identidade é extensível`, `Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros`, `Requirement: Permissões são compostas por recurso, ação e funcionalidade`, `SeniorCareManager.WebAPI.Objects.Dtos`, `ManufacturerController`, `Carrier`, `Manufacturer`, `.CheckHealthAsync`, `ManufacturerDTO.cs`, `Requirement: Portal minimiza dados e não apresenta conteúdo clínico`, `ControllerBase`, `.Revoke`, `ProductController`, `AdminUserController`, `.GetInstitutionIdAsync`, `.IssueAsync`, `AdminAccessPolicyController`, `AdminOrganizationalRoleAssignmentController`, `AuthControllerTests`, `OpenApiContractTests`, `SessionService`, `SessionRotationTests`, `IAuditService`, `ProductControllerTests`, `CatalogQuery`, `GenericServiceTests`, `BootstrapService`?**
+  _High betweenness centrality (0.106) - this node is a cross-community bridge._
+- **Why does `AppDbContext` connect `SeniorCareManager.WebAPI.AssemblyInfo.cs` to `AppDbContext`, `GenericService`, `GenericRepository`, `IGenericService`, `SeniorCareManager.WebAPI.GlobalUsings.g.cs`, `SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs`, `Controller`, `ManufacturerController`, `ReligionController`, `index.tsx`, `9. Riscos e lacunas priorizados`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`, `Decisions`, `tasks.md`, `Requirement: Ativação e recuperação não distribuem senha conhecida`, `Requirement: Origem da identidade é extensível`, `Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros`, `SeniorCareManager.WebAPI.Objects.Dtos`, `ManufacturerController`, `AppDbContext`, `Carrier`, `Manufacturer`, `.CheckHealthAsync`, `ManufacturerDTO.cs`, `Requirement: Portal minimiza dados e não apresenta conteúdo clínico`, `ControllerBase`, `.Revoke`, `ProductController`, `AdminUserController`, `.GetInstitutionIdAsync`, `.IssueAsync`, `AdminAccessPolicyController`, `AdminOrganizationalRoleAssignmentController`, `SessionService`, `IAuditService`, `ProductControllerTests`, `CatalogQuery`, `BootstrapService`, `Permission`, `ProductType`?**
+  _High betweenness centrality (0.047) - this node is a cross-community bridge._
+- **Why does `SeniorCareManager.WebAPI.Data` connect `AppDbContext` to `SeniorCareManager.WebAPI.Objects.Models`, `GenericRepository`, `.CheckHealthAsync`, `20260809231010_AddProductPermissions.Designer.cs`, `20260805233320_InitialCreate.Designer.cs`, `20260807210706_AddRowVersionConcurrencyToken.Designer.cs`, `InstitutionIdentityOriginServiceTests`, `20260808205640_AddAccessControlFoundation.Designer.cs`, `20260809230019_AddCatalogActiveState.Designer.cs`, `20260809013824_AddSessionAndMfa.Designer.cs`, `20260811144526_AddSeniorPortalCatalog.Designer.cs`, `20260809230401_AddProduct.Designer.cs`, `SeniorCareManager.WebAPI.Objects.Models`, `InitialCreate`, `ProductGroup`?**
+  _High betweenness centrality (0.043) - this node is a cross-community bridge._
 - **What connects `check-clinical-scope.sh script`, `check-env-hygiene.sh script`, `check-frontend-bundle.sh script` to the rest of the system?**
   _1017 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `SeniorCareManager.WebAPI.Objects.Models` be split into smaller, more focused modules?**
-  _Cohesion score 0.07453416149068323 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0781981981981982 - nodes in this community are weakly interconnected._
 - **Should `SeniorCareManager.WebAPI.Objects.Enums` be split into smaller, more focused modules?**
-  _Cohesion score 0.0425531914893617 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected._
 - **Should `GenericService` be split into smaller, more focused modules?**
-  _Cohesion score 0.14619883040935672 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1361344537815126 - nodes in this community are weakly interconnected._

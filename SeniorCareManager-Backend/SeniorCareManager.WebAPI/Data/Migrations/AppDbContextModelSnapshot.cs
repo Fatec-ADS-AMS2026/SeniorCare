@@ -1448,6 +1448,22 @@ namespace SeniorCareManager.WebAPI.Data.Migrations
                         },
                         new
                         {
+                            Id = new Guid("3bb5116e-6909-4932-9eff-f6d74b54a2f0"),
+                            Action = "read",
+                            Description = "Consultar a configuração do catálogo de módulos da instituição",
+                            IsSystemOperation = false,
+                            Resource = "InstitutionModule"
+                        },
+                        new
+                        {
+                            Id = new Guid("054251b0-6777-4954-ba9d-64f9d7130e0b"),
+                            Action = "write",
+                            Description = "Alterar habilitação, ordem, estado e mensagem dos módulos da instituição",
+                            IsSystemOperation = false,
+                            Resource = "InstitutionModule"
+                        },
+                        new
+                        {
                             Id = new Guid("e08d83bf-9ff8-4575-bbf1-3e62f7054048"),
                             Action = "care",
                             Description = "Acessar o módulo de assistência",
