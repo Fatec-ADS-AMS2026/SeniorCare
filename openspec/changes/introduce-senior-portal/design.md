@@ -76,23 +76,45 @@ navegação, sem exigir que os três front-ends sejam compilados juntos.
 cookies, CORS e DNS; URLs absolutas injetadas no build, rejeitadas por violar
 `build once, deploy many`.
 
-### 3. Compartilhar renovação de sessão, não token JavaScript
+### 3. Compartilhar a sessão protegida diretamente, sem token JavaScript
 
-O login do portal criará a sessão definida em `platform-authentication`. O cookie
-de renovação terá escopo necessário para os endpoints de autenticação da mesma
-origem, será `HttpOnly`, `Secure` e `SameSite` apropriado. Ao abrir portal ou módulo,
-a aplicação chamará o endpoint de restauração usando o cookie e guardará o acesso
-curto somente em sua própria memória. Rotação, CSRF, reutilização, revogação e
-logout continuarão centralizados na API.
+**Revisão (§4.2):** esta decisão originalmente descrevia um acesso curto emitido
+por um endpoint de restauração próprio e guardado em memória pela aplicação,
+listando "cookie bearer diretamente aceito por todas as APIs" como alternativa
+rejeitada. Investigação direta antes de implementar §4.2 confirmou que esse
+endpoint de emissão nunca foi construído em `stabilize-existing-platform` — o
+que existe é um único cookie de sessão `HttpOnly`/`Secure`/`SameSite=Strict`
+(`AuthController.cs`, `Startup.cs`), com rotação silenciosa no servidor, já
+usado por care-web/stock-web sem token algum em memória JavaScript. Esse modelo
+satisfaz o objetivo de segurança desta decisão com margem maior (zero token
+passa pelo JavaScript em qualquer momento, não só "por pouco tempo") e a
+preocupação original de CSRF já é coberta por `SameSite=Strict` + verificação
+de origem, sem exigir separação entre sessão e acesso. Decisão confirmada com
+o responsável pelo produto: adotar o padrão real em vez de construir o
+endpoint de emissão que nunca existiu. O texto abaixo reflete o modelo
+adotado; a alternativa antes chamada de "cookie bearer" é agora a decisão.
 
-**Racional:** aplicações separadas não compartilham memória com segurança. Usar a
-sessão protegida para emitir acessos curtos preserva SSO sem reintroduzir token em
-`localStorage`, `sessionStorage` ou cookie legível por script.
+O login do portal cria a mesma sessão definida em `stabilize-existing-platform`.
+O cookie único é `HttpOnly`, `Secure`, `SameSite=Strict`, com escopo aos
+endpoints da mesma origem. Ao abrir portal ou módulo, a aplicação chama
+`GET /auth/me` — o próprio navegador anexa o cookie automaticamente
+(`withCredentials`), sem passo de restauração/emissão separado nem token
+guardado em memória. Rotação, CSRF, reutilização, revogação e logout
+continuam centralizados na API.
+
+**Racional:** aplicações separadas não compartilham memória com segurança, mas
+não precisam — nenhuma delas manipula credencial alguma; o navegador é quem
+anexa o cookie a cada requisição. Isso preserva SSO sem jamais introduzir
+token em `localStorage`, `sessionStorage`, cookie legível por script ou
+mesmo em memória JavaScript.
 
 **Alternativas consideradas:** propagar token por query string ou fragmento,
-rejeitada por vazamento em histórico, logs e referer; `localStorage` compartilhado,
-rejeitado por XSS; cookie bearer diretamente aceito por todas as APIs, rejeitado
-por aumentar superfície de CSRF e reduzir separação entre sessão e acesso.
+rejeitada por vazamento em histórico, logs e referer; `localStorage`
+compartilhado, rejeitado por XSS; acesso curto emitido por endpoint próprio e
+guardado em memória, avaliado e descartado por exigir um componente de
+backend que a estabilização nunca construiu, sem ganho de segurança sobre o
+cookie único já implementado (que expõe estritamente menos superfície ao
+JavaScript).
 
 ### 4. Separar definição sistêmica de habilitação institucional
 

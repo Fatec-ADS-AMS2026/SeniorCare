@@ -165,12 +165,69 @@
 
 ## 4. Base da aplicação Senior Portal
 
-- [ ] 4.1 Criar a aplicação React/TypeScript/Vite independente do Senior Portal com lint, testes, build reprodutível e configuração de runtime externa ao bundle.
-- [ ] 4.2 Implementar cliente HTTP e estado de autenticação para restaurar acesso curto em memória pela sessão protegida, sem `localStorage`, `sessionStorage` ou cookie legível por script.
-- [ ] 4.3 Implementar login, etapa de MFA pendente, expiração não renovável e limpeza completa do contexto local.
-- [ ] 4.4 Implementar carregamento do contexto institucional explícito e impedir renderização do catálogo diante de divergência ou sessão inválida.
-- [ ] 4.5 Implementar validação central de `return path` relativo contra rotas permitidas, com fallback para `/` e registro de rejeições.
-- [ ] 4.6 Criar testes unitários dos estados de autenticação, restauração, MFA, instituição e redirecionamento seguro.
+- [x] 4.1 Criar a aplicação React/TypeScript/Vite independente do Senior Portal com lint, testes, build reprodutível e configuração de runtime externa ao bundle.
+      **Evidência**: `SeniorPortal-Frontend/SeniorPortalFrontend/` — mesmo scaffold
+      (package.json/vite.config.ts/tsconfig/eslint/tailwind) de care-web/stock-web,
+      só o `name` muda, mais `VITE_BASE_PATH` (build-time, preparando o roteamento
+      por caminho de §8). Config de runtime fora do bundle: `public/public-config.json`
+      (chave `publicName`, fallback `"SeniorCare"`) lido por
+      `RuntimeConfigContext.tsx` via `fetch('/public-config.json', {cache:
+      'no-store'})` — arquivo estático copiado verbatim para `dist/` pelo Vite
+      (confirmado no build), nunca inlinado no JS; o entrypoint do container que
+      o sobrescreve a partir de env var é implementação de §8. `npm run
+      lint`/`test`/`build` rodados localmente: lint 0 erros (só 4 avisos
+      `react-refresh` de uma versão mais nova do plugin, mesmo padrão de
+      arquivo de care-web), build reproduz `dist/` completo,
+      `check-frontend-bundle.sh` e `check-clinical-scope.sh` (path do portal
+      adicionado ao scanner) passam contra o bundle/código gerados.
+- [x] 4.2 Implementar cliente HTTP e estado de autenticação para restaurar acesso curto em memória pela sessão protegida, sem `localStorage`, `sessionStorage` ou cookie legível por script.
+      **Evidência**: investigação direta (antes de implementar) encontrou que o
+      modelo de "acesso curto emitido separadamente e guardado em memória"
+      descrito em `design.md` decisão 3 nunca foi construído no backend — o que
+      existe (`AuthController.cs`, `Startup.cs`) é um único cookie de sessão
+      `HttpOnly`/`Secure`/`SameSite=Strict` com rotação silenciosa no servidor,
+      já usado por care-web/stock-web (`withCredentials: true`, sem
+      Authorization header, sem token em memória). Esse modelo satisfaz o
+      objetivo de segurança da tarefa com margem maior (zero token passa pelo
+      JavaScript, não só "por pouco tempo") — decisão confirmada com o usuário:
+      reusar o padrão real em vez de construir o endpoint de emissão de token
+      que o design.md descrevia. `features/api/api.ts` (idêntico ao padrão
+      existente) + `contexts/AuthContext.tsx` (`refresh` chama `GET /auth/me`).
+- [x] 4.3 Implementar login, etapa de MFA pendente, expiração não renovável e limpeza completa do contexto local.
+      **Evidência**: `features/auth/pages/LoginPage.tsx`+`LoginForm`,
+      `MfaChallengePage.tsx` (`mfa_required`), `MfaEnrollPage.tsx`
+      (`mfa_enrollment_required` — cadastro completo, já que sem isso um
+      usuário sem MFA configurado ficaria num beco sem saída). "Expiração não
+      renovável": `AuthContext.tsx` nunca tenta renovar a sessão por conta
+      própria — qualquer 401 fora do bootstrap de login/restauração
+      (`registerUnauthorizedHandler`) limpa `identity` inteiro e manda pro
+      `/login`, mesmo mecanismo do logout explícito.
+- [x] 4.4 Implementar carregamento do contexto institucional explícito e impedir renderização do catálogo diante de divergência ou sessão inválida.
+      **Evidência**: `features/auth/components/RequireAuth.tsx` — sessão em
+      restauração aguarda; anônima redireciona pro `/login` (preservando
+      destino via `returnTo`); autenticada mas sem `identity.institutionId`
+      (spec.md "Contexto institucional divergente") bloqueia a renderização com
+      mensagem segura, sem detalhes internos, em vez de arriscar renderizar
+      algo institucionalmente incoerente.
+- [x] 4.5 Implementar validação central de `return path` relativo contra rotas permitidas, com fallback para `/` e registro de rejeições.
+      **Evidência**: `utils/returnPath.ts` (`isSafeReturnPath`/`resolveReturnPath`)
+      — implementa o contrato de `docs/architecture/senior-portal-contracts.md`
+      §3 ao pé da letra: exatamente `/` ou sob `/care`/`/stock`; rejeita `//`,
+      esquema (`http(s)://`, `javascript:`, etc.) e `\`; fallback `/`; loga a
+      rejeição. Função pura, pensada para ser reusada por care/stock quando
+      §6.4/§7.4 migrarem seus próprios deep links — ainda só consumida pelo
+      portal (`LoginForm`, `MfaChallengePage`) nesta seção.
+- [x] 4.6 Criar testes unitários dos estados de autenticação, restauração, MFA, instituição e redirecionamento seguro.
+      **Evidência**: 42 testes novos (`vitest`) — `AuthContext.test.tsx`
+      (restauração via `/me`, estado anônimo, expiração não renovável, guarda
+      contra loop de redirecionamento), `RequireAuth.test.tsx` (loading,
+      anônimo, contexto institucional divergente), `LoginForm.test.tsx` (login
+      ok, credenciais inválidas, MFA obrigatório, cadastro de MFA obrigatório,
+      `returnTo` válido e rejeitado), `MfaChallengePage.test.tsx`,
+      `MfaEnrollPage.test.tsx`, `RuntimeConfigContext.test.tsx` (fallback em
+      arquivo ausente/inválido/rede indisponível), `returnPath.test.ts`
+      (allowlist e rejeições, tabela exaustiva). `npm run test` — 42/42
+      aprovados; `npm run test:coverage` roda sem erro.
 
 ## 5. Experiência do catálogo e funções globais
 
