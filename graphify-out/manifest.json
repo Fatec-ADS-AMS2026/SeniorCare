@@ -2000,13 +2000,13 @@
     "semantic_hash": ""
   },
   "openspec/changes/introduce-senior-portal/tasks.md": {
-    "mtime": 1786551796.3612852,
-    "ast_hash": "84837ce974c3ed825a9880c21a2db813",
+    "mtime": 1786555650.3700976,
+    "ast_hash": "94e49f14b202bebd37b83f58b519491b",
     "semantic_hash": ""
   },
   ".github/scripts/check-clinical-scope.sh": {
-    "mtime": 1786551796.1697357,
-    "ast_hash": "a2a4e2785debee6f00a1215525551332",
+    "mtime": 1786555389.44548,
+    "ast_hash": "4ec4a8fd55fb7a754939e1db1d39a0fa",
     "semantic_hash": ""
   },
   ".github/scripts/check-frontend-bundle.sh": {
@@ -4397,6 +4397,256 @@
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Interfaces/IModuleCatalogService.cs": {
     "mtime": 1786551796.1837049,
     "ast_hash": "c735dac655c005b273a8dc191cac7934",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/.prettierrc.json": {
+    "mtime": 1786554084.80999,
+    "ast_hash": "8af2ececad8ec108b44daf49a114a6c1",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/eslint.config.js": {
+    "mtime": 1786554082.438151,
+    "ast_hash": "2683e26e70707841590ff4ad24253919",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/package.json": {
+    "mtime": 1786554051.320224,
+    "ast_hash": "fb44df23af3d61ea0fc4a2643ea776a1",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/postcss.config.js": {
+    "mtime": 1786554094.4900532,
+    "ast_hash": "ef3ba2a81ba19f8ea5ddf625521e96f0",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/public/public-config.json": {
+    "mtime": 1786554255.1756754,
+    "ast_hash": "0a8ce53761574e9c9d4e15ba635ca3b4",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/App.tsx": {
+    "mtime": 1786554547.4566574,
+    "ast_hash": "4ff18e87884505e5e206bbbf0be44c48",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/contexts/AuthContext.test.tsx": {
+    "mtime": 1786555108.5963116,
+    "ast_hash": "ee915560088d50873312bfe64d90c6ea",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/contexts/AuthContext.tsx": {
+    "mtime": 1786554387.79435,
+    "ast_hash": "a7ffb47d1ab1ba13bd5a50973730f56d",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/contexts/RuntimeConfigContext.test.tsx": {
+    "mtime": 1786555187.2911913,
+    "ast_hash": "1018f698e1ccff3265eae1a4bbace63e",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/contexts/RuntimeConfigContext.tsx": {
+    "mtime": 1786554346.5960042,
+    "ast_hash": "945f07534041ea3410644f61d568e627",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/contexts/ThemeContext.tsx": {
+    "mtime": 1786554374.1994224,
+    "ast_hash": "74b6d7f3fe5f24482e9d36634306b634",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/api/api.ts": {
+    "mtime": 1786554282.7776167,
+    "ast_hash": "e179101d8e3a4edde040ff66261cc6df",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/api/index.ts": {
+    "mtime": 1786554288.3220184,
+    "ast_hash": "9d9621d107224941e4ea258199eb7e74",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/api/types/index.ts": {
+    "mtime": 1786554285.3043985,
+    "ast_hash": "cd15ad32ac51d00f4cf980ff90edf856",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/authRoutes.tsx": {
+    "mtime": 1786554514.78042,
+    "ast_hash": "68f80cb3ae5c61842d205f53dbd17ed0",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/components/LoginForm/LoginForm.test.tsx": {
+    "mtime": 1786555176.045523,
+    "ast_hash": "f67e03fa80173e533de92246f309adeb",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/components/LoginForm/index.tsx": {
+    "mtime": 1786554463.1148183,
+    "ast_hash": "e602017de731374c1a146600946a27df",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/components/RequireAuth.test.tsx": {
+    "mtime": 1786555136.9689472,
+    "ast_hash": "2ebd3a09fe165db6a91a1ba8e322c6bd",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/components/RequireAuth.tsx": {
+    "mtime": 1786554445.5346124,
+    "ast_hash": "50b8abfbc1de1317ba934d63d69a8fc8",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/index.ts": {
+    "mtime": 1786554517.6865413,
+    "ast_hash": "2601c5a94a21e9689db788db46a128c5",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/pages/LoginPage.tsx": {
+    "mtime": 1786554468.6427498,
+    "ast_hash": "d77fc0b95d39297e12c85ab4bb679ef9",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/pages/MfaChallengePage.test.tsx": {
+    "mtime": 1786555212.202892,
+    "ast_hash": "276d3a3613d643290dc5a34689b40d65",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/pages/MfaChallengePage.tsx": {
+    "mtime": 1786554480.084294,
+    "ast_hash": "60903b4a630b7ed5e9c2422996214de3",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/pages/MfaEnrollPage.test.tsx": {
+    "mtime": 1786555257.0287294,
+    "ast_hash": "e3a9d47fd3b64e754d2fca5e82ba06a2",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/pages/MfaEnrollPage.tsx": {
+    "mtime": 1786554500.6170483,
+    "ast_hash": "fcacad4b09c6d657a9189b39229d2d64",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/services/authService.ts": {
+    "mtime": 1786554327.9880772,
+    "ast_hash": "10f4c4ef1800a092bc8786b749766624",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/types.ts": {
+    "mtime": 1786554317.9294205,
+    "ast_hash": "837994853b68dc9ae8bc14c0e30ca465",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/hooks/useAuth.ts": {
+    "mtime": 1786554391.013404,
+    "ast_hash": "171b632285d466f56d856c0158cc2a90",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/hooks/useRuntimeConfig.ts": {
+    "mtime": 1786554349.6699274,
+    "ast_hash": "68a73de89feed6ab00f94e4dd2f4da3f",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/main.tsx": {
+    "mtime": 1786554551.7508385,
+    "ast_hash": "a4f2ef2a1b68b72770e6d95215c37c0f",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/pages/HomePage.tsx": {
+    "mtime": 1786554508.8004072,
+    "ast_hash": "081ceadb9f96d465069df9997652c8d6",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/routes/AppRoutes.tsx": {
+    "mtime": 1786554543.9304254,
+    "ast_hash": "e6375a19a9b4599fb2e6d3ed76eefc2a",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/routes/routes.tsx": {
+    "mtime": 1786554521.3711643,
+    "ast_hash": "9b13a230c23a1c102c21d674b72bdb68",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/test/setup.ts": {
+    "mtime": 1786554267.9660716,
+    "ast_hash": "985da5341a082089bd6e9f86ed1221d5",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/types/app/RouteDefinition.ts": {
+    "mtime": 1786554395.569543,
+    "ast_hash": "59f341eda2d3e15aad2c8a4049123d3b",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/types/app/ServiceResult.ts": {
+    "mtime": 1786554292.2159913,
+    "ast_hash": "9964f03bdaf658e7b8c34bc79c78e9f8",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/types/models/CurrentIdentity.ts": {
+    "mtime": 1786554303.213025,
+    "ast_hash": "d227a1d98a8e9cbbadcc4855350a66ec",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/types/models/EffectivePermission.ts": {
+    "mtime": 1786554298.509801,
+    "ast_hash": "a31996850117e7a8fbbfbd1d95af18f3",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/utils/returnPath.test.ts": {
+    "mtime": 1786555118.7806466,
+    "ast_hash": "f933c8b4f8476ae355fcb38240ecb60d",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/utils/returnPath.ts": {
+    "mtime": 1786554772.6545959,
+    "ast_hash": "79f76b27e29d0583e224717c9a49f42d",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/utils/routesUtils.ts": {
+    "mtime": 1786554399.7416847,
+    "ast_hash": "e0797d711a8bb87b9d4e38bae34d30d6",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/utils/serviceUtils.ts": {
+    "mtime": 1786554311.5278394,
+    "ast_hash": "64a2024f635c0a2cd54dd1c2edce2ba8",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/vite-env.d.ts": {
+    "mtime": 1786554264.6285627,
+    "ast_hash": "0352474ba2918efe13895edbc3780d94",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/tailwind.config.js": {
+    "mtime": 1786554100.1924424,
+    "ast_hash": "d0a24b0a72ee98c30291590fdfdf968e",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/tsconfig.app.json": {
+    "mtime": 1786554074.3233974,
+    "ast_hash": "33b76344d6fcaa9066162a4cb3c6b3c8",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/tsconfig.json": {
+    "mtime": 1786554069.6419914,
+    "ast_hash": "a3d39fa780ebff65444de257f291ce6c",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/tsconfig.node.json": {
+    "mtime": 1786554078.1242406,
+    "ast_hash": "fd32df1e922920eb085c1d20ffd7fd58",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/vite.config.ts": {
+    "mtime": 1786554066.7047174,
+    "ast_hash": "4dfcf551c6954f92222b24057c0dc36f",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/index.html": {
+    "mtime": 1786554247.8152626,
+    "ast_hash": "9fa010da12fc61088d45c76954669f3c",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/public/vite.svg": {
+    "mtime": 1786554252.2006762,
+    "ast_hash": "8e3a10e157f75ada21ab742c022d5430",
     "semantic_hash": ""
   }
 }
