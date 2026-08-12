@@ -1,4 +1,4 @@
-import { CheckCircle, Wrench, WarningCircle } from '@phosphor-icons/react';
+import { CheckCircle, Question, Wrench, WarningCircle } from '@phosphor-icons/react';
 import ModuleCatalogItem from '@/types/models/ModuleCatalogItem';
 import OperationalState from '@/types/models/OperationalState';
 import { getModuleIcon } from './moduleIcons';
@@ -11,12 +11,13 @@ interface ModuleCardProps {
 // depender de percepção de cor (spec.md "Estado de manutenção"). AVAILABLE é
 // o único estado que abre navegação normal; MAINTENANCE/UNAVAILABLE mostram a
 // mensagem operacional (já sanitizada no backend, §2.5) sem permitir abrir o
-// destino. DISABLED nunca chega aqui — o backend já omite (§3.2), mas o
-// filtro em CatalogPage.tsx é defesa em profundidade própria do front-end.
-const STATE_PRESENTATION: Record<
-  Exclude<OperationalState, OperationalState.DISABLED>,
-  { label: string; Icon: typeof CheckCircle }
-> = {
+// destino. DISABLED nunca chega aqui — o backend já omite (§3.2) e
+// CatalogPage.tsx filtra de novo como defesa em profundidade — mas o
+// fallback abaixo evita que ModuleCard quebre (em vez de falhar de forma
+// segura) se algum dia for reusado fora desse fluxo filtrado.
+const FALLBACK_PRESENTATION = { label: 'Estado desconhecido', Icon: Question };
+
+const STATE_PRESENTATION: Partial<Record<OperationalState, { label: string; Icon: typeof CheckCircle }>> = {
   [OperationalState.AVAILABLE]: { label: 'Disponível', Icon: CheckCircle },
   [OperationalState.MAINTENANCE]: { label: 'Em manutenção', Icon: Wrench },
   [OperationalState.UNAVAILABLE]: { label: 'Indisponível', Icon: WarningCircle },
@@ -25,8 +26,7 @@ const STATE_PRESENTATION: Record<
 export default function ModuleCard({ module }: ModuleCardProps) {
   const ModuleIcon = getModuleIcon(module.icon);
   const isAvailable = module.operationalState === OperationalState.AVAILABLE;
-  const presentation =
-    STATE_PRESENTATION[module.operationalState as Exclude<OperationalState, OperationalState.DISABLED>];
+  const presentation = STATE_PRESENTATION[module.operationalState] ?? FALLBACK_PRESENTATION;
 
   const cardBody = (
     <>
