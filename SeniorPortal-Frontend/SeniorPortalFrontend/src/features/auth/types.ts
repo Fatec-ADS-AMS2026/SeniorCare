@@ -45,3 +45,7 @@ export interface MfaConfirmResponse {
 export interface MessageResponse {
   message: string;
 }
+
+export interface RegenerateRecoveryCodesRequest {
+  currentPassword: string;
+}
