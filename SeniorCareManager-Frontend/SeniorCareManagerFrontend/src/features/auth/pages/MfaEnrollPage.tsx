@@ -1,11 +1,12 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { TextInput } from '@/components/FormControls';
 import Button from '@/components/Button';
 import authService from '../services/authService';
 import { MfaEnrollResponse } from '../types';
 import useAuth from '@/hooks/useAuth';
 import useAppRoutes from '@/hooks/useAppRoutes';
+import { resolveReturnPath } from '@/utils/returnPath';
 
 interface MfaConfirmFormData {
   code: string;
@@ -14,6 +15,7 @@ interface MfaConfirmFormData {
 export default function MfaEnrollPage() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const routes = useAppRoutes();
   const { login, status: authStatus } = useAuth();
 
@@ -69,7 +71,16 @@ export default function MfaEnrollPage() {
     }
   };
 
-  const handleDone = () => navigate(routes.ADMIN_OVERVIEW.path, { replace: true });
+  // §6.4 — mesma prioridade de LoginForm/index.tsx: returnTo cruzado exige
+  // navegação de página inteira (apps separados, sem module federation).
+  const handleDone = () => {
+    const crossAppReturnTo = resolveReturnPath(searchParams.get('returnTo'));
+    if (crossAppReturnTo) {
+      window.location.assign(crossAppReturnTo);
+      return;
+    }
+    navigate(routes.ADMIN_OVERVIEW.path, { replace: true });
+  };
 
   if (recoveryCodes) {
     return (
