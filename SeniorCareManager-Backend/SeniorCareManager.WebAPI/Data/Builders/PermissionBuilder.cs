@@ -53,6 +53,20 @@ public class PermissionBuilder
         // Marcador — não protege nenhum endpoint sozinho; só usado por AdminInvariantService
         // para identificar quem conta como "administrador institucional" (§6.7).
         (Guid.Parse("21344FA6-54A6-4DC9-9696-EEE38BC42680"), "AccessAdministration", "manage", "Marca a identidade como administradora de acesso institucional", false),
+        // introduce-senior-portal §3 — gate das APIs administrativas do catálogo
+        // (habilitação/ordem/estado/mensagem de InstitutionModule). Distinta de
+        // Module/care e Module/stock (ModulePermissions abaixo), que gateiam a
+        // visibilidade do módulo para o usuário final, não a administração do catálogo.
+        (Guid.Parse("3BB5116E-6909-4932-9EFF-F6D74B54A2F0"), "InstitutionModule", "read", "Consultar a configuração do catálogo de módulos da instituição", false),
+        (Guid.Parse("054251B0-6777-4954-BA9D-64F9D7130E0B"), "InstitutionModule", "write", "Alterar habilitação, ordem, estado e mensagem dos módulos da instituição", false),
+    };
+
+    // introduce-senior-portal §2 — gate de visibilidade no catálogo do Senior Portal
+    // (ModuleDefinition.RequiredPermissionId). GUIDs fixos, mesma convenção acima.
+    private static readonly (Guid Id, string Resource, string Action, string Description, bool IsSystemOperation)[] ModulePermissions =
+    {
+        (Guid.Parse("E08D83BF-9FF8-4575-BBF1-3E62F7054048"), "Module", "care", "Acessar o módulo de assistência", false),
+        (Guid.Parse("F628285F-A074-4053-A1C3-22526C55AA93"), "Module", "stock", "Acessar o módulo de estoque", false),
     };
 
     public static void Build(ModelBuilder modelBuilder)
@@ -78,6 +92,9 @@ public class PermissionBuilder
         }
 
         foreach (var (id, resource, action, description, isSystemOperation) in AdminPermissions)
+            yield return new Permission(id, resource, action, description, isSystemOperation);
+
+        foreach (var (id, resource, action, description, isSystemOperation) in ModulePermissions)
             yield return new Permission(id, resource, action, description, isSystemOperation);
     }
 }

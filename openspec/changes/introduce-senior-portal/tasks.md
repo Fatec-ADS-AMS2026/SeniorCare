@@ -40,23 +40,128 @@
 
 ## 2. Modelo e persistência do catálogo
 
-- [ ] 2.1 Criar entidades e configurações EF Core para `ModuleDefinition` e `InstitutionModule`, incluindo chaves, instituição, estados, ordenação, habilitação, versão de concorrência e campos de auditoria.
-- [ ] 2.2 Criar migração de banco com restrições de unicidade, integridade referencial, limites de texto e enumeração dos estados operacionais.
-- [ ] 2.3 Implementar provisionamento idempotente das definições aprovadas de assistência e estoque, inicialmente desabilitadas para cada instituição.
-- [ ] 2.4 Implementar validação de chave, ícone, permissão e caminho relativo por allowlist, rejeitando origens externas, HTML e destinos desconhecidos.
-- [ ] 2.5 Implementar validação e sanitização das mensagens operacionais para impedir conteúdo pessoal, clínico ou técnico sensível.
-- [ ] 2.6 Cobrir entidades, migração, seeds e validações com testes unitários e de integração em PostgreSQL.
+- [x] 2.1 Criar entidades e configurações EF Core para `ModuleDefinition` e `InstitutionModule`, incluindo chaves, instituição, estados, ordenação, habilitação, versão de concorrência e campos de auditoria.
+      **Evidência**: `Objects/Models/ModuleDefinition.cs` e `InstitutionModule.cs` +
+      `Data/Builders/ModuleDefinitionBuilder.cs`/`InstitutionModuleBuilder.cs`.
+      `ModuleDefinition` é catálogo sistêmico (chave única, ícone, caminho, permissão
+      exigida); `InstitutionModule` é a configuração por instituição (par
+      `{InstitutionId, ModuleDefinitionId}` único, `OperationalState`, `Order`,
+      `IsEnabled`, `OperationalMessage`, `Version`/`xmin` como rowversion de
+      concorrência otimista, `CreatedAtUtc`/`UpdatedAtUtc`). `InstitutionId` é `Guid`
+      puro sem FK de banco, mesma convenção de `Role`/`ApplicationUser` (escopo
+      institucional reforçado pela aplicação, não pelo schema).
+- [x] 2.2 Criar migração de banco com restrições de unicidade, integridade referencial, limites de texto e enumeração dos estados operacionais.
+      **Evidência**: `Data/Migrations/20260811144526_AddSeniorPortalCatalog.cs`.
+      Índice único em `ModuleDefinition.Key` e no par `InstitutionModule`
+      `{institution_id, module_definition_id}`; FK `InstitutionModule.ModuleDefinitionId
+      → ModuleDefinition.Id` com `DeleteBehavior.Restrict`; FK
+      `ModuleDefinition.RequiredPermissionId → Permission.Id`; `maxLength` em todos os
+      campos de texto (`key` 50, `name` 100, `description` 300, `icon` 50, `path` 100,
+      `operational_message` 280); `CHECK ck_institutionmodule_operational_state
+      (operational_state BETWEEN 0 AND 3)` — primeiro CHECK constraint do repositório.
+- [x] 2.3 Implementar provisionamento idempotente das definições aprovadas de assistência e estoque, inicialmente desabilitadas para cada instituição.
+      **Evidência**: `Services/Entities/InstitutionModuleProvisioningService.cs`
+      (`RunAsync`) cria só os pares `{instituição, ModuleDefinition ativa}` que
+      faltarem, sempre como `OperationalState.DISABLED`/`IsEnabled=false`; registrado
+      em `Startup.cs` (`IInstitutionModuleProvisioningService`) e disparado em
+      `Program.cs` logo após o bootstrap do admin. Seed das 2 definições aprovadas
+      (`care`, `stock`) via `HasData` em `ModuleDefinitionBuilder`. Idempotência
+      coberta por `InstitutionModuleProvisioningServiceTests.RunAsync_CalledTwice_DoesNotDuplicateRows`.
+- [x] 2.4 Implementar validação de chave, ícone, permissão e caminho relativo por allowlist, rejeitando origens externas, HTML e destinos desconhecidos.
+      **Evidência**: `Infrastructure/Validation/ModuleDefinitionValidator.cs`. Allowlist
+      (não denylist) — chave via regex `^[a-z][a-z0-9-]{1,49}$`, ícone contra o conjunto
+      fixo já usado pelos front-ends (`HeartStraight`, `Package`), caminho contra
+      prefixos fixos (`/care`, `/stock`) rejeitando esquema (`://`), origem
+      protocol-relative (`//`) e qualquer coisa fora de `/`, e permissão contra o
+      conjunto de `Permission.Id` existentes.
+- [x] 2.5 Implementar validação e sanitização das mensagens operacionais para impedir conteúdo pessoal, clínico ou técnico sensível.
+      **Evidência**: `Infrastructure/Validation/OperationalMessageSanitizer.cs` rejeita
+      HTML (`<`/`>`), URL (`https?://`) e reusa o mesmo vocabulário denylist de
+      `.github/scripts/check-clinical-scope.sh` para termos clínicos/pessoais
+      (prontuário, assinatura, conselho profissional, etc.), além do limite de 280
+      caracteres já reforçado pelo schema.
+- [x] 2.6 Cobrir entidades, migração, seeds e validações com testes unitários e de integração em PostgreSQL.
+      **Evidência**: unitários — `ModuleDefinitionValidatorTests.cs`,
+      `OperationalMessageSanitizerTests.cs`. Integração (Testcontainers/PostgreSQL) —
+      `IntegrationTests/Data/SeniorPortalCatalogPersistenceTests.cs` (unicidade de
+      `Key`, unicidade do par instituição/módulo, FK inválida, CHECK de
+      `operational_state` fora do range, concorrência otimista) e
+      `IntegrationTests/Services/InstitutionModuleProvisioningServiceTests.cs`
+      (provisionamento em instituição nova, idempotência). Rodado `dotnet test` na
+      solução inteira — 52/52 testes unitários e 125/125 de integração aprovados, 0
+      falhas.
 
 ## 3. APIs e autorização do catálogo
 
-- [ ] 3.1 Implementar o serviço que combina identidade, instituição, conta ativa, permissões efetivas e configuração para produzir o catálogo mínimo do usuário.
-- [ ] 3.2 Implementar `GET /api/v1/me/modules` com ordenação determinística e omissão de módulos desabilitados ou não autorizados.
-- [ ] 3.3 Implementar APIs administrativas versionadas para consultar e alterar habilitação, ordem, estado e mensagem operacional com permissão específica.
-- [ ] 3.4 Aplicar concorrência otimista e respostas de conflito nas alterações administrativas sem sobrescrever silenciosamente uma versão mais nova.
-- [ ] 3.5 Auditar alterações do catálogo, mudanças de estado, acessos negados e redirecionamentos rejeitados com ator, instituição, módulo, resultado e correlação, sem tokens ou dados clínicos.
-- [ ] 3.6 Garantir que os endpoints dos módulos e da API continuem revalidando autorização, independentemente da visibilidade fornecida pelo catálogo.
-- [ ] 3.7 Criar testes de integração para isolamento institucional, conta bloqueada, permissão concedida/revogada, estados operacionais, validação, concorrência e auditoria.
-- [ ] 3.8 Atualizar a especificação OpenAPI e os exemplos de resposta sem expor regras internas de autorização ou dados dos domínios.
+- [x] 3.1 Implementar o serviço que combina identidade, instituição, conta ativa, permissões efetivas e configuração para produzir o catálogo mínimo do usuário.
+      **Evidência**: `Services/Entities/ModuleCatalogService.cs`
+      (`GetForCurrentUserAsync`). Instituição via `ICurrentUserContext`, conta ativa via
+      `IAccessDecisionService.EvaluateAsync` (nega `INVALID_CONTEXT` se
+      `AccountState != ACTIVE` — não duplicado aqui), permissão efetiva avaliada por
+      módulo a partir de `ModuleDefinition.RequiredPermission.{Resource,Action}` (mesma
+      precedência de todo o resto do sistema, nunca reimplementada). Configuração via
+      join `InstitutionModule`+`ModuleDefinition` da instituição atual.
+- [x] 3.2 Implementar `GET /api/v1/me/modules` com ordenação determinística e omissão de módulos desabilitados ou não autorizados.
+      **Evidência**: `Controllers/ModuleCatalogController.cs` (rota literal
+      `api/v1/me/modules`, contrato exato de design.md decisão 5). Omite
+      `IsEnabled=false`, `OperationalState=DISABLED`, `ModuleDefinition.IsActive=false` e
+      qualquer módulo sem permissão efetiva concedida; ordena por `Order` e depois por
+      `Key` (desempate determinístico). Resposta mínima: chave, apresentação, caminho,
+      ordem, estado operacional e mensagem operacional.
+- [x] 3.3 Implementar APIs administrativas versionadas para consultar e alterar habilitação, ordem, estado e mensagem operacional com permissão específica.
+      **Evidência**: `Controllers/AdminInstitutionModuleController.cs`
+      (`api/v1/AdminInstitutionModule`, GET/GET-by-id/PUT — sem POST/DELETE, já que
+      `InstitutionModule` é só provisionado, nunca criado/excluído por API, §2.3/§3.3).
+      Nova permissão `InstitutionModule` `read`/`write` em `PermissionBuilder.cs`
+      (distinta de `Module/care`/`Module/stock`, que gateiam visibilidade do usuário
+      final, não administração), seedada pela migração
+      `20260812110359_AddInstitutionModuleAdminPermissions.cs`. `PUT` valida a mensagem
+      operacional via `OperationalMessageSanitizer` (§2.5) antes de persistir.
+- [x] 3.4 Aplicar concorrência otimista e respostas de conflito nas alterações administrativas sem sobrescrever silenciosamente uma versão mais nova.
+      **Evidência**: `AdminInstitutionModuleController.Put` define
+      `Entry(...).Property<uint>("Version").OriginalValue = request.RowVersion` (mesmo
+      mecanismo de `GenericRepository.Update`) antes do `SaveChangesAsync`, garantindo
+      que o `SaveChanges` compare contra a versão que o cliente leu, não uma releitura
+      implícita. `DbUpdateConcurrencyException` já mapeada para 409 em
+      `GlobalExceptionHandler.cs` (reaproveitada, não duplicada). Testado em
+      `AdminInstitutionModuleControllerTests.Put_StaleRowVersion_ReturnsConflict`.
+- [x] 3.5 Auditar alterações do catálogo, mudanças de estado, acessos negados e redirecionamentos rejeitados com ator, instituição, módulo, resultado e correlação, sem tokens ou dados clínicos.
+      **Evidência**: toda alteração admin grava `AuditEventCategory.CATALOG`
+      (`AdminInstitutionModuleController.Put`, before/after com
+      IsEnabled/Order/OperationalState/OperationalMessage, `TargetScopeKey` = chave do
+      módulo). Acesso negado já é automático via `RequirePermissionAttribute`
+      (`AuditEventCategory.ACCESS_DECISION` em toda checagem `[RequirePermission]`,
+      inclusive nos novos endpoints) — não duplicado. "Redirecionamentos rejeitados" é
+      responsabilidade do validador central de `return path` no front-end (tarefa 4.5,
+      fora do escopo desta seção de backend) — decisão registrada aqui para não ficar
+      implícita. Correlação: `TraceIdentifier`, já automático em `AuditService`
+      (nenhuma mudança necessária). Testado em
+      `AdminInstitutionModuleControllerTests.Put_ValidUpdate_ChangesStateAndRecordsAudit`.
+- [x] 3.6 Garantir que os endpoints dos módulos e da API continuem revalidando autorização, independentemente da visibilidade fornecida pelo catálogo.
+      **Evidência**: `Module/care` e `Module/stock` (visibilidade no catálogo) e as
+      permissões de domínio reais (ex.: `Product/read`) são checadas
+      independentemente — `ModuleCatalogService` nunca concede nada, só lê decisões já
+      calculadas por `IAccessDecisionService` para os endpoints de fato protegidos por
+      `[RequirePermission]`. Provado por
+      `ModulePermissionIsolationTests`: conceder `Module/care` sem `Product/read`
+      mantém `GET /api/v1/Product` em 403; conceder `Product/read` sem `Module/care`
+      mantém `GET /api/v1/me/modules` vazio.
+- [x] 3.7 Criar testes de integração para isolamento institucional, conta bloqueada, permissão concedida/revogada, estados operacionais, validação, concorrência e auditoria.
+      **Evidência**: `ModuleCatalogControllerTests.cs` (permissão concedida/revogada,
+      módulo nunca habilitado, `MAINTENANCE` com mensagem, isolamento entre duas
+      instituições, ordenação determinística, conta `BLOCKED`) e
+      `AdminInstitutionModuleControllerTests.cs` (permissão de leitura concedida/negada,
+      atualização válida + auditoria, `RowVersion` obsoleto → 409, mensagem com termo
+      clínico → 422, módulo de outra instituição → 404). 15 testes novos, todos
+      passando junto com a suíte completa (52/52 unitários, 141/141 de integração).
+- [x] 3.8 Atualizar a especificação OpenAPI e os exemplos de resposta sem expor regras internas de autorização ou dados dos domínios.
+      **Evidência**: OpenAPI é gerado automaticamente por Swashbuckle a partir dos
+      `ActionResult<T>` dos controllers (sem YAML/JSON mantido à mão neste repositório;
+      `Startup.cs` publica `/swagger/v1/swagger.json` em todo ambiente) — nenhuma
+      mudança de configuração necessária. Contrato verificado por um novo teste,
+      `OpenApiContractTests.SeniorPortalCatalog_ContractExposesExpectedRoutesAndVerbs`,
+      confirmando as rotas/verbos esperados (`GET /api/v1/me/modules` só leitura;
+      `AdminInstitutionModule` sem POST/DELETE).
 
 ## 4. Base da aplicação Senior Portal
 
