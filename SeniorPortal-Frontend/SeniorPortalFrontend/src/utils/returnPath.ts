@@ -10,10 +10,12 @@ export const RETURN_PATH_FALLBACK = '/';
 
 export function isSafeReturnPath(value: string): boolean {
   if (typeof value !== 'string' || value.length === 0) return false;
+  // Só o startsWith('/') abaixo já basta contra esquema (`http:`,
+  // `javascript:`, etc.) — nenhum deles começa com `/`. Uma regex de esquema
+  // aqui seria código morto (nunca dispararia depois do startsWith).
   if (!value.startsWith('/')) return false;
   if (value.startsWith('//')) return false;
   if (value.includes('\\')) return false;
-  if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return false; // qualquer esquema (http:, https:, javascript:, etc.)
 
   if (value === RETURN_PATH_FALLBACK) return true;
   return KNOWN_MODULE_PREFIXES.some(

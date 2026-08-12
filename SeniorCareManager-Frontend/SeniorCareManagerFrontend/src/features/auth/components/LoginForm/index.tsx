@@ -44,20 +44,51 @@ export default function LoginForm() {
       // específico, nunca alcançável por URL) > returnTo validado da query
       // string (entrada cruzada — portal ou link direto, §4.5/§6.4) >
       // destino padrão do app.
+      //
+      // from usa navigate() (SPA, rápido) porque é sempre uma rota deste
+      // próprio roteador — RequireAuth só sintetiza esse state a partir de
+      // uma navegação que já aconteceu dentro deste app. crossAppReturnTo
+      // usa window.location.assign() (navegação de página inteira) porque
+      // portal/care/stock são três bundles/roteadores React Router
+      // SEPARADOS (design.md decisão 1, sem module federation) — navigate()
+      // nunca resolve uma rota fora do router deste app, mesmo pra `/`
+      // (raiz do portal) ou `/stock/...`, então usá-lo aqui resultaria em
+      // tela em branco ou na LANDING deste próprio app por engano.
       const from = (location.state as { from?: { pathname?: string } } | null)
         ?.from?.pathname;
+      if (from) {
+        navigate(from, { replace: true });
+        return;
+      }
+
       const crossAppReturnTo = resolveReturnPath(searchParams.get('returnTo'));
-      navigate(from || crossAppReturnTo || routes.ADMIN_OVERVIEW.path, { replace: true });
+      if (crossAppReturnTo) {
+        window.location.assign(crossAppReturnTo);
+        return;
+      }
+
+      navigate(routes.ADMIN_OVERVIEW.path, { replace: true });
       return;
     }
 
+    // §6.4 — o returnTo pendente precisa sobreviver à etapa de MFA (mesmo
+    // racional do Senior Portal, §4.5): sem repassar a query string aqui, o
+    // destino cruzado se perderia depois de confirmar o desafio.
+    const pendingQuery = searchParams.toString();
+
     if (status === 'mfa_required' && challengeToken) {
-      navigate(routes.MFA_CHALLENGE.path, { state: { challengeToken } });
+      navigate(
+        { pathname: routes.MFA_CHALLENGE.path, search: pendingQuery ? `?${pendingQuery}` : '' },
+        { state: { challengeToken } }
+      );
       return;
     }
 
     if (status === 'mfa_enrollment_required' && challengeToken) {
-      navigate(routes.MFA_ENROLL.path, { state: { challengeToken } });
+      navigate(
+        { pathname: routes.MFA_ENROLL.path, search: pendingQuery ? `?${pendingQuery}` : '' },
+        { state: { challengeToken } }
+      );
       return;
     }
 
