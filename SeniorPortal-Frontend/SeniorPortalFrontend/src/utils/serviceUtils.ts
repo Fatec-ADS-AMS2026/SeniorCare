@@ -47,11 +47,13 @@ export function handleServiceError<T>(error: unknown): ServiceResult<T> {
       success: false,
       message: problem.title || 'Erro de validação',
       errors,
+      correlationId: problem.correlationId,
     };
   }
 
   return {
     success: false,
     message: problem.detail || problem.title || problem.message || 'Erro desconhecido',
+    correlationId: problem.correlationId,
   };
 }

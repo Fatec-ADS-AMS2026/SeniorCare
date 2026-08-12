@@ -231,13 +231,73 @@
 
 ## 5. Experiência do catálogo e funções globais
 
-- [ ] 5.1 Implementar catálogo responsivo consumindo apenas `GET /api/v1/me/modules`, sem consultas de residente, prontuário, finanças ou outros dados de negócio.
-- [ ] 5.2 Implementar cards ordenados para `AVAILABLE`, `MAINTENANCE` e `UNAVAILABLE`, sem renderizar `DISABLED` e sem permitir abertura normal dos estados não disponíveis.
-- [ ] 5.3 Implementar estados de carregamento, vazio, sessão expirada e falha recuperável com retorno seguro e identificador de correlação quando fornecido.
-- [ ] 5.4 Implementar perfil, segurança da conta, preferências de contraste e fonte, e logout compartilhado conforme o contrato global.
-- [ ] 5.5 Aplicar tokens visuais e nomenclatura global documentados, sem criar dependência de um design system ou runtime de microfrontend.
-- [ ] 5.6 Validar teclado, foco, nomes acessíveis, contraste, mensagens independentes de cor e ordem assistiva em celular, tablet e desktop.
-- [ ] 5.7 Criar testes de componentes e jornadas do catálogo, estados operacionais, preferências e funções globais.
+- [x] 5.1 Implementar catálogo responsivo consumindo apenas `GET /api/v1/me/modules`, sem consultas de residente, prontuário, finanças ou outros dados de negócio.
+      **Evidência**: `features/catalog/services/moduleCatalogService.ts` +
+      `features/catalog/pages/CatalogPage.tsx` — única chamada de rede é `GET
+      me/modules`; grid responsivo via Tailwind
+      (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`). Nenhum outro serviço/rota
+      de domínio é importado por este módulo.
+- [x] 5.2 Implementar cards ordenados para `AVAILABLE`, `MAINTENANCE` e `UNAVAILABLE`, sem renderizar `DISABLED` e sem permitir abertura normal dos estados não disponíveis.
+      **Evidência**: `features/catalog/components/ModuleCard.tsx` — só
+      `AVAILABLE` renderiza um `<a href={module.path}>` (navegação normal,
+      mesma origem); `MAINTENANCE`/`UNAVAILABLE` renderizam um `<div>` não
+      interativo com a mensagem operacional, sem link. `CatalogPage.tsx`
+      ordena por `Order` e filtra `DISABLED` como defesa em profundidade
+      própria do front-end (o backend já omite esse estado de `/me/modules`,
+      §3.2) — testado em
+      `CatalogPage.test.tsx.never renders a DISABLED module...`.
+- [x] 5.3 Implementar estados de carregamento, vazio, sessão expirada e falha recuperável com retorno seguro e identificador de correlação quando fornecido.
+      **Evidência**: `CatalogPage.tsx` — carregamento (`role="status"`),
+      vazio (nenhum módulo, mensagem própria, não é erro), falha recuperável
+      (`role="alert"`, mensagem do `ProblemDetails.detail`, `correlationId`
+      quando o backend fornece — `ServiceResult`/`handleServiceError`
+      estendidos em `serviceUtils.ts` pra propagá-lo — e botão "Tentar
+      novamente"). Sessão expirada já é tratada por `RequireAuth`/
+      `AuthContext` (§4.3/§4.4): qualquer 401 fora do bootstrap limpa o
+      contexto e redireciona pro `/login` com retorno seguro
+      (`resolveReturnPath`, §4.5) — não duplicado aqui.
+- [x] 5.4 Implementar perfil, segurança da conta, preferências de contraste e fonte, e logout compartilhado conforme o contrato global.
+      **Evidência**: `features/auth/pages/ProfilePage.tsx` (`/profile`) e
+      `SecurityPage.tsx` (`/security`, regeneração de códigos de recuperação
+      MFA — único contrato de "segurança da conta" já pronto no backend;
+      troca de senha continua em care-web/stock-web, mesma decisão de §4.2
+      registrada para `authService`). `features/preferences/components/
+      PreferencesControls.tsx` liga contraste/fonte ao `ThemeContext` já
+      existente (§4), sem chave nova. Logout compartilhado via
+      `GlobalHeader.tsx` (`useAuth().logout()`, mesma chamada
+      `POST /auth/logout` de §4.3), presente em toda rota autenticada.
+- [x] 5.5 Aplicar tokens visuais e nomenclatura global documentados, sem criar dependência de um design system ou runtime de microfrontend.
+      **Evidência**: `features/layout/GlobalHeader.tsx` +
+      `AuthenticatedLayout.tsx` — navegação global (Catálogo/Perfil/
+      Segurança/preferências/logout) presente em toda rota autenticada,
+      reusando os tokens de cor/fonte já trazidos de care-web em §4 (nenhuma
+      paleta nova). Sem pacote de design system nem runtime de
+      microfrontend — só componentes React locais, conforme design.md
+      decisão 8.
+- [x] 5.6 Validar teclado, foco, nomes acessíveis, contraste, mensagens independentes de cor e ordem assistiva em celular, tablet e desktop.
+      **Evidência**: módulos disponíveis são `<a>` nativos (foco/ativação por
+      teclado de graça, `focus:outline` explícito); estados não disponíveis
+      usam ícone **e** texto (nunca só cor — `Wrench`/`WarningCircle` +
+      rótulo, spec.md "Estado de manutenção"); toda entrada de formulário tem
+      `<label>` associado; grid responsivo sem reordenar visualmente por
+      CSS (ordem assistiva = ordem do DOM = ordem visual). `jest-axe`
+      (`toHaveNoViolations`) cobre `CatalogPage` (pronto), `GlobalHeader`,
+      `PreferencesControls` e `ProfilePage` — 0 violação em todos.
+- [x] 5.7 Criar testes de componentes e jornadas do catálogo, estados operacionais, preferências e funções globais.
+      **Evidência**: 17 testes novos — `CatalogPage.test.tsx` (carregamento,
+      vazio, `AVAILABLE`/`MAINTENANCE` lado a lado com ordenação, filtro de
+      `DISABLED`, falha com `correlationId` e retry, a11y),
+      `GlobalHeader.test.tsx` (navegação + logout, a11y),
+      `PreferencesControls.test.tsx` (contraste, tamanho de fonte, limites, a11y),
+      `ProfilePage.test.tsx` (identidade restaurada, estado vazio, a11y),
+      `SecurityPage.test.tsx` (senha incorreta, sucesso com códigos novos, a11y).
+      Total do app: 61/61 testes aprovados, lint/build/gates de higiene
+      (`check-frontend-bundle.sh`, `check-clinical-scope.sh`) revalidados.
+      Achado durante a implementação: Node 22+ expõe um `localStorage`
+      experimental que quebra `window.localStorage` sob jsdom sem
+      `--localstorage-file` — poliflhado uma vez em `src/test/setup.ts`
+      (não é bug do componente; `ThemeContext.tsx` nunca tinha sido
+      exercitado por um teste antes desta seção).
 
 ## 6. Integração do módulo assistencial
 

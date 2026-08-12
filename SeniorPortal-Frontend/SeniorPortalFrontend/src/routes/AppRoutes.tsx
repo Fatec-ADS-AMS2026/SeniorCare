@@ -1,5 +1,4 @@
 import {
-  Outlet,
   createBrowserRouter,
   createRoutesFromElements,
   Route,
@@ -7,23 +6,15 @@ import {
   useRouteError,
 } from 'react-router-dom';
 import { routes } from './routes';
-import RequireAuth from '@/features/auth/components/RequireAuth';
-
-// Sem chrome próprio ainda (header/navegação global são §5) — só o guard de
-// sessão/instituição (§4.4) em volta do Outlet.
-function AuthenticatedLayout() {
-  return (
-    <RequireAuth>
-      <Outlet />
-    </RequireAuth>
-  );
-}
+import AuthenticatedLayout from '@/features/layout/AuthenticatedLayout';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route element={<AuthenticatedLayout />} errorElement={<GlobalErrorBoundary />}>
         <Route {...routes.HOME} />
+        <Route {...routes.PROFILE} />
+        <Route {...routes.SECURITY} />
       </Route>
       <Route errorElement={<GlobalErrorBoundary />}>
         <Route {...routes.LOGIN} />
