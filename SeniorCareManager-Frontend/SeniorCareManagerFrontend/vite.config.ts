@@ -20,7 +20,17 @@ export default defineConfig(({ mode }) => {
     );
   }
 
+  // §6.1 — caminho-base alvo `/care`
+  // (docs/architecture/senior-portal-contracts.md §1). Default `/` preserva o
+  // deploy atual por subdomínio (Caddy ainda roteia por subdomínio, não por
+  // caminho — migrar isso é §8.2): esta opção só existe pra já deixar o build
+  // pronto pra ativar o caminho-base quando a borda migrar, sem exigir
+  // recompilação/nova entrega além de trocar a variável de ambiente. Mesmo
+  // padrão já usado no Senior Portal (§4.1).
+  const basePath = env.VITE_BASE_PATH || '/';
+
   return {
+    base: basePath,
     plugins: [react()],
     resolve: {
       // Essa opção deve ser a mesma que a definida em tsconfig.app.json

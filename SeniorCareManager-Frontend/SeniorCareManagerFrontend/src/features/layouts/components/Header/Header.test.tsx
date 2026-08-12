@@ -85,4 +85,31 @@ describe('Header', () => {
     });
     expect(postMock).toHaveBeenCalledWith('Auth/logout');
   });
+
+  // §6.3 — retorno ao portal e links pra perfil/segurança (rotas do próprio
+  // Senior Portal), sem duplicar nenhuma regra de credencial.
+  it('links back to the portal, profile and security when authenticated', async () => {
+    getMock.mockResolvedValueOnce({
+      data: {
+        userId: '1',
+        institutionId: '1',
+        institutionName: 'ILPI Teste',
+        displayName: 'Fulana de Tal',
+        email: 'fulana@example.com',
+        roles: [],
+        organizationalResponsibilities: [],
+        effectivePermissions: [],
+      },
+    });
+
+    renderHeader();
+
+    await waitFor(() => {
+      expect(screen.getByText('Fulana de Tal')).toBeInTheDocument();
+    });
+
+    expect(screen.getByRole('link', { name: /Portal/ })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: /Perfil/ })).toHaveAttribute('href', '/profile');
+    expect(screen.getByRole('link', { name: /Segurança/ })).toHaveAttribute('href', '/security');
+  });
 });
