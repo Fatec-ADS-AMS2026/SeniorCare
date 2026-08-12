@@ -392,12 +392,16 @@
       **Evidência**: restauração/401/403/revogação/logout já cobertos pela
       suíte existente, revalidada sem regressão. Testes novos: 1 em
       `Header.test.tsx` (links Portal/Perfil/Segurança), 6 em
-      `returnPath.test.ts` (allowlist e rejeições) e 3 em `LoginForm.test.tsx`
+      `returnPath.test.ts` (allowlist e rejeições), 3 em `LoginForm.test.tsx`
       (returnTo cruzado via `window.location.assign` — espionado
       diretamente, sem rota fake que mascare o bug corrigido em §6 —,
       returnTo rejeitado cai no padrão, `location.state.from` tem
-      prioridade). 60/60 testes do app aprovados (10 novos), lint/build/
-      `npm audit`/gates de higiene revalidados.
+      prioridade). Achado do review da PR #114 (não bloqueante): faltava
+      cobertura do mesmo `returnTo` cruzado sobrevivendo à etapa de MFA —
+      2 testes novos em `MfaChallengePage.test.tsx` e
+      `MfaEnrollPage.test.tsx` criado do zero (não existia antes deste
+      change) com 3 testes. 65/65 testes do app aprovados (15 novos no
+      total), lint/build/`npm audit`/gates de higiene revalidados.
 
 ## 8. Implantação, segurança e observabilidade
 

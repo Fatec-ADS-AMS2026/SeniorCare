@@ -406,10 +406,7 @@
   "404": "vite-env.d.ts",
   "405": "tailwind.config.js",
   "406": "vite.config.ts",
-  "407": "UserRole",
   "408": "Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização",
-  "409": "Requirement: Configuração e navegação crítica são auditáveis",
-  "410": "AccountToken",
   "411": "UserSession",
   "412": "InstitutionSecurityPolicyService",
   "413": "ProfilePage.tsx",
@@ -421,6 +418,5 @@
   "419": "AdminOrganizationalRoleControllerTests",
   "420": "AccessPolicyBuilder.cs",
   "421": "Requirement: Tentativas de autenticação são protegidas contra abuso",
-  "422": "Requirement: Portal possui experiência acessível e responsiva",
-  "423": "PermissionGroupPermission"
+  "422": "Requirement: Portal possui experiência acessível e responsiva"
 }

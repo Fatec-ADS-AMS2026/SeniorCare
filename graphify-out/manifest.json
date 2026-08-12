@@ -2000,8 +2000,8 @@
     "semantic_hash": ""
   },
   "openspec/changes/introduce-senior-portal/tasks.md": {
-    "mtime": 1786569564.4747627,
-    "ast_hash": "6859d68b6445df7585b00ea372e1cf24",
+    "mtime": 1786570760.793207,
+    "ast_hash": "4bdd7f727b30705ed5f954226e7053d1",
     "semantic_hash": ""
   },
   ".github/scripts/check-clinical-scope.sh": {
@@ -3780,8 +3780,8 @@
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/pages/MfaChallengePage.test.tsx": {
-    "mtime": 1786372721.200899,
-    "ast_hash": "e0409857eeca61ad668a18e0e34e11ab",
+    "mtime": 1786570488.9277506,
+    "ast_hash": "36c059cc3232e8c8e1722fba2e849897",
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/pages/MfaChallengePage.tsx": {
@@ -4742,6 +4742,11 @@
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/utils/returnPath.ts": {
     "mtime": 1786567068.790279,
     "ast_hash": "20a56c80aa058d74e002820361ba6a65",
+    "semantic_hash": ""
+  },
+  "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/pages/MfaEnrollPage.test.tsx": {
+    "mtime": 1786570632.0280213,
+    "ast_hash": "61ae00396b1c161ad18ea8e0cbee6459",
     "semantic_hash": ""
   }
 }
