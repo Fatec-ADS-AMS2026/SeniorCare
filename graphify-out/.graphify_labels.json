@@ -416,5 +416,10 @@
   "414": "PreferencesControls.tsx",
   "415": "ModuleCatalogItem.ts",
   "416": "Requirement: Permissões são compostas por recurso, ação e funcionalidade",
-  "417": "Requirement: Senior Portal é a entrada institucional unificada"
+  "417": "Requirement: Senior Portal é a entrada institucional unificada",
+  "418": "7. Avaliação específica das capacidades críticas",
+  "419": "AdminOrganizationalRoleControllerTests",
+  "420": "AccessPolicyBuilder.cs",
+  "421": "Requirement: Tentativas de autenticação são protegidas contra abuso",
+  "422": "Requirement: Portal possui experiência acessível e responsiva"
 }

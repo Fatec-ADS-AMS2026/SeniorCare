@@ -1,9 +1,10 @@
 import { Envelope, Eye, EyeSlash, Lock } from '@phosphor-icons/react';
 import { FormEvent, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import authService from '../../services/authService';
 import useAuth from '@/hooks/useAuth';
 import useAppRoutes from '@/hooks/useAppRoutes';
+import { resolveReturnPath } from '@/utils/returnPath';
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +16,7 @@ export default function LoginForm() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const routes = useAppRoutes();
 
   const togglePasswordVisibility = () => {
@@ -38,19 +40,55 @@ export default function LoginForm() {
 
     if (status === 'ok' && identity) {
       login(identity);
+      // §6.4 — prioridade: destino interno preservado por RequireAuth (mais
+      // específico, nunca alcançável por URL) > returnTo validado da query
+      // string (entrada cruzada — portal ou link direto, §4.5/§6.4) >
+      // destino padrão do app.
+      //
+      // from usa navigate() (SPA, rápido) porque é sempre uma rota deste
+      // próprio roteador — RequireAuth só sintetiza esse state a partir de
+      // uma navegação que já aconteceu dentro deste app. crossAppReturnTo
+      // usa window.location.assign() (navegação de página inteira) porque
+      // portal/care/stock são três bundles/roteadores React Router
+      // SEPARADOS (design.md decisão 1, sem module federation) — navigate()
+      // nunca resolve uma rota fora do router deste app, mesmo pra `/`
+      // (raiz do portal) ou `/stock/...`, então usá-lo aqui resultaria em
+      // tela em branco ou na LANDING deste próprio app por engano.
       const from = (location.state as { from?: { pathname?: string } } | null)
         ?.from?.pathname;
-      navigate(from || routes.ADMIN_OVERVIEW.path, { replace: true });
+      if (from) {
+        navigate(from, { replace: true });
+        return;
+      }
+
+      const crossAppReturnTo = resolveReturnPath(searchParams.get('returnTo'));
+      if (crossAppReturnTo) {
+        window.location.assign(crossAppReturnTo);
+        return;
+      }
+
+      navigate(routes.ADMIN_OVERVIEW.path, { replace: true });
       return;
     }
 
+    // §6.4 — o returnTo pendente precisa sobreviver à etapa de MFA (mesmo
+    // racional do Senior Portal, §4.5): sem repassar a query string aqui, o
+    // destino cruzado se perderia depois de confirmar o desafio.
+    const pendingQuery = searchParams.toString();
+
     if (status === 'mfa_required' && challengeToken) {
-      navigate(routes.MFA_CHALLENGE.path, { state: { challengeToken } });
+      navigate(
+        { pathname: routes.MFA_CHALLENGE.path, search: pendingQuery ? `?${pendingQuery}` : '' },
+        { state: { challengeToken } }
+      );
       return;
     }
 
     if (status === 'mfa_enrollment_required' && challengeToken) {
-      navigate(routes.MFA_ENROLL.path, { state: { challengeToken } });
+      navigate(
+        { pathname: routes.MFA_ENROLL.path, search: pendingQuery ? `?${pendingQuery}` : '' },
+        { state: { challengeToken } }
+      );
       return;
     }
 

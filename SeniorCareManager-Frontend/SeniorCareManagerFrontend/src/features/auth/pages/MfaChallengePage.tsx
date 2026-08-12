@@ -1,11 +1,12 @@
 import { FormEvent, useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { TextInput } from '@/components/FormControls';
 import Button from '@/components/Button';
 import { AlertModal } from '@/components/Modal';
 import authService from '../services/authService';
 import useAuth from '@/hooks/useAuth';
 import useAppRoutes from '@/hooks/useAppRoutes';
+import { resolveReturnPath } from '@/utils/returnPath';
 
 interface MfaChallengeFormData {
   code: string;
@@ -14,8 +15,20 @@ interface MfaChallengeFormData {
 export default function MfaChallengePage() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const routes = useAppRoutes();
   const { login } = useAuth();
+
+  // §6.4 — mesma prioridade de LoginForm/index.tsx: returnTo cruzado exige
+  // navegação de página inteira (apps separados, sem module federation).
+  const navigateToDestination = () => {
+    const crossAppReturnTo = resolveReturnPath(searchParams.get('returnTo'));
+    if (crossAppReturnTo) {
+      window.location.assign(crossAppReturnTo);
+      return;
+    }
+    navigate(routes.ADMIN_OVERVIEW.path, { replace: true });
+  };
 
   const challengeToken = (
     location.state as { challengeToken?: string } | null
@@ -50,7 +63,7 @@ export default function MfaChallengePage() {
         setIsAlertOpen(true);
         return;
       }
-      navigate(routes.ADMIN_OVERVIEW.path, { replace: true });
+      navigateToDestination();
       return;
     }
 
@@ -62,7 +75,7 @@ export default function MfaChallengePage() {
   const closeAlert = () => {
     setIsAlertOpen(false);
     if (isLowRecoveryCodes) {
-      navigate(routes.ADMIN_OVERVIEW.path, { replace: true });
+      navigateToDestination();
     }
   };
 
