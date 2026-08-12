@@ -225,6 +225,7 @@ public class Startup
 
         // Senior Portal — catálogo de módulos (introduce-senior-portal §2)
         services.AddScoped<IInstitutionModuleProvisioningService, InstitutionModuleProvisioningService>();
+        services.AddScoped<IModuleCatalogService, ModuleCatalogService>();
 
         // Decisão de acesso (§5)
         services.AddScoped<IAccessDecisionService, AccessDecisionService>();
