@@ -405,5 +405,9 @@
   "403": "setup.ts",
   "404": "vite-env.d.ts",
   "405": "tailwind.config.js",
-  "406": "vite.config.ts"
+  "406": "vite.config.ts",
+  "407": "UserRole",
+  "408": "Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização",
+  "409": "Requirement: Configuração e navegação crítica são auditáveis",
+  "410": "AccountToken"
 }
