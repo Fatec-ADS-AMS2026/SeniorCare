@@ -17,10 +17,13 @@ public static class OperationalMessageSanitizer
     private static readonly Regex HtmlTagPattern = new("[<>]", RegexOptions.Compiled);
     private static readonly Regex UrlPattern = new(@"https?://", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-    // Mesmo vocabulário de .github/scripts/check-clinical-scope.sh (FORBIDDEN_RE).
+    // Mesmo vocabulário de .github/scripts/check-clinical-scope.sh (FORBIDDEN_RE). O
+    // marcador abaixo é o próprio denylist de rejeição, não escopo clínico entrando no
+    // código — sem ele, o gate de CI se autoflagra por conter as palavras que ele mesmo
+    // procura (falso positivo confirmado ao rodar o script contra este arquivo).
     private static readonly Regex ClinicalScopePattern = new(
-        "prontu[aá]rio|medicalrecord|clinicaldata|dashboard|assinatura|e?signature|" +
-        "profiss[aã]o|conselho de classe|conselho profissional",
+        "prontu[aá]rio|medicalrecord|clinicaldata|dashboard|assinatura|e?signature|" + // clinical-scope:allow
+        "profiss[aã]o|conselho de classe|conselho profissional", // clinical-scope:allow
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
     public static IReadOnlyList<string> Validate(string? message)
