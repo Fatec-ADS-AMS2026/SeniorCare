@@ -2000,8 +2000,8 @@
     "semantic_hash": ""
   },
   "openspec/changes/introduce-senior-portal/tasks.md": {
-    "mtime": 1786556628.187243,
-    "ast_hash": "94e49f14b202bebd37b83f58b519491b",
+    "mtime": 1786562383.2418084,
+    "ast_hash": "fa180de245da083f04d6a9c1eb92cf43",
     "semantic_hash": ""
   },
   ".github/scripts/check-clinical-scope.sh": {
@@ -4525,13 +4525,13 @@
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/services/authService.ts": {
-    "mtime": 1786556628.1691597,
-    "ast_hash": "10f4c4ef1800a092bc8786b749766624",
+    "mtime": 1786557124.8931007,
+    "ast_hash": "27e69e787e6bea19fd9658574496e860",
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/types.ts": {
-    "mtime": 1786556628.1692061,
-    "ast_hash": "837994853b68dc9ae8bc14c0e30ca465",
+    "mtime": 1786557110.012441,
+    "ast_hash": "0afec580062ca6619bd87344e45eeef7",
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/hooks/useAuth.ts": {
@@ -4549,24 +4549,19 @@
     "ast_hash": "a4f2ef2a1b68b72770e6d95215c37c0f",
     "semantic_hash": ""
   },
-  "SeniorPortal-Frontend/SeniorPortalFrontend/src/pages/HomePage.tsx": {
-    "mtime": 1786556628.1695218,
-    "ast_hash": "081ceadb9f96d465069df9997652c8d6",
-    "semantic_hash": ""
-  },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/routes/AppRoutes.tsx": {
-    "mtime": 1786556628.1696022,
-    "ast_hash": "e6375a19a9b4599fb2e6d3ed76eefc2a",
+    "mtime": 1786557194.9542189,
+    "ast_hash": "f181da8c7592fd64e14f094be69914e6",
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/routes/routes.tsx": {
-    "mtime": 1786556628.1696548,
-    "ast_hash": "9b13a230c23a1c102c21d674b72bdb68",
+    "mtime": 1786557181.2327554,
+    "ast_hash": "14c44f2a21a4fc1caa92fcfe97963449",
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/test/setup.ts": {
-    "mtime": 1786556628.169732,
-    "ast_hash": "985da5341a082089bd6e9f86ed1221d5",
+    "mtime": 1786558087.4773996,
+    "ast_hash": "88325a1b8a009f500631805134189edd",
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/types/app/RouteDefinition.ts": {
@@ -4575,8 +4570,8 @@
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/types/app/ServiceResult.ts": {
-    "mtime": 1786556628.1699045,
-    "ast_hash": "9964f03bdaf658e7b8c34bc79c78e9f8",
+    "mtime": 1786557038.6999583,
+    "ast_hash": "8d06e71cd09e8970abe62058901c679f",
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/types/models/CurrentIdentity.ts": {
@@ -4605,8 +4600,8 @@
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/utils/serviceUtils.ts": {
-    "mtime": 1786556628.1702886,
-    "ast_hash": "64a2024f635c0a2cd54dd1c2edce2ba8",
+    "mtime": 1786557047.01669,
+    "ast_hash": "6f16e21f2dedac95a18f7870d3f393c5",
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/vite-env.d.ts": {
@@ -4647,6 +4642,86 @@
   "SeniorPortal-Frontend/SeniorPortalFrontend/public/vite.svg": {
     "mtime": 1786556628.16176,
     "ast_hash": "8e3a10e157f75ada21ab742c022d5430",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/pages/ProfilePage.test.tsx": {
+    "mtime": 1786557592.2236428,
+    "ast_hash": "fbbfbbe70a7b1bac85f7d5c48c763b91",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/pages/ProfilePage.tsx": {
+    "mtime": 1786557155.990846,
+    "ast_hash": "24072cc69700db23e15b137a02be837a",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/pages/SecurityPage.test.tsx": {
+    "mtime": 1786557600.8571253,
+    "ast_hash": "927771858903be1291b999d0b780bd09",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/pages/SecurityPage.tsx": {
+    "mtime": 1786557168.0175643,
+    "ast_hash": "7353c5fb1bd56703f16f518d4c0aa6ad",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/catalog/components/ModuleCard.tsx": {
+    "mtime": 1786557075.7435675,
+    "ast_hash": "27fbb1635f4281dc9c81cbe1b7279b95",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/catalog/components/moduleIcons.tsx": {
+    "mtime": 1786557054.2807314,
+    "ast_hash": "38ec576d23bb7ce0292373a38c2a83d9",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/catalog/pages/CatalogPage.test.tsx": {
+    "mtime": 1786557563.9006667,
+    "ast_hash": "096e603917d2f47ccb81f1c64b89810f",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/catalog/pages/CatalogPage.tsx": {
+    "mtime": 1786557089.8017404,
+    "ast_hash": "35e01eff361d91b58be6368dc9fe9c27",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/catalog/services/moduleCatalogService.ts": {
+    "mtime": 1786557033.2305827,
+    "ast_hash": "3bebaae6edeb3a024fdccffb0a6cfb8b",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/layout/AuthenticatedLayout.tsx": {
+    "mtime": 1786557175.4261398,
+    "ast_hash": "699ea70e6b8b0c54d2e4ce0818761b5a",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/layout/GlobalHeader.test.tsx": {
+    "mtime": 1786557574.2758803,
+    "ast_hash": "22ca8ec6bb36a5c7b378e17144dc9e5d",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/layout/GlobalHeader.tsx": {
+    "mtime": 1786557148.387586,
+    "ast_hash": "03d6983dc770106be4f56ada52738e24",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/preferences/components/PreferencesControls.test.tsx": {
+    "mtime": 1786557581.857013,
+    "ast_hash": "40de43225c179109717676ce9d9747b9",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/preferences/components/PreferencesControls.tsx": {
+    "mtime": 1786557134.7560697,
+    "ast_hash": "29e61d184186f524071d11757a22557c",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/types/models/ModuleCatalogItem.ts": {
+    "mtime": 1786557028.9044142,
+    "ast_hash": "b067a248d8e13e50380b068f4bfbf5fa",
+    "semantic_hash": ""
+  },
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src/types/models/OperationalState.ts": {
+    "mtime": 1786557024.927002,
+    "ast_hash": "5221308fee3c64d969cc7ece4c96ab7c",
     "semantic_hash": ""
   }
 }
