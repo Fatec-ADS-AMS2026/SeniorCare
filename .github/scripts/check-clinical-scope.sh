@@ -25,6 +25,10 @@ SCAN_PATHS=(
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI"
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src"
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src"
+  # introduce-senior-portal §4 — terceiro front-end de implementação; decisão 9
+  # do design.md ("Manter o portal livre de dados de negócio") faz este guard
+  # se aplicar a ele com a mesma força que aos outros dois.
+  "SeniorPortal-Frontend/SeniorPortalFrontend/src"
 )
 
 # Termos que indicariam escopo clínico/assistencial ou de profissão-como-acesso
