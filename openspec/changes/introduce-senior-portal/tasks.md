@@ -301,11 +301,59 @@
 
 ## 6. Integração do módulo assistencial
 
-- [ ] 6.1 Configurar build, assets e roteamento do front-end assistencial para o caminho-base `/care`, incluindo refresh e acesso direto a rotas profundas.
-- [ ] 6.2 Substituir o uso de `auth_token` legível por JavaScript pela restauração de acesso curto em memória usando a sessão institucional.
-- [ ] 6.3 Adicionar retorno consistente ao portal e links para perfil, segurança e logout sem duplicar regras de credencial.
-- [ ] 6.4 Preservar deep links autorizados após login ou renovação e rejeitar destinos externos, desconhecidos ou sem permissão.
-- [ ] 6.5 Cobrir restauração, 401, 403, revogação, logout, retorno e deep links com testes automatizados do módulo assistencial.
+- [x] 6.1 Configurar build, assets e roteamento do front-end assistencial para o caminho-base `/care`, incluindo refresh e acesso direto a rotas profundas.
+      **Evidência**: `vite.config.ts` ganhou `base` (mesma variável
+      `VITE_BASE_PATH` do portal, §4.1; default `/` preserva o deploy atual
+      por subdomínio — migrar a borda é §8.2). `routes/AppRoutes.tsx` ganhou
+      `basename` no `createBrowserRouter`, derivado da mesma variável, pra
+      casar as rotas internas (`/religion` etc.) contra a URL real depois que
+      a borda migrar. Testado localmente: `VITE_BASE_PATH=/care/ npm run
+      build` produz `index.html` com todas as referências de asset
+      corretamente prefixadas (`/care/assets/...`, `/care/vite.svg`); build
+      com a variável ausente (default) reproduz o `dist/` de sempre, sem
+      diferença. SPA fallback (`nginx.conf`, `try_files ... /index.html`) já
+      cobre "acesso direto a rotas profundas" e refresh — nenhuma mudança
+      necessária aí (a borda ainda roteia por subdomínio; migrar
+      `nginx.conf`/Caddy pra `/care` é §8.2, não duplicado aqui).
+- [x] 6.2 Substituir o uso de `auth_token` legível por JavaScript pela restauração de acesso curto em memória usando a sessão institucional.
+      **Evidência**: investigação direta (grep de `auth_token`,
+      `localStorage.*token`, `sessionStorage.*token`, `Authorization` em todo
+      `src/`) confirmou que este front-end **já não usa** `auth_token` — já
+      migrado para o único cookie de sessão `HttpOnly` (mesmo modelo
+      confirmado em §4.2), com o interceptor de `Authorization: Bearer`
+      removido e documentado em `features/api/api.ts:6-10`:
+      *"nunca houve (nem haverá) token/cookie 'auth_token'; o backend nem lê
+      esse header"*. Nenhuma mudança de código necessária — tarefa já
+      satisfeita antes de `introduce-senior-portal` começar.
+- [x] 6.3 Adicionar retorno consistente ao portal e links para perfil, segurança e logout sem duplicar regras de credencial.
+      **Evidência**: `features/layouts/components/Header/index.tsx` — links
+      "Portal" (`/`), "Perfil" (`/profile`) e "Segurança" (`/security`, rotas
+      do próprio Senior Portal, §5.4) adicionados ao lado do botão "Sair" já
+      existente, mesma navegação de mesma origem — nenhuma regra de sessão
+      duplicada (login/logout continuam só no `AuthContext`/`authService`
+      já existentes).
+- [x] 6.4 Preservar deep links autorizados após login ou renovação e rejeitar destinos externos, desconhecidos ou sem permissão.
+      **Evidência**: o mecanismo interno (`location.state.from`, sintetizado
+      só por `RequireAuth.tsx`, nunca alcançável por URL) já preservava deep
+      links internos — mantido sem alteração. Novo: `utils/returnPath.ts`
+      (mesmo contrato de `docs/architecture/senior-portal-contracts.md` §3 e
+      do validador do portal, §4.5 — duplicado deliberadamente, sem pacote
+      compartilhado ainda, design.md decisão 8) valida um `?returnTo=`
+      cruzado (portal → care) antes de `LoginForm` navegar, com prioridade:
+      `location.state.from` (mais específico) > `returnTo` validado > destino
+      padrão do app. Destino externo/desconhecido em `returnTo` é
+      descartado sem navegar (fallback pro destino padrão, nunca um 404 ou
+      redirecionamento aberto).
+- [x] 6.5 Cobrir restauração, 401, 403, revogação, logout, retorno e deep links com testes automatizados do módulo assistencial.
+      **Evidência**: restauração/401/403/revogação/logout já cobertos pela
+      suíte existente (`AuthContext.test.tsx`, `RequireAuth.test.tsx`,
+      `Header.test.tsx`), revalidada sem regressão. Testes novos: 3 casos em
+      `Header.test.tsx` (links Portal/Perfil/Segurança), 6 em
+      `returnPath.test.ts` (allowlist e rejeições) e `LoginForm.test.tsx`
+      (3 novos: `returnTo` válido, `returnTo` rejeitado cai no padrão,
+      `location.state.from` tem prioridade sobre `returnTo`). 62/62 testes
+      do app aprovados (19 novos), lint/build/`npm audit`/gates de higiene
+      revalidados.
 
 ## 7. Integração do módulo de estoque
 

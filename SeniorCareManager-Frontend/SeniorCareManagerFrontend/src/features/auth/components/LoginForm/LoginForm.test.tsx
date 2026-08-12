@@ -19,19 +19,37 @@ vi.mock('@/features/api', () => ({
   registerUnauthorizedHandler: vi.fn(),
 }));
 
-function renderLoginForm() {
+function renderLoginForm(initialEntry: string | { pathname: string; search?: string; state?: unknown } = '/login') {
   return render(
-    <MemoryRouter initialEntries={['/login']}>
+    <MemoryRouter initialEntries={[initialEntry]}>
       <AuthProvider>
         <Routes>
           <Route path='/login' element={<LoginForm />} />
           <Route path='/admin' element={<div>Visão Geral</div>} />
           <Route path='/login/mfa' element={<div>Tela de desafio MFA</div>} />
+          <Route path='/stock/products' element={<div>Produtos</div>} />
+          <Route path='/religion' element={<div>Religiões</div>} />
         </Routes>
       </AuthProvider>
     </MemoryRouter>
   );
 }
+
+const okLoginResponse = {
+  data: {
+    status: 'ok',
+    identity: {
+      userId: '1',
+      institutionId: '1',
+      institutionName: 'ILPI Teste',
+      displayName: 'Fulana de Tal',
+      email: 'fulana@example.com',
+      roles: [],
+      organizationalResponsibilities: [],
+      effectivePermissions: [],
+    },
+  },
+};
 
 describe('LoginForm', () => {
   beforeEach(() => {
@@ -92,6 +110,57 @@ describe('LoginForm', () => {
     await waitFor(() => {
       expect(screen.getByText('Credenciais inválidas.')).toBeInTheDocument();
     });
+  });
+
+  // §6.4 — returnTo cruzado (portal → care), validado antes de navegar.
+  it('navigates to a validated cross-app returnTo destination on success', async () => {
+    const user = userEvent.setup();
+    postMock.mockResolvedValueOnce(okLoginResponse);
+
+    renderLoginForm({ pathname: '/login', search: '?returnTo=%2Fstock%2Fproducts' });
+
+    await user.type(screen.getByPlaceholderText('Digite seu email'), 'fulana@example.com');
+    await user.type(screen.getByPlaceholderText('Digite sua senha'), 'senha-correta');
+    await user.click(screen.getByRole('button', { name: 'Entrar' }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Produtos')).toBeInTheDocument();
+    });
+  });
+
+  it('falls back to the default destination when returnTo is unsafe', async () => {
+    const user = userEvent.setup();
+    postMock.mockResolvedValueOnce(okLoginResponse);
+
+    renderLoginForm({ pathname: '/login', search: '?returnTo=https%3A%2F%2Fevil.com' });
+
+    await user.type(screen.getByPlaceholderText('Digite seu email'), 'fulana@example.com');
+    await user.type(screen.getByPlaceholderText('Digite sua senha'), 'senha-correta');
+    await user.click(screen.getByRole('button', { name: 'Entrar' }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Visão Geral')).toBeInTheDocument();
+    });
+  });
+
+  it('prioritizes the internal preserved deep link (location.state.from) over returnTo', async () => {
+    const user = userEvent.setup();
+    postMock.mockResolvedValueOnce(okLoginResponse);
+
+    renderLoginForm({
+      pathname: '/login',
+      search: '?returnTo=%2Fstock%2Fproducts',
+      state: { from: { pathname: '/religion' } },
+    });
+
+    await user.type(screen.getByPlaceholderText('Digite seu email'), 'fulana@example.com');
+    await user.type(screen.getByPlaceholderText('Digite sua senha'), 'senha-correta');
+    await user.click(screen.getByRole('button', { name: 'Entrar' }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Religiões')).toBeInTheDocument();
+    });
+    expect(screen.queryByText('Produtos')).not.toBeInTheDocument();
   });
 
   it('navigates to the MFA challenge screen when the backend requires it', async () => {

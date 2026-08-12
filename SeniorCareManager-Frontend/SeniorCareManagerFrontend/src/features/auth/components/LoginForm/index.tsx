@@ -1,9 +1,10 @@
 import { Envelope, Eye, EyeSlash, Lock } from '@phosphor-icons/react';
 import { FormEvent, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import authService from '../../services/authService';
 import useAuth from '@/hooks/useAuth';
 import useAppRoutes from '@/hooks/useAppRoutes';
+import { resolveReturnPath } from '@/utils/returnPath';
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +16,7 @@ export default function LoginForm() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const routes = useAppRoutes();
 
   const togglePasswordVisibility = () => {
@@ -38,9 +40,14 @@ export default function LoginForm() {
 
     if (status === 'ok' && identity) {
       login(identity);
+      // §6.4 — prioridade: destino interno preservado por RequireAuth (mais
+      // específico, nunca alcançável por URL) > returnTo validado da query
+      // string (entrada cruzada — portal ou link direto, §4.5/§6.4) >
+      // destino padrão do app.
       const from = (location.state as { from?: { pathname?: string } } | null)
         ?.from?.pathname;
-      navigate(from || routes.ADMIN_OVERVIEW.path, { replace: true });
+      const crossAppReturnTo = resolveReturnPath(searchParams.get('returnTo'));
+      navigate(from || crossAppReturnTo || routes.ADMIN_OVERVIEW.path, { replace: true });
       return;
     }
 
