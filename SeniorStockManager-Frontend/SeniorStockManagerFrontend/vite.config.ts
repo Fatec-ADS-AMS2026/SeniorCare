@@ -20,7 +20,15 @@ export default defineConfig(({ mode }) => {
     );
   }
 
+  // §7.1 — caminho-base alvo `/stock`
+  // (docs/architecture/senior-portal-contracts.md §1). Default `/` preserva o
+  // deploy atual por subdomínio (Caddy ainda roteia por subdomínio, não por
+  // caminho — migrar isso é §8.2). Mesmo padrão do portal (§4.1) e do
+  // care-web (§6.1).
+  const basePath = env.VITE_BASE_PATH || '/';
+
   return {
+    base: basePath,
     plugins: [react()],
     resolve: {
       // Essa opção deve ser a mesma que a definida em tsconfig.app.json
