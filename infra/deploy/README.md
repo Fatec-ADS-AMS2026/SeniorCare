@@ -13,6 +13,9 @@ Fundamentação: [`docs/infra/ci-cd-arquitetura.md`](../../docs/infra/ci-cd-arqu
 - `clients/<nome>/.env` — segredos/paths/CORS por ambiente (fora do git; ver `clients/exemplo/.env.example`).
 - `releases/<versão>.env` — manifest gerado pelo `release.yml` (na raiz do repo, `../../releases`).
 - `docker-compose.ops.yml` + `ops.sh` + `ops/Caddyfile` — **camada de operação** opcional (ingress/TLS, painel, logs, backup agendado).
+- [`docs/operacao/senior-portal.md`](../../docs/operacao/senior-portal.md) — operação do
+  Senior Portal: configuração do catálogo de módulos, estados operacionais, auditoria,
+  monitoramento, links diretos de contingência e rollback.
 
 ## Uso
 
