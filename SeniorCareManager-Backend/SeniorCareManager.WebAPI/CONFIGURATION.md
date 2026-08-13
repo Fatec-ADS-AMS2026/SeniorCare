@@ -41,16 +41,18 @@ capturado nesse momento. Reinícios seguintes (instituição já existente) são
 no-op: nada é recriado nem redefinido silenciosamente, mesmo que as
 variáveis continuem definidas.
 
-## Sessão (cookie) entre os dois front-ends
+## Sessão (cookie) entre os front-ends
 
 | Variável | Formato | Obrigatório quando |
 |---|---|---|
-| `SessionCookieDomain` | domínio pai com ponto à frente, ex.: `.exemplo.com.br` | os dois front-ends ficarem em subdomínios distintos (`care.exemplo.com.br`/`estoque.exemplo.com.br`) e precisarem compartilhar sessão sem novo login |
+| `SessionCookieDomain` | domínio pai com ponto à frente, ex.: `.exemplo.com.br` | os front-ends ficarem em subdomínios distintos (`care.exemplo.com.br`/`estoque.exemplo.com.br`/`portal.exemplo.com.br`) e precisarem compartilhar sessão sem novo login |
 
 Sem essa variável, o cookie de sessão é *host-only* (só volta pro host exato
-que o emitiu) — correto em desenvolvimento, onde `localhost:3000`/`:3001`
+que o emitiu) — correto em desenvolvimento, onde `localhost:3000`/`:3001`/`:3002`
 já compartilham cookie por serem o mesmo host (cookies não são delimitados
-por porta). Parâmetros de duração de acesso/renovação e limite de tentativas
+por porta), e também correto no alvo de roteamento por caminho (§8.2/§9.7),
+onde os três front-ends passam a viver sob a mesma origem. Parâmetros de
+duração de acesso/renovação e limite de tentativas
 são configuráveis por instituição via API administrativa
 (`AdminInstitutionSecurityController`, §6), não por variável de ambiente —
 têm default seguro quando a instituição não configurou nada (ver

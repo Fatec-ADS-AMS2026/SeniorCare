@@ -37,6 +37,7 @@ jobs:
       backend: ${{ steps.filter.outputs.backend }}
       care_web: ${{ steps.filter.outputs.care_web }}
       stock_web: ${{ steps.filter.outputs.stock_web }}
+      senior_portal: ${{ steps.filter.outputs.senior_portal }}
     steps:
       - uses: actions/checkout@v5
       - uses: dorny/paths-filter@v3
@@ -49,6 +50,8 @@ jobs:
               - 'SeniorCareManager-Frontend/**'
             stock_web:
               - 'SeniorStockManager-Frontend/**'
+            senior_portal:
+              - 'SeniorPortal-Frontend/**'
 
   backend:
     needs: changes
@@ -147,12 +150,44 @@ jobs:
       - name: Verificar bundle de produção (sem localhost/segredo embutido)
         run: ../../.github/scripts/check-frontend-bundle.sh dist
 
+  senior-portal:
+    needs: changes
+    if: needs.changes.outputs.senior_portal == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: SeniorPortal-Frontend/SeniorPortalFrontend
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: SeniorPortal-Frontend/SeniorPortalFrontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - name: SCA — npm audit no package-lock.json real
+        run: |
+          npm audit --omit=dev --audit-level=high
+          npm audit --audit-level=critical
+      - run: npm run test:coverage
+      - name: Publicar cobertura
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: senior-portal-coverage
+          path: SeniorPortal-Frontend/SeniorPortalFrontend/coverage
+          retention-days: 14
+      - run: npm run build
+      - name: Verificar bundle de produção (sem localhost/segredo embutido)
+        run: ../../.github/scripts/check-frontend-bundle.sh dist
+
   ci-required:
     # `backend`/`care-web`/`stock-web` só rodam quando o path correspondente muda — um
     # required status check da branch protection que nunca roda trava o PR pra sempre.
     # Este job sempre roda (inclusive quando os três acima foram pulados) e é o único que
     # a branch protection deve exigir deste workflow.
-    needs: [env-hygiene, backend, care-web, stock-web]
+    needs: [env-hygiene, backend, care-web, stock-web, senior-portal]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -162,7 +197,8 @@ jobs:
             "${{ needs.env-hygiene.result }}" \
             "${{ needs.backend.result }}" \
             "${{ needs.care-web.result }}" \
-            "${{ needs.stock-web.result }}"; do
+            "${{ needs.stock-web.result }}" \
+            "${{ needs.senior-portal.result }}"; do
             if [ "$r" != "success" ] && [ "$r" != "skipped" ]; then
               echo "FALHOU: pelo menos um job obrigatório não teve sucesso (status: $r)."
               exit 1

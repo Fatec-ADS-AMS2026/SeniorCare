@@ -32,6 +32,7 @@ cp clients/exemplo/.env.example clients/exemplo/.env   # e ajuste os valores
 |---|---|
 | care-web | 3000 |
 | stock-web | 3001 |
+| senior-portal | 3002 |
 | API | 8080 |
 | Postgres (loopback) | 5432 |
 | pgAdmin (`--profile tools`) | 5050 |
