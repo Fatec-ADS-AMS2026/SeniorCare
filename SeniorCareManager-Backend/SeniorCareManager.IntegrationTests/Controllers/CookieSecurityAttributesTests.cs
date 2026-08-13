@@ -82,9 +82,9 @@ public sealed class CookieSecurityAttributesTests : IClassFixture<PostgresWebApp
     // afinidade com o app que os originou, condizente com a sessão única compartilhada (§7.4,
     // §8.3: "logout iniciado em qualquer aplicação").
     [Theory]
-    [InlineData("http://localhost:3000")] // care-web
-    [InlineData("http://localhost:3001")] // stock-web
-    [InlineData("http://localhost:3002")] // senior-portal
+    [InlineData("https://care.exemplo.com.br")]
+    [InlineData("https://estoque.exemplo.com.br")]
+    [InlineData("https://portal.exemplo.com.br")]
     public async Task Logout_FromAnyAllowedOrigin_RevokesSharedSession(string origin)
     {
         var (email, userId) = await CreateActiveUserAsync();
