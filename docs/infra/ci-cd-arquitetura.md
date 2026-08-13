@@ -35,6 +35,7 @@ sobe. Compilar (CI) e entregar (CD) ficam desacoplados.
 | `api` | ASP.NET Core 8 / EF Core + Npgsql | `dotnet publish` | `ghcr.io/fatec-ads-ams2026/seniorcare-api` |
 | `care-web` | React + Vite (npm) | `npm ci && build` → nginx | `.../seniorcare-care-web` |
 | `stock-web` | React + Vite (npm) | idem | `.../seniorcare-stock-web` |
+| `senior-portal` | React + Vite (npm) | idem | `.../seniorcare-senior-portal` |
 | Postgres | dado stateful | — | `postgres:16-alpine` (upstream) |
 
 ## 4. Versionamento — CalVer + release train
@@ -50,7 +51,7 @@ sobe. Compilar (CI) e entregar (CD) ficam desacoplados.
 
 - **`ci.yml`** (PR e push em `main`) — path filter por módulo, build/lint/audit. Não
   publica imagem; é gate de qualidade (ver também `docs/` do processo de revisão de PR).
-- **`release.yml`** (tag `v*`) — builda e empurra as 3 imagens com a tag do release
+- **`release.yml`** (tag `v*`) — builda e empurra as 4 imagens com a tag do release
   para o GHCR (`docker/build-push-action`, cache de layers), gera o **release
   manifest** (§6) e o anexa ao GitHub Release.
 - **`ghcr-retention.yml`** (semanal + manual) — poda imagens de rastreio interno
@@ -74,6 +75,7 @@ BUILT_AT=2026-08-05T14:30:00Z
 API_IMAGE=ghcr.io/fatec-ads-ams2026/seniorcare-api:2026.08.0@sha256:ab12…
 CARE_WEB_IMAGE=ghcr.io/fatec-ads-ams2026/seniorcare-care-web:2026.08.0@sha256:cd34…
 STOCK_WEB_IMAGE=ghcr.io/fatec-ads-ams2026/seniorcare-stock-web:2026.08.0@sha256:ef56…
+SENIOR_PORTAL_IMAGE=ghcr.io/fatec-ads-ams2026/seniorcare-senior-portal:2026.08.0@sha256:gh78…
 ```
 
 É o **único** arquivo que define "o que compõe esta entrega" — serve para o deploy,

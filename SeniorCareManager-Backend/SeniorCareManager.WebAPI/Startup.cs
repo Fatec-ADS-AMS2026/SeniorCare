@@ -103,13 +103,24 @@ public class Startup
                     options.Cookie.Domain = sessionCookieDomain;
 
                 // API, não MVC com views — devolve status HTTP em vez do redirect padrão.
+                // §8.5 — 401/403 correlacionáveis: o caso de negado-por-permissão já é coberto
+                // pelo audit ACCESS_DECISION (RequirePermissionAttribute, que roda depois da
+                // autenticação); estes dois handlers cobrem o que ele não vê — ausência total
+                // de cookie válido (401) e o caminho de [Authorize] baseado em política (403),
+                // sem CorrelationId próprio até aqui.
                 options.Events.OnRedirectToLogin = ctx =>
                 {
+                    ctx.HttpContext.RequestServices.GetRequiredService<ILogger<Startup>>().LogInformation(
+                        "401 — sem cookie de sessão válido em {Method} {Path}, correlação {CorrelationId}",
+                        SanitizeForLog(ctx.Request.Method), SanitizeForLog(ctx.Request.Path.Value), ctx.HttpContext.TraceIdentifier);
                     ctx.Response.StatusCode = StatusCodes.Status401Unauthorized;
                     return Task.CompletedTask;
                 };
                 options.Events.OnRedirectToAccessDenied = ctx =>
                 {
+                    ctx.HttpContext.RequestServices.GetRequiredService<ILogger<Startup>>().LogWarning(
+                        "403 — acesso negado por política em {Method} {Path}, correlação {CorrelationId}",
+                        SanitizeForLog(ctx.Request.Method), SanitizeForLog(ctx.Request.Path.Value), ctx.HttpContext.TraceIdentifier);
                     ctx.Response.StatusCode = StatusCodes.Status403Forbidden;
                     return Task.CompletedTask;
                 };
@@ -186,7 +197,7 @@ public class Startup
         // sem isso, a imagem de produção nunca aceitaria requisição dos frontends reais.
         var corsOrigins = Configuration["CORS_ALLOWED_ORIGINS"]?
             .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            ?? new[] { "http://localhost:3000", "http://localhost:5173", "http://localhost:3001" };
+            ?? new[] { "http://localhost:3000", "http://localhost:5173", "http://localhost:3001", "http://localhost:3002" };
 
         services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
         {
@@ -352,12 +363,23 @@ public class Startup
     // janela de acesso curto, detecta reuso de uma chave já rotacionada (sinal de roubo —
     // revoga a sessão inteira) e rejeita sessões expiradas/revogadas. Não decide autorização
     // — só se o cookie apresentado ainda representa uma sessão válida.
+    // Method/Path vêm da requisição (cliente) — mesma proteção contra CWE-117 (log
+    // injection via \r\n) já usada em GlobalExceptionHandler.Sanitize.
+    private static string SanitizeForLog(string? value) =>
+        (value ?? string.Empty).Replace('\r', '_').Replace('\n', '_');
+
     private static async Task ValidateSessionPrincipalAsync(CookieValidatePrincipalContext context)
     {
+        var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Startup>>();
+        var correlationId = context.HttpContext.TraceIdentifier;
+
         var sessionIdClaim = context.Principal?.FindFirst(SeniorCareClaimTypes.SessionId)?.Value;
         var sessionKeyClaim = context.Principal?.FindFirst(SeniorCareClaimTypes.SessionKey)?.Value;
         if (!Guid.TryParse(sessionIdClaim, out var sessionId) || string.IsNullOrEmpty(sessionKeyClaim))
         {
+            logger.LogWarning(
+                "Restauração de sessão rejeitada — claims ausentes/inválidas, correlação {CorrelationId}",
+                correlationId);
             context.RejectPrincipal();
             return;
         }
@@ -371,6 +393,11 @@ public class Startup
                 return;
 
             case SessionValidationOutcome.Rotated:
+                // §8.5 — restauração de sessão bem-sucedida com rotação, sem dado sensível
+                // (chave de sessão nunca entra no log, só o id, que não é segredo).
+                logger.LogInformation(
+                    "Sessão {SessionId} restaurada com rotação de chave, correlação {CorrelationId}",
+                    sessionId, correlationId);
                 var identity = new ClaimsIdentity(context.Principal!.Claims, context.Scheme.Name);
                 var oldClaim = identity.FindFirst(SeniorCareClaimTypes.SessionKey);
                 if (oldClaim != null) identity.RemoveClaim(oldClaim);
@@ -382,6 +409,11 @@ public class Startup
             case SessionValidationOutcome.Reused:
             case SessionValidationOutcome.Rejected:
             default:
+                // §8.5 — reuso de chave rotacionada é sinal de possível roubo de cookie;
+                // Rejected cobre sessão expirada/revogada. Ambos merecem visibilidade.
+                logger.LogWarning(
+                    "Sessão {SessionId} rejeitada na restauração ({Outcome}), correlação {CorrelationId}",
+                    sessionId, result.Outcome, correlationId);
                 // Não chama SignOutAsync aqui (reentrância no próprio pipeline de
                 // autenticação) — RejectPrincipal já é suficiente: a sessão já está
                 // revogada no banco, então o cookie (mesmo que o cliente o mantenha) nunca

@@ -1,27 +1,57 @@
 # Ingress do SeniorCare — Caddy (overlay de operação).
 #
-# Roteamento por SUBDOMÍNIO para os container_name da stack base, resolvidos via
-# DNS do Docker na rede seniorcare-net. TLS por CA interna do Caddy (local_certs),
-# adequado a LAN sem DNS público. Para os subdomínios resolverem nas estações,
-# aponte *.${OPS_DOMAIN} para o IP do servidor (DNS interno ou /etc/hosts) e
-# confie na raiz da CA do Caddy (em /data/caddy/pki/authorities/local/root.crt).
-
+# Roteamento por CAMINHO sob uma única origem (docs/architecture/senior-portal-contracts.md
+# §1, design.md decisão 2): /, /care, /stock e /api sob {$OPS_DOMAIN}, todos resolvidos via
+# DNS do Docker na rede seniorcare-net. TLS por CA interna do Caddy (local_certs), adequado a
+# LAN sem DNS público. Basta {$OPS_DOMAIN} resolver para o IP do servidor (DNS interno ou
+# /etc/hosts) e confiar na raiz da CA do Caddy (em /data/caddy/pki/authorities/local/root.crt).
+#
+# Ativação real (§9.7, fora do escopo deste arquivo): as imagens care-web/stock-web
+# precisam ser buildadas com VITE_BASE_PATH=/care/ e /stock/ (ver Dockerfile de cada
+# uma) para que os assets referenciem o caminho-base correto — do contrário, o `handle_path`
+# abaixo (que remove o prefixo antes de encaminhar) fica dessincronizado com o bundle
+# servido (que assumiria base `/`). Esse Caddyfile já está pronto para o alvo; o corte
+# coordenado (build com o novo base + deploy deste Caddyfile juntos) é ação de implantação
+# real, tratada em §9.
 {
 	# CA interna — emite certificados confiáveis apenas dentro da LAN.
 	local_certs
 	# email admin@{$OPS_DOMAIN}
 }
 
-# ── API ──────────────────────────────────────────────────────────────────
-api.{$OPS_DOMAIN} {
-	reverse_proxy seniorcare-api:8080
-}
+{$OPS_DOMAIN} {
+	# Cabeçalhos de segurança centralizados na borda (§8.2) — aplicam a toda
+	# resposta desta origem, front-end ou API.
+	header {
+		X-Frame-Options "DENY"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
 
-# ── Frontends ────────────────────────────────────────────────────────────
-care.{$OPS_DOMAIN} {
-	reverse_proxy seniorcare-care-web:80
-}
+	# ── API compartilhada ────────────────────────────────────────────────
+	# Sem stripping de prefixo: as rotas do backend já usam api/[controller],
+	# igual ao proxy interno de cada front-end (nginx.conf `location /api`),
+	# usado hoje pelo docker-test (sem Caddy na frente).
+	handle /api/* {
+		reverse_proxy seniorcare-api:8080
+	}
 
-stock.{$OPS_DOMAIN} {
-	reverse_proxy seniorcare-stock-web:80
+	# ── Assistência ──────────────────────────────────────────────────────
+	# handle_path remove /care antes de encaminhar — o bundle do care-web
+	# precisa ser buildado com VITE_BASE_PATH=/care/ pra isso bater (§9.7).
+	handle_path /care/* {
+		reverse_proxy seniorcare-care-web:80
+	}
+
+	# ── Estoque ──────────────────────────────────────────────────────────
+	handle_path /stock/* {
+		reverse_proxy seniorcare-stock-web:80
+	}
+
+	# ── Senior Portal ────────────────────────────────────────────────────
+	# Raiz — catch-all, por isso fica por último (Caddy usa a primeira rota
+	# que casar; os handles acima são mais específicos e vêm antes).
+	handle {
+		reverse_proxy seniorcare-senior-portal:80
+	}
 }

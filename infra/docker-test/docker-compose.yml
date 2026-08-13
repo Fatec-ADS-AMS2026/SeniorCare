@@ -101,6 +101,23 @@ services:
     networks:
       - seniorcare-net
 
+  senior-portal:
+    build:
+      context: ../../SeniorPortal-Frontend/SeniorPortalFrontend
+      dockerfile: Dockerfile
+    image: seniorcare/senior-portal:test
+    container_name: seniorcare-senior-portal
+    restart: unless-stopped
+    environment:
+      PUBLIC_NAME: ${PUBLIC_NAME:-SeniorCare}
+    ports:
+      - "3002:80"
+    depends_on:
+      seniorcare-api:
+        condition: service_healthy
+    networks:
+      - seniorcare-net
+
 networks:
   seniorcare-net:
     driver: bridge
