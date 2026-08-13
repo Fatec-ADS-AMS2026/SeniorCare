@@ -1,17 +1,41 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import fotoEntradaSistema from '@/assets/images/fotoEntradaSistema.png';
 import { ThemeContext } from '@/contexts/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 import useAppRoutes from '@/hooks/useAppRoutes';
+
+// §9.2 — landing page legada: sob roteamento por caminho (VITE_BASE_PATH
+// ativo, §8.2/§9.7) a raiz do Senior Portal é que recebe quem chega "frio"
+// (design.md: "a raiz apontará para o portal e logins legados
+// redirecionarão para ele"). Mesmo sinal de ativação usado por
+// AppRoutes.tsx (basename) e LoginForm.tsx.
+const isPathBasedRouting = Boolean(
+  import.meta.env.VITE_BASE_PATH && import.meta.env.VITE_BASE_PATH !== '/'
+);
+const PORTAL_ROOT_PATH = '/';
 
 export default function LandingPage() {
   const { theme } = useContext(ThemeContext);
   const routes = useAppRoutes();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (isPathBasedRouting) {
+      window.location.assign(PORTAL_ROOT_PATH);
+    }
+  }, []);
+
   const handleLoginClick = () => {
     navigate(routes.LOGIN.path);
   };
+
+  if (isPathBasedRouting) {
+    return (
+      <p className='text-textSecondary text-center' role='status'>
+        Redirecionando para o portal...
+      </p>
+    );
+  }
 
   return (
     <div className='flex'>

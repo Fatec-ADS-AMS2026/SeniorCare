@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
@@ -216,5 +216,78 @@ describe('LoginForm', () => {
     await waitFor(() => {
       expect(screen.getByText('Tela de desafio MFA')).toBeInTheDocument();
     });
+  });
+});
+
+// §9.2 — mesma técnica de vi.stubEnv + vi.resetModules + reimportação
+// dinâmica usada em care-web: isPathBasedRouting é constante de módulo,
+// derivada de import.meta.env.VITE_BASE_PATH no primeiro import (mesmo
+// padrão de AppRoutes.tsx/basename) — o import estático do topo do arquivo
+// já fixou VITE_BASE_PATH ausente (default) pros testes acima. AuthProvider
+// também é reimportado dinamicamente junto, pra não misturar dois Contexts
+// diferentes (um do módulo antigo, outro do módulo reimportado).
+describe('LoginForm — chegada fria na entrada legada (VITE_BASE_PATH ativo)', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    getMock.mockRejectedValue({
+      isAxiosError: true,
+      response: { status: 401, data: {} },
+    });
+    vi.stubEnv('VITE_BASE_PATH', '/stock/');
+    vi.resetModules();
+  });
+
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    restoreLocation();
+  });
+
+  async function renderWithFreshModules(
+    initialEntry: string | { pathname: string; search?: string; state?: unknown }
+  ) {
+    const { default: FreshLoginForm } = await import('./LoginForm');
+    const { AuthProvider: FreshAuthProvider } = await import('@/contexts/AuthContext');
+    return render(
+      <MemoryRouter initialEntries={[initialEntry]}>
+        <FreshAuthProvider>
+          <Routes>
+            <Route path='/login' element={<FreshLoginForm />} />
+          </Routes>
+        </FreshAuthProvider>
+      </MemoryRouter>
+    );
+  }
+
+  it('redireciona pro login do Senior Portal quando não há retorno interno validado', async () => {
+    const assignSpy = mockLocationAssign();
+
+    await renderWithFreshModules('/login');
+
+    await waitFor(() => {
+      expect(assignSpy).toHaveBeenCalledWith('/login');
+    });
+    expect(screen.queryByPlaceholderText('Digite seu email')).not.toBeInTheDocument();
+  });
+
+  it('continua renderizando o formulário local quando RequireAuth preservou um retorno interno (location.state.from)', async () => {
+    const assignSpy = mockLocationAssign();
+
+    await renderWithFreshModules({ pathname: '/login', state: { from: { pathname: '/product' } } });
+
+    await waitFor(() => {
+      expect(screen.getByPlaceholderText('Digite seu email')).toBeInTheDocument();
+    });
+    expect(assignSpy).not.toHaveBeenCalled();
+  });
+
+  it('continua renderizando o formulário local quando há um returnTo cruzado validado', async () => {
+    const assignSpy = mockLocationAssign();
+
+    await renderWithFreshModules({ pathname: '/login', search: '?returnTo=%2Fcare%2Fresidents' });
+
+    await waitFor(() => {
+      expect(screen.getByPlaceholderText('Digite seu email')).toBeInTheDocument();
+    });
+    expect(assignSpy).not.toHaveBeenCalled();
   });
 });
