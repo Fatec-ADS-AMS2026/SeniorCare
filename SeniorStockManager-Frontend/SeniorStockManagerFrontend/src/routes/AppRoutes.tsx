@@ -9,6 +9,17 @@ import { routes } from './routes';
 import { AppLayout, HeaderFooterLayout } from '@/features/layout';
 import RequireAuth from '@/features/auth/components/RequireAuth';
 
+// §7.1 — mesma variável usada por vite.config.ts (base do bundle); o
+// roteador também precisa saber o caminho-base pra casar `/product` etc.
+// contra a URL real `/stock/product` depois que a borda migrar pra
+// roteamento por caminho (§8.2). Sem barra final (React Router não aceita) e
+// `undefined` quando o caminho-base é a raiz — preserva o comportamento
+// atual (deploy por subdomínio) sem qualquer mudança de rota. Mesmo padrão
+// do care-web (§6.1).
+const rawBasePath = import.meta.env.VITE_BASE_PATH;
+const basename =
+  rawBasePath && rawBasePath !== '/' ? rawBasePath.replace(/\/$/, '') : undefined;
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -47,7 +58,8 @@ const router = createBrowserRouter(
         <Route {...routes.LANDING} />
       </Route>
     </Route>
-  )
+  ),
+  { basename }
 );
 
 /**

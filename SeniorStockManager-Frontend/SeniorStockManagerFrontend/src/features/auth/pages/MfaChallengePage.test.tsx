@@ -19,10 +19,10 @@ vi.mock('@/features/api', () => ({
   registerUnauthorizedHandler: vi.fn(),
 }));
 
-function renderMfaChallenge(state: unknown) {
+function renderMfaChallenge(state: unknown, search?: string) {
   return render(
     <MemoryRouter
-      initialEntries={[{ pathname: '/login/mfa', state }]}
+      initialEntries={[{ pathname: '/login/mfa', search, state }]}
     >
       <AuthProvider>
         <Routes>
@@ -33,6 +33,29 @@ function renderMfaChallenge(state: unknown) {
       </AuthProvider>
     </MemoryRouter>
   );
+}
+
+// jsdom não permite espionar window.location.assign diretamente — substitui
+// o objeto location inteiro por um mock local, restaurado depois de cada
+// teste (mesmo padrão de LoginForm.test.tsx).
+const originalLocation = window.location;
+
+function mockLocationAssign() {
+  const assign = vi.fn();
+  Object.defineProperty(window, 'location', {
+    value: { ...originalLocation, assign },
+    writable: true,
+    configurable: true,
+  });
+  return assign;
+}
+
+function restoreLocation() {
+  Object.defineProperty(window, 'location', {
+    value: originalLocation,
+    writable: true,
+    configurable: true,
+  });
 }
 
 describe('MfaChallengePage', () => {
@@ -83,6 +106,74 @@ describe('MfaChallengePage', () => {
       challengeToken: 'challenge-abc',
       code: '123456',
     });
+  });
+
+  // §7.4 — o returnTo cruzado sobrevive à etapa de MFA e dispara navegação
+  // de página inteira (não navigate()) só depois de confirmado o código.
+  it('does a full-page navigation to a validated cross-app returnTo after confirming the code', async () => {
+    const user = userEvent.setup();
+    postMock.mockResolvedValueOnce({
+      data: {
+        status: 'ok',
+        identity: {
+          userId: '1',
+          institutionId: '1',
+          institutionName: 'ILPI Teste',
+          displayName: 'Fulana',
+          email: 'fulana@example.com',
+          roles: [],
+          organizationalResponsibilities: [],
+          effectivePermissions: [],
+        },
+        remainingRecoveryCodes: null,
+      },
+    });
+    const assignSpy = mockLocationAssign();
+
+    renderMfaChallenge({ challengeToken: 'challenge-abc' }, '?returnTo=%2Fcare%2Fresidents');
+
+    await user.type(screen.getByRole('textbox'), '123456');
+    await user.click(screen.getByRole('button', { name: 'Confirmar' }));
+
+    await waitFor(() => {
+      expect(assignSpy).toHaveBeenCalledWith('/care/residents');
+    });
+    expect(screen.queryByText('Visão Geral')).not.toBeInTheDocument();
+
+    restoreLocation();
+  });
+
+  it('falls back to the default destination when returnTo is unsafe', async () => {
+    const user = userEvent.setup();
+    postMock.mockResolvedValueOnce({
+      data: {
+        status: 'ok',
+        identity: {
+          userId: '1',
+          institutionId: '1',
+          institutionName: 'ILPI Teste',
+          displayName: 'Fulana',
+          email: 'fulana@example.com',
+          roles: [],
+          organizationalResponsibilities: [],
+          effectivePermissions: [],
+        },
+        remainingRecoveryCodes: null,
+      },
+    });
+    const assignSpy = mockLocationAssign();
+
+    renderMfaChallenge({ challengeToken: 'challenge-abc' }, '?returnTo=https%3A%2F%2Fevil.com');
+
+    await user.type(screen.getByRole('textbox'), '123456');
+    await user.click(screen.getByRole('button', { name: 'Confirmar' }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Visão Geral')).toBeInTheDocument();
+    });
+    expect(assignSpy).not.toHaveBeenCalled();
+
+    restoreLocation();
   });
 
   it('shows an alert with the backend message on an invalid code', async () => {
