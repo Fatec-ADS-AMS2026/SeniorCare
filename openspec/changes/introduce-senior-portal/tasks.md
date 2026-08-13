@@ -357,11 +357,51 @@
 
 ## 7. Integração do módulo de estoque
 
-- [ ] 7.1 Configurar build, assets e roteamento do front-end de estoque para o caminho-base `/stock`, incluindo refresh e acesso direto a rotas profundas.
-- [ ] 7.2 Substituir o uso de `auth_token` legível por JavaScript pela restauração de acesso curto em memória usando a sessão institucional.
-- [ ] 7.3 Adicionar retorno consistente ao portal e links para perfil, segurança e logout sem duplicar regras de credencial.
-- [ ] 7.4 Preservar deep links autorizados após login ou renovação e rejeitar destinos externos, desconhecidos ou sem permissão.
-- [ ] 7.5 Cobrir restauração, 401, 403, revogação, logout, retorno e deep links com testes automatizados do módulo de estoque.
+- [x] 7.1 Configurar build, assets e roteamento do front-end de estoque para o caminho-base `/stock`, incluindo refresh e acesso direto a rotas profundas.
+      **Evidência**: mesmo padrão de §6.1 — `vite.config.ts` ganha `base`
+      (`VITE_BASE_PATH`) e `routes/AppRoutes.tsx` ganha `basename` derivado
+      da mesma variável no `createBrowserRouter`; default `/` preserva o
+      deploy atual por subdomínio. Testado: `VITE_BASE_PATH=/stock/ npm run
+      build` produz `index.html` com assets corretamente prefixados
+      (`/stock/assets/...`, `/stock/vite.svg`); build default reproduz o
+      `dist/` de sempre. SPA fallback (`nginx.conf`) já cobre refresh/acesso
+      direto — migrar a borda pra `/stock` é §8.2, não duplicado aqui.
+- [x] 7.2 Substituir o uso de `auth_token` legível por JavaScript pela restauração de acesso curto em memória usando a sessão institucional.
+      **Evidência**: investigação direta (grep de `auth_token`,
+      `localStorage.*token`, `sessionStorage.*token`, `Authorization`)
+      confirmou que este front-end já usa só o cookie de sessão `HttpOnly`
+      compartilhado — `features/api/api.ts:7-11` documenta o mesmo modelo
+      (é, aliás, o comentário ORIGINAL que o de care-web depois referenciou).
+      Nenhuma mudança de código necessária.
+- [x] 7.3 Adicionar retorno consistente ao portal e links para perfil, segurança e logout sem duplicar regras de credencial.
+      **Evidência**: `features/layout/components/Header/index.tsx` — mesmos
+      links "Portal"/"Perfil"/"Segurança" de §6.3, mesma navegação de mesma
+      origem, nenhuma regra de sessão duplicada.
+- [x] 7.4 Preservar deep links autorizados após login ou renovação e rejeitar destinos externos, desconhecidos ou sem permissão.
+      **Evidência**: `utils/returnPath.ts` — mesmo contrato de §4.5/§6.4,
+      já incorporando a correção encontrada pelo review de §6: destino
+      cruzado (fora do próprio router deste app) usa
+      `window.location.assign()` (navegação de página inteira), nunca
+      `navigate()` do React Router (que não alcança rota fora do próprio
+      bundle/router — portal/care/stock são apps React separados, design.md
+      decisão 1). Aplicado em `LoginForm.tsx`, `MfaChallengePage.tsx` e
+      `MfaEnrollPage.tsx` (returnTo sobrevive à etapa de MFA via query
+      string). `location.state.from` (interno, nunca alcançável por URL)
+      mantém prioridade.
+- [x] 7.5 Cobrir restauração, 401, 403, revogação, logout, retorno e deep links com testes automatizados do módulo de estoque.
+      **Evidência**: restauração/401/403/revogação/logout já cobertos pela
+      suíte existente, revalidada sem regressão. Testes novos: 1 em
+      `Header.test.tsx` (links Portal/Perfil/Segurança), 6 em
+      `returnPath.test.ts` (allowlist e rejeições), 3 em `LoginForm.test.tsx`
+      (returnTo cruzado via `window.location.assign` — espionado
+      diretamente, sem rota fake que mascare o bug corrigido em §6 —,
+      returnTo rejeitado cai no padrão, `location.state.from` tem
+      prioridade). Achado do review da PR #114 (não bloqueante): faltava
+      cobertura do mesmo `returnTo` cruzado sobrevivendo à etapa de MFA —
+      2 testes novos em `MfaChallengePage.test.tsx` e
+      `MfaEnrollPage.test.tsx` criado do zero (não existia antes deste
+      change) com 3 testes. 65/65 testes do app aprovados (15 novos no
+      total), lint/build/`npm audit`/gates de higiene revalidados.
 
 ## 8. Implantação, segurança e observabilidade
 

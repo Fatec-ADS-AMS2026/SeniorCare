@@ -19,19 +19,61 @@ vi.mock('@/features/api', () => ({
   registerUnauthorizedHandler: vi.fn(),
 }));
 
-function renderLoginForm() {
+function renderLoginForm(initialEntry: string | { pathname: string; search?: string; state?: unknown } = '/login') {
   return render(
-    <MemoryRouter initialEntries={['/login']}>
+    <MemoryRouter initialEntries={[initialEntry]}>
       <AuthProvider>
         <Routes>
           <Route path='/login' element={<LoginForm />} />
           <Route path='/admin' element={<div>Visão Geral</div>} />
           <Route path='/login/mfa' element={<div>Tela de desafio MFA</div>} />
+          <Route path='/product' element={<div>Produtos</div>} />
         </Routes>
       </AuthProvider>
     </MemoryRouter>
   );
 }
+
+// jsdom não permite espionar window.location.assign diretamente
+// (Object.defineProperty de Location não é configurável em todo ambiente) —
+// mesma limitação já contornada em SeniorPortal-Frontend/SeniorCareManager-
+// Frontend, substitui o objeto location inteiro por um mock local,
+// restaurado depois de cada teste.
+const originalLocation = window.location;
+
+function mockLocationAssign() {
+  const assign = vi.fn();
+  Object.defineProperty(window, 'location', {
+    value: { ...originalLocation, assign },
+    writable: true,
+    configurable: true,
+  });
+  return assign;
+}
+
+function restoreLocation() {
+  Object.defineProperty(window, 'location', {
+    value: originalLocation,
+    writable: true,
+    configurable: true,
+  });
+}
+
+const okLoginResponse = {
+  data: {
+    status: 'ok',
+    identity: {
+      userId: '1',
+      institutionId: '1',
+      institutionName: 'ILPI Teste',
+      displayName: 'Fulana de Tal',
+      email: 'fulana@example.com',
+      roles: [],
+      organizationalResponsibilities: [],
+      effectivePermissions: [],
+    },
+  },
+};
 
 describe('LoginForm', () => {
   beforeEach(() => {
@@ -92,6 +134,71 @@ describe('LoginForm', () => {
     await waitFor(() => {
       expect(screen.getByText('Credenciais inválidas.')).toBeInTheDocument();
     });
+  });
+
+  // §7.4 — returnTo cruzado (portal → stock) exige navegação de página
+  // inteira: portal/care/stock são bundles/roteadores React Router
+  // separados (design.md decisão 1), `navigate()` nunca alcança uma rota
+  // fora do router deste próprio app.
+  it('does a full-page navigation to a validated cross-app returnTo destination on success', async () => {
+    const user = userEvent.setup();
+    postMock.mockResolvedValueOnce(okLoginResponse);
+    const assignSpy = mockLocationAssign();
+
+    renderLoginForm({ pathname: '/login', search: '?returnTo=%2Fcare%2Fresidents' });
+
+    await user.type(screen.getByPlaceholderText('Digite seu email'), 'fulana@example.com');
+    await user.type(screen.getByPlaceholderText('Digite sua senha'), 'senha-correta');
+    await user.click(screen.getByRole('button', { name: 'Entrar' }));
+
+    await waitFor(() => {
+      expect(assignSpy).toHaveBeenCalledWith('/care/residents');
+    });
+    expect(screen.queryByText('Visão Geral')).not.toBeInTheDocument();
+
+    restoreLocation();
+  });
+
+  it('falls back to the default destination (SPA navigate) when returnTo is unsafe', async () => {
+    const user = userEvent.setup();
+    postMock.mockResolvedValueOnce(okLoginResponse);
+    const assignSpy = mockLocationAssign();
+
+    renderLoginForm({ pathname: '/login', search: '?returnTo=https%3A%2F%2Fevil.com' });
+
+    await user.type(screen.getByPlaceholderText('Digite seu email'), 'fulana@example.com');
+    await user.type(screen.getByPlaceholderText('Digite sua senha'), 'senha-correta');
+    await user.click(screen.getByRole('button', { name: 'Entrar' }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Visão Geral')).toBeInTheDocument();
+    });
+    expect(assignSpy).not.toHaveBeenCalled();
+
+    restoreLocation();
+  });
+
+  it('prioritizes the internal preserved deep link (location.state.from) over returnTo', async () => {
+    const user = userEvent.setup();
+    postMock.mockResolvedValueOnce(okLoginResponse);
+    const assignSpy = mockLocationAssign();
+
+    renderLoginForm({
+      pathname: '/login',
+      search: '?returnTo=%2Fcare%2Fresidents',
+      state: { from: { pathname: '/product' } },
+    });
+
+    await user.type(screen.getByPlaceholderText('Digite seu email'), 'fulana@example.com');
+    await user.type(screen.getByPlaceholderText('Digite sua senha'), 'senha-correta');
+    await user.click(screen.getByRole('button', { name: 'Entrar' }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Produtos')).toBeInTheDocument();
+    });
+    expect(assignSpy).not.toHaveBeenCalled();
+
+    restoreLocation();
   });
 
   it('navigates to the MFA challenge screen when the backend requires it', async () => {
