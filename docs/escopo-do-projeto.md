@@ -1133,7 +1133,7 @@ produtos com público, propósito e modelo de acesso distintos:
 | Sessão/autenticação | reusa a mesma sessão institucional (cookie `HttpOnly`) já usada pelos módulos assistencial e de estoque — nenhum mecanismo novo | modelo de acesso próprio, ainda a ser desenhado (provavelmente fora da sessão de staff) |
 | Dados expostos | nenhum dado clínico ou financeiro — só nome/descrição de módulos, estado operacional e navegação (spec.md "Senior Portal", `docs/architecture/senior-portal-contracts.md`) | subconjunto do prontuário/relacionamento autorizado pelo residente ou responsável, nos limites legais aplicáveis (ver seção 6.5) |
 | Módulos hoje cobertos | assistência (`/care`) e estoque (`/stock`); outros módulos futuros (financeiro, doações, dashboards — seção 11) entram no mesmo catálogo à medida que forem implementados, sem aparecer antes disso (spec.md "catálogo operacional") | nenhum — depende de especificação própria |
-| Documentação | `openspec/specs/senior-portal/spec.md`, `docs/architecture/senior-portal-contracts.md` | nenhuma ainda — depende de mudança OpenSpec própria, como todo domínio novo (seção 12) |
+| Documentação | `openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md` (pendente de arquivamento em `openspec/specs/`), `docs/architecture/senior-portal-contracts.md` | nenhuma ainda — depende de mudança OpenSpec própria, como todo domínio novo (seção 12) |
 
 Módulos futuros do catálogo do Senior Portal (financeiro, doações, dashboards
 etc.) seguem a mesma regra da seção 12: cada um precisa da sua própria mudança
