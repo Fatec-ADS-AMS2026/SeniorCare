@@ -405,13 +405,121 @@
 
 ## 8. Implantação, segurança e observabilidade
 
-- [ ] 8.1 Adicionar imagem e serviço do portal ao Docker Compose sem remover as entradas legadas durante a fase aditiva.
-- [ ] 8.2 Configurar nginx para servir portal, API e módulos sob a mesma origem, com fallback de SPA restrito a cada caminho-base e cabeçalhos de segurança apropriados.
-- [ ] 8.3 Validar sob TLS os atributos e o escopo do cookie de renovação, proteção CSRF, rotação, detecção de reutilização e logout iniciado em qualquer aplicação.
-- [ ] 8.4 Adicionar pipelines de lint, testes, build e análise de dependências do portal e ajustar a CI dos três artefatos para os caminhos-base.
-- [ ] 8.5 Adicionar métricas e logs correlacionáveis para restauração de sessão, latência/erro do catálogo, redirecionamentos rejeitados, 401/403 e estado indisponível, sem dados sensíveis.
-- [ ] 8.6 Executar testes de segurança para open redirect, XSS armazenado na configuração, acesso cruzado entre instituições, enumeração de módulos e bypass por URL direta.
-- [ ] 8.7 Executar smoke tests na imagem de produção para raiz, assets, refresh de deep link, navegação entre módulos, MFA, manutenção, logout e falha segura do IAM.
+- [x] 8.1 Adicionar imagem e serviço do portal ao Docker Compose sem remover as entradas legadas durante a fase aditiva.
+      **Evidência**: `SeniorPortal-Frontend/SeniorPortalFrontend/{Dockerfile,
+      nginx.conf, docker-entrypoint.d/10-public-config.sh}` novos, mesmo
+      padrão multi-stage de care-web/stock-web + injeção de `public-config.json`
+      em runtime (`PUBLIC_NAME`, contrato §4.1). `package-lock.json` do portal
+      tinha entradas de plataforma opcional do esbuild corrompidas
+      (`"extraneous": true` em vez de `"optional": true`) — regenerado dentro de
+      um container `node:22-alpine` (mesma plataforma do build real), restaurando
+      as 49 entradas esperadas (igual a care-web). Serviço `senior-portal`
+      adicionado a `infra/deploy/docker-compose.yml` (prod, imagem pinada por
+      `SENIOR_PORTAL_IMAGE`) e `infra/docker-test/docker-compose.yml`
+      (build-from-source) — nenhuma entrada legada removida. `release.yml` ganhou
+      a 4ª entrada de matriz. Testado ponta a ponta: `npm ci`/`npm test`/`npm run
+      build` locais OK (61/61), `docker build` da imagem sobe limpo, container
+      rodando isoladamente serve `/` (200), `/public-config.json` reflete
+      `PUBLIC_NAME` de ambiente com `Cache-Control: no-store`, healthcheck fica
+      `healthy`.
+- [x] 8.2 Configurar nginx para servir portal, API e módulos sob a mesma origem, com fallback de SPA restrito a cada caminho-base e cabeçalhos de segurança apropriados.
+      **Evidência**: `infra/deploy/ops/Caddyfile` reescrito de roteamento por
+      subdomínio para roteamento por caminho (`handle_path /care/*` e
+      `/stock/*` com stripping de prefixo, `handle /api/*` sem stripping —
+      mesmo contrato dos proxies internos de cada front-end —, `handle`
+      catch-all pro portal na raiz), com cabeçalhos de segurança centralizados
+      na borda. Validado com `caddy validate`/`caddy fmt` (config válida).
+      Capacidade de build por caminho-base adicionada aos Dockerfiles de
+      care-web/stock-web (`ARG VITE_BASE_PATH=/`, default preserva o
+      comportamento atual) — testado com `docker build --build-arg
+      VITE_BASE_PATH=/care/` (e `/stock/`) produzindo `index.html` com assets
+      corretamente prefixados, e build default seguindo com caminhos
+      root-relative (sem regressão). **Ativação real fica para §9.7**: o corte
+      coordenado (build das imagens com o novo `VITE_BASE_PATH` + deploy deste
+      Caddyfile, ao mesmo tempo) é ação de implantação em produção real, não
+      código — documentado explicitamente no próprio Caddyfile e nos
+      Dockerfiles.
+- [x] 8.3 Validar sob TLS os atributos e o escopo do cookie de renovação, proteção CSRF, rotação, detecção de reutilização e logout iniciado em qualquer aplicação.
+      **Evidência**: `CookieSecurityAttributesTests.cs` novo (8 testes) —
+      Secure/HttpOnly/SameSite=Strict presentes no login, na rotação e no
+      logout (cookie limpo com data no passado); logout revoga a sessão
+      compartilhada independente da `Origin` (care/stock/portal simulados via
+      header); preflight CORS aceito pra origem permitida e sem cabeçalho
+      `Access-Control-Allow-Origin` pra origem não listada (a ausência, não um
+      erro, é o que o navegador usa pra bloquear). `CORS_ALLOWED_ORIGINS`
+      padrão de dev ganhou `localhost:3002` (porta do portal no docker-test).
+      `CONFIGURATION.md` atualizado para citar os três front-ends. Decisão
+      explícita registrada: nenhum middleware de CSRF novo — `SameSite=Strict`
+      + allowlist de CORS já é a defesa (mesma decisão de antes do portal,
+      apenas confirmada, não alterada). Rotação/reuso/logout/revogação por
+      troca de senha já cobertos por `SessionRotationTests.cs`, revalidados
+      sem regressão. 149/149 testes de integração + 52/52 unitários.
+- [x] 8.4 Adicionar pipelines de lint, testes, build e análise de dependências do portal e ajustar a CI dos três artefatos para os caminhos-base.
+      **Evidência**: `.github/workflows/ci.yml` — `senior_portal` no
+      `paths-filter`, job `senior-portal` clonado do de `stock-web` (lint,
+      `npm audit` prod/dev, `test:coverage`, build, `check-frontend-bundle.sh`),
+      `ci-required` com `senior-portal` no `needs:` e no loop de checagem de
+      resultado. Validado localmente reproduzindo cada passo do job
+      (`npm ci`/`lint`/`npm audit` x2/`test:coverage`/`build`/
+      `check-frontend-bundle.sh dist`) — todos OK, sem erro bloqueante (só
+      vulnerabilidades moderadas pré-existentes em react-router/esbuild,
+      compartilhadas com care-web/stock-web).
+- [x] 8.5 Adicionar métricas e logs correlacionáveis para restauração de sessão, latência/erro do catálogo, redirecionamentos rejeitados, 401/403 e estado indisponível, sem dados sensíveis.
+      **Evidência**: decisão confirmada de não introduzir stack de métricas
+      nova (Prometheus/OpenTelemetry) — `ILogger` estruturado estendendo o
+      `TraceIdentifier`/`ProblemDetails.correlationId` já existente.
+      `Startup.ValidateSessionPrincipalAsync` loga restauração com rotação
+      (Info) e rejeição/reuso (Warning), sempre com `CorrelationId`; sessionId
+      logado (não sensível), chave de sessão nunca. `OnRedirectToLogin`/
+      `OnRedirectToAccessDenied` logam 401/403 com Method/Path sanitizados
+      (mesma proteção contra CWE-117 do `GlobalExceptionHandler`) — 403 por
+      permissão já era coberto pelo audit `ACCESS_DECISION`
+      (`RequirePermissionAttribute`, que já cita "§8.5" no próprio comentário
+      — decisão pré-existente confirmada, não nova). `ModuleCatalogController`
+      ganhou latência (Stopwatch) e contagem de módulos em estado não
+      disponível no log de sucesso, e log de falha antes de repropagar a
+      exceção pro `GlobalExceptionHandler`. Redirecionamentos rejeitados: já
+      logados via `console.warn` nos três `returnPath.ts` desde §4.5/§6.4/§7.4
+      (o comentário do portal já citava "§8.5" como o lugar formal desta
+      decisão). 201/201 testes de backend revalidados sem regressão.
+- [x] 8.6 Executar testes de segurança para open redirect, XSS armazenado na configuração, acesso cruzado entre instituições, enumeração de módulos e bypass por URL direta.
+      **Evidência**: open redirect — já coberto exaustivamente em
+      `returnPath.test.ts` dos três apps (URL absoluta, protocolo-relativo,
+      `javascript:`, truques de backslash, prefixo parecido, string vazia).
+      Acesso cruzado entre instituições — `Get_TwoInstitutions_
+      DoesNotLeakAcrossInstitutions` e `Put_ModuleFromOtherInstitution_
+      ReturnsNotFound` já existentes. Enumeração de módulos —
+      `Get_ModuleWithoutPermission_IsOmitted`/`Get_ModuleNeverEnabled_IsOmitted`
+      já existentes (módulo ausente, não 403, impede diferenciar "não existe"
+      de "sem permissão" pela forma da resposta). Bypass por URL direta —
+      `RequireAuth.test.tsx` já cobre acesso não autenticado à raiz do portal;
+      dado que cada rota de domínio busca seus próprios dados via API
+      permission-gated no backend, alcançar uma rota do SPA sem sessão nunca
+      expõe dado (defesa real é backend, já testada nos controllers de
+      domínio). XSS armazenado — novo: `Put_OperationalMessageWithScriptPayload_
+      ReturnsUnprocessableEntity` (nível HTTP real, não só a unidade do
+      validador já coberta em `OperationalMessageSanitizerTests`) prova que o
+      payload nunca é persistido; novo teste em `CatalogPage.test.tsx`
+      (`renders a malicious operationalMessage as inert text...`) prova que,
+      mesmo que um payload escapasse do backend, o JSX de `ModuleCard`
+      interpola como texto — nunca cria `<script>`/`<img onerror>` nem executa.
+      150/150 testes de integração + 62/62 do portal, sem regressão.
+- [x] 8.7 Executar smoke tests na imagem de produção para raiz, assets, refresh de deep link, navegação entre módulos, MFA, manutenção, logout e falha segura do IAM.
+      **Evidência**: `infra/docker-test/smoke-test.sh` novo — script do zero
+      (não existia nenhum antes), 20 checagens via `curl`/TOTP calculado
+      localmente contra a stack `docker-test` real (Postgres + API + os 3
+      front-ends, todos buildados das imagens de produção, não `npm run dev`).
+      Rodado de ponta a ponta contra um stack limpo (`docker compose down -v
+      && up -d --build`): raiz (200 nos 3 apps), assets hasheados (200),
+      refresh de deep link em rota profunda de cada app (cai no shell da SPA,
+      não 404 cru), primeiro acesso completo (ativação → login → enroll MFA →
+      TOTP → confirm → `/Auth/me` 200), catálogo autenticado após habilitar um
+      módulo, transição pra MAINTENANCE refletida no catálogo (revertida ao
+      final), logout (200) seguido de `/Auth/me` 401, e falha segura do IAM
+      (container da API parado: shell estático do portal continua servindo
+      200, chamada a `/api/*` falha com 502 — não trava nem finge sucesso —,
+      API restaurada e healthcheck confirmado ao final). 20/20 OK na execução
+      limpa.
 
 ## 9. Migração, contingência e aceite
 

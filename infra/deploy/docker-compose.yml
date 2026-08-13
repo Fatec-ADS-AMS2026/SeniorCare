@@ -100,6 +100,21 @@ services:
         condition: service_healthy
     networks: [seniorcare-net]
 
+  senior-portal:
+    image: ${SENIOR_PORTAL_IMAGE:?defina SENIOR_PORTAL_IMAGE via release manifest}
+    container_name: seniorcare-senior-portal
+    restart: unless-stopped
+    environment:
+      # Nome público exibido no portal — injetado em runtime (nunca no bundle),
+      # gerado como public-config.json pelo entrypoint da imagem (§4.1/§8.1).
+      PUBLIC_NAME: ${PUBLIC_NAME:-SeniorCare}
+    ports:
+      - "3002:80"
+    depends_on:
+      seniorcare-api:
+        condition: service_healthy
+    networks: [seniorcare-net]
+
 networks:
   seniorcare-net:
     # Nome fixo (sem prefixo de projeto) para o overlay de operação

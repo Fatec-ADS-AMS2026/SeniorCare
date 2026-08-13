@@ -166,6 +166,38 @@ public sealed class AdminInstitutionModuleControllerTests : IClassFixture<Postgr
         response.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
     }
 
+    // §8.6 — regressão de XSS armazenado: prova, pelo endpoint HTTP real (não só a
+    // unidade do validador, já coberta em OperationalMessageSanitizerTests), que um payload
+    // de script nunca chega a ser persistido — a defesa primária é rejeitar na entrada.
+    [Fact]
+    public async Task Put_OperationalMessageWithScriptPayload_ReturnsUnprocessableEntity()
+    {
+        using var scope = _factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var (institutionId, adminId) = await TestIdentitySeeder.SeedFullAccessUserAsync(db);
+        var careId = await ProvisionAndGetCareIdAsync(institutionId);
+
+        var client = _factory.CreateClient().AsUser(adminId);
+        var current = await (await client.GetAsync($"/api/v1/AdminInstitutionModule/{careId}"))
+            .Content.ReadFromJsonAsync<InstitutionModuleAdminDTO>();
+
+        var response = await client.PutAsJsonAsync($"/api/v1/AdminInstitutionModule/{careId}", new InstitutionModuleUpdateRequest
+        {
+            IsEnabled = true,
+            Order = 1,
+            OperationalState = OperationalState.UNAVAILABLE,
+            OperationalMessage = "<script>alert(1)</script>",
+            RowVersion = current!.RowVersion,
+        });
+
+        response.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
+
+        using var readScope = _factory.Services.CreateScope();
+        var readDb = readScope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var persisted = await readDb.InstitutionModules.SingleAsync(im => im.Id == careId);
+        persisted.OperationalMessage.Should().NotContain("<script>");
+    }
+
     [Fact]
     public async Task Put_ModuleFromOtherInstitution_ReturnsNotFound()
     {

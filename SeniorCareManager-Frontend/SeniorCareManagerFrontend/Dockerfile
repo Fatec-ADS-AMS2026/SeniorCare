@@ -5,6 +5,12 @@ WORKDIR /app
 ARG VERSION=0.0.0
 ARG GIT_SHA=unknown
 
+# Caminho-base do build (§6.1/§8.2, docs/architecture/senior-portal-contracts.md §1).
+# Default `/` preserva o deploy atual por subdomínio — vira `/care/` só no corte real
+# para roteamento por caminho (§9.7), junto com o novo infra/deploy/ops/Caddyfile.
+ARG VITE_BASE_PATH=/
+ENV VITE_BASE_PATH=$VITE_BASE_PATH
+
 COPY package.json package-lock.json ./
 RUN npm ci
 

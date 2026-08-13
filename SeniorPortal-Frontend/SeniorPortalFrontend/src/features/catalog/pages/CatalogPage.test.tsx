@@ -135,6 +135,37 @@ describe('CatalogPage', () => {
     expect(getMock).toHaveBeenCalledTimes(2);
   });
 
+  // §8.6 — regressão de XSS armazenado: mesmo que um payload malicioso escape do
+  // validador de entrada do backend (OperationalMessageSanitizer, defesa primária) e
+  // chegue até aqui, o JSX de ModuleCard interpola operationalMessage como texto — nunca
+  // como HTML — então o navegador nunca cria o elemento nem executa o script.
+  it('renders a malicious operationalMessage as inert text, never as executable markup', async () => {
+    const payload = '<script>window.__xss__ = true;</script><img src=x onerror="window.__xss__ = true">';
+    getMock.mockResolvedValueOnce({
+      data: [
+        {
+          key: 'stock',
+          name: 'Estoque',
+          description: 'Controle de insumos',
+          icon: 'Package',
+          path: '/stock',
+          order: 1,
+          operationalState: OperationalState.UNAVAILABLE,
+          operationalMessage: payload,
+        },
+      ],
+    });
+
+    const { container } = render(<CatalogPage />);
+
+    await waitFor(() => {
+      expect(screen.getByText(payload)).toBeInTheDocument();
+    });
+    expect(container.querySelector('script')).toBeNull();
+    expect(container.querySelector('img')).toBeNull();
+    expect((window as unknown as { __xss__?: boolean }).__xss__).toBeUndefined();
+  });
+
   it('has no detectable accessibility violations in the ready state', async () => {
     getMock.mockResolvedValueOnce({
       data: [

@@ -23,6 +23,7 @@ jobs:
           - { module: api,        context: ./SeniorCareManager-Backend/SeniorCareManager.WebAPI, image: seniorcare-api,       var: API_IMAGE }
           - { module: care-web,   context: ./SeniorCareManager-Frontend/SeniorCareManagerFrontend, image: seniorcare-care-web,  var: CARE_WEB_IMAGE }
           - { module: stock-web,  context: ./SeniorStockManager-Frontend/SeniorStockManagerFrontend, image: seniorcare-stock-web, var: STOCK_WEB_IMAGE }
+          - { module: senior-portal, context: ./SeniorPortal-Frontend/SeniorPortalFrontend, image: seniorcare-senior-portal, var: SENIOR_PORTAL_IMAGE }
     steps:
       - uses: actions/checkout@v5
 
