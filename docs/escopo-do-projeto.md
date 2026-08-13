@@ -1019,7 +1019,8 @@ operação sem papel ainda não estejam disponíveis.
 
 ### Expansão
 
-- portal do residente e da família;
+- portal do residente e da família (distinto do Senior Portal interno já
+  implementado — ver seção 12.3);
 - múltiplas instituições e unidades;
 - integrações contábeis, bancárias e de saúde;
 - análises preditivas e apoio à decisão com governança;
@@ -1117,6 +1118,30 @@ autorização, auditoria, versionamento e testes. Prontuário, dashboards e
 assinatura eletrônica devem evoluir sobre essa fundação, nessa ordem de
 dependência.
 
+### 12.3 Senior Portal interno vs. portal futuro de residentes e famílias
+
+A partir da mudança OpenSpec `introduce-senior-portal`, o repositório passou a
+ter uma terceira aplicação front-end (`SeniorPortal-Frontend/`) chamada
+**Senior Portal**. É importante não confundir esse produto com o "portal do
+residente e da família" já previsto na seção 11 ("Expansão") — são dois
+produtos com público, propósito e modelo de acesso distintos:
+
+| | Senior Portal (interno, implementado) | Portal do residente/família (futuro, não implementado) |
+|---|---|---|
+| Público | equipe interna já autenticada (assistência, estoque, administração) | residentes, familiares, responsáveis legais |
+| Propósito | ponto de entrada único e catálogo de módulos internos (substitui logins/landing pages separados de cada front-end) | acompanhamento e comunicação autorizada com a instituição |
+| Sessão/autenticação | reusa a mesma sessão institucional (cookie `HttpOnly`) já usada pelos módulos assistencial e de estoque — nenhum mecanismo novo | modelo de acesso próprio, ainda a ser desenhado (provavelmente fora da sessão de staff) |
+| Dados expostos | nenhum dado clínico ou financeiro — só nome/descrição de módulos, estado operacional e navegação (spec.md "Senior Portal", `docs/architecture/senior-portal-contracts.md`) | subconjunto do prontuário/relacionamento autorizado pelo residente ou responsável, nos limites legais aplicáveis (ver seção 6.5) |
+| Módulos hoje cobertos | assistência (`/care`) e estoque (`/stock`); outros módulos futuros (financeiro, doações, dashboards — seção 11) entram no mesmo catálogo à medida que forem implementados, sem aparecer antes disso (spec.md "catálogo operacional") | nenhum — depende de especificação própria |
+| Documentação | `openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md` (pendente de arquivamento em `openspec/specs/`), `docs/architecture/senior-portal-contracts.md` | nenhuma ainda — depende de mudança OpenSpec própria, como todo domínio novo (seção 12) |
+
+Módulos futuros do catálogo do Senior Portal (financeiro, doações, dashboards
+etc.) seguem a mesma regra da seção 12: cada um precisa da sua própria mudança
+OpenSpec antes da implementação. Até lá, eles não aparecem no catálogo
+operacional — o catálogo só lista módulos com `InstitutionModule` habilitado
+para a instituição (nunca um módulo "planejado" ou inexistente, spec.md
+"Descoberta de módulos usa permissões efetivas").
+
 ## 13. Decisões em aberto
 
 Duas premissas já estão estabelecidas:
@@ -1203,6 +1228,9 @@ instituição-piloto.
   finalidade, usada para acompanhar uma condição ou resultado.
 - **Dashboard:** conjunto de indicadores e visualizações organizado para um
   público e uma decisão específicos.
+- **Senior Portal:** aplicação interna que serve como ponto de entrada único e
+  catálogo de módulos para a equipe já autenticada — distinto do portal futuro
+  de residentes e famílias (seção 12.3).
 
 ## 16. Referências
 

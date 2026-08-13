@@ -1,10 +1,26 @@
 import { Envelope, Lock, Eye, EyeSlash } from '@phosphor-icons/react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import authService from '../services/authService';
 import useAuth from '@/hooks/useAuth';
 import useAppRoutes from '@/hooks/useAppRoutes';
 import { resolveReturnPath } from '@/utils/returnPath';
+
+// §9.2 — mesmo sinal de ativação usado por AppRoutes.tsx pro `basename`: só
+// quando o build sai com VITE_BASE_PATH != `/` (roteamento por caminho
+// realmente ativado, §8.2/§9.7) este login "frio" (sem destino interno
+// validado) deixa de ser a entrada legítima e passa a redirecionar pro login
+// do Senior Portal, agora a porta de entrada canônica.
+const isPathBasedRouting = Boolean(
+  import.meta.env.VITE_BASE_PATH && import.meta.env.VITE_BASE_PATH !== '/'
+);
+
+// Caminho absoluto a partir da ORIGEM (não desta app) — window.location.assign
+// não passa pelo basename do React Router (isso só se aplica a navigate()/Link
+// deste próprio router), então `/login` aqui alcança o login do Senior Portal
+// (a app raiz sob roteamento por caminho), nunca o `/login` deste app
+// (que ficaria em `/stock/login`).
+const PORTAL_LOGIN_PATH = '/login';
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +34,23 @@ export default function LoginForm() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const routes = useAppRoutes();
+
+  // §9.2 — "retorno interno validado": `from` (sintetizado por RequireAuth,
+  // nunca alcançável por URL) ou um `returnTo` já validado pelo allowlist
+  // (§4.5/§7.4). Só quando NENHUM dos dois existe é que esta chegada em
+  // `/login` é "fria" — bookmark antigo, link legado ou a landing page
+  // legada (também redirecionada, ver LandingPage) — e deve mandar pro
+  // portal em vez de renderizar o formulário legado.
+  const from = (location.state as { from?: { pathname?: string } } | null)?.from
+    ?.pathname;
+  const crossAppReturnTo = resolveReturnPath(searchParams.get('returnTo'));
+  const isLegacyColdArrival = isPathBasedRouting && !from && !crossAppReturnTo;
+
+  useEffect(() => {
+    if (isLegacyColdArrival) {
+      window.location.assign(PORTAL_LOGIN_PATH);
+    }
+  }, [isLegacyColdArrival]);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
@@ -51,14 +84,11 @@ export default function LoginForm() {
       // bundles/roteadores React Router SEPARADOS (design.md decisão 1, sem
       // module federation) — navigate() nunca resolve uma rota fora do
       // router deste app, mesmo pra `/` (raiz do portal) ou `/care/...`.
-      const from = (location.state as { from?: { pathname?: string } } | null)
-        ?.from?.pathname;
       if (from) {
         navigate(from, { replace: true });
         return;
       }
 
-      const crossAppReturnTo = resolveReturnPath(searchParams.get('returnTo'));
       if (crossAppReturnTo) {
         window.location.assign(crossAppReturnTo);
         return;
@@ -89,6 +119,14 @@ export default function LoginForm() {
 
     setError('Resposta inesperada do servidor.');
   };
+
+  if (isLegacyColdArrival) {
+    return (
+      <p className='text-textSecondary text-center' role='status'>
+        Redirecionando para o portal...
+      </p>
+    );
+  }
 
   return (
     <form

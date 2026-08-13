@@ -8,7 +8,15 @@
 > motivação e as alternativas descartadas — este documento só registra o contrato
 > resultante, em versões (`v1`), para os front-ends consumirem.
 >
-> _Status: contratos definidos, nenhuma implementação ainda (§2 em diante)._
+> _Status: §1–§8 implementados e em produção; §9 (migração, contingência e
+> aceite) em andamento — ver `openspec/changes/introduce-senior-portal/tasks.md`._
+>
+> **Não confundir com o portal futuro de residentes/famílias**: o "Senior
+> Portal" descrito neste documento é uma aplicação **interna**, para a equipe
+> já autenticada (assistência, estoque, administração) — não expõe dado
+> clínico ou financeiro, só o catálogo de módulos e navegação. Um portal
+> voltado a residentes e famílias é um produto futuro, distinto e ainda sem
+> especificação própria — ver `docs/escopo-do-projeto.md` seção 12.3.
 
 ## 1. Contrato de rotas
 

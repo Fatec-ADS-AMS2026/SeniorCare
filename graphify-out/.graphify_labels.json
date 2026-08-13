@@ -429,14 +429,5 @@
   "427": "RolePermissionGroup",
   "428": "SeniorCareManager.WebAPI.Data.Interceptors",
   "429": "MfaEnrollResponse.cs",
-  "430": "ActivateAccountRequest.cs",
-  "431": "ChangePasswordRequest.cs",
-  "432": "LoginMfaRequest.cs",
-  "433": "LoginRequest.cs",
-  "434": "MfaConfirmRequest.cs",
-  "435": "MfaEnrollRequest.cs",
-  "436": "RecoverAccountRequest.cs",
-  "437": "RegenerateRecoveryCodesRequest.cs",
-  "438": "ResetPasswordRequest.cs",
   "439": "10-public-config.sh"
 }

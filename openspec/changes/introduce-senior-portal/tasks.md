@@ -523,10 +523,58 @@
 
 ## 9. Migração, contingência e aceite
 
+> **Nota de escopo**: das 7 subtarefas, 9.2/9.3/9.6 são código/documentação
+> versionados e foram implementadas nesta rodada. 9.1, 9.4, 9.5 e 9.7 exigem
+> ambiente de homologação real e/ou decisão humana (aceite de stakeholders,
+> corte de produção) — não são coisas que a IA deva executar sozinha, e
+> ficam explicitamente como próximo passo do time depois desta PR.
+
 - [ ] 9.1 Habilitar assistência e estoque primeiro em homologação e comprovar que nenhum módulo apenas planejado aparece no catálogo operacional.
-- [ ] 9.2 Implementar redirecionamentos dos logins e landing pages legados para o portal, preservando somente retornos internos validados e exigindo novo login para credenciais incompatíveis.
-- [ ] 9.3 Documentar operação, configuração do catálogo, estados, auditoria, implantação, monitoramento, links diretos de contingência e rollback sem restaurar autenticação insegura.
+      **Bloqueada**: exige ambiente de homologação real (não é código) — ver
+      nota de escopo no início desta seção.
+- [x] 9.2 Implementar redirecionamentos dos logins e landing pages legados para o portal, preservando somente retornos internos validados e exigindo novo login para credenciais incompatíveis.
+      **Evidência**: `LandingPage` e `LoginForm` de care-web/stock-web ganharam
+      um redirecionamento gated pelo mesmo sinal de ativação já usado pro
+      `basename` (`VITE_BASE_PATH` != `/`, §8.2/§9.7) — sob o deploy atual
+      (subdomínio, variável ausente) o comportamento é idêntico ao de antes,
+      zero risco pra produção corrente. Quando ativo: a landing legada
+      redireciona pra raiz do portal (`window.location.assign('/')`); o
+      `/login` só redireciona pro login do portal quando NÃO há retorno
+      interno validado (nem `location.state.from`, sintetizado por
+      RequireAuth, nem um `returnTo` já validado pelo allowlist) — preservando
+      exatamente os dois casos de "retorno interno validado" que já existiam.
+      "Credenciais incompatíveis exigem novo login" já era um invariante
+      existente (login sempre autentica do zero, nunca reusa sessão de outra
+      identidade) — verificado por inspeção, sem necessidade de mecanismo
+      novo. Testes novos: `LoginForm.test.tsx` (+3 por app) e
+      `LandingPage.test.tsx` (novo, 2 por app) usando `vi.stubEnv` +
+      `vi.resetModules` + reimportação dinâmica (necessário porque o sinal de
+      ativação é uma constante de módulo, fixada no primeiro import — mesma
+      técnica agora documentada como padrão pra esse tipo de teste). care-web
+      67/67, stock-web 70/70, lint e build limpos nos dois.
+- [x] 9.3 Documentar operação, configuração do catálogo, estados, auditoria, implantação, monitoramento, links diretos de contingência e rollback sem restaurar autenticação insegura.
+      **Evidência**: `docs/operacao/senior-portal.md` novo, cobrindo as 7
+      áreas do enunciado — cada afirmação verificada contra o código (permissão
+      `InstitutionModule`/`read`/`write`, default `IsEnabled=false`/`DISABLED`
+      do provisionamento, limite de 280 caracteres do
+      `OperationalMessageSanitizer`, tabela de `OperationalState`, categorias
+      de auditoria `CATALOG`/`ACCESS_DECISION`, pontos de log do §8.5). Linkado
+      a partir de `infra/deploy/README.md`.
 - [ ] 9.4 Validar que a indisponibilidade do portal não invalida uma sessão existente nem impede acesso direto autorizado a módulos saudáveis.
+      **Bloqueada**: exige ambiente de homologação real — ver nota de escopo.
 - [ ] 9.5 Realizar aceite com representantes de administração, segurança, assistência e estoque cobrindo acessibilidade, clareza institucional e ausência de dados clínicos ou financeiros no portal.
-- [ ] 9.6 Atualizar `docs/escopo-do-projeto.md` e a documentação arquitetural para distinguir Senior Portal interno, portal futuro de residentes/famílias e módulos futuros ainda não implementados.
+      **Bloqueada**: reunião humana com stakeholders, não é tarefa de código —
+      ver nota de escopo.
+- [x] 9.6 Atualizar `docs/escopo-do-projeto.md` e a documentação arquitetural para distinguir Senior Portal interno, portal futuro de residentes/famílias e módulos futuros ainda não implementados.
+      **Evidência**: `docs/escopo-do-projeto.md` ganhou a seção 12.3 (tabela
+      comparativa Senior Portal interno vs. portal futuro de residentes e
+      famílias, com módulos futuros do catálogo seguindo a mesma regra de
+      "mudança OpenSpec própria antes da implementação" já estabelecida na
+      seção 12), entrada no glossário (seção 15) e nota na lista de
+      "Expansão" (seção 11). `docs/architecture/senior-portal-contracts.md`
+      ganhou status atualizado (§1–§8 implementados, §9 em andamento — estava
+      desatualizado dizendo "nenhuma implementação ainda") e a mesma nota de
+      não confundir com o portal futuro.
 - [ ] 9.7 Ativar o portal como raiz somente após os testes de homologação, registrar evidências de aceite e verificar os critérios de rollback durante a janela de observação.
+      **Bloqueada**: depende de 9.1/9.4/9.5 e é corte de produção real — ver
+      nota de escopo.
