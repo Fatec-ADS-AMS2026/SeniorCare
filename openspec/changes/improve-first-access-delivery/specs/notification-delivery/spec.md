@@ -1,8 +1,9 @@
 ## ADDED Requirements
 
-### Requirement: Envio de e-mail transacional é opcional e configurável por instituição
+### Requirement: Envio de e-mail transacional é opcional e configurável por ambiente
 A plataforma SHALL suportar envio de e-mail transacional via SMTP configurado por
-variáveis de ambiente. A ausência de configuração SHALL ser tratada como estado
+variáveis de ambiente para a implantação inteira. Esta entrega SHALL NOT persistir
+credenciais SMTP por instituição. A ausência de configuração SHALL ser tratada como estado
 válido (canal desabilitado), NOT como erro de inicialização, e SHALL preservar o
 comportamento de qualquer fluxo que dependa do canal como se o envio nunca fosse
 tentado.
@@ -48,3 +49,12 @@ senha ou qualquer segredo de MFA.
 - **WHEN** uma falha de envio é registrada em log de aplicação
 - **THEN** o registro contém apenas informação operacional (tipo de erro genérico,
   destinatário), nunca a exceção bruta do cliente SMTP nem o conteúdo da mensagem
+
+#### Scenario: Bootstrap com entrega automática bem-sucedida
+- **WHEN** o token inicial é entregue com sucesso pelo canal SMTP configurado
+- **THEN** o token não é duplicado no console, log de aplicação ou auditoria
+
+#### Scenario: Bootstrap depende do procedimento manual
+- **WHEN** o canal SMTP está desabilitado ou a entrega do token inicial falha
+- **THEN** a plataforma disponibiliza o token uma única vez pelo canal manual
+  documentado, sem registrá-lo na auditoria nem nos logs do serviço de e-mail

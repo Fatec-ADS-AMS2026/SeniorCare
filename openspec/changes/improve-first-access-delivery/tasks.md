@@ -17,9 +17,9 @@
 ## 2. Wiring nos pontos de disparo
 
 - [ ] 2.1 Bootstrap (`Program.cs`): após criar o token de ativação inicial, chamar
-      `INotificationSender` se configurado; manter a impressão do token no
-      console/log de qualquer forma (mesmo com e-mail configurado — não remover o
-      contorno manual).
+      `INotificationSender` se configurado; exibir o token no canal manual somente
+      quando SMTP estiver ausente ou a entrega falhar. Uma entrega automática
+      bem-sucedida não pode duplicar o token no console/log.
 - [ ] 2.2 Criação de usuário administrativo (`AdminUserOverview`/controller
       correspondente): disparar e-mail de ativação; resposta do endpoint passa a
       incluir `emailSent: boolean`.
@@ -33,15 +33,17 @@
 ## 3. QR code no cadastro de MFA (front-end)
 
 - [ ] 3.1 Adicionar biblioteca de geração de QR code (client-side, sem dependência
-      nova no backend) aos dois front-ends (care e stock).
+      nova no backend) aos três front-ends (Senior Portal, care e stock).
 - [ ] 3.2 Renderizar o QR code em `MfaEnrollPage` a partir do `otpAuthUri` já
-      retornado por `POST /Auth/mfa/enroll`, mantendo a chave em texto visível.
+      retornado por `POST /Auth/mfa/enroll` nos três front-ends, mantendo a chave
+      em texto visível.
 - [ ] 3.3 Testes de componente (Vitest) cobrindo a renderização do QR code junto da
       chave em texto.
 
 ## 4. Configuração e documentação
 
-- [ ] 4.1 Documentar `Smtp__*` e `Frontend__ActivationBaseUrl` em `CONFIGURATION.md`.
+- [ ] 4.1 Documentar `Smtp__*` e `Frontend__ActivationBaseUrl` em
+      `SeniorCareManager-Backend/SeniorCareManager.WebAPI/CONFIGURATION.md`.
 - [ ] 4.2 Atualizar `infra/deploy/BOOTSTRAP.md` — remover os itens de e-mail e QR
       code da tabela "Pendências conhecidas" (ou marcar como resolvidos), ajustar as
       seções 2/4/5 pra refletir o envio automático quando configurado.
@@ -55,7 +57,7 @@
 
 ## 5. Aceite
 
-- [ ] 5.1 `dotnet test`/`npm test` nos 3 componentes, 100% verde.
+- [ ] 5.1 `dotnet test` no backend e `npm test` nos 3 front-ends, 100% verde.
 - [ ] 5.2 `openspec validate improve-first-access-delivery --strict`.
 - [ ] 5.3 Confirmar manualmente (stack Docker local com SMTP de teste, ex.:
       Mailhog/Mailpit) que o e-mail de ativação chega e o link funciona fim a fim.

@@ -690,7 +690,7 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/auth/components/LoginForm/index.tsx": {
-    "mtime": 1786638519.40837,
+    "mtime": 1786639803.9914534,
     "ast_hash": "9283df9d2d586ccf09c7e8fd5d7f4702",
     "semantic_hash": ""
   },
@@ -850,7 +850,7 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/pages/LandingPage/index.tsx": {
-    "mtime": 1786638531.4162555,
+    "mtime": 1786639803.9935863,
     "ast_hash": "8758a2bf97a935a6470edc7c14be174c",
     "semantic_hash": ""
   },
@@ -1130,7 +1130,7 @@
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/components/LoginForm.tsx": {
-    "mtime": 1786638589.8540957,
+    "mtime": 1786639803.994535,
     "ast_hash": "d093d5cff67a457d43ec5bf4cd6dba33",
     "semantic_hash": ""
   },
@@ -1390,7 +1390,7 @@
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/pages/LandingPage/index.tsx": {
-    "mtime": 1786638556.2123597,
+    "mtime": 1786639803.9972885,
     "ast_hash": "3ee27acc8a9c454fcd2320d5336a1ec1",
     "semantic_hash": ""
   },
@@ -1585,8 +1585,8 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1785963573.3992057,
-    "ast_hash": "6a47d64fcc136324ca395065a707ef76",
+    "mtime": 1786808628.5225203,
+    "ast_hash": "541af0a65ede9ad47cc4a1e4818c5454",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/README.md": {
@@ -1824,11 +1824,6 @@
     "ast_hash": "76912de4373140796346ce5b7965f572",
     "semantic_hash": ""
   },
-  ".github/workflows/claude-review.yml": {
-    "mtime": 1786024175.2734444,
-    "ast_hash": "fbece6c691b421cdbcf916bbe6022c46",
-    "semantic_hash": ""
-  },
   ".github/workflows/ghcr-retention.yml": {
     "mtime": 1785974275.2978387,
     "ast_hash": "a8ecedc37ddb7fe2981ee6706099056b",
@@ -1865,8 +1860,8 @@
     "semantic_hash": ""
   },
   "docs/escopo-do-projeto.md": {
-    "mtime": 1786638874.158971,
-    "ast_hash": "19d2c3114a0adbe07965d0d8d788184f",
+    "mtime": 1786639804.0068343,
+    "ast_hash": "14138745e10f936bddddf8e15617e66e",
     "semantic_hash": ""
   },
   "docs/infra/ci-cd-arquitetura.md": {
@@ -1875,7 +1870,7 @@
     "semantic_hash": ""
   },
   "infra/deploy/README.md": {
-    "mtime": 1786639267.1902218,
+    "mtime": 1786639804.1256695,
     "ast_hash": "dd3a610b2e117e59e90f41feccb5e03f",
     "semantic_hash": ""
   },
@@ -2000,7 +1995,7 @@
     "semantic_hash": ""
   },
   "openspec/changes/introduce-senior-portal/tasks.md": {
-    "mtime": 1786639299.597553,
+    "mtime": 1786639804.1264355,
     "ast_hash": "0cfa829d491d1a1e7d003f3c51fd63b4",
     "semantic_hash": ""
   },
@@ -3405,7 +3400,7 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/auth/components/LoginForm/LoginForm.test.tsx": {
-    "mtime": 1786638687.571924,
+    "mtime": 1786639803.991046,
     "ast_hash": "4ec6729acacb631081d5c446009612a8",
     "semantic_hash": ""
   },
@@ -3755,7 +3750,7 @@
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/components/LoginForm.test.tsx": {
-    "mtime": 1786638760.123135,
+    "mtime": 1786639803.9940207,
     "ast_hash": "969cfd1402502994e6cf2e61cafaa324",
     "semantic_hash": ""
   },
@@ -4225,7 +4220,7 @@
     "semantic_hash": ""
   },
   "docs/architecture/senior-portal-contracts.md": {
-    "mtime": 1786638895.85419,
+    "mtime": 1786639803.9995606,
     "ast_hash": "c4c3010656a5cf04c70e4badca4262d6",
     "semantic_hash": ""
   },
@@ -4290,28 +4285,28 @@
     "semantic_hash": ""
   },
   "openspec/changes/improve-first-access-delivery/design.md": {
-    "mtime": 1786457216.0213697,
-    "ast_hash": "4165bc867906a5d42de5c2db2130a21a",
+    "mtime": 1786808501.3522727,
+    "ast_hash": "2ba4fd7f9d17ce7c3467092f2cc0d171",
     "semantic_hash": ""
   },
   "openspec/changes/improve-first-access-delivery/proposal.md": {
-    "mtime": 1786457216.0216765,
-    "ast_hash": "d2ee4f0507e99b6481c3dea79261f9f6",
+    "mtime": 1786808501.3140996,
+    "ast_hash": "276945c65cf050dcbff0b3add4d69d2e",
     "semantic_hash": ""
   },
   "openspec/changes/improve-first-access-delivery/specs/notification-delivery/spec.md": {
-    "mtime": 1786457216.021966,
-    "ast_hash": "9f32ccaa97ddf59a654d4129dece0856",
+    "mtime": 1786808487.705772,
+    "ast_hash": "c847a0f8f144fe7d32a5cd002e1154d5",
     "semantic_hash": ""
   },
   "openspec/changes/improve-first-access-delivery/specs/platform-authentication/spec.md": {
-    "mtime": 1786457216.0224218,
-    "ast_hash": "d3256d96f781c26645d027f7ff992133",
+    "mtime": 1786808487.7433057,
+    "ast_hash": "279505d851c839aac0c561a044516a3c",
     "semantic_hash": ""
   },
   "openspec/changes/improve-first-access-delivery/tasks.md": {
-    "mtime": 1786457216.0227559,
-    "ast_hash": "783e60a2bd94b9a4c09b1a56c70df00d",
+    "mtime": 1786808501.389871,
+    "ast_hash": "b854165468ab61bca8a5900f1b393bd8",
     "semantic_hash": ""
   },
   "openspec/specs/accessibility-baseline/spec.md": {
@@ -4320,8 +4315,8 @@
     "semantic_hash": ""
   },
   "openspec/specs/automated-quality-gates/spec.md": {
-    "mtime": 1786446639.560344,
-    "ast_hash": "bd8b94428ea50ec3a0f1d3358693d460",
+    "mtime": 1786808788.5448697,
+    "ast_hash": "85dca65b8e1ba3dff382b1f1ea88fd59",
     "semantic_hash": ""
   },
   "openspec/specs/platform-authentication/spec.md": {
@@ -4765,18 +4760,48 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/pages/LandingPage/LandingPage.test.tsx": {
-    "mtime": 1786638724.0353682,
+    "mtime": 1786639803.9918928,
     "ast_hash": "44ff3740ac68ae7e0194dfc641aa9275",
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/pages/LandingPage/LandingPage.test.tsx": {
-    "mtime": 1786638774.6161792,
+    "mtime": 1786639803.9965966,
     "ast_hash": "260670589af5f14e3d4b592787057c88",
     "semantic_hash": ""
   },
   "docs/operacao/senior-portal.md": {
-    "mtime": 1786639247.1711168,
+    "mtime": 1786639804.0086837,
     "ast_hash": "dc4975aea541343a74f3e9e9dd402376",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260815_153804_revise_o_projeto_e_verifique_as_pend\u00eancias_a_parti.md": {
+    "mtime": 1786808284.5638354,
+    "ast_hash": "424060ba6d750bc66f3cb3cf32ac013c",
+    "semantic_hash": ""
+  },
+  "openspec/changes/archive/2026-08-15-migrate-pr-review-from-anthropic/.openspec.yaml": {
+    "mtime": 1786808509.8181615,
+    "ast_hash": "f50867b969d879995a8679e4daa5f361",
+    "semantic_hash": ""
+  },
+  "openspec/changes/archive/2026-08-15-migrate-pr-review-from-anthropic/design.md": {
+    "mtime": 1786808567.8755627,
+    "ast_hash": "f4ebacf4d2e91da09a11ddab51e0ade7",
+    "semantic_hash": ""
+  },
+  "openspec/changes/archive/2026-08-15-migrate-pr-review-from-anthropic/proposal.md": {
+    "mtime": 1786808529.6488602,
+    "ast_hash": "92ddf2be89ca9fc026b0588c2764cc12",
+    "semantic_hash": ""
+  },
+  "openspec/changes/archive/2026-08-15-migrate-pr-review-from-anthropic/specs/automated-quality-gates/spec.md": {
+    "mtime": 1786808567.8406692,
+    "ast_hash": "b3791fb3bba9bad248ba1b24fd0e107e",
+    "semantic_hash": ""
+  },
+  "openspec/changes/archive/2026-08-15-migrate-pr-review-from-anthropic/tasks.md": {
+    "mtime": 1786808734.7637904,
+    "ast_hash": "70130dd58fea8f3d72e0d3c239431a4b",
     "semantic_hash": ""
   }
 }

@@ -14,8 +14,8 @@ operacional (que continua sendo o contorno pra quem não configurar SMTP).
 ## Goals / Non-Goals
 
 **Goals:**
-- Entregar o token de ativação/recuperação por e-mail quando a instituição
-  tiver SMTP configurado, sem regressão pra quem não tiver.
+- Entregar o token de ativação/recuperação por e-mail quando o ambiente de
+  implantação tiver SMTP configurado, sem regressão pra quem não tiver.
 - Adicionar QR code no cadastro de MFA, mantendo a chave manual como
   alternativa (nem todo autenticador escaneia bem em tela pequena/baixa
   resolução — não remover o texto).
@@ -76,11 +76,10 @@ O e-mail precisa montar um link tipo `https://<host>/ativar-conta?email=...&toke
 Nova variável `Frontend__ActivationBaseUrl` (sem default de produção — se
 ausente e SMTP estiver configurado, falha no startup como as outras
 variáveis obrigatórias condicionais, mesmo padrão de
-`Program.GetMissingConfiguration`). Os dois front-ends têm a mesma tela de
-ativação (`ActivateAccountPage`, mesma rota `/ativar-conta`) — a variável
-aponta pra UM dos dois (recomendação: care, onde vive a administração de
-usuários) já que a sessão criada depois da ativação é compartilhada entre
-os dois apps (mesma origem/cookie).
+`Program.GetMissingConfiguration`). A variável aponta para o Senior Portal,
+que é a raiz institucional e hospeda `ActivateAccountPage` em
+`/ativar-conta`; care e stock preservam suas rotas durante a transição, mas
+não são o destino canônico de novos links.
 
 ### 4. Falha de envio não bloqueia a operação que originou o token
 
@@ -96,11 +95,24 @@ com "falha segura" já estabelecido no projeto (§8 do change anterior).
 
 O endpoint `POST /Auth/mfa/enroll` já devolve `otpAuthUri` — é só isso que
 uma lib de QR (ex.: `qrcode`, pura JS, sem dependência nativa) precisa pra
-renderizar um `<canvas>`/SVG no `MfaEnrollPage`. Nenhuma mudança de contrato
-HTTP, nenhuma dependência nova no backend. A chave em texto continua visível
-abaixo do QR — não é substituída, é complementada.
+renderizar um `<canvas>`/SVG no `MfaEnrollPage` do Senior Portal, care e
+stock. Nenhuma mudança de contrato HTTP, nenhuma dependência nova no backend.
+A chave em texto continua visível abaixo do QR — não é substituída, é
+complementada.
 
-### 6. Auditoria do envio, não do conteúdo
+### 6. Escopo da configuração SMTP e exceção operacional do bootstrap
+
+As variáveis `Smtp__*` configuram a implantação inteira. Esta mudança não
+introduz credenciais SMTP persistidas por instituição; isso exigiria modelo,
+criptografia de segredo, autorização administrativa e rotação próprios.
+
+O token inicial só pode ser exibido no canal manual documentado quando o SMTP
+estiver desabilitado ou quando a entrega falhar. Uma entrega automática
+bem-sucedida nunca duplica o token no console/log. Essa exceção operacional é
+restrita ao bootstrap; logs e auditorias do serviço de e-mail nunca recebem
+token ou corpo da mensagem.
+
+### 7. Auditoria do envio, não do conteúdo
 
 Novo tipo de evento de auditoria (`AuditEventCategory` já existente,
 provavelmente `AUTHENTICATION` reaproveitado ou um novo valor) registra
@@ -117,7 +129,7 @@ auditáveis").
   ("falha ao enviar e-mail"), nunca a exceção bruta (que pode conter a
   senha SMTP em alguns clientes) — mesmo cuidado que `GlobalExceptionHandler`
   já aplica a outras exceções sensíveis.
-- **[Instituição configura SMTP errado e ninguém percebe]** → resposta da
+- **[Ambiente configura SMTP errado e ninguém percebe]** → resposta da
   API já sinaliza `emailSent: false` pro admin que criou a conta; considerar
   (fora do escopo desta mudança, mas registrado aqui) um healthcheck
   opcional de SMTP em `/health/ready` se isso se mostrar necessário depois.
@@ -133,7 +145,7 @@ auditáveis").
 2. Testes de integração dos 3 pontos de disparo (ativação bootstrap,
    ativação via `AdminUserOverview`, recuperação) com o sender mockado,
    cobrindo sucesso e falha de envio.
-3. Adicionar QR code no `MfaEnrollPage` dos dois front-ends (mesmo
+3. Adicionar QR code no `MfaEnrollPage` dos três front-ends (mesmo
    componente compartilhado por convenção do projeto — copiar igual, sem
    pacote compartilhado, mesmo padrão de todo o resto do front-end).
 4. Documentar as variáveis `Smtp__*`/`Frontend__ActivationBaseUrl` em

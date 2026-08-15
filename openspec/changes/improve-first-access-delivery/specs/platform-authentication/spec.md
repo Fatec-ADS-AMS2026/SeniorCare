@@ -5,7 +5,7 @@ Administradores SHALL criar a conta e disparar ativação ou recuperação, mas 
 NOT visualizar nem definir uma senha permanente conhecida por eles. Ativação e
 recuperação SHALL usar token aleatório, armazenado de forma não recuperável, de uso
 único e com validade curta. As respostas públicas SHALL ser uniformes para impedir
-enumeração de contas. Quando a instituição tiver um canal de e-mail configurado, a
+enumeração de contas. Quando o ambiente tiver um canal de e-mail configurado, a
 plataforma SHALL enviar o token automaticamente para o identificador da conta; a
 ausência de canal configurado SHALL NOT impedir a criação do token nem a ativação
 por procedimento manual.
@@ -27,7 +27,7 @@ por procedimento manual.
 - **THEN** as sessões anteriores da conta são revogadas e o evento é auditado
 
 #### Scenario: Envio automático com canal configurado
-- **WHEN** um token de ativação ou recuperação é gerado e a instituição tem canal de
+- **WHEN** um token de ativação ou recuperação é gerado e o ambiente tem canal de
   e-mail configurado
 - **THEN** a plataforma envia o token para o identificador da conta automaticamente,
   sem incluir o token em nenhum registro de auditoria ou log
@@ -40,7 +40,7 @@ por procedimento manual.
   informada de que o envio automático não ocorreu
 
 #### Scenario: Canal de e-mail não configurado
-- **WHEN** um token de ativação ou recuperação é gerado e a instituição não tem
+- **WHEN** um token de ativação ou recuperação é gerado e o ambiente não tem
   canal de e-mail configurado
 - **THEN** a plataforma cria o token normalmente e disponibiliza-o apenas por meio
   do procedimento manual documentado, sem tentar nenhum envio
