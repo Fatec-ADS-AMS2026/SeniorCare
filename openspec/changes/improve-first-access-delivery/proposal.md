@@ -29,7 +29,7 @@ futuros (fora de escopo).
 ## What Changes
 
 - Adicionar uma capacidade de envio de e-mail transacional (SMTP,
-  configurável por variável de ambiente, opcional — instituição sem SMTP
+  configurável por variável de ambiente, opcional — implantação sem SMTP
   configurado continua no fluxo manual já documentado, sem regressão).
 - Disparar e-mail automaticamente nos três pontos que hoje só geram token
   internamente: ativação de conta nova (bootstrap e criação administrativa
@@ -62,19 +62,18 @@ futuros (fora de escopo).
 ## Impact
 
 - **Domínios afetados:** identidade e acesso (ativação, recuperação, MFA);
-  operação (configuração de SMTP por instituição).
+  operação (configuração de SMTP por ambiente de implantação).
 - **Atores afetados:** administradores institucionais (deixam de precisar
   entregar token manualmente), trabalhadores novos/recuperando senha
   (recebem instrução por e-mail em vez de canal informal), equipe de
-  operação (nova variável de ambiente opcional a configurar por cliente).
+  operação (nova variável de ambiente opcional a configurar por implantação).
 - **Código:** API ASP.NET Core (novo serviço de envio + wiring nos
-  controllers de Auth/AdminUser), front-end care (biblioteca de QR code na
-  tela de MFA — front-end estoque não tem tela administrativa de criação de
-  usuário, mas compartilha login/MFA, então também recebe o QR code).
+  controllers de Auth/AdminUser) e os três front-ends com cadastro de MFA
+  (Senior Portal, care e stock), todos com QR code equivalente ao `otpAuthUri`.
 - **Configuração:** novas variáveis de ambiente opcionais (`Smtp__*`) — ver
   `design.md`; ausência delas preserva o comportamento atual (token só
   interno), não é um requisito obrigatório de deploy.
 - **Risco de regressão:** nenhum fluxo existente muda de comportamento
   quando SMTP não está configurado — o e-mail é estritamente aditivo sobre
   o procedimento manual já documentado, que continua funcionando como
-  contorno em qualquer instituição sem SMTP disponível.
+  contorno em qualquer implantação sem SMTP disponível.

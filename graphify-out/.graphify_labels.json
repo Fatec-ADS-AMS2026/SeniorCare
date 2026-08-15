@@ -429,5 +429,15 @@
   "427": "RolePermissionGroup",
   "428": "SeniorCareManager.WebAPI.Data.Interceptors",
   "429": "MfaEnrollResponse.cs",
-  "439": "10-public-config.sh"
+  "430": "AuthControllerLoginTests",
+  "431": "CurrentUserContext",
+  "432": "3. Inventário comprovado da implementação atual",
+  "433": "Q: Revise o projeto e verifique as pendências a partir do graphify e do openspec, preparando a retirada do modelo Anthropic na validação de PRs",
+  "434": "tasks.md",
+  "435": "Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização",
+  "436": "PermissionGroupBuilder.cs",
+  "437": "ProductTypeBuilder.cs",
+  "438": "Requirement: Contexto institucional é explícito e consistente",
+  "439": "10-public-config.sh",
+  "440": "RolePermissionGroup"
 }
