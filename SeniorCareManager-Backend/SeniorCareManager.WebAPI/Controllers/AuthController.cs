@@ -39,6 +39,7 @@ public class AuthController : ControllerBase
     private readonly IMfaPolicyService _mfaPolicyService;
     private readonly IOriginRateLimiter _originRateLimiter;
     private readonly IAuditService _auditService;
+    private readonly IIdentityNotificationService _identityNotificationService;
 
     public AuthController(
         UserManager<ApplicationUser> userManager,
@@ -49,7 +50,8 @@ public class AuthController : ControllerBase
         ISessionService sessionService,
         IMfaPolicyService mfaPolicyService,
         IOriginRateLimiter originRateLimiter,
-        IAuditService auditService)
+        IAuditService auditService,
+        IIdentityNotificationService identityNotificationService)
     {
         _userManager = userManager;
         _accountTokenService = accountTokenService;
@@ -60,6 +62,7 @@ public class AuthController : ControllerBase
         _mfaPolicyService = mfaPolicyService;
         _originRateLimiter = originRateLimiter;
         _auditService = auditService;
+        _identityNotificationService = identityNotificationService;
     }
 
     // Sem [RequirePermission]: ver o próprio contexto não é gated por uma permissão
@@ -325,11 +328,13 @@ public class AuthController : ControllerBase
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user != null && user.AccountState == AccountState.ACTIVE)
         {
-            await _accountTokenService.IssueAsync(user.Id, AccountTokenPurpose.RECOVERY, AccountTokenService.RecoveryTokenValidity);
+            var recoveryToken = await _accountTokenService.IssueAsync(
+                user.Id, AccountTokenPurpose.RECOVERY, AccountTokenService.RecoveryTokenValidity);
             // Só quando um token de fato é emitido — e-mail inexistente/inelegível não gera
             // evento (nada realmente aconteceu no servidor, e evitaria ruído de sondagem).
             await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "RecoveryRequested", AuditOutcome.SUCCESS,
                 actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId);
+            await _identityNotificationService.SendRecoveryAsync(user, recoveryToken);
         }
 
         return Ok(new MessageResponse { Message = "Se o e-mail informado tiver uma conta elegível, instruções de recuperação foram enviadas." });

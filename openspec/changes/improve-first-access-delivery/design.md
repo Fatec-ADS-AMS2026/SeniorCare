@@ -6,10 +6,11 @@ TOTP — o que falta é a **entrega** desses artefatos até a pessoa certa sem
 depender de alguém com acesso a log/banco copiar e colar manualmente. O
 próprio `design.md` da mudança anterior já registrou o risco ("Canal de
 ativação indisponível em ILPI de baixo orçamento") com um mitigante
-operacional (procedimento manual, já documentado em
+operacional (procedimento manual do bootstrap, já documentado em
 `infra/deploy/BOOTSTRAP.md`) — esta mudança implementa o mitigante técnico
-que aquele risco deixou como trabalho futuro, sem substituir o mitigante
-operacional (que continua sendo o contorno pra quem não configurar SMTP).
+que aquele risco deixou como trabalho futuro. Para contas posteriores, cujo
+token bruto é corretamente irrecuperável, o contorno passa a ser configurar
+ou corrigir o SMTP e solicitar um reenvio autenticado.
 
 ## Goals / Non-Goals
 
@@ -19,9 +20,13 @@ operacional (que continua sendo o contorno pra quem não configurar SMTP).
 - Adicionar QR code no cadastro de MFA, mantendo a chave manual como
   alternativa (nem todo autenticador escaneia bem em tela pequena/baixa
   resolução — não remover o texto).
-- Manter as garantias já promovidas pela spec: nenhuma senha, token ou
-  segredo MFA em log; resposta pública uniforme em recuperação (não vaza
-  se a conta existe).
+- Manter as garantias já promovidas pela spec: nenhuma senha ou segredo MFA
+  em log, e token apenas na saída única e explícita do fallback manual do
+  bootstrap; resposta pública uniforme em recuperação (não vaza se a conta
+  existe).
+- Garantir comportamento equivalente na primeira execução pela combinação
+  Rider/WebStorm e pela stack Docker Compose, sem introduzir senha inicial
+  padrão em nenhum dos ambientes.
 
 **Non-Goals:**
 - Não é um sistema de notificação genérico — sem fila de mensagens, sem
@@ -57,8 +62,9 @@ Smtp__UseStartTls        (bool, default true)
 
 Nenhuma dessas é obrigatória — ausentes, o serviço de notificação vira um
 no-op consciente (loga "SMTP não configurado, e-mail não enviado" em nível
-`Information`, nunca `Error`) e o fluxo que a chamou continua exatamente
-como hoje (token só interno, procedimento manual documentado se aplica).
+`Information`, nunca `Error`) e o fluxo que a chamou continua concluindo. O
+bootstrap usa a saída manual única; contas posteriores usam o reenvio seguro
+depois que o canal for configurado.
 
 ### 2. `INotificationSender` como abstração, SMTP como única implementação hoje
 
@@ -87,9 +93,10 @@ Se o SMTP estiver configurado mas o envio falhar (rede, credencial errada,
 servidor fora), a conta/token já foram criados com sucesso no banco antes
 do envio — a falha de e-mail é capturada, auditada como evento de falha
 (sem o conteúdo da mensagem), e a resposta da API ao admin que criou a
-conta inclui um aviso (`emailSent: false`) pra ele saber que precisa cair
-pro procedimento manual dessa vez, sem a operação inteira falhar. Consistente
-com "falha segura" já estabelecido no projeto (§8 do change anterior).
+conta inclui um aviso (`emailSent: false`). O administrador corrige o canal e
+usa a ação autenticada de reenvio; nenhum token é recuperado do banco ou
+exposto. Consistente com "falha segura" já estabelecido no projeto (§8 do
+change anterior).
 
 ### 5. QR code: biblioteca só no front-end, sem mudança de contrato da API
 
@@ -122,6 +129,47 @@ nem o corpo da mensagem — mesma regra que já vale pra todo o resto da
 auditoria (`platform-authentication`, "Eventos de identidade... são
 auditáveis").
 
+### 8. Um único contrato de bootstrap para IDE e containers, sem senha padrão
+
+O bootstrap pertence exclusivamente à API. Rodar o backend pelo Rider ou pelo
+container muda apenas o canal operacional em que a saída manual é observada;
+WebStorm, Vite e os containers dos front-ends não criam instituição, usuário,
+token ou senha. Em ambos os modos, banco vazio mais as três variáveis
+`Bootstrap__*` completas produz uma instituição e um administrador
+`PROVISIONED` sem `PasswordHash`, seguido da emissão de um token de ativação.
+
+| Execução | Entrada do bootstrap | Entrega automática | Fallback manual |
+|---|---|---|---|
+| Rider + WebStorm | Run Configuration/ambiente da API | caixa SMTP de teste ou institucional | console da Run Configuration |
+| Docker Compose | `.env` local/secret injetado no serviço da API | Mailpit/Mailhog local ou SMTP institucional | saída de `seniorcare-api` consultada por `docker compose logs` |
+
+Se SMTP entregar o token, `Program` não o imprime. Se SMTP estiver ausente ou
+falhar, `Program` o imprime uma única vez no canal da linha correspondente. Em
+reinícios, `BootstrapService` encontra a instituição já existente, não cria nova
+conta e não reemite token.
+
+O helper `infra/docker-test/bootstrap-dev-admin.sh` é automação de ambiente de
+desenvolvimento, não uma fonte de credencial da plataforma. O valor conhecido
+`DevSenhaForte!2026` deixa de ser default: o helper recebe
+`DEV_ADMIN_PASSWORD` explicitamente de fonte não versionada ou gera uma senha
+efêmera de alta entropia, exibida somente para a pessoa que executou o comando.
+Essa senha é a credencial escolhida durante a ativação, não uma senha criada
+pelo bootstrap.
+
+### 9. Reenvio seguro substitui o falso fallback por leitura do banco
+
+O endpoint autenticado `POST /api/v1/AdminUser/{id}/resend-activation`, protegido
+pela permissão `AdminUser:write`, aceita apenas contas `LOCAL`, `PROVISIONED` e da
+mesma instituição do administrador. Antes de emitir o novo token, o serviço marca
+como usados todos os tokens de ativação ainda pendentes daquela conta; assim, um
+link antigo não volta a funcionar depois do reenvio.
+
+O endpoint tenta a entrega e responde somente `{ "emailSent": true|false }`. Uma
+falha mantém a conta provisionada e pode ser tentada novamente após a correção do
+SMTP. Nem a resposta nem os logs/auditoria incluem token ou link. A interface de
+administração oferece a ação somente para contas `PROVISIONED`; a API continua
+aplicando todas as validações independentemente da interface.
+
 ## Risks / Trade-offs
 
 - **[Credencial SMTP vazando em log/erro genérico]** → `INotificationSender`
@@ -134,17 +182,23 @@ auditáveis").
   (fora do escopo desta mudança, mas registrado aqui) um healthcheck
   opcional de SMTP em `/health/ready` se isso se mostrar necessário depois.
 - **[E-mail como único canal ainda exclui ILPI sem e-mail configurado]** →
-  não é regressão (hoje NINGUÉM tem entrega automática) — o procedimento
-  manual documentado continua existindo e funcionando exatamente como
-  antes; esta mudança é estritamente aditiva.
+  o bootstrap conserva a saída manual única. Para contas posteriores não existe
+  recuperação segura do token bruto; a interface informa a falha e permite o
+  reenvio assim que a implantação configurar um SMTP, inclusive um relay local.
+- **[Helper local perpetua uma senha administrativa conhecida]** → remover o
+  default versionado, aceitar senha explícita somente pelo ambiente local ou
+  gerar uma senha aleatória por execução; nunca gravá-la em arquivo rastreado.
+- **[Documentação diverge entre IDE e containers]** → manter uma matriz única
+  de invariantes e validar os dois caminhos com banco vazio e reinício, variando
+  apenas a origem da configuração e o canal do fallback manual.
 
 ## Migration Plan
 
 1. Adicionar `INotificationSender`/implementação SMTP + testes de unidade
    (mock da lib, sem SMTP real precisando estar disponível em CI).
 2. Testes de integração dos 3 pontos de disparo (ativação bootstrap,
-   ativação via `AdminUserOverview`, recuperação) com o sender mockado,
-   cobrindo sucesso e falha de envio.
+   ativação via `AdminUserOverview`, recuperação) e do reenvio administrativo
+   com o sender mockado, cobrindo sucesso, falha e invalidação do token anterior.
 3. Adicionar QR code no `MfaEnrollPage` dos três front-ends (mesmo
    componente compartilhado por convenção do projeto — copiar igual, sem
    pacote compartilhado, mesmo padrão de todo o resto do front-end).
@@ -152,5 +206,8 @@ auditáveis").
    `CONFIGURATION.md`, atualizar `infra/deploy/BOOTSTRAP.md` (a seção
    "Pendências conhecidas" perde o item de e-mail; o de QR code também sai
    quando o front-end entregar) e os dois tutoriais de desenvolvimento.
-5. Sem migração de banco necessária além do novo tipo de evento de
+5. Adaptar o helper de desenvolvimento para não possuir senha conhecida e
+   validar o primeiro acesso com API no Rider/front-end no WebStorm e com a
+   stack Docker Compose, nos modos SMTP e fallback manual.
+6. Sem migração de banco necessária além do novo tipo de evento de
    auditoria, se for um enum novo em vez de reaproveitar `AUTHENTICATION`.

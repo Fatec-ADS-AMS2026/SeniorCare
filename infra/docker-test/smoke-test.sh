@@ -9,9 +9,11 @@
 #   cd infra/docker-test && docker compose up -d --build
 #   ./smoke-test.sh
 #
-# Variáveis de ambiente (todas opcionais, com default):
+# Variáveis de ambiente:
 #   API_BASE, CARE_BASE, STOCK_BASE, PORTAL_BASE   default localhost:8080/3000/3001/3002
-#   ADMIN_EMAIL, ADMIN_PASSWORD                     default admin@example.com / DevSenhaForte!2026
+#   ADMIN_EMAIL                                     default admin@example.com
+#   ADMIN_PASSWORD                                  obrigatória, escolhida fora do repositório
+#   ACTIVATION_TOKEN                                opcional, somente no fallback manual
 
 set -uo pipefail
 
@@ -24,7 +26,8 @@ CARE_BASE="${CARE_BASE:-http://localhost:3000}"
 STOCK_BASE="${STOCK_BASE:-http://localhost:3001}"
 PORTAL_BASE="${PORTAL_BASE:-http://localhost:3002}"
 ADMIN_EMAIL="${ADMIN_EMAIL:-admin@example.com}"
-ADMIN_PASSWORD="${ADMIN_PASSWORD:-DevSenhaForte!2026}"
+: "${ADMIN_PASSWORD:?defina ADMIN_PASSWORD com a senha escolhida na ativação}"
+ACTIVATION_TOKEN="${ACTIVATION_TOKEN:-}"
 
 PASS=0
 FAIL=0
@@ -100,17 +103,17 @@ done
 
 # ── 4. Ativação (primeiro acesso) + Login + MFA (enroll/confirm) ────────
 log "4/8 MFA"
-if docker ps --format '{{.Names}}' 2>/dev/null | grep -q '^seniorcare-api$'; then
-  ACTIVATION_TOKEN=$(docker logs seniorcare-api 2>&1 | grep "Token de ativação" | tail -1 | sed 's/^.*: //')
-  if [ -n "$ACTIVATION_TOKEN" ]; then
-    ACTIVATE_CODE=$(curl -sS -o /dev/null -w '%{http_code}' -X POST "$API_BASE/api/v1/Auth/activate" \
-      -H "Content-Type: application/json" \
-      -d "{\"email\":\"$ADMIN_EMAIL\",\"token\":\"$ACTIVATION_TOKEN\",\"newPassword\":\"$ADMIN_PASSWORD\"}")
-    if [ "$ACTIVATE_CODE" = "200" ]; then
-      ok "conta ativada (primeiro acesso)"
-    else
-      log "ativação retornou HTTP $ACTIVATE_CODE — provavelmente já ativa; seguindo pro login"
-    fi
+if [ -z "$ACTIVATION_TOKEN" ] && docker ps --format '{{.Names}}' 2>/dev/null | grep -q '^seniorcare-api$'; then
+  ACTIVATION_TOKEN=$(docker logs seniorcare-api 2>&1 | grep "Token de ativação" | tail -1 | sed 's/^.*: //') || true
+fi
+if [ -n "$ACTIVATION_TOKEN" ]; then
+  ACTIVATE_CODE=$(curl -sS -o /dev/null -w '%{http_code}' -X POST "$API_BASE/api/v1/Auth/activate" \
+    -H "Content-Type: application/json" \
+    -d "{\"email\":\"$ADMIN_EMAIL\",\"token\":\"$ACTIVATION_TOKEN\",\"newPassword\":\"$ADMIN_PASSWORD\"}")
+  if [ "$ACTIVATE_CODE" = "200" ]; then
+    ok "conta ativada (primeiro acesso)"
+  else
+    log "ativação retornou HTTP $ACTIVATE_CODE — provavelmente já ativa; seguindo pro login"
   fi
 fi
 

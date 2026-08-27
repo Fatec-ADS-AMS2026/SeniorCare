@@ -40,6 +40,29 @@ o conteúdo da mensagem, token, senha ou segredo de MFA.
   sem o conteúdo da mensagem ou detalhe de erro sensível, e a resposta da operação
   de origem indica que o envio automático não ocorreu
 
+### Requirement: Ativação administrativa pode ser reenviada sem expor token
+A plataforma SHALL permitir que um administrador com permissão de escrita em
+contas solicite novo envio de ativação para uma conta local `PROVISIONED` da mesma
+instituição. O reenvio SHALL invalidar tokens de ativação anteriores, emitir um
+novo token de uso único e retornar somente o resultado da entrega (`emailSent`),
+nunca o token ou o link bruto.
+
+#### Scenario: Reenvio após corrigir SMTP
+- **WHEN** um administrador autorizado solicita o reenvio para uma conta local
+  `PROVISIONED` da própria instituição depois de corrigir o canal SMTP
+- **THEN** a plataforma invalida ativações anteriores, emite um novo token, tenta
+  a entrega e retorna `emailSent: true` sem expor o token
+
+#### Scenario: Falha no reenvio
+- **WHEN** o novo token é emitido mas a tentativa de entrega falha
+- **THEN** a conta permanece `PROVISIONED`, o resultado retorna `emailSent: false`
+  e nenhum token aparece na resposta, no log ou na auditoria
+
+#### Scenario: Conta inelegível para reenvio
+- **WHEN** o alvo não pertence à instituição, não é de origem local ou não está
+  `PROVISIONED`
+- **THEN** a plataforma rejeita a solicitação sem emitir novo token
+
 ### Requirement: Conteúdo sensível nunca é registrado em log ou auditoria
 Nenhum log de aplicação ou registro de auditoria relacionado ao envio de e-mail
 transacional SHALL conter o corpo da mensagem, o token de ativação/recuperação, a
@@ -54,7 +77,21 @@ senha ou qualquer segredo de MFA.
 - **WHEN** o token inicial é entregue com sucesso pelo canal SMTP configurado
 - **THEN** o token não é duplicado no console, log de aplicação ou auditoria
 
-#### Scenario: Bootstrap depende do procedimento manual
-- **WHEN** o canal SMTP está desabilitado ou a entrega do token inicial falha
-- **THEN** a plataforma disponibiliza o token uma única vez pelo canal manual
-  documentado, sem registrá-lo na auditoria nem nos logs do serviço de e-mail
+#### Scenario: Bootstrap manual com API executada pelo Rider
+- **WHEN** a primeira execução ocorre pelo Rider e o canal SMTP está desabilitado
+  ou a entrega do token inicial falha
+- **THEN** a API apresenta o token uma única vez no console da Run Configuration,
+  sem registrá-lo na auditoria nem nos logs do serviço de e-mail
+
+#### Scenario: Bootstrap manual com API executada em container
+- **WHEN** a primeira execução ocorre por Docker Compose e o canal SMTP está
+  desabilitado ou a entrega do token inicial falha
+- **THEN** a API apresenta o token uma única vez na saída do container, acessível
+  pelo procedimento documentado, sem registrá-lo na auditoria nem nos logs do
+  serviço de e-mail
+
+#### Scenario: Reinício após emissão do token inicial
+- **WHEN** a API reinicia pela IDE ou por container depois que a instalação já foi
+  provisionada
+- **THEN** o token inicial não é enviado novamente por e-mail nem reapresentado no
+  console ou na saída do container

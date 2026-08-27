@@ -25,6 +25,7 @@ public sealed class AuthControllerTests : IClassFixture<PostgresWebApplicationFa
     {
         _factory = factory;
         _client = factory.CreateClient();
+        _factory.NotificationSender.Reset(NotificationDeliveryStatus.Disabled);
     }
 
     [Fact]
@@ -103,6 +104,23 @@ public sealed class AuthControllerTests : IClassFixture<PostgresWebApplicationFa
         var existingBody = await existing.Content.ReadAsStringAsync();
         var nonExistentBody = await nonExistent.Content.ReadAsStringAsync();
         existingBody.Should().Be(nonExistentBody);
+    }
+
+    [Theory]
+    [InlineData(NotificationDeliveryStatus.Sent)]
+    [InlineData(NotificationDeliveryStatus.Failed)]
+    public async Task Recover_EligibleAccount_AttemptsDeliveryWithoutChangingPublicResponse(
+        NotificationDeliveryStatus senderStatus)
+    {
+        _factory.NotificationSender.Reset(senderStatus);
+        var (email, _, _) = await CreateActiveUserAsync();
+
+        var response = await _client.PostAsJsonAsync(
+            "/api/v1/Auth/recover",
+            new RecoverAccountRequest { Email = email });
+
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        _factory.NotificationSender.Messages.Should().ContainSingle(x => x.Recipient == email);
     }
 
     [Fact]

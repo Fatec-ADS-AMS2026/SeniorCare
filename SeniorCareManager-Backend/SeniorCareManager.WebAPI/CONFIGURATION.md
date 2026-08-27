@@ -35,11 +35,37 @@ As três variáveis só fazem sentido juntas — informar só uma ou duas é err
 configuração e o processo falha no boot (ver "Validação de startup" abaixo).
 No primeiro boot sem nenhuma instituição, se as três estiverem presentes, o
 processo cria a instituição e uma conta administrativa `PROVISIONED` **sem
-senha conhecida** e imprime no console, uma única vez, o link/token de
-ativação — não é persistido em nenhum lugar além do hash, então precisa ser
-capturado nesse momento. Reinícios seguintes (instituição já existente) são
+senha conhecida**. Com SMTP configurado, envia o link de ativação e não expõe
+o token no console; sem SMTP ou quando a entrega falha, imprime o token uma
+única vez para o procedimento manual. Reinícios seguintes (instituição já existente) são
 no-op: nada é recriado nem redefinido silenciosamente, mesmo que as
 variáveis continuem definidas.
+
+## E-mail transacional e links de primeiro acesso
+
+O canal SMTP é opcional para a implantação inteira. Se qualquer variável
+`Smtp__*` for informada, as chaves obrigatórias condicionais precisam estar
+completas; usuário e senha são opcionais, mas devem aparecer juntos.
+
+| Variável | Obrigatoriedade | Exemplo |
+|---|---|---|
+| `Smtp__Host` | com SMTP habilitado | `mail.exemplo.com.br` |
+| `Smtp__Port` | com SMTP habilitado | `587` |
+| `Smtp__Username` | opcional, junto de `Smtp__Password` | `seniorcare` |
+| `Smtp__Password` | opcional, junto de `Smtp__Username` | segredo injetado fora do repositório |
+| `Smtp__FromAddress` | com SMTP habilitado | `nao-responda@exemplo.com.br` |
+| `Smtp__FromDisplayName` | opcional | `SeniorCare` |
+| `Smtp__UseStartTls` | opcional, default `true` | `true` |
+| `Frontend__ActivationBaseUrl` | com SMTP habilitado | `https://portal.exemplo.com.br/ativar-conta` |
+
+`Frontend__ActivationBaseUrl` aponta para o Senior Portal canônico. O link de
+recuperação usa a mesma origem e a rota `/redefinir-senha`. Credenciais SMTP,
+tokens e corpos de mensagem nunca são registrados em log ou auditoria.
+
+Para contas administrativas criadas depois do bootstrap, `emailSent: false`
+não autoriza leitura do banco ou exposição do token: corrija o SMTP e use
+`POST /api/v1/AdminUser/{id}/resend-activation`. A operação exige
+`AdminUser:write`, invalida ativações pendentes e retorna apenas `emailSent`.
 
 ## Sessão (cookie) entre os front-ends
 
@@ -61,7 +87,8 @@ têm default seguro quando a instituição não configurou nada (ver
 ## Validação de startup
 
 O processo verifica, antes de subir, que `ConnectionStrings:DefaultConnection`
-está presente e não vazia, e que as três variáveis de bootstrap acima foram
-informadas todas juntas ou nenhuma — se algo faltar, encerra com uma mensagem
+está presente e não vazia, que as três variáveis de bootstrap acima foram
+informadas todas juntas ou nenhuma e que a configuração SMTP condicional está
+completa e tipada — se algo faltar, encerra com uma mensagem
 de erro que identifica a(s) chave(s) ausente(s)/incompleta(s), sem nunca
 ecoar nenhum valor configurado. Ver `Program.cs`.

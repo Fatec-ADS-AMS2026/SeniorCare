@@ -9,8 +9,8 @@ indisponível em ILPI de baixo orçamento"; `infra/deploy/BOOTSTRAP.md`, seção
 
 1. **Nenhum token de ativação ou recuperação é entregue automaticamente.**
    A plataforma cria o token e o mostra só pra quem tem acesso ao
-   log do processo (bootstrap) ou ao banco (contas administrativas
-   seguintes) — a entrega até a pessoa nova depende inteiramente de um
+   log do processo (bootstrap); nas contas administrativas seguintes, o
+   valor bruto não é recuperável do banco — a entrega até a pessoa nova depende de um
    procedimento manual fora do sistema. Isso não escala pra uma ILPI com
    rotatividade de equipe, e o próprio requisito já promovido
    (`platform-authentication`, "Ativação e recuperação não distribuem senha
@@ -40,8 +40,20 @@ futuros (fora de escopo).
 - Atualizar a resposta de criação de usuário administrativo pra indicar se o
   e-mail foi enviado com sucesso (sem nunca incluir o token em si — a spec
   já proíbe isso).
+- Permitir que um administrador autorizado reenvie a ativação de uma conta
+  `PROVISIONED` depois de corrigir/configurar o SMTP; o reenvio emite um novo
+  token, invalida ativações anteriores e retorna somente `emailSent`, nunca o
+  token bruto.
 - Auditar o envio (sucesso/falha) sem registrar o conteúdo da mensagem nem o
   token.
+- Tornar explícito e verificável o contrato da primeira execução tanto com a
+  API iniciada pelo Rider e os front-ends pelo WebStorm quanto com toda a stack
+  em containers: o bootstrap cria, somente em banco vazio, uma conta
+  administrativa `PROVISIONED` sem senha e entrega um token para que a própria
+  pessoa defina a credencial. A plataforma não possui senha inicial padrão.
+- Remover do helper local qualquer senha administrativa conhecida e versionada;
+  a automação de desenvolvimento deverá receber a senha fora do repositório ou
+  gerar uma credencial efêmera de alta entropia para aquela execução.
 
 ## Capabilities
 
@@ -54,10 +66,12 @@ futuros (fora de escopo).
 ### Modified Capabilities
 
 - `platform-authentication`: os requisitos "Ativação e recuperação não
-  distribuem senha conhecida" e "Autenticação multifator protege contas
-  privilegiadas" passam a refletir a entrega real (e-mail automático quando
-  configurado; QR code no cadastro de MFA) em vez de só descrever o token
-  existindo internamente.
+  distribuem senha conhecida", "Autenticação multifator protege contas
+  privilegiadas" e "Credencial administrativa inicial é provisionada com
+  segurança" passam a refletir a entrega real (e-mail automático quando
+  configurado; QR code no cadastro de MFA; paridade entre IDE e containers;
+  ausência de senha inicial padrão) em vez de só descrever o token existindo
+  internamente.
 
 ## Impact
 
@@ -73,7 +87,10 @@ futuros (fora de escopo).
 - **Configuração:** novas variáveis de ambiente opcionais (`Smtp__*`) — ver
   `design.md`; ausência delas preserva o comportamento atual (token só
   interno), não é um requisito obrigatório de deploy.
-- **Risco de regressão:** nenhum fluxo existente muda de comportamento
-  quando SMTP não está configurado — o e-mail é estritamente aditivo sobre
-  o procedimento manual já documentado, que continua funcionando como
-  contorno em qualquer implantação sem SMTP disponível.
+- **Desenvolvimento local:** Run Configuration do Rider, execução dos
+  front-ends pelo WebStorm, Compose e `bootstrap-dev-admin.sh`; o frontend não
+  cria a conta, apenas conduz ativação, login e cadastro de MFA contra a API.
+- **Risco de regressão:** nenhum fluxo existente deixa de concluir quando SMTP
+  não está configurado. O bootstrap conserva seu fallback manual de saída única;
+  para contas administrativas posteriores, a interface informa a falha e permite
+  reenviar a ativação depois que o canal for corrigido, sem expor token.

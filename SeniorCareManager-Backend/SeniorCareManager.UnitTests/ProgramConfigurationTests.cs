@@ -50,4 +50,36 @@ public class ProgramConfigurationTests
 
         missing.Should().BeEmpty();
     }
+
+    [Fact]
+    public void GetMissingConfiguration_SmtpParcial_ListaChavesCondicionaisAusentes()
+    {
+        var config = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
+        {
+            ["ConnectionStrings:DefaultConnection"] = "Host=localhost;Database=db;Username=u;Password=p;",
+            ["Smtp:Host"] = "smtp.example.test",
+        }).Build();
+
+        var missing = Program.GetMissingConfiguration(config);
+
+        missing.Should().Contain(x => x.Contains("Smtp:Port"));
+        missing.Should().Contain(x => x.Contains("Smtp:FromAddress"));
+        missing.Should().Contain(x => x.Contains("Frontend:ActivationBaseUrl"));
+    }
+
+    [Fact]
+    public void GetMissingConfiguration_SmtpCompletoSemAutenticacao_NaoRetornaNada()
+    {
+        var config = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
+        {
+            ["ConnectionStrings:DefaultConnection"] = "Host=localhost;Database=db;Username=u;Password=p;",
+            ["Smtp:Host"] = "mailpit",
+            ["Smtp:Port"] = "1025",
+            ["Smtp:FromAddress"] = "noreply@example.test",
+            ["Smtp:UseStartTls"] = "false",
+            ["Frontend:ActivationBaseUrl"] = "http://localhost:3002/ativar-conta",
+        }).Build();
+
+        Program.GetMissingConfiguration(config).Should().BeEmpty();
+    }
 }

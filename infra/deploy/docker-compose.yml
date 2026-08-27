@@ -64,6 +64,14 @@ services:
       Bootstrap__InstitutionName: ${Bootstrap__InstitutionName:-}
       Bootstrap__AdminEmail: ${Bootstrap__AdminEmail:-}
       Bootstrap__AdminDisplayName: ${Bootstrap__AdminDisplayName:-}
+      Smtp__Host: ${Smtp__Host:-}
+      Smtp__Port: ${Smtp__Port:-}
+      Smtp__Username: ${Smtp__Username:-}
+      Smtp__Password: ${Smtp__Password:-}
+      Smtp__FromAddress: ${Smtp__FromAddress:-}
+      Smtp__FromDisplayName: ${Smtp__FromDisplayName:-}
+      Smtp__UseStartTls: ${Smtp__UseStartTls:-}
+      Frontend__ActivationBaseUrl: ${Frontend__ActivationBaseUrl:-}
     ports:
       - "8080:8080"
     depends_on:

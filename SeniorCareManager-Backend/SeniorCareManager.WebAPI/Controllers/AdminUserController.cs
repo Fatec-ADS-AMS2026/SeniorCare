@@ -11,6 +11,7 @@ using SeniorCareManager.WebAPI.Objects.Dtos.Entities;
 using SeniorCareManager.WebAPI.Objects.Dtos.Requests;
 using SeniorCareManager.WebAPI.Objects.Enums;
 using SeniorCareManager.WebAPI.Objects.Models;
+using SeniorCareManager.WebAPI.Services.Entities;
 using SeniorCareManager.WebAPI.Services.Interfaces;
 
 namespace SeniorCareManager.WebAPI.Controllers;
@@ -28,6 +29,8 @@ public class AdminUserController : ControllerBase
     private readonly ICurrentUserContext _currentUserContext;
     private readonly ISessionService _sessionService;
     private readonly IAuditService _auditService;
+    private readonly IIdentityNotificationService _identityNotificationService;
+    private readonly IAccountTokenService _accountTokenService;
 
     public AdminUserController(
         AppDbContext dbContext,
@@ -36,7 +39,9 @@ public class AdminUserController : ControllerBase
         IAdminInvariantService adminInvariantService,
         ICurrentUserContext currentUserContext,
         ISessionService sessionService,
-        IAuditService auditService)
+        IAuditService auditService,
+        IIdentityNotificationService identityNotificationService,
+        IAccountTokenService accountTokenService)
     {
         _dbContext = dbContext;
         _userManager = userManager;
@@ -45,6 +50,8 @@ public class AdminUserController : ControllerBase
         _currentUserContext = currentUserContext;
         _sessionService = sessionService;
         _auditService = auditService;
+        _identityNotificationService = identityNotificationService;
+        _accountTokenService = accountTokenService;
     }
 
     [HttpGet]
@@ -71,21 +78,34 @@ public class AdminUserController : ControllerBase
 
     [HttpPost]
     [RequirePermission("AdminUser", "write")]
-    public async Task<ActionResult<AdminUserDTO>> Post(AdminUserCreateRequest request)
+    public async Task<ActionResult<AdminUserCreateResponse>> Post(AdminUserCreateRequest request)
     {
         var institutionId = await _currentUserContext.GetInstitutionIdAsync();
-        // O token de ativação (segundo item da tupla) nunca sai daqui — a spec
-        // platform-authentication proíbe token em resposta administrativa
-        // ("Senhas, códigos MFA, tokens de ativação... SHALL NOT aparecer em logs,
-        // respostas administrativas ou exportações") e o design.md (risco "Canal de
-        // ativação indisponível em ILPI de baixo orçamento") já previa esse cenário
-        // exato — a entrega do link de uso único é um procedimento operacional
-        // separado, fora da API, mesmo padrão do bootstrap do primeiro admin
-        // (Program.cs só imprime o token no console do processo na instalação,
-        // nunca numa resposta HTTP).
-        var (userId, _) = await _adminUserService.CreateAsync(institutionId, request.Email, request.DisplayName);
+        var (userId, activationToken) = await _adminUserService.CreateAsync(institutionId, request.Email, request.DisplayName);
         var created = await _dbContext.Users.SingleAsync(u => u.Id == userId);
-        return CreatedAtAction(nameof(GetById), new { id = created.Id }, ToDto(created));
+        var delivery = await _identityNotificationService.SendActivationAsync(
+            created, activationToken, _currentUserContext.UserId);
+        var dto = ToCreateResponse(created, delivery == NotificationDeliveryStatus.Sent);
+        return CreatedAtAction(nameof(GetById), new { id = created.Id }, dto);
+    }
+
+    [HttpPost("{id}/resend-activation")]
+    [RequirePermission("AdminUser", "write")]
+    public async Task<ActionResult<ActivationResendResponse>> ResendActivation(Guid id)
+    {
+        var target = await GetInInstitutionAsync(id);
+        if (target.IdentityOrigin != IdentityOrigin.LOCAL || target.AccountState != AccountState.PROVISIONED)
+            throw new BusinessRuleException("A ativação só pode ser reenviada para uma conta local provisionada.");
+
+        var activationToken = await _accountTokenService.ReissueAsync(
+            target.Id, AccountTokenPurpose.ACTIVATION, AccountTokenService.ActivationTokenValidity);
+        var delivery = await _identityNotificationService.SendActivationAsync(
+            target, activationToken, _currentUserContext.UserId);
+
+        return Ok(new ActivationResendResponse
+        {
+            EmailSent = delivery == NotificationDeliveryStatus.Sent
+        });
     }
 
     [HttpPut("{id}/state")]
@@ -141,5 +161,15 @@ public class AdminUserController : ControllerBase
         DisplayName = user.DisplayName,
         AccountState = user.AccountState,
         IdentityOrigin = user.IdentityOrigin,
+    };
+
+    private static AdminUserCreateResponse ToCreateResponse(ApplicationUser user, bool emailSent) => new()
+    {
+        Id = user.Id,
+        Email = user.Email ?? string.Empty,
+        DisplayName = user.DisplayName,
+        AccountState = user.AccountState,
+        IdentityOrigin = user.IdentityOrigin,
+        EmailSent = emailSent,
     };
 }

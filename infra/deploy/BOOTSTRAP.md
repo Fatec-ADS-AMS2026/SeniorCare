@@ -5,10 +5,8 @@ em **produção** — complementa `CONFIGURATION.md` (que documenta as variávei
 com o passo a passo real. Verificado de ponta a ponta via `infra/docker-test`
 nesta seção (§12.8 do change `stabilize-existing-platform`).
 
-A mesma mecânica (variáveis → subir → capturar token do log → ativar → MFA)
-vale pra qualquer um dos outros dois jeitos de rodar o projeto localmente —
-só muda COMO você sobe a API, o resto (capturar token, ativar, MFA) é
-idêntico:
+A mesma mecânica (variáveis → subir → receber o link ou observar o fallback →
+ativar → MFA) vale para os outros dois jeitos de rodar o projeto localmente.
 
 | Ambiente | Como sobe a API | Guia completo |
 |---|---|---|
@@ -20,22 +18,24 @@ Os dois tutoriais acima já trazem o passo a passo completo (incluindo o
 cadastro de MFA) adaptado pro respectivo ambiente — este arquivo é a versão
 de referência/produção.
 
-## Pendências conhecidas (leia antes de operar em produção)
+## Contrato de segurança da primeira execução
 
-Nenhum dos itens abaixo é um bug — são lacunas operacionais reais, já
-reconhecidas no `design.md`/`tasks.md` do change que entregou este fluxo, sem
-solução técnica ainda. Resumo rápido; detalhe de cada um na seção indicada:
+- Não existe senha administrativa inicial padrão. O bootstrap cria uma conta
+  `PROVISIONED`, sem `PasswordHash`, e a própria pessoa escolhe a senha.
+- Com SMTP configurado, a API envia o link e não imprime o token.
+- Sem SMTP ou se a entrega falhar, somente o bootstrap imprime o token uma vez.
+- O banco guarda apenas o hash do token; não existe consulta capaz de recuperar
+  seu valor bruto.
+- Reiniciar a API não cria outra instituição, conta, senha ou token.
+- O cadastro de MFA apresenta o mesmo segredo como QR code e chave manual.
 
-| Pendência | Impacto | Onde | Contorno atual |
-|---|---|---|---|
-| **Sem serviço de e-mail** — nenhum token/link de ativação é enviado automaticamente pra ninguém | Toda ativação (a primeira conta e as seguintes) depende de alguém copiar o token manualmente | Seções 2 e 5 | Log do processo (1ª conta) / consulta pontual ao banco (contas seguintes) + entrega por canal institucional já confiável |
-| **Sem QR code pro MFA** — só a chave em texto (`authenticatorKey`), nenhuma lib de QR no front-end | Cadastro de MFA sempre exige digitar a chave manualmente num app autenticador (ou calcular o TOTP por script) | Seção 4 | Digitação manual da chave, ou o script Python de exemplo |
-| **Token de ativação perdido = sem recuperação pela API** | Se o token não for capturado antes da ativação, a única saída é reprovisionar a conta direto no banco | Seção 2 | Recapturar com calma (o token só existe naquele momento — não corra) |
+| Execução | Quem cria a conta | Configuração | Entrega/fallback | Reinício |
+|---|---|---|---|---|
+| Rider + WebStorm | API no Rider | Run Configuration | SMTP/Mailpit; sem SMTP, console do Rider | não reemite |
+| Docker Compose | `seniorcare-api` | `.env`/secret | SMTP/Mailpit; sem SMTP, `docker compose logs` | não reemite |
 
-Nenhum desses três itens é resolvido por este runbook — são orientações
-operacionais pra conviver com a lacuna, não uma correção técnica. Ver
-`design.md`, risco "Canal de ativação indisponível em ILPI de baixo
-orçamento", pro mitigante formalmente registrado.
+Rider e container executam o mesmo `BootstrapService`. WebStorm/Vite e os
+containers dos front-ends apenas abrem ativação, login e MFA.
 
 ## 1. Antes do primeiro deploy
 
@@ -53,30 +53,43 @@ Elas só têm efeito **enquanto nenhuma instituição existir no banco** — em
 deploys seguintes (instituição já criada), ficam sem efeito e podem continuar
 no `.env` sem risco de recriar nada. Não é necessário removê-las depois.
 
-## 2. Subir e capturar o token de ativação
+Para entrega automática, configure também o bloco SMTP completo descrito em
+`CONFIGURATION.md`. `Frontend__ActivationBaseUrl` deve apontar para a rota de
+ativação do Portal. Se nenhum `Smtp__*` for informado, o canal fica desabilitado;
+uma configuração parcial é rejeitada antes do provisionamento.
+
+## 2. Subir e obter a ativação
 
 ```bash
 ./deploy.sh 2026.08.0
 ```
 
 No primeiro boot, a API cria a instituição e a conta administrativa em estado
-`PROVISIONED` e imprime o token de ativação **uma única vez** no log do
-processo — ele não é reimpresso nem fica salvo em nenhum outro lugar:
+`PROVISIONED`. Se o SMTP entregar a mensagem, o endereço configurado recebe o
+link e a saída mostra apenas:
+
+```
+Bootstrap: instituição e administrador PROVISIONED criados.
+  Link de ativação enviado por e-mail.
+```
+
+O token não aparece no log nesse modo. Se o SMTP estiver desabilitado ou a
+tentativa falhar, a API imprime o fallback **uma única vez**:
 
 ```
 Bootstrap: instituição e administrador PROVISIONED criados.
   Token de ativação (uso único, capture agora — não será reimpresso): <token>
 ```
 
-Capture esse log imediatamente:
+Capture somente quando estiver no modo fallback:
 
 ```bash
 docker logs seniorcare-api 2>&1 | grep "Token de ativação"
 ```
 
-Se o token for perdido antes da ativação, não há como recuperá-lo pela API —
-a única saída é reprovisionar a conta diretamente no banco (fora do escopo
-deste runbook; consulte o time de backend).
+Se esse token inicial for perdido, ele não pode ser recuperado do banco. Em
+desenvolvimento, recrie o banco vazio; em produção, interrompa e acione o time
+responsável para um procedimento controlado — nunca tente extrair o hash.
 
 ## 3. Ativar a conta
 
@@ -96,12 +109,11 @@ O primeiro login (`POST /api/v1/Auth/login`) devolve `status:
 "mfa_enrollment_required"` — nenhuma conta administrativa completa um login
 sem MFA cadastrado. Pela UI, o front-end já redireciona automaticamente pra
 `/mfa/enroll` nesse caso. A tela (e o endpoint `POST /Auth/mfa/enroll`) devolve
-uma chave (`authenticatorKey`) e o `otpauth://` correspondente — não há
-renderização de QR code no projeto (nenhuma lib de QR no front-end; ver
-`design.md`), então a chave é sempre digitada manualmente:
+uma chave (`authenticatorKey`), o `otpauth://` correspondente e um QR code com
+o mesmo conteúdo:
 
-1. Adicione uma conta manual num app autenticador (Google Authenticator,
-   Authy, 1Password etc.) usando o `authenticatorKey`.
+1. Escaneie o QR code num app autenticador (Google Authenticator, Authy,
+   1Password etc.); se necessário, use o `authenticatorKey` manualmente.
 2. Confirme com o código de 6 dígitos gerado (`POST /Auth/mfa/confirm`) — a UI
    já tem o campo pronto; via API, envie `{"challengeToken": "...", "code":
    "123456"}`.
@@ -123,33 +135,20 @@ def totp(secret_b32):
 print(totp("<authenticatorKey>"))
 ```
 
-## 5. Canal de ativação para contas administrativas seguintes (gap operacional reconhecido)
+## 5. Contas administrativas seguintes e reenvio seguro
 
-O procedimento acima cobre só a **primeira** conta (bootstrap via variável de
-ambiente, lida do log do processo). Contas administrativas criadas depois
-disso pela tela `AdminUserOverview` (§10.6) também nascem `PROVISIONED` com um
-token de ativação — mas a plataforma **não tem serviço de e-mail** hoje, e a
-tela mostra só uma mensagem pedindo para seguir "o procedimento institucional"
-(gap já registrado em `tasks.md`, tarefa 10.6, não resolvido nesta seção).
+Contas criadas em `AdminUserOverview` também nascem `PROVISIONED`. A resposta
+informa se o e-mail foi entregue. Quando mostrar `emailSent: false`:
 
-Até existir um canal técnico de envio, o procedimento operacional recomendado
-é:
+1. Corrija ou configure o bloco `Smtp__*` e reinicie a API.
+2. Na linha da conta `PROVISIONED`, use **Reenviar ativação**.
+3. A API invalida os tokens de ativação anteriores, emite outro e responde
+   somente se o novo e-mail foi enviado.
 
-1. Quem tem acesso ao banco/logs do servidor recupera o token junto ao
-   administrador que criou a conta (mesmo mecanismo do passo 2, mas via
-   consulta pontual, não log de boot — combine com o time de backend o método
-   de consulta pra essa situação específica).
-2. A entrega do token/link à pessoa nova acontece por um canal **fora da
-   plataforma** já confiável institucionalmente (ramal telefônico conhecido,
-   entrega presencial, ou o canal que a ILPI já usa para credenciais
-   sensíveis) — nunca por e-mail não criptografado ou mensagem que fique
-   registrada em texto plano num sistema de terceiros sem necessidade.
-3. A pessoa confirma a própria identidade pelo procedimento institucional já
-   em uso (o mesmo usado hoje para qualquer outra credencial sensível) antes
-   de receber o token.
-
-Isso não é uma solução técnica — é a orientação operacional mínima enquanto o
-gap não é fechado por um canal de envio de verdade (trabalho futuro).
+A ação exige `AdminUser:write`, só aceita conta local da mesma instituição e
+nunca devolve token ou link. Não tente consultar o banco: ele contém apenas o
+hash não recuperável. Se o reenvio ainda falhar, a conta permanece
+`PROVISIONED`; corrija o canal e tente novamente.
 
 ## 6. Backup pré-deploy e rollback
 
