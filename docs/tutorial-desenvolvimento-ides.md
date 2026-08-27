@@ -1,6 +1,6 @@
 # Tutorial: rodando o SeniorCare em desenvolvimento (Rider + WebStorm)
 
-Guia passo a passo para rodar a API e os dois front-ends **fora de container**,
+Guia passo a passo para rodar a API e os três front-ends **fora de container**,
 com debug real e hot reload, usando Rider (backend) e WebStorm (front-ends).
 Para rodar tudo via Docker (sem instalar SDK/Node localmente), veja
 [`tutorial-docker.md`](tutorial-docker.md).
@@ -10,8 +10,8 @@ Para rodar tudo via Docker (sem instalar SDK/Node localmente), veja
 - [Rider](https://www.jetbrains.com/rider/) (ou qualquer IDE JetBrains com
   suporte a .NET) — .NET SDK 8.0.x.
 - [WebStorm](https://www.jetbrains.com/webstorm/) — Node.js 22.
-- Docker (só pra subir o Postgres — não precisa containerizar a API nem os
-  front-ends pra este fluxo).
+- Docker (só pra subir o Postgres e, opcionalmente, o Mailpit — não precisa
+  containerizar a API nem os front-ends pra este fluxo).
 
 ## 1. Banco de dados
 
@@ -27,7 +27,7 @@ cp .env.example .env
 # IMPORTANTE: a senha do Postgres tem que ser exatamente "postdba" — é o
 # valor fixo em appsettings.Development.json. Edite o .env recém-criado:
 #   POSTGRES_PASSWORD=postdba
-docker compose up -d postgres
+docker compose up -d postgres mailpit
 ```
 
 Isso sobe só o Postgres (não a API nem os front-ends em container — vamos
@@ -67,6 +67,7 @@ rodar os três pela IDE). Confirme que subiu: `docker ps` deve listar
 
 Cada front-end é um projeto independente (não há workspace/monorepo do
 npm) — abra cada um como uma janela separada do WebStorm:
+`SeniorPortal-Frontend/SeniorPortalFrontend` (portal canônico de ativação),
 `SeniorCareManager-Frontend/SeniorCareManagerFrontend` (app "care") e
 `SeniorStockManager-Frontend/SeniorStockManagerFrontend` (app "stock").
 
@@ -78,10 +79,9 @@ Para cada um:
 2. **Run Configuration**: WebStorm cria configurações `npm` a partir dos
    scripts do `package.json` — use `dev` (servidor Vite com HMR,
    `npm run dev`). Rode com o botão ▷ ou `Ctrl+R`/`Cmd+R`.
-   - Care abre em `http://localhost:5173` (porta padrão do Vite — confirme no
-     terminal integrado, o Vite escolhe outra se a 5173 estiver ocupada).
-   - Se os dois apps rodarem ao mesmo tempo, o Vite do segundo sobe numa porta
-     diferente automaticamente (ex.: 5174) — sem conflito.
+   - Inicie o Portal primeiro; normalmente ele abre em `http://localhost:5173`.
+   - Care e stock usam as próximas portas livres (normalmente 5174 e 5175).
+     Confirme sempre as URLs no terminal integrado do WebStorm.
 3. O proxy `/api` (configurado em `vite.config.ts`) já encaminha pra
    `http://localhost:8080` por padrão — ajuste conforme o passo 2 do backend
    se você mudou a porta lá.
@@ -94,13 +94,8 @@ Para cada um:
 
 ## 4. Primeiro login (criar e ativar o usuário admin)
 
-Com Postgres + API + pelo menos um front-end rodando, falta criar a conta que
+Com Postgres + API + o Portal rodando, falta criar a conta que
 você vai usar pra logar — a API não vem com nenhum usuário/senha padrão.
-
-> **Pendência conhecida**: não existe serviço de e-mail nem geração de QR code
-> nesta plataforma ainda — o token de ativação só existe no log/console, e o
-> MFA só oferece a chave em texto pra digitar manualmente. Detalhe completo em
-> [`../infra/deploy/BOOTSTRAP.md`](../infra/deploy/BOOTSTRAP.md#pendências-conhecidas-leia-antes-de-operar-em-produção).
 
 **a. Definir as variáveis de bootstrap antes de subir a API.** No Rider, edite
 a Run Configuration da API (ícone de lápis) → aba **Environment variables** →
@@ -113,24 +108,42 @@ Bootstrap__AdminEmail=admin@example.com
 Bootstrap__AdminDisplayName=Admin Dev
 ```
 
+Para testar a entrega automática pelo Mailpit, adicione também:
+
+```
+Smtp__Host=localhost
+Smtp__Port=1025
+Smtp__FromAddress=noreply@seniorcare.local
+Smtp__FromDisplayName=SeniorCare Local
+Smtp__UseStartTls=false
+Frontend__ActivationBaseUrl=http://localhost:5173/ativar-conta
+```
+
+Abra `http://localhost:8025` para consultar as mensagens. Para testar o
+fallback manual, remova **todas** as variáveis `Smtp__*` e
+`Frontend__ActivationBaseUrl`; um bloco parcial é rejeitado no startup. O
+bootstrap pertence somente à API executada pelo Rider — os front-ends no
+WebStorm não criam instituição, usuário, token ou senha.
+
 Elas só têm efeito enquanto **nenhuma instituição existir no banco** — se seu
 Postgres local já tem dado de uma sessão anterior, ou apague o volume
 (`docker compose down -v` no `infra/docker-test`) ou pule pra "e" com a conta
 que você já tem.
 
-**b. Rodar a API (Debug) e capturar o token.** No primeiro boot com banco
-vazio, o console do Rider imprime uma linha assim **uma única vez**:
+**b. Rodar a API (Debug) e obter a ativação.** Com SMTP ativo, o link chega ao
+Mailpit e o console mostra apenas “Link de ativação enviado por e-mail”. Sem
+SMTP ou se a entrega falhar, o console imprime o fallback **uma única vez**:
 
 ```
 Bootstrap: instituição e administrador PROVISIONED criados.
   Token de ativação (uso único, capture agora — não será reimpresso): <token>
 ```
 
-Copie o `<token>` — se perder, não tem como recuperar pela API (só
-reprovisionando a conta direto no banco).
+O banco conserva apenas o hash; não existe consulta que recupere o token. Em
+desenvolvimento ainda não ativado, remova o volume e repita o bootstrap.
 
-**c. Ativar + logar + cadastrar MFA — caminho rápido (script).** Com o
-token do passo b em mãos, um único comando faz o resto (ativação, login,
+**c. Ativar + logar + cadastrar MFA — caminho rápido no fallback.** Com o
+token manual do passo b em mãos, um único comando faz o resto (ativação, login,
 cadastro de MFA com TOTP calculado sozinho, sem celular):
 
 ```bash
@@ -138,28 +151,26 @@ cd infra/docker-test
 DEV_ADMIN_EMAIL=admin@example.com ./bootstrap-dev-admin.sh --token <token>
 ```
 
-(`--token` porque o backend aqui não está em container — sem ele, o script
-tentaria ler o log de um container `seniorcare-api` que não existe nesse
-fluxo.) Idempotente — pode rodar de novo sem `--token` nas próximas vezes,
-ele usa a chave de MFA salva em `infra/docker-test/.dev-admin-mfa-key`.
+(`--token` porque o backend aqui não está em container.) Se
+`DEV_ADMIN_PASSWORD` não for informada, o helper gera uma senha efêmera forte
+e a exibe só nessa execução; não existe senha default versionada. Com SMTP,
+abra o link recebido e use a UI — o helper não lê mensagens do Mailpit.
 
 Prefere fazer manualmente (ou entender o que o script faz por baixo)? Os
 passos "d" e "e" abaixo são o equivalente manual, pela UI.
 
-**d. Ativar a conta pelo front-end (manual).** Com o care (ou stock) rodando, abra
-`http://localhost:5173/ativar-conta` (ajuste a porta se o Vite escolheu
-outra) e preencha e-mail (`admin@example.com`), o token do passo b, e a senha
-que você quer usar. Confirme "Conta ativada com sucesso."
+**d. Ativar a conta pelo front-end.** Abra o link recebido no Mailpit ou, no
+fallback, `http://localhost:5173/ativar-conta`; preencha e-mail, token e uma
+senha escolhida por você. Confirme "Conta ativada com sucesso."
 
 **e. Logar e cadastrar o MFA (obrigatório pra toda conta administrativa).**
 Vá em `/login`, entre com o e-mail/senha que você acabou de definir — o
 sistema redireciona automaticamente pra `/mfa/enroll` (nenhum login
 administrativo completa sem MFA cadastrado, nem no primeiro acesso). A tela
-mostra uma chave (`authenticatorKey`) e o `otpauth://` correspondente:
+mostra um QR code e a chave manual equivalentes:
 
-- **Com celular à mão**: adicione uma conta manual num app autenticador
-  (Google Authenticator, Authy, 1Password etc.) usando essa chave, e digite o
-  código de 6 dígitos que ele gerar no campo "Código de confirmação".
+- **Com celular à mão**: escaneie o QR code num app autenticador. Se o aparelho
+  não conseguir ler a tela, use a chave manual exibida abaixo dele.
 - **Sem celular / fluxo scriptável**: gere o código você mesmo a partir da
   chave (TOTP padrão, SHA1/6 dígitos/30s) — por exemplo com Python (biblioteca
   padrão, sem instalar nada):
@@ -182,11 +193,16 @@ completo.
 Nas próximas vezes (conta já ativa, MFA já cadastrado), é só `/login` com
 e-mail/senha + o código do autenticador (`/login/mfa`).
 
+Para administradores criados depois, a tela de usuários informa se o e-mail
+foi entregue. Se não foi, corrija o SMTP e use **Reenviar ativação** na conta
+`PROVISIONED`; isso invalida o link anterior. O token nunca pode ser obtido do
+banco, da resposta administrativa ou dos logs.
+
 ## 5. Fluxo do dia a dia
 
-Com Postgres (Docker) + API (Rider, Debug) + os dois front-ends (WebStorm,
+Com Postgres (Docker) + API (Rider, Debug) + os três front-ends (WebStorm,
 `npm run dev`) rodando, você tem o ambiente completo com debug real no
-backend e hot reload nos dois front-ends — sem rebuildar imagem Docker a cada
+backend e hot reload nos três front-ends — sem rebuildar imagem Docker a cada
 mudança. Pare tudo com `docker compose down` (no `infra/docker-test`) quando
 terminar; os dados do Postgres ficam num volume persistente entre sessões
 (`docker compose down -v` apaga, se quiser recomeçar do zero).

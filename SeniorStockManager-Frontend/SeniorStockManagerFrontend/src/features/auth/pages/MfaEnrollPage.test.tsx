@@ -95,7 +95,12 @@ describe('MfaEnrollPage', () => {
 
     await waitFor(() => {
       expect(screen.getByText('otpauth://totp/SeniorCare')).toBeInTheDocument();
+      expect(screen.getByRole('img', { name: 'Código QR para configurar MFA' })).toHaveAttribute(
+        'src',
+        expect.stringMatching(/^data:image\/png;base64,/)
+      );
     });
+    expect(screen.getByText('ABC123')).toBeInTheDocument();
 
     await user.type(screen.getByLabelText('Código de confirmação', { exact: false }), '123456');
     await user.click(screen.getByRole('button', { name: 'Confirmar' }));

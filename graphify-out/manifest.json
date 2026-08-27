@@ -370,8 +370,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs": {
-    "mtime": 1786632742.4636939,
-    "ast_hash": "4e3eaec47810db777cdf681a70df2eda",
+    "mtime": 1786810799.8907797,
+    "ast_hash": "04e9ff3ab0051b51d9befb4770f14ef1",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Properties/launchSettings.json": {
@@ -380,8 +380,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/SeniorCareManager.WebAPI.csproj": {
-    "mtime": 1786221226.534012,
-    "ast_hash": "18a2ff215733dd2890b5b29083454034",
+    "mtime": 1786811198.2759962,
+    "ast_hash": "0b848d17c2672a90caa64c97821281c8",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/SeniorCareManager.WebAPI.sln": {
@@ -490,8 +490,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Startup.cs": {
-    "mtime": 1786632742.476353,
-    "ast_hash": "4e7e23f6878c19b4ab6b1fe975c4f9f7",
+    "mtime": 1786810799.9464116,
+    "ast_hash": "36583f5ee06138d973d4f81b01d69c44",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/appsettings.Development.json": {
@@ -520,8 +520,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/package.json": {
-    "mtime": 1786387227.350771,
-    "ast_hash": "64049db9d07ec2c5bc4fa26d8bda64e3",
+    "mtime": 1786811508.2543395,
+    "ast_hash": "4287f761ce8a65ea691690e6947c4f5c",
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/postcss.config.js": {
@@ -690,7 +690,7 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/auth/components/LoginForm/index.tsx": {
-    "mtime": 1786638519.40837,
+    "mtime": 1786639803.9914534,
     "ast_hash": "9283df9d2d586ccf09c7e8fd5d7f4702",
     "semantic_hash": ""
   },
@@ -850,7 +850,7 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/pages/LandingPage/index.tsx": {
-    "mtime": 1786638531.4162555,
+    "mtime": 1786639803.9935863,
     "ast_hash": "8758a2bf97a935a6470edc7c14be174c",
     "semantic_hash": ""
   },
@@ -965,8 +965,8 @@
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/package.json": {
-    "mtime": 1786387227.3583028,
-    "ast_hash": "430217e15f23c4fe68509134a01cdc40",
+    "mtime": 1786811508.295217,
+    "ast_hash": "af43cc0e93f28fde9ef4a1fb14c243ca",
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/postcss.config.js": {
@@ -1130,7 +1130,7 @@
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/components/LoginForm.tsx": {
-    "mtime": 1786638589.8540957,
+    "mtime": 1786639803.994535,
     "ast_hash": "d093d5cff67a457d43ec5bf4cd6dba33",
     "semantic_hash": ""
   },
@@ -1390,7 +1390,7 @@
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/pages/LandingPage/index.tsx": {
-    "mtime": 1786638556.2123597,
+    "mtime": 1786639803.9972885,
     "ast_hash": "3ee27acc8a9c454fcd2320d5336a1ec1",
     "semantic_hash": ""
   },
@@ -1585,8 +1585,8 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1785963573.3992057,
-    "ast_hash": "6a47d64fcc136324ca395065a707ef76",
+    "mtime": 1786808628.5225203,
+    "ast_hash": "541af0a65ede9ad47cc4a1e4818c5454",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/README.md": {
@@ -1785,13 +1785,13 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/SeniorCareManager.WebAPI.csproj.nuget.dgspec.json": {
-    "mtime": 1786445526.101157,
-    "ast_hash": "92b44e48dea865f733fc30c4947950ce",
+    "mtime": 1786811222.464864,
+    "ast_hash": "f36b1583173199ca3633d41417115f6f",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/project.assets.json": {
-    "mtime": 1786445526.0973237,
-    "ast_hash": "4759267bb206e67482a8fd03a940f231",
+    "mtime": 1786811222.46176,
+    "ast_hash": "e4c85771ebd6622155df3331bf9799fc",
     "semantic_hash": ""
   },
   "infra/deploy/deploy.sh": {
@@ -1822,11 +1822,6 @@
   ".github/workflows/ci.yml": {
     "mtime": 1786632742.4258287,
     "ast_hash": "76912de4373140796346ce5b7965f572",
-    "semantic_hash": ""
-  },
-  ".github/workflows/claude-review.yml": {
-    "mtime": 1786024175.2734444,
-    "ast_hash": "fbece6c691b421cdbcf916bbe6022c46",
     "semantic_hash": ""
   },
   ".github/workflows/ghcr-retention.yml": {
@@ -1865,8 +1860,8 @@
     "semantic_hash": ""
   },
   "docs/escopo-do-projeto.md": {
-    "mtime": 1786638874.158971,
-    "ast_hash": "19d2c3114a0adbe07965d0d8d788184f",
+    "mtime": 1786639804.0068343,
+    "ast_hash": "14138745e10f936bddddf8e15617e66e",
     "semantic_hash": ""
   },
   "docs/infra/ci-cd-arquitetura.md": {
@@ -1875,7 +1870,7 @@
     "semantic_hash": ""
   },
   "infra/deploy/README.md": {
-    "mtime": 1786639267.1902218,
+    "mtime": 1786639804.1256695,
     "ast_hash": "dd3a610b2e117e59e90f41feccb5e03f",
     "semantic_hash": ""
   },
@@ -1885,8 +1880,8 @@
     "semantic_hash": ""
   },
   "infra/deploy/docker-compose.yml": {
-    "mtime": 1786632742.667044,
-    "ast_hash": "b26b5d09e9eb82080272e6f068fe018b",
+    "mtime": 1786811681.9210498,
+    "ast_hash": "1354c0c2e7022c8acfc6b99f6dd4c886",
     "semantic_hash": ""
   },
   "infra/deploy/ops/homepage/bookmarks.yaml": {
@@ -1915,13 +1910,13 @@
     "semantic_hash": ""
   },
   "infra/docker-test/README.md": {
-    "mtime": 1786452146.1839342,
-    "ast_hash": "92a0135745040f50897b7533e1c367bc",
+    "mtime": 1786812397.0402467,
+    "ast_hash": "0258f716aef64c1ac06f4f96cbd4636d",
     "semantic_hash": ""
   },
   "infra/docker-test/docker-compose.yml": {
-    "mtime": 1786632742.669123,
-    "ast_hash": "06d9abda6b7595928881f19b1caee573",
+    "mtime": 1786812327.3161767,
+    "ast_hash": "a832bfd90c23c26f43c1d7f1f4dab5b9",
     "semantic_hash": ""
   },
   "docs/relatorio-avaliacao-requisitos-implementacao.md": {
@@ -2000,7 +1995,7 @@
     "semantic_hash": ""
   },
   "openspec/changes/introduce-senior-portal/tasks.md": {
-    "mtime": 1786639299.597553,
+    "mtime": 1786639804.1264355,
     "ast_hash": "0cfa829d491d1a1e7d003f3c51fd63b4",
     "semantic_hash": ""
   },
@@ -2055,8 +2050,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminUserControllerTests.cs": {
-    "mtime": 1786372721.187574,
-    "ast_hash": "45c0ae7d5dee5c3012c281670e544b41",
+    "mtime": 1786812067.276986,
+    "ast_hash": "651d0e4711243d7bd3eda08b6c07c5a4",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminUserPermissionOverrideControllerTests.cs": {
@@ -2100,8 +2095,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AuthControllerTests.cs": {
-    "mtime": 1786221226.4702556,
-    "ast_hash": "a31c98908fd2f5f8bd869611ac19883c",
+    "mtime": 1786811379.1371262,
+    "ast_hash": "446d9a560eb195d53835db46ea8f5dbf",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/EndpointAuthorizationTests.cs": {
@@ -2135,8 +2130,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/BootstrapPostgresWebApplicationFactory.cs": {
-    "mtime": 1786221226.4724057,
-    "ast_hash": "4a8d330d5b16fb34e7fa7c9fa10bfaa0",
+    "mtime": 1786811379.010986,
+    "ast_hash": "c68afbf3457f2c79597d013f415516d7",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/HttpClientAuthExtensions.cs": {
@@ -2145,8 +2140,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs": {
-    "mtime": 1786313622.644942,
-    "ast_hash": "430fded15387ba9c953f01fb7f735117",
+    "mtime": 1786811334.7121217,
+    "ast_hash": "460cf96f1065642e02633dd6e2aadd40",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/TestAuthHandler.cs": {
@@ -2185,8 +2180,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Services/BootstrapServiceTests.cs": {
-    "mtime": 1786237254.4822962,
-    "ast_hash": "f38109993f8b08aa094d777d3bf19a7c",
+    "mtime": 1786811379.0510685,
+    "ast_hash": "0c6063ddf642de490ea30b3727c256df",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/bin/Release/net8.0/MvcTestingAppManifest.json": {
@@ -2270,13 +2265,13 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/obj/SeniorCareManager.IntegrationTests.csproj.nuget.dgspec.json": {
-    "mtime": 1786550435.0841067,
-    "ast_hash": "15141061b54bc95f4cfab2138cf61310",
+    "mtime": 1786811222.466611,
+    "ast_hash": "2dfe3a5becd2b5340d189b35fd730c05",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/obj/project.assets.json": {
-    "mtime": 1786550435.0828075,
-    "ast_hash": "0f0aa52fc2310586633e3d746018089b",
+    "mtime": 1786811222.464585,
+    "ast_hash": "2a219bafe2b74ff0a60680c86a036e38",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/EndpointAuthorizationInvariantsTests.cs": {
@@ -2285,8 +2280,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/ProgramConfigurationTests.cs": {
-    "mtime": 1786221226.4780583,
-    "ast_hash": "83b0445b141e152ba7c04cac3af1c4a7",
+    "mtime": 1786811334.6233215,
+    "ast_hash": "732c106ec3d1bb696fe075c5c9a1c505",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/SeniorCareManager.UnitTests.csproj": {
@@ -2385,13 +2380,13 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/obj/SeniorCareManager.UnitTests.csproj.nuget.dgspec.json": {
-    "mtime": 1786445526.3094687,
-    "ast_hash": "64bb365ac25cd0485f943612aec806f4",
+    "mtime": 1786811222.4662156,
+    "ast_hash": "0893f8653c0ccffe5639b1d6d559fb9a",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/obj/project.assets.json": {
-    "mtime": 1786445526.308695,
-    "ast_hash": "2fa73d9254e3a4f4313fe6fb2ec9989a",
+    "mtime": 1786811222.4640484,
+    "ast_hash": "5cd7c70f25c675779803dc0734db2f7f",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/AdminAccessDecisionController.cs": {
@@ -2435,8 +2430,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/AdminUserController.cs": {
-    "mtime": 1786372721.1877687,
-    "ast_hash": "3fff5ed0b52ef1191c68db62bd370967",
+    "mtime": 1786812092.6011865,
+    "ast_hash": "af3a91755f58dfeaf3f085ee833c3794",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/AdminUserPermissionOverrideController.cs": {
@@ -2450,8 +2445,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/AuthController.cs": {
-    "mtime": 1786313622.650586,
-    "ast_hash": "73b1527a6fcc5a88185db174225f9669",
+    "mtime": 1786810800.149718,
+    "ast_hash": "7be7412b5b378ba5da77a86630dc7352",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/ProductController.cs": {
@@ -3055,8 +3050,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/BootstrapResult.cs": {
-    "mtime": 1786221226.5306652,
-    "ast_hash": "fb39a37f5a7b7768c5416d3d97b229ee",
+    "mtime": 1786810799.9857178,
+    "ast_hash": "589a21282c1b43f7a33704df080a0df4",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/Institution.cs": {
@@ -3135,8 +3130,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Entities/AccountTokenService.cs": {
-    "mtime": 1786279406.8823967,
-    "ast_hash": "f4a9447bc2b7c584ce999438ed3ba895",
+    "mtime": 1786811999.091137,
+    "ast_hash": "d859fe6c453737e60a926ae0ef22f82e",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Entities/AdminInvariantService.cs": {
@@ -3155,8 +3150,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Entities/BootstrapService.cs": {
-    "mtime": 1786237254.537826,
-    "ast_hash": "fecd0c9d62ac4d2d1142d7229ba212ba",
+    "mtime": 1786810800.0256069,
+    "ast_hash": "277730b1889b1078cba0d67bea47867c",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Entities/CommonPasswordBlocklist.cs": {
@@ -3210,8 +3205,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Interfaces/IAccountTokenService.cs": {
-    "mtime": 1786279406.885387,
-    "ast_hash": "ae848ab13e4c30211b2952dcb918376c",
+    "mtime": 1786811999.052198,
+    "ast_hash": "b789171b22f04999eba751acc15c51b7",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Interfaces/IAdminInvariantService.cs": {
@@ -3395,17 +3390,17 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/adminUser/pages/AdminUserOverview.tsx": {
-    "mtime": 1786372721.1903174,
-    "ast_hash": "2829efd87b6c879e3ecc12cb938184a0",
+    "mtime": 1786819396.8004444,
+    "ast_hash": "2c1df725e78759886b03c40be7d3d79f",
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/adminUser/services/adminUserService.ts": {
-    "mtime": 1786372721.190432,
-    "ast_hash": "0952ffe213ff8ecc36e843e3237d94cf",
+    "mtime": 1786812024.5829854,
+    "ast_hash": "c36fb9e34c28838b52847f1e90c6c5fe",
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/auth/components/LoginForm/LoginForm.test.tsx": {
-    "mtime": 1786638687.571924,
+    "mtime": 1786639803.991046,
     "ast_hash": "4ec6729acacb631081d5c446009612a8",
     "semantic_hash": ""
   },
@@ -3440,8 +3435,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/auth/pages/MfaEnrollPage.tsx": {
-    "mtime": 1786632742.4927616,
-    "ast_hash": "9d144fcac706cb6fa186b71cd794433c",
+    "mtime": 1786811535.5741086,
+    "ast_hash": "2a4ca24d31cf26be17e86fb4feb4a907",
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/auth/pages/RecoverAccountPage.tsx": {
@@ -3755,7 +3750,7 @@
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/components/LoginForm.test.tsx": {
-    "mtime": 1786638760.123135,
+    "mtime": 1786639803.9940207,
     "ast_hash": "969cfd1402502994e6cf2e61cafaa324",
     "semantic_hash": ""
   },
@@ -3790,8 +3785,8 @@
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/pages/MfaEnrollPage.tsx": {
-    "mtime": 1786632742.5482507,
-    "ast_hash": "19b6b44c90183f53660df76013908ac3",
+    "mtime": 1786811535.613448,
+    "ast_hash": "8c6d95f24e1682498018c4d1740e3253",
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/pages/RecoverAccountPage.tsx": {
@@ -3875,8 +3870,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/CONFIGURATION.md": {
-    "mtime": 1786632742.4314682,
-    "ast_hash": "afda4508acdf0cdf13de8d6a6b302396",
+    "mtime": 1786812424.1471746,
+    "ast_hash": "d3f5d37c29456f375fa97bee86480568",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/CommonPasswords.txt": {
@@ -3885,8 +3880,8 @@
     "semantic_hash": ""
   },
   "infra/deploy/BOOTSTRAP.md": {
-    "mtime": 1786452146.183075,
-    "ast_hash": "ab1b8e64312a70a5591b3751b7d0c463",
+    "mtime": 1786812415.9326682,
+    "ast_hash": "c45301e861d2018f5e01983913c96a6b",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Data/SeniorPortalCatalogPersistenceTests.cs": {
@@ -3900,27 +3895,27 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/bin/Debug/net8.0/MvcTestingAppManifest.json": {
-    "mtime": 1786631225.222603,
+    "mtime": 1786817641.5175197,
     "ast_hash": "3935af8f6f19b7a3c49169a170efa645",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/bin/Debug/net8.0/SeniorCareManager.IntegrationTests.deps.json": {
-    "mtime": 1786629576.907524,
-    "ast_hash": "b93603a861b3811e58293f84af72f53c",
+    "mtime": 1786812163.0295966,
+    "ast_hash": "68b1b36498f4283041b04b3c5ffcc5eb",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/bin/Debug/net8.0/SeniorCareManager.IntegrationTests.runtimeconfig.json": {
-    "mtime": 1786550455.5089455,
+    "mtime": 1786812163.0813806,
     "ast_hash": "3e9f6cc7c307b0827e9fd44292272e20",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/bin/Debug/net8.0/SeniorCareManager.WebAPI.deps.json": {
-    "mtime": 1786532637.9903758,
-    "ast_hash": "b6145a8d9c0158e2f9ca76e6d2df84bc",
+    "mtime": 1786811278.9218717,
+    "ast_hash": "f78c0d319bfd7b6bc404821e53e70d31",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/bin/Debug/net8.0/SeniorCareManager.WebAPI.runtimeconfig.json": {
-    "mtime": 1786458227.6163406,
+    "mtime": 1786811278.9517765,
     "ast_hash": "5a4570d2c5192e17a56d7ffc29b2d2ed",
     "semantic_hash": ""
   },
@@ -3960,13 +3955,13 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/obj/Debug/net8.0/MvcTestingAppManifest.json": {
-    "mtime": 1786631225.222603,
+    "mtime": 1786817641.5175197,
     "ast_hash": "3935af8f6f19b7a3c49169a170efa645",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/obj/Debug/net8.0/SeniorCareManager.IntegrationTests.AssemblyInfo.cs": {
-    "mtime": 1786629576.1932502,
-    "ast_hash": "91cf6370a25dd36da47ec4b7f8cd8251",
+    "mtime": 1786812161.8500266,
+    "ast_hash": "93d974d6aed4135efdb5144b048fcbe8",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/obj/Debug/net8.0/SeniorCareManager.IntegrationTests.GlobalUsings.g.cs": {
@@ -3975,8 +3970,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/obj/Debug/net8.0/SeniorCareManager.IntegrationTests.sourcelink.json": {
-    "mtime": 1786629576.22144,
-    "ast_hash": "aa0322f82902dc9dabaa2db5c9f21ba0",
+    "mtime": 1786812161.8663645,
+    "ast_hash": "e3ea1d54b98642b7d753513500f0b1f5",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/ModuleDefinitionValidatorTests.cs": {
@@ -3990,22 +3985,22 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/bin/Debug/net8.0/SeniorCareManager.UnitTests.deps.json": {
-    "mtime": 1786458228.4231796,
-    "ast_hash": "6ca2b0bd0adac249b02963eb1c89cd1a",
+    "mtime": 1786811279.4834986,
+    "ast_hash": "fe25d2af9043b6dda63add1af0b2955c",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/bin/Debug/net8.0/SeniorCareManager.UnitTests.runtimeconfig.json": {
-    "mtime": 1786458228.4408872,
+    "mtime": 1786811279.4861698,
     "ast_hash": "3e9f6cc7c307b0827e9fd44292272e20",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/bin/Debug/net8.0/SeniorCareManager.WebAPI.deps.json": {
-    "mtime": 1786532637.9903758,
-    "ast_hash": "b6145a8d9c0158e2f9ca76e6d2df84bc",
+    "mtime": 1786811278.9218717,
+    "ast_hash": "f78c0d319bfd7b6bc404821e53e70d31",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/bin/Debug/net8.0/SeniorCareManager.WebAPI.runtimeconfig.json": {
-    "mtime": 1786458227.6163406,
+    "mtime": 1786811278.9517765,
     "ast_hash": "5a4570d2c5192e17a56d7ffc29b2d2ed",
     "semantic_hash": ""
   },
@@ -4045,8 +4040,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/obj/Debug/net8.0/SeniorCareManager.UnitTests.AssemblyInfo.cs": {
-    "mtime": 1786629609.5444207,
-    "ast_hash": "cf19767f02790cadfe23fed5d8d49e68",
+    "mtime": 1786811279.1484997,
+    "ast_hash": "7bb7360872380e2c205645c7c9e51503",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/obj/Debug/net8.0/SeniorCareManager.UnitTests.GlobalUsings.g.cs": {
@@ -4055,8 +4050,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/obj/Debug/net8.0/SeniorCareManager.UnitTests.sourcelink.json": {
-    "mtime": 1786629609.5525744,
-    "ast_hash": "aa0322f82902dc9dabaa2db5c9f21ba0",
+    "mtime": 1786811279.1643133,
+    "ast_hash": "e3ea1d54b98642b7d753513500f0b1f5",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Data/Builders/InstitutionModuleBuilder.cs": {
@@ -4115,12 +4110,12 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/bin/Debug/net8.0/SeniorCareManager.WebAPI.deps.json": {
-    "mtime": 1786532637.9903758,
-    "ast_hash": "b6145a8d9c0158e2f9ca76e6d2df84bc",
+    "mtime": 1786811278.9218717,
+    "ast_hash": "f78c0d319bfd7b6bc404821e53e70d31",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/bin/Debug/net8.0/SeniorCareManager.WebAPI.runtimeconfig.json": {
-    "mtime": 1786458227.6163406,
+    "mtime": 1786811278.9517765,
     "ast_hash": "5a4570d2c5192e17a56d7ffc29b2d2ed",
     "semantic_hash": ""
   },
@@ -4160,8 +4155,8 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/SeniorCareManager.WebAPI.AssemblyInfo.cs": {
-    "mtime": 1786629572.953445,
-    "ast_hash": "7bcb52e24d5920cabbeb45590841182a",
+    "mtime": 1786810928.138234,
+    "ast_hash": "6855c34f9f5b1c13f342fd520910fde1",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/SeniorCareManager.WebAPI.GlobalUsings.g.cs": {
@@ -4170,23 +4165,23 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs": {
-    "mtime": 1786532636.745593,
+    "mtime": 1786811276.5491686,
     "ast_hash": "bedf668b200d2a0e6e72860623d8da6b",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/SeniorCareManager.WebAPI.sourcelink.json": {
-    "mtime": 1786629573.0138853,
-    "ast_hash": "aa0322f82902dc9dabaa2db5c9f21ba0",
+    "mtime": 1786810929.3745518,
+    "ast_hash": "e3ea1d54b98642b7d753513500f0b1f5",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/rjsmcshtml.dswa.cache.json": {
-    "mtime": 1786631225.0611417,
-    "ast_hash": "bac79ef0c88f0569a4f1c924032ef546",
+    "mtime": 1786813606.4543307,
+    "ast_hash": "86356d2734ab13127523ee6adf696e0d",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/rjsmrazor.dswa.cache.json": {
-    "mtime": 1786631225.0591066,
-    "ast_hash": "9644d8a1c4077fe25a7808cbf0d563d2",
+    "mtime": 1786813606.4297802,
+    "ast_hash": "005385dc244b2772518dbbe95a03523e",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/rpswa.dswa.cache.json": {
@@ -4205,38 +4200,38 @@
     "semantic_hash": ""
   },
   "infra/docker-test/bootstrap-dev-admin.sh": {
-    "mtime": 1786452146.1856039,
-    "ast_hash": "d92d63457a6d9264c8bfba670b7c8777",
+    "mtime": 1786812434.903315,
+    "ast_hash": "4250d8e67102fe7e112797b42a4bcc34",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/obj/Debug/net8.0/SeniorCareManager.IntegrationTests.csproj.FileListAbsolute.txt": {
-    "mtime": 1786458228.552193,
-    "ast_hash": "1b264680fcf52378581726bff3fac737",
+    "mtime": 1786812163.1477132,
+    "ast_hash": "86794ba2f8b90a614fcc76cf6633c01a",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests/obj/Debug/net8.0/SeniorCareManager.UnitTests.csproj.FileListAbsolute.txt": {
-    "mtime": 1786458228.4678988,
-    "ast_hash": "ea604bf9cb8f45efdf316f3cb056a724",
+    "mtime": 1786811279.5345469,
+    "ast_hash": "ded8f34cb00e051ba62ea3d6ac4e3dde",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.WebAPI/obj/Debug/net8.0/SeniorCareManager.WebAPI.csproj.FileListAbsolute.txt": {
-    "mtime": 1786458227.676447,
-    "ast_hash": "70d313ec0cc1ff47aa0d54ce680acc63",
+    "mtime": 1786811278.983307,
+    "ast_hash": "f60a178fcfa99526d247199e094a3cbc",
     "semantic_hash": ""
   },
   "docs/architecture/senior-portal-contracts.md": {
-    "mtime": 1786638895.85419,
+    "mtime": 1786639803.9995606,
     "ast_hash": "c4c3010656a5cf04c70e4badca4262d6",
     "semantic_hash": ""
   },
   "docs/tutorial-desenvolvimento-ides.md": {
-    "mtime": 1786452146.1802998,
-    "ast_hash": "0d5aefee27625abaaa2149e327aee311",
+    "mtime": 1786812415.9726493,
+    "ast_hash": "a84ade97a92d7d71ec640b86ce9b80a9",
     "semantic_hash": ""
   },
   "docs/tutorial-docker.md": {
-    "mtime": 1786452146.182636,
-    "ast_hash": "41cd0f960935c5f35ef2f4eb58aed809",
+    "mtime": 1786819379.581965,
+    "ast_hash": "81b35b175afe8a88595a44db4d29c54f",
     "semantic_hash": ""
   },
   "openspec/changes/archive/2026-08-11-stabilize-existing-platform/.openspec.yaml": {
@@ -4290,28 +4285,28 @@
     "semantic_hash": ""
   },
   "openspec/changes/improve-first-access-delivery/design.md": {
-    "mtime": 1786457216.0213697,
-    "ast_hash": "4165bc867906a5d42de5c2db2130a21a",
+    "mtime": 1786811935.4286354,
+    "ast_hash": "49841642c2e7b3dfa695d0ba32e5e2a4",
     "semantic_hash": ""
   },
   "openspec/changes/improve-first-access-delivery/proposal.md": {
-    "mtime": 1786457216.0216765,
-    "ast_hash": "d2ee4f0507e99b6481c3dea79261f9f6",
+    "mtime": 1786811865.9142635,
+    "ast_hash": "6a8fc5405c8c465acd0ee078b48bd2fd",
     "semantic_hash": ""
   },
   "openspec/changes/improve-first-access-delivery/specs/notification-delivery/spec.md": {
-    "mtime": 1786457216.021966,
-    "ast_hash": "9f32ccaa97ddf59a654d4129dece0856",
+    "mtime": 1786811886.3662996,
+    "ast_hash": "58873d87e4dda754b5c640124eea25b3",
     "semantic_hash": ""
   },
   "openspec/changes/improve-first-access-delivery/specs/platform-authentication/spec.md": {
-    "mtime": 1786457216.0224218,
-    "ast_hash": "d3256d96f781c26645d027f7ff992133",
+    "mtime": 1786811886.4857917,
+    "ast_hash": "50932188b84d6d8adcb73efffd798bb3",
     "semantic_hash": ""
   },
   "openspec/changes/improve-first-access-delivery/tasks.md": {
-    "mtime": 1786457216.0227559,
-    "ast_hash": "783e60a2bd94b9a4c09b1a56c70df00d",
+    "mtime": 1786819356.6273384,
+    "ast_hash": "7c7f8b7a2a156dd5e7402167f3d608ec",
     "semantic_hash": ""
   },
   "openspec/specs/accessibility-baseline/spec.md": {
@@ -4320,8 +4315,8 @@
     "semantic_hash": ""
   },
   "openspec/specs/automated-quality-gates/spec.md": {
-    "mtime": 1786446639.560344,
-    "ast_hash": "bd8b94428ea50ec3a0f1d3358693d460",
+    "mtime": 1786808788.5448697,
+    "ast_hash": "85dca65b8e1ba3dff382b1f1ea88fd59",
     "semantic_hash": ""
   },
   "openspec/specs/platform-authentication/spec.md": {
@@ -4410,8 +4405,8 @@
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/package.json": {
-    "mtime": 1786632742.511103,
-    "ast_hash": "fb44df23af3d61ea0fc4a2643ea776a1",
+    "mtime": 1786811508.2133708,
+    "ast_hash": "47c434ed52c0281d073191937bd0a6db",
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/postcss.config.js": {
@@ -4515,13 +4510,13 @@
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/pages/MfaEnrollPage.test.tsx": {
-    "mtime": 1786632742.5231,
-    "ast_hash": "0e4604ae56f425e53bc6c9336b04e205",
+    "mtime": 1786811557.0266287,
+    "ast_hash": "57d0ec2f00bd77eaa4162c1e1189dc75",
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/pages/MfaEnrollPage.tsx": {
-    "mtime": 1786632742.5232017,
-    "ast_hash": "27563eb19dd05ef590ed884d169ede96",
+    "mtime": 1786811535.5289385,
+    "ast_hash": "dcd613e7cc96848edf78e49ca924ee80",
     "semantic_hash": ""
   },
   "SeniorPortal-Frontend/SeniorPortalFrontend/src/features/auth/services/authService.ts": {
@@ -4745,8 +4740,8 @@
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/pages/MfaEnrollPage.test.tsx": {
-    "mtime": 1786632742.5479589,
-    "ast_hash": "61ae00396b1c161ad18ea8e0cbee6459",
+    "mtime": 1786811557.143047,
+    "ast_hash": "270646012ac5a03f5e81ad79edc2b6d4",
     "semantic_hash": ""
   },
   "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/CookieSecurityAttributesTests.cs": {
@@ -4760,23 +4755,118 @@
     "semantic_hash": ""
   },
   "infra/docker-test/smoke-test.sh": {
-    "mtime": 1786632742.6695137,
-    "ast_hash": "9359ca7640f853d633b16fea217cafa3",
+    "mtime": 1786812397.0812242,
+    "ast_hash": "8e5279243561b7eb1988a0d2e5b16cee",
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/pages/LandingPage/LandingPage.test.tsx": {
-    "mtime": 1786638724.0353682,
+    "mtime": 1786639803.9918928,
     "ast_hash": "44ff3740ac68ae7e0194dfc641aa9275",
     "semantic_hash": ""
   },
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/pages/LandingPage/LandingPage.test.tsx": {
-    "mtime": 1786638774.6161792,
+    "mtime": 1786639803.9965966,
     "ast_hash": "260670589af5f14e3d4b592787057c88",
     "semantic_hash": ""
   },
   "docs/operacao/senior-portal.md": {
-    "mtime": 1786639247.1711168,
+    "mtime": 1786639804.0086837,
     "ast_hash": "dc4975aea541343a74f3e9e9dd402376",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260815_153804_revise_o_projeto_e_verifique_as_pend\u00eancias_a_parti.md": {
+    "mtime": 1786808284.5638354,
+    "ast_hash": "424060ba6d750bc66f3cb3cf32ac013c",
+    "semantic_hash": ""
+  },
+  "openspec/changes/archive/2026-08-15-migrate-pr-review-from-anthropic/.openspec.yaml": {
+    "mtime": 1786808509.8181615,
+    "ast_hash": "f50867b969d879995a8679e4daa5f361",
+    "semantic_hash": ""
+  },
+  "openspec/changes/archive/2026-08-15-migrate-pr-review-from-anthropic/design.md": {
+    "mtime": 1786808567.8755627,
+    "ast_hash": "f4ebacf4d2e91da09a11ddab51e0ade7",
+    "semantic_hash": ""
+  },
+  "openspec/changes/archive/2026-08-15-migrate-pr-review-from-anthropic/proposal.md": {
+    "mtime": 1786808529.6488602,
+    "ast_hash": "92ddf2be89ca9fc026b0588c2764cc12",
+    "semantic_hash": ""
+  },
+  "openspec/changes/archive/2026-08-15-migrate-pr-review-from-anthropic/specs/automated-quality-gates/spec.md": {
+    "mtime": 1786808567.8406692,
+    "ast_hash": "b3791fb3bba9bad248ba1b24fd0e107e",
+    "semantic_hash": ""
+  },
+  "openspec/changes/archive/2026-08-15-migrate-pr-review-from-anthropic/tasks.md": {
+    "mtime": 1786808734.7637904,
+    "ast_hash": "70130dd58fea8f3d72e0d3c239431a4b",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260815_161259_vamos_implementar_as_specs_pendentes.md": {
+    "mtime": 1786810379.2168736,
+    "ast_hash": "d6afbb12dc62df6bc98e67d285fcd893",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/TestNotificationSender.cs": {
+    "mtime": 1786811334.6651506,
+    "ast_hash": "d683c8611193a73ef7183edf4be04a91",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Backend/SeniorCareManager.UnitTests/Services/SmtpNotificationSenderTests.cs": {
+    "mtime": 1786811342.1679635,
+    "ast_hash": "86a180390f7d44d033a184da2196aab0",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Dtos/Entities/AdminUserCreateResponse.cs": {
+    "mtime": 1786810800.068585,
+    "ast_hash": "33c39f5d072c332555cd9a74da42fbc9",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Enums/NotificationDeliveryStatus.cs": {
+    "mtime": 1786810744.7957914,
+    "ast_hash": "aaed26263368285d9fb3b74bfe946dfa",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Entities/IdentityNotificationService.cs": {
+    "mtime": 1786810745.0840037,
+    "ast_hash": "0e533c390bbb43ce6434d6c9bf5051b0",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Entities/SmtpClientAdapter.cs": {
+    "mtime": 1786810745.000697,
+    "ast_hash": "87e9d6b8743e8450b40e5923c6b60785",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Entities/SmtpNotificationSender.cs": {
+    "mtime": 1786810745.0418599,
+    "ast_hash": "0e2127e096ba853edce54a6437fbc968",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Interfaces/IIdentityNotificationService.cs": {
+    "mtime": 1786810744.9583144,
+    "ast_hash": "ac40914b6faefa65c1c80fb5189bd8ba",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Interfaces/INotificationSender.cs": {
+    "mtime": 1786810744.8692076,
+    "ast_hash": "02e666102f3c25d52a5937ef7eb3d63c",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Interfaces/ISmtpClientAdapter.cs": {
+    "mtime": 1786810744.9178689,
+    "ast_hash": "5fb3124a7703df0c12cce07779f1f7d9",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/auth/pages/MfaEnrollPage.test.tsx": {
+    "mtime": 1786812477.3454678,
+    "ast_hash": "a5004869ca91b6371c1597555fcb8505",
+    "semantic_hash": ""
+  },
+  "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Dtos/Entities/ActivationResendResponse.cs": {
+    "mtime": 1786811999.1315298,
+    "ast_hash": "3ea0787d236e3fd478240052086dfe4e",
     "semantic_hash": ""
   }
 }

@@ -38,6 +38,16 @@ services:
     networks:
       - seniorcare-net
 
+  mailpit:
+    image: axllent/mailpit:v1.27
+    container_name: seniorcare-mailpit
+    restart: unless-stopped
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - seniorcare-net
+
   # ── Backend ────────────────────────────────────────────────────────────
   seniorcare-api:
     build:
@@ -56,11 +66,22 @@ services:
       Bootstrap__InstitutionName: ${Bootstrap__InstitutionName:-}
       Bootstrap__AdminEmail: ${Bootstrap__AdminEmail:-}
       Bootstrap__AdminDisplayName: ${Bootstrap__AdminDisplayName:-}
+      # O operador pode definir todas como vazias no .env para validar o fallback manual.
+      Smtp__Host: ${Smtp__Host-mailpit}
+      Smtp__Port: ${Smtp__Port-1025}
+      Smtp__Username: ${Smtp__Username-}
+      Smtp__Password: ${Smtp__Password-}
+      Smtp__FromAddress: ${Smtp__FromAddress-noreply@seniorcare.local}
+      Smtp__FromDisplayName: ${Smtp__FromDisplayName-SeniorCare Local}
+      Smtp__UseStartTls: ${Smtp__UseStartTls-false}
+      Frontend__ActivationBaseUrl: ${Frontend__ActivationBaseUrl-http://localhost:3002/ativar-conta}
     ports:
       - "8080:8080"
     depends_on:
       postgres:
         condition: service_healthy
+      mailpit:
+        condition: service_started
     networks:
       - seniorcare-net
     healthcheck:

@@ -7,5 +7,7 @@ namespace SeniorCareManager.WebAPI.Objects.Models
         public string? AdminEmail { get; init; }
 
         public string? ActivationToken { get; init; }
+
+        public Enums.NotificationDeliveryStatus NotificationStatus { get; init; }
     }
 }

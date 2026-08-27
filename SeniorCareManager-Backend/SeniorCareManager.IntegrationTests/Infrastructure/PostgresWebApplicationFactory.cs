@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SeniorCareManager.WebAPI;
 using SeniorCareManager.WebAPI.Data;
 using SeniorCareManager.WebAPI.Data.Interceptors;
+using SeniorCareManager.WebAPI.Services.Interfaces;
 using Testcontainers.PostgreSql;
 
 namespace SeniorCareManager.IntegrationTests.Infrastructure;
@@ -17,6 +18,7 @@ namespace SeniorCareManager.IntegrationTests.Infrastructure;
 /// </summary>
 public sealed class PostgresWebApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
+    public TestNotificationSender NotificationSender { get; } = new();
     private readonly PostgreSqlContainer _postgres = new PostgreSqlBuilder()
         .WithDatabase("db_seniorcare_test")
         .WithUsername("postgres")
@@ -50,6 +52,11 @@ public sealed class PostgresWebApplicationFactory : WebApplicationFactory<Progra
             services.AddDbContext<AppDbContext>(opts =>
                 opts.UseNpgsql(_postgres.GetConnectionString())
                     .AddInterceptors(new AuditImmutabilityInterceptor()));
+
+            var notificationDescriptor = services.SingleOrDefault(d => d.ServiceType == typeof(INotificationSender));
+            if (notificationDescriptor != null)
+                services.Remove(notificationDescriptor);
+            services.AddSingleton<INotificationSender>(NotificationSender);
 
             // Esquema "Test" adicional (§5): requisição sem o header X-Test-UserId continua
             // anônima via o esquema Cookie normal (produção não muda); com o header, um

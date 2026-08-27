@@ -232,6 +232,9 @@ public class Startup
         services.AddScoped<IInstitutionIdentityOriginService, InstitutionIdentityOriginService>();
         services.AddScoped<IAccountTokenService, AccountTokenService>();
         services.AddScoped<IBootstrapService, BootstrapService>();
+        services.AddSingleton<ISmtpClientFactory, SmtpClientFactory>();
+        services.AddScoped<INotificationSender, SmtpNotificationSender>();
+        services.AddScoped<IIdentityNotificationService, IdentityNotificationService>();
         services.AddSingleton<ICommonPasswordBlocklist, CommonPasswordBlocklist>();
 
         // Senior Portal — catálogo de módulos (introduce-senior-portal §2)

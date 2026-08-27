@@ -1,0 +1,118 @@
+{
+  "generated_at": "2026-08-15T16:16:06.997466+00:00",
+  "nodes": {
+    "docs_operacao_senior_portal_operação_do_senior_portal": {
+      "code_fingerprint": "23bdf7a1041690e0f0300e6a46597ba0b493d675c7be0bcfaf31ec12dd9d6ccb",
+      "label": "Operação do Senior Portal",
+      "last": "2026-08-15T15:38:04.563332+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-15T15:38:04.563332+00:00",
+          "outcome": "useful",
+          "q": "Revise o projeto e verifique as pendências a partir do graphify e do openspec, preparando a retirada do modelo Anthropic na validação de PRs"
+        }
+      ],
+      "score": 0.999389823,
+      "source_file": "docs/operacao/senior-portal.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "github_pull_request_template": {
+      "code_fingerprint": "f913ad3c96051cb2f930dd906f682ec69a06c2d7a3a6046991ee1cfd3a88be03",
+      "label": "pull_request_template.md",
+      "last": "2026-08-15T15:38:04.563332+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-15T15:38:04.563332+00:00",
+          "outcome": "useful",
+          "q": "Revise o projeto e verifique as pendências a partir do graphify e do openspec, preparando a retirada do modelo Anthropic na validação de PRs"
+        }
+      ],
+      "score": 0.999389823,
+      "source_file": ".github/pull_request_template.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "infra_deploy_bootstrap": {
+      "code_fingerprint": "6f0071813f460529d8cca7d6fbb3d0d2e1210ad717424085909a90097a9ffd4b",
+      "label": "BOOTSTRAP.md",
+      "last": "2026-08-15T16:12:59.216229+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-15T16:12:59.216229+00:00",
+          "outcome": "useful",
+          "q": "vamos implementar as specs pendentes"
+        }
+      ],
+      "score": 0.999949785,
+      "source_file": "infra/deploy/BOOTSTRAP.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "seniorcaremanager_backend_seniorcaremanager_integrationtests_infrastructure_bootstrappostgreswebapplicationfactory_seniorcaremanager_integrationtests_infrastructure_bootstrappostgreswebapplicationfactory": {
+      "code_fingerprint": "73cb6ce1de0dc59c72d2895fec46f51398ea6bb43a331e78877973cd9a01ddab",
+      "label": "BootstrapPostgresWebApplicationFactory",
+      "last": "2026-08-15T16:12:59.216229+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-15T16:12:59.216229+00:00",
+          "outcome": "useful",
+          "q": "vamos implementar as specs pendentes"
+        }
+      ],
+      "score": 0.999949785,
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/BootstrapPostgresWebApplicationFactory.cs",
+      "status": "tentative",
+      "uses": 1
+    },
+    "seniorcaremanager_backend_seniorcaremanager_webapi_controllers_authcontroller_seniorcaremanager_webapi_controllers_authcontroller": {
+      "code_fingerprint": "0b3f7750376c410364be09e55ae4e08e2bfe8f83fefafc961bfaa3aeb22090c3",
+      "label": "AuthController",
+      "last": "2026-08-15T15:38:04.563332+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-15T15:38:04.563332+00:00",
+          "outcome": "useful",
+          "q": "Revise o projeto e verifique as pendências a partir do graphify e do openspec, preparando a retirada do modelo Anthropic na validação de PRs"
+        }
+      ],
+      "score": 0.999389823,
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/AuthController.cs",
+      "status": "tentative",
+      "uses": 1
+    },
+    "seniorcaremanager_backend_seniorcaremanager_webapi_program_seniorcaremanager_webapi_program": {
+      "code_fingerprint": "b2367fd0778adaf14e4b2a68a6ed8fd74127cac50698d3b23a27ee88c386b26b",
+      "label": "Program",
+      "last": "2026-08-15T15:38:04.563332+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-15T15:38:04.563332+00:00",
+          "outcome": "useful",
+          "q": "Revise o projeto e verifique as pendências a partir do graphify e do openspec, preparando a retirada do modelo Anthropic na validação de PRs"
+        }
+      ],
+      "score": 0.999389823,
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Program.cs",
+      "status": "tentative",
+      "uses": 1
+    },
+    "seniorcaremanager_backend_seniorcaremanager_webapi_startup_seniorcaremanager_webapi_startup": {
+      "code_fingerprint": "317743a1a25738e6ed3b7e42a1e5602f3d88d4eb96e70bc829462ef4fac914fd",
+      "label": "Startup",
+      "last": "2026-08-15T16:12:59.216229+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-15T16:12:59.216229+00:00",
+          "outcome": "useful",
+          "q": "vamos implementar as specs pendentes"
+        }
+      ],
+      "score": 0.999949785,
+      "source_file": "SeniorCareManager-Backend/SeniorCareManager.WebAPI/Startup.cs",
+      "status": "tentative",
+      "uses": 1
+    }
+  },
+  "version": 1
+}

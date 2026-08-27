@@ -15,6 +15,14 @@ export interface AdminUserCreateRequest {
   displayName: string;
 }
 
+export interface AdminUserCreateResponse extends AdminUser {
+  emailSent: boolean;
+}
+
+export interface ActivationResendResponse {
+  emailSent: boolean;
+}
+
 export interface AdminUserStateChangeRequest {
   accountState: AccountState;
   currentPassword: string;
@@ -41,9 +49,22 @@ const adminUserService = {
     }
   },
 
-  create: async (request: AdminUserCreateRequest): Promise<ServiceResult<AdminUser>> => {
+  create: async (request: AdminUserCreateRequest): Promise<ServiceResult<AdminUserCreateResponse>> => {
     try {
-      const res = await api.post<AdminUser>('AdminUser/', request);
+      const res = await api.post<AdminUserCreateResponse>('AdminUser/', request);
+      return { success: true, message: '', data: res.data };
+    } catch (error) {
+      return handleServiceError(error);
+    }
+  },
+
+  resendActivation: async (
+    id: string
+  ): Promise<ServiceResult<ActivationResendResponse>> => {
+    try {
+      const res = await api.post<ActivationResendResponse>(
+        `AdminUser/${id}/resend-activation`
+      );
       return { success: true, message: '', data: res.data };
     } catch (error) {
       return handleServiceError(error);
