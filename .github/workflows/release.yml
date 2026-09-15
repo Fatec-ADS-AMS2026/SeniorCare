@@ -37,8 +37,13 @@ jobs:
           - { module: care-web,   context: ./SeniorCareManager-Frontend/SeniorCareManagerFrontend, image: seniorcare-care-web,  var: CARE_WEB_IMAGE,      base_path: /care/ }
           - { module: stock-web,  context: ./SeniorStockManager-Frontend/SeniorStockManagerFrontend, image: seniorcare-stock-web, var: STOCK_WEB_IMAGE,     base_path: /stock/ }
           - { module: senior-portal, context: ./SeniorPortal-Frontend/SeniorPortalFrontend, image: seniorcare-senior-portal, var: SENIOR_PORTAL_IMAGE, base_path: / }
+
     steps:
       - uses: actions/checkout@v5
+      - name: Normalizar namespace do GHCR
+        id: registry
+        run: echo "owner=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_OUTPUT"
+
 
       - name: Set up Buildx
         # Cria um builder com driver docker-container — necessário para o cache
@@ -63,8 +68,8 @@ jobs:
           context: ${{ matrix.context }}
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}:${{ steps.ver.outputs.version }}
-            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}:latest
+            ${{ env.REGISTRY }}/${{ steps.registry.outputs.owner }}/${{ matrix.image }}:${{ steps.ver.outputs.version }}
+            ${{ env.REGISTRY }}/${{ steps.registry.outputs.owner }}/${{ matrix.image }}:latest
           build-args: |
             VERSION=${{ steps.ver.outputs.version }}
             GIT_SHA=${{ github.sha }}
@@ -74,8 +79,7 @@ jobs:
 
       - name: Registrar fragmento do manifest com proveniência
         run: |
-          mkdir -p _manifest
-          IMG="${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.image }}"
+          IMG="${{ env.REGISTRY }}/${{ steps.registry.outputs.owner }}/${{ matrix.image }}"
           {
             echo "RELEASE=${{ steps.ver.outputs.version }}"
             echo "GIT_SHA=${GITHUB_SHA}"
