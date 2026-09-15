@@ -229,7 +229,7 @@ jobs:
             "${{ needs.backend.result }}" \
             "${{ needs.care-web.result }}" \
             "${{ needs.stock-web.result }}" \
-            "${{ needs.senior_portal.result }}" \
+            "${{ needs.senior-portal.result }}" \
             "${{ needs.academic-homologation.result }}"; do
             if [ "$r" != "success" ] && [ "$r" != "skipped" ]; then
               echo "FALHOU: pelo menos um job obrigatório não teve sucesso (status: $r)."
