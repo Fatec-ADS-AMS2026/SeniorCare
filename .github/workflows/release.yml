@@ -14,7 +14,20 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
+  verify-main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Confirmar que a tag pertence a main
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main ||
+            { echo "A tag $GITHUB_REF_NAME precisa apontar para um commit já contido em main."; exit 1; }
+
   build:
+    needs: verify-main
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -77,6 +90,7 @@ jobs:
           path: _manifest/${{ matrix.var }}.env
 
   migration-script:
+    needs: verify-main
     # Gera o SQL idempotente das migrações — o servidor de produção nunca tem SDK .NET
     # (modelo build-once/deploy-many, docs/infra/ci-cd-arquitetura.md), então esse SQL
     # precisa ser gerado aqui e distribuído como artefato do release. deploy.sh roda esse
