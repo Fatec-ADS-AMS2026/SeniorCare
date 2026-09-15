@@ -64,6 +64,7 @@ services:
       Bootstrap__InstitutionName: ${Bootstrap__InstitutionName:-}
       Bootstrap__AdminEmail: ${Bootstrap__AdminEmail:-}
       Bootstrap__AdminDisplayName: ${Bootstrap__AdminDisplayName:-}
+      Bootstrap__RunOnStartup: ${Bootstrap__RunOnStartup:-true}
       Smtp__Host: ${Smtp__Host:-}
       Smtp__Port: ${Smtp__Port:-}
       Smtp__Username: ${Smtp__Username:-}

@@ -82,4 +82,25 @@ public class ProgramConfigurationTests
 
         Program.GetMissingConfiguration(config).Should().BeEmpty();
     }
+
+    [Theory]
+    [InlineData(null, true)]
+    [InlineData("true", true)]
+    [InlineData("false", false)]
+    public void ShouldRunBootstrapOnStartup_RespeitaConfiguracaoAcademica(string? configuredValue, bool expected)
+    {
+        var values = new Dictionary<string, string?>();
+        if (configuredValue is not null)
+            values["Bootstrap:RunOnStartup"] = configuredValue;
+        var configuration = new ConfigurationBuilder().AddInMemoryCollection(values).Build();
+
+        Program.ShouldRunBootstrapOnStartup(configuration).Should().Be(expected);
+    }
+
+    [Fact]
+    public void IsAcademicSeedCommand_AceitaSomenteFlagExplicita()
+    {
+        Program.IsAcademicSeedCommand(new[] { "--academic-seed" }).Should().BeTrue();
+        Program.IsAcademicSeedCommand(Array.Empty<string>()).Should().BeFalse();
+    }
 }

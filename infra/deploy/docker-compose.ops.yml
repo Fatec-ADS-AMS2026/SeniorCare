@@ -60,7 +60,7 @@ services:
     image: portainer/portainer-ce:2.21.4
     container_name: seniorcare-portainer
     restart: unless-stopped
-    profiles: [ops]
+    profiles: [portainer]
     ports:
       - "${PORTAINER_PORT:-9443}:9443"
     volumes:

@@ -182,12 +182,43 @@ jobs:
       - name: Verificar bundle de produção (sem localhost/segredo embutido)
         run: ../../.github/scripts/check-frontend-bundle.sh dist
 
+  academic-homologation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Renderizar Compose acadêmico com valores sintéticos
+        run: |
+          cat > /tmp/release.env <<'EOF'
+          API_IMAGE=ghcr.io/example/api:2026.09.0@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          CARE_WEB_IMAGE=ghcr.io/example/care:2026.09.0@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          STOCK_WEB_IMAGE=ghcr.io/example/stock:2026.09.0@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          SENIOR_PORTAL_IMAGE=ghcr.io/example/portal:2026.09.0@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          EOF
+          docker compose -p seniorcare-academico \
+            -f infra/deploy/docker-compose.yml -f infra/deploy/docker-compose.homolog.yml \
+            --env-file /tmp/release.env --env-file infra/deploy/clients/academico/.env.example \
+            config --format json > /tmp/academic-compose.json
+      - name: Validar topologia acadêmica renderizada
+        run: python3 infra/deploy/validate-academic-compose.py < /tmp/academic-compose.json
+      - name: Smoke HTTPS e caminhos-base
+        run: bash infra/deploy/tests/test-academic-caddy.sh
+      - name: Smoke Mailpit acadêmico
+        run: bash infra/deploy/tests/test-academic-mailpit.sh
+      - name: Verificar reset fail-closed
+        run: bash infra/deploy/tests/test-reset-academico.sh
+      - name: Verificar seed acadêmico explícito
+        run: bash infra/deploy/tests/test-seed-academico.sh
+      - name: Exercitar recuperação acadêmica
+        run: |
+          bash infra/deploy/tests/test-academic-backup-restore.sh
+          bash infra/deploy/tests/test-deploy-rollback.sh
+
   ci-required:
     # `backend`/`care-web`/`stock-web` só rodam quando o path correspondente muda — um
     # required status check da branch protection que nunca roda trava o PR pra sempre.
     # Este job sempre roda (inclusive quando os três acima foram pulados) e é o único que
     # a branch protection deve exigir deste workflow.
-    needs: [env-hygiene, backend, care-web, stock-web, senior-portal]
+    needs: [env-hygiene, backend, care-web, stock-web, senior-portal, academic-homologation]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -198,7 +229,8 @@ jobs:
             "${{ needs.backend.result }}" \
             "${{ needs.care-web.result }}" \
             "${{ needs.stock-web.result }}" \
-            "${{ needs.senior-portal.result }}"; do
+            "${{ needs.senior_portal.result }}" \
+            "${{ needs.academic-homologation.result }}"; do
             if [ "$r" != "success" ] && [ "$r" != "skipped" ]; then
               echo "FALHOU: pelo menos um job obrigatório não teve sucesso (status: $r)."
               exit 1

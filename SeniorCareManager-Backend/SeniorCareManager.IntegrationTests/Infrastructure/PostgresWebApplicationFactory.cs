@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SeniorCareManager.WebAPI;
 using SeniorCareManager.WebAPI.Data;
@@ -18,6 +19,8 @@ namespace SeniorCareManager.IntegrationTests.Infrastructure;
 /// </summary>
 public sealed class PostgresWebApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
+    public string? DataProtectionKeyRingPath { get; init; }
+    public string? DataProtectionApplicationName { get; init; }
     public TestNotificationSender NotificationSender { get; } = new();
     private readonly PostgreSqlContainer _postgres = new PostgreSqlBuilder()
         .WithDatabase("db_seniorcare_test")
@@ -39,6 +42,17 @@ public sealed class PostgresWebApplicationFactory : WebApplicationFactory<Progra
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Test");
+        if (!string.IsNullOrWhiteSpace(DataProtectionKeyRingPath))
+        {
+            builder.ConfigureAppConfiguration((_, configuration) =>
+            {
+                configuration.AddInMemoryCollection(new Dictionary<string, string?>
+                {
+                    ["DataProtection:KeyRingPath"] = DataProtectionKeyRingPath,
+                    ["DataProtection:ApplicationName"] = DataProtectionApplicationName ?? "seniorcare-integration",
+                });
+            });
+        }
 
         builder.ConfigureServices(services =>
         {

@@ -1,0 +1,137 @@
+# Overlay acadêmico: combine sempre com docker-compose.yml pelo deploy.sh.
+# Não constrói imagens; os quatro componentes de aplicação vêm do manifesto por digest.
+services:
+  postgres:
+    container_name: seniorcare-academico-postgres
+    ports:
+      - "${ACADEMIC_POSTGRES_PUBLISH:-127.0.0.1:5433}:5432"
+    volumes:
+      - ${ACADEMIC_POSTGRES_DATA_PATH:?defina ACADEMIC_POSTGRES_DATA_PATH}:/var/lib/postgresql/data
+    labels:
+      com.seniorcare.environment: academic
+      com.seniorcare.managed-by: deploy.sh
+
+  seniorcare-api:
+    container_name: seniorcare-academico-api
+    mem_limit: ${ACADEMIC_API_MEM_LIMIT:-768m}
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      DataProtection__KeyRingPath: /var/lib/seniorcare/data-protection
+      DataProtection__ApplicationName: ${ACADEMIC_DATA_PROTECTION_APPLICATION_NAME:-seniorcare-academico}
+      Smtp__Host: mailpit
+      Smtp__Port: 1025
+      Smtp__Username: ""
+      Smtp__Password: ""
+      Smtp__FromAddress: ${ACADEMIC_SMTP_FROM_ADDRESS:?defina ACADEMIC_SMTP_FROM_ADDRESS}
+      Smtp__FromDisplayName: ${ACADEMIC_SMTP_FROM_DISPLAY_NAME:-SeniorCare Acadêmico}
+      Smtp__UseStartTls: "false"
+      Frontend__ActivationBaseUrl: ${ACADEMIC_ACTIVATION_BASE_URL:?defina ACADEMIC_ACTIVATION_BASE_URL}
+      ForwardedHeaders__TrustedProxies: ${ACADEMIC_CADDY_IP:-172.30.0.2}
+    ports: !reset []
+    volumes:
+      - ${ACADEMIC_DATA_PROTECTION_PATH:?defina ACADEMIC_DATA_PROTECTION_PATH}:/var/lib/seniorcare/data-protection
+    labels:
+      com.seniorcare.environment: academic
+      com.seniorcare.managed-by: deploy.sh
+
+  care-web:
+    container_name: seniorcare-academico-care-web
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost/ >/dev/null"]
+      interval: 15s
+      timeout: 5s
+      retries: 8
+      start_period: 20s
+    ports: !reset []
+    labels:
+      com.seniorcare.environment: academic
+      com.seniorcare.managed-by: deploy.sh
+
+  stock-web:
+    container_name: seniorcare-academico-stock-web
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost/ >/dev/null"]
+      interval: 15s
+      timeout: 5s
+      retries: 8
+      start_period: 20s
+    ports: !reset []
+    labels:
+      com.seniorcare.environment: academic
+      com.seniorcare.managed-by: deploy.sh
+
+  senior-portal:
+    container_name: seniorcare-academico-portal
+    environment:
+      PUBLIC_NAME: ${PUBLIC_NAME:-SeniorCare Acadêmico}
+      ACADEMIC_BANNER: ${ACADEMIC_BANNER:-Ambiente didático — dados fictícios}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost/ >/dev/null"]
+      interval: 15s
+      timeout: 5s
+      retries: 8
+      start_period: 20s
+    ports: !reset []
+    labels:
+      com.seniorcare.environment: academic
+      com.seniorcare.managed-by: deploy.sh
+
+  mailpit:
+    image: axllent/mailpit:v1.27.3
+    container_name: seniorcare-academico-mailpit
+    restart: unless-stopped
+    mem_limit: ${ACADEMIC_MAILPIT_MEM_LIMIT:-128m}
+    ports:
+      - "${ACADEMIC_MAILPIT_UI_PUBLISH:-127.0.0.1:8025}:8025"
+    networks: [seniorcare-net]
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8025/livez >/dev/null"]
+      interval: 15s
+      timeout: 5s
+      retries: 8
+      start_period: 15s
+    labels:
+      com.seniorcare.environment: academic
+      com.seniorcare.managed-by: deploy.sh
+
+  caddy:
+    image: caddy:2.8.4-alpine
+    container_name: seniorcare-academico-caddy
+    restart: unless-stopped
+    mem_limit: ${ACADEMIC_CADDY_MEM_LIMIT:-128m}
+    ports:
+      - "${ACADEMIC_HTTPS_PUBLISH:-8443}:443"
+    volumes:
+      - ./academico/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ${ACADEMIC_CADDY_DATA_PATH:?defina ACADEMIC_CADDY_DATA_PATH}:/data
+      - ${ACADEMIC_CADDY_CONFIG_PATH:?defina ACADEMIC_CADDY_CONFIG_PATH}:/config
+    environment:
+      ACADEMIC_HOSTNAME: ${ACADEMIC_HOSTNAME:?defina ACADEMIC_HOSTNAME}
+    depends_on:
+      seniorcare-api:
+        condition: service_healthy
+      care-web:
+        condition: service_healthy
+      stock-web:
+        condition: service_healthy
+      senior-portal:
+        condition: service_healthy
+    networks:
+      seniorcare-net:
+        ipv4_address: ${ACADEMIC_CADDY_IP:-172.30.0.2}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:2019/config/ >/dev/null"]
+      interval: 15s
+      timeout: 5s
+      retries: 8
+      start_period: 20s
+    labels:
+      com.seniorcare.environment: academic
+      com.seniorcare.managed-by: deploy.sh
+
+networks:
+  seniorcare-net:
+    name: ${ACADEMIC_NETWORK_NAME:-seniorcare-academico-net}
+    ipam:
+      config:
+        - subnet: ${ACADEMIC_NETWORK_SUBNET:-172.30.0.0/24}
