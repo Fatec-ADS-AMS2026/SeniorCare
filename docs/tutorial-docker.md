@@ -1,6 +1,6 @@
 # Tutorial: rodando e gerando os containers Docker
 
-Guia pra subir o SeniorCare inteiro (Postgres + API + os dois front-ends) via
+Guia pra subir o SeniorCare inteiro (Postgres + Mailpit + API + os três front-ends) via
 Docker, buildando as imagens a partir do código local. Pra rodar com debug
 real via Rider/WebStorm em vez de container, veja
 [`tutorial-desenvolvimento-ides.md`](tutorial-desenvolvimento-ides.md).
@@ -29,7 +29,7 @@ cp .env.example .env
 docker compose up -d --build
 ```
 
-`--build` builda as 3 imagens (API, care-web, stock-web) a partir do
+`--build` builda as 4 imagens locais (API, Portal, care-web e stock-web) a partir do
 `Dockerfile` de cada componente antes de subir — na primeira vez demora mais
 (baixa as imagens base, restaura dependências); nas próximas, o cache de
 camadas do Docker acelera bastante.
@@ -50,57 +50,72 @@ boot).
 |---|---|
 | care-web | http://localhost:3000 |
 | stock-web | http://localhost:3001 |
+| senior-portal | http://localhost:3002 |
 | API | http://localhost:8080 (`/swagger`, `/health/live`, `/health/ready`) |
+| Mailpit | http://localhost:8025 (SMTP em `localhost:1025`) |
 | Postgres | `localhost:5432` (acessível de fora, ex.: DBeaver/pgAdmin) |
 
 ## 3. Primeiro login (criar e ativar o usuário admin)
 
 A API não vem com nenhum usuário/senha padrão — no primeiro boot (banco
 vazio), ela cria a instituição e o administrador a partir das três variáveis
-`Bootstrap__*` do `.env` (já preenchidas no `.env.example`, ver seção 1).
+`Bootstrap__*` do `.env` (já preenchidas no `.env.example`, ver seção 1). Não
+existe senha inicial padrão: a conta nasce `PROVISIONED`, sem senha, e a própria
+pessoa define a credencial no link de ativação.
 
-> **Pendência conhecida**: não existe serviço de e-mail nem geração de QR code
-> nesta plataforma ainda — o token de ativação só existe no log do container,
-> e o MFA só oferece a chave em texto pra digitar manualmente. É exatamente
-> essa lacuna que o script da seção 3.1 abaixo automatiza pro ambiente de dev
-> (não é uma correção da lacuna em si — produção continua precisando do
-> procedimento manual). Detalhe completo em
-> [`../infra/deploy/BOOTSTRAP.md`](../infra/deploy/BOOTSTRAP.md#pendências-conhecidas-leia-antes-de-operar-em-produção).
+Por padrão, o compose configura a API para o Mailpit. Abra
+`http://localhost:8025`, selecione a mensagem e siga o link para o Portal. Quando
+a entrega funciona, o token não aparece na saída de `seniorcare-api`.
 
-### 3.1. Caminho rápido — script
+### 3.1. Caminho rápido no fallback manual — script
+
+O helper trabalha com o token apresentado pela API, portanto use-o quando SMTP
+estiver desabilitado ou a entrega falhar. Para testar esse modo, defina **todas**
+estas chaves vazias no `.env`, recrie o banco vazio e suba a stack:
+
+```dotenv
+Smtp__Host=
+Smtp__Port=
+Smtp__Username=
+Smtp__Password=
+Smtp__FromAddress=
+Smtp__FromDisplayName=
+Smtp__UseStartTls=
+Frontend__ActivationBaseUrl=
+```
 
 ```bash
 ./bootstrap-dev-admin.sh
 ```
 
 Faz tudo de uma vez: espera a API ficar pronta, captura o token do log,
-ativa a conta (`admin@example.com` / `DevSenhaForte!2026` por padrão —
-ajustável via `DEV_ADMIN_EMAIL`/`DEV_ADMIN_PASSWORD`), loga, e cadastra o MFA
-calculando o código TOTP sozinho (sem celular, sem QR code). Idempotente —
+ativa a conta, loga e cadastra o MFA calculando o TOTP sozinho. O e-mail vem
+de `DEV_ADMIN_EMAIL`; a senha deve vir de `DEV_ADMIN_PASSWORD` não versionada
+ou é gerada com alta entropia e exibida somente nessa execução. Idempotente —
 rode de novo quantas vezes quiser, ele reconhece o que já foi feito. Ao
 final, imprime e-mail/senha e a chave do autenticador (salva localmente em
 `.dev-admin-mfa-key`, não versionada, só pra esse script recalcular o código
 em execuções futuras).
 
-Não contorna nem enfraquece o MFA — automatiza exatamente os mesmos passos
+Não existe nenhuma senha conhecida ou versionada no helper. Ele não contorna
+nem enfraquece o MFA — automatiza exatamente os mesmos passos
 que um humano faria via curl (seção 3.2), só sem precisar copiar/colar nada.
 
 ### 3.2. Passo a passo manual (o que o script acima faz por baixo)
 
-**a. Capturar o token de ativação.** Aparece **uma única vez** no log, no
-boot com banco vazio:
+**a. Obter a ativação.** No modo padrão, use o link recebido no Mailpit. No
+fallback, o token aparece **uma única vez** no log do boot com banco vazio:
 
 ```bash
 docker logs seniorcare-api 2>&1 | grep "Token de ativação"
 ```
 
-Se perder o token antes de ativar, não tem como recuperar pela API — só
-reprovisionando a conta direto no banco, ou derrubando tudo com
-`docker compose down -v` e subindo de novo do zero.
+O banco guarda somente o hash. No ambiente local ainda não ativado, use
+`docker compose down -v` e suba de novo; não existe consulta de recuperação.
 
-**b. Ativar a conta.** Pelo front-end: abra `http://localhost:3000/ativar-conta`
-(care) e preencha e-mail (`admin@example.com`, ou o que você definiu no
-`.env`), o token do passo a, e a senha que você quer usar. Ou direto pela API:
+**b. Ativar a conta.** Abra o link no Portal (`http://localhost:3002`) ou, no
+fallback, a rota `/ativar-conta`; preencha e-mail, token e a senha que você
+escolheu. Ou use diretamente a API:
 
 ```bash
 curl -X POST http://localhost:8080/api/v1/Auth/activate \
@@ -111,16 +126,23 @@ curl -X POST http://localhost:8080/api/v1/Auth/activate \
 **c. Logar e cadastrar o MFA (obrigatório, sem exceção pro bootstrap).** Pelo
 front-end: vá em `http://localhost:3000/login`, entre com o e-mail/senha do
 passo b — o sistema redireciona automaticamente pra `/mfa/enroll` (todo login
-administrativo, inclusive o primeiro, exige MFA cadastrado). A tela mostra
-uma chave (`authenticatorKey`); adicione uma conta manual num app
-autenticador (Google Authenticator, Authy, 1Password etc.) com essa chave e
-digite o código de 6 dígitos gerado. Depois de confirmar, guarde os 10
+administrativo, inclusive o primeiro, exige MFA cadastrado). A tela mostra um
+QR code e a chave manual equivalente; escaneie o QR num app autenticador ou
+cadastre a chave em texto, então digite o código de 6 dígitos. Depois de
+confirmar, guarde os 10
 códigos de recuperação mostrados (opcional, cada um só serve uma vez) — login
 completo, você cai direto no painel.
 
 Pra fazer o mesmo fluxo só por API/curl calculando o código TOTP você mesmo
 (sem celular, sem abrir o navegador), é exatamente o que `bootstrap-dev-admin.sh`
 (seção 3.1) já faz — abra o script se quiser ver os comandos `curl` exatos.
+
+### 3.3. Administradores criados depois do bootstrap
+
+A tela de usuários mostra se a ativação foi enviada. Se aparecer falha, corrija
+o bloco SMTP, recrie somente o container da API e use **Reenviar ativação** na
+conta `PROVISIONED`. A ação invalida o token anterior e nunca o expõe; o banco
+armazena somente hashes, portanto consulta direta não é um fallback válido.
 
 ## 4. Comandos do dia a dia
 

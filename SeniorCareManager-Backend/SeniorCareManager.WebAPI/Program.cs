@@ -18,27 +18,35 @@ namespace SeniorCareManager.WebAPI
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
+            var configuration = host.Services.GetRequiredService<IConfiguration>();
 
-            ValidateConfiguration(host.Services.GetRequiredService<IConfiguration>());
+            ValidateConfiguration(configuration);
 
             // Roda as migrations pendentes no boot — o container nunca chega a rodar sem
             // schema. Consistente com o `deploy.sh`/healthcheck: o serviço só fica "healthy"
             // depois que o banco está no schema esperado.
+            var academicSeed = IsAcademicSeedCommand(args);
             using (var scope = host.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 db.Database.Migrate();
 
-                // Idempotente: só cria instituição + admin PROVISIONED na primeira vez (nenhuma
-                // instituição ainda existe). O link de ativação só existe neste momento — não é
-                // persistido em lugar nenhum, então só pode ser capturado aqui.
-                var bootstrap = scope.ServiceProvider.GetRequiredService<IBootstrapService>();
-                var result = bootstrap.RunAsync().GetAwaiter().GetResult();
-                if (result.Created)
+                // O bootstrap normal permanece compatível para instalações existentes. No
+                // ambiente acadêmico ele é desabilitado no .env e executado somente por
+                // `seed-academico.sh --academic-seed`, evitando repopular uma turma no boot.
+                if (academicSeed || ShouldRunBootstrapOnStartup(configuration))
                 {
-                    Console.WriteLine("Bootstrap: instituição e administrador PROVISIONED criados.");
-                    Console.WriteLine($"  Administrador: {result.AdminEmail}");
-                    Console.WriteLine($"  Token de ativação (uso único, capture agora — não será reimpresso): {result.ActivationToken}");
+                    var bootstrap = scope.ServiceProvider.GetRequiredService<IBootstrapService>();
+                    var result = bootstrap.RunAsync().GetAwaiter().GetResult();
+                    if (result.Created)
+                    {
+                        Console.WriteLine("Bootstrap: instituição e administrador PROVISIONED criados.");
+                        Console.WriteLine($"  Administrador: {result.AdminEmail}");
+                        if (result.NotificationStatus != Objects.Enums.NotificationDeliveryStatus.Sent)
+                            Console.WriteLine($"  Token de ativação (uso único, capture agora — não será reimpresso): {result.ActivationToken}");
+                        else
+                            Console.WriteLine("  Link de ativação enviado por e-mail.");
+                    }
                 }
 
                 // introduce-senior-portal §2.3 — idempotente: cria só os InstitutionModule
@@ -51,8 +59,17 @@ namespace SeniorCareManager.WebAPI
                     Console.WriteLine($"Senior Portal: {provisionedCount} InstitutionModule provisionado(s) (DISABLED).");
             }
 
+            if (academicSeed)
+                return;
+
             host.Run();
         }
+
+        public static bool IsAcademicSeedCommand(string[] args) =>
+            args.Contains("--academic-seed", StringComparer.Ordinal);
+
+        public static bool ShouldRunBootstrapOnStartup(IConfiguration configuration) =>
+            !bool.TryParse(configuration["Bootstrap:RunOnStartup"], out var enabled) || enabled;
 
         // Separado de ValidateConfiguration para ser testável sem derrubar o processo do
         // test runner (Environment.Exit mataria o xUnit inteiro se chamado num teste).
@@ -73,6 +90,34 @@ namespace SeniorCareManager.WebAPI
                 missing.Add(
                     "Bootstrap__InstitutionName, Bootstrap__AdminEmail e Bootstrap__AdminDisplayName devem ser " +
                     "todas informadas juntas ou nenhuma (bootstrap parcialmente configurado)");
+
+            var smtpKeys = new[]
+            {
+                "Smtp:Host", "Smtp:Port", "Smtp:Username", "Smtp:Password",
+                "Smtp:FromAddress", "Smtp:FromDisplayName", "Smtp:UseStartTls"
+            };
+            var smtpProvided = smtpKeys.Any(k => !string.IsNullOrWhiteSpace(configuration[k]));
+            if (smtpProvided)
+            {
+                foreach (var key in new[] { "Smtp:Host", "Smtp:Port", "Smtp:FromAddress", "Frontend:ActivationBaseUrl" })
+                {
+                    if (string.IsNullOrWhiteSpace(configuration[key]))
+                        missing.Add($"{key} (variável de ambiente: {key.Replace(':', '_').Replace("_", "__")})");
+                }
+
+                var usernameSet = !string.IsNullOrWhiteSpace(configuration["Smtp:Username"]);
+                var passwordSet = !string.IsNullOrWhiteSpace(configuration["Smtp:Password"]);
+                if (usernameSet != passwordSet)
+                    missing.Add("Smtp__Username e Smtp__Password devem ser informados juntos ou ambos omitidos");
+
+                if (!string.IsNullOrWhiteSpace(configuration["Smtp:Port"]) &&
+                    (!int.TryParse(configuration["Smtp:Port"], out var port) || port is < 1 or > 65535))
+                    missing.Add("Smtp__Port deve ser um número entre 1 e 65535");
+
+                if (!string.IsNullOrWhiteSpace(configuration["Smtp:UseStartTls"]) &&
+                    !bool.TryParse(configuration["Smtp:UseStartTls"], out _))
+                    missing.Add("Smtp__UseStartTls deve ser true ou false");
+            }
 
             return missing;
         }

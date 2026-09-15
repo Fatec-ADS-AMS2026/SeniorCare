@@ -7,6 +7,7 @@ import { MfaEnrollResponse } from '../types';
 import useAuth from '@/hooks/useAuth';
 import useAppRoutes from '@/hooks/useAppRoutes';
 import { resolveReturnPath } from '@/utils/returnPath';
+import QRCode from 'qrcode';
 
 interface MfaConfirmFormData {
   code: string;
@@ -26,6 +27,7 @@ export default function MfaEnrollPage() {
   )?.challengeToken;
 
   const [enrollment, setEnrollment] = useState<MfaEnrollResponse | null>(null);
+  const [qrCodeDataUrl, setQrCodeDataUrl] = useState('');
   const [code, setCode] = useState('');
   const [recoveryCodes, setRecoveryCodes] = useState<string[] | null>(null);
   const [error, setError] = useState('');
@@ -48,6 +50,24 @@ export default function MfaEnrollPage() {
       cancelled = true;
     };
   }, [challengeToken]);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!enrollment) {
+      setQrCodeDataUrl('');
+      return;
+    }
+    QRCode.toDataURL(enrollment.otpAuthUri, { width: 240, margin: 1 })
+      .then((dataUrl) => {
+        if (!cancelled) setQrCodeDataUrl(dataUrl);
+      })
+      .catch(() => {
+        if (!cancelled) setQrCodeDataUrl('');
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [enrollment]);
 
   if (!challengeToken && authStatus !== 'authenticated') {
     return <Navigate to={routes.LOGIN.path} replace />;
@@ -122,6 +142,13 @@ export default function MfaEnrollPage() {
               Escaneie o código abaixo no seu aplicativo autenticador ou
               informe a chave manualmente.
             </p>
+            {qrCodeDataUrl && (
+              <img
+                src={qrCodeDataUrl}
+                alt='Código QR para configurar MFA'
+                className='w-60 h-60 self-center'
+              />
+            )}
             <p className='font-mono text-xs break-all bg-neutralLighter p-2 rounded'>
               {enrollment.otpAuthUri}
             </p>

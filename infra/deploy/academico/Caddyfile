@@ -1,0 +1,32 @@
+{
+	local_certs
+}
+
+{$ACADEMIC_HOSTNAME} {
+	encode zstd gzip
+	header {
+		X-Frame-Options "DENY"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+
+	# URLs canônicas preservam o caminho-base dos bundles Vite.
+	redir /care /care/ permanent
+	redir /stock /stock/ permanent
+
+	handle /api/* {
+		reverse_proxy seniorcare-academico-api:8080
+	}
+
+	handle_path /care/* {
+		reverse_proxy seniorcare-academico-care-web:80
+	}
+
+	handle_path /stock/* {
+		reverse_proxy seniorcare-academico-stock-web:80
+	}
+
+	handle {
+		reverse_proxy seniorcare-academico-portal:80
+	}
+}

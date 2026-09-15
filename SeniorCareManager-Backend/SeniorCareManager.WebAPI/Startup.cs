@@ -1,6 +1,7 @@
 using System.Security.Claims;
+using System.IO;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -57,6 +58,19 @@ public class Startup
             services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
                     .AddInterceptors(new AuditImmutabilityInterceptor()));
+        }
+
+        var keyRingPath = Configuration["DataProtection:KeyRingPath"];
+        var dataProtection = services.AddDataProtection();
+        if (!string.IsNullOrWhiteSpace(keyRingPath))
+        {
+            var applicationName = Configuration["DataProtection:ApplicationName"];
+            if (string.IsNullOrWhiteSpace(applicationName))
+                throw new InvalidOperationException("DataProtection:ApplicationName é obrigatório quando DataProtection:KeyRingPath está configurado.");
+
+            dataProtection
+                .PersistKeysToFileSystem(new DirectoryInfo(keyRingPath))
+                .SetApplicationName(applicationName);
         }
 
         // AddIdentityCore (não AddIdentity) porque não usamos o RBAC padrão do Identity —
@@ -232,6 +246,9 @@ public class Startup
         services.AddScoped<IInstitutionIdentityOriginService, InstitutionIdentityOriginService>();
         services.AddScoped<IAccountTokenService, AccountTokenService>();
         services.AddScoped<IBootstrapService, BootstrapService>();
+        services.AddSingleton<ISmtpClientFactory, SmtpClientFactory>();
+        services.AddScoped<INotificationSender, SmtpNotificationSender>();
+        services.AddScoped<IIdentityNotificationService, IdentityNotificationService>();
         services.AddSingleton<ICommonPasswordBlocklist, CommonPasswordBlocklist>();
 
         // Senior Portal — catálogo de módulos (introduce-senior-portal §2)
@@ -283,25 +300,10 @@ public class Startup
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        // Em produção a API só é alcançada via o nginx dos front-ends (infra/deploy/
-        // docker-compose.yml), que envia X-Forwarded-For/X-Forwarded-Proto — sem isso,
-        // HttpContext.Connection.RemoteIpAddress (usado por IOriginRateLimiter e gravado em
-        // UserSession.IpAddress, §7.8) sempre vê o IP do container nginx: o limitador por
-        // origem vira global (falhas de qualquer cliente bloqueiam todo mundo) e o IP
-        // registrado na sessão perde valor diagnóstico. Precisa ser a primeira coisa no
-        // pipeline — antes de qualquer coisa que leia o IP da conexão. KnownNetworks/
-        // KnownProxies limpos = confia no cabeçalho de qualquer immediate hop; seguro só
-        // enquanto a API não for alcançável fora da rede Docker (hoje o compose também
-        // publica 8080 no host, o que permite spoofing direto — ver observação no PR).
-        var forwardedHeadersOptions = new ForwardedHeadersOptions
-        {
-            ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
-        };
-        // Property initializer não limpa a lista pré-populada (só loopback por padrão) —
-        // precisa de Clear() explícito para de fato confiar no immediate hop.
-        forwardedHeadersOptions.KnownNetworks.Clear();
-        forwardedHeadersOptions.KnownProxies.Clear();
-        app.UseForwardedHeaders(forwardedHeadersOptions);
+        // Encaminhamento só é confiável quando o salto imediato é explicitamente
+        // configurado. Sem proxy confiável, X-Forwarded-* é ignorado; expor a API
+        // diretamente nunca permite forjar IP ou esquema.
+        app.UseForwardedHeaders(ForwardedHeadersConfiguration.Create(Configuration));
 
         // Centralizado e igual em todo ambiente — em dev, UseDeveloperExceptionPage()
         // vazaria stack trace no corpo da resposta (proibido pela 3.3); o

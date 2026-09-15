@@ -2,5 +2,7 @@
 clients/*/
 !clients/exemplo/
 clients/exemplo/.env
+!clients/academico/
+!clients/academico/.env.example
 backups/
 .state/

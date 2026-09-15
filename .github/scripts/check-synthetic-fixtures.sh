@@ -31,6 +31,7 @@ FIXTURE_PATHS=(
   "SeniorCareManager-Backend/SeniorCareManager.UnitTests"
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src"
   "SeniorStockManager-Frontend/SeniorStockManagerFrontend/src"
+  "infra/deploy/academico"
 )
 
 # Domínio reservado pra documentação/teste (RFC 2606 + RFC 6762) ou convenção
@@ -43,7 +44,7 @@ echo "==> Verificando que fixtures/seeds de teste só usam e-mail sintético..."
 
 VIOLATIONS=()
 for path in "${FIXTURE_PATHS[@]}"; do
-  [ -d "$path" ] || continue
+  [ -e "$path" ] || continue
   while IFS=: read -r file line email; do
     [ -z "$email" ] && continue
     domain="${email#*@}"
@@ -51,7 +52,7 @@ for path in "${FIXTURE_PATHS[@]}"; do
       VIOLATIONS+=("$file:$line: $email")
     fi
   done < <(grep -rnoE "$EMAIL_RE" "$path" \
-             --include='*.cs' --include='*.ts' --include='*.tsx' 2>/dev/null || true)
+             --include='*.cs' --include='*.ts' --include='*.tsx' --include='*.sh' --include='*.sql' --include='*.json' --include='*.md' 2>/dev/null || true)
 done
 
 if [ "${#VIOLATIONS[@]}" -gt 0 ]; then

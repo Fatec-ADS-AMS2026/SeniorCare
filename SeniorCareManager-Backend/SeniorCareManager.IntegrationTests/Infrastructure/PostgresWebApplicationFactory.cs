@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SeniorCareManager.WebAPI;
 using SeniorCareManager.WebAPI.Data;
 using SeniorCareManager.WebAPI.Data.Interceptors;
+using SeniorCareManager.WebAPI.Services.Interfaces;
 using Testcontainers.PostgreSql;
 
 namespace SeniorCareManager.IntegrationTests.Infrastructure;
@@ -17,6 +19,9 @@ namespace SeniorCareManager.IntegrationTests.Infrastructure;
 /// </summary>
 public sealed class PostgresWebApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
+    public string? DataProtectionKeyRingPath { get; init; }
+    public string? DataProtectionApplicationName { get; init; }
+    public TestNotificationSender NotificationSender { get; } = new();
     private readonly PostgreSqlContainer _postgres = new PostgreSqlBuilder()
         .WithDatabase("db_seniorcare_test")
         .WithUsername("postgres")
@@ -37,6 +42,17 @@ public sealed class PostgresWebApplicationFactory : WebApplicationFactory<Progra
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Test");
+        if (!string.IsNullOrWhiteSpace(DataProtectionKeyRingPath))
+        {
+            builder.ConfigureAppConfiguration((_, configuration) =>
+            {
+                configuration.AddInMemoryCollection(new Dictionary<string, string?>
+                {
+                    ["DataProtection:KeyRingPath"] = DataProtectionKeyRingPath,
+                    ["DataProtection:ApplicationName"] = DataProtectionApplicationName ?? "seniorcare-integration",
+                });
+            });
+        }
 
         builder.ConfigureServices(services =>
         {
@@ -50,6 +66,11 @@ public sealed class PostgresWebApplicationFactory : WebApplicationFactory<Progra
             services.AddDbContext<AppDbContext>(opts =>
                 opts.UseNpgsql(_postgres.GetConnectionString())
                     .AddInterceptors(new AuditImmutabilityInterceptor()));
+
+            var notificationDescriptor = services.SingleOrDefault(d => d.ServiceType == typeof(INotificationSender));
+            if (notificationDescriptor != null)
+                services.Remove(notificationDescriptor);
+            services.AddSingleton<INotificationSender>(NotificationSender);
 
             // Esquema "Test" adicional (§5): requisição sem o header X-Test-UserId continua
             // anônima via o esquema Cookie normal (produção não muda); com o header, um

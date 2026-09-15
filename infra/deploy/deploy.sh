@@ -18,6 +18,7 @@ set -euo pipefail
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 REPO_ROOT=$(cd "$SCRIPT_DIR/../.." && pwd)
 COMPOSE_FILE="$SCRIPT_DIR/docker-compose.yml"
+RELEASE_FETCHER="$SCRIPT_DIR/fetch-release-assets.sh"
 RELEASES_DIR="$REPO_ROOT/releases"
 CLIENTS_DIR="$SCRIPT_DIR/clients"
 BACKUPS_DIR="$SCRIPT_DIR/backups"
@@ -43,10 +44,29 @@ resolve_client() {
 
 # Lê uma chave do .env do cliente (sem sourcing).
 get_env() { grep -E "^$1=" "$CLIENT_ENV" 2>/dev/null | tail -1 | cut -d= -f2- || true; }
-
-# docker compose com manifest de release + configuração do ambiente.
+# docker compose com manifesto, configuração do ambiente e arquivos Compose
+# selecionados exclusivamente pelo cliente conhecido.
 compose() {
-  docker compose -f "$COMPOSE_FILE" --env-file "$RELEASE_ENV" --env-file "$CLIENT_ENV" "$@"
+  local args=(-p "$COMPOSE_PROJECT")
+  local file
+  for file in "${COMPOSE_FILES[@]}"; do
+    args+=(-f "$file")
+  done
+  docker compose "${args[@]}" --env-file "$RELEASE_ENV" --env-file "$CLIENT_ENV" "$@"
+}
+
+configure_environment() {
+  COMPOSE_PROJECT=seniorcare
+  COMPOSE_FILES=("$COMPOSE_FILE")
+
+  case "$CLIENT" in
+    academico)
+      COMPOSE_PROJECT=seniorcare-academico
+      COMPOSE_FILES+=("$SCRIPT_DIR/docker-compose.homolog.yml")
+      BACKUPS_DIR=$(get_env ACADEMIC_BACKUPS_PATH)
+      [ -n "$BACKUPS_DIR" ] || die "defina ACADEMIC_BACKUPS_PATH em $CLIENT_ENV"
+      ;;
+  esac
 }
 
 # ── Login opcional no GHCR ───────────────────────────────────────────────
@@ -163,9 +183,9 @@ record_release() {
 # ── Fluxo principal de deploy ────────────────────────────────────────────
 do_deploy() {
   local ver="$1"
+  "$RELEASE_FETCHER" "$ver"
   RELEASE_ENV="$RELEASES_DIR/${ver}.env"
-  [ -f "$RELEASE_ENV" ] || die "manifest do release não encontrado: $RELEASE_ENV"
-
+  [ -f "$RELEASE_ENV" ] || die "manifest do release não encontrado após download: $RELEASE_ENV"
   log "deploy do SeniorCare $ver — cliente $CLIENT"
   ghcr_login
   pg_backup "$ver"
@@ -200,10 +220,10 @@ do_status() {
   if [ -f "$RELEASE_ENV" ]; then compose ps; else docker ps --filter "name=seniorcare"; fi
 }
 
-# ── Dispatch ─────────────────────────────────────────────────────────────
 main() {
   command -v docker >/dev/null || die "docker não encontrado no servidor"
   resolve_client
+  configure_environment
   local cmd="${1:-}"
   case "$cmd" in
     rollback) do_rollback ;;

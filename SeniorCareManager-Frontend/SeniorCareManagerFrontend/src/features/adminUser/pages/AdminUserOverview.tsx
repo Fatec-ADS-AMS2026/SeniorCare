@@ -1,10 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import adminUserService from '../services/adminUserService';
-import AdminUser, { AccountState } from '@/types/models/AdminUser';
+import AdminUser, {
+  AccountState,
+  IdentityOrigin,
+} from '@/types/models/AdminUser';
 import Table from '@/components/Table';
 import { TableColumn } from '@/components/Table/types';
-import { Pencil, Plus, UsersThree } from '@phosphor-icons/react';
+import {
+  EnvelopeSimple,
+  Pencil,
+  Plus,
+  UsersThree,
+} from '@phosphor-icons/react';
 import BreadcrumbPageTitle from '@/components/BreadcrumbPageTitle';
 import SearchBar from '@/components/SearchBar';
 import Button from '@/components/Button';
@@ -46,6 +54,7 @@ export default function AdminUserOverview() {
   const [currentId, setCurrentId] = useState<string | null>(null);
   const [stateError, setStateError] = useState('');
   const [isStateSubmitting, setIsStateSubmitting] = useState(false);
+  const [resendingId, setResendingId] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
     const res = await adminUserService.getAll();
@@ -87,13 +96,11 @@ export default function AdminUserOverview() {
     const res = await adminUserService.create(formData);
     if (res.success && res.data) {
       await fetchData();
-      // O token de ativação nunca chega até aqui — a API não o devolve (achado da
-      // revisão do PR: platform-authentication proíbe token em resposta
-      // administrativa). A entrega do link de ativação é um procedimento
-      // operacional separado, fora do escopo desta tela.
       showAlert(
-        `Usuário "${res.data.displayName}" criado com estado PROVISIONED. Siga o procedimento institucional para entregar a ativação com segurança.`,
-        'success'
+        res.data.emailSent
+          ? `Usuário "${res.data.displayName}" criado. O link de ativação foi enviado por e-mail.`
+          : `Usuário "${res.data.displayName}" criado com estado PROVISIONED, mas o e-mail não foi enviado. Corrija ou configure o SMTP e use “Reenviar ativação”.`,
+        res.data.emailSent ? 'success' : 'info'
       );
     } else {
       showAlert(res.message || 'Erro inesperado ao criar o usuário.', 'error');
@@ -105,6 +112,23 @@ export default function AdminUserOverview() {
     setCurrentId(id);
     setStateError('');
     setIsStateModalOpen(true);
+  };
+
+  const handleResendActivation = async (id: string) => {
+    setResendingId(id);
+    const res = await adminUserService.resendActivation(id);
+    setResendingId(null);
+
+    if (res.success && res.data) {
+      showAlert(
+        res.data.emailSent
+          ? 'Um novo link de ativação foi enviado por e-mail. O link anterior foi invalidado.'
+          : 'Um novo token foi emitido, mas o e-mail não foi enviado. Corrija o SMTP e tente reenviar novamente.',
+        res.data.emailSent ? 'success' : 'info'
+      );
+    } else {
+      showAlert(res.message || 'Não foi possível reenviar a ativação.', 'error');
+    }
   };
 
   const handleStateChange = async (
@@ -129,26 +153,40 @@ export default function AdminUserOverview() {
 
   const currentUser = data.find((u) => u.id === currentId);
 
-  const Actions = ({ id }: { id: string }) => (
-    <>
-      <button
-        onClick={() => openStateModal(id)}
-        className='text-edit hover:text-hoverEdit'
-        title='Alterar estado'
-      >
-        <Pencil className='size-6' weight='fill' />
-      </button>
-      <button
-        onClick={() =>
-          navigate(routes.USER_SESSION.path.replace(':userId', id))
-        }
-        className='text-primary hover:text-secondary'
-        title='Ver sessões'
-      >
-        <UsersThree className='size-6' weight='fill' />
-      </button>
-    </>
-  );
+  const Actions = ({ id }: { id: string }) => {
+    const user = data.find((item) => item.id === id);
+    return (
+      <>
+        {user?.accountState === AccountState.PROVISIONED &&
+          user.identityOrigin === IdentityOrigin.LOCAL && (
+          <button
+            onClick={() => handleResendActivation(id)}
+            disabled={resendingId === id}
+            className='text-primary hover:text-secondary disabled:opacity-50'
+            title='Reenviar ativação'
+          >
+            <EnvelopeSimple className='size-6' weight='fill' />
+          </button>
+          )}
+        <button
+          onClick={() => openStateModal(id)}
+          className='text-edit hover:text-hoverEdit'
+          title='Alterar estado'
+        >
+          <Pencil className='size-6' weight='fill' />
+        </button>
+        <button
+          onClick={() =>
+            navigate(routes.USER_SESSION.path.replace(':userId', id))
+          }
+          className='text-primary hover:text-secondary'
+          title='Ver sessões'
+        >
+          <UsersThree className='size-6' weight='fill' />
+        </button>
+      </>
+    );
+  };
 
   return (
     <div>

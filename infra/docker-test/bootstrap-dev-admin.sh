@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # bootstrap-dev-admin.sh — automatiza o primeiro acesso (ativação + MFA) em
-# ambiente de desenvolvimento, sem depender de e-mail nem de QR code (nenhum
-# dos dois existe na plataforma ainda — ver
-# ../deploy/BOOTSTRAP.md#pendências-conhecidas).
+# ambiente de desenvolvimento. Quando SMTP entrega o link, use-o na UI; este
+# helper aceita --token apenas para o fallback manual exibido pela API.
 #
 # Faz de ponta a ponta o que o tutorial descreve manualmente: espera a API
 # ficar pronta, captura o token de ativação, ativa a conta, loga, cadastra o
@@ -16,12 +15,13 @@
 #   ./bootstrap-dev-admin.sh --token <token>    # backend rodando fora de container (IDE) — cole o
 #                                                 # token impresso no console da IDE
 #
-# Variáveis de ambiente (todas opcionais, com default):
+# Variáveis de ambiente:
 #   API_BASE             default http://localhost:8080
 #   DEV_ADMIN_EMAIL       default admin@example.com — precisa bater com Bootstrap__AdminEmail do .env
-#   DEV_ADMIN_PASSWORD    default DevSenhaForte!2026
+#   DEV_ADMIN_PASSWORD    opcional; ausente, uma senha efêmera forte é gerada para esta execução
 #
-# Idempotente — cobre os 3 estados possíveis do login:
+# Reexecução exige a mesma DEV_ADMIN_PASSWORD escolhida anteriormente e cobre
+# os 3 estados possíveis do login:
 #   "ok"                     conta já ativa e MFA já cadastrado, nada a fazer além de confirmar.
 #   "mfa_enrollment_required" primeiro login: cadastra o MFA agora (enroll + confirm).
 #   "mfa_required"            MFA já cadastrado em execução anterior: usa a chave salva em
@@ -35,7 +35,11 @@ KEY_FILE="$SCRIPT_DIR/.dev-admin-mfa-key"
 
 API_BASE="${API_BASE:-http://localhost:8080}"
 DEV_ADMIN_EMAIL="${DEV_ADMIN_EMAIL:-admin@example.com}"
-DEV_ADMIN_PASSWORD="${DEV_ADMIN_PASSWORD:-DevSenhaForte!2026}"
+PASSWORD_WAS_GENERATED=false
+if [ -z "${DEV_ADMIN_PASSWORD:-}" ]; then
+  DEV_ADMIN_PASSWORD=$(python3 -c 'import secrets; print("Sc!" + secrets.token_urlsafe(30))')
+  PASSWORD_WAS_GENERATED=true
+fi
 COOKIE_JAR=$(mktemp)
 trap 'rm -f "$COOKIE_JAR"' EXIT
 
@@ -98,7 +102,10 @@ if [ -n "$TOKEN" ]; then
     log "ativação retornou HTTP $ACTIVATE_RESP — provavelmente a conta já estava ativa antes; seguindo pro login."
   fi
 else
-  log "sem token novo pra ativar (nenhum container seniorcare-api encontrado e --token não foi passado) — assumindo que a conta já está ativa e tentando login direto."
+  if [ "$PASSWORD_WAS_GENERATED" = true ]; then
+    die "sem token no fallback manual. Se SMTP estiver ativo, abra o link recebido; se a conta já estiver ativa, informe a DEV_ADMIN_PASSWORD escolhida anteriormente."
+  fi
+  log "sem token no fallback manual; tentando login com a DEV_ADMIN_PASSWORD informada."
 fi
 
 # ── 4. Login ──────────────────────────────────────────────────────────────
@@ -113,6 +120,7 @@ case "$STATUS" in
   ok)
     log "login completo — MFA já cadastrado, sessão ativa. Nada mais a fazer."
     log "e-mail: $DEV_ADMIN_EMAIL | senha: $DEV_ADMIN_PASSWORD"
+    [ "$PASSWORD_WAS_GENERATED" = false ] || log "senha efêmera gerada nesta execução; guarde-a agora, ela não é persistida pelo helper."
     exit 0
     ;;
   mfa_required)
@@ -128,6 +136,7 @@ case "$STATUS" in
     [ "$(json_get "$MFA_RESP" status)" = "ok" ] || die "login/mfa não retornou 'ok' — resposta: $MFA_RESP"
     log "login completo (MFA confirmado com a chave salva)."
     log "e-mail: $DEV_ADMIN_EMAIL | senha: $DEV_ADMIN_PASSWORD"
+    [ "$PASSWORD_WAS_GENERATED" = false ] || log "senha efêmera gerada nesta execução; guarde-a agora, ela não é persistida pelo helper."
     exit 0
     ;;
   mfa_enrollment_required)

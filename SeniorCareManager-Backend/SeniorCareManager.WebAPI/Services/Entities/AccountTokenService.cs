@@ -41,6 +41,35 @@ public class AccountTokenService : IAccountTokenService
         return rawToken;
     }
 
+    public async Task<string> ReissueAsync(
+        Guid userId,
+        AccountTokenPurpose purpose,
+        TimeSpan validity,
+        CancellationToken cancellationToken = default)
+    {
+        var now = DateTime.UtcNow;
+        var pendingTokens = await _dbContext.AccountTokens
+            .Where(t => t.UserId == userId && t.Purpose == purpose && t.UsedAtUtc == null)
+            .ToListAsync(cancellationToken);
+
+        foreach (var token in pendingTokens)
+            token.UsedAtUtc = now;
+
+        var rawToken = GenerateRawToken();
+        _dbContext.AccountTokens.Add(new AccountToken
+        {
+            Id = Guid.NewGuid(),
+            UserId = userId,
+            Purpose = purpose,
+            TokenHash = Hash(rawToken),
+            CreatedAtUtc = now,
+            ExpiresAtUtc = now.Add(validity)
+        });
+
+        await _dbContext.SaveChangesAsync(cancellationToken);
+        return rawToken;
+    }
+
     public async Task<bool> ConsumeAsync(Guid userId, AccountTokenPurpose purpose, string rawToken, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(rawToken))

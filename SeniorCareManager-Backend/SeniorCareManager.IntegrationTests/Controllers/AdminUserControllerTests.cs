@@ -20,6 +20,7 @@ public sealed class AdminUserControllerTests : IClassFixture<PostgresWebApplicat
     public AdminUserControllerTests(PostgresWebApplicationFactory factory)
     {
         _factory = factory;
+        _factory.NotificationSender.Reset(NotificationDeliveryStatus.Disabled);
     }
 
     [Fact]
@@ -76,6 +77,117 @@ public sealed class AdminUserControllerTests : IClassFixture<PostgresWebApplicat
 
         raw.Should().NotContain("activationToken", "a resposta de criação não deve expor o token de ativação");
         raw.Should().NotContain("ActivationToken", "a resposta de criação não deve expor o token de ativação");
+    }
+
+    [Theory]
+    [InlineData(NotificationDeliveryStatus.Sent, true)]
+    [InlineData(NotificationDeliveryStatus.Failed, false)]
+    public async Task Post_ReportsNotificationOutcomeWithoutRollingBackAccount(
+        NotificationDeliveryStatus senderStatus,
+        bool expectedEmailSent)
+    {
+        _factory.NotificationSender.Reset(senderStatus);
+        using var scope = _factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var (_, adminId) = await TestIdentitySeeder.SeedFullAccessUserAsync(db);
+        var email = $"notificacao-{Guid.NewGuid():N}@example.com";
+
+        var response = await _factory.CreateClient().AsUser(adminId).PostAsJsonAsync(
+            "/api/v1/AdminUser",
+            new AdminUserCreateRequest { Email = email, DisplayName = "Pessoa Notificada" });
+
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        var created = await response.Content.ReadFromJsonAsync<AdminUserCreateResponse>();
+        created!.EmailSent.Should().Be(expectedEmailSent);
+        (await db.Users.AnyAsync(u => u.Email == email)).Should().BeTrue();
+        _factory.NotificationSender.Messages.Should().ContainSingle();
+    }
+
+    [Theory]
+    [InlineData(NotificationDeliveryStatus.Sent, true)]
+    [InlineData(NotificationDeliveryStatus.Failed, false)]
+    public async Task ResendActivation_ReplacesPendingTokenWithoutExposingIt(
+        NotificationDeliveryStatus senderStatus,
+        bool expectedEmailSent)
+    {
+        using var scope = _factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var (_, adminId) = await TestIdentitySeeder.SeedFullAccessUserAsync(db);
+        var client = _factory.CreateClient().AsUser(adminId);
+        var email = $"reenvio-{Guid.NewGuid():N}@example.com";
+
+        var createResponse = await client.PostAsJsonAsync("/api/v1/AdminUser",
+            new AdminUserCreateRequest { Email = email, DisplayName = "Pessoa Reenvio" });
+        var created = await createResponse.Content.ReadFromJsonAsync<AdminUserCreateResponse>();
+        var originalToken = await db.AccountTokens.SingleAsync(t =>
+            t.UserId == created!.Id && t.Purpose == AccountTokenPurpose.ACTIVATION);
+
+        _factory.NotificationSender.Reset(senderStatus);
+        var response = await client.PostAsync(
+            $"/api/v1/AdminUser/{created!.Id}/resend-activation", null);
+        var rawResponse = await response.Content.ReadAsStringAsync();
+        var result = await response.Content.ReadFromJsonAsync<ActivationResendResponse>();
+
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        result!.EmailSent.Should().Be(expectedEmailSent);
+        rawResponse.ToLowerInvariant().Should().NotContain("token");
+        db.ChangeTracker.Clear();
+        var tokens = await db.AccountTokens
+            .Where(t => t.UserId == created.Id && t.Purpose == AccountTokenPurpose.ACTIVATION)
+            .OrderBy(t => t.CreatedAtUtc)
+            .ToListAsync();
+        tokens.Should().HaveCount(2);
+        tokens.Single(t => t.Id == originalToken.Id).UsedAtUtc.Should().NotBeNull();
+        tokens.Single(t => t.Id != originalToken.Id).UsedAtUtc.Should().BeNull();
+        _factory.NotificationSender.Messages.Should().ContainSingle();
+    }
+
+    [Fact]
+    public async Task ResendActivation_ForAccountFromAnotherInstitution_ReturnsNotFound()
+    {
+        using var scope = _factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var (_, firstAdminId) = await TestIdentitySeeder.SeedFullAccessUserAsync(db);
+        var (_, secondAdminId) = await TestIdentitySeeder.SeedFullAccessUserAsync(db);
+        var otherClient = _factory.CreateClient().AsUser(secondAdminId);
+        var createResponse = await otherClient.PostAsJsonAsync("/api/v1/AdminUser",
+            new AdminUserCreateRequest
+            {
+                Email = $"outra-{Guid.NewGuid():N}@example.com",
+                DisplayName = "Outra Instituição"
+            });
+        var created = await createResponse.Content.ReadFromJsonAsync<AdminUserCreateResponse>();
+
+        var response = await _factory.CreateClient().AsUser(firstAdminId).PostAsync(
+            $"/api/v1/AdminUser/{created!.Id}/resend-activation", null);
+
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    }
+
+    [Fact]
+    public async Task ResendActivation_ForActiveAccount_IsRejectedWithoutIssuingToken()
+    {
+        using var scope = _factory.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var (_, adminId) = await TestIdentitySeeder.SeedFullAccessUserAsync(db);
+        var client = _factory.CreateClient().AsUser(adminId);
+        var createResponse = await client.PostAsJsonAsync("/api/v1/AdminUser",
+            new AdminUserCreateRequest
+            {
+                Email = $"ativa-{Guid.NewGuid():N}@example.com",
+                DisplayName = "Pessoa Ativa"
+            });
+        var created = await createResponse.Content.ReadFromJsonAsync<AdminUserCreateResponse>();
+        var user = await db.Users.SingleAsync(u => u.Id == created!.Id);
+        user.AccountState = AccountState.ACTIVE;
+        await db.SaveChangesAsync();
+        var tokenCount = await db.AccountTokens.CountAsync(t => t.UserId == user.Id);
+
+        var response = await client.PostAsync(
+            $"/api/v1/AdminUser/{user.Id}/resend-activation", null);
+
+        response.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
+        (await db.AccountTokens.CountAsync(t => t.UserId == user.Id)).Should().Be(tokenCount);
     }
 
     [Fact]

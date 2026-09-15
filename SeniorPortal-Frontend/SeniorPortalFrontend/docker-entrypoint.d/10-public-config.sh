@@ -10,13 +10,15 @@ set -eu
 # padrão da imagem oficial nginx (/docker-entrypoint.d/), executados antes
 # do nginx subir.
 PUBLIC_NAME="${PUBLIC_NAME:-SeniorCare}"
+ACADEMIC_BANNER="${ACADEMIC_BANNER:-}"
 
 # Escapa aspas e barra invertida pra não quebrar o JSON — PUBLIC_NAME é
 # config de operador (variável de ambiente do deploy), não entrada de
 # usuário final; a escapagem aqui é sobre validade do JSON, não sobre XSS
 # (o React já escapa o valor ao renderizar).
 ESCAPED_NAME=$(printf '%s' "$PUBLIC_NAME" | sed 's/\\/\\\\/g; s/"/\\"/g')
+ESCAPED_BANNER=$(printf '%s' "$ACADEMIC_BANNER" | sed 's/\\/\\\\/g; s/"/\\"/g')
 
 cat > /usr/share/nginx/html/public-config.json <<EOF
-{"publicName":"${ESCAPED_NAME}"}
+{"publicName":"${ESCAPED_NAME}","academicBanner":"${ESCAPED_BANNER}"}
 EOF

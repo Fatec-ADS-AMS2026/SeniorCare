@@ -18,9 +18,12 @@ export default function GlobalHeader() {
 
   return (
     <header className='flex flex-wrap items-center justify-between gap-4 px-4 md:px-8 py-4 bg-neutralWhite border-b border-neutralLight'>
-      <NavLink to='/' className='font-bold text-lg text-secondary' end>
-        {config.publicName}
-      </NavLink>
+      <div>
+        <NavLink to='/' className='font-bold text-lg text-secondary' end>
+          {config.publicName}
+        </NavLink>
+        {config.academicBanner && <p className='text-sm font-semibold text-danger'>{config.academicBanner}</p>}
+      </div>
 
       <nav className='flex items-center gap-4' aria-label='Navegação global'>
         <NavLink to='/' className={navLinkClass} end>

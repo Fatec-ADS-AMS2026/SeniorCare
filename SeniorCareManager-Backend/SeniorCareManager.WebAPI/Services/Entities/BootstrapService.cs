@@ -20,19 +20,22 @@ public class BootstrapService : IBootstrapService
     private readonly IAccountTokenService _accountTokenService;
     private readonly IConfiguration _configuration;
     private readonly ILogger<BootstrapService> _logger;
+    private readonly IIdentityNotificationService _identityNotificationService;
 
     public BootstrapService(
         AppDbContext dbContext,
         UserManager<ApplicationUser> userManager,
         IAccountTokenService accountTokenService,
         IConfiguration configuration,
-        ILogger<BootstrapService> logger)
+        ILogger<BootstrapService> logger,
+        IIdentityNotificationService identityNotificationService)
     {
         _dbContext = dbContext;
         _userManager = userManager;
         _accountTokenService = accountTokenService;
         _configuration = configuration;
         _logger = logger;
+        _identityNotificationService = identityNotificationService;
     }
 
     public async Task<BootstrapResult> RunAsync(CancellationToken cancellationToken = default)
@@ -95,12 +98,15 @@ public class BootstrapService : IBootstrapService
 
         var activationToken = await _accountTokenService.IssueAsync(
             admin.Id, AccountTokenPurpose.ACTIVATION, AccountTokenService.ActivationTokenValidity, cancellationToken);
+        var notificationStatus = await _identityNotificationService.SendActivationAsync(
+            admin, activationToken, admin.Id, cancellationToken);
 
         return new BootstrapResult
         {
             Created = true,
             AdminEmail = adminEmail,
-            ActivationToken = activationToken
+            ActivationToken = activationToken,
+            NotificationStatus = notificationStatus
         };
     }
 }

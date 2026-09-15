@@ -11,6 +11,7 @@ import { ReactNode, createContext, useEffect, useState } from 'react';
 // portal nunca trava esperando essa configuração.
 export interface RuntimeConfig {
   publicName: string;
+  academicBanner?: string;
 }
 
 export const DEFAULT_RUNTIME_CONFIG: RuntimeConfig = { publicName: 'SeniorCare' };
@@ -50,7 +51,10 @@ export function RuntimeConfigProvider({ children }: RuntimeConfigProviderProps) 
         const publicName = data && typeof data === 'object' && 'publicName' in data && isValidPublicName(data.publicName)
           ? data.publicName
           : DEFAULT_RUNTIME_CONFIG.publicName;
-        setConfig({ publicName });
+        const academicBanner = data && typeof data === 'object' && 'academicBanner' in data && isValidPublicName(data.academicBanner)
+          ? data.academicBanner
+          : undefined;
+        setConfig({ publicName, academicBanner });
       })
       .catch(() => {
         if (!cancelled) setConfig(DEFAULT_RUNTIME_CONFIG);
