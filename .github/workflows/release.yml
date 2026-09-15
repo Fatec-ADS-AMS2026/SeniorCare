@@ -79,6 +79,7 @@ jobs:
 
       - name: Registrar fragmento do manifest com proveniência
         run: |
+          mkdir -p _manifest
           IMG="${{ env.REGISTRY }}/${{ steps.registry.outputs.owner }}/${{ matrix.image }}"
           {
             echo "RELEASE=${{ steps.ver.outputs.version }}"
