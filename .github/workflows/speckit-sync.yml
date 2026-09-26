@@ -1,0 +1,47 @@
+name: speckit-sync
+
+# Espelha seções de tasks.md do Spec Kit como issues do GitHub. Direção única:
+# os artefatos versionados são a fonte da verdade.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'specs/**/tasks.md'
+      - 'infra/speckit-github/**'
+  workflow_dispatch:
+    inputs:
+      feature:
+        description: 'slug da feature (vazio = as configuradas)'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: speckit-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Sincronizar issues dos épicos
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # O input permanece em variável de ambiente para evitar interpolação
+          # direta de conteúdo controlado pelo usuário no shell.
+          FEATURE: ${{ inputs.feature }}
+        run: |
+          if [ -n "$FEATURE" ]; then
+            python3 infra/speckit-github/sync_issues.py --feature "$FEATURE"
+          else
+            python3 infra/speckit-github/sync_issues.py --configured
+          fi

@@ -18,9 +18,9 @@ promote_to_main.sh <issue> -> abre PR dev -> main (Closes #issue)
 release.yml dispara ao criar tag v* (build once, deploy many — ver docs/infra/ci-cd-arquitetura.md)
 ```
 
-## Por que a issue de QA não é espelho (ao contrário das do openspec-sync)
+## Por que a issue de QA não é espelho (ao contrário das do speckit-sync)
 
-As issues do `openspec-sync.yml` são espelho read-only de `tasks.md` — marcar
+As issues do `speckit-sync.yml` são espelhos read-only de `tasks.md` — marcar
 caixinha nelas não faz nada, porque a fonte da verdade é o git. A issue de QA
 é diferente: **ela é a fonte da verdade do teste**. Não existe `tasks.md` de
 teste manual no repo; o plano de teste vem do `## Test plan` que o autor

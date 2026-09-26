@@ -1,17 +1,17 @@
 ## Code Review Rules
 
-### Entrega e OpenSpec
+### Entrega e Spec Kit
 
-- Determine o objetivo do PR pela change OpenSpec citada ou alterada, depois pela
-  issue vinculada e, por último, pelo título e pela descrição. Não presuma
-  requisitos ausentes a partir do diff.
+- Determine o objetivo do PR pela feature Spec Kit citada ou alterada em
+  `specs/<NNN-feature>/`, depois pela issue vinculada e, por último, pelo título
+  e pela descrição. Não presuma requisitos ausentes a partir do diff.
 - Abra o parecer com um veredito: **entrega**, **entrega parcial** (indicando o
   que falta) ou **diverge do que foi especificado**.
 - Trate como bloqueante requisito `MUST`/`SHALL`, cenário `WHEN`/`THEN` ou tarefa
-  OpenSpec marcada como concluída que não tenha implementação e teste
+  Spec Kit marcada como concluída que não tenha implementação e teste
   correspondentes. Identifique o requisito, cenário ou item afetado.
-- Aponte divergências entre código e especificação, regressões de cenários já
-  publicados em `openspec/specs/` e alterações sem relação com o objetivo do PR.
+- Aponte divergências entre código e `spec.md`, regressões de cenários publicados
+  em `specs/` e alterações sem relação com o objetivo do PR.
 
 ### Autenticação e autorização
 
