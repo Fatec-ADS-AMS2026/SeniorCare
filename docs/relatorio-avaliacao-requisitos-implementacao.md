@@ -58,7 +58,7 @@ A avaliação cruzou:
 4. rotas, páginas, formulários e serviços dos dois front-ends;
 5. configuração de CI/CD, segurança, deploy, health check e backup;
 6. lint e build executáveis no ambiente local;
-7. presença de testes automatizados e artefatos OpenSpec.
+7. presença de testes automatizados e artefatos de especificação.
 
 Classificações utilizadas:
 
@@ -74,7 +74,7 @@ Classificações utilizadas:
 
 O escopo é evolutivo. Portanto, “não implementado” representa uma lacuna frente
 ao estado-alvo, não necessariamente um atraso: a prioridade deverá ser decidida
-por mudanças OpenSpec e pelo MVP da ILPI-piloto.
+por features Spec Kit e pelo MVP da ILPI-piloto.
 
 ## 3. Inventário comprovado da implementação atual
 
@@ -252,7 +252,7 @@ ou denominadores confiáveis. A ordem recomendada é:
 | Build do front-end de estoque | **Passou** | Vite gerou o bundle de produção; houve apenas aviso de base Browserslist desatualizada. |
 | Build do backend | **Não verificado localmente** | O executável `dotnet` não está instalado no ambiente da avaliação. O CI possui passo de build, mas isso não substitui a execução desta rodada. |
 | Testes automatizados | **Ausentes** | Não há projeto de testes no solution, arquivos de teste nos fontes nem scripts de teste nos `package.json`. O próprio CI registra a ausência em `.github/workflows/ci.yml:56`. |
-| Mudanças OpenSpec | **Ausentes** | `openspec list --json` retornou lista vazia. |
+| Especificações incrementais | **Ausentes na data** | A primeira feature foi criada depois desta avaliação e hoje está em `specs/001-stabilize-existing-platform/`. |
 
 ## 9. Riscos e lacunas priorizados
 
@@ -279,8 +279,8 @@ ou denominadores confiáveis. A ordem recomendada é:
    encontrada no código.
 7. **Produto sem backend.** A interface de produto chama um endpoint inexistente,
    impedindo completar até mesmo o catálogo básico de estoque.
-8. **Ausência de especificações incrementais.** O OpenSpec está configurado, mas
-   não há mudança ativa para transformar o escopo amplo em requisitos e testes
+8. **Ausência de especificações incrementais na data da avaliação.** Ainda não
+   havia feature para transformar o escopo amplo em requisitos e testes
    implementáveis.
 
 ### Médios — dívida de qualidade e operação
@@ -305,7 +305,7 @@ ou denominadores confiáveis. A ordem recomendada é:
   navegação até estar integrado;
 - criar projetos de testes e incluir `dotnet test` e testes de front-end no CI;
 - validar build e migração do backend em ambiente reproduzível;
-- criar uma mudança OpenSpec para a fundação do produto.
+- criar uma feature Spec Kit para a fundação do produto.
 
 ### Prioridade 1 — fundação segura
 
@@ -381,7 +381,7 @@ gestão de ILPI nem receber dados reais de saúde. O caminho mais seguro é pres
 os componentes úteis, corrigir a linha de base e iniciar uma fundação explícita
 para identidade, residente, profissionais, autorização, auditoria e integridade.
 Prontuário, dashboards e assinatura eletrônica devem evoluir nessa ordem de
-dependência, por mudanças OpenSpec verificáveis.
+dependência, por features Spec Kit verificáveis.
 
 ## 13. Limitações da avaliação
 
@@ -397,11 +397,11 @@ dependência, por mudanças OpenSpec verificáveis.
 ## 14. Atualização pós stabilize-existing-platform (§1-§12)
 
 - **Data desta atualização:** 10 de agosto de 2026.
-- **Baseline do código:** conclusão da mudança OpenSpec `stabilize-existing-platform`
-  (seções §1 a §12), que corrigiu a linha de base técnica e de infraestrutura
-  identificada na avaliação original (seções 12-13 acima) sem tocar no escopo
-  assistencial ainda não implementado (residente, prontuário, dashboards,
-  assinatura — continuam ausentes, ver seção 3-10 acima).
+- **Baseline do código:** conclusão da feature hoje migrada para
+  `specs/001-stabilize-existing-platform/`, que corrigiu a linha de base técnica
+  e de infraestrutura identificada na avaliação original (seções 12-13 acima)
+  sem tocar no escopo assistencial ainda não implementado (residente,
+  prontuário, dashboards e assinatura continuam ausentes; ver seções 3-10).
 
 O parecer da seção 12 apontava a infraestrutura como "mais madura do que o
 domínio funcional" e listava, como critério de MVP ainda não atendido:

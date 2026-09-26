@@ -615,7 +615,7 @@ ou cargas programadas, com reconciliação e monitoramento de falhas.
 Essa camada deve preservar segregação entre instituições, histórico temporal,
 proveniência e qualidade dos dados. Consultas estatísticas pesadas não devem
 comprometer o registro de cuidados, medicamentos ou ocorrências. O desenho
-detalhado da camada analítica deverá ser definido em uma mudança OpenSpec
+detalhado da camada analítica deverá ser definido em uma feature Spec Kit
 própria antes da implementação.
 
 ## 7. Fluxos integrados prioritários
@@ -1050,10 +1050,9 @@ Estoque genérico             ->     Suprimentos ligados ao cuidado
 Login visual/incompleto      ->     Identidade, papéis e auditoria
 ```
 
-Cada evolução relevante deverá ser formalizada em uma mudança OpenSpec própria,
-com requisitos, cenários, desenho, migração e tarefas verificáveis. Este
-documento fornece o contexto; ele não autoriza implementar todos os módulos de
-uma só vez.
+Cada evolução relevante deverá ser formalizada em uma feature Spec Kit própria,
+com requisitos, cenários, plano, migração e tarefas verificáveis. Este documento
+fornece o contexto; ele não autoriza implementar todos os módulos de uma só vez.
 
 ### 12.1 Avaliação formal do estado atual
 
@@ -1110,7 +1109,7 @@ A baseline técnica também registrou que:
 - não existem testes automatizados nos três componentes;
 - o backend não pôde ser compilado no ambiente da avaliação por ausência do SDK
   `dotnet`, permanecendo tecnicamente não verificado nessa rodada;
-- não há mudança OpenSpec ativa para a fundação do novo núcleo do produto.
+- na data da avaliação, não havia feature ativa para a fundação do novo núcleo do produto.
 
 Antes do primeiro MVP, a prioridade é estabilizar os builds e estabelecer
 instituição, identidade, autenticação, papéis, profissionais, residente,
@@ -1120,8 +1119,8 @@ dependência.
 
 ### 12.3 Senior Portal interno vs. portal futuro de residentes e famílias
 
-A partir da mudança OpenSpec `introduce-senior-portal`, o repositório passou a
-ter uma terceira aplicação front-end (`SeniorPortal-Frontend/`) chamada
+A partir da feature Spec Kit `005-introduce-senior-portal`, o repositório passou
+a ter uma terceira aplicação front-end (`SeniorPortal-Frontend/`) chamada
 **Senior Portal**. É importante não confundir esse produto com o "portal do
 residente e da família" já previsto na seção 11 ("Expansão") — são dois
 produtos com público, propósito e modelo de acesso distintos:
@@ -1133,11 +1132,11 @@ produtos com público, propósito e modelo de acesso distintos:
 | Sessão/autenticação | reusa a mesma sessão institucional (cookie `HttpOnly`) já usada pelos módulos assistencial e de estoque — nenhum mecanismo novo | modelo de acesso próprio, ainda a ser desenhado (provavelmente fora da sessão de staff) |
 | Dados expostos | nenhum dado clínico ou financeiro — só nome/descrição de módulos, estado operacional e navegação (spec.md "Senior Portal", `docs/architecture/senior-portal-contracts.md`) | subconjunto do prontuário/relacionamento autorizado pelo residente ou responsável, nos limites legais aplicáveis (ver seção 6.5) |
 | Módulos hoje cobertos | assistência (`/care`) e estoque (`/stock`); outros módulos futuros (financeiro, doações, dashboards — seção 11) entram no mesmo catálogo à medida que forem implementados, sem aparecer antes disso (spec.md "catálogo operacional") | nenhum — depende de especificação própria |
-| Documentação | `openspec/changes/introduce-senior-portal/specs/senior-portal/spec.md` (pendente de arquivamento em `openspec/specs/`), `docs/architecture/senior-portal-contracts.md` | nenhuma ainda — depende de mudança OpenSpec própria, como todo domínio novo (seção 12) |
+| Documentação | `specs/005-introduce-senior-portal/spec.md`, `docs/architecture/senior-portal-contracts.md` | nenhuma ainda — depende de feature Spec Kit própria, como todo domínio novo (seção 12) |
 
 Módulos futuros do catálogo do Senior Portal (financeiro, doações, dashboards
-etc.) seguem a mesma regra da seção 12: cada um precisa da sua própria mudança
-OpenSpec antes da implementação. Até lá, eles não aparecem no catálogo
+etc.) seguem a mesma regra da seção 12: cada um precisa da sua própria feature
+Spec Kit antes da implementação. Até lá, eles não aparecem no catálogo
 operacional — o catálogo só lista módulos com `InstitutionModule` habilitado
 para a instituição (nunca um módulo "planejado" ou inexistente, spec.md
 "Descoberta de módulos usa permissões efetivas").

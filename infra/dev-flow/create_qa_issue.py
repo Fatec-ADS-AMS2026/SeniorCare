@@ -8,7 +8,7 @@ checklist, no repositório. Em seguida coloca a issue no GitHub Project em
 via infra/dev-flow/promote_to_main.sh.
 
 O comentário na issue não é sincronizado de volta a lugar nenhum (ao contrário
-das issues de openspec-sync.yml): esta issue É a fonte de trabalho da equipe de
+das issues de speckit-sync.yml): esta issue É a fonte de trabalho da equipe de
 teste, não um espelho — marcar caixinha aqui é o registro real do progresso.
 
 Requer dois tokens distintos (`gh` só usa um GH_TOKEN por vez):
@@ -88,8 +88,8 @@ def create_issue(pr: dict) -> str:
 ---
 
 Issue de teste manual — marcar as caixinhas aqui é o registro real do
-progresso (ao contrário das issues de `openspec-sync.yml`, esta não é espelho
-de nenhum `tasks.md`). Quando o teste terminar, promova para `main` com:
+progresso (ao contrário das issues de `speckit-sync.yml`, esta não é espelho de
+nenhum `tasks.md`). Quando o teste terminar, promova para `main` com:
 
 ```
 infra/dev-flow/promote_to_main.sh <número desta issue>

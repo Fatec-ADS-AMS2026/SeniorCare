@@ -1,8 +1,8 @@
 # Operação do Senior Portal
 
-> **Documento operacional**, produzido pela §9.3 (Migração, contingência e
-> aceite) da mudança OpenSpec `introduce-senior-portal`. Voltado a quem
-> administra uma instituição em produção (configurar catálogo, investigar um
+> **Documento operacional**, produzido pela tarefa legada 9.3 da feature Spec
+> Kit `005-introduce-senior-portal`. Voltado a quem administra uma instituição
+> em produção (configurar catálogo, investigar um
 > incidente, ou decidir um rollback) — não repete decisões de arquitetura já
 > registradas em `docs/architecture/senior-portal-contracts.md` (rotas,
 > contrato de contexto) nem passos de implantação já cobertos por
@@ -88,8 +88,8 @@ desta mudança.
 
 ## 5. Implantação
 
-Coberto em detalhe por `infra/deploy/README.md` e §8 desta mudança
-(`openspec/changes/introduce-senior-portal/tasks.md`). Resumo operacional:
+Coberto em detalhe por `infra/deploy/README.md` e pela seção 8 de
+`specs/005-introduce-senior-portal/tasks.md`. Resumo operacional:
 
 - Serviço `senior-portal` no `docker-compose.yml` (produção) e
   `docker-test/docker-compose.yml` (build local), porta padrão `3002`.

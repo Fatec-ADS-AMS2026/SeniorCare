@@ -1,15 +1,16 @@
 # Contratos pré-implementação — Senior Portal
 
 > **Documento de referência**, produzido pela §1 (Pré-requisitos e contratos
-> transversais) da mudança OpenSpec `introduce-senior-portal`. Trava, antes de
-> qualquer código de §2 em diante, as decisões que teriam custo alto de reverter
-> depois: rotas, contexto compartilhado entre aplicações e onde `/admin` mora.
-> Consulte `openspec/changes/introduce-senior-portal/{proposal,design}.md` para a
-> motivação e as alternativas descartadas — este documento só registra o contrato
-> resultante, em versões (`v1`), para os front-ends consumirem.
+> transversais) da feature Spec Kit `005-introduce-senior-portal`. Trava, antes
+> de qualquer código de §2 em diante, as decisões que teriam custo alto de
+> reverter depois: rotas, contexto compartilhado entre aplicações e onde
+> `/admin` mora. Consulte
+> `specs/005-introduce-senior-portal/{spec,plan}.md` para a motivação e as
+> alternativas descartadas — este documento só registra o contrato resultante,
+> em versões (`v1`), para os front-ends consumirem.
 >
 > _Status: §1–§8 implementados e em produção; §9 (migração, contingência e
-> aceite) em andamento — ver `openspec/changes/introduce-senior-portal/tasks.md`._
+> aceite) em andamento — ver `specs/005-introduce-senior-portal/tasks.md`._
 >
 > **Não confundir com o portal futuro de residentes/famílias**: o "Senior
 > Portal" descrito neste documento é uma aplicação **interna**, para a equipe

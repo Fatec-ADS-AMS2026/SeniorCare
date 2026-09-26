@@ -6,7 +6,7 @@
 # prontuário, dashboard ou assinatura foi introduzido por esta mudança". Essa
 # mudança comprovadamente NÃO introduz nenhum desses conceitos — este script
 # não corrige um problema, trava contra um futuro PR introduzir escopo clínico/
-# assistencial sem passar por uma decisão OpenSpec explícita.
+# assistencial sem passar por uma feature Spec Kit explícita.
 #
 # Escopo deliberadamente restrito ao CÓDIGO-FONTE de implementação (backend
 # WebAPI + src/ dos dois front-ends) — não ao repo inteiro. Documentos de
@@ -57,7 +57,7 @@ if [ "${#FAILURES[@]}" -gt 0 ]; then
   echo ""
   echo "Esta mudança (stabilize-existing-platform) não introduz prontuário, dado clínico,"
   echo "dashboard, assinatura eletrônica nem profissão-como-acesso. Se isso é intencional,"
-  echo "deveria estar numa mudança OpenSpec própria, não deslizar aqui."
+  echo "deveria estar numa feature Spec Kit própria, não deslizar aqui."
   exit 1
 fi
 

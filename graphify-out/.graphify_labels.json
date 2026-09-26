@@ -459,5 +459,18 @@
   "457": "test-reset-academico.sh",
   "458": "test-deploy-rollback.sh",
   "459": "SeniorCareClaimTypes.cs",
-  "462": "SYNTHETIC_DATA.md"
+  "460": "Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros",
+  "461": "Requirement: Permissões são compostas por recurso, ação e funcionalidade",
+  "462": "SYNTHETIC_DATA.md",
+  "463": "Requirement: Configuração e navegação crítica são auditáveis",
+  "464": "Requirement: Falha do portal admite contingência controlada",
+  "465": "Requirement: Portal possui experiência acessível e responsiva",
+  "466": "Requirement: Senior Portal é a entrada institucional unificada",
+  "467": "Requirement: URLs antigas migram de forma coordenada",
+  "468": "setup_project.sh",
+  "469": "start_epic.sh",
+  "470": "check-prerequisites.sh",
+  "471": "resolve-template.sh",
+  "472": "setup-plan.sh",
+  "473": "setup-tasks.sh"
 }

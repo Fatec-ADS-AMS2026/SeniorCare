@@ -16,10 +16,10 @@ O escopo conceitual e funcional canônico do projeto está documentado em
 
 ## Estado atual da implementação
 
-A mudança OpenSpec `stabilize-existing-platform` (arquivada em
-[`openspec/changes/archive/2026-08-11-stabilize-existing-platform/`](openspec/changes/archive/2026-08-11-stabilize-existing-platform/),
-specs canônicas em [`openspec/specs/`](openspec/specs/)) entregou a **fundação
-técnica e de segurança** da plataforma — não o núcleo assistencial em si
+A feature Spec Kit
+[`001-stabilize-existing-platform`](specs/001-stabilize-existing-platform/)
+entregou a **fundação técnica e de segurança** da plataforma — não o núcleo
+assistencial em si
 (residente, cuidado, prontuário — ver seção seguinte). O que já existe e está
 testado hoje:
 
@@ -58,7 +58,7 @@ detalhada requisito-a-requisito em
 - [`SeniorCareManager-Frontend`](SeniorCareManager-Frontend/SeniorCareManagerFrontend/README.md): interface de gestão assistencial ("care").
 - [`SeniorStockManager-Frontend`](SeniorStockManager-Frontend/SeniorStockManagerFrontend/README.md): interface de estoque e suprimentos ("stock").
 - `infra`: execução local, publicação e operação com Docker Compose.
-- `openspec`: especificações e planejamento das evoluções do produto.
+- [`specs`](specs/README.md): especificações, planos e tarefas das evoluções do produto no GitHub Spec Kit.
 
 ## Documentação
 

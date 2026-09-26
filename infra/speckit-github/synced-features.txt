@@ -1,0 +1,8 @@
+# Features do Spec Kit cujos épicos são espelhados como issues do GitHub.
+# Um slug por linha. O workflow speckit-sync.yml lê este arquivo.
+#
+# Para incluir uma feature, acrescente o slug sem o prefixo numérico e faça
+# merge na main. A sincronização cria issues apenas para seções com trabalho
+# aberto. Remover a linha interrompe a sincronização sem apagar issues.
+
+introduce-senior-portal
