@@ -3,3 +3,6 @@
 
 # Backups datados gerados automaticamente pelo Graphify durante rebuilds.
 graphify-out/20??-??-??/
+
+# Artefato local gerado por `make coverage`.
+coverage-report.md

@@ -6,12 +6,13 @@ import UserPermissionOverrideOverview from './UserPermissionOverrideOverview';
 
 const getMock = vi.fn();
 const postMock = vi.fn();
+const putMock = vi.fn();
 
 vi.mock('@/features/api', () => ({
   api: {
     get: (...args: unknown[]) => getMock(...args),
     post: (...args: unknown[]) => postMock(...args),
-    put: vi.fn(),
+    put: (...args: unknown[]) => putMock(...args),
     delete: vi.fn(),
     patch: vi.fn(),
   },
@@ -118,5 +119,27 @@ describe('UserPermissionOverrideOverview', () => {
         })
       );
     });
+  });
+
+  it('revokes a listed permission override after confirmation', async () => {
+    getMock.mockImplementation((url: string) => {
+      if (url.startsWith('AdminUserPermissionOverride')) {
+        return Promise.resolve({ data: { items: [{
+          id: 'override-1', userId: user1.id, resource: 'Carrier', action: 'write',
+          effect: 1, validFrom: '2026-01-01',
+        }] } });
+      }
+      return Promise.resolve({ data: { items: [user1] } });
+    });
+    putMock.mockResolvedValueOnce({ data: {} });
+    const user = userEvent.setup();
+    renderOverview();
+
+    await screen.findByText('Fulana');
+    await user.click(screen.getByTitle('Revogar exceção'));
+    await user.click(screen.getByRole('button', { name: 'Confirmar' }));
+
+    await waitFor(() => expect(putMock).toHaveBeenCalledWith('AdminUserPermissionOverride/override-1/revoke'));
+    expect(await screen.findByText('Exceção revogada com sucesso!')).toBeInTheDocument();
   });
 });

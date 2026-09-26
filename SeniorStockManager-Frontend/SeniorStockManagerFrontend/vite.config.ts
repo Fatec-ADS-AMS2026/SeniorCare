@@ -51,6 +51,9 @@ export default defineConfig(({ mode }) => {
       coverage: {
         provider: 'v8',
         reporter: ['text', 'lcov'],
+        thresholds: {
+          lines: 80,
+        },
         include: ['src/**/*.{ts,tsx}'],
         exclude: ['src/test/**', 'src/main.tsx', 'src/vite-env.d.ts'],
       },

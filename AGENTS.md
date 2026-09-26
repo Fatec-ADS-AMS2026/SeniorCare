@@ -46,6 +46,11 @@
   de estilo e verificações já cobertas pelos gates determinísticos.
 - Se não houver achado além do veredito de entrega, diga isso em uma linha e pare.
 
+## Testes
+
+- Antes de escrever ou alterar testes, leia e siga `.agents/skills/tdd/SKILL.md`.
+- Para toda nova implementação, escreva o teste que falha antes do código de produção.
+
 ## graphify
 
 This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.

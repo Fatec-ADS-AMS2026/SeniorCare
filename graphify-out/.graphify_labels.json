@@ -472,5 +472,21 @@
   "470": "check-prerequisites.sh",
   "471": "resolve-template.sh",
   "472": "setup-plan.sh",
-  "473": "setup-tasks.sh"
+  "473": "setup-tasks.sh",
+  "474": "RegenerateRecoveryCodesRequest.cs",
+  "475": "Supplier",
+  "476": "AuthControllerLoginTests",
+  "477": "InstitutionModuleProvisioningServiceTests",
+  "478": "Product",
+  "479": "crudPages.test.tsx",
+  "480": "crudPages.test.tsx",
+  "481": "AccountTokenBuilder.cs",
+  "482": "ApplicationUserBuilder.cs",
+  "483": "Requirement: Catálogo de módulos possui contrato estável e configurável",
+  "484": "SeniorCareClaimTypes.cs",
+  "485": "operationalPages.test.tsx",
+  "486": "Requirement: Origem da identidade é extensível",
+  "487": "Requirement: Contexto institucional é explícito e consistente",
+  "488": "Requirement: Portal possui experiência acessível e responsiva",
+  "489": "operationalPages.test.tsx"
 }

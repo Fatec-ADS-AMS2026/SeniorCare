@@ -6,13 +6,14 @@ import PermissionGroupOverview from './PermissionGroupOverview';
 
 const getMock = vi.fn();
 const postMock = vi.fn();
+const deleteMock = vi.fn();
 
 vi.mock('@/features/api', () => ({
   api: {
     get: (...args: unknown[]) => getMock(...args),
     post: (...args: unknown[]) => postMock(...args),
     put: vi.fn(),
-    delete: vi.fn(),
+    delete: (...args: unknown[]) => deleteMock(...args),
     patch: vi.fn(),
   },
   registerUnauthorizedHandler: vi.fn(),
@@ -65,5 +66,21 @@ describe('PermissionGroupOverview', () => {
         screen.getByText('One or more validation errors occurred.')
       ).toBeInTheDocument();
     });
+  });
+
+  it('deletes a listed permission group after confirmation', async () => {
+    getMock.mockResolvedValue({
+      data: { items: [{ id: 'group-1', name: 'Administradores', rowVersion: 'v1' }], page: 1, pageSize: 20, totalCount: 1 },
+    });
+    deleteMock.mockResolvedValueOnce({ data: {} });
+    const user = userEvent.setup();
+    renderOverview();
+
+    await screen.findByText('Administradores');
+    await user.click(screen.getByTitle('Excluir'));
+    await user.click(screen.getByRole('button', { name: 'Confirmar' }));
+
+    await waitFor(() => expect(deleteMock).toHaveBeenCalled());
+    expect(await screen.findByText('Grupo de permissão "Administradores" excluído com sucesso!')).toBeInTheDocument();
   });
 });
