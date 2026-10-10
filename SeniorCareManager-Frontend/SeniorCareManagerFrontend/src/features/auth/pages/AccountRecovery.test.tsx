@@ -12,7 +12,7 @@ describe('account recovery journeys', () => {
   it('activates an account from the activation link', async () => {
     activate.mockResolvedValueOnce({ success: true });
     const user = userEvent.setup();
-    render(<MemoryRouter initialEntries={['/activate?email=a@b.com&token=t']}><ActivateAccountPage /></MemoryRouter>);
+    render(<MemoryRouter initialEntries={['/activate?email=usuario@example.com&token=t']}><ActivateAccountPage /></MemoryRouter>);
     await user.type(screen.getByLabelText(/Defina sua senha/), 'SenhaSegura1!');
     await user.click(screen.getByRole('button', { name: 'Ativar conta' }));
     await waitFor(() => expect(screen.getByText('Conta ativada com sucesso.')).toBeInTheDocument());
@@ -22,7 +22,7 @@ describe('account recovery journeys', () => {
     recover.mockResolvedValueOnce({ success: true, data: {} });
     const user = userEvent.setup();
     render(<MemoryRouter><RecoverAccountPage /></MemoryRouter>);
-    await user.type(screen.getByLabelText(/E-mail/), 'a@b.com');
+    await user.type(screen.getByLabelText(/E-mail/), 'usuario@example.com');
     await user.click(screen.getByRole('button', { name: 'Enviar instruções' }));
     await waitFor(() => expect(screen.getByText(/conta elegível/)).toBeInTheDocument());
   });

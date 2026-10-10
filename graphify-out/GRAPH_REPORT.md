@@ -1,2240 +1,1513 @@
-# Graph Report - thornyhead  (2026-09-28)
+# Graph Report - thornyhead  (2026-10-10)
 
 ## Corpus Check
-- 939 files · ~972,428 words
+- 892 files · ~928,463 words
 - Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 68 file(s) not represented in the graph (top: (none) 24, .ttf 18, .example 7)
 
 ## Summary
-- 4992 nodes · 6637 edges · 1070 communities (334 shown, 736 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 142 edges (avg confidence: 0.79)
+- 5242 nodes · 13015 edges · 327 communities (277 shown, 50 thin omitted)
+- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 808 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fceaf0df`
+- Built from commit: `5e49fe1f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_SeniorCareManager.WebAPI.Objects.Models|SeniorCareManager.WebAPI.Objects.Models]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.Objects.Enums|SeniorCareManager.WebAPI.Objects.Enums]]
-- [[_COMMUNITY_AppDbContext|AppDbContext]]
-- [[_COMMUNITY_GenericService|GenericService]]
-- [[_COMMUNITY_devDependencies|devDependencies]]
-- [[_COMMUNITY_devDependencies|devDependencies]]
-- [[_COMMUNITY_GenericRepository|GenericRepository]]
-- [[_COMMUNITY_IGenericService|IGenericService]]
-- [[_COMMUNITY_http|http]]
-- [[_COMMUNITY_BaseModal.tsx|BaseModal.tsx]]
-- [[_COMMUNITY_BaseModal.tsx|BaseModal.tsx]]
-- [[_COMMUNITY_What You Must Do When Invoked|What You Must Do When Invoked]]
-- [[_COMMUNITY_ProductType|ProductType]]
-- [[_COMMUNITY_Controller|Controller]]
-- [[_COMMUNITY_ManufacturerController|ManufacturerController]]
-- [[_COMMUNITY_ReligionController|ReligionController]]
-- [[_COMMUNITY_UnitOfMeasureController|UnitOfMeasureController]]
-- [[_COMMUNITY_compilerOptions|compilerOptions]]
-- [[_COMMUNITY_compilerOptions|compilerOptions]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_compilerOptions|compilerOptions]]
-- [[_COMMUNITY_compilerOptions|compilerOptions]]
-- [[_COMMUNITY_AppRoutes.tsx|AppRoutes.tsx]]
-- [[_COMMUNITY_AppRoutes.tsx|AppRoutes.tsx]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.Objects.Dtos.Entities|SeniorCareManager.WebAPI.Objects.Dtos.Entities]]
-- [[_COMMUNITY_AppLayout.tsx|AppLayout.tsx]]
-- [[_COMMUNITY_AppLayout.tsx|AppLayout.tsx]]
-- [[_COMMUNITY_SKILL|SKILL.md]]
-- [[_COMMUNITY_HealthInsurancePlanFormModal.tsx|HealthInsurancePlanFormModal.tsx]]
-- [[_COMMUNITY_index.ts|index.ts]]
-- [[_COMMUNITY_index.ts|index.ts]]
-- [[_COMMUNITY_ManufacturerOverview.tsx|ManufacturerOverview.tsx]]
-- [[_COMMUNITY_ProductGroupOverview.tsx|ProductGroupOverview.tsx]]
-- [[_COMMUNITY_ProductTypeOverview.tsx|ProductTypeOverview.tsx]]
-- [[_COMMUNITY_UnitOfMeasureOverview.tsx|UnitOfMeasureOverview.tsx]]
-- [[_COMMUNITY_carrierRoutes.tsx|carrierRoutes.tsx]]
-- [[_COMMUNITY_productRoutes.tsx|productRoutes.tsx]]
-- [[_COMMUNITY_supplierRoutes.tsx|supplierRoutes.tsx]]
-- [[_COMMUNITY_graphify reference extra exports and benchmark|graphify reference: extra exports and benchmark]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI|SeniorCareManager.WebAPI]]
-- [[_COMMUNITY_api.ts|api.ts]]
-- [[_COMMUNITY_HealthInsurancePlanType.ts|HealthInsurancePlanType.ts]]
-- [[_COMMUNITY_YesNo.ts|YesNo.ts]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_Startup|Startup]]
-- [[_COMMUNITY_authRoutes.tsx|authRoutes.tsx]]
-- [[_COMMUNITY_api.ts|api.ts]]
-- [[_COMMUNITY_authRoutes.tsx|authRoutes.tsx]]
-- [[_COMMUNITY_graphify reference query, path, explain|graphify reference: query, path, explain]]
-- [[_COMMUNITY_Program|Program]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.Objects.Dtos|SeniorCareManager.WebAPI.Objects.Dtos]]
-- [[_COMMUNITY_graphify reference add a URL and watch a folder|graphify reference: add a URL and watch a folder]]
-- [[_COMMUNITY_graphify reference commit hook and native CLAUDE.md integration|graphify reference: commit hook and native CLAUDE.md integration]]
-- [[_COMMUNITY_graphify reference incremental update and cluster-only|graphify reference: incremental update and cluster-only]]
-- [[_COMMUNITY_graphify reference GitHub clone and cross-repo merge|graphify reference: GitHub clone and cross-repo merge]]
-- [[_COMMUNITY_graphify reference transcribe video and audio|graphify reference: transcribe video and audio]]
-- [[_COMMUNITY_.prettierrc.json|.prettierrc.json]]
-- [[_COMMUNITY_React + TypeScript + Vite|React + TypeScript + Vite]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_useBreadcrumbs.ts|useBreadcrumbs.ts]]
-- [[_COMMUNITY_serviceUtils.ts|serviceUtils.ts]]
-- [[_COMMUNITY_tsconfig.json|tsconfig.json]]
-- [[_COMMUNITY_.prettierrc.json|.prettierrc.json]]
-- [[_COMMUNITY_React + TypeScript + Vite|React + TypeScript + Vite]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_useBreadcrumbs.ts|useBreadcrumbs.ts]]
-- [[_COMMUNITY_serviceUtils.ts|serviceUtils.ts]]
-- [[_COMMUNITY_tsconfig.json|tsconfig.json]]
-- [[_COMMUNITY_AGENTS|AGENTS.md]]
-- [[_COMMUNITY_extraction-spec|extraction-spec.md]]
-- [[_COMMUNITY_README|README.md]]
-- [[_COMMUNITY_ManufacturerDTO.cs|ManufacturerDTO.cs]]
-- [[_COMMUNITY_AdminOverview.tsx|AdminOverview.tsx]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_RouteDefinition.ts|RouteDefinition.ts]]
-- [[_COMMUNITY_ServiceResult.ts|ServiceResult.ts]]
-- [[_COMMUNITY_Position.ts|Position.ts]]
-- [[_COMMUNITY_Religion.ts|Religion.ts]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_index.tsx|index.tsx]]
-- [[_COMMUNITY_RouteDefinition.ts|RouteDefinition.ts]]
-- [[_COMMUNITY_ServiceResult.ts|ServiceResult.ts]]
-- [[_COMMUNITY_Carrier.ts|Carrier.ts]]
-- [[_COMMUNITY_Manufacturer.ts|Manufacturer.ts]]
-- [[_COMMUNITY_ProductGroup.ts|ProductGroup.ts]]
-- [[_COMMUNITY_ProductType.ts|ProductType.ts]]
-- [[_COMMUNITY_Supplier.ts|Supplier.ts]]
-- [[_COMMUNITY_UnitOfMeasure.ts|UnitOfMeasure.ts]]
-- [[_COMMUNITY_SKILL|SKILL.md]]
-- [[_COMMUNITY_SKILL|SKILL.md]]
-- [[_COMMUNITY_SKILL|SKILL.md]]
-- [[_COMMUNITY_SKILL|SKILL.md]]
-- [[_COMMUNITY_SKILL|SKILL.md]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.sln|SeniorCareManager.WebAPI.sln]]
-- [[_COMMUNITY_InitialCreate|InitialCreate]]
-- [[_COMMUNITY_deploy.sh|deploy.sh]]
-- [[_COMMUNITY_Escopo do projeto SeniorCare|Escopo do projeto SeniorCare]]
-- [[_COMMUNITY_6. Domínios funcionais|6. Domínios funcionais]]
-- [[_COMMUNITY_8. Requisitos transversais|8. Requisitos transversais]]
-- [[_COMMUNITY_7. Fluxos integrados prioritários|7. Fluxos integrados prioritários]]
-- [[_COMMUNITY_9. Requisitos regulatórios de referência|9. Requisitos regulatórios de referência]]
-- [[_COMMUNITY_codeql-sarif-gate.py|codeql-sarif-gate.py]]
-- [[_COMMUNITY_ops.sh|ops.sh]]
-- [[_COMMUNITY_11. Escopo sugerido por evolução|11. Escopo sugerido por evolução]]
-- [[_COMMUNITY_pull_request_template|pull_request_template.md]]
-- [[_COMMUNITY_backup.sh|backup.sh]]
-- [[_COMMUNITY_nuget-audit-gate.py|nuget-audit-gate.py]]
-- [[_COMMUNITY_CLAUDE|CLAUDE.md]]
-- [[_COMMUNITY_check-env-hygiene.sh|check-env-hygiene.sh]]
-- [[_COMMUNITY_.NETCoreApp,Version=v8.0.AssemblyAttributes.cs|.NETCoreApp,Version=v8.0.AssemblyAttributes.cs]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.AssemblyInfo.cs|SeniorCareManager.WebAPI.AssemblyInfo.cs]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.GlobalUsings.g.cs|SeniorCareManager.WebAPI.GlobalUsings.g.cs]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs|SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs]]
-- [[_COMMUNITY_.NETCoreApp,Version=v8.0.AssemblyAttributes.cs|.NETCoreApp,Version=v8.0.AssemblyAttributes.cs]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.AssemblyInfo.cs|SeniorCareManager.WebAPI.AssemblyInfo.cs]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.GlobalUsings.g.cs|SeniorCareManager.WebAPI.GlobalUsings.g.cs]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs|SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs]]
-- [[_COMMUNITY_6.11 Dashboards estatísticos e inteligência institucional|6.11 Dashboards estatísticos e inteligência institucional]]
-- [[_COMMUNITY_Arquitetura de CICD — SeniorCare|Arquitetura de CI/CD — SeniorCare]]
-- [[_COMMUNITY_Relatório de avaliação requisitos versus implementação|Relatório de avaliação: requisitos versus implementação]]
-- [[_COMMUNITY_10. Sequência recomendada de evolução|10. Sequência recomendada de evolução]]
-- [[_COMMUNITY_infradeploy — publicação pull-based no servidor|infra/deploy — publicação pull-based no servidor]]
-- [[_COMMUNITY_3. Inventário comprovado da implementação atual|3. Inventário comprovado da implementação atual]]
-- [[_COMMUNITY_7. Avaliação específica das capacidades críticas|7. Avaliação específica das capacidades críticas]]
-- [[_COMMUNITY_9. Riscos e lacunas priorizados|9. Riscos e lacunas priorizados]]
-- [[_COMMUNITY_12. Relação com o software existente|12. Relação com o software existente]]
-- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
-- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
-- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
-- [[_COMMUNITY_Decisions|Decisions]]
-- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
-- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
-- [[_COMMUNITY_tasks|tasks.md]]
-- [[_COMMUNITY_proposal|proposal.md]]
-- [[_COMMUNITY_sync_issues.py|sync_issues.py]]
-- [[_COMMUNITY_GenericRepository|GenericRepository]]
-- [[_COMMUNITY_OpenSpec no GitHub — issues, PRs e kanban|OpenSpec no GitHub — issues, PRs e kanban]]
-- [[_COMMUNITY_Requirement Sessão é compartilhada, curta, rotativa e revogável|Requirement: Sessão é compartilhada, curta, rotativa e revogável]]
-- [[_COMMUNITY_Requirement Ativação e recuperação não distribuem senha conhecida|Requirement: Ativação e recuperação não distribuem senha conhecida]]
-- [[_COMMUNITY_Requirement Decisão de acesso segue precedência determinística e negação padrão|Requirement: Decisão de acesso segue precedência determinística e negação padrão]]
-- [[_COMMUNITY_Requirement Política de senha segue práticas atuais e possui piso seguro|Requirement: Política de senha segue práticas atuais e possui piso seguro]]
-- [[_COMMUNITY_Requirement Administração de acesso possui configuração dedicada|Requirement: Administração de acesso possui configuração dedicada]]
-- [[_COMMUNITY_Requirement Autenticação multifator protege contas privilegiadas|Requirement: Autenticação multifator protege contas privilegiadas]]
-- [[_COMMUNITY_Requirement Conta possui ciclo de vida controlado|Requirement: Conta possui ciclo de vida controlado]]
-- [[_COMMUNITY_Requirement Eventos de identidade, configuração e acesso são auditáveis|Requirement: Eventos de identidade, configuração e acesso são auditáveis]]
-- [[_COMMUNITY_Requirement Exceções individuais são explícitas, limitadas e justificadas|Requirement: Exceções individuais são explícitas, limitadas e justificadas]]
-- [[_COMMUNITY_Requirement Identidade é individual e vinculada à instituição|Requirement: Identidade é individual e vinculada à instituição]]
-- [[_COMMUNITY_Requirement Profissão, papel técnico e responsabilidade organizacional são distintos|Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos]]
-- [[_COMMUNITY_Requirement Credencial administrativa inicial é provisionada com segurança|Requirement: Credencial administrativa inicial é provisionada com segurança]]
-- [[_COMMUNITY_Requirement Mudança autenticada de senha exige confirmação de identidade|Requirement: Mudança autenticada de senha exige confirmação de identidade]]
-- [[_COMMUNITY_Requirement Origem da identidade é extensível|Requirement: Origem da identidade é extensível]]
-- [[_COMMUNITY_Requirement Parâmetros de segurança são configuráveis dentro de limites seguros|Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros]]
-- [[_COMMUNITY_Requirement Permissões são compostas por recurso, ação e funcionalidade|Requirement: Permissões são compostas por recurso, ação e funcionalidade]]
-- [[_COMMUNITY_Requirement Tentativas de autenticação são protegidas contra abuso|Requirement: Tentativas de autenticação são protegidas contra abuso]]
-- [[_COMMUNITY_setup_project.sh|setup_project.sh]]
-- [[_COMMUNITY_start_epic.sh|start_epic.sh]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.Objects.Models|SeniorCareManager.WebAPI.Objects.Models]]
-- [[_COMMUNITY_Decisions|Decisions]]
-- [[_COMMUNITY_ManufacturerController|ManufacturerController]]
-- [[_COMMUNITY_AppDbContext|AppDbContext]]
-- [[_COMMUNITY_create_qa_issue.py|create_qa_issue.py]]
-- [[_COMMUNITY_Carrier|Carrier]]
-- [[_COMMUNITY_Manufacturer|Manufacturer]]
-- [[_COMMUNITY_Position|Position]]
-- [[_COMMUNITY_Religion|Religion]]
-- [[_COMMUNITY_UnitOfMeasure|UnitOfMeasure]]
-- [[_COMMUNITY_tasks|tasks.md]]
-- [[_COMMUNITY_proposal|proposal.md]]
-- [[_COMMUNITY_dev-flow — promoção dev → main com QA manual|dev-flow — promoção dev → main com QA manual]]
-- [[_COMMUNITY_ADDED Requirements|ADDED Requirements]]
-- [[_COMMUNITY_.CheckHealthAsync|.CheckHealthAsync]]
-- [[_COMMUNITY_Program|Program]]
-- [[_COMMUNITY_Requirement Catálogo de módulos possui contrato estável e configurável|Requirement: Catálogo de módulos possui contrato estável e configurável]]
-- [[_COMMUNITY_Requirement Descoberta de módulos usa permissões efetivas|Requirement: Descoberta de módulos usa permissões efetivas]]
-- [[_COMMUNITY_Requirement Navegação entre aplicações preserva destino seguro|Requirement: Navegação entre aplicações preserva destino seguro]]
-- [[_COMMUNITY_Requirement Portal representa estados operacionais sem conceder acesso indevido|Requirement: Portal representa estados operacionais sem conceder acesso indevido]]
-- [[_COMMUNITY_Requirement Portal reutiliza a identidade e a sessão institucional|Requirement: Portal reutiliza a identidade e a sessão institucional]]
-- [[_COMMUNITY_Requirement Configuração e navegação crítica são auditáveis|Requirement: Configuração e navegação crítica são auditáveis]]
-- [[_COMMUNITY_Requirement Contexto institucional é explícito e consistente|Requirement: Contexto institucional é explícito e consistente]]
-- [[_COMMUNITY_Requirement Falha do portal admite contingência controlada|Requirement: Falha do portal admite contingência controlada]]
-- [[_COMMUNITY_Requirement Funções globais permanecem disponíveis em todos os módulos|Requirement: Funções globais permanecem disponíveis em todos os módulos]]
-- [[_COMMUNITY_Requirement Módulos futuros não são anunciados antes de estarem prontos|Requirement: Módulos futuros não são anunciados antes de estarem prontos]]
-- [[_COMMUNITY_Requirement Portal minimiza dados e não apresenta conteúdo clínico|Requirement: Portal minimiza dados e não apresenta conteúdo clínico]]
-- [[_COMMUNITY_Requirement Portal possui experiência acessível e responsiva|Requirement: Portal possui experiência acessível e responsiva]]
-- [[_COMMUNITY_Requirement URLs antigas migram de forma coordenada|Requirement: URLs antigas migram de forma coordenada]]
-- [[_COMMUNITY_promote_to_main.sh|promote_to_main.sh]]
-- [[_COMMUNITY_AuthController|AuthController]]
-- [[_COMMUNITY_ControllerBase|ControllerBase]]
-- [[_COMMUNITY_UserPermissionOverrideOverview.tsx|UserPermissionOverrideOverview.tsx]]
-- [[_COMMUNITY_.Revoke|.Revoke]]
-- [[_COMMUNITY_ProductController|ProductController]]
-- [[_COMMUNITY_AdminUserController|AdminUserController]]
-- [[_COMMUNITY_.GetInstitutionIdAsync|.GetInstitutionIdAsync]]
-- [[_COMMUNITY_.IssueAsync|.IssueAsync]]
-- [[_COMMUNITY_AdminUserOverview.tsx|AdminUserOverview.tsx]]
-- [[_COMMUNITY_AdminAccessPolicyController|AdminAccessPolicyController]]
-- [[_COMMUNITY_AdminOrganizationalRoleAssignmentController|AdminOrganizationalRoleAssignmentController]]
-- [[_COMMUNITY_AccessPolicyOverview.tsx|AccessPolicyOverview.tsx]]
-- [[_COMMUNITY_RoleOverview.test.tsx|RoleOverview.test.tsx]]
-- [[_COMMUNITY_AuthControllerTests|AuthControllerTests]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_OrganizationalRoleAssignmentOverview.tsx|OrganizationalRoleAssignmentOverview.tsx]]
-- [[_COMMUNITY_GlobalExceptionHandler|GlobalExceptionHandler]]
-- [[_COMMUNITY_OpenApiContractTests|OpenApiContractTests]]
-- [[_COMMUNITY_SessionService|SessionService]]
-- [[_COMMUNITY_PermissionGroupOverview.tsx|PermissionGroupOverview.tsx]]
-- [[_COMMUNITY_SessionRotationTests|SessionRotationTests]]
-- [[_COMMUNITY_IAuditService|IAuditService]]
-- [[_COMMUNITY_AuthControllerMfaTests|AuthControllerMfaTests]]
-- [[_COMMUNITY_ProductControllerTests|ProductControllerTests]]
-- [[_COMMUNITY_.CreateSender|.CreateSender]]
-- [[_COMMUNITY_NotificationDeliveryStatus|NotificationDeliveryStatus]]
-- [[_COMMUNITY_.SavingChangesAsync|.SavingChangesAsync]]
-- [[_COMMUNITY_GenericServiceTests|GenericServiceTests]]
-- [[_COMMUNITY_InstitutionIdentityOriginServiceTests|InstitutionIdentityOriginServiceTests]]
-- [[_COMMUNITY_BootstrapService|BootstrapService]]
-- [[_COMMUNITY_OrganizationalRoleOverview.tsx|OrganizationalRoleOverview.tsx]]
-- [[_COMMUNITY_ProductGroup|ProductGroup]]
-- [[_COMMUNITY_Permission|Permission]]
-- [[_COMMUNITY_InstitutionSecurityPage.tsx|InstitutionSecurityPage.tsx]]
-- [[_COMMUNITY_.AllControllerActions|.AllControllerActions]]
-- [[_COMMUNITY_ProductType|ProductType]]
-- [[_COMMUNITY_ControllerBase|ControllerBase]]
-- [[_COMMUNITY_UserSessionOverview.tsx|UserSessionOverview.tsx]]
-- [[_COMMUNITY_OriginRateLimiter|OriginRateLimiter]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.Data.Builders|SeniorCareManager.WebAPI.Data.Builders]]
-- [[_COMMUNITY_CurrentIdentityDTO|CurrentIdentityDTO]]
-- [[_COMMUNITY_EndpointAuthorizationTests|EndpointAuthorizationTests]]
-- [[_COMMUNITY_MfaPolicyService|MfaPolicyService]]
-- [[_COMMUNITY_AccessPolicy.ts|AccessPolicy.ts]]
-- [[_COMMUNITY_accessibility.test.tsx|accessibility.test.tsx]]
-- [[_COMMUNITY_EndpointAuthorizationTests|EndpointAuthorizationTests]]
-- [[_COMMUNITY_ProductType|ProductType]]
-- [[_COMMUNITY_TestAuthHandler|TestAuthHandler]]
-- [[_COMMUNITY_Bootstrap da instituição e do administrador inicial|Bootstrap da instituição e do administrador inicial]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_Configuração — SeniorCareManager.WebAPI|Configuração — SeniorCareManager.WebAPI]]
-- [[_COMMUNITY_accessibility.test.tsx|accessibility.test.tsx]]
-- [[_COMMUNITY_RequirePermissionAttribute|RequirePermissionAttribute]]
-- [[_COMMUNITY_Migration|Migration]]
-- [[_COMMUNITY_AuthControllerLoginTests|AuthControllerLoginTests]]
-- [[_COMMUNITY_CurrentUserContext|CurrentUserContext]]
-- [[_COMMUNITY_RequireAuth.test.tsx|RequireAuth.test.tsx]]
-- [[_COMMUNITY_RequireAuth.test.tsx|RequireAuth.test.tsx]]
-- [[_COMMUNITY_Exception|Exception]]
-- [[_COMMUNITY_.AsUser|.AsUser]]
-- [[_COMMUNITY_InitialCreate|InitialCreate]]
-- [[_COMMUNITY_AddInstitutionAndIdentity|AddInstitutionAndIdentity]]
-- [[_COMMUNITY_AddAccessControlFoundation|AddAccessControlFoundation]]
-- [[_COMMUNITY_AddAccessAdministrationApi|AddAccessAdministrationApi]]
-- [[_COMMUNITY_AddSessionAndMfa|AddSessionAndMfa]]
-- [[_COMMUNITY_AddAuditEvent|AddAuditEvent]]
-- [[_COMMUNITY_AddCatalogActiveState|AddCatalogActiveState]]
-- [[_COMMUNITY_AddProduct|AddProduct]]
-- [[_COMMUNITY_AddProductPermissions|AddProductPermissions]]
-- [[_COMMUNITY_keyboardNavigation.test.tsx|keyboardNavigation.test.tsx]]
-- [[_COMMUNITY_CurrentIdentity.ts|CurrentIdentity.ts]]
-- [[_COMMUNITY_keyboardNavigation.test.tsx|keyboardNavigation.test.tsx]]
-- [[_COMMUNITY_CurrentIdentity.ts|CurrentIdentity.ts]]
-- [[_COMMUNITY_AccountTokenBuilder.cs|AccountTokenBuilder.cs]]
-- [[_COMMUNITY_UnitOfMeasure|UnitOfMeasure]]
-- [[_COMMUNITY_AuditEventBuilder.cs|AuditEventBuilder.cs]]
-- [[_COMMUNITY_ManufacturerBuilder.cs|ManufacturerBuilder.cs]]
-- [[_COMMUNITY_OrganizationalRoleAssignmentBuilder.cs|OrganizationalRoleAssignmentBuilder.cs]]
-- [[_COMMUNITY_OrganizationalRoleBuilder.cs|OrganizationalRoleBuilder.cs]]
-- [[_COMMUNITY_.CreateAsync|.CreateAsync]]
-- [[_COMMUNITY_PositionBuilder.cs|PositionBuilder.cs]]
-- [[_COMMUNITY_ProductBuilder.cs|ProductBuilder.cs]]
-- [[_COMMUNITY_ProductGroupBuilder.cs|ProductGroupBuilder.cs]]
-- [[_COMMUNITY_Product|Product]]
-- [[_COMMUNITY_ReligionBuilder.cs|ReligionBuilder.cs]]
-- [[_COMMUNITY_RoleBuilder.cs|RoleBuilder.cs]]
-- [[_COMMUNITY_SupplierBuilder.cs|SupplierBuilder.cs]]
-- [[_COMMUNITY_UnitOfMeasureBuilder.cs|UnitOfMeasureBuilder.cs]]
-- [[_COMMUNITY_UserPermissionOverrideBuilder.cs|UserPermissionOverrideBuilder.cs]]
-- [[_COMMUNITY_UserSessionBuilder.cs|UserSessionBuilder.cs]]
-- [[_COMMUNITY_20260805233320_InitialCreate.Designer.cs|20260805233320_InitialCreate.Designer.cs]]
-- [[_COMMUNITY_20260807210706_AddRowVersionConcurrencyToken.Designer.cs|20260807210706_AddRowVersionConcurrencyToken.Designer.cs]]
-- [[_COMMUNITY_AdminRoleControllerTests|AdminRoleControllerTests]]
-- [[_COMMUNITY_20260808205640_AddAccessControlFoundation.Designer.cs|20260808205640_AddAccessControlFoundation.Designer.cs]]
-- [[_COMMUNITY_InstitutionBuilder.cs|InstitutionBuilder.cs]]
-- [[_COMMUNITY_20260809013824_AddSessionAndMfa.Designer.cs|20260809013824_AddSessionAndMfa.Designer.cs]]
-- [[_COMMUNITY_PermissionGroupBuilder.cs|PermissionGroupBuilder.cs]]
-- [[_COMMUNITY_20260809230401_AddProduct.Designer.cs|20260809230401_AddProduct.Designer.cs]]
-- [[_COMMUNITY_20260809231010_AddProductPermissions.Designer.cs|20260809231010_AddProductPermissions.Designer.cs]]
-- [[_COMMUNITY_AdminUser.ts|AdminUser.ts]]
-- [[_COMMUNITY_ProductTypeBuilder.cs|ProductTypeBuilder.cs]]
-- [[_COMMUNITY_Requirement Cliente obtém contexto e permissões efetivas sem decidir autorização|Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização]]
-- [[_COMMUNITY_SeniorCare|SeniorCare]]
-- [[_COMMUNITY_SeniorCareClaimTypes.cs|SeniorCareClaimTypes.cs]]
-- [[_COMMUNITY_permissionService.ts|permissionService.ts]]
-- [[_COMMUNITY_serviceUtils.test.ts|serviceUtils.test.ts]]
-- [[_COMMUNITY_serviceUtils.test.ts|serviceUtils.test.ts]]
-- [[_COMMUNITY_check-clinical-scope.sh|check-clinical-scope.sh]]
-- [[_COMMUNITY_check-frontend-bundle.sh|check-frontend-bundle.sh]]
-- [[_COMMUNITY_check-synthetic-fixtures.sh|check-synthetic-fixtures.sh]]
-- [[_COMMUNITY_InstitutionSecurityPolicy.ts|InstitutionSecurityPolicy.ts]]
-- [[_COMMUNITY_OrganizationalRole.ts|OrganizationalRole.ts]]
-- [[_COMMUNITY_Permission.ts|Permission.ts]]
-- [[_COMMUNITY_PermissionGroup.ts|PermissionGroup.ts]]
-- [[_COMMUNITY_Role.ts|Role.ts]]
-- [[_COMMUNITY_UserSession.ts|UserSession.ts]]
-- [[_COMMUNITY_Product.ts|Product.ts]]
-- [[_COMMUNITY_.NETCoreApp,Version=v8.0.AssemblyAttributes.cs|.NETCoreApp,Version=v8.0.AssemblyAttributes.cs]]
-- [[_COMMUNITY_SeniorCareManager.IntegrationTests.AssemblyInfo.cs|SeniorCareManager.IntegrationTests.AssemblyInfo.cs]]
-- [[_COMMUNITY_SeniorCareManager.IntegrationTests.GlobalUsings.g.cs|SeniorCareManager.IntegrationTests.GlobalUsings.g.cs]]
-- [[_COMMUNITY_.NETCoreApp,Version=v8.0.AssemblyAttributes.cs|.NETCoreApp,Version=v8.0.AssemblyAttributes.cs]]
-- [[_COMMUNITY_SeniorCareManager.UnitTests.AssemblyInfo.cs|SeniorCareManager.UnitTests.AssemblyInfo.cs]]
-- [[_COMMUNITY_SeniorCareManager.UnitTests.GlobalUsings.g.cs|SeniorCareManager.UnitTests.GlobalUsings.g.cs]]
-- [[_COMMUNITY_SeniorStockManagerFrontend (stock)|SeniorStockManagerFrontend ("stock")]]
-- [[_COMMUNITY_Requirement Ativação e recuperação não distribuem senha conhecida|Requirement: Ativação e recuperação não distribuem senha conhecida]]
-- [[_COMMUNITY_Requirement Decisão de acesso segue precedência determinística e negação padrão|Requirement: Decisão de acesso segue precedência determinística e negação padrão]]
-- [[_COMMUNITY_Requirement Política de senha segue práticas atuais e possui piso seguro|Requirement: Política de senha segue práticas atuais e possui piso seguro]]
-- [[_COMMUNITY_Requirement Ativação e recuperação não distribuem senha conhecida|Requirement: Ativação e recuperação não distribuem senha conhecida]]
-- [[_COMMUNITY_Requirement Decisão de acesso segue precedência determinística e negação padrão|Requirement: Decisão de acesso segue precedência determinística e negação padrão]]
-- [[_COMMUNITY_Requirement Política de senha segue práticas atuais e possui piso seguro|Requirement: Política de senha segue práticas atuais e possui piso seguro]]
-- [[_COMMUNITY_AddSeniorPortalCatalog|AddSeniorPortalCatalog]]
-- [[_COMMUNITY_Requirement Permissões são compostas por recurso, ação e funcionalidade|Requirement: Permissões são compostas por recurso, ação e funcionalidade]]
-- [[_COMMUNITY_Requirement Senior Portal é a entrada institucional unificada|Requirement: Senior Portal é a entrada institucional unificada]]
-- [[_COMMUNITY_Requirement Administração de acesso possui configuração dedicada|Requirement: Administração de acesso possui configuração dedicada]]
-- [[_COMMUNITY_Requirement Autenticação multifator protege contas privilegiadas|Requirement: Autenticação multifator protege contas privilegiadas]]
-- [[_COMMUNITY_Requirement Conta possui ciclo de vida controlado|Requirement: Conta possui ciclo de vida controlado]]
-- [[_COMMUNITY_Requirement Eventos de identidade, configuração e acesso são auditáveis|Requirement: Eventos de identidade, configuração e acesso são auditáveis]]
-- [[_COMMUNITY_Requirement Exceções individuais são explícitas, limitadas e justificadas|Requirement: Exceções individuais são explícitas, limitadas e justificadas]]
-- [[_COMMUNITY_Requirement Identidade é individual e vinculada à instituição|Requirement: Identidade é individual e vinculada à instituição]]
-- [[_COMMUNITY_Requirement Profissão, papel técnico e responsabilidade organizacional são distintos|Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos]]
-- [[_COMMUNITY_Requirement Administração de acesso possui configuração dedicada|Requirement: Administração de acesso possui configuração dedicada]]
-- [[_COMMUNITY_Requirement Conta possui ciclo de vida controlado|Requirement: Conta possui ciclo de vida controlado]]
-- [[_COMMUNITY_Requirement Eventos de identidade, configuração e acesso são auditáveis|Requirement: Eventos de identidade, configuração e acesso são auditáveis]]
-- [[_COMMUNITY_Requirement Exceções individuais são explícitas, limitadas e justificadas|Requirement: Exceções individuais são explícitas, limitadas e justificadas]]
-- [[_COMMUNITY_Requirement Profissão, papel técnico e responsabilidade organizacional são distintos|Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos]]
-- [[_COMMUNITY_CarrierBuilder.cs|CarrierBuilder.cs]]
-- [[_COMMUNITY_index.ts|index.ts]]
-- [[_COMMUNITY_InstitutionModuleBuilder.cs|InstitutionModuleBuilder.cs]]
-- [[_COMMUNITY_20260809230019_AddCatalogActiveState.Designer.cs|20260809230019_AddCatalogActiveState.Designer.cs]]
-- [[_COMMUNITY_20260811144526_AddSeniorPortalCatalog.Designer.cs|20260811144526_AddSeniorPortalCatalog.Designer.cs]]
-- [[_COMMUNITY_infradocker-test — stack local (build a partir do código)|infra/docker-test — stack local (build a partir do código)]]
-- [[_COMMUNITY_Requirement Credencial administrativa inicial é provisionada com segurança|Requirement: Credencial administrativa inicial é provisionada com segurança]]
-- [[_COMMUNITY_Requirement Mudança autenticada de senha exige confirmação de identidade|Requirement: Mudança autenticada de senha exige confirmação de identidade]]
-- [[_COMMUNITY_Requirement Origem da identidade é extensível|Requirement: Origem da identidade é extensível]]
-- [[_COMMUNITY_Requirement Parâmetros de segurança são configuráveis dentro de limites seguros|Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros]]
-- [[_COMMUNITY_Requirement Portal minimiza dados e não apresenta conteúdo clínico|Requirement: Portal minimiza dados e não apresenta conteúdo clínico]]
-- [[_COMMUNITY_Requirement Cliente obtém contexto e permissões efetivas sem decidir autorização|Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização]]
-- [[_COMMUNITY_Requirement Credencial administrativa inicial é provisionada com segurança|Requirement: Credencial administrativa inicial é provisionada com segurança]]
-- [[_COMMUNITY_Requirement Mudança autenticada de senha exige confirmação de identidade|Requirement: Mudança autenticada de senha exige confirmação de identidade]]
-- [[_COMMUNITY_Requirement Parâmetros de segurança são configuráveis dentro de limites seguros|Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros]]
-- [[_COMMUNITY_Requirement Permissões são compostas por recurso, ação e funcionalidade|Requirement: Permissões são compostas por recurso, ação e funcionalidade]]
-- [[_COMMUNITY_Requirement Senhas são derivadas e nunca recuperáveis|Requirement: Senhas são derivadas e nunca recuperáveis]]
-- [[_COMMUNITY_Requirement Tentativas de autenticação são protegidas contra abuso|Requirement: Tentativas de autenticação são protegidas contra abuso]]
-- [[_COMMUNITY_.NETCoreApp,Version=v8.0.AssemblyAttributes.cs|.NETCoreApp,Version=v8.0.AssemblyAttributes.cs]]
-- [[_COMMUNITY_SeniorCareManager.IntegrationTests.GlobalUsings.g.cs|SeniorCareManager.IntegrationTests.GlobalUsings.g.cs]]
-- [[_COMMUNITY_.NETCoreApp,Version=v8.0.AssemblyAttributes.cs|.NETCoreApp,Version=v8.0.AssemblyAttributes.cs]]
-- [[_COMMUNITY_SeniorCareManager.UnitTests.AssemblyInfo.cs|SeniorCareManager.UnitTests.AssemblyInfo.cs]]
-- [[_COMMUNITY_SeniorCareManager.UnitTests.GlobalUsings.g.cs|SeniorCareManager.UnitTests.GlobalUsings.g.cs]]
-- [[_COMMUNITY_.NETCoreApp,Version=v8.0.AssemblyAttributes.cs|.NETCoreApp,Version=v8.0.AssemblyAttributes.cs]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.GlobalUsings.g.cs|SeniorCareManager.WebAPI.GlobalUsings.g.cs]]
-- [[_COMMUNITY_SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs|SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs]]
-- [[_COMMUNITY_HomePage.tsx|HomePage.tsx]]
-- [[_COMMUNITY_RouteDefinition.ts|RouteDefinition.ts]]
-- [[_COMMUNITY_ServiceResult.ts|ServiceResult.ts]]
-- [[_COMMUNITY_setup.ts|setup.ts]]
-- [[_COMMUNITY_AdminRoleControllerTests|AdminRoleControllerTests]]
-- [[_COMMUNITY_CurrentUserContext|CurrentUserContext]]
-- [[_COMMUNITY_UserSession|UserSession]]
-- [[_COMMUNITY_ProfilePage.tsx|ProfilePage.tsx]]
-- [[_COMMUNITY_Requirement Permissões são compostas por recurso, ação e funcionalidade|Requirement: Permissões são compostas por recurso, ação e funcionalidade]]
-- [[_COMMUNITY_AccessPolicyBuilder.cs|AccessPolicyBuilder.cs]]
-- [[_COMMUNITY_Requirement Tentativas de autenticação são protegidas contra abuso|Requirement: Tentativas de autenticação são protegidas contra abuso]]
-- [[_COMMUNITY_EndpointAuthorizationTests|EndpointAuthorizationTests]]
-- [[_COMMUNITY_InstitutionModuleProvisioningService|InstitutionModuleProvisioningService]]
-- [[_COMMUNITY_Supplier|Supplier]]
-- [[_COMMUNITY_OrganizationalRolePermissionGroup|OrganizationalRolePermissionGroup]]
-- [[_COMMUNITY_.CreateAsync|.CreateAsync]]
-- [[_COMMUNITY_RolePermissionGroup|RolePermissionGroup]]
-- [[_COMMUNITY_MfaEnrollResponse.cs|MfaEnrollResponse.cs]]
-- [[_COMMUNITY_SmtpNotificationSenderTests.cs|SmtpNotificationSenderTests.cs]]
-- [[_COMMUNITY_ProductTypeCreateRequest|ProductTypeCreateRequest]]
-- [[_COMMUNITY_3. Inventário comprovado da implementação atual|3. Inventário comprovado da implementação atual]]
-- [[_COMMUNITY_Q Revise o projeto e verifique as pendências a partir do graphify e do openspec, preparando a retirada do modelo Anthropic na validação de PRs|Q: Revise o projeto e verifique as pendências a partir do graphify e do openspec, preparando a retirada do modelo Anthropic na validação de PRs]]
-- [[_COMMUNITY_tasks|tasks.md]]
-- [[_COMMUNITY_3. Inventário comprovado da implementação atual|3. Inventário comprovado da implementação atual]]
-- [[_COMMUNITY_PermissionGroupBuilder.cs|PermissionGroupBuilder.cs]]
-- [[_COMMUNITY_ProductTypeBuilder.cs|ProductTypeBuilder.cs]]
-- [[_COMMUNITY_Requirement Configuração e navegação crítica são auditáveis|Requirement: Configuração e navegação crítica são auditáveis]]
-- [[_COMMUNITY_10-public-config.sh|10-public-config.sh]]
-- [[_COMMUNITY_MigrationUpgradeTests|MigrationUpgradeTests]]
-- [[_COMMUNITY_HealthInsurancePlan|HealthInsurancePlan]]
-- [[_COMMUNITY_10. Sequência recomendada de evolução|10. Sequência recomendada de evolução]]
-- [[_COMMUNITY_.Post|.Post]]
-- [[_COMMUNITY_Requirement Mudança autenticada de senha exige confirmação de identidade|Requirement: Mudança autenticada de senha exige confirmação de identidade]]
-- [[_COMMUNITY_Manufacturer|Manufacturer]]
-- [[_COMMUNITY_Position|Position]]
-- [[_COMMUNITY_validate-academic-compose.py|validate-academic-compose.py]]
-- [[_COMMUNITY_Religion|Religion]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_.MfaEnroll|.MfaEnroll]]
-- [[_COMMUNITY_ProductGroupController.cs|ProductGroupController.cs]]
-- [[_COMMUNITY_HealthInsurancePlanBuilder.cs|HealthInsurancePlanBuilder.cs]]
-- [[_COMMUNITY_AccountToken|AccountToken]]
-- [[_COMMUNITY_test-academic-backup-restore.sh|test-academic-backup-restore.sh]]
-- [[_COMMUNITY_reset-academico.sh|reset-academico.sh]]
-- [[_COMMUNITY_test-academic-mailpit.sh|test-academic-mailpit.sh]]
-- [[_COMMUNITY_test-reset-academico.sh|test-reset-academico.sh]]
-- [[_COMMUNITY_test-deploy-rollback.sh|test-deploy-rollback.sh]]
-- [[_COMMUNITY_SeniorCareClaimTypes.cs|SeniorCareClaimTypes.cs]]
-- [[_COMMUNITY_Requirement Parâmetros de segurança são configuráveis dentro de limites seguros|Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros]]
-- [[_COMMUNITY_Requirement Permissões são compostas por recurso, ação e funcionalidade|Requirement: Permissões são compostas por recurso, ação e funcionalidade]]
-- [[_COMMUNITY_SYNTHETIC_DATA|SYNTHETIC_DATA.md]]
-- [[_COMMUNITY_Requirement Configuração e navegação crítica são auditáveis|Requirement: Configuração e navegação crítica são auditáveis]]
-- [[_COMMUNITY_Requirement Falha do portal admite contingência controlada|Requirement: Falha do portal admite contingência controlada]]
-- [[_COMMUNITY_Requirement Portal possui experiência acessível e responsiva|Requirement: Portal possui experiência acessível e responsiva]]
-- [[_COMMUNITY_Requirement Senior Portal é a entrada institucional unificada|Requirement: Senior Portal é a entrada institucional unificada]]
-- [[_COMMUNITY_Requirement URLs antigas migram de forma coordenada|Requirement: URLs antigas migram de forma coordenada]]
-- [[_COMMUNITY_setup_project.sh|setup_project.sh]]
-- [[_COMMUNITY_start_epic.sh|start_epic.sh]]
-- [[_COMMUNITY_check-prerequisites.sh|check-prerequisites.sh]]
-- [[_COMMUNITY_resolve-template.sh|resolve-template.sh]]
-- [[_COMMUNITY_setup-plan.sh|setup-plan.sh]]
-- [[_COMMUNITY_setup-tasks.sh|setup-tasks.sh]]
-- [[_COMMUNITY_RegenerateRecoveryCodesRequest.cs|RegenerateRecoveryCodesRequest.cs]]
-- [[_COMMUNITY_Supplier|Supplier]]
-- [[_COMMUNITY_AuthControllerLoginTests|AuthControllerLoginTests]]
-- [[_COMMUNITY_InstitutionModuleProvisioningServiceTests|InstitutionModuleProvisioningServiceTests]]
-- [[_COMMUNITY_Product|Product]]
-- [[_COMMUNITY_crudPages.test.tsx|crudPages.test.tsx]]
-- [[_COMMUNITY_crudPages.test.tsx|crudPages.test.tsx]]
-- [[_COMMUNITY_AccountTokenBuilder.cs|AccountTokenBuilder.cs]]
-- [[_COMMUNITY_ApplicationUserBuilder.cs|ApplicationUserBuilder.cs]]
-- [[_COMMUNITY_Requirement Catálogo de módulos possui contrato estável e configurável|Requirement: Catálogo de módulos possui contrato estável e configurável]]
-- [[_COMMUNITY_SeniorCareClaimTypes.cs|SeniorCareClaimTypes.cs]]
-- [[_COMMUNITY_operationalPages.test.tsx|operationalPages.test.tsx]]
-- [[_COMMUNITY_Requirement Origem da identidade é extensível|Requirement: Origem da identidade é extensível]]
-- [[_COMMUNITY_Requirement Contexto institucional é explícito e consistente|Requirement: Contexto institucional é explícito e consistente]]
-- [[_COMMUNITY_Requirement Portal possui experiência acessível e responsiva|Requirement: Portal possui experiência acessível e responsiva]]
-- [[_COMMUNITY_HttpClient|HttpClient]]
-- [[_COMMUNITY_int|int]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_HttpClient|HttpClient]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_HttpClient|HttpClient]]
-- [[_COMMUNITY_Email|Email]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HttpResponseMessage|HttpResponseMessage]]
-- [[_COMMUNITY_UserId|UserId]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_InstitutionId|InstitutionId]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_HttpClient|HttpClient]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HttpClient|HttpClient]]
-- [[_COMMUNITY_HttpClient|HttpClient]]
-- [[_COMMUNITY_IWebHostBuilder|IWebHostBuilder]]
-- [[_COMMUNITY_PostgreSqlContainer|PostgreSqlContainer]]
-- [[_COMMUNITY_string|string]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_InstitutionId|InstitutionId]]
-- [[_COMMUNITY_string|string]]
-- [[_COMMUNITY_UserId|UserId]]
-- [[_COMMUNITY_UserManager|UserManager]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_List|List]]
-- [[_COMMUNITY_IWebHostBuilder|IWebHostBuilder]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_PostgreSqlContainer|PostgreSqlContainer]]
-- [[_COMMUNITY_string|string]]
-- [[_COMMUNITY_Dictionary|Dictionary]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_HttpClient|HttpClient]]
-- [[_COMMUNITY_IEnumerable|IEnumerable]]
-- [[_COMMUNITY_string|string]]
-- [[_COMMUNITY_Theory|Theory]]
-- [[_COMMUNITY_AccessEffect|AccessEffect]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_InstitutionId|InstitutionId]]
-- [[_COMMUNITY_UserId|UserId]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_IEnumerable|IEnumerable]]
-- [[_COMMUNITY_Type|Type]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_InlineData|InlineData]]
-- [[_COMMUNITY_IReadOnlySet|IReadOnlySet]]
-- [[_COMMUNITY_Theory|Theory]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_InlineData|InlineData]]
-- [[_COMMUNITY_Theory|Theory]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_IConfiguration|IConfiguration]]
-- [[_COMMUNITY_InlineData|InlineData]]
-- [[_COMMUNITY_Theory|Theory]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_InlineData|InlineData]]
-- [[_COMMUNITY_Theory|Theory]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Dictionary|Dictionary]]
-- [[_COMMUNITY_Fact|Fact]]
-- [[_COMMUNITY_MimeMessage|MimeMessage]]
-- [[_COMMUNITY_SecureSocketOptions|SecureSocketOptions]]
-- [[_COMMUNITY_ValueTask|ValueTask]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_AccessPolicy|AccessPolicy]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IReadOnlyList|IReadOnlyList]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_UserManager|UserManager]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_OrganizationalRoleAssignment|OrganizationalRoleAssignment]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_OrganizationalRole|OrganizationalRole]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_PermissionGroup|PermissionGroup]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_Role|Role]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_UserManager|UserManager]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_UserPermissionOverride|UserPermissionOverride]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_UserManager|UserManager]]
-- [[_COMMUNITY_UserSession|UserSession]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_Carrier|Carrier]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HealthInsurancePlan|HealthInsurancePlan]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_Manufacturer|Manufacturer]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_ILogger|ILogger]]
-- [[_COMMUNITY_IReadOnlyList|IReadOnlyList]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_Position|Position]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_Product|Product]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_ProductGroup|ProductGroup]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_ProductType|ProductType]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_Religion|Religion]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_Supplier|Supplier]]
-- [[_COMMUNITY_ActionResult|ActionResult]]
-- [[_COMMUNITY_HttpDelete|HttpDelete]]
-- [[_COMMUNITY_HttpGet|HttpGet]]
-- [[_COMMUNITY_HttpPost|HttpPost]]
-- [[_COMMUNITY_HttpPut|HttpPut]]
-- [[_COMMUNITY_IActionResult|IActionResult]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_RequirePermission|RequirePermission]]
-- [[_COMMUNITY_UnitOfMeasure|UnitOfMeasure]]
-- [[_COMMUNITY_AccessPolicy|AccessPolicy]]
-- [[_COMMUNITY_Carrier|Carrier]]
-- [[_COMMUNITY_DbSet|DbSet]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HealthInsurancePlan|HealthInsurancePlan]]
-- [[_COMMUNITY_Manufacturer|Manufacturer]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_OrganizationalRole|OrganizationalRole]]
-- [[_COMMUNITY_OrganizationalRoleAssignment|OrganizationalRoleAssignment]]
-- [[_COMMUNITY_Permission|Permission]]
-- [[_COMMUNITY_PermissionGroup|PermissionGroup]]
-- [[_COMMUNITY_Position|Position]]
-- [[_COMMUNITY_Product|Product]]
-- [[_COMMUNITY_ProductGroup|ProductGroup]]
-- [[_COMMUNITY_ProductType|ProductType]]
-- [[_COMMUNITY_Religion|Religion]]
-- [[_COMMUNITY_Role|Role]]
-- [[_COMMUNITY_Supplier|Supplier]]
-- [[_COMMUNITY_UnitOfMeasure|UnitOfMeasure]]
-- [[_COMMUNITY_UserPermissionOverride|UserPermissionOverride]]
-- [[_COMMUNITY_UserSession|UserSession]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_IEnumerable|IEnumerable]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_Permission|Permission]]
-- [[_COMMUNITY_string|string]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_ValueTask|ValueTask]]
-- [[_COMMUNITY_Carrier|Carrier]]
-- [[_COMMUNITY_IEnumerable|IEnumerable]]
-- [[_COMMUNITY_HealthInsurancePlan|HealthInsurancePlan]]
-- [[_COMMUNITY_Manufacturer|Manufacturer]]
-- [[_COMMUNITY_Position|Position]]
-- [[_COMMUNITY_ProductGroup|ProductGroup]]
-- [[_COMMUNITY_Product|Product]]
-- [[_COMMUNITY_ProductType|ProductType]]
-- [[_COMMUNITY_Religion|Religion]]
-- [[_COMMUNITY_Supplier|Supplier]]
-- [[_COMMUNITY_UnitOfMeasure|UnitOfMeasure]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_MigrationBuilder|MigrationBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_ModelBuilder|ModelBuilder]]
-- [[_COMMUNITY_Carrier|Carrier]]
-- [[_COMMUNITY_DbSet|DbSet]]
-- [[_COMMUNITY_IEnumerable|IEnumerable]]
-- [[_COMMUNITY_HealthInsurancePlan|HealthInsurancePlan]]
-- [[_COMMUNITY_Manufacturer|Manufacturer]]
-- [[_COMMUNITY_Position|Position]]
-- [[_COMMUNITY_ProductGroup|ProductGroup]]
-- [[_COMMUNITY_Product|Product]]
-- [[_COMMUNITY_ProductType|ProductType]]
-- [[_COMMUNITY_Religion|Religion]]
-- [[_COMMUNITY_Supplier|Supplier]]
-- [[_COMMUNITY_UnitOfMeasure|UnitOfMeasure]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_IHttpContextAccessor|IHttpContextAccessor]]
-- [[_COMMUNITY_IConfiguration|IConfiguration]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Exception|Exception]]
-- [[_COMMUNITY_ILogger|ILogger]]
-- [[_COMMUNITY_Type|Type]]
-- [[_COMMUNITY_ValueTask|ValueTask]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_string|string]]
-- [[_COMMUNITY_string|string]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_HashSet|HashSet]]
-- [[_COMMUNITY_IReadOnlyList|IReadOnlyList]]
-- [[_COMMUNITY_IReadOnlySet|IReadOnlySet]]
-- [[_COMMUNITY_Regex|Regex]]
-- [[_COMMUNITY_string|string]]
-- [[_COMMUNITY_int|int]]
-- [[_COMMUNITY_IReadOnlyList|IReadOnlyList]]
-- [[_COMMUNITY_Regex|Regex]]
-- [[_COMMUNITY_IReadOnlyList|IReadOnlyList]]
-- [[_COMMUNITY_IEnumerable|IEnumerable]]
-- [[_COMMUNITY_PagedResult|PagedResult]]
-- [[_COMMUNITY_AccessEffect|AccessEffect]]
-- [[_COMMUNITY_AccessPolicyState|AccessPolicyState]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_AccountState|AccountState]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_IdentityOrigin|IdentityOrigin]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_List|List]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_OperationalState|OperationalState]]
-- [[_COMMUNITY_List|List]]
-- [[_COMMUNITY_OperationalState|OperationalState]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_AccessEffect|AccessEffect]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_AccessEffect|AccessEffect]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_AccountState|AccountState]]
-- [[_COMMUNITY_OperationalState|OperationalState]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_AccessEffect|AccessEffect]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_AccessEffect|AccessEffect]]
-- [[_COMMUNITY_AccessPolicyState|AccessPolicyState]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_AccountState|AccountState]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_IdentityOrigin|IdentityOrigin]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_OperationalState|OperationalState]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Permission|Permission]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_ProductType|ProductType]]
-- [[_COMMUNITY_UnitOfMeasure|UnitOfMeasure]]
-- [[_COMMUNITY_ProductType|ProductType]]
-- [[_COMMUNITY_ProductGroup|ProductGroup]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_AccessEffect|AccessEffect]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_int|int]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_TimeSpan|TimeSpan]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_ActivationToken|ActivationToken]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_UserId|UserId]]
-- [[_COMMUNITY_UserManager|UserManager]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_IHttpContextAccessor|IHttpContextAccessor]]
-- [[_COMMUNITY_Carrier|Carrier]]
-- [[_COMMUNITY_HashSet|HashSet]]
-- [[_COMMUNITY_string|string]]
-- [[_COMMUNITY_IEnumerable|IEnumerable]]
-- [[_COMMUNITY_HealthInsurancePlan|HealthInsurancePlan]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_IConfiguration|IConfiguration]]
-- [[_COMMUNITY_IdentityResult|IdentityResult]]
-- [[_COMMUNITY_UserManager|UserManager]]
-- [[_COMMUNITY_IdentityOrigin|IdentityOrigin]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_ILogger|ILogger]]
-- [[_COMMUNITY_int|int]]
-- [[_COMMUNITY_Manufacturer|Manufacturer]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_IReadOnlyList|IReadOnlyList]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_int|int]]
-- [[_COMMUNITY_TimeSpan|TimeSpan]]
-- [[_COMMUNITY_int|int]]
-- [[_COMMUNITY_Position|Position]]
-- [[_COMMUNITY_ProductGroup|ProductGroup]]
-- [[_COMMUNITY_Product|Product]]
-- [[_COMMUNITY_ProductType|ProductType]]
-- [[_COMMUNITY_Religion|Religion]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_int|int]]
-- [[_COMMUNITY_RawKey|RawKey]]
-- [[_COMMUNITY_SessionId|SessionId]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_MimeMessage|MimeMessage]]
-- [[_COMMUNITY_SecureSocketOptions|SecureSocketOptions]]
-- [[_COMMUNITY_ValueTask|ValueTask]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_IConfiguration|IConfiguration]]
-- [[_COMMUNITY_ILogger|ILogger]]
-- [[_COMMUNITY_Supplier|Supplier]]
-- [[_COMMUNITY_UnitOfMeasure|UnitOfMeasure]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_DateTime|DateTime]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_TimeSpan|TimeSpan]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_ActivationToken|ActivationToken]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_UserId|UserId]]
-- [[_COMMUNITY_AccessScopeType|AccessScopeType]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_Carrier|Carrier]]
-- [[_COMMUNITY_IEnumerable|IEnumerable]]
-- [[_COMMUNITY_HealthInsurancePlan|HealthInsurancePlan]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_IdentityOrigin|IdentityOrigin]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Manufacturer|Manufacturer]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_IReadOnlyList|IReadOnlyList]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Position|Position]]
-- [[_COMMUNITY_ProductGroup|ProductGroup]]
-- [[_COMMUNITY_Product|Product]]
-- [[_COMMUNITY_ProductType|ProductType]]
-- [[_COMMUNITY_Religion|Religion]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_Guid|Guid]]
-- [[_COMMUNITY_RawKey|RawKey]]
-- [[_COMMUNITY_SessionId|SessionId]]
-- [[_COMMUNITY_CancellationToken|CancellationToken]]
-- [[_COMMUNITY_MimeMessage|MimeMessage]]
-- [[_COMMUNITY_SecureSocketOptions|SecureSocketOptions]]
-- [[_COMMUNITY_Supplier|Supplier]]
-- [[_COMMUNITY_UnitOfMeasure|UnitOfMeasure]]
-- [[_COMMUNITY_IConfiguration|IConfiguration]]
-- [[_COMMUNITY_Requirement Decisão de acesso segue precedência determinística e negação padrão|Requirement: Decisão de acesso segue precedência determinística e negação padrão]]
-- [[_COMMUNITY_3. Inventário comprovado da implementação atual|3. Inventário comprovado da implementação atual]]
-- [[_COMMUNITY_Requirement Conta possui ciclo de vida controlado|Requirement: Conta possui ciclo de vida controlado]]
-- [[_COMMUNITY_Requirement Exceções individuais são explícitas, limitadas e justificadas|Requirement: Exceções individuais são explícitas, limitadas e justificadas]]
-- [[_COMMUNITY_Requirement Credencial administrativa inicial é provisionada com segurança|Requirement: Credencial administrativa inicial é provisionada com segurança]]
-- [[_COMMUNITY_Requirement Parâmetros de segurança são configuráveis dentro de limites seguros|Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros]]
-- [[_COMMUNITY_Requirement Permissões são compostas por recurso, ação e funcionalidade|Requirement: Permissões são compostas por recurso, ação e funcionalidade]]
-- [[_COMMUNITY_Requirement Portal minimiza dados e não apresenta conteúdo clínico|Requirement: Portal minimiza dados e não apresenta conteúdo clínico]]
-- [[_COMMUNITY_20260809013824_AddSessionAndMfa.Designer.cs|20260809013824_AddSessionAndMfa.Designer.cs]]
-- [[_COMMUNITY_Role.ts|Role.ts]]
-- [[_COMMUNITY_ProductType.ts|ProductType.ts]]
-- [[_COMMUNITY_ResetPasswordRequest.cs|ResetPasswordRequest.cs]]
+- SeniorCareManager.WebAPI.Services.Interfaces
+- SeniorCareManager.WebAPI.Objects.Enums
+- LoginRequest
+- Guid
+- IGenericService
+- Fact
+- .ConfigureServices
+- http
+- SeniorCareManagerFrontend/package.json
+- TextInput
+- SeniorStockManagerFrontend/src/components/Modal/index.ts
+- SeniorStockManagerFrontend/package.json
+- common.sh
+- SeniorCareManager.WebAPI.Objects.Dtos.Requests
+- SeniorPortalFrontend/package.json
+- 9. Catálogos auxiliares e produto
+- SeniorPortalFrontend/src/contexts/AuthContext.tsx
+- ModelBuilder
+- SupplierDTO
+- ApplicationUser
+- SeniorStockManagerFrontend/src/components/FormControls/CheckboxGroup/index.tsx
+- Button
+- Button
+- Startup.cs
+- Relatório de avaliação: requisitos versus implementação
+- ref_react_router_dom
+- SeniorStockManagerFrontend/src/contexts/AuthContext.tsx
+- Tasks: [FEATURE NAME]
+- SeniorCareManagerFrontend/src/test/operationalPages.test.tsx
+- SeniorStockManagerFrontend/src/contexts/ThemeContext.tsx
+- 6. Configuração administrativa de acesso
+- SeniorCareManagerFrontend/src/routes/routes.tsx
+- positionService.ts
+- religionService.ts
+- SeniorStockManagerFrontend/src/routes/routes.tsx
+- .agents/skills/speckit-analyze/SKILL.md
+- .claude/skills/speckit-analyze/SKILL.md
+- speckit.analyze.md
+- AccountTokenPurpose
+- ProductForm.tsx
+- devDependencies
+- devDependencies
+- SeniorCareManagerFrontend/src/utils/serviceUtils.ts
+- devDependencies
+- YesNo.ts
+- CarrierDTO
+- AdminOrganizationalRoleController
+- .Create
+- SeniorCareManagerFrontend/src/features/auth/services/authService.ts
+- Supplier
+- SeniorStockManagerFrontend/src/features/auth/services/authService.ts
+- .AttachPermissionGroup_ThenAssignToUser_GrantsAccess
+- AccessPolicyDTO
+- AuditEvent
+- AdminUserController
+- AccessPolicy
+- compilerOptions
+- compilerOptions
+- compilerOptions
+- deploy.sh
+- Desenho técnico migrado
+- NotificationDeliveryStatus
+- AdminUserControllerTests
+- AdminPermissionGroupController
+- ProductDTO
+- SeniorCareManagerFrontend/src/components/FormControls/CheckboxGroup/index.tsx
+- Requirements
+- Execution Steps
+- Execution Steps
+- Execution Steps
+- PositionController
+- Code Review Rules
+- CarrierCreateRequest
+- compilerOptions
+- compilerOptions
+- compilerOptions
+- ManufacturerDTO
+- SmtpNotificationSender
+- Manufacturer
+- UserPermissionOverride
+- IdentityOrigin
+- Configuração — SeniorCareManager.WebAPI
+- OrganizationalRoleAssignmentDTO
+- UserPermissionOverrideDTO
+- ProductCreateRequest
+- Feature Specification: [FEATURE NAME]
+- 6. Domínios funcionais
+- AdminInstitutionSecurityController
+- AccessScopeType
+- Relationship
+- UserSession
+- .agents/skills/speckit-plan/SKILL.md
+- .agents/skills/speckit-specify/SKILL.md
+- .agents/skills/speckit-tasks/SKILL.md
+- .claude/skills/speckit-plan/SKILL.md
+- .claude/skills/speckit-specify/SKILL.md
+- .claude/skills/speckit-tasks/SKILL.md
+- Contratos pré-implementação — Senior Portal
+- Escopo do projeto SeniorCare
+- ProductGroup
+- 8. Requisitos transversais
+- Desenho técnico migrado
+- Guia rápido do ambiente de desenvolvimento
+- Arquitetura de CI/CD — SeniorCare
+- Tutorial: rodando e gerando os containers Docker
+- speckit.plan.md
+- speckit.specify.md
+- speckit.tasks.md
+- Requirements
+- SeniorCareManager.IntegrationTests
+- InstitutionModuleAdminDTO
+- AccessPolicyCreateRequest
+- HealthInsurancePlanCreateRequest
+- SeniorCareManager.WebAPI.Data.Migrations
+- UserPermissionOverrideCreateRequest
+- UserType
+- InstitutionModule
+- Princípios fundamentais
+- Core Principles
+- SeniorPortalCatalogPersistenceTests
+- Decisions
+- CommonPasswordBlocklist
+- Homologação acadêmica do SeniorCare
+- Theory
+- SeniorCareManager.WebAPI
+- PermissionDTO
+- Permission
+- EducationLevel
+- ModuleDefinition
+- fetch-release-assets.sh
+- CancellationToken
+- Test-Driven Development
+- smoke-test.sh
+- .Validate
+- ManufacturerCreateRequest
+- AllergyType
+- Implementation Plan: [FEATURE]
+- .agents/skills/speckit-checklist/SKILL.md
+- .claude/skills/speckit-checklist/SKILL.md
+- Handoff — release e operação via Portainer
+- Tutorial: rodando o SeniorCare em desenvolvimento (Rider + WebStorm)
+- Spec Kit no GitHub — issues, PRs e kanban
+- speckit.checklist.md
+- Requirements
+- AuditEventCategory
+- MaritalStatus
+- Functional Requirements
+- Requirements
+- Functional Requirements
+- .GetMissingConfiguration
+- OrganizationalRoleAssignment
+- scripts
+- .GetInstitutionIdAsync
+- scripts
+- Requirements
+- OpenApiContractTests
+- Feature Specification: Estabilizar a plataforma existente
+- scripts
+- AuthController
+- Feature Specification: Melhorar a entrega do primeiro acesso
+- Implementation Plan: Introduzir o Senior Portal
+- Functional Requirements
+- Task
+- RequirePermission
+- .agents/skills/speckit-clarify/SKILL.md
+- .agents/skills/speckit-implement/SKILL.md
+- .claude/skills/speckit-clarify/SKILL.md
+- Institution
+- Functional Requirements
+- .claude/skills/speckit-implement/SKILL.md
+- GlobalHeader.test.tsx
+- AppDbContext
+- SeniorCareManager.WebAPI.Infrastructure.Validation
+- 7. Fluxos integrados prioritários
+- Decisions
+- 9. Requisitos regulatórios de referência
+- SeniorCareManager.WebAPI.Objects.Dtos.Entities
+- dev-flow — promoção dev → main com QA manual
+- bootstrap-dev-admin.sh
+- SeniorCareManager.WebAPI.Data
+- speckit.clarify.md
+- speckit.implement.md
+- IInstitutionModuleProvisioningService
+- .RecordAsync
+- AccessDecisionExplainRequest
+- AccountState
+- Ethnicity
+- PurchaseStatus
+- StockRequestType
+- ProductType
+- dependencies
+- CatalogPage.tsx
+- dependencies
+- dependencies
+- .agents/skills/speckit-constitution/SKILL.md
+- .claude/skills/speckit-constitution/SKILL.md
+- Feature Specification: Adicionar ambiente acadêmico de homologação
+- OperationalMessageSanitizer
+- Desenho técnico migrado
+- Decisions
+- Desenho técnico migrado
+- ops.sh
+- PostgresWebApplicationFactory
+- INotificationSender
+- infra/deploy — publicação pull-based no servidor
+- test-fetch-release-assets.sh
+- speckit.constitution.md
+- SeniorCareManager-Backend
+- ProductTypeCreateRequest
+- UnitOfMeasureCreateRequest
+- sync_issues.py
+- OperationalState
+- UnitOfMeasure
+- SeniorPortalFrontend/src/utils/serviceUtils.ts
+- SeniorCareManagerFrontend ("care")
+- SeniorCareManagerFrontend/src/components/Table/TableFooter.tsx
+- SeniorStockManagerFrontend ("stock")
+- AccessPolicyFormModal.tsx
+- SeniorStockManagerFrontend/src/components/Table/TableFooter.tsx
+- AuthControllerTests
+- .agents/skills/speckit-taskstoissues/SKILL.md
+- .claude/skills/speckit-taskstoissues/SKILL.md
+- GlobalExceptionHandler
+- Requirement: Administração de acesso possui configuração dedicada
+- 11. Escopo sugerido por evolução
+- 6.11 Dashboards estatísticos e inteligência institucional
+- HealthInsurancePlanType.ts
+- 3. Inventário comprovado da implementação atual
+- Q: Revise o projeto e verifique as pendências a partir do graphify e do openspec, preparando a retirada do modelo Anthropic na validação de PRs
+- Q: vamos implementar as specs pendentes
+- test-academic-caddy.sh
+- speckit.taskstoissues.md
+- AuditImmutabilityInterceptor
+- UserStatus
+- [CHECKLIST TYPE] Checklist: [FEATURE NAME]
+- 12. Relação com o software existente
+- 2. Posicionamento do produto
+- pull_request_template.md
+- backup.sh
+- reset-academico.sh
+- seed-academico.sh
+- Requirement: Eventos de identidade, configuração e acesso são auditáveis
+- Tasks: Adicionar ambiente acadêmico de homologação
+- SeniorCare
+- OriginRateLimiter
+- MfaEnrollResponse
+- ResetPasswordRequest
+- Requirement: Ativação administrativa pode ser reenviada sem expor token
+- Requirement: Catálogo de módulos possui contrato estável e configurável
+- Especificações do SeniorCare
+- Convenções de dados sintéticos acadêmicos
+- Feature Specification: Introduzir o Senior Portal
+- SeniorPortalFrontend/src/features/auth/services/authService.ts
+- test-academic-backup-restore.sh
+- Bootstrap da instituição e do administrador inicial
+- test-academic-mailpit.sh
+- test-deploy-rollback.sh
+- test-reset-academico.sh
+- .SeedFullAccessUserAsync
+- DateTime
+- SeniorPortalFrontend/src/contexts/ThemeContext.tsx
+- SeniorCare coverage report
+- test-seed-academico.sh
+- infra/docker-test — stack local (build a partir do código)
+- SeniorCareManagerFrontend/.prettierrc.json
+- SeniorCareManagerFrontend/tsconfig.json
+- SeniorPortalFrontend/.prettierrc.json
+- SeniorPortalFrontend/tsconfig.json
+- SeniorStockManagerFrontend/.prettierrc.json
+- SeniorStockManagerFrontend/tsconfig.json
+- Requirement: Configuração e navegação crítica são auditáveis
+- Requirement: Funções globais permanecem disponíveis em todos os módulos
+- Requirement: URLs antigas migram de forma coordenada
+- CLAUDE.md
+- check-clinical-scope.sh
+- check-env-hygiene.sh
+- check-frontend-bundle.sh
+- check-synthetic-fixtures.sh
+- promote_to_main.sh
+- setup_project.sh
+- SeniorPortalFrontend/src/features/auth/components/LoginForm/index.tsx
+- start_epic.sh
+- 10-public-config.sh
+- DbHealthCheck
+- Requirement: Falha do portal admite contingência controlada
+- ref_react
+- SeniorCareManager.WebAPI.Objects.Models
+- Requirement: Estado essencial sobrevive à recriação dos containers
+- Requirement: Módulos futuros não são anunciados antes de estarem prontos
+- Requirement: Autenticação multifator protege contas privilegiadas
+- Requirement: Ativação e recuperação não distribuem senha conhecida
+- Contexto e escopo
+- MigrationBuilder
+- Contexto e escopo
+- Contexto e escopo
+- Contexto e escopo
+- Requirement: Credencial administrativa inicial é provisionada com segurança
+- Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização
+- Requirement: Sessão é compartilhada, curta, rotativa e revogável
+- Requirement: Conteúdo sensível nunca é registrado em log ou auditoria
+- SeniorPortalFrontend/src/features/auth/authRoutes.tsx
+- ref_jest_axe
+- Requirement: Ativação e recuperação não distribuem senha conhecida
+- Requirement: Autenticação multifator protege contas privilegiadas
+- Requirement: Identidade é individual e vinculada à instituição
+- Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos
+- Requirement: Ensino e demonstração usam somente dados sintéticos
+- Requirement: Homologação executa releases imutáveis promovíveis
+- Requirement: Plataforma usa uma origem HTTPS interna
+- Requirement: Descoberta de módulos usa permissões efetivas
+- Requirement: Navegação entre aplicações preserva destino seguro
+- Requirement: Portal reutiliza a identidade e a sessão institucional
+- Requirement: Senior Portal é a entrada institucional unificada
+- Requirement: Conta possui ciclo de vida controlado
+- Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros
+- Requirement: Portal minimiza dados e não apresenta conteúdo clínico
 
 ## God Nodes (most connected - your core abstractions)
-1. `SeniorCareManager.WebAPI.Objects.Models` - 164 edges
-2. `SeniorCareManager.WebAPI.Services.Interfaces` - 106 edges
-3. `SeniorCareManager.WebAPI.Objects.Enums` - 99 edges
-4. `SeniorCareManager.WebAPI.Objects.Dtos.Requests` - 97 edges
-5. `SeniorCareManager.WebAPI.Data` - 79 edges
-6. `SeniorCareManager.WebAPI.Objects.Dtos.Entities` - 66 edges
-7. `SeniorCareManager.WebAPI.Infrastructure` - 57 edges
-8. `PostgresWebApplicationFactory` - 41 edges
-9. `SeniorCareManager.WebAPI.Services.Entities` - 41 edges
-10. `SeniorCareManager.IntegrationTests.Infrastructure` - 40 edges
+1. `AppDbContext` - 215 edges
+2. `SeniorCareManager.WebAPI.Objects.Models` - 159 edges
+3. `SeniorCareManager.WebAPI.Services.Interfaces` - 106 edges
+4. `SeniorCareManager.WebAPI.Objects.Enums` - 99 edges
+5. `SeniorCareManager.WebAPI.Objects.Dtos.Requests` - 97 edges
+6. `SeniorCareManager.WebAPI.Data` - 79 edges
+7. `ApplicationUser` - 76 edges
+8. `SeniorCareManager.WebAPI.Objects.Dtos.Entities` - 66 edges
+9. `SeniorCareManager.WebAPI.Infrastructure` - 57 edges
+10. `Button()` - 49 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `AdminAccessDecisionControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminAccessDecisionControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
-- `AdminAccessPolicyControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminAccessPolicyControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
-- `AdminInstitutionModuleControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminInstitutionModuleControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
-- `AdminInstitutionSecurityControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminInstitutionSecurityControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
-- `AdminOrganizationalRoleAssignmentControllerTests` --references--> `PostgresWebApplicationFactory`  [EXTRACTED]
-  SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Controllers/AdminOrganizationalRoleAssignmentControllerTests.cs → SeniorCareManager-Backend/SeniorCareManager.IntegrationTests/Infrastructure/PostgresWebApplicationFactory.cs
+- `3.3 Front-end de estoque` --references--> `ProductController`  [INFERRED]
+  docs/relatorio-avaliacao-requisitos-implementacao.md → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Controllers/ProductController.cs
+- `2. Contrato de contexto global` --references--> `CurrentIdentityDTO`  [INFERRED]
+  docs/architecture/senior-portal-contracts.md → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Dtos/Entities/CurrentIdentityDTO.cs
+- `12.3 Senior Portal interno vs. portal futuro de residentes e famílias` --references--> `InstitutionModule`  [INFERRED]
+  docs/escopo-do-projeto.md → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Objects/Models/InstitutionModule.cs
+- `7. Separar profissão, responsabilidade organizacional e acesso técnico` --references--> `AccessDecisionService`  [INFERRED]
+  specs/001-stabilize-existing-platform/plan.md → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Entities/AccessDecisionService.cs
+- `Contrato de segurança da primeira execução` --references--> `BootstrapService`  [INFERRED]
+  infra/deploy/BOOTSTRAP.md → SeniorCareManager-Backend/SeniorCareManager.WebAPI/Services/Entities/BootstrapService.cs
 
 ## Import Cycles
-- None detected.
+- 3-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/pages/LandingPage/index.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts`
+- 3-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/pages/Registrations/index.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts`
+- 3-file cycle: `SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/routes/routes.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/pages/Registrations/index.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/hooks/useAppRoutes.ts`
+- 3-file cycle: `SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/healthInsurancePlan/healthInsurancePlanRoutes.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/healthInsurancePlan/pages/HealthInsurancePlanOverview.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/healthInsurancePlan/index.ts -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/features/healthInsurancePlan/healthInsurancePlanRoutes.tsx`
+- 3-file cycle: `SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/routes/routes.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/pages/Admin/AdminOverview.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/hooks/useAppRoutes.ts`
+- 3-file cycle: `SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/routes/routes.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/pages/LandingPage/index.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/hooks/useAppRoutes.ts`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/authRoutes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/pages/MfaChallengePage.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/index.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/authRoutes.tsx`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/supplier/index.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/supplier/supplierRoutes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/supplier/pages/SupplierOverview.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/supplier/index.ts`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/supplier/index.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/supplier/supplierRoutes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/supplier/pages/SupplierForm.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/supplier/index.ts`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/components/Breadcrumb/index.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useBreadcrumbs.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/pages/AccessibilityPage.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/components/BreadcrumbPageTitle/index.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/components/Breadcrumb/index.tsx`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/carrier/carrierRoutes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/carrier/pages/CarrierForm.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/carrier/index.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/carrier/carrierRoutes.tsx`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/carrier/carrierRoutes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/carrier/pages/CarrierOverview.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/carrier/index.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/carrier/carrierRoutes.tsx`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/product/index.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/product/productRoutes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/product/pages/ProductForm.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/product/index.ts`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/authRoutes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/pages/ActivateAccountPage.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/index.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/authRoutes.tsx`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/authRoutes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/pages/MfaEnrollPage.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/index.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/authRoutes.tsx`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/authRoutes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/pages/ResetPasswordPage.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/index.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/auth/authRoutes.tsx`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/product/index.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/product/productRoutes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/product/pages/ProductOverview.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useAppRoutes.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/features/product/index.ts`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/components/Breadcrumb/index.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useBreadcrumbs.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/pages/Admin/AdminOverview.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/components/BreadcrumbPageTitle/index.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/components/Breadcrumb/index.tsx`
+- 5-file cycle: `SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/components/Breadcrumb/index.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/hooks/useBreadcrumbs.ts -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/routes/routes.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/pages/Registrations/index.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/components/BreadcrumbPageTitle/index.tsx -> SeniorStockManager-Frontend/SeniorStockManagerFrontend/src/components/Breadcrumb/index.tsx`
+- 5-file cycle: `SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/components/Breadcrumb/index.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/hooks/useBreadcrumbs.ts -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/routes/routes.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/pages/Registrations/index.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/components/BreadcrumbPageTitle/index.tsx -> SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/components/Breadcrumb/index.tsx`
 
-## Communities (1070 total, 736 thin omitted)
+## Communities (327 total, 50 thin omitted)
 
-### Community 0 - "SeniorCareManager.WebAPI.Objects.Models"
-Cohesion: 0.06
-Nodes (10): SeniorCareManager.WebAPI.Data.Interceptors, SeniorCareManager.WebAPI.Services.Entities, SeniorCareManager.WebAPI.Services.Interfaces, SeniorCareManager.UnitTests.Services, SeniorCareManager.WebAPI.Data.Repositories, SeniorCareManager.WebAPI.Objects.Models, SeniorCareManager.WebAPI.Data.Interfaces, AccessDecision (+2 more)
+### Community 0 - "SeniorCareManager.WebAPI.Services.Interfaces"
+Cohesion: 0.09
+Nodes (3): SeniorCareManager.WebAPI.Services.Entities, SeniorCareManager.WebAPI.Services.Interfaces, SeniorCareManager.UnitTests.Services
 
 ### Community 1 - "SeniorCareManager.WebAPI.Objects.Enums"
-Cohesion: 0.04
-Nodes (14): SeniorCareManager.WebAPI.Objects.Enums, AllergyType, EducationLevel, Ethnicity, MaritalStatus, OperationalState, PurchaseStatus, Relationship (+6 more)
+Cohesion: 0.05
+Nodes (10): SeniorCareManager.WebAPI.Objects.Enums, Sex, FEMALE, MALE, StockMovimentType, STOCKIN, STOCKOUT, YesNo (+2 more)
 
-### Community 2 - "AppDbContext"
-Cohesion: 0.04
-Nodes (45): dependencies, axios, @phosphor-icons/react, qrcode, react, react-dom, react-router-dom, devDependencies (+37 more)
+### Community 2 - "LoginRequest"
+Cohesion: 0.09
+Nodes (19): AuthControllerMfaTests, CookieSecurityAttributesTests, SessionRotationTests, LoginResponse, ChallengeToken, Identity, RemainingRecoveryCodes, Status (+11 more)
 
-### Community 3 - "GenericService"
-Cohesion: 0.04
-Nodes (45): dependencies, axios, @phosphor-icons/react, qrcode, react, react-dom, react-router-dom, devDependencies (+37 more)
+### Community 3 - "Guid"
+Cohesion: 0.09
+Nodes (21): HttpClientAuthExtensions, AdminRoleController, RoleDTO, Id, InstitutionId, Name, RowVersion, PermissionGroupLinkRequest (+13 more)
 
-### Community 4 - "devDependencies"
-Cohesion: 0.04
-Nodes (44): dependencies, axios, @phosphor-icons/react, qrcode, react, react-dom, react-router-dom, devDependencies (+36 more)
+### Community 4 - "IGenericService"
+Cohesion: 0.07
+Nodes (23): HealthInsurancePlanController, ProductTypeController, UnitOfMeasureController, HealthInsurancePlanDTO, Abbreviation, Id, IsActive, Name (+15 more)
 
-### Community 5 - "devDependencies"
+### Community 5 - "Fact"
 Cohesion: 0.10
-Nodes (20): 11. Critérios mínimos para declarar o primeiro MVP, 12. Parecer final, 13. Limitações da avaliação, 14. Atualização pós stabilize-existing-platform (§1-§12), 1. Resultado executivo, 2. Método e critérios, 4. Matriz dos domínios funcionais, 5. Matriz dos fluxos integrados prioritários (+12 more)
+Nodes (13): ProductControllerTests, ProductGroupControllerTests, HealthEndpointReadyTests, HealthEndpointUnavailableTests, ProductGroupDTO, Id, IsActive, Name (+5 more)
 
-### Community 6 - "GenericRepository"
-Cohesion: 0.15
-Nodes (8): AdminUserController, AdminUserCreateResponse, AdminUserDTO, AdminUserCreateRequest, AdminUserStateChangeRequest, AccountState, IAdminInvariantService, IAdminUserService
+### Community 6 - ".ConfigureServices"
+Cohesion: 0.07
+Nodes (39): CarrierBuilder, PositionBuilder, ICarrierRepository, IHealthInsurancePlanRepository, IPositionRepository, CarrierRepository, HealthInsurancePlanRepository, PositionRepository (+31 more)
 
-### Community 7 - "IGenericService"
+### Community 7 - "http"
 Cohesion: 0.07
 Nodes (28): ASPNETCORE_ENVIRONMENT, applicationUrl, commandName, dotnetRunMessages, environmentVariables, launchBrowser, launchUrl, applicationUrl (+20 more)
 
-### Community 8 - "http"
+### Community 8 - "SeniorCareManagerFrontend/package.json"
+Cohesion: 0.06
+Nodes (35): autoprefixer, axios, eslint, @eslint/js, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, jest-axe (+27 more)
+
+### Community 9 - "TextInput"
+Cohesion: 0.07
+Nodes (47): SelectInput(), TextInput(), AlertModalProps, icons, ModalContentProps, ModalFooterProps, ModalHeaderProps, ConfirmModalProps (+39 more)
+
+### Community 10 - "SeniorStockManagerFrontend/src/components/Modal/index.ts"
+Cohesion: 0.16
+Nodes (10): AlertModalProps, icons, ModalContentProps, ModalFooterProps, ModalHeaderProps, ConfirmModalProps, FormModalProps, Modal (+2 more)
+
+### Community 11 - "SeniorStockManagerFrontend/package.json"
+Cohesion: 0.06
+Nodes (35): autoprefixer, axios, eslint, @eslint/js, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, jest-axe (+27 more)
+
+### Community 12 - "common.sh"
+Cohesion: 0.13
+Nodes (29): check-prerequisites.sh script, check_dir(), check_file(), find_specify_root(), format_speckit_command(), get_current_branch(), get_feature_paths(), get_invoke_separator() (+21 more)
+
+### Community 14 - "SeniorPortalFrontend/package.json"
+Cohesion: 0.06
+Nodes (34): autoprefixer, axios, eslint, @eslint/js, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, jest-axe (+26 more)
+
+### Community 15 - "9. Catálogos auxiliares e produto"
+Cohesion: 0.09
+Nodes (27): ProductController, ProductBuilder, ProductTypeBuilder, IProductRepository, ProductRepository, ProductUpdateRequest, RowVersion, Product (+19 more)
+
+### Community 16 - "SeniorPortalFrontend/src/contexts/AuthContext.tsx"
+Cohesion: 0.10
+Nodes (27): AuthContext, AuthContextType, AuthProvider(), AuthProviderProps, AuthStatus, Consumer(), getMock, identity (+19 more)
+
+### Community 17 - "ModelBuilder"
+Cohesion: 0.09
+Nodes (15): AccessPolicyBuilder, AccountTokenBuilder, ApplicationUserBuilder, HealthInsurancePlanBuilder, InstitutionBuilder, InstitutionModuleBuilder, ModuleDefinitionBuilder, OrganizationalRoleAssignmentBuilder (+7 more)
+
+### Community 18 - "SupplierDTO"
+Cohesion: 0.06
+Nodes (31): SupplierDTO, AddressComplement, City, CorporateName, CpfCnpj, District, Email, Id (+23 more)
+
+### Community 19 - "ApplicationUser"
+Cohesion: 0.08
+Nodes (24): AdminInstitutionSecurityControllerTests, AdminUserSessionControllerTests, AuditEventTests, AuthControllerLoginTests, TestIdentitySeeder, AdminUserStateChangeRequest, AccountState, CurrentPassword (+16 more)
+
+### Community 20 - "SeniorStockManagerFrontend/src/components/FormControls/CheckboxGroup/index.tsx"
+Cohesion: 0.25
+Nodes (11): Checkbox(), CheckboxProps, Selector(), CheckboxGroup(), CheckboxGroupProps, CheckboxOption, FormField(), FormFieldProps (+3 more)
+
+### Community 21 - "Button"
+Cohesion: 0.11
+Nodes (48): BreadcrumbPageTitle(), BreadcrumbPageTitleProps, Button(), ButtonProps, AlertModal(), ConfirmModal(), ReauthModal(), PageTitle() (+40 more)
+
+### Community 22 - "Button"
+Cohesion: 0.14
+Nodes (34): BreadcrumbPageTitle(), BreadcrumbPageTitleProps, Button(), ButtonProps, AlertModal(), ConfirmModal(), PageTitle(), PageTitleProps (+26 more)
+
+### Community 23 - "Startup.cs"
+Cohesion: 0.07
+Nodes (3): SeniorCareManager.WebAPI.Data.Interceptors, SeniorCareManager.UnitTests.Infrastructure, DataProtectionPersistenceTests
+
+### Community 24 - "Relatório de avaliação: requisitos versus implementação"
+Cohesion: 0.07
+Nodes (27): 10. Sequência recomendada de evolução, 11. Critérios mínimos para declarar o primeiro MVP, 12. Parecer final, 13. Limitações da avaliação, 14. Atualização pós stabilize-existing-platform (§1-§12), 1. Resultado executivo, 2. Método e critérios, 4. Matriz dos domínios funcionais (+19 more)
+
+### Community 25 - "ref_react_router_dom"
+Cohesion: 0.04
+Nodes (63): App(), AuthContext, AuthContextType, AuthProvider(), AuthProviderProps, AuthStatus, Consumer(), getMock (+55 more)
+
+### Community 26 - "SeniorStockManagerFrontend/src/contexts/AuthContext.tsx"
+Cohesion: 0.06
+Nodes (29): App(), AuthContext, AuthContextType, AuthProvider(), AuthProviderProps, AuthStatus, Consumer(), getMock (+21 more)
+
+### Community 27 - "Tasks: [FEATURE NAME]"
 Cohesion: 0.07
 Nodes (26): Dependencies & Execution Order, Format: `[ID] [P?] [Story] Description`, Implementation for User Story 1, Implementation for User Story 2, Implementation for User Story 3, Implementation Strategy, Incremental Delivery, MVP First (User Story 1 Only) (+18 more)
 
-### Community 9 - "BaseModal.tsx"
-Cohesion: 0.07
-Nodes (23): Button(), ButtonProps, CheckboxProps, CheckboxGroup(), CheckboxGroupProps, CheckboxOption, FormField(), FormFieldProps (+15 more)
-
-### Community 10 - "BaseModal.tsx"
-Cohesion: 0.12
-Nodes (12): Button(), ButtonProps, AlertModalProps, icons, ModalContentProps, ModalFooterProps, ModalHeaderProps, ConfirmModalProps (+4 more)
-
-### Community 11 - "What You Must Do When Invoked"
+### Community 28 - "SeniorCareManagerFrontend/src/test/operationalPages.test.tsx"
 Cohesion: 0.08
-Nodes (25): 1. Initialize Analysis Context, 2. Load Artifacts (Progressive Disclosure), 3. Build Semantic Models, 4. Detection Passes (Token-Efficient Analysis), 5. Severity Assignment, 6. Produce Compact Analysis Report, 7. Provide Next Actions, 8. Offer Remediation (+17 more)
+Nodes (28): Card(), CardProps, clampFontSize(), ThemeContext, ThemeContextType, ThemeProvider(), ThemeProviderProps, VALID_THEMES (+20 more)
 
-### Community 12 - "ProductType"
+### Community 29 - "SeniorStockManagerFrontend/src/contexts/ThemeContext.tsx"
+Cohesion: 0.11
+Nodes (16): clampFontSize(), ThemeContext, ThemeContextType, ThemeProvider(), ThemeProviderProps, VALID_THEMES, AppLayout(), Footer() (+8 more)
+
+### Community 30 - "6. Configuração administrativa de acesso"
 Cohesion: 0.08
-Nodes (25): 1. Initialize Analysis Context, 2. Load Artifacts (Progressive Disclosure), 3. Build Semantic Models, 4. Detection Passes (Token-Efficient Analysis), 5. Severity Assignment, 6. Produce Compact Analysis Report, 7. Provide Next Actions, 8. Offer Remediation (+17 more)
+Nodes (27): CurrentIdentityDTO, DisplayName, EffectivePermissions, Email, InstitutionId, InstitutionName, OrganizationalResponsibilities, Roles (+19 more)
 
-### Community 13 - "Controller"
-Cohesion: 0.08
-Nodes (25): 1. Initialize Analysis Context, 2. Load Artifacts (Progressive Disclosure), 3. Build Semantic Models, 4. Detection Passes (Token-Efficient Analysis), 5. Severity Assignment, 6. Produce Compact Analysis Report, 7. Provide Next Actions, 8. Offer Remediation (+17 more)
+### Community 31 - "SeniorCareManagerFrontend/src/routes/routes.tsx"
+Cohesion: 0.09
+Nodes (18): Breadcrumb(), accessPolicyRoutes, adminUserRoutes, healthInsurancePlanRoutes, institutionSecurityRoutes, organizationalRoleRoutes, organizationalRoleAssignmentRoutes, permissionGroupRoutes (+10 more)
 
-### Community 14 - "ManufacturerController"
-Cohesion: 0.08
-Nodes (24): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+16 more)
+### Community 32 - "positionService.ts"
+Cohesion: 0.40
+Nodes (4): PositionFormModalProps, genericMethods, PositionService, Position
 
-### Community 15 - "ReligionController"
+### Community 33 - "religionService.ts"
+Cohesion: 0.40
+Nodes (4): ReligionFormModalProps, genericMethods, ReligionService, Religion
+
+### Community 34 - "SeniorStockManagerFrontend/src/routes/routes.tsx"
 Cohesion: 0.16
-Nodes (3): AuditEventTests, AuthControllerLoginTests, TestIdentitySeeder
+Nodes (10): authRoutes, carrierRoutes, manufacturerRoutes, productRoutes, productGroupRoutes, productTypeRoutes, supplierRoutes, unitOfMeasureRoutes (+2 more)
 
-### Community 16 - "UnitOfMeasureController"
-Cohesion: 0.06
-Nodes (27): authRoutes, getMock, postMock, RequireAuth(), RequireAuthProps, getMock, { activate, recover, resetPassword }, LoginPage() (+19 more)
+### Community 35 - ".agents/skills/speckit-analyze/SKILL.md"
+Cohesion: 0.08
+Nodes (25): 1. Initialize Analysis Context, 2. Load Artifacts (Progressive Disclosure), 3. Build Semantic Models, 4. Detection Passes (Token-Efficient Analysis), 5. Severity Assignment, 6. Produce Compact Analysis Report, 7. Provide Next Actions, 8. Offer Remediation (+17 more)
 
-### Community 17 - "compilerOptions"
-Cohesion: 0.27
-Nodes (4): AccountTokenPurpose, AccountTokenService, AdminUserService, IAccountTokenService
+### Community 36 - ".claude/skills/speckit-analyze/SKILL.md"
+Cohesion: 0.08
+Nodes (25): 1. Initialize Analysis Context, 2. Load Artifacts (Progressive Disclosure), 3. Build Semantic Models, 4. Detection Passes (Token-Efficient Analysis), 5. Severity Assignment, 6. Produce Compact Analysis Report, 7. Provide Next Actions, 8. Offer Remediation (+17 more)
 
-### Community 18 - "compilerOptions"
-Cohesion: 0.18
-Nodes (4): AdminAccessDecisionControllerTests, AdminAccessPolicyControllerTests, AdminInstitutionModuleControllerTests, ModuleCatalogControllerTests
+### Community 37 - "speckit.analyze.md"
+Cohesion: 0.08
+Nodes (25): 1. Initialize Analysis Context, 2. Load Artifacts (Progressive Disclosure), 3. Build Semantic Models, 4. Detection Passes (Token-Efficient Analysis), 5. Severity Assignment, 6. Produce Compact Analysis Report, 7. Provide Next Actions, 8. Offer Remediation (+17 more)
 
-### Community 19 - "index.tsx"
-Cohesion: 0.07
-Nodes (14): IPasswordValidator, CommonPasswordBlocklistTests, PasswordPolicyServiceTests, AdminInstitutionSecurityController, InstitutionSecurityPolicyDTO, InstitutionSecurityPolicyUpdateRequest, Institution, CommonPasswordBlocklist (+6 more)
-
-### Community 20 - "index.tsx"
-Cohesion: 0.19
-Nodes (9): CheckboxProps, CheckboxGroup(), CheckboxGroupProps, CheckboxOption, FormField(), FormFieldProps, SelectInputProps, TextInputProps (+1 more)
-
-### Community 21 - "index.tsx"
-Cohesion: 0.19
-Nodes (8): TableProps, TableFooter(), TableFooterProps, TableHeaderProps, TablePagination(), TablePaginationProps, TableRowProps, TableColumn
-
-### Community 22 - "index.tsx"
-Cohesion: 0.19
-Nodes (8): TableProps, TableFooter(), TableFooterProps, TableHeaderProps, TablePagination(), TablePaginationProps, TableRowProps, TableColumn
-
-### Community 23 - "compilerOptions"
-Cohesion: 0.27
-Nodes (6): AdminAccessPolicyController, AccessPolicyDTO, AccessPolicyCreateRequest, AccessEffect, AccessPolicyState, AccessPolicy
-
-### Community 24 - "compilerOptions"
-Cohesion: 0.23
-Nodes (4): ProductController, ProductDTO, ProductCreateRequest, ProductUpdateRequest
-
-### Community 25 - "AppRoutes.tsx"
-Cohesion: 0.09
-Nodes (19): App(), AuthContext, AuthContextType, AuthProvider(), AuthProviderProps, AuthStatus, getMock, identity (+11 more)
-
-### Community 26 - "AppRoutes.tsx"
-Cohesion: 0.09
-Nodes (19): App(), AuthContext, AuthContextType, AuthProvider(), AuthProviderProps, AuthStatus, getMock, identity (+11 more)
-
-### Community 27 - "SeniorCareManager.WebAPI.Objects.Dtos.Entities"
-Cohesion: 0.19
-Nodes (6): AdminOrganizationalRoleController, OrganizationalRoleDTO, OrganizationalRoleCreateRequest, OrganizationalRoleUpdateRequest, PermissionGroupLinkRequest, OrganizationalRole
-
-### Community 28 - "AppLayout.tsx"
-Cohesion: 0.13
-Nodes (4): Footer(), AccessibilityBar(), getMock, postMock
-
-### Community 29 - "AppLayout.tsx"
-Cohesion: 0.15
-Nodes (4): Footer(), AccessibilityBar(), getMock, postMock
-
-### Community 30 - "SKILL.md"
+### Community 38 - "AccountTokenPurpose"
 Cohesion: 0.14
-Nodes (14): 10. Identidade, acesso e contratos nos front-ends, 11. Baseline de acessibilidade, 12. CI, migração e entrega, 13. Aceite da mudança, 1. Baseline e infraestrutura de testes, 2. Configuração e diagnóstico de execução, 3. Contratos HTTP e tratamento de erros, 4. Instituição, identidade e política de senha (+6 more)
+Nodes (15): AccountTokenPurpose, ACTIVATION, MFA_ENROLLMENT, MFA_VERIFY, RECOVERY, AccountToken, CreatedAtUtc, ExpiresAtUtc (+7 more)
 
-### Community 31 - "HealthInsurancePlanFormModal.tsx"
-Cohesion: 0.24
-Nodes (5): HIPFormModalProps, healthInsurancePlanRoutes, HealthInsurancePlanOverview(), genericMethods, HealthInsurancePlanService
+### Community 39 - "ProductForm.tsx"
+Cohesion: 0.07
+Nodes (38): SelectInput(), TextInput(), FormModal(), ManufacturerFormModal(), ProductForm(), createMock, existingProduct, getAllMock (+30 more)
 
-### Community 32 - "index.ts"
-Cohesion: 0.25
-Nodes (5): PositionFormModalProps, PositionOverview(), positionRoutes, genericMethods, PositionService
+### Community 40 - "devDependencies"
+Cohesion: 0.08
+Nodes (26): devDependencies, autoprefixer, eslint, @eslint/js, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, jest-axe (+18 more)
 
-### Community 33 - "index.ts"
-Cohesion: 0.25
-Nodes (5): ReligionFormModalProps, ReligionOverview(), religionRoutes, genericMethods, ReligionService
+### Community 41 - "devDependencies"
+Cohesion: 0.08
+Nodes (26): devDependencies, autoprefixer, eslint, @eslint/js, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, jest-axe (+18 more)
 
-### Community 34 - "ManufacturerOverview.tsx"
-Cohesion: 0.29
-Nodes (6): ManufacturerFormModal(), ManufacturerFormModalProps, manufacturerRoutes, ManufacturerOverview(), genericMethods, ManufacturerService
+### Community 43 - "SeniorCareManagerFrontend/src/utils/serviceUtils.ts"
+Cohesion: 0.06
+Nodes (49): AdminUserStateModalProps, ActivationResendResponse, AdminUserCreateRequest, AdminUserCreateResponse, AdminUserStateChangeRequest, PagedResult, api, AUTH_BOOTSTRAP_PATHS (+41 more)
 
-### Community 35 - "ProductGroupOverview.tsx"
-Cohesion: 0.29
-Nodes (6): ProductGroupFormModal(), ProductGroupFormModalProps, ProductGroupOverview(), productGroupRoutes, genericMethods, ProductGroupService
-
-### Community 36 - "ProductTypeOverview.tsx"
-Cohesion: 0.29
-Nodes (6): ProductTypeFormModal(), ProductTypeFormModalProps, ProductTypeOverview(), productTypeRoutes, genericMethods, ProductTypeService
-
-### Community 37 - "UnitOfMeasureOverview.tsx"
-Cohesion: 0.29
-Nodes (6): UnitOfMeasureFormModal(), UnitOfMeasureFormModalProps, UnitOfMeasureOverview(), genericMethods, UnitOfMeasureService, unitOfMeasureRoutes
-
-### Community 38 - "carrierRoutes.tsx"
-Cohesion: 0.29
-Nodes (6): carrierRoutes, CarrierForm(), { create }, CarrierOverview(), CarrierService, genericMethods
-
-### Community 39 - "productRoutes.tsx"
-Cohesion: 0.12
-Nodes (16): ProductForm(), createMock, existingProduct, getAllMock, getByIdMock, mockProductGroup, mockProductType, mockUnitOfMeasure (+8 more)
-
-### Community 40 - "supplierRoutes.tsx"
-Cohesion: 0.29
-Nodes (6): SupplierForm(), { create }, SupplierOverview(), genericMethods, SupplierService, supplierRoutes
-
-### Community 41 - "graphify reference: extra exports and benchmark"
-Cohesion: 0.17
-Nodes (9): CarrierController, ICarrierRepository, CarrierRepository, CarrierDTO, CarrierCreateRequest, CarrierUpdateRequest, Carrier, CarrierService (+1 more)
-
-### Community 42 - "SeniorCareManager.WebAPI"
-Cohesion: 0.17
-Nodes (9): SupplierController, ISupplierRepository, SupplierRepository, SupplierDTO, SupplierCreateRequest, SupplierUpdateRequest, Supplier, SupplierService (+1 more)
-
-### Community 43 - "api.ts"
-Cohesion: 0.28
-Nodes (6): api, AUTH_BOOTSTRAP_PATHS, axiosInstance, registerUnauthorizedHandler(), ApiResponse, FieldError
-
-### Community 44 - "HealthInsurancePlanType.ts"
-Cohesion: 0.19
-Nodes (10): HealthInsurancePlanController, IHealthInsurancePlanRepository, HealthInsurancePlanRepository, HealthInsurancePlanDTO, HealthInsurancePlanCreateRequest, HealthInsurancePlanUpdateRequest, HealthPlanType, HealthInsurancePlan (+2 more)
+### Community 44 - "devDependencies"
+Cohesion: 0.08
+Nodes (25): devDependencies, autoprefixer, eslint, @eslint/js, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, jest-axe (+17 more)
 
 ### Community 45 - "YesNo.ts"
-Cohesion: 0.38
-Nodes (5): Enum, EnumLabels, { getEnumLabel, getEnumOptions }, labels, YesNo
-
-### Community 46 - "index.tsx"
-Cohesion: 0.29
-Nodes (3): BreadcrumbPageTitleProps, PageTitle(), PageTitleProps
-
-### Community 47 - "index.tsx"
-Cohesion: 0.29
-Nodes (3): BreadcrumbPageTitleProps, PageTitle(), PageTitleProps
-
-### Community 48 - "Startup"
-Cohesion: 0.10
-Nodes (10): CookieValidatePrincipalContext, SeniorCareManager.UnitTests.Infrastructure, ForwardedHeadersOptions, IApplicationBuilder, IServiceCollection, IWebHostEnvironment, DataProtectionPersistenceTests, ForwardedHeadersConfigurationTests (+2 more)
-
-### Community 49 - "authRoutes.tsx"
-Cohesion: 0.05
-Nodes (35): authRoutes, isPathBasedRouting, getMock, okLoginResponse, postMock, renderWithFreshModules(), { activate, recover }, ActivateAccountFormData (+27 more)
-
-### Community 50 - "api.ts"
-Cohesion: 0.28
-Nodes (6): api, AUTH_BOOTSTRAP_PATHS, axiosInstance, registerUnauthorizedHandler(), ApiResponse, FieldError
-
-### Community 51 - "authRoutes.tsx"
-Cohesion: 0.23
-Nodes (14): ActivateAccountRequest, ChangePasswordRequest, LoginMfaRequest, LoginRequest, LoginResponse, LoginStatus, MessageResponse, MfaConfirmRequest (+6 more)
-
-### Community 52 - "graphify reference: query, path, explain"
-Cohesion: 0.25
-Nodes (7): ModuleCatalogItem, OperationalState, AdminInstitutionModuleController, InstitutionModuleAdminDTO, ModuleCatalogItemDTO, InstitutionModuleUpdateRequest, InstitutionModule
-
-### Community 53 - "Program"
-Cohesion: 0.15
-Nodes (12): AdminAccessDecisionController, AdminUserPermissionOverrideController, UserPermissionOverrideDTO, AccessDecisionExplainRequest, OrganizationalRoleAssignmentCreateRequest, UserPermissionOverrideCreateRequest, AccessScopeType, OrganizationalRoleAssignment (+4 more)
-
-### Community 54 - "SeniorCareManager.WebAPI.Objects.Dtos"
-Cohesion: 0.10
-Nodes (19): compilerOptions, allowImportingTsExtensions, isolatedModules, jsx, lib, module, moduleDetection, moduleResolution (+11 more)
-
-### Community 55 - "graphify reference: add a URL and watch a folder"
-Cohesion: 0.10
-Nodes (19): compilerOptions, allowImportingTsExtensions, isolatedModules, jsx, lib, module, moduleDetection, moduleResolution (+11 more)
-
-### Community 56 - "graphify reference: commit hook and native CLAUDE.md integration"
-Cohesion: 0.10
-Nodes (19): compilerOptions, allowImportingTsExtensions, isolatedModules, jsx, lib, module, moduleDetection, moduleResolution (+11 more)
-
-### Community 58 - "graphify reference: GitHub clone and cross-repo merge"
-Cohesion: 0.12
-Nodes (5): get_feature_paths(), get_repo_root(), _persist_feature_json(), resolve_specify_init_dir(), common.sh script
-
-### Community 59 - "graphify reference: transcribe video and audio"
 Cohesion: 0.31
-Nodes (16): compose(), configure_environment(), die(), do_deploy(), do_rollback(), do_status(), err(), ghcr_login() (+8 more)
+Nodes (8): Enum, EnumLabels, { getEnumLabel, getEnumOptions }, labels, YesNo, createEnumHelpers(), getEnumLabel(), getEnumOptions()
 
-### Community 60 - ".prettierrc.json"
-Cohesion: 0.21
-Nodes (12): configured_features(), ensure_labels(), existing_issues(), feature_slug(), issue_body(), issue_title(), main(), parse_tasks() (+4 more)
+### Community 46 - "CarrierDTO"
+Cohesion: 0.12
+Nodes (17): CarrierController, CarrierDTO, AddressComplement, City, CorporateName, CpfCnpj, District, Email (+9 more)
 
-### Community 61 - "React + TypeScript + Vite"
+### Community 47 - "AdminOrganizationalRoleController"
+Cohesion: 0.17
+Nodes (12): AdminOrganizationalRoleController, OrganizationalRoleDTO, Id, InstitutionId, Name, RowVersion, OrganizationalRoleUpdateRequest, RowVersion (+4 more)
+
+### Community 49 - "SeniorCareManagerFrontend/src/features/auth/services/authService.ts"
+Cohesion: 0.06
+Nodes (46): authRoutes, isPathBasedRouting, LoginForm(), { activate, recover }, ActivateAccountFormData, ActivateAccountPage(), ChangePasswordFormData, ChangePasswordPage() (+38 more)
+
+### Community 50 - "Supplier"
+Cohesion: 0.11
+Nodes (20): SupplierBuilder, ISupplierRepository, SupplierRepository, Supplier, AddressComplement, City, CorporateName, CpfCnpj (+12 more)
+
+### Community 51 - "SeniorStockManagerFrontend/src/features/auth/services/authService.ts"
+Cohesion: 0.07
+Nodes (38): api, AUTH_BOOTSTRAP_PATHS, axiosInstance, registerUnauthorizedHandler(), ApiResponse, FieldError, ActivateAccountRequest, ChangePasswordRequest (+30 more)
+
+### Community 52 - ".AttachPermissionGroup_ThenAssignToUser_GrantsAccess"
+Cohesion: 0.13
+Nodes (12): AdminPermissionGroupControllerTests, AdminRoleControllerTests, PermissionGroupCreateRequest, Name, PermissionGroupUpdateRequest, RowVersion, PermissionLinkRequest, PermissionId (+4 more)
+
+### Community 53 - "AccessPolicyDTO"
+Cohesion: 0.19
+Nodes (12): AdminAccessPolicyController, AccessPolicyDTO, Action, Effect, Feature, Id, PolicyKey, Resource (+4 more)
+
+### Community 54 - "AuditEvent"
+Cohesion: 0.10
+Nodes (19): AuditEventBuilder, AuditEvent, Action, ActorUserId, AfterValue, BeforeValue, Category, CorrelationId (+11 more)
+
+### Community 55 - "AdminUserController"
+Cohesion: 0.16
+Nodes (11): AdminUserController, ActivationResendResponse, EmailSent, AdminUserDTO, AccountState, DisplayName, Email, Id (+3 more)
+
+### Community 56 - "AccessPolicy"
+Cohesion: 0.11
+Nodes (18): AccessPolicyState, ACTIVE, DRAFT, RETIRED, AccessPolicy, Action, CreatedAtUtc, CreatedByUserId (+10 more)
+
+### Community 57 - "compilerOptions"
+Cohesion: 0.11
+Nodes (18): compilerOptions, allowImportingTsExtensions, isolatedModules, jsx, lib, module, moduleDetection, moduleResolution (+10 more)
+
+### Community 58 - "compilerOptions"
+Cohesion: 0.11
+Nodes (18): compilerOptions, allowImportingTsExtensions, isolatedModules, jsx, lib, module, moduleDetection, moduleResolution (+10 more)
+
+### Community 59 - "compilerOptions"
+Cohesion: 0.11
+Nodes (18): compilerOptions, allowImportingTsExtensions, isolatedModules, jsx, lib, module, moduleDetection, moduleResolution (+10 more)
+
+### Community 60 - "deploy.sh"
+Cohesion: 0.35
+Nodes (17): compose(), configure_environment(), die(), do_deploy(), do_rollback(), do_status(), err(), get_env() (+9 more)
+
+### Community 61 - "Desenho técnico migrado"
 Cohesion: 0.05
 Nodes (37): 1. Remover o workflow inteiro, 2. Versionar regras semânticas em `AGENTS.md`, 3. Manter revisão semântica fora dos required checks, 4. Remover o secret somente após eliminar referências, Constitution Check, Context, Decisions, Desenho técnico migrado (+29 more)
 
-### Community 64 - "serviceUtils.ts"
-Cohesion: 0.40
-Nodes (5): generateGenericMethods(), handleServiceError(), PagedResult, ProblemDetails, RFC-7807
+### Community 62 - "NotificationDeliveryStatus"
+Cohesion: 0.18
+Nodes (9): TestNotificationSender, Messages, Status, NotificationDeliveryStatus, Disabled, Failed, Sent, IdentityNotificationService (+1 more)
 
-### Community 66 - ".prettierrc.json"
+### Community 63 - "AdminUserControllerTests"
+Cohesion: 0.21
+Nodes (6): AdminUserControllerTests, AdminUserCreateResponse, EmailSent, AdminUserCreateRequest, DisplayName, Email
+
+### Community 64 - "AdminPermissionGroupController"
+Cohesion: 0.25
+Nodes (8): AdminPermissionGroupController, PermissionGroupDTO, Id, Name, RowVersion, PermissionGroup, Id, Name
+
+### Community 65 - "ProductDTO"
+Cohesion: 0.12
+Nodes (16): ProductDTO, AverageCost, CurrentStock, Description, ExpirationControlled, GenericName, HighCost, Id (+8 more)
+
+### Community 66 - "SeniorCareManagerFrontend/src/components/FormControls/CheckboxGroup/index.tsx"
+Cohesion: 0.26
+Nodes (11): Checkbox(), CheckboxProps, PermissionSelector(), CheckboxGroup(), CheckboxGroupProps, CheckboxOption, FormField(), FormFieldProps (+3 more)
+
+### Community 67 - "Requirements"
+Cohesion: 0.06
+Nodes (35): Requirement: Autenticação não implica autorização clínica, Requirement: Credencial administrativa inicial é provisionada com segurança, Requirement: Decisão de acesso segue precedência determinística e negação padrão, Requirement: Exceções individuais são explícitas, limitadas e justificadas, Requirement: Mudança autenticada de senha exige confirmação de identidade, Requirement: Origem da identidade é extensível, Requirement: Permissões são compostas por recurso, ação e funcionalidade, Requirement: Política de senha segue práticas atuais e possui piso seguro (+27 more)
+
+### Community 68 - "Execution Steps"
 Cohesion: 0.12
 Nodes (15): 1. Initialize Convergence Context, 2. Load Artifacts (Progressive Disclosure), 3. Build the Intent Inventory, 4. Assess the Codebase and Classify Findings, 5. Assign Severity, 6. Present the In-Session Findings Summary, 7. Append Convergence Tasks (or report converged), 8. Provide Next Actions (Handoff) (+7 more)
 
-### Community 67 - "React + TypeScript + Vite"
-Cohesion: 0.22
-Nodes (9): Requirement: Autenticação não implica autorização clínica, Requirement: Origem da identidade é extensível, Requirement: Senhas são derivadas e nunca recuperáveis, Requirements, Scenario: Administrador consulta usuário, Scenario: Identidade local, Scenario: Introdução futura de dado assistencial, Scenario: Origem ainda não habilitada (+1 more)
-
-### Community 70 - "serviceUtils.ts"
-Cohesion: 0.40
-Nodes (5): generateGenericMethods(), handleServiceError(), PagedResult, ProblemDetails, RFC-7807
-
-### Community 71 - "tsconfig.json"
+### Community 69 - "Execution Steps"
 Cohesion: 0.12
 Nodes (15): 1. Initialize Convergence Context, 2. Load Artifacts (Progressive Disclosure), 3. Build the Intent Inventory, 4. Assess the Codebase and Classify Findings, 5. Assign Severity, 6. Present the In-Session Findings Summary, 7. Append Convergence Tasks (or report converged), 8. Provide Next Actions (Handoff) (+7 more)
 
-### Community 72 - "AGENTS.md"
+### Community 70 - "Execution Steps"
+Cohesion: 0.12
+Nodes (15): 1. Initialize Convergence Context, 2. Load Artifacts (Progressive Disclosure), 3. Build the Intent Inventory, 4. Assess the Codebase and Classify Findings, 5. Assign Severity, 6. Present the In-Session Findings Summary, 7. Append Convergence Tasks (or report converged), 8. Provide Next Actions (Handoff) (+7 more)
+
+### Community 71 - "PositionController"
+Cohesion: 0.18
+Nodes (10): PositionController, PositionDTO, Id, IsActive, Name, RowVersion, PositionCreateRequest, Name (+2 more)
+
+### Community 72 - "Code Review Rules"
 Cohesion: 0.25
 Nodes (7): Autenticação e autorização, Code Review Rules, Correção e qualidade do parecer, Entrega e Spec Kit, graphify, LGPD e segurança, Testes
 
-### Community 73 - "extraction-spec.md"
+### Community 73 - "CarrierCreateRequest"
 Cohesion: 0.12
-Nodes (15): 1. Initialize Convergence Context, 2. Load Artifacts (Progressive Disclosure), 3. Build the Intent Inventory, 4. Assess the Codebase and Classify Findings, 5. Assign Severity, 6. Present the In-Session Findings Summary, 7. Append Convergence Tasks (or report converged), 8. Provide Next Actions (Handoff) (+7 more)
+Nodes (15): CarrierCreateRequest, AddressComplement, City, CorporateName, CpfCnpj, District, Email, Number (+7 more)
 
-### Community 74 - "README.md"
-Cohesion: 0.12
-Nodes (15): compilerOptions, allowImportingTsExtensions, isolatedModules, lib, module, moduleDetection, moduleResolution, noEmit (+7 more)
-
-### Community 75 - "ManufacturerDTO.cs"
-Cohesion: 0.38
-Nodes (3): AdminOrganizationalRoleAssignmentController, ICurrentUserContext, OrganizationalRoleAssignmentDTO
-
-### Community 85 - "Position.ts"
-Cohesion: 0.16
-Nodes (3): AdminInstitutionSecurityControllerTests, AdminUserControllerTests, AuthControllerAccountLockoutTests
-
-### Community 101 - "ProductType.ts"
-Cohesion: 0.20
-Nodes (11): ICollection, IProductGroupRepository, IProductTypeRepository, ProductGroupRepository, ProductTypeRepository, ProductGroup, ProductType, ProductGroupService (+3 more)
-
-### Community 103 - "UnitOfMeasure.ts"
-Cohesion: 0.17
-Nodes (10): Constitution Check, Context, Desenho técnico migrado, Goals / Non-Goals, Implementation Plan: Estabilizar a plataforma existente, Migration Plan, Project Structure, Risks / Trade-offs (+2 more)
-
-### Community 106 - "SKILL.md"
+### Community 74 - "compilerOptions"
 Cohesion: 0.12
 Nodes (15): compilerOptions, allowImportingTsExtensions, isolatedModules, lib, module, moduleDetection, moduleResolution, noEmit (+7 more)
 
-### Community 107 - "SKILL.md"
+### Community 75 - "compilerOptions"
 Cohesion: 0.12
 Nodes (15): compilerOptions, allowImportingTsExtensions, isolatedModules, lib, module, moduleDetection, moduleResolution, noEmit (+7 more)
 
-### Community 108 - "SKILL.md"
+### Community 76 - "compilerOptions"
 Cohesion: 0.12
-Nodes (6): SeniorCareManager.IntegrationTests, HealthEndpointReadyTests, HealthEndpointUnavailableTests, UnavailableDatabaseWebApplicationFactory, MigrationUpgradeTests, WebApplicationFactory
+Nodes (15): compilerOptions, allowImportingTsExtensions, isolatedModules, lib, module, moduleDetection, moduleResolution, noEmit (+7 more)
 
-### Community 110 - "SKILL.md"
-Cohesion: 0.10
-Nodes (21): Requirement: Backend possui testes automatizados representativos, Requirement: CI bloqueia mudanças não verificadas, Requirement: Cobertura é publicada e caminhos críticos não ficam sem teste, Requirement: Dados de teste não contêm dados pessoais reais, Requirement: Front-ends possuem testes de comportamento, Requirement: Migrações são verificadas em instalação e atualização, Requirement: Revisão semântica é versionada e independente de provedor, Requirements (+13 more)
+### Community 77 - "ManufacturerDTO"
+Cohesion: 0.19
+Nodes (10): ManufacturerController, ManufacturerDTO, CorporateName, CpfCnpj, Email, Id, IsActive, Phone (+2 more)
 
-### Community 111 - "SeniorCareManager.WebAPI.sln"
-Cohesion: 0.06
-Nodes (34): MailKit (4.17.0), Microsoft.AspNetCore.Identity.EntityFrameworkCore (8.0.11), Microsoft.AspNetCore.Mvc.Testing (8.0.13), Microsoft.EntityFrameworkCore (9.0.0), Microsoft.EntityFrameworkCore.Design (9.0.0), Microsoft.EntityFrameworkCore.Tools (9.0.0), Moq (4.20.72), Npgsql.EntityFrameworkCore.PostgreSQL (9.0.1) (+26 more)
-
-### Community 122 - "InitialCreate"
-Cohesion: 0.20
-Nodes (4): SeniorCareManager.WebAPI.Data.Migrations, InitialCreate, AddInstitutionAndIdentity, AddAccessControlFoundation
-
-### Community 123 - "deploy.sh"
+### Community 78 - "SmtpNotificationSender"
 Cohesion: 0.23
-Nodes (4): ProductTypeController, ProductTypeDTO, ProductTypeCreateRequest, ProductTypeUpdateRequest
+Nodes (4): SmtpNotificationSenderTests, SmtpClientFactory, SmtpNotificationSender, ISmtpClientFactory
 
-### Community 124 - "Escopo do projeto SeniorCare"
-Cohesion: 0.15
-Nodes (6): IProductRepository, ProductRepository, Product, ProductService, IGenericService, IProductService
+### Community 80 - "Manufacturer"
+Cohesion: 0.18
+Nodes (13): ManufacturerBuilder, IManufacturerRepository, ManufacturerRepository, Manufacturer, CorporateName, CpfCnpj, Email, Id (+5 more)
 
-### Community 127 - "7. Fluxos integrados prioritários"
-Cohesion: 0.16
-Nodes (9): Position, PositionController, IPositionRepository, PositionRepository, PositionDTO, PositionCreateRequest, PositionUpdateRequest, PositionService (+1 more)
+### Community 81 - "UserPermissionOverride"
+Cohesion: 0.14
+Nodes (14): UserPermissionOverride, Action, CreatedAtUtc, Effect, Feature, GrantedByUserId, Id, Justification (+6 more)
 
-### Community 128 - "9. Requisitos regulatórios de referência"
+### Community 82 - "IdentityOrigin"
+Cohesion: 0.22
+Nodes (7): InstitutionIdentityOriginServiceTests, IdentityOrigin, LDAP, LOCAL, OIDC, InstitutionIdentityOriginService, IInstitutionIdentityOriginService
+
+### Community 83 - "Configuração — SeniorCareManager.WebAPI"
+Cohesion: 0.18
+Nodes (9): Ambientes, Bootstrap da instituição e do administrador inicial, Configuração — SeniorCareManager.WebAPI, E-mail transacional e links de primeiro acesso, Sessão (cookie) entre os front-ends, Validação de startup, Variáveis obrigatórias em produção, InstitutionSecurityPolicyService (+1 more)
+
+### Community 84 - "OrganizationalRoleAssignmentDTO"
 Cohesion: 0.23
-Nodes (4): ProductGroupController, ProductGroupDTO, ProductGroupCreateRequest, ProductGroupUpdateRequest
+Nodes (9): AdminOrganizationalRoleAssignmentController, OrganizationalRoleAssignmentDTO, Id, OrganizationalRoleId, ScopeKey, ScopeType, UserId, ValidFrom (+1 more)
 
-### Community 129 - "codeql-sarif-gate.py"
+### Community 85 - "UserPermissionOverrideDTO"
 Cohesion: 0.15
-Nodes (13): 10. Tornar configuração e decisões de acesso administráveis e auditáveis, 11. Testar com a mesma classe de banco usada em produção, 12. Evoluir acessibilidade nos componentes compartilhados atuais, 1. Manter o monólito modular e os dois front-ends, 2. Usar API de mesma origem em produção, 3. Padronizar erros com Problem Details e sucesso por recurso, 4. Separar modelos de persistência dos contratos da API, 5. Implementar produto como catálogo, não como saldo transacional (+5 more)
+Nodes (13): UserPermissionOverrideDTO, Action, Effect, Feature, GrantedByUserId, Id, Justification, Resource (+5 more)
 
-### Community 130 - "ops.sh"
+### Community 86 - "ProductCreateRequest"
 Cohesion: 0.15
-Nodes (9): UnitOfMeasure, UnitOfMeasureController, IUnitOfMeasureRepository, UnitOfMeasureRepository, UnitOfMeasureDTO, UnitOfMeasureCreateRequest, UnitOfMeasureUpdateRequest, UnitOfMeasureService (+1 more)
+Nodes (13): ProductCreateRequest, AverageCost, CurrentStock, Description, ExpirationControlled, GenericName, HighCost, LastPurchasePrice (+5 more)
 
-### Community 133 - "pull_request_template.md"
+### Community 87 - "Feature Specification: [FEATURE NAME]"
 Cohesion: 0.15
 Nodes (12): Assumptions, Edge Cases, Feature Specification: [FEATURE NAME], Functional Requirements, Key Entities *(include if feature involves data)*, Measurable Outcomes, Requirements *(mandatory)*, Success Criteria *(mandatory)* (+4 more)
 
-### Community 134 - "backup.sh"
+### Community 88 - "6. Domínios funcionais"
 Cohesion: 0.17
 Nodes (12): 6.10 Governança, qualidade, segurança e conformidade, 6.1 Jornada e cadastro longitudinal do residente, 6.2 Assistência cotidiana e atividades de vida diária, 6.3.1 Prontuário multidisciplinar como capacidade crítica, 6.3 Saúde e cuidado multidisciplinar, 6.4 Alimentação e nutrição, 6.5 Assistência social, família, convivência e autonomia, 6.6 Profissionais, escalas e educação permanente (+4 more)
 
-### Community 136 - "CLAUDE.md"
-Cohesion: 0.16
-Nodes (5): IAsyncLifetime, AuthControllerMeTests, DataProtectionSessionPersistenceTests, PostgresWebApplicationFactory, InstitutionModuleProvisioningServiceTests
+### Community 89 - "AdminInstitutionSecurityController"
+Cohesion: 0.26
+Nodes (7): AdminInstitutionSecurityController, InstitutionSecurityPolicyDTO, AccessTokenDurationMinutes, LockoutDurationMinutes, MaxFailedAttempts, MfaRequiredForAllUsers, RefreshTokenDurationDays
 
-### Community 137 - "check-env-hygiene.sh"
+### Community 90 - "AccessScopeType"
+Cohesion: 0.17
+Nodes (11): OrganizationalRoleAssignmentCreateRequest, OrganizationalRoleId, ScopeKey, ScopeType, UserId, ValidFrom, ValidTo, AccessScopeType (+3 more)
+
+### Community 91 - "Relationship"
+Cohesion: 0.17
+Nodes (11): Relationship, BROTHER_SISTER, COUSIN, FATHER, GRANFATHER_GRANMOTHER, MOTHER, NEPHEW_NIECE, OTHER (+3 more)
+
+### Community 92 - "UserSession"
+Cohesion: 0.17
+Nodes (12): UserSession, CreatedAtUtc, CurrentKeyHash, ExpiresAtUtc, Id, IpAddress, LastRotatedAtUtc, LastSeenAtUtc (+4 more)
+
+### Community 93 - ".agents/skills/speckit-plan/SKILL.md"
 Cohesion: 0.18
 Nodes (10): Completion Report, Done When, Key rules, Mandatory Post-Execution Hooks, Outline, Phase 0: Outline & Research, Phase 1: Design & Contracts, Phases (+2 more)
 
-### Community 138 - ".NETCoreApp,Version=v8.0.AssemblyAttributes.cs"
+### Community 94 - ".agents/skills/speckit-specify/SKILL.md"
 Cohesion: 0.18
 Nodes (10): Completion Report, Done When, For AI Generation, Mandatory Post-Execution Hooks, Outline, Pre-Execution Checks, Quick Guidelines, Section Requirements (+2 more)
 
-### Community 139 - "SeniorCareManager.WebAPI.AssemblyInfo.cs"
-Cohesion: 0.08
-Nodes (10): IAsyncDisposable, IDictionary, SmtpClient, FakeSmtpClient, SmtpNotificationSenderTests, SmtpClientAdapter, SmtpClientFactory, SmtpNotificationSender (+2 more)
-
-### Community 140 - "SeniorCareManager.WebAPI.GlobalUsings.g.cs"
-Cohesion: 0.15
-Nodes (10): Designing for Mockability, When to Mock, Anti-patterns, Rules of the loop, Seams: where tests go, Test-Driven Development, What a good test is, Bad Tests (+2 more)
-
-### Community 141 - "SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs"
+### Community 95 - ".agents/skills/speckit-tasks/SKILL.md"
 Cohesion: 0.18
 Nodes (10): Checklist Format (REQUIRED), Completion Report, Done When, Mandatory Post-Execution Hooks, Outline, Phase Structure, Pre-Execution Checks, Task Generation Rules (+2 more)
 
-### Community 142 - ".NETCoreApp,Version=v8.0.AssemblyAttributes.cs"
+### Community 96 - ".claude/skills/speckit-plan/SKILL.md"
 Cohesion: 0.18
 Nodes (10): Completion Report, Done When, Key rules, Mandatory Post-Execution Hooks, Outline, Phase 0: Outline & Research, Phase 1: Design & Contracts, Phases (+2 more)
 
-### Community 143 - "SeniorCareManager.WebAPI.AssemblyInfo.cs"
+### Community 97 - ".claude/skills/speckit-specify/SKILL.md"
 Cohesion: 0.18
 Nodes (10): Completion Report, Done When, For AI Generation, Mandatory Post-Execution Hooks, Outline, Pre-Execution Checks, Quick Guidelines, Section Requirements (+2 more)
 
-### Community 144 - "SeniorCareManager.WebAPI.GlobalUsings.g.cs"
+### Community 98 - ".claude/skills/speckit-tasks/SKILL.md"
 Cohesion: 0.18
 Nodes (10): Checklist Format (REQUIRED), Completion Report, Done When, Mandatory Post-Execution Hooks, Outline, Phase Structure, Pre-Execution Checks, Task Generation Rules (+2 more)
 
-### Community 145 - "SeniorCareManager.WebAPI.MvcApplicationPartsAssemblyInfo.cs"
+### Community 99 - "Contratos pré-implementação — Senior Portal"
 Cohesion: 0.18
 Nodes (10): 1. Contrato de rotas, 2. Contrato de contexto global, 3. Contrato de retorno seguro (`returnTo`), 4. Contrato de perfil, segurança da conta e logout, 5. Contrato de preferências (acessibilidade), 6. Decisão: hospedagem de `/admin`, Alvo (design.md, decisão 2), Contratos pré-implementação — Senior Portal (+2 more)
 
-### Community 146 - "6.11 Dashboards estatísticos e inteligência institucional"
+### Community 100 - "Escopo do projeto SeniorCare"
 Cohesion: 0.18
 Nodes (11): 10. Limites do produto, 13. Decisões em aberto, 14. Critérios de sucesso do produto, 15. Glossário inicial, 16. Referências, 1.1 Natureza social e universitária, 1. Resumo executivo, 3. Princípios orientadores (+3 more)
 
-### Community 147 - "Arquitetura de CI/CD — SeniorCare"
+### Community 101 - "ProductGroup"
+Cohesion: 0.24
+Nodes (9): IProductGroupRepository, ProductGroupRepository, ProductGroup, Id, IsActive, Name, ProductType, ProductGroupService (+1 more)
+
+### Community 102 - "8. Requisitos transversais"
 Cohesion: 0.18
 Nodes (11): 8.1 Segurança e privacidade, 8.2 Usabilidade e acessibilidade, 8.3 Rastreabilidade e integridade, 8.4 Interoperabilidade, 8.5 Configuração institucional, 8.6 Assinaturas eletrônicas e redução de papel, 8.7 Governança de dados na parceria universitária, 8. Requisitos transversais (+3 more)
 
-### Community 148 - "Relatório de avaliação: requisitos versus implementação"
+### Community 103 - "Desenho técnico migrado"
 Cohesion: 0.17
+Nodes (10): Constitution Check, Context, Desenho técnico migrado, Goals / Non-Goals, Implementation Plan: Estabilizar a plataforma existente, Migration Plan, Project Structure, Risks / Trade-offs (+2 more)
+
+### Community 104 - "Guia rápido do ambiente de desenvolvimento"
+Cohesion: 0.18
 Nodes (11): Guia rápido do ambiente de desenvolvimento, Onde configurar cada variável?, Opção A — aplicação completa com Docker, Opção B — Rider + WebStorm (debug e hot reload), Passo 1 — pré-requisitos, Passo 2 — iniciar Postgres e Mailpit, Passo 3 — configurar e iniciar a API no Rider, Passo 4 — iniciar os front-ends no WebStorm (+3 more)
 
-### Community 149 - "10. Sequência recomendada de evolução"
+### Community 105 - "Arquitetura de CI/CD — SeniorCare"
 Cohesion: 0.18
 Nodes (11): 1. Contexto e restrições, 2. Decisão central: `build once, deploy many`, 3. Unidades implantáveis, 4. Versionamento — CalVer + release train, 5. Pipeline de CI/CD (GitHub Actions), 6. Release manifest — a unidade de deploy, 7. CD — entrega no servidor (pull-based), 8. Camada de operação (opcional) (+3 more)
 
-### Community 150 - "infra/deploy — publicação pull-based no servidor"
+### Community 106 - "Tutorial: rodando e gerando os containers Docker"
 Cohesion: 0.18
 Nodes (11): 1. Subir tudo (build + run), 2. Portas, 3.1. Caminho rápido no fallback manual — script, 3.2. Passo a passo manual (o que o script acima faz por baixo), 3.3. Administradores criados depois do bootstrap, 3. Primeiro login (criar e ativar o usuário admin), 4. Comandos do dia a dia, 5. Gerando imagens pra produção (visão geral) (+3 more)
 
-### Community 151 - "3. Inventário comprovado da implementação atual"
-Cohesion: 0.40
-Nodes (10): add_to_project(), create_issue(), ensure_label(), extract_test_plan(), main(), project_gh(), Retorna (project_id, status_field_id, option_id) para TARGET_STATUS_NAME., repo_gh() (+2 more)
-
-### Community 152 - "7. Avaliação específica das capacidades críticas"
-Cohesion: 0.11
-Nodes (19): Requirement: Alterações preservam identidade e concorrência, Requirement: Catálogo de produtos é integrado de ponta a ponta, Requirement: Contrato uniforme para cadastros auxiliares, Requirement: Exclusão respeita referências e histórico administrativo, Requirement: Operações administrativas são atribuíveis, Requirements, Scenario: Alteração autenticada, Scenario: Cadastro válido de produto (+11 more)
-
-### Community 153 - "9. Riscos e lacunas priorizados"
+### Community 107 - "speckit.plan.md"
 Cohesion: 0.18
 Nodes (10): Completion Report, Done When, Key rules, Mandatory Post-Execution Hooks, Outline, Phase 0: Outline & Research, Phase 1: Design & Contracts, Phases (+2 more)
 
-### Community 154 - "12. Relação com o software existente"
+### Community 108 - "speckit.specify.md"
 Cohesion: 0.18
 Nodes (10): Completion Report, Done When, For AI Generation, Mandatory Post-Execution Hooks, Outline, Pre-Execution Checks, Quick Guidelines, Section Requirements (+2 more)
 
-### Community 155 - "ADDED Requirements"
-Cohesion: 0.10
-Nodes (20): Functional Requirements, Requirement: Ambiente documenta limites e procedimentos operacionais, Requirement: E-mails acadêmicos são capturados e não entregues externamente, Requirement: Portainer não substitui a fonte versionada do deploy, Requirement: Publicação falha com segurança e admite recuperação, Requirement: Reset acadêmico possui barreiras contra destruição indevida, Requirement: Serviços internos não são expostos diretamente à LAN, Scenario: Acesso comum pela LAN ao capturador (+12 more)
-
-### Community 156 - "ADDED Requirements"
-Cohesion: 0.12
-Nodes (17): Capacidade `support-catalogs`, Purpose, Requirement: Configurações e segredos são separados, Requirement: Diagnóstico distingue vida e prontidão, Requirement: Endereço da API é configurável por ambiente, Requirement: Todos os componentes produzem artefatos de entrega, Requirements, runtime-configuration Specification (+9 more)
-
-### Community 157 - "ADDED Requirements"
-Cohesion: 0.12
-Nodes (17): Functional Requirements, Requirement: Catálogo de módulos possui contrato estável e configurável, Requirement: Configuração e navegação crítica são auditáveis, Requirement: Contexto institucional é explícito e consistente, Requirement: Funções globais permanecem disponíveis em todos os módulos, Requirement: URLs antigas migram de forma coordenada, Scenario: Acesso direto negado, Scenario: Administrador cadastra módulo válido (+9 more)
-
-### Community 158 - "Decisions"
-Cohesion: 0.08
-Nodes (11): SeniorCareManager.WebAPI.Infrastructure.Validation, SeniorCareManager.UnitTests, IHostBuilder, IConfiguration, List, Program, ModuleDefinitionValidatorTests, OperationalMessageSanitizerTests (+3 more)
-
-### Community 159 - "ADDED Requirements"
+### Community 109 - "speckit.tasks.md"
 Cohesion: 0.18
 Nodes (10): Checklist Format (REQUIRED), Completion Report, Done When, Mandatory Post-Execution Hooks, Outline, Phase Structure, Pre-Execution Checks, Task Generation Rules (+2 more)
 
-### Community 160 - "ADDED Requirements"
-Cohesion: 0.16
-Nodes (6): AdminUserSessionController, PagedResult, PagedResultExtensions, UserSessionDTO, CatalogQuery, RevokeSessionRequest
+### Community 110 - "Requirements"
+Cohesion: 0.10
+Nodes (21): Requirement: Backend possui testes automatizados representativos, Requirement: CI bloqueia mudanças não verificadas, Requirement: Cobertura é publicada e caminhos críticos não ficam sem teste, Requirement: Dados de teste não contêm dados pessoais reais, Requirement: Front-ends possuem testes de comportamento, Requirement: Migrações são verificadas em instalação e atualização, Requirement: Revisão semântica é versionada e independente de provedor, Requirements (+13 more)
 
-### Community 161 - "tasks.md"
-Cohesion: 0.21
-Nodes (5): ControllerBase, ManufacturerController, ManufacturerDTO, ManufacturerCreateRequest, ManufacturerUpdateRequest
+### Community 111 - "SeniorCareManager.IntegrationTests"
+Cohesion: 0.08
+Nodes (24): Microsoft.AspNetCore.Mvc.Testing (8.0.13), Moq (4.20.72), SSH.NET (2026.0.0), Testcontainers.PostgreSql (4.4.0), SeniorCareManager.IntegrationTests, net8.0, coverlet.collector (6.0.0), FluentAssertions (6.12.1) (+16 more)
 
-### Community 162 - "proposal.md"
-Cohesion: 0.27
-Nodes (3): SessionValidationOutcome, SessionValidationResult, SessionService
+### Community 117 - "InstitutionModuleAdminDTO"
+Cohesion: 0.18
+Nodes (11): InstitutionModuleAdminDTO, CreatedAtUtc, Id, IsEnabled, ModuleKey, ModuleName, OperationalMessage, OperationalState (+3 more)
 
-### Community 163 - "sync_issues.py"
-Cohesion: 0.12
-Nodes (16): accessibility-baseline Specification, Capacidade `automated-quality-gates`, Purpose, Requirement: Controles possuem nome, estado e instrução acessíveis, Requirement: Estrutura e contraste possuem critérios verificáveis, Requirement: Fluxos existentes são operáveis por teclado, Requirement: Preferências visuais são persistentes e limitadas, Requirements (+8 more)
+### Community 120 - "AccessPolicyCreateRequest"
+Cohesion: 0.18
+Nodes (10): AccessPolicyCreateRequest, Action, Effect, Feature, Resource, ScopeKey, ScopeType, AccessEffect (+2 more)
 
-### Community 164 - "GenericRepository"
-Cohesion: 0.27
-Nodes (3): JsonElement, MemberData, OpenApiContractTests
+### Community 121 - "HealthInsurancePlanCreateRequest"
+Cohesion: 0.18
+Nodes (9): HealthInsurancePlanCreateRequest, Abbreviation, Name, Type, HealthInsurancePlanUpdateRequest, RowVersion, HealthPlanType, PRIVATE (+1 more)
 
-### Community 165 - "OpenSpec no GitHub — issues, PRs e kanban"
-Cohesion: 0.14
-Nodes (14): Assumptions, automated-quality-gates Specification, Capacidade `accessibility-baseline`, Capacidade `platform-authentication`, Capacidade `runtime-configuration`, Feature Specification: Estabilizar a plataforma existente, platform-authentication Specification, Purpose (+6 more)
+### Community 123 - "UserPermissionOverrideCreateRequest"
+Cohesion: 0.18
+Nodes (11): UserPermissionOverrideCreateRequest, Action, Effect, Feature, Justification, Resource, ScopeKey, ScopeType (+3 more)
 
-### Community 166 - "Requirement: Sessão é compartilhada, curta, rotativa e revogável"
+### Community 124 - "UserType"
+Cohesion: 0.18
+Nodes (10): UserType, ADMIN, DOCTOR, MANAGER, NURSE, NURSINGTECHNICIAN, NUTRITIONIST, OPERATOR (+2 more)
+
+### Community 125 - "InstitutionModule"
+Cohesion: 0.18
+Nodes (11): InstitutionModule, CreatedAtUtc, Id, InstitutionId, IsEnabled, ModuleDefinition, ModuleDefinitionId, OperationalMessage (+3 more)
+
+### Community 126 - "Princípios fundamentais"
 Cohesion: 0.18
 Nodes (10): Constituição do SeniorCare, Fluxo de desenvolvimento e revisão, Governança, I. Pessoa idosa e escopo explícito, II. Privacidade e segurança por padrão, III. Autorização e auditoria no recurso, IV. Evidência verificável, Princípios fundamentais (+2 more)
 
-### Community 167 - "Requirement: Ativação e recuperação não distribuem senha conhecida"
-Cohesion: 0.10
-Nodes (16): AllowAnonymous, ActionResult, HttpPost, IdentityResult, TimeSpan, UserManager, AuthController, MessageResponse (+8 more)
-
-### Community 168 - "Requirement: Decisão de acesso segue precedência determinística e negação padrão"
+### Community 127 - "Core Principles"
 Cohesion: 0.18
 Nodes (10): Core Principles, Governance, [PRINCIPLE_1_NAME], [PRINCIPLE_2_NAME], [PRINCIPLE_3_NAME], [PRINCIPLE_4_NAME], [PRINCIPLE_5_NAME], [PROJECT_NAME] Constitution (+2 more)
 
-### Community 170 - "Requirement: Administração de acesso possui configuração dedicada"
+### Community 129 - "Decisions"
 Cohesion: 0.15
-Nodes (13): Functional Requirements, Requirement: CI comprova identidade dos artefatos promovíveis, Requirement: CI protege a carga sintética e as barreiras de reset, Requirement: CI valida a topologia de homologação acadêmica, Requirement: Smoke test valida o acesso acadêmico fim a fim, Scenario: Caminho-base ou TLS regrede, Scenario: Componente ausente ou reconstruído, Scenario: Configuração acadêmica válida (+5 more)
+Nodes (13): 10. Tornar configuração e decisões de acesso administráveis e auditáveis, 11. Testar com a mesma classe de banco usada em produção, 12. Evoluir acessibilidade nos componentes compartilhados atuais, 1. Manter o monólito modular e os dois front-ends, 2. Usar API de mesma origem em produção, 3. Padronizar erros com Problem Details e sucesso por recurso, 4. Separar modelos de persistência dos contratos da API, 5. Implementar produto como catálogo, não como saldo transacional (+5 more)
 
-### Community 171 - "Requirement: Autenticação multifator protege contas privilegiadas"
-Cohesion: 0.09
-Nodes (11): Mock, GenericServiceTests, ReligionController, IReligionRepository, ReligionRepository, ReligionDTO, ReligionCreateRequest, ReligionUpdateRequest (+3 more)
+### Community 130 - "CommonPasswordBlocklist"
+Cohesion: 0.29
+Nodes (3): CommonPasswordBlocklistTests, CommonPasswordBlocklist, ICommonPasswordBlocklist
 
-### Community 172 - "Requirement: Conta possui ciclo de vida controlado"
-Cohesion: 0.21
-Nodes (7): Guid, HttpGet, CurrentIdentityDTO, EffectivePermissionDTO, OrganizationalResponsibilityDTO, LoginResponse, MfaConfirmResponse
-
-### Community 173 - "Requirement: Eventos de identidade, configuração e acesso são auditáveis"
-Cohesion: 0.22
-Nodes (9): 1. Visão geral, 2. Configuração do catálogo de módulos, 3. Estados operacionais, 4. Auditoria, 5. Implantação, 6. Monitoramento, 7. Links diretos de contingência, 8. Rollback sem restaurar autenticação insegura (+1 more)
-
-### Community 174 - "Requirement: Exceções individuais são explícitas, limitadas e justificadas"
+### Community 131 - "Homologação acadêmica do SeniorCare"
 Cohesion: 0.20
 Nodes (9): Backup e restauração, Capacidade e diagnóstico, Homologação acadêmica do SeniorCare, Hostname e CA interna, Mailpit, Pré-requisitos, Publicação, status e rollback, Seed, reset e dados inadequados (+1 more)
 
-### Community 176 - "Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos"
+### Community 133 - "SeniorCareManager.WebAPI"
 Cohesion: 0.20
-Nodes (8): BootstrapResult, CancellationToken, IConfiguration, ILogger, UserManager, BootstrapService, CancellationToken, IBootstrapService
+Nodes (10): MailKit (4.17.0), Microsoft.AspNetCore.Identity.EntityFrameworkCore (8.0.11), Microsoft.EntityFrameworkCore (9.0.0), Microsoft.EntityFrameworkCore.Design (9.0.0), Microsoft.EntityFrameworkCore.Tools (9.0.0), Npgsql.EntityFrameworkCore.PostgreSQL (9.0.1), Swashbuckle.AspNetCore (7.1.0), Microsoft.NET.Sdk.Web (+2 more)
 
-### Community 177 - "Requirement: Credencial administrativa inicial é provisionada com segurança"
-Cohesion: 0.17
-Nodes (12): Functional Requirements, Requirement: Ativação administrativa pode ser reenviada sem expor token, Requirement: Envio de e-mail transacional é opcional e configurável por ambiente, Requirement: Falha de envio não compromete a operação de origem, Scenario: Conta inelegível para reenvio, Scenario: Envio bem-sucedido, Scenario: Envio malsucedido, Scenario: Falha no reenvio (+4 more)
+### Community 134 - "PermissionDTO"
+Cohesion: 0.24
+Nodes (8): AdminPermissionController, PermissionDTO, Action, Description, Feature, Id, IsSystemOperation, Resource
 
-### Community 178 - "Requirement: Mudança autenticada de senha exige confirmação de identidade"
-Cohesion: 0.29
-Nodes (4): InstitutionIdentityOriginServiceTests, IdentityOrigin, InstitutionIdentityOriginService, IInstitutionIdentityOriginService
+### Community 135 - "Permission"
+Cohesion: 0.24
+Nodes (8): PermissionBuilder, Permission, Action, Description, Feature, Id, IsSystemOperation, Resource
 
-### Community 179 - "Requirement: Origem da identidade é extensível"
-Cohesion: 0.07
-Nodes (25): App(), AuthContext, AuthContextType, AuthProvider(), AuthProviderProps, AuthStatus, getMock, identity (+17 more)
+### Community 136 - "EducationLevel"
+Cohesion: 0.20
+Nodes (9): EducationLevel, ELEMENTARY_SCHOOL_COMPLETED, ELEMENTARY_SCHOOL_INCOMPLETE, HIGH_SCHOOL_COMPLETED, HIGH_SCHOOL_INCOMPLETE, HIGHER_EDUCATION_COMPLETED, HIGHER_EDUCATION_INCOMPLETE, NO_SCHOOLING (+1 more)
 
-### Community 180 - "Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros"
-Cohesion: 0.12
-Nodes (13): IdentityUserContext, AppDbContext, IManufacturerRepository, ManufacturerRepository, AccountToken, Manufacturer, OrganizationalRolePermissionGroup, PermissionGroupPermission (+5 more)
+### Community 137 - "ModuleDefinition"
+Cohesion: 0.20
+Nodes (10): ModuleDefinition, Description, Icon, Id, IsActive, Key, Name, Path (+2 more)
 
-### Community 181 - "Requirement: Permissões são compostas por recurso, ação e funcionalidade"
-Cohesion: 0.22
-Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
-
-### Community 182 - "Requirement: Tentativas de autenticação são protegidas contra abuso"
-Cohesion: 0.44
+### Community 138 - "fetch-release-assets.sh"
+Cohesion: 0.50
 Nodes (8): die(), err(), main(), repository_from_origin(), fetch-release-assets.sh script, usage(), validate_manifest(), value()
 
-### Community 183 - "setup_project.sh"
-Cohesion: 0.17
-Nodes (12): 10. Portainer permanece fora da stack da aplicação, 11. Gates combinam validação estática e smoke test, 1. Base pull-based com overlay acadêmico, 2. Topologia canônica de mesma origem, 3. TLS interno em porta não conflitante, 4. Somente Caddy expõe a aplicação na LAN, 5. Mailpit é dependência exclusiva da homologação, 6. Persistência separada por ambiente (+4 more)
-
-### Community 184 - "start_epic.sh"
-Cohesion: 0.39
-Nodes (5): bad(), check_eq(), log(), ok(), smoke-test.sh script
-
-### Community 185 - "SeniorCareManager.WebAPI.Objects.Models"
+### Community 139 - "CancellationToken"
 Cohesion: 0.11
-Nodes (6): SeniorCareManager.WebAPI.Objects.Dtos.Common, SeniorCareManager.WebAPI.Infrastructure, SeniorCareManager.WebAPI.Controllers, SeniorCareManager.WebAPI.Objects.Dtos, SeniorCareManager.WebAPI.Objects.Dtos.Entities, SeniorCareClaimTypes
+Nodes (8): FakeSmtpClient, Authenticated, Disconnected, FailOnConnect, Message, InstitutionModuleProvisioningService, SmtpClientAdapter, ISmtpClientAdapter
 
-### Community 186 - "Decisions"
-Cohesion: 0.31
-Nodes (4): get_highest_from_specs(), is_feature_number_in_range(), create-new-feature.sh script, spec_prefix_exists()
+### Community 140 - "Test-Driven Development"
+Cohesion: 0.15
+Nodes (10): Designing for Mockability, When to Mock, Anti-patterns, Rules of the loop, Seams: where tests go, Test-Driven Development, What a good test is, Bad Tests (+2 more)
 
-### Community 187 - "ManufacturerController"
+### Community 141 - "smoke-test.sh"
+Cohesion: 0.47
+Nodes (8): bad(), check_eq(), http_code(), json_get(), log(), ok(), smoke-test.sh script, totp()
+
+### Community 143 - "ManufacturerCreateRequest"
+Cohesion: 0.22
+Nodes (8): ManufacturerCreateRequest, CorporateName, CpfCnpj, Email, Phone, TradeName, ManufacturerUpdateRequest, RowVersion
+
+### Community 144 - "AllergyType"
+Cohesion: 0.22
+Nodes (8): AllergyType, ANIMAL, ENVIRONMENTAL, FOOD, INSECT_STING, LATEX, MEDICATION, OTHER
+
+### Community 145 - "Implementation Plan: [FEATURE]"
 Cohesion: 0.22
 Nodes (8): Complexity Tracking, Constitution Check, Documentation (this feature), Implementation Plan: [FEATURE], Project Structure, Source Code (repository root), Summary, Technical Context
 
-### Community 188 - "AppDbContext"
-Cohesion: 0.15
-Nodes (7): SeniorCareManager.WebAPI.Data, SeniorCareManager.IntegrationTests.Services, SeniorCareManager.WebAPI, SeniorCareManager.IntegrationTests.Infrastructure, SeniorCareManager.WebAPI.Objects.Dtos.Requests, SeniorCareManager.IntegrationTests.Data, SeniorCareManager.IntegrationTests.Controllers
-
-### Community 189 - "create_qa_issue.py"
+### Community 146 - ".agents/skills/speckit-checklist/SKILL.md"
 Cohesion: 0.25
 Nodes (7): Anti-Examples: What NOT To Do, Checklist Purpose: "Unit Tests for English", Example Checklist Types & Sample Items, Execution Steps, Post-Execution Checks, Pre-Execution Checks, User Input
 
-### Community 190 - "Carrier"
+### Community 147 - ".claude/skills/speckit-checklist/SKILL.md"
 Cohesion: 0.25
 Nodes (7): Anti-Examples: What NOT To Do, Checklist Purpose: "Unit Tests for English", Example Checklist Types & Sample Items, Execution Steps, Post-Execution Checks, Pre-Execution Checks, User Input
 
-### Community 191 - "Manufacturer"
+### Community 148 - "Handoff — release e operação via Portainer"
 Cohesion: 0.25
 Nodes (7): Ajustes feitos no pipeline nesta entrega, Artefatos da release, Estado entregue, Handoff — release e operação via Portainer, Modelo de responsabilidade, Operação de versões, Próxima retomada: configurar servidor e Portainer
 
-### Community 192 - "Position"
+### Community 149 - "Tutorial: rodando o SeniorCare em desenvolvimento (Rider + WebStorm)"
 Cohesion: 0.25
-Nodes (6): JsonSerializerOptions, AuditEventCategory, AuditOutcome, AuditEvent, AuditService, IAuditService
+Nodes (8): 1. Banco de dados, 2. Backend — Rider, 3. Front-ends — WebStorm, 4. Primeiro login (bootstrap do administrador), 5. Fluxo do dia a dia, Documentação relacionada, Pré-requisitos, Tutorial: rodando o SeniorCare em desenvolvimento (Rider + WebStorm)
 
-### Community 193 - "Religion"
+### Community 150 - "Spec Kit no GitHub — issues, PRs e kanban"
 Cohesion: 0.25
 Nodes (7): Ciclo de trabalho, Direção da verdade, Escopo, Kanban, Limite conhecido, Sincronização manual, Spec Kit no GitHub — issues, PRs e kanban
 
-### Community 194 - "UnitOfMeasure"
+### Community 151 - "speckit.checklist.md"
 Cohesion: 0.25
 Nodes (7): Anti-Examples: What NOT To Do, Checklist Purpose: "Unit Tests for English", Example Checklist Types & Sample Items, Execution Steps, Post-Execution Checks, Pre-Execution Checks, User Input
 
-### Community 195 - "tasks.md"
+### Community 152 - "Requirements"
+Cohesion: 0.11
+Nodes (19): Requirement: Alterações preservam identidade e concorrência, Requirement: Catálogo de produtos é integrado de ponta a ponta, Requirement: Contrato uniforme para cadastros auxiliares, Requirement: Exclusão respeita referências e histórico administrativo, Requirement: Operações administrativas são atribuíveis, Requirements, Scenario: Alteração autenticada, Scenario: Cadastro válido de produto (+11 more)
+
+### Community 153 - "AuditEventCategory"
+Cohesion: 0.25
+Nodes (7): AuditEventCategory, ACCESS_DECISION, AUTHENTICATION, CATALOG, CONFIGURATION, SESSION, 7. Auditoria do envio, não do conteúdo
+
+### Community 154 - "MaritalStatus"
+Cohesion: 0.25
+Nodes (7): MaritalStatus, CIVIL_UNION, DIVORCED, MARRIED, SEPARATED, SINGLE, WIDOWED
+
+### Community 155 - "Functional Requirements"
+Cohesion: 0.10
+Nodes (20): Functional Requirements, Requirement: Ambiente documenta limites e procedimentos operacionais, Requirement: E-mails acadêmicos são capturados e não entregues externamente, Requirement: Portainer não substitui a fonte versionada do deploy, Requirement: Publicação falha com segurança e admite recuperação, Requirement: Reset acadêmico possui barreiras contra destruição indevida, Requirement: Serviços internos não são expostos diretamente à LAN, Scenario: Acesso comum pela LAN ao capturador (+12 more)
+
+### Community 156 - "Requirements"
+Cohesion: 0.12
+Nodes (17): Capacidade `support-catalogs`, Purpose, Requirement: Configurações e segredos são separados, Requirement: Diagnóstico distingue vida e prontidão, Requirement: Endereço da API é configurável por ambiente, Requirement: Todos os componentes produzem artefatos de entrega, Requirements, runtime-configuration Specification (+9 more)
+
+### Community 157 - "Functional Requirements"
+Cohesion: 0.18
+Nodes (11): Functional Requirements, Requirement: Contexto institucional é explícito e consistente, Requirement: Portal possui experiência acessível e responsiva, Requirement: Portal representa estados operacionais sem conceder acesso indevido, Scenario: Contexto institucional divergente, Scenario: Estado de manutenção, Scenario: Módulo disponível, Scenario: Módulo em manutenção (+3 more)
+
+### Community 159 - "OrganizationalRoleAssignment"
+Cohesion: 0.25
+Nodes (8): OrganizationalRoleAssignment, Id, OrganizationalRoleId, ScopeKey, ScopeType, UserId, ValidFrom, ValidTo
+
+### Community 160 - "scripts"
+Cohesion: 0.25
+Nodes (8): scripts, build, dev, lint, preview, test, test:coverage, test:watch
+
+### Community 161 - ".GetInstitutionIdAsync"
+Cohesion: 0.08
+Nodes (22): AdminAccessDecisionController, AdminInstitutionModuleController, AdminUserPermissionOverrideController, AdminUserSessionController, ModuleCatalogController, CurrentUserContext, UserId, ICurrentUserContext (+14 more)
+
+### Community 162 - "scripts"
+Cohesion: 0.25
+Nodes (8): scripts, build, dev, lint, preview, test, test:coverage, test:watch
+
+### Community 163 - "Requirements"
+Cohesion: 0.12
+Nodes (16): accessibility-baseline Specification, Capacidade `automated-quality-gates`, Purpose, Requirement: Controles possuem nome, estado e instrução acessíveis, Requirement: Estrutura e contraste possuem critérios verificáveis, Requirement: Fluxos existentes são operáveis por teclado, Requirement: Preferências visuais são persistentes e limitadas, Requirements (+8 more)
+
+### Community 165 - "Feature Specification: Estabilizar a plataforma existente"
+Cohesion: 0.14
+Nodes (14): Assumptions, automated-quality-gates Specification, Capacidade `accessibility-baseline`, Capacidade `platform-authentication`, Capacidade `runtime-configuration`, Feature Specification: Estabilizar a plataforma existente, platform-authentication Specification, Purpose (+6 more)
+
+### Community 166 - "scripts"
+Cohesion: 0.25
+Nodes (8): scripts, build, dev, lint, preview, test, test:coverage, test:watch
+
+### Community 167 - "AuthController"
+Cohesion: 0.11
+Nodes (13): AuthController, BusinessRuleException, MessageResponse, Message, MfaConfirmResponse, Identity, RecoveryCodes, RegenerateRecoveryCodesRequest (+5 more)
+
+### Community 168 - "Feature Specification: Melhorar a entrega do primeiro acesso"
+Cohesion: 0.25
+Nodes (8): Assumptions, Capacidade `notification-delivery`, Capacidade `platform-authentication`, Feature Specification: Melhorar a entrega do primeiro acesso, Requirements, Success Criteria, Updated Functional Requirements, User Scenarios & Testing
+
+### Community 169 - "Implementation Plan: Introduzir o Senior Portal"
+Cohesion: 0.29
+Nodes (5): Constitution Check, Implementation Plan: Introduzir o Senior Portal, Project Structure, Summary, Technical Context
+
+### Community 170 - "Functional Requirements"
+Cohesion: 0.15
+Nodes (13): Functional Requirements, Requirement: CI comprova identidade dos artefatos promovíveis, Requirement: CI protege a carga sintética e as barreiras de reset, Requirement: CI valida a topologia de homologação acadêmica, Requirement: Smoke test valida o acesso acadêmico fim a fim, Scenario: Caminho-base ou TLS regrede, Scenario: Componente ausente ou reconstruído, Scenario: Configuração acadêmica válida (+5 more)
+
+### Community 171 - "Task"
+Cohesion: 0.05
+Nodes (29): ReligionControllerTests, GenericServiceTests, ReligionController, IGenericRepository, IProductTypeRepository, IReligionRepository, IUnitOfMeasureRepository, GenericRepository (+21 more)
+
+### Community 172 - "RequirePermission"
+Cohesion: 0.12
+Nodes (13): ProductGroupController, SupplierController, PagedResult, Items, Page, PageSize, TotalCount, PagedResultExtensions (+5 more)
+
+### Community 173 - ".agents/skills/speckit-clarify/SKILL.md"
 Cohesion: 0.29
 Nodes (6): Completion Report, Done When, Mandatory Post-Execution Hooks, Outline, Pre-Execution Checks, User Input
 
-### Community 196 - "proposal.md"
+### Community 174 - ".agents/skills/speckit-implement/SKILL.md"
 Cohesion: 0.29
 Nodes (6): Completion Report, Done When, Mandatory Post-Execution Hooks, Outline, Pre-Execution Checks, User Input
 
-### Community 197 - "dev-flow — promoção dev → main com QA manual"
+### Community 175 - ".claude/skills/speckit-clarify/SKILL.md"
 Cohesion: 0.29
 Nodes (6): Completion Report, Done When, Mandatory Post-Execution Hooks, Outline, Pre-Execution Checks, User Input
 
-### Community 198 - "ADDED Requirements"
+### Community 176 - "Institution"
+Cohesion: 0.08
+Nodes (21): PasswordPolicyServiceTests, BootstrapResult, AdminEmail, Created, InitialPassword, Institution, AccessTokenDurationMinutes, Id (+13 more)
+
+### Community 177 - "Functional Requirements"
+Cohesion: 0.25
+Nodes (8): Functional Requirements, Requirement: Envio de e-mail transacional é opcional e configurável por ambiente, Requirement: Falha de envio não compromete a operação de origem, Scenario: Envio bem-sucedido, Scenario: Envio malsucedido, Scenario: SMTP ausente, Scenario: SMTP configurado, Scenario: SMTP parcialmente configurado
+
+### Community 178 - ".claude/skills/speckit-implement/SKILL.md"
 Cohesion: 0.29
 Nodes (6): Completion Report, Done When, Mandatory Post-Execution Hooks, Outline, Pre-Execution Checks, User Input
 
-### Community 199 - ".CheckHealthAsync"
+### Community 179 - "GlobalHeader.test.tsx"
+Cohesion: 0.11
+Nodes (18): App(), DEFAULT_RUNTIME_CONFIG, isValidPublicName(), RuntimeConfig, RuntimeConfigContext, RuntimeConfigContextType, RuntimeConfigProvider(), RuntimeConfigProviderProps (+10 more)
+
+### Community 180 - "AppDbContext"
+Cohesion: 0.05
+Nodes (51): AdminAccessDecisionControllerTests, AccessDecisionServiceTests, AppDbContext, AccessPolicies, AccountTokens, AuditEvents, Carriers, HealthInsurancePlans (+43 more)
+
+### Community 182 - "7. Fluxos integrados prioritários"
 Cohesion: 0.29
 Nodes (7): 7.1 Admissão e início do cuidado, 7.2 Ciclo contínuo do cuidado, 7.3 Intercorrência de saúde, 7.4 Alimentação integrada, 7.5 Doação financeira, 7.6 Doação de materiais, 7. Fluxos integrados prioritários
 
-### Community 200 - "Program"
-Cohesion: 0.16
-Nodes (9): FALLBACK_PRESENTATION, ModuleCard(), ModuleCardProps, STATE_PRESENTATION, getModuleIcon(), MODULE_ICONS, CatalogStatus, getMock (+1 more)
+### Community 183 - "Decisions"
+Cohesion: 0.17
+Nodes (12): 10. Portainer permanece fora da stack da aplicação, 11. Gates combinam validação estática e smoke test, 1. Base pull-based com overlay acadêmico, 2. Topologia canônica de mesma origem, 3. TLS interno em porta não conflitante, 4. Somente Caddy expõe a aplicação na LAN, 5. Mailpit é dependência exclusiva da homologação, 6. Persistência separada por ambiente (+4 more)
 
-### Community 201 - "Requirement: Catálogo de módulos possui contrato estável e configurável"
+### Community 184 - "9. Requisitos regulatórios de referência"
 Cohesion: 0.29
 Nodes (7): 9.1 Estatuto da Pessoa Idosa, 9.2 RDC Anvisa nº 502/2021, 9.3 Assistência social e ICOPE, 9.4 Contabilidade de entidades sem fins lucrativos, 9.5 Regras complementares, 9.6 Prontuário e documentos eletrônicos, 9. Requisitos regulatórios de referência
 
-### Community 202 - "Requirement: Descoberta de módulos usa permissões efetivas"
+### Community 185 - "SeniorCareManager.WebAPI.Objects.Dtos.Entities"
+Cohesion: 0.16
+Nodes (6): SeniorCareManager.WebAPI.Objects.Dtos.Common, SeniorCareManager.WebAPI.Infrastructure, SeniorCareManager.WebAPI.Controllers, SeniorCareManager.WebAPI.Objects.Dtos, SeniorCareManager.WebAPI.Objects.Dtos.Entities, SeniorCareClaimTypes
+
+### Community 186 - "dev-flow — promoção dev → main com QA manual"
 Cohesion: 0.29
 Nodes (6): Componentes, dev-flow — promoção dev → main com QA manual, Limites conhecidos, Por que a issue de QA não é espelho (ao contrário das do speckit-sync), Por que precisa de um PAT além do GITHUB_TOKEN, Uso
 
-### Community 203 - "Requirement: Navegação entre aplicações preserva destino seguro"
-Cohesion: 0.43
-Nodes (4): die(), err(), log(), bootstrap-dev-admin.sh script
+### Community 187 - "bootstrap-dev-admin.sh"
+Cohesion: 0.52
+Nodes (6): die(), err(), json_get(), log(), bootstrap-dev-admin.sh script, totp()
 
-### Community 204 - "Requirement: Portal representa estados operacionais sem conceder acesso indevido"
+### Community 188 - "SeniorCareManager.WebAPI.Data"
+Cohesion: 0.18
+Nodes (7): SeniorCareManager.IntegrationTests, SeniorCareManager.WebAPI.Data, SeniorCareManager.IntegrationTests.Services, SeniorCareManager.WebAPI, SeniorCareManager.IntegrationTests.Infrastructure, SeniorCareManager.IntegrationTests.Data, SeniorCareManager.IntegrationTests.Controllers
+
+### Community 189 - "speckit.clarify.md"
 Cohesion: 0.29
 Nodes (6): Completion Report, Done When, Mandatory Post-Execution Hooks, Outline, Pre-Execution Checks, User Input
 
-### Community 205 - "Requirement: Portal reutiliza a identidade e a sessão institucional"
+### Community 190 - "speckit.implement.md"
+Cohesion: 0.29
+Nodes (6): Completion Report, Done When, Mandatory Post-Execution Hooks, Outline, Pre-Execution Checks, User Input
+
+### Community 191 - "IInstitutionModuleProvisioningService"
+Cohesion: 0.48
+Nodes (3): InstitutionModuleProvisioningServiceTests, IInstitutionModuleProvisioningService, 2. Modelo e persistência do catálogo
+
+### Community 192 - ".RecordAsync"
+Cohesion: 0.22
+Nodes (5): AuditOutcome, DENIED, FAILURE, SUCCESS, AuditService
+
+### Community 193 - "AccessDecisionExplainRequest"
+Cohesion: 0.29
+Nodes (7): AccessDecisionExplainRequest, Action, Feature, Resource, ScopeKey, ScopeType, UserId
+
+### Community 194 - "AccountState"
+Cohesion: 0.29
+Nodes (6): AccountState, ACTIVE, BLOCKED, EXPIRED, INACTIVE, PROVISIONED
+
+### Community 195 - "Ethnicity"
+Cohesion: 0.29
+Nodes (6): Ethnicity, ASIAN, BLACK, INDIGENOUS, MIXED, WHITE
+
+### Community 196 - "PurchaseStatus"
+Cohesion: 0.29
+Nodes (6): PurchaseStatus, APPROVED, CLOSED, ORDERED, QUOTED, REQUESTED
+
+### Community 197 - "StockRequestType"
+Cohesion: 0.29
+Nodes (6): StockRequestType, ADJUSTMENT, CONSUMPTION, DONATION, LOSS, PURCHASE
+
+### Community 198 - "ProductType"
+Cohesion: 0.29
+Nodes (7): ProductType, Id, IsActive, Name, ProductGroup, ProductGroupId, IProductTypeService
+
+### Community 199 - "dependencies"
+Cohesion: 0.29
+Nodes (7): dependencies, axios, @phosphor-icons/react, qrcode, react, react-dom, react-router-dom
+
+### Community 200 - "CatalogPage.tsx"
+Cohesion: 0.16
+Nodes (16): FALLBACK_PRESENTATION, ModuleCard(), ModuleCardProps, STATE_PRESENTATION, getModuleIcon(), MODULE_ICONS, CatalogPage(), CatalogStatus (+8 more)
+
+### Community 201 - "dependencies"
+Cohesion: 0.29
+Nodes (7): dependencies, axios, @phosphor-icons/react, qrcode, react, react-dom, react-router-dom
+
+### Community 202 - "dependencies"
+Cohesion: 0.29
+Nodes (7): dependencies, axios, @phosphor-icons/react, qrcode, react, react-dom, react-router-dom
+
+### Community 203 - ".agents/skills/speckit-constitution/SKILL.md"
+Cohesion: 0.33
+Nodes (5): Outline, Post-Execution Checks, Pre-Execution Checks, Scope Guard, User Input
+
+### Community 204 - ".claude/skills/speckit-constitution/SKILL.md"
+Cohesion: 0.33
+Nodes (5): Outline, Post-Execution Checks, Pre-Execution Checks, Scope Guard, User Input
+
+### Community 205 - "Feature Specification: Adicionar ambiente acadêmico de homologação"
 Cohesion: 0.20
 Nodes (8): Assumptions, Capacidade `academic-homologation-environment`, Capacidade `automated-quality-gates`, Feature Specification: Adicionar ambiente acadêmico de homologação, Purpose, Requirements, Success Criteria, User Scenarios & Testing
 
-### Community 206 - "Requirement: Configuração e navegação crítica são auditáveis"
-Cohesion: 0.29
-Nodes (6): Completion Report, Done When, Mandatory Post-Execution Hooks, Outline, Pre-Execution Checks, User Input
+### Community 206 - "OperationalMessageSanitizer"
+Cohesion: 0.33
+Nodes (4): 3. Estados operacionais, ModuleDefinitionValidator, OperationalMessageSanitizer, 9. Migração, contingência e aceite
 
-### Community 207 - "Requirement: Contexto institucional é explícito e consistente"
+### Community 207 - "Desenho técnico migrado"
 Cohesion: 0.18
 Nodes (11): Constitution Check, Context, Desenho técnico migrado, Goals / Non-Goals, Implementation Plan: Adicionar ambiente acadêmico de homologação, Migration Plan, Open Questions, Project Structure (+3 more)
 
-### Community 208 - "Requirement: Falha do portal admite contingência controlada"
+### Community 208 - "Decisions"
 Cohesion: 0.18
 Nodes (11): 10. Implantar de forma aditiva e manter contingência controlada, 1. Criar uma terceira aplicação web leve e independente, 2. Publicar todas as aplicações sob uma única origem, 3. Compartilhar a sessão protegida diretamente, sem token JavaScript, 4. Separar definição sistêmica de habilitação institucional, 5. Derivar o catálogo efetivo no backend, 6. Tratar estado operacional como configuração, não health check síncrono, 7. Preservar deep links com return path validado (+3 more)
 
-### Community 209 - "Requirement: Funções globais permanecem disponíveis em todos os módulos"
-Cohesion: 0.18
-Nodes (11): Constitution Check, Context, Desenho técnico migrado, Goals / Non-Goals, Implementation Plan: Introduzir o Senior Portal, Migration Plan, Open Questions, Project Structure (+3 more)
-
-### Community 211 - "Requirement: Portal minimiza dados e não apresenta conteúdo clínico"
-Cohesion: 0.20
-Nodes (6): IWebHostBuilder, PostgreSqlContainer, string, BootstrapPostgresWebApplicationFactory, Fact, BootstrapServiceTests
-
-### Community 212 - "Requirement: Portal possui experiência acessível e responsiva"
-Cohesion: 0.20
-Nodes (10): 1. SMTP puro via MailKit, não um provedor de API comercial, 2. `INotificationSender` como abstração, SMTP como única implementação hoje, 3. URL de ativação aponta pro front-end, endereço configurável, 4. Falha de envio não bloqueia a operação que originou o token, 5. QR code: biblioteca só no front-end, sem mudança de contrato da API, 6. Escopo da configuração SMTP e exceção operacional do bootstrap, 7. Auditoria do envio, não do conteúdo, 8. Um único contrato de bootstrap para IDE e containers, sem senha padrão (+2 more)
-
-### Community 213 - "Requirement: URLs antigas migram de forma coordenada"
+### Community 209 - "Desenho técnico migrado"
 Cohesion: 0.33
-Nodes (5): Outline, Post-Execution Checks, Pre-Execution Checks, Scope Guard, User Input
+Nodes (6): Context, Desenho técnico migrado, Goals / Non-Goals, Migration Plan, Open Questions, Risks / Trade-offs
 
-### Community 214 - "promote_to_main.sh"
-Cohesion: 0.33
-Nodes (5): Outline, Post-Execution Checks, Pre-Execution Checks, Scope Guard, User Input
-
-### Community 215 - "AuthController"
-Cohesion: 0.29
-Nodes (5): Constitution Check, Implementation Plan: Melhorar a entrega do primeiro acesso, Project Structure, Summary, Technical Context
-
-### Community 216 - "ControllerBase"
-Cohesion: 0.33
-Nodes (5): For /graphify explain, For /graphify path, graphify reference: query, path, explain, Step 0 — Constrained query expansion (REQUIRED before traversal), Step 1 — Traversal
-
-### Community 217 - "UserPermissionOverrideOverview.tsx"
-Cohesion: 0.11
-Nodes (19): EFFECT_OPTIONS, emptyData, OverrideFormData, SCOPE_OPTIONS, UserPermissionOverrideFormModal(), UserPermissionOverrideFormModalProps, EFFECT_LABELS, formatDate() (+11 more)
-
-### Community 218 - ".Revoke"
+### Community 210 - "ops.sh"
 Cohesion: 0.67
 Nodes (5): compose(), die(), log(), preflight(), ops.sh script
 
-### Community 219 - "ProductController"
-Cohesion: 0.62
-Nodes (6): format_row(), generate_report(), line_coverage_from_cobertura(), line_coverage_from_lcov(), main(), Path
+### Community 211 - "PostgresWebApplicationFactory"
+Cohesion: 0.04
+Nodes (21): AdminAccessPolicyControllerTests, AdminOrganizationalRoleAssignmentControllerTests, AdminOrganizationalRoleControllerTests, AdminUserPermissionOverrideControllerTests, AuthControllerAccountLockoutTests, AuthControllerMeTests, AuthControllerOriginRateLimitTests, DataProtectionSessionPersistenceTests (+13 more)
 
-### Community 220 - "AdminUserController"
+### Community 212 - "INotificationSender"
+Cohesion: 0.08
+Nodes (26): INotificationSender, 1. SMTP puro via MailKit, não um provedor de API comercial, 2. `INotificationSender` como abstração, SMTP como única implementação hoje, 3. URL de ativação aponta pro front-end, endereço configurável, 4. Falha de envio não bloqueia a operação que originou o token, 5. QR code: biblioteca só no front-end, sem mudança de contrato da API, 6. Escopo da configuração SMTP e exceção operacional do bootstrap, 8. Um único contrato de bootstrap para IDE e containers, sem senha padrão (+18 more)
+
+### Community 213 - "infra/deploy — publicação pull-based no servidor"
 Cohesion: 0.33
 Nodes (6): Backup diário (`backup` / `ops/backup.sh`), Camada de operação (`ops.sh` / `--profile ops`), Componentes, infra/deploy — publicação pull-based no servidor, Portas (default), Uso
 
-### Community 221 - ".GetInstitutionIdAsync"
+### Community 214 - "test-fetch-release-assets.sh"
 Cohesion: 0.60
 Nodes (5): fail(), make_manifest(), pass(), run_helper(), test-fetch-release-assets.sh script
 
-### Community 222 - ".IssueAsync"
-Cohesion: 0.40
-Nodes (4): api, AUTH_BOOTSTRAP_PATHS, axiosInstance, registerUnauthorizedHandler()
-
-### Community 223 - "AdminUserOverview.tsx"
-Cohesion: 0.11
-Nodes (15): adminUserRoutes, AdminUserCreateFormData, AdminUserFormModal(), AdminUserFormModalProps, AdminUserStateModal(), AdminUserStateModalProps, STATE_OPTIONS, StateChangeFormData (+7 more)
-
-### Community 224 - "AdminAccessPolicyController"
+### Community 215 - "speckit.constitution.md"
 Cohesion: 0.33
 Nodes (5): Outline, Post-Execution Checks, Pre-Execution Checks, Scope Guard, User Input
 
-### Community 225 - "AdminOrganizationalRoleAssignmentController"
+### Community 216 - "SeniorCareManager-Backend"
 Cohesion: 0.33
 Nodes (6): Documentação relacionada, Estrutura, Migrações, Rodando localmente, SeniorCareManager-Backend, Testes
 
-### Community 226 - "AccessPolicyOverview.tsx"
-Cohesion: 0.15
-Nodes (13): accessPolicyRoutes, AccessPolicyFormModal(), AccessPolicyFormModalProps, EFFECT_OPTIONS, emptyData, PolicyFormData, SCOPE_OPTIONS, EFFECT_LABELS (+5 more)
-
-### Community 227 - "RoleOverview.test.tsx"
-Cohesion: 0.14
-Nodes (12): RoleFormModal(), RoleFormModalProps, RoleOverview(), deleteMock, existingRole, getMock, postMock, putMock (+4 more)
-
-### Community 228 - "AuthControllerTests"
-Cohesion: 0.20
-Nodes (12): ActivationToken, Email, Fact, Guid, HttpClient, InlineData, string, Theory (+4 more)
-
-### Community 230 - "OrganizationalRoleAssignmentOverview.tsx"
-Cohesion: 0.15
-Nodes (13): AssignmentFormData, emptyData, OrganizationalRoleAssignmentFormModal(), OrganizationalRoleAssignmentFormModalProps, SCOPE_OPTIONS, organizationalRoleAssignmentRoutes, AssignmentRow, formatDate() (+5 more)
-
-### Community 231 - "GlobalExceptionHandler"
-Cohesion: 0.15
-Nodes (10): Detail, Exception, HttpContext, IExceptionHandler, IProblemDetailsService, Status, Title, AccessDeniedException (+2 more)
-
-### Community 232 - "OpenApiContractTests"
-Cohesion: 0.50
-Nodes (4): Requirement: Administração de acesso possui configuração dedicada, Scenario: Administrador configura papel, Scenario: Administrador revoga sessão, Scenario: Operador consulta configuração protegida
-
-### Community 233 - "SessionService"
-Cohesion: 0.14
-Nodes (5): ApplicationUserBuilder, HealthInsurancePlanBuilder, InstitutionModuleBuilder, UserPermissionOverrideBuilder, CurrentUserContext
-
-### Community 234 - "PermissionGroupOverview.tsx"
-Cohesion: 0.16
-Nodes (10): PermissionGroupFormModal(), PermissionGroupFormModalProps, PermissionGroupOverview(), deleteMock, getMock, postMock, permissionGroupRoutes, PagedResult (+2 more)
-
-### Community 235 - "SessionRotationTests"
+### Community 217 - "ProductTypeCreateRequest"
 Cohesion: 0.33
-Nodes (6): Enum, EnumLabels, { getEnumLabel, getEnumOptions }, HealthInsurancePlanType, labels, HealthInsurancePlan
+Nodes (5): ProductTypeCreateRequest, Name, ProductGroupId, ProductTypeUpdateRequest, RowVersion
 
-### Community 237 - "AuthControllerMfaTests"
+### Community 218 - "UnitOfMeasureCreateRequest"
+Cohesion: 0.33
+Nodes (5): UnitOfMeasureCreateRequest, Abbreviation, Description, UnitOfMeasureUpdateRequest, RowVersion
+
+### Community 219 - "sync_issues.py"
+Cohesion: 0.06
+Nodes (34): evaluate(), main(), sarif_files(), security_severity(), collect_findings(), main(), add_to_project(), create_issue() (+26 more)
+
+### Community 220 - "OperationalState"
+Cohesion: 0.33
+Nodes (5): OperationalState, AVAILABLE, DISABLED, MAINTENANCE, UNAVAILABLE
+
+### Community 221 - "UnitOfMeasure"
+Cohesion: 0.33
+Nodes (6): UnitOfMeasure, Abbreviation, Description, Id, IsActive, IUnitOfMeasureService
+
+### Community 222 - "SeniorPortalFrontend/src/utils/serviceUtils.ts"
+Cohesion: 0.17
+Nodes (10): api, AUTH_BOOTSTRAP_PATHS, axiosInstance, registerUnauthorizedHandler(), FieldError, ServiceResult, RFC-7807, handleServiceError() (+2 more)
+
+### Community 223 - "SeniorCareManagerFrontend ("care")"
 Cohesion: 0.33
 Nodes (6): Documentação relacionada, O que tem hoje, Rodando localmente, Scripts, SeniorCareManagerFrontend ("care"), Testes
 
-### Community 238 - "ProductControllerTests"
+### Community 224 - "SeniorCareManagerFrontend/src/components/Table/TableFooter.tsx"
+Cohesion: 0.47
+Nodes (4): TableFooter(), TableFooterProps, TablePagination(), TablePaginationProps
+
+### Community 225 - "SeniorStockManagerFrontend ("stock")"
 Cohesion: 0.33
 Nodes (6): Documentação relacionada, O que tem hoje, Rodando localmente, Scripts, SeniorStockManagerFrontend ("stock"), Testes
 
-### Community 239 - ".CreateSender"
+### Community 226 - "AccessPolicyFormModal.tsx"
+Cohesion: 0.09
+Nodes (37): AccessPolicyFormModalProps, EFFECT_OPTIONS, emptyData, PolicyFormData, SCOPE_OPTIONS, EFFECT_LABELS, PolicyRow, STATE_LABELS (+29 more)
+
+### Community 227 - "SeniorStockManagerFrontend/src/components/Table/TableFooter.tsx"
+Cohesion: 0.47
+Nodes (4): TableFooter(), TableFooterProps, TablePagination(), TablePaginationProps
+
+### Community 228 - "AuthControllerTests"
+Cohesion: 0.14
+Nodes (11): AuthControllerTests, ActivateAccountRequest, Email, NewPassword, Token, ChangePasswordRequest, CurrentPassword, Email (+3 more)
+
+### Community 229 - ".agents/skills/speckit-taskstoissues/SKILL.md"
 Cohesion: 0.40
 Nodes (4): Outline, Post-Execution Checks, Pre-Execution Checks, User Input
 
-### Community 240 - "NotificationDeliveryStatus"
-Cohesion: 0.11
-Nodes (13): Body, IdentityUser, Recipient, Subject, UsedRecoveryCode, TestNotificationSender, ActivationResendResponse, NotificationDeliveryStatus (+5 more)
-
-### Community 241 - ".SavingChangesAsync"
-Cohesion: 0.39
-Nodes (5): DbContext, DbContextEventData, InterceptionResult, SaveChangesInterceptor, AuditImmutabilityInterceptor
-
-### Community 242 - "GenericServiceTests"
-Cohesion: 0.28
-Nodes (3): GlobalHeader(), getMock, postMock
-
-### Community 243 - "InstitutionIdentityOriginServiceTests"
+### Community 230 - ".claude/skills/speckit-taskstoissues/SKILL.md"
 Cohesion: 0.40
 Nodes (4): Outline, Post-Execution Checks, Pre-Execution Checks, User Input
 
-### Community 244 - "BootstrapService"
+### Community 231 - "GlobalExceptionHandler"
+Cohesion: 0.10
+Nodes (12): 1. Visão geral, 4. Auditoria, 5. Implantação, 6. Monitoramento, 7. Links diretos de contingência, 8. Rollback sem restaurar autenticação insegura, Operação do Senior Portal, AccessDeniedException (+4 more)
+
+### Community 232 - "Requirement: Administração de acesso possui configuração dedicada"
+Cohesion: 0.50
+Nodes (4): Requirement: Administração de acesso possui configuração dedicada, Scenario: Administrador configura papel, Scenario: Administrador revoga sessão, Scenario: Operador consulta configuração protegida
+
+### Community 233 - "11. Escopo sugerido por evolução"
 Cohesion: 0.40
 Nodes (5): 11. Escopo sugerido por evolução, Cuidado integrado, Expansão, Fundação, Gestão sustentável
 
-### Community 245 - "OrganizationalRoleOverview.tsx"
-Cohesion: 0.24
-Nodes (7): OrganizationalRoleFormModal(), OrganizationalRoleFormModalProps, organizationalRoleRoutes, OrganizationalRoleOverview(), organizationalRoleService, OrganizationalRoleUpsertRequest, PagedResult
-
-### Community 246 - "ProductGroup"
+### Community 234 - "6.11 Dashboards estatísticos e inteligência institucional"
 Cohesion: 0.40
 Nodes (5): 6.11 Dashboards estatísticos e inteligência institucional, Direção arquitetural, Painéis previstos, Privacidade, ética e prevenção de uso indevido, Requisitos de confiança estatística
 
-### Community 247 - "Permission"
-Cohesion: 0.70
-Nodes (4): evaluate(), main(), sarif_files(), security_severity()
+### Community 235 - "HealthInsurancePlanType.ts"
+Cohesion: 0.36
+Nodes (7): Enum, EnumLabels, { getEnumLabel, getEnumOptions }, labels, createEnumHelpers(), getEnumLabel(), getEnumOptions()
 
-### Community 248 - "InstitutionSecurityPage.tsx"
-Cohesion: 0.29
-Nodes (7): institutionSecurityRoutes, FormState, InstitutionSecurityPage(), toFormState(), toNumberOrUndefined(), InstitutionSecurityPolicyUpdateRequest, institutionSecurityService
+### Community 236 - "3. Inventário comprovado da implementação atual"
+Cohesion: 0.40
+Nodes (5): 3.1 Backend, 3.2 Front-end assistencial, 3.3 Front-end de estoque, 3.4 Infraestrutura e entrega, 3. Inventário comprovado da implementação atual
 
-### Community 249 - ".AllControllerActions"
-Cohesion: 0.38
-Nodes (4): Action, Controller, MethodInfo, EndpointAuthorizationInvariantsTests
-
-### Community 250 - "ProductType"
-Cohesion: 0.50
-Nodes (4): Requirement: Eventos de identidade, configuração e acesso são auditáveis, Scenario: Acesso negado, Scenario: Configuração de acesso alterada, Scenario: Correlação de evento
-
-### Community 251 - "ControllerBase"
-Cohesion: 0.20
-Nodes (10): 1. Contratos de release e caminhos-base, 2. Composição do ambiente acadêmico, 3. Borda HTTPS e mesma origem, 4. Persistência de autenticação, 5. Mailpit e fluxos de conta, 6. Dados sintéticos e reset protegido, 7. Portainer e operação independente, 8. Gates e testes de implantação (+2 more)
-
-### Community 252 - "UserSessionOverview.tsx"
-Cohesion: 0.31
-Nodes (6): formatDate(), UserSessionOverview(), PagedResult, RevokeSessionRequest, userSessionService, userSessionRoutes
-
-### Community 253 - "OriginRateLimiter"
-Cohesion: 0.11
-Nodes (8): ConcurrentDictionary, ConcurrentQueue, ObjectResult, UnauthorizedObjectResult, LoginRequest, OriginRateLimiter, IMfaPolicyService, IOriginRateLimiter
-
-### Community 254 - "SeniorCareManager.WebAPI.Data.Builders"
+### Community 237 - "Q: Revise o projeto e verifique as pendências a partir do graphify e do openspec, preparando a retirada do modelo Anthropic na validação de PRs"
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Revise o projeto e verifique as pendências a partir do graphify e do openspec, preparando a retirada do modelo Anthropic na validação de PRs, Source Nodes
 
-### Community 255 - "CurrentIdentityDTO"
+### Community 238 - "Q: vamos implementar as specs pendentes"
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: vamos implementar as specs pendentes, Source Nodes
 
-### Community 257 - "MfaPolicyService"
+### Community 239 - "test-academic-caddy.sh"
+Cohesion: 0.60
+Nodes (3): request(), test-academic-caddy.sh script, url()
+
+### Community 240 - "speckit.taskstoissues.md"
 Cohesion: 0.40
 Nodes (4): Outline, Post-Execution Checks, Pre-Execution Checks, User Input
 
-### Community 258 - "AccessPolicy.ts"
-Cohesion: 0.42
-Nodes (6): AccessPolicy, AccessPolicyState, AccessScopeType, OrganizationalRoleAssignment, AccessEffect, UserPermissionOverride
+### Community 242 - "UserStatus"
+Cohesion: 0.40
+Nodes (4): UserStatus, ACTIVE, BLOCKED, INACTIVE
 
-### Community 259 - "accessibility.test.tsx"
-Cohesion: 0.25
-Nodes (7): createMock, deleteByIdMock, getAllMock, getMock, postMock, updateMock, axe
-
-### Community 260 - "EndpointAuthorizationTests"
-Cohesion: 0.22
-Nodes (7): Assumptions, Capacidade `senior-portal`, Feature Specification: Introduzir o Senior Portal, Purpose, Requirements, Success Criteria, User Scenarios & Testing
-
-### Community 261 - "ProductType"
-Cohesion: 0.60
-Nodes (3): CurrentIdentity, OrganizationalResponsibility, EffectivePermission
-
-### Community 262 - "TestAuthHandler"
-Cohesion: 0.33
-Nodes (4): AuthenticateResult, AuthenticationHandler, AuthenticationSchemeOptions, TestAuthHandler
-
-### Community 263 - "Bootstrap da instituição e do administrador inicial"
-Cohesion: 0.07
-Nodes (24): 1. Banco de dados, 2. Backend — Rider, 3. Front-ends — WebStorm, 4. Primeiro login (bootstrap do administrador), 5. Fluxo do dia a dia, Documentação relacionada, Pré-requisitos, Tutorial: rodando o SeniorCare em desenvolvimento (Rider + WebStorm) (+16 more)
-
-### Community 264 - "PagedResult"
-Cohesion: 0.20
-Nodes (5): isPathBasedRouting, getMock, okLoginResponse, postMock, renderWithFreshModules()
-
-### Community 265 - "Configuração — SeniorCareManager.WebAPI"
+### Community 243 - "[CHECKLIST TYPE] Checklist: [FEATURE NAME]"
 Cohesion: 0.40
 Nodes (4): [Category 1], [Category 2], [CHECKLIST TYPE] Checklist: [FEATURE NAME], Notes
 
-### Community 266 - "accessibility.test.tsx"
-Cohesion: 0.33
-Nodes (5): deleteMock, getMock, postMock, putMock, axe
-
-### Community 267 - "RequirePermissionAttribute"
-Cohesion: 0.40
-Nodes (4): Attribute, AuthorizationFilterContext, IAsyncAuthorizationFilter, RequirePermissionAttribute
-
-### Community 269 - "AuthControllerLoginTests"
-Cohesion: 0.20
-Nodes (10): 1. Pré-requisitos e contratos transversais, 2. Modelo e persistência do catálogo, 3. APIs e autorização do catálogo, 4. Base da aplicação Senior Portal, 5. Experiência do catálogo e funções globais, 6. Integração do módulo assistencial, 7. Integração do módulo de estoque, 8. Implantação, segurança e observabilidade (+2 more)
-
-### Community 271 - "RequireAuth.test.tsx"
-Cohesion: 0.40
-Nodes (3): RequireAuth(), RequireAuthProps, getMock
-
-### Community 272 - "RequireAuth.test.tsx"
-Cohesion: 0.40
-Nodes (3): RequireAuth(), RequireAuthProps, getMock
-
-### Community 273 - "Exception"
-Cohesion: 0.50
-Nodes (3): For /graphify add, For --watch, graphify reference: add a URL and watch a folder
-
-### Community 274 - ".AsUser"
-Cohesion: 0.50
-Nodes (3): For git commit hook, For native CLAUDE.md integration, graphify reference: commit hook and native CLAUDE.md integration
-
-### Community 275 - "InitialCreate"
-Cohesion: 0.50
-Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
-
-### Community 276 - "AddInstitutionAndIdentity"
+### Community 244 - "12. Relação com o software existente"
 Cohesion: 0.50
 Nodes (4): 12.1 Avaliação formal do estado atual, 12.2 Restrições de prontidão decorrentes da avaliação, 12.3 Senior Portal interno vs. portal futuro de residentes e famílias, 12. Relação com o software existente
 
-### Community 277 - "AddAccessControlFoundation"
+### Community 245 - "2. Posicionamento do produto"
 Cohesion: 0.50
 Nodes (4): 2.1 Definição, 2.2 Natureza do serviço apoiado, 2.3 Proposta de valor, 2. Posicionamento do produto
 
-### Community 278 - "AddAccessAdministrationApi"
+### Community 246 - "pull_request_template.md"
 Cohesion: 0.50
 Nodes (3): Issue relacionada, O que mudou, Test plan
 
-### Community 282 - "AddProduct"
+### Community 250 - "Requirement: Eventos de identidade, configuração e acesso são auditáveis"
+Cohesion: 0.50
+Nodes (4): Requirement: Eventos de identidade, configuração e acesso são auditáveis, Scenario: Acesso negado, Scenario: Configuração de acesso alterada, Scenario: Correlação de evento
+
+### Community 251 - "Tasks: Adicionar ambiente acadêmico de homologação"
+Cohesion: 0.20
+Nodes (10): 1. Contratos de release e caminhos-base, 2. Composição do ambiente acadêmico, 3. Borda HTTPS e mesma origem, 4. Persistência de autenticação, 5. Mailpit e fluxos de conta, 6. Dados sintéticos e reset protegido, 7. Portainer e operação independente, 8. Gates e testes de implantação (+2 more)
+
+### Community 252 - "SeniorCare"
 Cohesion: 0.50
 Nodes (4): Componentes atuais, Documentação, Estado atual da implementação, SeniorCare
 
-### Community 283 - "AddProductPermissions"
-Cohesion: 0.43
-Nodes (3): ModuleCatalogController, ModuleCatalogService, IModuleCatalogService
+### Community 254 - "MfaEnrollResponse"
+Cohesion: 0.50
+Nodes (3): MfaEnrollResponse, AuthenticatorKey, OtpAuthUri
 
-### Community 284 - "keyboardNavigation.test.tsx"
-Cohesion: 0.40
-Nodes (3): createMock, getAllMock, getMock
+### Community 255 - "ResetPasswordRequest"
+Cohesion: 0.50
+Nodes (4): ResetPasswordRequest, Email, NewPassword, Token
 
-### Community 285 - "CurrentIdentity.ts"
-Cohesion: 0.60
-Nodes (3): CurrentIdentity, OrganizationalResponsibility, EffectivePermission
+### Community 256 - "Requirement: Ativação administrativa pode ser reenviada sem expor token"
+Cohesion: 0.50
+Nodes (4): Requirement: Ativação administrativa pode ser reenviada sem expor token, Scenario: Conta inelegível para reenvio, Scenario: Falha no reenvio, Scenario: Reenvio após corrigir SMTP
 
-### Community 286 - "keyboardNavigation.test.tsx"
-Cohesion: 0.40
-Nodes (3): deleteByIdMock, getAllMock, getMock
+### Community 257 - "Requirement: Catálogo de módulos possui contrato estável e configurável"
+Cohesion: 0.50
+Nodes (4): Requirement: Catálogo de módulos possui contrato estável e configurável, Scenario: Administrador cadastra módulo válido, Scenario: Destino externo não autorizado, Scenario: Identificador duplicado
 
-### Community 287 - "CurrentIdentity.ts"
-Cohesion: 0.60
-Nodes (3): CurrentIdentity, OrganizationalResponsibility, EffectivePermission
-
-### Community 288 - "AccountTokenBuilder.cs"
-Cohesion: 0.33
-Nodes (3): PermissionBuilder, ModuleDefinition, Permission
-
-### Community 289 - "UnitOfMeasure"
-Cohesion: 0.80
-Nodes (3): isSafeReturnPath(), KNOWN_MODULE_PREFIXES, resolveReturnPath()
-
-### Community 290 - "AuditEventBuilder.cs"
-Cohesion: 0.70
-Nodes (3): isSafeReturnPath(), KNOWN_APP_PREFIXES, resolveReturnPath()
-
-### Community 301 - "SupplierBuilder.cs"
+### Community 258 - "Especificações do SeniorCare"
 Cohesion: 0.50
 Nodes (3): Especificações do SeniorCare, Mapeamento, Uso
 
-### Community 302 - "UnitOfMeasureBuilder.cs"
+### Community 260 - "Feature Specification: Introduzir o Senior Portal"
 Cohesion: 0.29
-Nodes (7): 10. Sequência recomendada de evolução, Prioridade 0 — estabilizar a linha de base, Prioridade 1 — fundação segura, Prioridade 2 — operação cotidiana, Prioridade 3 — prontuário multidisciplinar, Prioridade 4 — sustentabilidade institucional, Prioridade 5 — assinatura e redução de papel
+Nodes (7): Assumptions, Capacidade `senior-portal`, Feature Specification: Introduzir o Senior Portal, Purpose, Requirements, Success Criteria, User Scenarios & Testing
 
-### Community 303 - "UserPermissionOverrideBuilder.cs"
-Cohesion: 0.33
-Nodes (4): HealthCheckContext, HealthCheckResult, IHealthCheck, DbHealthCheck
+### Community 261 - "SeniorPortalFrontend/src/features/auth/services/authService.ts"
+Cohesion: 0.18
+Nodes (16): ActivateAccountRequest, LoginMfaRequest, LoginRequest, LoginResponse, LoginStatus, MessageResponse, MfaConfirmRequest, MfaConfirmResponse (+8 more)
 
-### Community 304 - "UserSessionBuilder.cs"
-Cohesion: 0.67
-Nodes (3): Requirement: Falha do portal admite contingência controlada, Scenario: IAM indisponível, Scenario: Portal indisponível e módulo saudável
+### Community 263 - "Bootstrap da instituição e do administrador inicial"
+Cohesion: 0.22
+Nodes (9): 1. Antes do primeiro deploy, 2. Subir e guardar a senha inicial, 3. Primeiro login, 4. Cadastrar o MFA (obrigatório, sem exceção pro bootstrap), 5. Contas administrativas seguintes e reenvio seguro, 6. Backup pré-deploy e rollback, 7. Incompatibilidade entre versões — não faça deploy parcial, Bootstrap da instituição e do administrador inicial (+1 more)
 
-### Community 309 - "InstitutionBuilder.cs"
-Cohesion: 0.25
-Nodes (4): { activate, recover }, ActivateAccountFormData, RecoverFormData, authService
+### Community 267 - ".SeedFullAccessUserAsync"
+Cohesion: 0.08
+Nodes (22): 2. Configuração do catálogo de módulos, AdminInstitutionModuleControllerTests, ModuleCatalogControllerTests, EndpointAuthorizationInvariantsTests, RequirePermissionAttribute, ModuleCatalogItemDTO, Description, Icon (+14 more)
 
-### Community 314 - "AdminUser.ts"
-Cohesion: 0.50
-Nodes (3): AccountState, AdminUser, IdentityOrigin
+### Community 269 - "SeniorPortalFrontend/src/contexts/ThemeContext.tsx"
+Cohesion: 0.17
+Nodes (14): clampFontSize(), ThemeContext, ThemeContextType, ThemeProvider(), ThemeProviderProps, VALID_THEMES, PreferencesControls(), renderControls() (+6 more)
 
-### Community 317 - "SeniorCare"
+### Community 272 - "infra/docker-test — stack local (build a partir do código)"
 Cohesion: 0.67
 Nodes (3): infra/docker-test — stack local (build a partir do código), Portas (default), Uso
 
-### Community 318 - "SeniorCareClaimTypes.cs"
-Cohesion: 0.12
-Nodes (6): SeniorCareManager.WebAPI.Data.Builders, AccessPolicyBuilder, InstitutionBuilder, PermissionGroupBuilder, ProductGroupBuilder, RoleBuilder
+### Community 279 - "Requirement: Configuração e navegação crítica são auditáveis"
+Cohesion: 0.67
+Nodes (3): Requirement: Configuração e navegação crítica são auditáveis, Scenario: Acesso direto negado, Scenario: Estado de módulo alterado
 
-### Community 324 - "check-synthetic-fixtures.sh"
-Cohesion: 0.40
-Nodes (5): Context, Desenho técnico migrado, Goals / Non-Goals, Migration Plan, Risks / Trade-offs
+### Community 280 - "Requirement: Funções globais permanecem disponíveis em todos os módulos"
+Cohesion: 0.67
+Nodes (3): Requirement: Funções globais permanecem disponíveis em todos os módulos, Scenario: Logout iniciado em um módulo, Scenario: Usuário altera preferência visual
 
-### Community 330 - "PermissionGroup.ts"
-Cohesion: 0.19
-Nodes (6): AdminPermissionGroupController, PermissionGroupDTO, PermissionGroupCreateRequest, PermissionGroupUpdateRequest, PermissionLinkRequest, PermissionGroup
+### Community 281 - "Requirement: URLs antigas migram de forma coordenada"
+Cohesion: 0.67
+Nodes (3): Requirement: URLs antigas migram de forma coordenada, Scenario: Cliente antigo sem sessão compatível, Scenario: Login legado do estoque
 
-### Community 331 - "Role.ts"
-Cohesion: 0.16
-Nodes (6): AdminRoleController, RoleDTO, RoleCreateRequest, RoleUpdateRequest, UserRoleAssignmentRequest, Role
+### Community 289 - "SeniorPortalFrontend/src/features/auth/components/LoginForm/index.tsx"
+Cohesion: 0.38
+Nodes (6): LoginForm(), LoginPage(), isSafeReturnPath(), KNOWN_MODULE_PREFIXES, resolveReturnPath(), RETURN_PATH_FALLBACK
 
-### Community 336 - "SeniorCareManager.IntegrationTests.AssemblyInfo.cs"
+### Community 304 - "Requirement: Falha do portal admite contingência controlada"
+Cohesion: 0.67
+Nodes (3): Requirement: Falha do portal admite contingência controlada, Scenario: IAM indisponível, Scenario: Portal indisponível e módulo saudável
+
+### Community 309 - "ref_react"
+Cohesion: 0.10
+Nodes (30): Card(), CardProps, isPathBasedRouting, LoginForm(), { activate, recover }, ActivateAccountFormData, ActivateAccountPage(), ChangePasswordFormData (+22 more)
+
+### Community 318 - "SeniorCareManager.WebAPI.Objects.Models"
+Cohesion: 0.07
+Nodes (4): SeniorCareManager.WebAPI.Data.Builders, SeniorCareManager.WebAPI.Data.Repositories, SeniorCareManager.WebAPI.Objects.Models, SeniorCareManager.WebAPI.Data.Interfaces
+
+### Community 336 - "Requirement: Estado essencial sobrevive à recriação dos containers"
 Cohesion: 0.67
 Nodes (3): Requirement: Estado essencial sobrevive à recriação dos containers, Scenario: Recriação da API durante atualização, Scenario: Recriação dos serviços sem reset
 
-### Community 337 - "SeniorCareManager.IntegrationTests.GlobalUsings.g.cs"
+### Community 337 - "Requirement: Módulos futuros não são anunciados antes de estarem prontos"
 Cohesion: 0.67
 Nodes (3): Requirement: Módulos futuros não são anunciados antes de estarem prontos, Scenario: Módulo futuro apenas planejado, Scenario: Novo módulo entra em produção
 
-### Community 347 - "Requirement: Ativação e recuperação não distribuem senha conhecida"
-Cohesion: 0.22
-Nodes (9): Capacidade `notification-delivery`, Capacidade `platform-authentication`, Requirement: Autenticação multifator protege contas privilegiadas, Requirements, Scenario: Administrador sem MFA cadastrado, Scenario: Cadastro de MFA exibe QR code, Scenario: Código de recuperação, Scenario: Segundo fator inválido (+1 more)
+### Community 347 - "Requirement: Autenticação multifator protege contas privilegiadas"
+Cohesion: 0.40
+Nodes (5): Requirement: Autenticação multifator protege contas privilegiadas, Scenario: Administrador sem MFA cadastrado, Scenario: Cadastro de MFA exibe QR code, Scenario: Código de recuperação, Scenario: Segundo fator inválido
 
-### Community 348 - "Requirement: Decisão de acesso segue precedência determinística e negação padrão"
+### Community 348 - "Requirement: Ativação e recuperação não distribuem senha conhecida"
 Cohesion: 0.22
 Nodes (9): Requirement: Ativação e recuperação não distribuem senha conhecida, Scenario: Ativação inicial, Scenario: Canal de e-mail não configurado, Scenario: Envio automático com canal configurado, Scenario: Falha no envio automático, Scenario: Reenvio administrativo de ativação, Scenario: Senha redefinida, Scenario: Solicitação de recuperação (+1 more)
 
-### Community 349 - "Requirement: Política de senha segue práticas atuais e possui piso seguro"
+### Community 349 - "Contexto e escopo"
 Cohesion: 0.22
 Nodes (9): Capabilities, Contexto e escopo, Impact, Modified Capabilities, New Capabilities, Não objetivos, Objetivos, What Changes (+1 more)
 
-### Community 350 - "AddSeniorPortalCatalog"
-Cohesion: 0.22
-Nodes (3): Migration, AddCatalogActiveState, AddProduct
+### Community 350 - "MigrationBuilder"
+Cohesion: 0.08
+Nodes (11): InitialCreate, AddRowVersionConcurrencyToken, AddAccessControlFoundation, AddAccessAdministrationApi, AddSessionAndMfa, AddAuditEvent, AddCatalogActiveState, AddProduct (+3 more)
 
-### Community 351 - "Requirement: Permissões são compostas por recurso, ação e funcionalidade"
-Cohesion: 0.25
-Nodes (4): MfaChallengeFormData, MfaChallengePage(), getMock, postMock
-
-### Community 352 - "Requirement: Senior Portal é a entrada institucional unificada"
+### Community 352 - "Contexto e escopo"
 Cohesion: 0.22
 Nodes (9): Capabilities, Contexto e escopo, Impact, Modified Capabilities, New Capabilities, Não objetivos, Objetivos, What Changes (+1 more)
 
-### Community 364 - "Requirement: Exceções individuais são explícitas, limitadas e justificadas"
+### Community 364 - "Contexto e escopo"
 Cohesion: 0.29
 Nodes (7): Capabilities, Contexto e escopo, Impact, Modified Capabilities, New Capabilities, What Changes, Why
 
-### Community 366 - "Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos"
-Cohesion: 0.18
-Nodes (11): Assumptions, Capabilities, Contexto e escopo, Feature Specification: Melhorar a entrega do primeiro acesso, Impact, Modified Capabilities, New Capabilities, Success Criteria (+3 more)
+### Community 366 - "Contexto e escopo"
+Cohesion: 0.29
+Nodes (7): Capabilities, Contexto e escopo, Impact, Modified Capabilities, New Capabilities, What Changes, Why
 
 ### Community 374 - "Requirement: Credencial administrativa inicial é provisionada com segurança"
 Cohesion: 0.29
-Nodes (7): Requirement: Credencial administrativa inicial é provisionada com segurança, Scenario: Ativação pelo frontend em desenvolvimento, Scenario: Automação local do primeiro acesso, Scenario: Configuração de bootstrap parcial, Scenario: Primeira execução da API pelo Rider, Scenario: Primeira execução em containers, Scenario: Reinício posterior pela IDE ou por container
+Nodes (7): Requirement: Credencial administrativa inicial é provisionada com segurança, Scenario: Configuração de bootstrap parcial, Scenario: Login pelo frontend em desenvolvimento, Scenario: Primeira execução da API pelo Rider, Scenario: Primeira execução em containers, Scenario: Reinício posterior pela IDE ou por container, Scenario: Senha inicial aleatória
 
-### Community 375 - "Requirement: Mudança autenticada de senha exige confirmação de identidade"
+### Community 375 - "Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização"
 Cohesion: 0.67
 Nodes (3): Requirement: Cliente obtém contexto e permissões efetivas sem decidir autorização, Scenario: Carregamento da aplicação, Scenario: Permissão alterada durante a sessão
 
-### Community 381 - "Requirement: Credencial administrativa inicial é provisionada com segurança"
-Cohesion: 0.67
-Nodes (3): Requirement: Tentativas de autenticação são protegidas contra abuso, Scenario: Autenticação posterior ao bloqueio temporário, Scenario: Repetição de falhas
-
-### Community 382 - "Requirement: Mudança autenticada de senha exige confirmação de identidade"
+### Community 382 - "Requirement: Sessão é compartilhada, curta, rotativa e revogável"
 Cohesion: 0.33
 Nodes (6): Requirement: Sessão é compartilhada, curta, rotativa e revogável, Scenario: Logout, Scenario: Navegação entre módulos, Scenario: Reutilização de token rotacionado, Scenario: Rotação de renovação, Scenario: Sessão expirada
 
-### Community 383 - "Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros"
+### Community 383 - "Requirement: Conteúdo sensível nunca é registrado em log ou auditoria"
 Cohesion: 0.33
 Nodes (6): Requirement: Conteúdo sensível nunca é registrado em log ou auditoria, Scenario: Bootstrap com entrega automática bem-sucedida, Scenario: Bootstrap manual com API executada em container, Scenario: Bootstrap manual com API executada pelo Rider, Scenario: Log de falha de envio, Scenario: Reinício após emissão do token inicial
 
-### Community 384 - "Requirement: Permissões são compostas por recurso, ação e funcionalidade"
-Cohesion: 0.33
-Nodes (6): 1. Capacidade de envio de e-mail (`notification-delivery`), 2. Wiring nos pontos de disparo, 3. QR code no cadastro de MFA (front-end), 4. Configuração e documentação, 5. Aceite, Tasks: Melhorar a entrega do primeiro acesso
+### Community 398 - "SeniorPortalFrontend/src/features/auth/authRoutes.tsx"
+Cohesion: 0.19
+Nodes (10): authRoutes, { activate, recover, resetPassword }, ActivateAccountPage(), RecoverAccountPage(), ResetPasswordPage(), SecurityPage(), postMock, authService (+2 more)
 
-### Community 407 - "AdminRoleControllerTests"
-Cohesion: 0.22
-Nodes (3): MfaConfirmFormData, getMock, postMock
-
-### Community 416 - "Requirement: Permissões são compostas por recurso, ação e funcionalidade"
-Cohesion: 0.70
-Nodes (3): isSafeReturnPath(), KNOWN_APP_PREFIXES, resolveReturnPath()
-
-### Community 426 - ".CreateAsync"
+### Community 426 - "Requirement: Ativação e recuperação não distribuem senha conhecida"
 Cohesion: 0.40
 Nodes (5): Requirement: Ativação e recuperação não distribuem senha conhecida, Scenario: Ativação inicial, Scenario: Senha redefinida, Scenario: Solicitação de recuperação, Scenario: Token expirado ou reutilizado
 
-### Community 429 - "MfaEnrollResponse.cs"
-Cohesion: 0.40
-Nodes (5): Requirement: Política de senha segue práticas atuais e possui piso seguro, Scenario: Regra institucional enfraquece o piso, Scenario: Senha antiga sem indício de comprometimento, Scenario: Senha comum ou comprometida, Scenario: Senha longa e válida
-
-### Community 430 - "SmtpNotificationSenderTests.cs"
+### Community 430 - "Requirement: Autenticação multifator protege contas privilegiadas"
 Cohesion: 0.50
 Nodes (4): Requirement: Autenticação multifator protege contas privilegiadas, Scenario: Administrador sem MFA cadastrado, Scenario: Código de recuperação, Scenario: Segundo fator inválido
 
-### Community 438 - "Requirement: Configuração e navegação crítica são auditáveis"
+### Community 438 - "Requirement: Identidade é individual e vinculada à instituição"
 Cohesion: 0.50
 Nodes (4): Requirement: Identidade é individual e vinculada à instituição, Scenario: Conta compartilhada, Scenario: Credenciais válidas na única instituição, Scenario: Identidade não pertence à instituição
 
-### Community 440 - "MigrationUpgradeTests"
-Cohesion: 0.11
-Nodes (9): IClassFixture, AdminOrganizationalRoleAssignmentControllerTests, AdminOrganizationalRoleControllerTests, AdminPermissionGroupControllerTests, AdminRoleControllerTests, AdminUserPermissionOverrideControllerTests, AdminUserSessionControllerTests, AuthControllerOriginRateLimitTests (+1 more)
-
-### Community 441 - "HealthInsurancePlan"
+### Community 441 - "Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos"
 Cohesion: 0.50
 Nodes (4): Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos, Scenario: Profissional sem papel técnico, Scenario: Responsabilidade limitada ao setor, Scenario: Responsabilidade vencida
 
-### Community 442 - "10. Sequência recomendada de evolução"
+### Community 442 - "Requirement: Ensino e demonstração usam somente dados sintéticos"
 Cohesion: 0.50
 Nodes (4): Requirement: Ensino e demonstração usam somente dados sintéticos, Scenario: Dado pessoal real identificado, Scenario: Preparação inicial para uma turma, Scenario: Tentativa de configurar origem de dados de outro ambiente
 
-### Community 443 - ".Post"
+### Community 443 - "Requirement: Homologação executa releases imutáveis promovíveis"
 Cohesion: 0.50
 Nodes (4): Requirement: Homologação executa releases imutáveis promovíveis, Scenario: Manifesto ou artefato inconsistente, Scenario: Promoção posterior para produção, Scenario: Publicação de release na homologação
 
-### Community 444 - "Requirement: Mudança autenticada de senha exige confirmação de identidade"
+### Community 444 - "Requirement: Plataforma usa uma origem HTTPS interna"
 Cohesion: 0.50
 Nodes (4): Requirement: Plataforma usa uma origem HTTPS interna, Scenario: Acesso por hostname da rede acadêmica, Scenario: Cliente não confia na autoridade interna, Scenario: Navegação autenticada entre módulos
 
-### Community 446 - "Position"
+### Community 446 - "Requirement: Descoberta de módulos usa permissões efetivas"
 Cohesion: 0.50
 Nodes (4): Requirement: Descoberta de módulos usa permissões efetivas, Scenario: Módulo autorizado, Scenario: Módulo sem permissão, Scenario: Permissão revogada durante a sessão
 
-### Community 448 - "Religion"
+### Community 448 - "Requirement: Navegação entre aplicações preserva destino seguro"
 Cohesion: 0.50
 Nodes (4): Requirement: Navegação entre aplicações preserva destino seguro, Scenario: Deep link autorizado, Scenario: Redirecionamento malicioso, Scenario: Retorno ao portal
 
-### Community 449 - "PagedResult"
-Cohesion: 0.50
-Nodes (4): Requirement: Portal representa estados operacionais sem conceder acesso indevido, Scenario: Módulo disponível, Scenario: Módulo em manutenção, Scenario: Módulo indisponível inesperadamente
-
-### Community 451 - "ProductGroupController.cs"
+### Community 451 - "Requirement: Portal reutiliza a identidade e a sessão institucional"
 Cohesion: 0.50
 Nodes (4): Requirement: Portal reutiliza a identidade e a sessão institucional, Scenario: MFA pendente, Scenario: Navegação autenticada para outro módulo, Scenario: Sessão não renovável
-
-### Community 453 - "AccountToken"
-Cohesion: 0.67
-Nodes (3): Requirement: Mudança autenticada de senha exige confirmação de identidade, Scenario: Mudança concluída, Scenario: Senha atual incorreta
-
-### Community 464 - "Requirement: Falha do portal admite contingência controlada"
-Cohesion: 0.25
-Nodes (3): ChangePasswordFormData, { resetPassword, changePassword }, ResetPasswordFormData
 
 ### Community 466 - "Requirement: Senior Portal é a entrada institucional unificada"
 Cohesion: 0.67
 Nodes (3): Requirement: Senior Portal é a entrada institucional unificada, Scenario: Familiar tenta usar o portal interno, Scenario: Usuário interno abre a plataforma
 
-### Community 479 - "crudPages.test.tsx"
-Cohesion: 0.33
-Nodes (5): deleteMock, getMock, pages, postMock, putMock
-
-### Community 480 - "crudPages.test.tsx"
-Cohesion: 0.33
-Nodes (5): deleteMock, getMock, pages, postMock, putMock
-
-### Community 488 - "Requirement: Portal possui experiência acessível e responsiva"
-Cohesion: 0.67
-Nodes (3): Requirement: Portal possui experiência acessível e responsiva, Scenario: Estado de manutenção, Scenario: Seleção somente por teclado
-
-### Community 1078 - "Requirement: Decisão de acesso segue precedência determinística e negação padrão"
-Cohesion: 0.40
-Nodes (5): Requirement: Decisão de acesso segue precedência determinística e negação padrão, Scenario: Interface exibe ação não autorizada, Scenario: Nenhuma regra concede acesso, Scenario: Operação sistêmica privilegiada, Scenario: Regras conflitantes
-
-### Community 1079 - "3. Inventário comprovado da implementação atual"
-Cohesion: 0.40
-Nodes (5): 3.1 Backend, 3.2 Front-end assistencial, 3.3 Front-end de estoque, 3.4 Infraestrutura e entrega, 3. Inventário comprovado da implementação atual
-
 ### Community 1080 - "Requirement: Conta possui ciclo de vida controlado"
 Cohesion: 0.50
 Nodes (4): Requirement: Conta possui ciclo de vida controlado, Scenario: Administrador inativa conta com sessão aberta, Scenario: Conta inativa, bloqueada ou expirada, Scenario: Conta provisionada
 
-### Community 1081 - "Requirement: Exceções individuais são explícitas, limitadas e justificadas"
-Cohesion: 0.50
-Nodes (4): Requirement: Exceções individuais são explícitas, limitadas e justificadas, Scenario: Exceção de negação, Scenario: Exceção expirada, Scenario: Exceção temporária de concessão
-
-### Community 1083 - "Requirement: Credencial administrativa inicial é provisionada com segurança"
-Cohesion: 0.67
-Nodes (3): Requirement: Credencial administrativa inicial é provisionada com segurança, Scenario: Primeiro provisionamento, Scenario: Reinício posterior
-
 ### Community 1084 - "Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros"
 Cohesion: 0.67
 Nodes (3): Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros, Scenario: Configuração válida, Scenario: Sessão excessivamente longa
-
-### Community 1085 - "Requirement: Permissões são compostas por recurso, ação e funcionalidade"
-Cohesion: 0.67
-Nodes (3): Requirement: Permissões são compostas por recurso, ação e funcionalidade, Scenario: Papel recebe grupo de módulo, Scenario: Permissão removida do grupo
 
 ### Community 1086 - "Requirement: Portal minimiza dados e não apresenta conteúdo clínico"
 Cohesion: 0.67
 Nodes (3): Requirement: Portal minimiza dados e não apresenta conteúdo clínico, Scenario: Carregamento da página inicial, Scenario: Configuração contém informação sensível
 
 ## Knowledge Gaps
-- **1615 isolated node(s):** `check-clinical-scope.sh script`, `check-env-hygiene.sh script`, `check-frontend-bundle.sh script`, `check-synthetic-fixtures.sh script`, `check-prerequisites.sh script` (+1610 more)
-  These have ≤1 connection - possible missing edges or undocumented components.
-- **736 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **825 isolated node(s):** `DataProtectionKeyRingPath`, `DataProtectionApplicationName`, `NotificationSender`, `Status`, `Messages` (+820 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 2402 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **50 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `SeniorCareManager.WebAPI.Objects.Models` connect `SeniorCareManager.WebAPI.Objects.Models` to `SeniorCareManager.WebAPI.Objects.Enums`, `index.tsx`, `compilerOptions`, `SeniorCareManager.WebAPI.Objects.Dtos.Entities`, `Decisions`, `AccountTokenBuilder.cs`, `proposal.md`, `Supplier`, `graphify reference: extra exports and benchmark`, `SeniorCareManager.WebAPI`, `Requirement: Autenticação multifator protege contas privilegiadas`, `Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos`, `graphify reference: query, path, explain`, `Program`, `Requirement: Parâmetros de segurança são configuráveis dentro de limites seguros`, `SeniorCareManager.WebAPI.Objects.Models`, `AppDbContext`, `SeniorCareClaimTypes.cs`, `check-frontend-bundle.sh`, `PermissionGroup.ts`, `ManufacturerDTO.cs`, `UserSession.ts`, `Role.ts`, `.NETCoreApp,Version=v8.0.AssemblyAttributes.cs`, `.NETCoreApp,Version=v8.0.AssemblyAttributes.cs`, `SeniorCareManager.UnitTests.AssemblyInfo.cs`, `SeniorCareManager.UnitTests.GlobalUsings.g.cs`, `SeniorStockManagerFrontend ("stock")`, `Requirement: Decisão de acesso segue precedência determinística e negação padrão`, `Requirement: Política de senha segue práticas atuais e possui piso seguro`, `Requirement: Administração de acesso possui configuração dedicada`, `Requirement: Autenticação multifator protege contas privilegiadas`, `Requirement: Eventos de identidade, configuração e acesso são auditáveis`, `Requirement: Exceções individuais são explícitas, limitadas e justificadas`, `ProductType.ts`, `Requirement: Profissão, papel técnico e responsabilidade organizacional são distintos`, `SessionService`, `Escopo do projeto SeniorCare`?**
-  _High betweenness centrality (0.028) - this node is a cross-community bridge._
-- **Why does `SeniorCareManager.WebAPI.Data` connect `AppDbContext` to `SeniorCareManager.WebAPI.Objects.Models`, `Requirement: Conta possui ciclo de vida controlado`, `Supplier`, `Requirement: Conta possui ciclo de vida controlado`, `Requirement: Eventos de identidade, configuração e acesso são auditáveis`, `SKILL.md`, `Migration`, `UserPermissionOverrideBuilder.cs`, `CarrierBuilder.cs`, `InstitutionModuleBuilder.cs`, `20260809230019_AddCatalogActiveState.Designer.cs`, `20260811144526_AddSeniorPortalCatalog.Designer.cs`, `infra/docker-test — stack local (build a partir do código)`, `SeniorCareManager.WebAPI.Objects.Models`, `InitialCreate`, `20260809013824_AddSessionAndMfa.Designer.cs`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
-- **Why does `SeniorCareManager.WebAPI.Services.Interfaces` connect `SeniorCareManager.WebAPI.Objects.Models` to `SeniorCareManager.WebAPI.Objects.Enums`, `GenericRepository`, `Supplier`, `SeniorCareManager.WebAPI.AssemblyInfo.cs`, `IAuditService`, `Escopo do projeto SeniorCare`, `index.tsx`, `SeniorCareManager.WebAPI.Objects.Models`, `AppDbContext`, `OriginRateLimiter`?**
-  _High betweenness centrality (0.014) - this node is a cross-community bridge._
-- **What connects `check-clinical-scope.sh script`, `check-env-hygiene.sh script`, `check-frontend-bundle.sh script` to the rest of the system?**
-  _1616 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `SeniorCareManager.WebAPI.Objects.Models` be split into smaller, more focused modules?**
-  _Cohesion score 0.06265822784810127 - nodes in this community are weakly interconnected._
+- **Why does `10. Identidade, acesso e contratos nos front-ends` connect `Button` to `AdminPermissionGroupController`, `.GetInstitutionIdAsync`, `Guid`, `AuthController`, `SeniorCareManagerFrontend/src/utils/serviceUtils.ts`, `AdminOrganizationalRoleController`, `9. Catálogos auxiliares e produto`, `ApplicationUser`, `Button`, `AdminUserController`, `SeniorCareManagerFrontend/src/test/operationalPages.test.tsx`, `6. Configuração administrativa de acesso`, `AdminUserControllerTests`?**
+  _High betweenness centrality (0.146) - this node is a cross-community bridge._
+- **Are the 2 inferred relationships involving `AppDbContext` (e.g. with `4. Instituição, identidade e política de senha` and `9. Catálogos auxiliares e produto`) actually correct?**
+  _`AppDbContext` has 2 INFERRED edges - model-reasoned connections that need verification._
+- **What connects `DataProtectionKeyRingPath`, `DataProtectionApplicationName`, `NotificationSender` to the rest of the system?**
+  _825 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `SeniorCareManager.WebAPI.Services.Interfaces` be split into smaller, more focused modules?**
+  _Cohesion score 0.08579234972677596 - nodes in this community are weakly interconnected._
+- **Why does `AppDbContext` connect `AppDbContext` to `SeniorPortalCatalogPersistenceTests`, `LoginRequest`, `Guid`, `Fact`, `PermissionDTO`, `.ConfigureServices`, `Permission`, `ModuleDefinition`, `.SeedFullAccessUserAsync`, `CancellationToken`, `9. Catálogos auxiliares e produto`, `ModelBuilder`, `ApplicationUser`, `.GetMissingConfiguration`, `OrganizationalRoleAssignment`, `6. Configuração administrativa de acesso`, `.GetInstitutionIdAsync`, `AccountTokenPurpose`, `AuthController`, `Task`, `AdminOrganizationalRoleController`, `Institution`, `DbHealthCheck`, `Supplier`, `.AttachPermissionGroup_ThenAssignToUser_GrantsAccess`, `AccessPolicyDTO`, `AuditEvent`, `AdminUserController`, `AccessPolicy`, `SeniorCareManager.WebAPI.Objects.Models`, `IInstitutionModuleProvisioningService`, `AdminPermissionGroupController`, `AdminUserControllerTests`, `.RecordAsync`, `ProductType`, `Manufacturer`, `UserPermissionOverride`, `PostgresWebApplicationFactory`, `OrganizationalRoleAssignmentDTO`, `AdminInstitutionSecurityController`, `UserSession`, `UnitOfMeasure`, `AuthControllerTests`, `ProductGroup`, `InstitutionModule`?**
+  _High betweenness centrality (0.098) - this node is a cross-community bridge._
 - **Should `SeniorCareManager.WebAPI.Objects.Enums` be split into smaller, more focused modules?**
-  _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._
-- **Should `AppDbContext` be split into smaller, more focused modules?**
-  _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.04972677595628415 - nodes in this community are weakly interconnected._
+- **Why does `Tasks: Estabilizar a plataforma existente` connect `6. Configuração administrativa de acesso` to `ProductForm.tsx`, `Desenho técnico migrado`, `GlobalExceptionHandler`, `AuthController`, `9. Catálogos auxiliares e produto`, `Institution`, `AppDbContext`, `Button`?**
+  _High betweenness centrality (0.091) - this node is a cross-community bridge._
