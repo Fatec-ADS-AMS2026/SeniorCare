@@ -20,22 +20,22 @@ de referência/produção.
 
 ## Contrato de segurança da primeira execução
 
-- Não existe senha administrativa inicial padrão. O bootstrap cria uma conta
-  `PROVISIONED`, sem `PasswordHash`, e a própria pessoa escolhe a senha.
-- Com SMTP configurado, a API envia o link e não imprime o token.
-- Sem SMTP ou se a entrega falhar, somente o bootstrap imprime o token uma vez.
-- O banco guarda apenas o hash do token; não existe consulta capaz de recuperar
-  seu valor bruto.
-- Reiniciar a API não cria outra instituição, conta, senha ou token.
+- Não existe senha administrativa inicial padrão. O bootstrap gera uma senha
+  aleatória de 32 caracteres e cria a conta inicial como `ACTIVE`.
+- A senha aparece somente na saída do processo que criou a conta; o banco
+  guarda apenas o hash.
+- SMTP, token e ativação não participam da primeira conta. Eles atendem contas
+  criadas posteriormente e recuperação de senha.
+- Reiniciar a API não cria outra instituição, conta ou senha.
 - O cadastro de MFA apresenta o mesmo segredo como QR code e chave manual.
 
-| Execução | Quem cria a conta | Configuração | Entrega/fallback | Reinício |
+| Execução | Quem cria a conta | Configuração | Senha inicial | Reinício |
 |---|---|---|---|---|
-| Rider + WebStorm | API no Rider | Run Configuration | SMTP/Mailpit; sem SMTP, console do Rider | não reemite |
-| Docker Compose | `seniorcare-api` | `.env`/secret | SMTP/Mailpit; sem SMTP, `docker compose logs` | não reemite |
+| Rider + WebStorm | API no Rider | Run Configuration | console do Rider | não reemite |
+| Docker Compose | `seniorcare-api` | `.env`/secret | `docker compose logs` | não reemite |
 
 Rider e container executam o mesmo `BootstrapService`. WebStorm/Vite e os
-containers dos front-ends apenas abrem ativação, login e MFA.
+containers dos front-ends apenas abrem login e MFA.
 
 ## 1. Antes do primeiro deploy
 
@@ -53,55 +53,32 @@ Elas só têm efeito **enquanto nenhuma instituição existir no banco** — em
 deploys seguintes (instituição já criada), ficam sem efeito e podem continuar
 no `.env` sem risco de recriar nada. Não é necessário removê-las depois.
 
-Para entrega automática, configure também o bloco SMTP completo descrito em
-`CONFIGURATION.md`. `Frontend__ActivationBaseUrl` deve apontar para a rota de
-ativação do Portal. Se nenhum `Smtp__*` for informado, o canal fica desabilitado;
-uma configuração parcial é rejeitada antes do provisionamento.
+SMTP continua necessário somente para ativação de contas criadas depois e
+recuperação de senha. A primeira conta não envia e-mail nem gera token.
 
-## 2. Subir e obter a ativação
+## 2. Subir e guardar a senha inicial
 
 ```bash
 ./deploy.sh 2026.08.0
 ```
 
 No primeiro boot, a API cria a instituição e a conta administrativa em estado
-`PROVISIONED`. Se o SMTP entregar a mensagem, o endereço configurado recebe o
-link e a saída mostra apenas:
+`ACTIVE`:
 
-```
-Bootstrap: instituição e administrador PROVISIONED criados.
-  Link de ativação enviado por e-mail.
-```
-
-O token não aparece no log nesse modo. Se o SMTP estiver desabilitado ou a
-tentativa falhar, a API imprime o fallback **uma única vez**:
-
-```
-Bootstrap: instituição e administrador PROVISIONED criados.
-  Token de ativação (uso único, capture agora — não será reimpresso): <token>
+```text
+Bootstrap: instituição e administrador ACTIVE criados.
+  Administrador: admin@exemplo.com.br
+  Senha inicial (exibida somente nesta inicialização): <senha-aleatória>
 ```
 
-Capture somente quando estiver no modo fallback:
+Guarde a senha antes de encerrar a saída do processo. Ela não é reimpressa,
+não é recuperável do banco e nenhum token é emitido. Se a senha for perdida,
+configure SMTP e use a recuperação de senha da conta existente.
 
-```bash
-docker logs seniorcare-api 2>&1 | grep "Token de ativação"
-```
+## 3. Primeiro login
 
-Se esse token inicial for perdido, ele não pode ser recuperado do banco. Em
-desenvolvimento, recrie o banco vazio; em produção, interrompa e acione o time
-responsável para um procedimento controlado — nunca tente extrair o hash.
-
-## 3. Ativar a conta
-
-Com o token em mãos, ative a conta (define a senha real e libera o login) —
-via UI (`ActivateAccountPage`, rota `/ativar-conta` — aceita `?email=`/`?token=`
-como query string, útil pra pré-preencher um link) ou diretamente:
-
-```bash
-curl -X POST https://<host>/api/v1/Auth/activate \
-  -H "Content-Type: application/json" \
-  -d '{"email":"admin@exemplo.com.br","token":"<token>","newPassword":"<senha-forte>"}'
-```
+Abra o Senior Portal em `/login` e informe o e-mail configurado mais a senha
+exibida no boot. O primeiro login inicia o cadastro de MFA obrigatório.
 
 ## 4. Cadastrar o MFA (obrigatório, sem exceção pro bootstrap)
 

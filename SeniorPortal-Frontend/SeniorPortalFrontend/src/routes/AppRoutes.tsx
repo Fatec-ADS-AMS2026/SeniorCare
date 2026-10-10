@@ -18,6 +18,9 @@ const router = createBrowserRouter(
       </Route>
       <Route errorElement={<GlobalErrorBoundary />}>
         <Route {...routes.LOGIN} />
+        <Route {...routes.ACTIVATE_ACCOUNT} />
+        <Route {...routes.RECOVER_ACCOUNT} />
+        <Route {...routes.RESET_PASSWORD} />
         <Route {...routes.MFA_CHALLENGE} />
         <Route {...routes.MFA_ENROLL} />
       </Route>

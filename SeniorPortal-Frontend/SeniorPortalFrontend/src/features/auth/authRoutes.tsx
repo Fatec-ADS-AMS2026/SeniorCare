@@ -2,15 +2,31 @@ import { createRoutes } from '@/utils/routesUtils';
 import LoginPage from './pages/LoginPage';
 import MfaChallengePage from './pages/MfaChallengePage';
 import MfaEnrollPage from './pages/MfaEnrollPage';
+import ActivateAccountPage from './pages/ActivateAccountPage';
+import RecoverAccountPage from './pages/RecoverAccountPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
-// Rotas de auth ficam fora do RequireAuth — login/MFA são inerentemente
-// pré-sessão. Recuperação/ativação/troca de senha continuam vivendo em
-// care-web/stock-web por ora (não migradas nesta seção).
+// Rotas de auth ficam fora do RequireAuth porque são pré-sessão.
 export const authRoutes = createRoutes({
   LOGIN: {
     path: '/login',
     displayName: 'Login',
     element: <LoginPage />,
+  },
+  ACTIVATE_ACCOUNT: {
+    path: '/ativar-conta',
+    displayName: 'Ativar conta',
+    element: <ActivateAccountPage />,
+  },
+  RECOVER_ACCOUNT: {
+    path: '/recuperar-senha',
+    displayName: 'Recuperar acesso',
+    element: <RecoverAccountPage />,
+  },
+  RESET_PASSWORD: {
+    path: '/redefinir-senha',
+    displayName: 'Redefinir senha',
+    element: <ResetPasswordPage />,
   },
   MFA_CHALLENGE: {
     path: '/login/mfa',

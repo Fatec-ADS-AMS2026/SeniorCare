@@ -34,12 +34,12 @@ uma variável de ambiente pra uma chave aninhada (`ConnectionStrings:DefaultConn
 As três variáveis só fazem sentido juntas — informar só uma ou duas é erro de
 configuração e o processo falha no boot (ver "Validação de startup" abaixo).
 No primeiro boot sem nenhuma instituição, se as três estiverem presentes, o
-processo cria a instituição e uma conta administrativa `PROVISIONED` **sem
-senha conhecida**. Com SMTP configurado, envia o link de ativação e não expõe
-o token no console; sem SMTP ou quando a entrega falha, imprime o token uma
-única vez para o procedimento manual. Reinícios seguintes (instituição já existente) são
-no-op: nada é recriado nem redefinido silenciosamente, mesmo que as
-variáveis continuem definidas.
+processo cria a instituição e uma conta administrativa `ACTIVE` com uma senha
+aleatória de 32 caracteres. A senha aparece uma única vez no console da API;
+o banco guarda apenas o hash. Não há token nem e-mail de ativação para essa
+conta inicial. Reinícios seguintes (instituição já existente) são no-op: nada
+é recriado nem redefinido silenciosamente, mesmo que as variáveis continuem
+definidas.
 
 ## E-mail transacional e links de primeiro acesso
 

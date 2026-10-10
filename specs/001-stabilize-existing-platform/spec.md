@@ -345,9 +345,10 @@ institucional MAY fortalecer, mas SHALL NOT enfraquecer, esses limites.
 
 #### Requirement: Senhas são derivadas e nunca recuperáveis
 Senhas locais SHALL ser armazenadas somente por derivação criptográfica adaptativa,
-com parâmetros atualizáveis e salt individual. Senhas, códigos MFA, tokens de
-ativação, recuperação e sessão SHALL NOT aparecer em logs, respostas
-administrativas ou exportações. Uma autenticação válida MAY atualizar
+com parâmetros atualizáveis e salt individual. Exceto pela senha aleatória do
+bootstrap exibida uma única vez no console do processo inicial, senhas, códigos
+MFA e tokens de ativação, recuperação e sessão SHALL NOT aparecer em logs,
+respostas administrativas ou exportações. Uma autenticação válida MAY atualizar
 transparentemente uma derivação obsoleta.
 
 ##### Scenario: Persistência de nova senha
@@ -359,11 +360,11 @@ transparentemente uma derivação obsoleta.
 - **THEN** nenhuma senha, derivação, segredo MFA ou token é retornado
 
 #### Requirement: Ativação e recuperação não distribuem senha conhecida
-Administradores SHALL criar a conta e disparar ativação ou recuperação, mas SHALL
-NOT visualizar nem definir uma senha permanente conhecida por eles. Ativação e
-recuperação SHALL usar token aleatório, armazenado de forma não recuperável, de uso
-único e com validade curta. As respostas públicas SHALL ser uniformes para impedir
-enumeração de contas.
+Administradores SHALL criar contas posteriores e disparar ativação ou recuperação,
+mas SHALL NOT visualizar nem definir uma senha permanente conhecida por eles.
+Ativação e recuperação SHALL usar token aleatório, armazenado de forma não
+recuperável, de uso único e com validade curta. A conta administrativa inicial
+segue o procedimento específico de bootstrap abaixo.
 
 ##### Scenario: Ativação inicial
 - **WHEN** uma conta `PROVISIONED` recebe e utiliza um token de ativação válido
@@ -585,12 +586,13 @@ SHALL impedir configurações incompatíveis e SHALL auditar toda alteração.
 #### Requirement: Credencial administrativa inicial é provisionada com segurança
 A primeira identidade administrativa SHALL ser criada por procedimento explícito,
 idempotente e limitado à instituição inicial. O procedimento SHALL receber dados
-sensíveis fora do repositório e SHALL preferir convite de ativação à distribuição
-de senha pronta.
+sensíveis fora do repositório, gerar uma senha aleatória de 32 caracteres e
+exibi-la uma única vez no console do processo. A senha SHALL ser armazenada
+somente como derivação protegida; não existe senha padrão ou versionada.
 
 ##### Scenario: Primeiro provisionamento
 - **WHEN** uma instalação vazia recebe parâmetros válidos de instituição e administrador
-- **THEN** uma única instituição e conta `PROVISIONED` são criadas e a ativação segura é iniciada
+- **THEN** uma única instituição e conta `ACTIVE` são criadas, e a senha aleatória aparece uma única vez na saída do processo
 
 ##### Scenario: Reinício posterior
 - **WHEN** a instalação já provisionada reinicia com os mesmos parâmetros

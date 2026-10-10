@@ -8,6 +8,22 @@ export interface LoginRequest {
   password: string;
 }
 
+export interface ActivateAccountRequest {
+  email: string;
+  token: string;
+  newPassword: string;
+}
+
+export interface RecoverAccountRequest {
+  email: string;
+}
+
+export interface ResetPasswordRequest {
+  email: string;
+  token: string;
+  newPassword: string;
+}
+
 // "ok" | "mfa_required" | "mfa_enrollment_required"
 export type LoginStatus = 'ok' | 'mfa_required' | 'mfa_enrollment_required';
 

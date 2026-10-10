@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,25 +18,19 @@ public class BootstrapService : IBootstrapService
 {
     private readonly AppDbContext _dbContext;
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly IAccountTokenService _accountTokenService;
     private readonly IConfiguration _configuration;
     private readonly ILogger<BootstrapService> _logger;
-    private readonly IIdentityNotificationService _identityNotificationService;
 
     public BootstrapService(
         AppDbContext dbContext,
         UserManager<ApplicationUser> userManager,
-        IAccountTokenService accountTokenService,
         IConfiguration configuration,
-        ILogger<BootstrapService> logger,
-        IIdentityNotificationService identityNotificationService)
+        ILogger<BootstrapService> logger)
     {
         _dbContext = dbContext;
         _userManager = userManager;
-        _accountTokenService = accountTokenService;
         _configuration = configuration;
         _logger = logger;
-        _identityNotificationService = identityNotificationService;
     }
 
     public async Task<BootstrapResult> RunAsync(CancellationToken cancellationToken = default)
@@ -59,6 +54,7 @@ public class BootstrapService : IBootstrapService
         _dbContext.Institutions.Add(institution);
         await _dbContext.SaveChangesAsync(cancellationToken);
 
+        var initialPassword = GenerateInitialPassword();
         var admin = new ApplicationUser
         {
             Id = Guid.NewGuid(),
@@ -68,22 +64,20 @@ public class BootstrapService : IBootstrapService
             InstitutionId = institution.Id,
             DisplayName = adminDisplayName,
             IdentityOrigin = IdentityOrigin.LOCAL,
-            AccountState = AccountState.PROVISIONED
+            AccountState = AccountState.ACTIVE
         };
 
-        // Sem senha: a conta PROVISIONED só ganha credencial pelo fluxo de ativação por
-        // token — a operação nunca conhece nem transmite uma senha do administrador.
-        var createResult = await _userManager.CreateAsync(admin);
+        var createResult = await _userManager.CreateAsync(admin, initialPassword);
         if (!createResult.Succeeded)
         {
             var errors = string.Join("; ", createResult.Errors.Select(e => e.Description));
             throw new InvalidOperationException($"Falha ao criar a conta administrativa de bootstrap: {errors}");
         }
 
-        // Sem isto, o admin PROVISIONED ativa a conta (§4) mas não consegue chamar nenhuma
-        // API administrativa da §6 — ninguém teria nenhum Role. O grupo lê as Permission
-        // dinamicamente do banco (não hard-coded), então continua "acesso total" conforme
-        // novos recursos administrativos forem seedados no futuro.
+        // Sem isto, o admin inicial não conseguiria chamar nenhuma API administrativa da
+        // §6. O grupo lê as Permission dinamicamente do banco (não hard-coded), então
+        // continua "acesso total" conforme novos recursos administrativos forem seedados
+        // no futuro.
         var allPermissionIds = await _dbContext.Permissions.Select(p => p.Id).ToListAsync(cancellationToken);
         var fullAccessGroup = new PermissionGroup { Id = Guid.NewGuid(), Name = "Acesso Total" };
         _dbContext.PermissionGroups.Add(fullAccessGroup);
@@ -96,17 +90,19 @@ public class BootstrapService : IBootstrapService
         _dbContext.UserRoles.Add(new UserRole { Id = Guid.NewGuid(), UserId = admin.Id, RoleId = adminRole.Id, CreatedAtUtc = DateTime.UtcNow });
         await _dbContext.SaveChangesAsync(cancellationToken);
 
-        var activationToken = await _accountTokenService.IssueAsync(
-            admin.Id, AccountTokenPurpose.ACTIVATION, AccountTokenService.ActivationTokenValidity, cancellationToken);
-        var notificationStatus = await _identityNotificationService.SendActivationAsync(
-            admin, activationToken, admin.Id, cancellationToken);
-
         return new BootstrapResult
         {
             Created = true,
             AdminEmail = adminEmail,
-            ActivationToken = activationToken,
-            NotificationStatus = notificationStatus
+            InitialPassword = initialPassword
         };
     }
+    private static string GenerateInitialPassword()
+    {
+        var bytes = RandomNumberGenerator.GetBytes(24);
+        return Convert.ToBase64String(bytes)
+            .Replace('+', '-')
+            .Replace('/', '_');
+    }
+
 }

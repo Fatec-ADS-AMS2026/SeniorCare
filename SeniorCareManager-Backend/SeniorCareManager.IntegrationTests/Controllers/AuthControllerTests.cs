@@ -79,14 +79,50 @@ public sealed class AuthControllerTests : IClassFixture<PostgresWebApplicationFa
     }
 
     [Fact]
-    public async Task Activate_PasswordBelowFloor_ReturnsUnprocessableEntityAndDoesNotConsumeToken()
+    public async Task Activate_PasswordBelowFloor_KeepsTokenUsable()
     {
         var (email, _, token) = await CreateProvisionedUserAsync();
 
-        var response = await _client.PostAsJsonAsync("/api/v1/Auth/activate",
+        var rejected = await _client.PostAsJsonAsync("/api/v1/Auth/activate",
             new ActivateAccountRequest { Email = email, Token = token, NewPassword = "curta" });
+        rejected.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
 
-        response.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
+        var activated = await _client.PostAsJsonAsync("/api/v1/Auth/activate",
+            new ActivateAccountRequest { Email = email, Token = token, NewPassword = ValidPassword });
+        activated.StatusCode.Should().Be(HttpStatusCode.OK);
+    }
+
+    [Fact]
+    public async Task ResetPassword_PasswordBelowFloor_KeepsCredentialAndTokenUsable()
+    {
+        var (email, userId, _) = await CreateActiveUserAsync();
+        string token;
+        using (var scope = _factory.Services.CreateScope())
+        {
+            var tokenService = scope.ServiceProvider.GetRequiredService<IAccountTokenService>();
+            token = await tokenService.IssueAsync(userId, AccountTokenPurpose.RECOVERY, AccountTokenService.RecoveryTokenValidity);
+        }
+
+        var rejected = await _client.PostAsJsonAsync("/api/v1/Auth/reset-password",
+            new ResetPasswordRequest { Email = email, Token = token, NewPassword = "curta" });
+        rejected.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
+
+        using (var scope = _factory.Services.CreateScope())
+        {
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            (await userManager.CheckPasswordAsync(user!, ValidPassword)).Should().BeTrue();
+        }
+
+        const string newPassword = "Outra-Senha-Bem-Longa-2026"; // gitleaks:allow — senha fixa de teste, não é segredo
+        var reset = await _client.PostAsJsonAsync("/api/v1/Auth/reset-password",
+            new ResetPasswordRequest { Email = email, Token = token, NewPassword = newPassword });
+        reset.StatusCode.Should().Be(HttpStatusCode.OK);
+
+        using var assertionScope = _factory.Services.CreateScope();
+        var assertionUserManager = assertionScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+        var updatedUser = await assertionUserManager.FindByIdAsync(userId.ToString());
+        (await assertionUserManager.CheckPasswordAsync(updatedUser!, newPassword)).Should().BeTrue();
     }
 
     [Fact]

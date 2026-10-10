@@ -38,17 +38,8 @@ rodar os três pela IDE). Confirme que subiu: `docker ps` deve listar
 
 1. Abra `SeniorCareManager-Backend/SeniorCareManager.WebAPI/SeniorCareManager.WebAPI.sln`
    no Rider (ele carrega os 3 projetos: `WebAPI`, `UnitTests`, `IntegrationTests`).
-2. **Ajuste a configuração de execução antes do primeiro run** — o perfil
-   `https` padrão (`Properties/launchSettings.json`) sobe em
-   `https://localhost:7053;http://localhost:5253`, mas o proxy `/api` dos dois
-   front-ends espera `http://localhost:8080` por padrão (mesma porta que o
-   Docker usa). Duas opções, escolha uma:
-   - **Mais simples**: edite a Run Configuration gerada pelo Rider (ícone de
-     lápis ao lado do seletor de configuração) e mude a URL da aplicação pra
-     `http://localhost:8080`.
-   - **Alternativa**: mantenha a porta padrão e, ao rodar os front-ends (passo
-     3), defina `VITE_API_PROXY_TARGET=http://localhost:5253` no `.env` de
-     cada um.
+2. O perfil padrão já sobe em `http://localhost:8080`, a mesma porta esperada
+   pelo proxy `/api` dos três front-ends e pelo Docker local.
 3. Rode em modo **Debug** (▷ com o ícone de inseto, ou `Shift+F9`) — a
    variável `ASPNETCORE_ENVIRONMENT=Development` já vem definida no perfil.
    Antes desse primeiro run, veja a seção 4 abaixo — ela cobre a variável de
@@ -92,10 +83,10 @@ Para cada um:
    terminal integrado. Os testes usam mock de `@/features/api` (nunca chamam
    a API real), então não precisam do backend rodando.
 
-## 4. Primeiro login (criar e ativar o usuário admin)
+## 4. Primeiro login (bootstrap do administrador)
 
-Com Postgres + API + o Portal rodando, falta criar a conta que
-você vai usar pra logar — a API não vem com nenhum usuário/senha padrão.
+Com Postgres + API + o Portal rodando, a API cria a primeira conta
+administrativa e exibe a senha inicial uma única vez no próprio console.
 
 **a. Definir as variáveis de bootstrap antes de subir a API.** No Rider, edite
 a Run Configuration da API (ícone de lápis) → aba **Environment variables** →
@@ -108,65 +99,26 @@ Bootstrap__AdminEmail=admin@example.com
 Bootstrap__AdminDisplayName=Admin Dev
 ```
 
-Para testar a entrega automática pelo Mailpit, adicione também:
+SMTP/Mailpit é opcional para ativações e recuperações de contas criadas depois;
+ele não participa do primeiro administrador.
 
-```
-Smtp__Host=localhost
-Smtp__Port=1025
-Smtp__FromAddress=noreply@seniorcare.local
-Smtp__FromDisplayName=SeniorCare Local
-Smtp__UseStartTls=false
-Frontend__ActivationBaseUrl=http://localhost:5173/ativar-conta
-```
+**b. Rodar a API (Debug) e guardar a senha.** No primeiro boot com banco vazio,
+o console mostra:
 
-Abra `http://localhost:8025` para consultar as mensagens. Para testar o
-fallback manual, remova **todas** as variáveis `Smtp__*` e
-`Frontend__ActivationBaseUrl`; um bloco parcial é rejeitado no startup. O
-bootstrap pertence somente à API executada pelo Rider — os front-ends no
-WebStorm não criam instituição, usuário, token ou senha.
-
-Elas só têm efeito enquanto **nenhuma instituição existir no banco** — se seu
-Postgres local já tem dado de uma sessão anterior, ou apague o volume
-(`docker compose down -v` no `infra/docker-test`) ou pule pra "e" com a conta
-que você já tem.
-
-**b. Rodar a API (Debug) e obter a ativação.** Com SMTP ativo, o link chega ao
-Mailpit e o console mostra apenas “Link de ativação enviado por e-mail”. Sem
-SMTP ou se a entrega falhar, o console imprime o fallback **uma única vez**:
-
-```
-Bootstrap: instituição e administrador PROVISIONED criados.
-  Token de ativação (uso único, capture agora — não será reimpresso): <token>
+```text
+Bootstrap: instituição e administrador ACTIVE criados.
+  Administrador: admin@example.com
+  Senha inicial (exibida somente nesta inicialização): <senha-aleatória>
 ```
 
-O banco conserva apenas o hash; não existe consulta que recupere o token. Em
-desenvolvimento ainda não ativado, remova o volume e repita o bootstrap.
+Copie a senha antes de encerrar o processo. Ela não é impressa novamente nem
+recuperável do banco. Se for perdida, configure SMTP e use a recuperação de
+senha para a conta existente.
 
-**c. Ativar + logar + cadastrar MFA — caminho rápido no fallback.** Com o
-token manual do passo b em mãos, um único comando faz o resto (ativação, login,
-cadastro de MFA com TOTP calculado sozinho, sem celular):
-
-```bash
-cd infra/docker-test
-DEV_ADMIN_EMAIL=admin@example.com ./bootstrap-dev-admin.sh --token <token>
-```
-
-(`--token` porque o backend aqui não está em container.) Se
-`DEV_ADMIN_PASSWORD` não for informada, o helper gera uma senha efêmera forte
-e a exibe só nessa execução; não existe senha default versionada. Com SMTP,
-abra o link recebido e use a UI — o helper não lê mensagens do Mailpit.
-
-Prefere fazer manualmente (ou entender o que o script faz por baixo)? Os
-passos "d" e "e" abaixo são o equivalente manual, pela UI.
-
-**d. Ativar a conta pelo front-end.** Abra o link recebido no Mailpit ou, no
-fallback, `http://localhost:5173/ativar-conta`; preencha e-mail, token e uma
-senha escolhida por você. Confirme "Conta ativada com sucesso."
-
-**e. Logar e cadastrar o MFA (obrigatório pra toda conta administrativa).**
-Vá em `/login`, entre com o e-mail/senha que você acabou de definir — o
-sistema redireciona automaticamente pra `/mfa/enroll` (nenhum login
-administrativo completa sem MFA cadastrado, nem no primeiro acesso). A tela
+**c. Logar e cadastrar o MFA (obrigatório pra toda conta administrativa).**
+Vá em `/login` e use o e-mail configurado mais a senha exibida no console. O
+sistema redireciona automaticamente pra `/mfa/enroll`; nenhum login
+administrativo completa sem MFA cadastrado, nem no primeiro acesso. A tela
 mostra um QR code e a chave manual equivalentes:
 
 - **Com celular à mão**: escaneie o QR code num app autenticador. Se o aparelho

@@ -1,0 +1,19 @@
+scripts:
+  setup: |
+    set -eu
+
+    (
+      cd SeniorCareManager-Backend/SeniorCareManager.WebAPI
+      dotnet restore SeniorCareManager.WebAPI.sln
+      dotnet tool restore
+    )
+
+    for app in \
+      SeniorCareManager-Frontend/SeniorCareManagerFrontend \
+      SeniorStockManager-Frontend/SeniorStockManagerFrontend \
+      SeniorPortal-Frontend/SeniorPortalFrontend; do
+      (
+        cd "$app"
+        npm ci
+      )
+    done

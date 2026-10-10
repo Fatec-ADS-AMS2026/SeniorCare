@@ -50,9 +50,9 @@ futuros (fora de escopo).
 - Adicionar uma capacidade de envio de e-mail transacional (SMTP,
   configurável por variável de ambiente, opcional — implantação sem SMTP
   configurado continua no fluxo manual já documentado, sem regressão).
-- Disparar e-mail automaticamente nos três pontos que hoje só geram token
-  internamente: ativação de conta nova (bootstrap e criação administrativa
-  via `AdminUserOverview`) e recuperação de senha (`POST /auth/recover`).
+- Disparar e-mail automaticamente nos dois pontos que geram token
+  internamente: ativação de conta criada via `AdminUserOverview` e recuperação
+  de senha (`POST /auth/recover`).
 - Adicionar renderização de QR code (biblioteca só no front-end, sem
   dependência nova no backend — o `otpauth://` já é gerado hoje) na tela de
   cadastro de MFA, mantendo a chave manual como alternativa.
@@ -68,11 +68,9 @@ futuros (fora de escopo).
 - Tornar explícito e verificável o contrato da primeira execução tanto com a
   API iniciada pelo Rider e os front-ends pelo WebStorm quanto com toda a stack
   em containers: o bootstrap cria, somente em banco vazio, uma conta
-  administrativa `PROVISIONED` sem senha e entrega um token para que a própria
-  pessoa defina a credencial. A plataforma não possui senha inicial padrão.
-- Remover do helper local qualquer senha administrativa conhecida e versionada;
-  a automação de desenvolvimento deverá receber a senha fora do repositório ou
-  gerar uma credencial efêmera de alta entropia para aquela execução.
+  administrativa `ACTIVE` com senha aleatória de 32 caracteres exibida uma vez
+  no console. A plataforma não possui senha inicial padrão.
+- Remover do helper local qualquer senha administrativa conhecida e versionada.
 
 ### Capabilities
 
@@ -123,15 +121,14 @@ _Contrato de capacidade migrado sem alteração normativa._
 ### Updated Functional Requirements
 
 #### Requirement: Ativação e recuperação não distribuem senha conhecida
-Administradores SHALL criar a conta e disparar ativação ou recuperação, mas SHALL
-NOT visualizar nem definir uma senha permanente conhecida por eles. Ativação e
-recuperação SHALL usar token aleatório, armazenado de forma não recuperável, de uso
-único e com validade curta. As respostas públicas SHALL ser uniformes para impedir
-enumeração de contas. Quando o ambiente tiver um canal de e-mail configurado, a
-plataforma SHALL enviar o token automaticamente para o identificador da conta. O
-fallback que apresenta o token bruto SHALL ser restrito à saída única do bootstrap;
-contas administrativas posteriores SHALL usar reenvio autenticado após a correção
-do canal, sem recuperar ou expor o token anterior.
+Administradores SHALL criar contas posteriores e disparar ativação ou recuperação,
+mas SHALL NOT visualizar nem definir uma senha permanente conhecida por eles.
+Ativação e recuperação SHALL usar token aleatório, armazenado de forma não
+recuperável, de uso único e com validade curta. As respostas públicas SHALL ser
+uniformes para impedir enumeração de contas. Quando o ambiente tiver um canal de
+e-mail configurado, a plataforma SHALL enviar o token automaticamente para o
+identificador da conta. Contas administrativas posteriores SHALL usar reenvio
+autenticado após a correção do canal, sem recuperar ou expor token anterior.
 
 ##### Scenario: Ativação inicial
 - **WHEN** uma conta `PROVISIONED` recebe e utiliza um token de ativação válido
@@ -165,9 +162,9 @@ do canal, sem recuperar ou expor o token anterior.
 ##### Scenario: Canal de e-mail não configurado
 - **WHEN** um token de ativação ou recuperação é gerado e o ambiente não tem
   canal de e-mail configurado
-- **THEN** a plataforma cria o token normalmente sem tentar envio; o bootstrap
-  apresenta seu token uma única vez, enquanto a criação administrativa posterior
-  informa `emailSent: false` e permite reenvio seguro após configurar o canal
+- **THEN** a plataforma cria o token normalmente sem tentar envio; a criação
+  administrativa posterior informa `emailSent: false` e permite reenvio seguro
+  após configurar o canal
 
 ##### Scenario: Reenvio administrativo de ativação
 - **WHEN** um administrador autorizado solicita novo envio para uma conta local
@@ -179,36 +176,33 @@ do canal, sem recuperar ou expor o token anterior.
 A primeira identidade administrativa SHALL ser criada por procedimento explícito,
 idempotente e limitado à instituição inicial, independentemente de a API ser
 executada por uma IDE ou em container. O procedimento SHALL receber configuração
-fora do repositório, SHALL criar uma conta `PROVISIONED` sem senha e SHALL iniciar
-a ativação por token para que a própria pessoa defina sua credencial. A plataforma
-e seus auxiliares de desenvolvimento SHALL NOT possuir senha administrativa inicial
-conhecida, compartilhada ou versionada. Os front-ends SHALL apenas conduzir a
-ativação, o login e o cadastro de MFA; a criação inicial pertence ao bootstrap da
-API.
+fora do repositório, SHALL criar uma conta `ACTIVE` com senha aleatória de 32
+caracteres e SHALL exibi-la uma única vez no console do processo. A plataforma e
+seus auxiliares de desenvolvimento SHALL NOT possuir senha administrativa inicial
+conhecida, compartilhada ou versionada. Os front-ends SHALL apenas conduzir o
+login e o cadastro de MFA; a criação inicial pertence ao bootstrap da API.
 
 ##### Scenario: Primeira execução da API pelo Rider
 - **WHEN** a API é iniciada pelo Rider contra banco vazio com os três parâmetros
   de bootstrap válidos definidos na Run Configuration
-- **THEN** uma única instituição e uma única conta administrativa `PROVISIONED`
-  sem senha são criadas e um token de ativação de uso único é emitido
+- **THEN** uma única instituição e uma única conta administrativa `ACTIVE` são
+  criadas, e a senha aleatória é exibida uma única vez no console
 
 ##### Scenario: Primeira execução em containers
 - **WHEN** a stack é iniciada por Docker Compose contra banco vazio com os três
   parâmetros de bootstrap válidos fornecidos fora das imagens
-- **THEN** uma única instituição e uma única conta administrativa `PROVISIONED`
-  sem senha são criadas e um token de ativação de uso único é emitido
+- **THEN** uma única instituição e uma única conta administrativa `ACTIVE` são
+  criadas, e a senha aleatória é exibida uma única vez na saída do processo
 
-##### Scenario: Ativação pelo frontend em desenvolvimento
-- **WHEN** a pessoa abre pelo frontend executado no WebStorm ou em container o
-  link de ativação emitido pela API
-- **THEN** ela define a própria senha conforme a política vigente e nenhum
+##### Scenario: Login pelo frontend em desenvolvimento
+- **WHEN** a pessoa abre pelo frontend executado no WebStorm ou em container
+- **THEN** ela usa o e-mail configurado e a senha exibida no bootstrap; nenhum
   frontend cria, escolhe ou recupera uma senha inicial em seu lugar
 
-##### Scenario: Automação local do primeiro acesso
-- **WHEN** um auxiliar de desenvolvimento automatiza ativação, login e cadastro
-  de MFA
-- **THEN** ele exige uma senha fornecida fora do repositório ou gera uma senha
-  efêmera de alta entropia para aquela execução, sem usar valor padrão conhecido
+##### Scenario: Senha inicial aleatória
+- **WHEN** o bootstrap cria a conta administrativa inicial
+- **THEN** a senha é aleatória, possui 32 caracteres e não aparece no banco,
+  em resposta HTTP, auditoria ou em reinicialização posterior
 
 ##### Scenario: Configuração de bootstrap parcial
 - **WHEN** apenas parte dos três parâmetros obrigatórios de bootstrap é fornecida

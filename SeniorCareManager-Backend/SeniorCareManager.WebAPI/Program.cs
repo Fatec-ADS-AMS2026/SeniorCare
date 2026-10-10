@@ -40,12 +40,9 @@ namespace SeniorCareManager.WebAPI
                     var result = bootstrap.RunAsync().GetAwaiter().GetResult();
                     if (result.Created)
                     {
-                        Console.WriteLine("Bootstrap: instituição e administrador PROVISIONED criados.");
+                        Console.WriteLine("Bootstrap: instituição e administrador ACTIVE criados.");
                         Console.WriteLine($"  Administrador: {result.AdminEmail}");
-                        if (result.NotificationStatus != Objects.Enums.NotificationDeliveryStatus.Sent)
-                            Console.WriteLine($"  Token de ativação (uso único, capture agora — não será reimpresso): {result.ActivationToken}");
-                        else
-                            Console.WriteLine("  Link de ativação enviado por e-mail.");
+                        Console.WriteLine($"  Senha inicial (exibida somente nesta inicialização): {result.InitialPassword}");
                     }
                 }
 

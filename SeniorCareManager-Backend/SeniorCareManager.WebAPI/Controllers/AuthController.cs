@@ -294,6 +294,14 @@ public class AuthController : ControllerBase
             throw new BusinessRuleException("Token ou dados de ativação inválidos.");
         }
 
+        var passwordValidation = await ValidatePasswordAsync(user, request.NewPassword);
+        if (!passwordValidation.Succeeded)
+        {
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "Activate", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Senha não atende à política.");
+            throw new BusinessRuleException(DescribeErrors(passwordValidation));
+        }
+
         var tokenValid = await _accountTokenService.ConsumeAsync(user.Id, AccountTokenPurpose.ACTIVATION, request.Token);
         if (!tokenValid)
         {
@@ -354,6 +362,14 @@ public class AuthController : ControllerBase
             await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "PasswordReset", AuditOutcome.FAILURE,
                 actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: $"Estado: {user.AccountState}.");
             throw new BusinessRuleException("Token ou dados de recuperação inválidos.");
+        }
+
+        var passwordValidation = await ValidatePasswordAsync(user, request.NewPassword);
+        if (!passwordValidation.Succeeded)
+        {
+            await _auditService.RecordAsync(AuditEventCategory.AUTHENTICATION, "Auth", "PasswordReset", AuditOutcome.FAILURE,
+                actorUserId: user.Id, targetUserId: user.Id, institutionId: user.InstitutionId, description: "Senha não atende à política.");
+            throw new BusinessRuleException(DescribeErrors(passwordValidation));
         }
 
         var tokenValid = await _accountTokenService.ConsumeAsync(user.Id, AccountTokenPurpose.RECOVERY, request.Token);
@@ -520,6 +536,19 @@ public class AuthController : ControllerBase
             OrganizationalResponsibilities = responsibilities,
             EffectivePermissions = effectivePermissions,
         };
+    }
+
+    // Valida antes de consumir um token de uso único; usada por ativação e recuperação.
+    private async Task<IdentityResult> ValidatePasswordAsync(ApplicationUser user, string password)
+    {
+        foreach (var validator in _userManager.PasswordValidators)
+        {
+            var result = await validator.ValidateAsync(_userManager, user, password);
+            if (!result.Succeeded)
+                return result;
+        }
+
+        return IdentityResult.Success;
     }
 
     private string GetClientOrigin() => HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";

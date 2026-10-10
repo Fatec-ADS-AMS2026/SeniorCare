@@ -1,6 +1,6 @@
 import { Envelope, Eye, EyeSlash, Lock } from '@phosphor-icons/react';
 import { FormEvent, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import authService from '../../services/authService';
 import useAuth from '@/hooks/useAuth';
 import { resolveReturnPath } from '@/utils/returnPath';
@@ -130,6 +130,9 @@ export default function LoginForm() {
       >
         {isSubmitting ? 'Entrando...' : 'Entrar'}
       </button>
+      <Link className='mt-4 text-primary underline' to='/recuperar-senha'>
+        Esqueci minha senha
+      </Link>
     </form>
   );
 }
