@@ -236,7 +236,7 @@ describe('páginas CRUD assistenciais', () => {
       Promise.resolve({
         data: {
           items: url === 'AdminPermission/?pageSize=100'
-            ? [{ id: 'permission-1', resource: 'Resident', action: 'Read', feature: 'MedicalRecord' }]
+            ? [{ id: 'permission-1', resource: 'Religion', action: 'Read', feature: 'Catalog' }]
             : [],
         },
       })
@@ -246,7 +246,7 @@ describe('páginas CRUD assistenciais', () => {
     render(<MemoryRouter><AccessPolicyOverview /></MemoryRouter>);
 
     await user.click(screen.getByRole('button', { name: 'Criar política' }));
-    await screen.findByRole('option', { name: 'Resident.Read.MedicalRecord' });
+    await screen.findByRole('option', { name: 'Religion.Read.Catalog' });
     await user.selectOptions(document.querySelector('select[name="permissionId"]')!, 'permission-1');
     await user.selectOptions(document.querySelector('select[name="scopeType"]')!, '2');
     await user.type(screen.getByLabelText(/Identificador do escopo/), 'unit-1');
@@ -254,7 +254,7 @@ describe('páginas CRUD assistenciais', () => {
 
     await waitFor(() => expect(postMock).toHaveBeenCalledWith(
       'AdminAccessPolicy/',
-      expect.objectContaining({ resource: 'Resident', action: 'Read', feature: 'MedicalRecord', scopeType: 2, scopeKey: 'unit-1' })
+      expect.objectContaining({ resource: 'Religion', action: 'Read', feature: 'Catalog', scopeType: 2, scopeKey: 'unit-1' })
     ));
   });
 

@@ -49,14 +49,18 @@ sobe. Compilar (CI) e entregar (CD) ficam desacoplados.
 
 ## 5. Pipeline de CI/CD (GitHub Actions)
 
-- **`ci.yml`** (PR e push em `main`) — path filter por módulo, build/lint/audit. Não
-  publica imagem; é gate de qualidade (ver também `docs/` do processo de revisão de PR).
+- **`ci.yml`** (PR e push em `main`/`dev`) — path filter por módulo,
+  build/lint/audit. Não publica imagem; é gate de qualidade.
 - **`release.yml`** (tag `v*`) — builda e empurra as 4 imagens com a tag do release
   para o GHCR (`docker/build-push-action`, cache de layers), gera o **release
   manifest** (§6) e o anexa ao GitHub Release.
 - **`ghcr-retention.yml`** (semanal + manual) — poda imagens de rastreio interno
   (`sha-*`, 90 dias/últimas 20) e órfãs sem tag (7 dias). Releases e `:latest` nunca
   expiram.
+
+O gate SCA bloqueia vulnerabilidades altas/críticas em dependências de produção
+e críticas no conjunto completo. Axios está fixado em `1.20.0` nos lockfiles dos
+três frontends; atualizações devem preservar esses limites, sem suprimir alertas.
 
 > **Autenticação CI → GHCR:** `GITHUB_TOKEN` com `packages: write` no job de release.
 

@@ -1,7 +1,7 @@
 # Graph Report - thornyhead  (2026-10-10)
 
 ## Corpus Check
-- 892 files · ~928,463 words
+- 892 files · ~928,487 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 68 file(s) not represented in the graph (top: (none) 24, .ttf 18, .example 7)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5e49fe1f`
+- Built from commit: `1cc4bed2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -1498,7 +1498,7 @@ Nodes (3): Requirement: Portal minimiza dados e não apresenta conteúdo clínic
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `10. Identidade, acesso e contratos nos front-ends` connect `Button` to `AdminPermissionGroupController`, `.GetInstitutionIdAsync`, `Guid`, `AuthController`, `SeniorCareManagerFrontend/src/utils/serviceUtils.ts`, `AdminOrganizationalRoleController`, `9. Catálogos auxiliares e produto`, `ApplicationUser`, `Button`, `AdminUserController`, `SeniorCareManagerFrontend/src/test/operationalPages.test.tsx`, `6. Configuração administrativa de acesso`, `AdminUserControllerTests`?**
-  _High betweenness centrality (0.146) - this node is a cross-community bridge._
+  _High betweenness centrality (0.144) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `AppDbContext` (e.g. with `4. Instituição, identidade e política de senha` and `9. Catálogos auxiliares e produto`) actually correct?**
   _`AppDbContext` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `DataProtectionKeyRingPath`, `DataProtectionApplicationName`, `NotificationSender` to the rest of the system?**

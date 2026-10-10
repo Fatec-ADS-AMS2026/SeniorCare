@@ -2064,9 +2064,9 @@
     "semantic_hash": ""
   },
   "docs/infra/ci-cd-arquitetura.md": {
-    "mtime": 1790518202.2629313,
-    "seen": 1791642892.751145,
-    "ast_hash": "ddcdfc33ba2b9a68d72f90ff84f3ab15",
+    "mtime": 1791643235.8252382,
+    "seen": 1791643277.580352,
+    "ast_hash": "c51affd3e0a3d2d5b8156833b15bf174",
     "semantic_hash": ""
   },
   "infra/deploy/README.md": {
@@ -5514,9 +5514,9 @@
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/test/crudPages.test.tsx": {
-    "mtime": 1790518202.1081412,
-    "seen": 1791642892.751009,
-    "ast_hash": "e7d6588a6f0e31cc3c109f5d9df2618a",
+    "mtime": 1791643070.774759,
+    "seen": 1791643277.5801642,
+    "ast_hash": "8f7af732a7d6d43736bca1bd63070afd",
     "semantic_hash": ""
   },
   "SeniorCareManager-Frontend/SeniorCareManagerFrontend/src/test/operationalPages.test.tsx": {
