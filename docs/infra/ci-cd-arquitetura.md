@@ -62,6 +62,10 @@ O gate SCA bloqueia vulnerabilidades altas/críticas em dependências de produç
 e críticas no conjunto completo. Axios está fixado em `1.20.0` nos lockfiles dos
 três frontends; atualizações devem preservar esses limites, sem suprimir alertas.
 
+Os frontends usam Node.js 22 com npm 10 no CI. Gere os lockfiles com essa mesma
+combinação e valide com `npm ci`: versões diferentes do npm podem omitir peers
+opcionais necessários à instalação limpa, mesmo quando o build local funciona.
+
 > **Autenticação CI → GHCR:** `GITHUB_TOKEN` com `packages: write` no job de release.
 
 ## 6. Release manifest — a unidade de deploy

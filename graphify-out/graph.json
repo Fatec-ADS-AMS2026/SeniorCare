@@ -30214,7 +30214,7 @@
       "node_kind": "heading",
       "norm_label": "6. release manifest \u2014 a unidade de deploy",
       "source_file": "docs/infra/ci-cd-arquitetura.md",
-      "source_location": "L67"
+      "source_location": "L71"
     },
     {
       "id": "docs_infra_ci_cd_arquitetura_7_cd_entrega_no_servidor_pull_based",
@@ -30226,7 +30226,7 @@
       "node_kind": "heading",
       "norm_label": "7. cd \u2014 entrega no servidor (pull-based)",
       "source_file": "docs/infra/ci-cd-arquitetura.md",
-      "source_location": "L94"
+      "source_location": "L98"
     },
     {
       "id": "docs_infra_ci_cd_arquitetura_8_camada_de_opera\u00e7\u00e3o_opcional",
@@ -30238,7 +30238,7 @@
       "node_kind": "heading",
       "norm_label": "8. camada de operacao (opcional)",
       "source_file": "docs/infra/ci-cd-arquitetura.md",
-      "source_location": "L117"
+      "source_location": "L121"
     },
     {
       "id": "docs_infra_ci_cd_arquitetura_9_o_que_fica_para_depois_n\u00e3o_implementado_ainda",
@@ -30250,7 +30250,7 @@
       "node_kind": "heading",
       "norm_label": "9. o que fica para depois (nao implementado ainda)",
       "source_file": "docs/infra/ci-cd-arquitetura.md",
-      "source_location": "L125"
+      "source_location": "L129"
     },
     {
       "id": "docs_infra_ci_cd_arquitetura_arquitetura_de_ci_cd_seniorcare",
@@ -30274,7 +30274,7 @@
       "node_kind": "heading",
       "norm_label": "regras de imutabilidade",
       "source_file": "docs/infra/ci-cd-arquitetura.md",
-      "source_location": "L89"
+      "source_location": "L93"
     },
     {
       "id": "docs_tutorial_docker_1_subir_tudo_build_run",
@@ -195751,7 +195751,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/infra/ci-cd-arquitetura.md",
-      "source_location": "L89",
+      "source_location": "L93",
       "weight": 1.0
     },
     {
@@ -195773,7 +195773,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/infra/ci-cd-arquitetura.md",
-      "source_location": "L117",
+      "source_location": "L121",
       "weight": 1.0
     },
     {
@@ -195784,7 +195784,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/infra/ci-cd-arquitetura.md",
-      "source_location": "L125",
+      "source_location": "L129",
       "weight": 1.0
     },
     {
@@ -195839,7 +195839,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/infra/ci-cd-arquitetura.md",
-      "source_location": "L67",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -195850,7 +195850,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/infra/ci-cd-arquitetura.md",
-      "source_location": "L94",
+      "source_location": "L98",
       "weight": 1.0
     },
     {
@@ -231663,7 +231663,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/infra/ci-cd-arquitetura.md",
-      "source_location": "L115",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -242051,5 +242051,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1cc4bed2868357da5bf1c3a8482f68b04f318e18"
+  "built_at_commit": "6335939eb1563af18dd455d0d2aa9ba19d24d66a"
 }

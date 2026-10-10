@@ -1,7 +1,7 @@
 # Graph Report - thornyhead  (2026-10-10)
 
 ## Corpus Check
-- 892 files · ~928,487 words
+- 892 files · ~928,527 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 68 file(s) not represented in the graph (top: (none) 24, .ttf 18, .example 7)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1cc4bed2`
+- Built from commit: `6335939e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
